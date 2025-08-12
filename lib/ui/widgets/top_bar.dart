@@ -17,24 +17,25 @@ class EchoTopBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
+    return Container(
       width: double.infinity,
       height: 45.h,
+      padding: EdgeInsets.symmetric(horizontal: 6.w),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           // 返回按钮
           if (showBack)
             InkWell(
-              radius: 8,
-              highlightColor: Colors.transparent,
               onTap: () => context.pop(),
-              child: Container(
-                width: 45.h,
-                height: 45.h,
-                margin: EdgeInsets.only(left: 6.w),
-                padding: EdgeInsets.all(10),
-                child: Image.asset(R.drawable('icon_xtleft')),
+              borderRadius: const BorderRadius.all(Radius.circular(24)),
+              child: Padding(
+                padding: const EdgeInsets.all(10),
+                child: Image.asset(
+                  R.drawable('icon_xtleft'),
+                  width: 24.h,
+                  height: 24.h,
+                ),
               ),
             )
           else
@@ -59,15 +60,15 @@ class EchoTopBar extends StatelessWidget {
           // 客服按钮
           if (showSupport)
             InkWell(
-              radius: 8,
-              highlightColor: Colors.transparent,
               onTap: () => context.pop(),
-              child: Container(
-                width: 45.h,
-                height: 45.h,
-                margin: EdgeInsets.only(right: 6.w),
-                padding: EdgeInsets.all(10),
-                child: Image.asset(R.drawable('icon_xtcustomer')),
+              borderRadius: const BorderRadius.all(Radius.circular(24)),
+              child: Padding(
+                padding: const EdgeInsets.all(10),
+                child: Image.asset(
+                  R.drawable('icon_xtcustomer'),
+                  width: 24.h,
+                  height: 24.h,
+                ),
               ),
             )
           else

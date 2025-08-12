@@ -10,9 +10,9 @@ class HomePage extends StatelessWidget {
   const HomePage({super.key});
 
   static const stepItems = [
-    'Enviar Informações',
-    'Obtenha Crédito',
-    'Levantar Dinheiro',
+    'Llenar Datos',
+    'Monto Credito',
+    'Solicitar Credito',
   ];
 
   @override
@@ -80,20 +80,19 @@ class HomePage extends StatelessWidget {
           ),
         ),
         InkWell(
-          radius: 8,
-          highlightColor: Colors.transparent,
           onTap: () => context.push(AppRouter.demo),
-          child: Container(
-            width: 45.h,
-            height: 45.h,
-            margin: EdgeInsets.only(right: 6.w),
-            padding: EdgeInsets.all(10),
+          borderRadius: const BorderRadius.all(Radius.circular(24)),
+          child: Padding(
+            padding: const EdgeInsets.all(10),
             child: Image.asset(
               R.drawable('icon_xtcustomer'),
+              width: 24.h,
+              height: 24.h,
               color: Colors.black,
             ),
           ),
         ),
+        SizedBox(width: 6.w),
       ],
     );
   }
@@ -106,11 +105,11 @@ class HomePage extends StatelessWidget {
           width: double.infinity,
           margin: EdgeInsets.only(top: 20.h),
           padding: EdgeInsets.fromLTRB(24.w, 24.h, 24.w, 34.h),
-          decoration: BoxDecoration(
-            gradient: const LinearGradient(
+          decoration: const BoxDecoration(
+            gradient: LinearGradient(
               colors: [NowColors.c0xFF3288F1, NowColors.c0xFF4FAAFF],
             ),
-            borderRadius: BorderRadius.circular(20.r),
+            borderRadius: BorderRadius.all(Radius.circular(20)),
           ),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -159,9 +158,9 @@ class HomePage extends StatelessWidget {
       width: double.infinity,
       height: 212.h,
       padding: EdgeInsets.fromLTRB(20.w, 20.h, 16.w, 20.h),
-      decoration: BoxDecoration(
+      decoration: const BoxDecoration(
         color: Colors.white,
-        borderRadius: BorderRadius.circular(20.r),
+        borderRadius: BorderRadius.all(Radius.circular(20)),
       ),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -215,9 +214,9 @@ class HomePage extends StatelessWidget {
       width: double.infinity,
       height: 45.h,
       padding: EdgeInsets.symmetric(horizontal: 20.w),
-      decoration: BoxDecoration(
-        color: const Color(0xFFF4F3F2),
-        borderRadius: BorderRadius.circular(22.r),
+      decoration: const BoxDecoration(
+        color: Color(0xFFF4F3F2),
+        borderRadius: BorderRadius.all(Radius.circular(24)),
       ),
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.center,

@@ -139,9 +139,9 @@ class _LoginPhonePageState extends State<LoginPhonePage> {
     return Container(
       margin: EdgeInsets.only(top: 36.h),
       padding: EdgeInsets.fromLTRB(16.w, 28.h, 16.w, 40.h),
-      decoration: BoxDecoration(
+      decoration: const BoxDecoration(
         color: Colors.white,
-        borderRadius: BorderRadius.circular(20.r),
+        borderRadius: BorderRadius.all(Radius.circular(20)),
         boxShadow: NowStyles.cardShadows,
       ),
       child: Column(
@@ -295,6 +295,7 @@ class _LoginPhonePageState extends State<LoginPhonePage> {
                       child: Container(
                         width: 18.w,
                         height: 18.w,
+                        alignment: Alignment.center,
                         decoration: BoxDecoration(
                           color: NowColors.c0xFFB0B1B2,
                           shape: BoxShape.circle,

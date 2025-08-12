@@ -4,6 +4,7 @@ import 'package:flutter_echo/pages/app_router.dart';
 import 'package:flutter_echo/ui/dialog_helper.dart';
 import 'package:flutter_echo/ui/widgets/common_button.dart';
 import 'package:flutter_echo/utils/context_ext.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
 
 /// 测试和演示页面
@@ -14,9 +15,10 @@ class DemoPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        centerTitle: true,
         title: const Text(
           '测试入口',
-          style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+          style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
         ),
         backgroundColor: NowColors.c0xFF3288F1,
         foregroundColor: Colors.white,
@@ -167,7 +169,7 @@ class DemoPage extends StatelessWidget {
                   backgroundColor: const Color(0xFF6C757D),
                   foregroundColor: Colors.white,
                   shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(24),
+                    borderRadius: BorderRadius.circular(24.r),
                   ),
                 ),
                 icon: const Icon(Icons.home),
@@ -208,10 +210,12 @@ class DemoPage extends StatelessWidget {
       width: double.infinity,
       child: Card(
         elevation: 2,
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+        shape: RoundedRectangleBorder(
+          borderRadius: const BorderRadius.all(Radius.circular(12)),
+        ),
         child: InkWell(
           onTap: onPressed,
-          borderRadius: BorderRadius.circular(12),
+          borderRadius: const BorderRadius.all(Radius.circular(12)),
           child: Padding(
             padding: const EdgeInsets.all(16),
             child: Row(
@@ -221,7 +225,7 @@ class DemoPage extends StatelessWidget {
                   height: 48,
                   decoration: BoxDecoration(
                     color: color.withAlpha(26),
-                    borderRadius: BorderRadius.circular(24),
+                    borderRadius: const BorderRadius.all(Radius.circular(24)),
                   ),
                   child: Icon(icon, color: color, size: 24),
                 ),
@@ -264,7 +268,7 @@ class DemoPage extends StatelessWidget {
 
   /// 显示图形验证码弹窗
   void _showCaptchaDialog(BuildContext context) async {
-    final result = await DialogHelper.showCaptchaDialog(context);
+    final result = await DialogHelper.showCaptchaDialog(context: context);
     if (context.mounted) {
       if (result != null && result.isNotEmpty) {
         // 验证成功

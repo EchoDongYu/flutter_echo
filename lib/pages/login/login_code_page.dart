@@ -199,9 +199,9 @@ class _LoginCodePageState extends State<LoginCodePage> {
     return Container(
       margin: EdgeInsets.only(top: 36.h),
       padding: EdgeInsets.fromLTRB(16.w, 28.h, 16.w, 40.h),
-      decoration: BoxDecoration(
+      decoration: const BoxDecoration(
         color: Colors.white,
-        borderRadius: BorderRadius.circular(20.r),
+        borderRadius: BorderRadius.all(Radius.circular(20)),
         boxShadow: NowStyles.cardShadows,
       ),
       child: Column(
@@ -317,7 +317,7 @@ class _LoginCodePageState extends State<LoginCodePage> {
         color: hasValue
             ? NowColors.c0xFF3288F1
             : (isActive ? NowColors.c0xFFEFF7FF : Colors.white),
-        borderRadius: BorderRadius.circular(56.r),
+        borderRadius: const BorderRadius.all(Radius.circular(56)),
         border: hasValue
             ? null
             : Border.all(

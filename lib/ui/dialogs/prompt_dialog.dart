@@ -45,7 +45,9 @@ class _PromptDialogState extends State<PromptDialog> {
       alignment: Alignment.center,
       backgroundColor: Colors.white,
       insetPadding: EdgeInsets.symmetric(horizontal: 24.w),
-      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20.r)),
+      shape: const RoundedRectangleBorder(
+        borderRadius: BorderRadius.all(Radius.circular(20)),
+      ),
       child: Padding(
         padding: EdgeInsets.fromLTRB(16.w, 32.h, 16.w, 24.h),
         child: Column(

@@ -56,7 +56,7 @@ class DialogHelper {
   }
 
   /// 显示图形验证码弹窗
-  static Future<String?> showCaptchaDialog(BuildContext context) {
+  static Future<String?> showCaptchaDialog({required BuildContext context}) {
     return showModalBottomSheet<String>(
       context: context,
       enableDrag: false,

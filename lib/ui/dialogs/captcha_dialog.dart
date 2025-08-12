@@ -77,8 +77,8 @@ class _CaptchaDialogState extends State<CaptchaDialog> {
                         width: 1.6.w,
                       ),
                     ),
-                    child: Icon(
-                      Icons.close,
+                    child: const Icon(
+                      Icons.close_rounded,
                       color: NowColors.c0xFF1C1F23,
                       size: 16,
                     ),
@@ -100,7 +100,7 @@ class _CaptchaDialogState extends State<CaptchaDialog> {
           Container(
             decoration: BoxDecoration(
               color: NowColors.c0xFFFFF9EA,
-              borderRadius: BorderRadius.circular(20.r),
+              borderRadius: const BorderRadius.all(Radius.circular(20)),
             ),
             child: Padding(
               padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 14.h),
@@ -121,7 +121,7 @@ class _CaptchaDialogState extends State<CaptchaDialog> {
             padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 20.h),
             decoration: BoxDecoration(
               color: Colors.white,
-              borderRadius: BorderRadius.circular(20.r),
+              borderRadius: const BorderRadius.all(Radius.circular(20)),
               boxShadow: NowStyles.cardShadows,
             ),
             child: Column(

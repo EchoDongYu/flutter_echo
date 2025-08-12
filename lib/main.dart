@@ -61,6 +61,7 @@ class MyApp extends StatelessWidget {
             theme: AppTheme.lightTheme,
             darkTheme: AppTheme.darkTheme,
             locale: const Locale('es', 'GT'),
+            debugShowCheckedModeBanner: false,
           ),
         );
       },

@@ -70,7 +70,6 @@ class _MainPageState extends State<MainPage> {
       width: double.infinity,
       height: 60.h,
       margin: EdgeInsets.symmetric(horizontal: 16.w, vertical: 12.h),
-      padding: EdgeInsets.symmetric(vertical: 6.h),
       decoration: BoxDecoration(
         color: const Color(0xD9FFFFFF),
         borderRadius: const BorderRadius.all(Radius.circular(20)),
@@ -78,7 +77,7 @@ class _MainPageState extends State<MainPage> {
         boxShadow: NowStyles.bottomShadows,
       ),
       child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceAround,
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [_buildBottomItem(0), _buildBottomItem(1)],
       ),
@@ -89,26 +88,31 @@ class _MainPageState extends State<MainPage> {
     final isActive = _currentPage == index;
     return InkWell(
       onTap: () => _controller.jumpToPage(index),
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-        children: [
-          Image.asset(
-            isActive
-                ? R.drawable(bottomItems[index].first)
-                : R.drawable(bottomItems[index].second),
-            width: 28.w,
-            height: 28.w,
-          ),
-          Text(
-            bottomItems[index].third,
-            style: TextStyle(
-              fontSize: 10.sp,
-              fontWeight: FontWeight.w500,
-              color: isActive ? NowColors.c0xFF3288F1 : NowColors.c0xFF77797B,
-              height: 14 / 10,
+      child: ConstrainedBox(
+        constraints: BoxConstraints(minWidth: 120.w),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          children: [
+            SizedBox(height: 6.h),
+            Image.asset(
+              isActive
+                  ? R.drawable(bottomItems[index].first)
+                  : R.drawable(bottomItems[index].second),
+              width: 28.w,
+              height: 28.w,
             ),
-          ),
-        ],
+            Text(
+              bottomItems[index].third,
+              style: TextStyle(
+                fontSize: 10.sp,
+                fontWeight: FontWeight.w500,
+                color: isActive ? NowColors.c0xFF3288F1 : NowColors.c0xFF77797B,
+                height: 14 / 10,
+              ),
+            ),
+            SizedBox(height: 6.h),
+          ],
+        ),
       ),
     );
   }

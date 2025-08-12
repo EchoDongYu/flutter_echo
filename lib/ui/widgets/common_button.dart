@@ -28,12 +28,6 @@ abstract class _EchoButton extends StatelessWidget {
     vertical: 8.h,
   );
 
-  static final BorderRadius borderRadius = BorderRadius.circular(50.r);
-
-  static final OutlinedBorder shape = RoundedRectangleBorder(
-    borderRadius: borderRadius,
-  );
-
   Color disableColor(Color color) => color.withValues(alpha: 0.67);
 }
 
@@ -55,30 +49,28 @@ class EchoPrimaryButton extends _EchoButton {
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      width: width ?? double.infinity,
-      height: height ?? 48.h,
-      child: InkWell(
-        onTap: onPressed,
-        borderRadius: _EchoButton.borderRadius,
-        child: Container(
-          decoration: BoxDecoration(
-            gradient: LinearGradient(
-              colors: onPressed != null
-                  ? gradientColors
-                  : gradientColors.map(disableColor).toList(),
-            ),
-            borderRadius: _EchoButton.borderRadius,
+    return InkWell(
+      onTap: onPressed,
+      borderRadius: const BorderRadius.all(Radius.circular(50)),
+      child: Container(
+        width: width ?? double.infinity,
+        height: height ?? 48.h,
+        padding: _EchoButton.padding,
+        alignment: Alignment.center,
+        decoration: BoxDecoration(
+          gradient: LinearGradient(
+            colors: onPressed != null
+                ? gradientColors
+                : gradientColors.map(disableColor).toList(),
           ),
-          padding: _EchoButton.padding,
-          alignment: Alignment.center,
-          child: Text(
-            text,
-            style: TextStyle(
-              color: textColor,
-              fontSize: fontSize ?? 16.sp,
-              fontWeight: fontWeight,
-            ),
+          borderRadius: const BorderRadius.all(Radius.circular(50)),
+        ),
+        child: Text(
+          text,
+          style: TextStyle(
+            color: textColor,
+            fontSize: fontSize ?? 16.sp,
+            fontWeight: fontWeight,
           ),
         ),
       ),
@@ -117,7 +109,9 @@ class EchoSecondaryButton extends _EchoButton {
               : disableColor(filledColor),
           elevation: elevation,
           padding: _EchoButton.padding,
-          shape: _EchoButton.shape,
+          shape: const RoundedRectangleBorder(
+            borderRadius: BorderRadius.all(Radius.circular(50)),
+          ),
         ),
         child: Text(
           text,
@@ -163,7 +157,9 @@ class EchoOutlinedButton extends _EchoButton {
           backgroundColor: filledColor,
           padding: _EchoButton.padding,
           side: BorderSide(color: borderColor, width: outlineWidth),
-          shape: _EchoButton.shape,
+          shape: const RoundedRectangleBorder(
+            borderRadius: BorderRadius.all(Radius.circular(50)),
+          ),
         ),
         child: Text(
           text,
