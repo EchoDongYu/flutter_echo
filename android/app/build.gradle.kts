@@ -7,8 +7,8 @@ plugins {
 
 android {
     namespace = "com.murphy.flutter_echo"
-    compileSdk = flutter.compileSdkVersion
-    ndkVersion = flutter.ndkVersion
+    compileSdk = 35
+    ndkVersion = "28.2.13676358"
 
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_11
@@ -24,17 +24,34 @@ android {
         applicationId = "com.murphy.flutter_echo"
         // You can update the following values to match your application needs.
         // For more information, see: https://flutter.dev/to/review-gradle-config.
-        minSdk = flutter.minSdkVersion
-        targetSdk = flutter.targetSdkVersion
+        minSdk = 24
+        targetSdk = 35
         versionCode = flutter.versionCode
         versionName = flutter.versionName
     }
 
+    signingConfigs {
+        create("test") {
+            storeFile = file("test.jks")
+            storePassword = "123456"
+            keyPassword = "123456"
+            keyAlias = "key0"
+        }
+    }
+
     buildTypes {
         release {
+            isMinifyEnabled = true
             // TODO: Add your own signing config for the release build.
             // Signing with the debug keys for now, so `flutter run --release` works.
-            signingConfig = signingConfigs.getByName("debug")
+            signingConfig = signingConfigs.getByName("test")
+        }
+    }
+
+    packaging {
+        jniLibs {
+            // so 文件压缩
+            useLegacyPackaging = true
         }
     }
 }
