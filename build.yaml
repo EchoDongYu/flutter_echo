@@ -1,0 +1,10 @@
+targets:
+  $default:
+    builders:
+      swagger_dart_code_generator:
+        options:
+          input_folder: 'lib/swaggers'
+          output_folder: 'lib/swaggers'
+          #override_equals_and_hashcode: false
+          build_only_models: false
+          separate_models: true

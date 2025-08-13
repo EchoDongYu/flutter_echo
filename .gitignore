@@ -43,3 +43,8 @@ app.*.map.json
 /android/app/debug
 /android/app/profile
 /android/app/release
+
+# JsonSerializableGenerator
+/plugins/swagger-dart-code-generator
+/lib/models/*.g.dart
+/lib/swaggers/*.dart
