@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_echo/common/app_theme.dart';
+import 'package:flutter_echo/common/constants.dart';
 import 'package:flutter_echo/ui/widgets/common_button.dart';
 import 'package:flutter_echo/ui/widgets/step_input_field.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -21,7 +23,6 @@ class CaptchaDialog extends StatefulWidget {
 
 class _CaptchaDialogState extends State<CaptchaDialog> {
   final TextEditingController _controller = TextEditingController();
-  final FocusNode _focusNode = FocusNode();
 
   @override
   void initState() {
@@ -31,7 +32,6 @@ class _CaptchaDialogState extends State<CaptchaDialog> {
   @override
   void dispose() {
     _controller.dispose();
-    _focusNode.dispose();
     super.dispose();
   }
 
@@ -66,6 +66,7 @@ class _CaptchaDialogState extends State<CaptchaDialog> {
                 SizedBox(width: 4.w),
                 InkWell(
                   onTap: widget.onClosing,
+                  borderRadius: const BorderRadius.all(Radius.circular(12)),
                   child: Container(
                     width: 24.w,
                     height: 24.w,
@@ -137,32 +138,28 @@ class _CaptchaDialogState extends State<CaptchaDialog> {
                   ),
                 ),
                 SizedBox(height: 16.h),
-                Stack(
-                  alignment: Alignment.centerRight,
-                  children: [
-                    StepInputField(
-                      controller: _controller,
-                      focusNode: _focusNode,
-                      hintText: 'Código de verificación',
-                      maxLength: 4,
-                    ),
-                    Padding(
-                      padding: EdgeInsets.all(8),
-                      child: Container(
-                        width: 104.w,
-                        height: 44.h,
-                        decoration: BoxDecoration(
-                          borderRadius: const BorderRadius.all(
-                            Radius.circular(8),
-                          ),
-                          border: Border.all(
-                            color: NowColors.c0xFFC7C7C7,
-                            width: 1,
-                          ),
+                StepInputField(
+                  controller: _controller,
+                  hintText: 'Código de verificación',
+                  maxLength: AppConstants.codeLength,
+                  keyboardType: TextInputType.number,
+                  inputFormatters: [FilteringTextInputFormatter.digitsOnly],
+                  suffix: Padding(
+                    padding: const EdgeInsets.all(8),
+                    child: Container(
+                      width: 104.w,
+                      height: 44.h,
+                      decoration: BoxDecoration(
+                        borderRadius: const BorderRadius.all(
+                          Radius.circular(8),
+                        ),
+                        border: Border.all(
+                          color: NowColors.c0xFFC7C7C7,
+                          width: 1,
                         ),
                       ),
                     ),
-                  ],
+                  ),
                 ),
                 SizedBox(height: 16.h),
                 RichText(

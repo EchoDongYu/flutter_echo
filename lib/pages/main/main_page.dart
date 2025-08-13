@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_echo/common/app_theme.dart';
 import 'package:flutter_echo/models/common_model.dart';
 import 'package:flutter_echo/pages/main/home_page.dart';
@@ -40,25 +41,33 @@ class _MainPageState extends State<MainPage> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: NowColors.c0xFFF3F3F5,
-      body: SafeArea(
-        child: Stack(
-          alignment: Alignment.bottomCenter,
-          children: [
-            PageView(
-              controller: _controller,
-              onPageChanged: (value) {
-                if (_currentPage != value) {
-                  setState(() {
-                    _currentPage = value;
-                  });
-                }
-              },
-              children: const [HomePage(), MinePage()],
-            ),
-            _buildBottomBar(),
-          ],
+    return AnnotatedRegion(
+      value: const SystemUiOverlayStyle(
+        statusBarColor: Colors.transparent,
+        statusBarIconBrightness: Brightness.dark,
+        systemNavigationBarColor: Colors.white,
+        systemNavigationBarIconBrightness: Brightness.dark,
+      ),
+      child: Scaffold(
+        backgroundColor: NowColors.c0xFFF3F3F5,
+        body: SafeArea(
+          child: Stack(
+            alignment: Alignment.bottomCenter,
+            children: [
+              PageView(
+                controller: _controller,
+                onPageChanged: (value) {
+                  if (_currentPage != value) {
+                    setState(() {
+                      _currentPage = value;
+                    });
+                  }
+                },
+                children: const [HomePage(), MinePage()],
+              ),
+              _buildBottomBar(),
+            ],
+          ),
         ),
       ),
     );

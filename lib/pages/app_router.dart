@@ -5,6 +5,7 @@ import 'package:flutter_echo/pages/login/login_code_page.dart';
 import 'package:flutter_echo/pages/login/login_phone_page.dart';
 import 'package:flutter_echo/pages/main/main_page.dart';
 import 'package:flutter_echo/pages/other/demo_page.dart';
+import 'package:flutter_echo/pages/other/splash_page.dart';
 import 'package:flutter_echo/pages/submit/submit_page.dart';
 import 'package:go_router/go_router.dart';
 
@@ -26,7 +27,7 @@ class AppRouter {
     initialLocation: splash,
     routes: [
       /// 闪屏页面
-      GoRoute(path: splash, builder: (context, state) => const MainPage()),
+      GoRoute(path: splash, builder: (context, state) => const SplashPage()),
 
       /// 主页面
       GoRoute(path: main, builder: (context, state) => const MainPage()),

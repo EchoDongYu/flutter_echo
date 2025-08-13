@@ -62,8 +62,6 @@ class DialogHelper {
       enableDrag: false,
       isDismissible: false,
       isScrollControlled: true,
-      backgroundColor: Colors.transparent,
-      barrierColor: const Color(0x99000000),
       builder: (context) => AnimatedPadding(
         padding: MediaQuery.of(context).viewInsets,
         duration: const Duration(milliseconds: 100),
