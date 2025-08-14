@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_echo/ui/dialogs/captcha_dialog.dart';
 import 'package:flutter_echo/ui/dialogs/compensation_dialog.dart';
 import 'package:flutter_echo/ui/dialogs/permission_dialog.dart';
+import 'package:flutter_echo/ui/dialogs/pick_item_dialog.dart';
 import 'package:flutter_echo/ui/dialogs/prompt_dialog.dart';
 import 'package:go_router/go_router.dart';
 
@@ -69,6 +70,20 @@ class DialogHelper {
           onConfirm: (code) => context.pop(code),
           onClosing: () => context.pop(),
         ),
+      ),
+    );
+  }
+
+  /// 显示认证项弹窗
+  static Future<String?> showPickItemDialog({required BuildContext context}) {
+    return showModalBottomSheet<String>(
+      context: context,
+      enableDrag: false,
+      isDismissible: false,
+      isScrollControlled: true,
+      builder: (context) => PickItemDialog(
+        onConfirm: (code) => context.pop(code),
+        onClosing: () => context.pop(),
       ),
     );
   }

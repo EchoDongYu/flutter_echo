@@ -48,6 +48,7 @@ class PermissionDialog extends StatelessWidget {
     final height = MediaQuery.of(context).size.height * 0.8;
     return BottomSheet(
       onClosing: onDisagree,
+      enableDrag: false,
       backgroundColor: Colors.white,
       constraints: BoxConstraints(maxHeight: height),
       shape: RoundedRectangleBorder(

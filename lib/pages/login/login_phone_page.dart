@@ -3,6 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_echo/common/app_theme.dart';
 import 'package:flutter_echo/common/constants.dart';
 import 'package:flutter_echo/pages/app_router.dart';
+import 'package:flutter_echo/ui/widget_helper.dart';
 import 'package:flutter_echo/ui/widgets/common_button.dart';
 import 'package:flutter_echo/ui/widgets/step_input_field.dart';
 import 'package:flutter_echo/ui/widgets/top_bar.dart';
@@ -73,21 +74,14 @@ class _LoginPhonePageState extends State<LoginPhonePage> {
       resizeToAvoidBottomInset: true,
       body: Stack(
         children: [
-          Container(
-            width: double.infinity,
-            height: 308.h,
-            decoration: BoxDecoration(
-              gradient: const LinearGradient(
-                begin: Alignment.centerLeft,
-                end: Alignment.centerRight,
-                colors: [NowColors.c0xFF3288F1, NowColors.c0xFF4FAAFF],
-              ),
-              borderRadius: BorderRadius.only(
-                bottomLeft: Radius.circular(20.r),
-                bottomRight: Radius.circular(20.r),
-              ),
+          WidgetHelper.buildTopGradient(
+            context: context,
+            height: 265.h,
+            child: Image.asset(
+              R.drawable('login_top_bg'),
+              width: double.infinity,
+              fit: BoxFit.fitWidth,
             ),
-            child: Image.asset(R.drawable('login_top_bg')),
           ),
           SafeArea(
             child: Column(

@@ -6,7 +6,10 @@ import 'package:flutter_echo/pages/login/login_phone_page.dart';
 import 'package:flutter_echo/pages/main/main_page.dart';
 import 'package:flutter_echo/pages/other/demo_page.dart';
 import 'package:flutter_echo/pages/other/splash_page.dart';
-import 'package:flutter_echo/pages/submit/submit_page.dart';
+import 'package:flutter_echo/pages/submit/step_basic_page.dart';
+import 'package:flutter_echo/pages/submit/step_contact_page.dart';
+import 'package:flutter_echo/pages/submit/step_result_page.dart';
+import 'package:flutter_echo/pages/submit/step_work_page.dart';
 import 'package:go_router/go_router.dart';
 
 /// 应用路由配置
@@ -48,21 +51,27 @@ class AppRouter {
       ),
 
       /// 授信表单页面-基本信息
-      GoRoute(path: stepBasic, builder: (context, state) => const SubmitPage()),
+      GoRoute(
+        path: stepBasic,
+        builder: (context, state) => const StepBasicPage(),
+      ),
 
       /// 授信表单页面-工作信息
-      GoRoute(path: stepWork, builder: (context, state) => const SubmitPage()),
+      GoRoute(
+        path: stepWork,
+        builder: (context, state) => const StepWorkPage(),
+      ),
 
       /// 授信表单页面-联系人信息
       GoRoute(
         path: stepContact,
-        builder: (context, state) => const SubmitPage(),
+        builder: (context, state) => const StepContactPage(),
       ),
 
       /// 授信状态页面
       GoRoute(
         path: stepResult,
-        builder: (context, state) => const SubmitPage(),
+        builder: (context, state) => const StepResultPage(),
       ),
 
       /// 借款页面

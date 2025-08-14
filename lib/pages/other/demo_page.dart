@@ -128,11 +128,33 @@ class DemoPage extends StatelessWidget {
             // 业务流程测试
             _buildTestButton(
               context,
-              title: '认证页面',
+              title: '认证个人信息',
               subtitle: '用户身份认证流程',
               icon: Icons.assignment,
               color: NowColors.c0xFF4FAAFF,
               onPressed: () => context.push(AppRouter.stepBasic),
+            ),
+
+            const SizedBox(height: 12),
+
+            _buildTestButton(
+              context,
+              title: '认证工作信息',
+              subtitle: '用户身份认证流程',
+              icon: Icons.assignment,
+              color: NowColors.c0xFF4FAAFF,
+              onPressed: () => context.push(AppRouter.stepWork),
+            ),
+
+            const SizedBox(height: 12),
+
+            _buildTestButton(
+              context,
+              title: '认证联系人信息',
+              subtitle: '用户身份认证流程',
+              icon: Icons.assignment,
+              color: NowColors.c0xFF4FAAFF,
+              onPressed: () => context.push(AppRouter.stepContact),
             ),
 
             const SizedBox(height: 12),
@@ -222,7 +244,7 @@ class DemoPage extends StatelessWidget {
               children: [
                 Container(
                   width: 48,
-                  height: 48,
+                  height: 36,
                   decoration: BoxDecoration(
                     color: color.withAlpha(26),
                     borderRadius: const BorderRadius.all(Radius.circular(24)),
@@ -231,26 +253,13 @@ class DemoPage extends StatelessWidget {
                 ),
                 const SizedBox(width: 16),
                 Expanded(
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        title,
-                        style: const TextStyle(
-                          fontSize: 16,
-                          fontWeight: FontWeight.w600,
-                          color: Color(0xFF1C1F23),
-                        ),
-                      ),
-                      const SizedBox(height: 4),
-                      Text(
-                        subtitle,
-                        style: const TextStyle(
-                          fontSize: 14,
-                          color: Color(0xFF77797B),
-                        ),
-                      ),
-                    ],
+                  child: Text(
+                    title,
+                    style: const TextStyle(
+                      fontSize: 16,
+                      fontWeight: FontWeight.w600,
+                      color: Color(0xFF1C1F23),
+                    ),
                   ),
                 ),
                 const Icon(

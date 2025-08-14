@@ -37,7 +37,7 @@ class _StepSelectFieldState extends State<StepSelectField> {
     return InkWell(
       onTap: () async {
         _onFocusChanged(true);
-        await DialogHelper.showCaptchaDialog(context: context);
+        await DialogHelper.showPickItemDialog(context: context);
         _onFocusChanged(false);
       },
       borderRadius: const BorderRadius.all(Radius.circular(12)),

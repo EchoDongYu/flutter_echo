@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_echo/common/app_theme.dart';
-import 'package:flutter_echo/ui/widgets/common_button.dart';
+import 'package:flutter_echo/ui/widget_helper.dart';
 import 'package:flutter_echo/utils/resource_utils.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -26,6 +26,7 @@ class CompensationDialog extends StatelessWidget {
     final height = MediaQuery.of(context).size.height * 0.8;
     return BottomSheet(
       onClosing: onClosing,
+      enableDrag: false,
       backgroundColor: Colors.white,
       constraints: BoxConstraints(maxHeight: height),
       shape: RoundedRectangleBorder(
@@ -98,7 +99,10 @@ class CompensationDialog extends StatelessWidget {
               ),
             ),
           ),
-          _buildBottomButton(),
+          WidgetHelper.buildBottomButton(
+            text: 'Ir a configuración',
+            onPressed: onConfirm,
+          ),
         ],
       ),
     );
@@ -148,27 +152,6 @@ class CompensationDialog extends StatelessWidget {
             ),
           ),
         ],
-      ),
-    );
-  }
-
-  /// 构建底部按钮
-  Widget _buildBottomButton() {
-    return Container(
-      width: double.infinity,
-      decoration: BoxDecoration(
-        color: Colors.white,
-        borderRadius: const BorderRadius.only(
-          topLeft: Radius.circular(20),
-          topRight: Radius.circular(20),
-        ),
-        border: Border.all(color: const Color(0xD9FFFFFF), width: 1),
-        boxShadow: NowStyles.bottomShadows,
-      ),
-      padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 10.h),
-      child: EchoPrimaryButton(
-        text: 'Ir a configuración',
-        onPressed: onConfirm,
       ),
     );
   }

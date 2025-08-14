@@ -89,7 +89,7 @@ class _StepInputFieldState extends State<StepInputField> {
           ),
         Container(
           width: double.infinity,
-          height: 60.h,
+          constraints: BoxConstraints(minHeight: 60.h),
           decoration: BoxDecoration(
             borderRadius: const BorderRadius.all(Radius.circular(12)),
             border: Border.all(
@@ -103,13 +103,16 @@ class _StepInputFieldState extends State<StepInputField> {
             children: [
               Expanded(
                 child: Column(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     // labelText
                     if (_isExpanded)
                       Padding(
-                        padding: EdgeInsets.only(left: 12.w, top: 4.h),
+                        padding: EdgeInsets.only(
+                          left: 12.w,
+                          top: 9.h,
+                          bottom: 4.h,
+                        ),
                         child: Text(
                           widget.hintText,
                           style: TextStyle(
@@ -143,7 +146,11 @@ class _StepInputFieldState extends State<StepInputField> {
                         disabledBorder: InputBorder.none,
                         counterText: '',
                         isCollapsed: _isExpanded,
-                        contentPadding: EdgeInsets.fromLTRB(12.w, 0, 12.w, 5.h),
+                        contentPadding: EdgeInsets.only(
+                          left: 12.w,
+                          right: 12.w,
+                          bottom: 9.h,
+                        ),
                         prefix: widget.prefix,
                       ),
                     ),

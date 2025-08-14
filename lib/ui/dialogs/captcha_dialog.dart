@@ -39,6 +39,7 @@ class _CaptchaDialogState extends State<CaptchaDialog> {
   Widget build(BuildContext context) {
     return BottomSheet(
       onClosing: widget.onClosing,
+      enableDrag: false,
       backgroundColor: NowColors.c0xFFF3F3F5,
       shape: RoundedRectangleBorder(
         borderRadius: const BorderRadius.only(
@@ -120,9 +121,9 @@ class _CaptchaDialogState extends State<CaptchaDialog> {
           Container(
             alignment: Alignment.centerLeft,
             padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 20.h),
-            decoration: BoxDecoration(
+            decoration: const BoxDecoration(
               color: Colors.white,
-              borderRadius: const BorderRadius.all(Radius.circular(20)),
+              borderRadius: BorderRadius.all(Radius.circular(20)),
               boxShadow: NowStyles.cardShadows,
             ),
             child: Column(
