@@ -176,8 +176,8 @@ class _StepInputFieldState extends State<StepInputField> {
                       onTap: () => widget.controller.clear(),
                       borderRadius: const BorderRadius.all(Radius.circular(10)),
                       child: Container(
-                        width: 18.w,
-                        height: 18.w,
+                        width: 18.r,
+                        height: 18.r,
                         alignment: Alignment.center,
                         decoration: BoxDecoration(
                           color: NowColors.c0xFFB0B1B2,

@@ -77,7 +77,7 @@ class _MainPageState extends State<MainPage> {
   Widget _buildBottomBar() {
     return Container(
       width: double.infinity,
-      height: 60.h,
+      constraints: BoxConstraints(minHeight: 60.h, maxHeight: 65.h),
       margin: EdgeInsets.symmetric(horizontal: 16.w, vertical: 12.h),
       decoration: BoxDecoration(
         color: const Color(0xD9FFFFFF),
@@ -102,14 +102,15 @@ class _MainPageState extends State<MainPage> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
-            SizedBox(height: 6.h),
+            SizedBox(height: 8.h),
             Image.asset(
               isActive
                   ? R.drawable(bottomItems[index].first)
                   : R.drawable(bottomItems[index].second),
-              width: 28.w,
-              height: 28.w,
+              width: 28.r,
+              height: 28.r,
             ),
+            SizedBox(height: 2.h),
             Text(
               bottomItems[index].third,
               style: TextStyle(
@@ -119,7 +120,7 @@ class _MainPageState extends State<MainPage> {
                 height: 14 / 10,
               ),
             ),
-            SizedBox(height: 6.h),
+            SizedBox(height: 8.h),
           ],
         ),
       ),

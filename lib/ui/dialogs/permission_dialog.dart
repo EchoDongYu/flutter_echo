@@ -113,8 +113,8 @@ class PermissionDialog extends StatelessWidget {
         Stack(
           children: [
             Container(
-              width: 22.w,
-              height: 22.w,
+              width: 22.r,
+              height: 22.r,
               decoration: BoxDecoration(
                 shape: BoxShape.circle,
                 gradient: const LinearGradient(

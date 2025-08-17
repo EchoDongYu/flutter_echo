@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_echo/common/app_theme.dart';
+import 'package:flutter_echo/models/common_model.dart';
 import 'package:flutter_echo/pages/app_router.dart';
 import 'package:flutter_echo/ui/dialog_helper.dart';
 import 'package:flutter_echo/ui/widgets/common_button.dart';
@@ -26,6 +27,7 @@ class DemoPage extends StatelessWidget {
       body: SingleChildScrollView(
         padding: const EdgeInsets.all(24.0),
         child: Column(
+          spacing: 12.h,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             EchoPrimaryButton(
@@ -40,7 +42,6 @@ class DemoPage extends StatelessWidget {
                 );
               },
             ),
-            const SizedBox(height: 12),
             EchoSecondaryButton(
               text: "Secondary",
               onPressed: () {
@@ -54,132 +55,104 @@ class DemoPage extends StatelessWidget {
                 );
               },
             ),
-            const SizedBox(height: 12),
             EchoOutlinedButton(text: "Outlined", onPressed: () {}),
-            const SizedBox(height: 16),
+
             // 弹窗组件测试区域
             _buildSectionTitle('弹窗测试'),
-            const SizedBox(height: 16),
 
-            // 图形验证码弹窗测试
             _buildTestButton(
               context,
               title: '图形验证码弹窗',
-              subtitle: '底部弹窗形式的图形验证码输入',
               icon: Icons.security,
               color: const Color(0xFF3288F1),
               onPressed: () => _showCaptchaDialog(context),
             ),
 
-            const SizedBox(height: 12),
-
-            // 授权声明弹窗测试
             _buildTestButton(
               context,
               title: '授权声明弹窗',
-              subtitle: '权限请求前的声明弹窗',
               icon: Icons.verified_user,
               color: const Color(0xFF4CAF50),
               onPressed: () => _showPermissionDialog(context),
             ),
 
-            const SizedBox(height: 12),
-
-            // 授权声明补偿弹窗测试
             _buildTestButton(
               context,
               title: '授权声明补偿弹窗',
-              subtitle: '权限被拒绝后的补偿弹窗',
               icon: Icons.error_outline,
               color: const Color(0xFFFF9800),
               onPressed: () => _showCompensationDialog(context),
             ),
 
-            const SizedBox(height: 32),
+            _buildTestButton(
+              context,
+              title: '认证选择项弹窗',
+              icon: Icons.info_outline,
+              color: const Color(0xFFFF9800),
+              onPressed: () => _showPickItemDialog(context),
+            ),
 
             // 页面功能测试区域
             _buildSectionTitle('页面功能测试'),
-            const SizedBox(height: 16),
 
             // 登录流程测试
             _buildTestButton(
               context,
               title: '登录手机号输入页面',
-              subtitle: '用户登录第一步',
               icon: Icons.phone,
               color: NowColors.c0xFF3288F1,
               onPressed: () => context.push(AppRouter.loginPhone),
             ),
 
-            const SizedBox(height: 12),
-
             _buildTestButton(
               context,
               title: '登录验证码输入页面',
-              subtitle: '用户登录第二步',
               icon: Icons.sms,
               color: const Color(0xFF3288F1),
               onPressed: () =>
                   context.push('${AppRouter.loginCode}?phone=1234567890'),
             ),
 
-            const SizedBox(height: 12),
-
             // 业务流程测试
             _buildTestButton(
               context,
               title: '认证个人信息',
-              subtitle: '用户身份认证流程',
               icon: Icons.assignment,
               color: NowColors.c0xFF4FAAFF,
               onPressed: () => context.push(AppRouter.stepBasic),
             ),
 
-            const SizedBox(height: 12),
-
             _buildTestButton(
               context,
               title: '认证工作信息',
-              subtitle: '用户身份认证流程',
               icon: Icons.assignment,
               color: NowColors.c0xFF4FAAFF,
               onPressed: () => context.push(AppRouter.stepWork),
             ),
 
-            const SizedBox(height: 12),
-
             _buildTestButton(
               context,
               title: '认证联系人信息',
-              subtitle: '用户身份认证流程',
               icon: Icons.assignment,
               color: NowColors.c0xFF4FAAFF,
               onPressed: () => context.push(AppRouter.stepContact),
             ),
 
-            const SizedBox(height: 12),
-
             _buildTestButton(
               context,
               title: '借款页面',
-              subtitle: '借款申请流程',
               icon: Icons.account_balance_wallet,
               color: NowColors.c0xFF4FAAFF,
               onPressed: () => context.push(AppRouter.confirm),
             ),
 
-            const SizedBox(height: 12),
-
             _buildTestButton(
               context,
               title: '还款页面',
-              subtitle: '还款管理功能',
               icon: Icons.payment,
               color: NowColors.c0xFF3EB34D,
               onPressed: () => context.push(AppRouter.after),
             ),
-
-            const SizedBox(height: 32),
 
             // 返回主页按钮
             SizedBox(
@@ -223,7 +196,6 @@ class DemoPage extends StatelessWidget {
   Widget _buildTestButton(
     BuildContext context, {
     required String title,
-    required String subtitle,
     required IconData icon,
     required Color color,
     required VoidCallback onPressed,
@@ -280,20 +252,54 @@ class DemoPage extends StatelessWidget {
     final result = await DialogHelper.showCaptchaDialog(context: context);
     if (context.mounted) {
       if (result != null && result.isNotEmpty) {
-        // 验证成功
         context.showSuccessSnack('验证码验证成功: $result');
       } else {
-        // 用户取消
         context.showNormalSnack('验证码验证已取消: $result');
       }
     }
   }
 
   void _showPermissionDialog(BuildContext context) async {
-    await DialogHelper.showPermissionDialog(context: context);
+    final result = await DialogHelper.showPermissionDialog(context: context);
+    if (context.mounted) {
+      if (result == true) {
+        context.showSuccessSnack('同意: $result');
+      } else {
+        context.showNormalSnack('拒绝: $result');
+      }
+    }
   }
 
   void _showCompensationDialog(BuildContext context) async {
-    await DialogHelper.showCompensationDialog(context: context);
+    final result = await DialogHelper.showCompensationDialog(context: context);
+    if (context.mounted) {
+      if (result == true) {
+        context.showSuccessSnack('同意: $result');
+      } else {
+        context.showNormalSnack('拒绝: $result');
+      }
+    }
+  }
+
+  static final List<StepItem> stepItems = [
+    StepItem(key: 1, value: '¿Cómo obtengo un préstamo CreditYa?', type: 'Item1', sort: 2, l16h95: 3),
+    StepItem(key: 1, value: 'La información personal no está seguraLa información personal no está seguraLa información personal no está segura', type: 'Item1', sort: 2, l16h95: 3),
+    StepItem(key: 1, value: '¿Cómo obtengo un préstamo CreditYa?', type: 'Item1', sort: 2, l16h95: 3),
+    StepItem(key: 1, value: '¿Cómo obtengo un préstamo CreditYa?', type: 'Item1', sort: 2, l16h95: 3),
+    StepItem(key: 1, value: 'XXXXXXXXXX', type: 'Item1', sort: 2, l16h95: 3),
+  ];
+
+  void _showPickItemDialog(BuildContext context) async {
+    final result = await DialogHelper.showPickItemDialog(
+      context: context,
+      items: stepItems,
+    );
+    if (context.mounted) {
+      if (result != null) {
+        context.showSuccessSnack('同意: $result');
+      } else {
+        context.showNormalSnack('拒绝: $result');
+      }
+    }
   }
 }

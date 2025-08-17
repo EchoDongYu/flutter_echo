@@ -44,4 +44,9 @@ class StepItem {
       _$StepItemFromJson(json);
 
   Map<String, dynamic> toJson() => _$StepItemToJson(this);
+
+  @override
+  String toString() {
+    return 'StepItem{value: $value, type: $type}';
+  }
 }

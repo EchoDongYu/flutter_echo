@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_echo/common/app_theme.dart';
 import 'package:flutter_echo/ui/widget_helper.dart';
+import 'package:flutter_echo/ui/widgets/step_input_field.dart';
+import 'package:flutter_echo/ui/widgets/step_select_field.dart';
 import 'package:flutter_echo/ui/widgets/top_bar.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -80,7 +82,11 @@ class _StepWorkPageState extends State<StepWorkPage> {
                             ),
                           ),
                         ),
-
+                        _buildFormArea1(),
+                        SizedBox(height: 12.h),
+                        _buildFormArea2(),
+                        SizedBox(height: 12.h),
+                        _buildFormArea3(),
                         SizedBox(height: 20.h),
                       ],
                     ),
@@ -94,6 +100,161 @@ class _StepWorkPageState extends State<StepWorkPage> {
       bottomNavigationBar: WidgetHelper.buildBottomButton(
         text: 'Continuar',
         onPressed: () {},
+      ),
+    );
+  }
+
+  final TextEditingController _controller = TextEditingController();
+  String? _selectValue;
+
+  /// 构建表单区域1
+  Widget _buildFormArea1() {
+    return Container(
+      width: double.infinity,
+      margin: EdgeInsets.symmetric(horizontal: 12.w),
+      padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 20.h),
+      decoration: const BoxDecoration(
+        color: Colors.white,
+        borderRadius: BorderRadius.only(
+          bottomLeft: Radius.circular(20),
+          bottomRight: Radius.circular(20),
+        ),
+      ),
+      child: Column(
+        spacing: 12.h,
+        children: [
+          StepSelectField(
+            onSelect: (value) {
+              setState(() {
+                _selectValue = 'value';
+              });
+            },
+            hintText: 'Estado civil',
+            value: _selectValue,
+            isError: false,
+          ),
+          StepSelectField(
+            onSelect: (value) {
+              setState(() {
+                _selectValue = 'value';
+              });
+            },
+            hintText: 'Gastos por mes de tu hogar',
+            value: _selectValue,
+            isError: false,
+          ),
+          StepSelectField(
+            onSelect: (value) {
+              setState(() {
+                _selectValue = 'value';
+              });
+            },
+            hintText: 'Estado de vivienda',
+            value: _selectValue,
+            isError: false,
+          ),
+        ],
+      ),
+    );
+  }
+
+  /// 构建表单区域2
+  Widget _buildFormArea2() {
+    return Container(
+      width: double.infinity,
+      margin: EdgeInsets.symmetric(horizontal: 12.w),
+      padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 20.h),
+      decoration: const BoxDecoration(
+        color: Colors.white,
+        borderRadius: BorderRadius.all(Radius.circular(20)),
+      ),
+      child: Column(
+        spacing: 12.h,
+        children: [
+          StepSelectField(
+            onSelect: (value) {
+              setState(() {
+                _selectValue = 'value';
+              });
+            },
+            hintText: 'Región',
+            value: _selectValue,
+            isError: false,
+          ),
+          StepSelectField(
+            onSelect: (value) {
+              setState(() {
+                _selectValue = 'value';
+              });
+            },
+            hintText: 'Departamento',
+            value: _selectValue,
+            isError: false,
+          ),
+          StepSelectField(
+            onSelect: (value) {
+              setState(() {
+                _selectValue = 'value';
+              });
+            },
+            hintText: 'Municipio',
+            value: _selectValue,
+            isError: false,
+          ),
+          StepInputField(
+            controller: _controller,
+            hintText: 'Dirección',
+            keyboardType: TextInputType.text,
+          ),
+        ],
+      ),
+    );
+  }
+
+  /// 构建表单区域3
+  Widget _buildFormArea3() {
+    return Container(
+      width: double.infinity,
+      margin: EdgeInsets.symmetric(horizontal: 12.w),
+      padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 20.h),
+      decoration: const BoxDecoration(
+        color: Colors.white,
+        borderRadius: BorderRadius.all(Radius.circular(20)),
+      ),
+      child: Column(
+        spacing: 12.h,
+        children: [
+          StepSelectField(
+            onSelect: (value) {
+              setState(() {
+                _selectValue = 'value';
+              });
+            },
+            hintText: 'Nivel de estudios',
+            value: _selectValue,
+            isError: false,
+          ),
+          StepSelectField(
+            onSelect: (value) {
+              setState(() {
+                _selectValue = 'value';
+              });
+            },
+            hintText: 'Profesión actual',
+            value: _selectValue,
+            isError: false,
+          ),
+          StepSelectField(
+            onSelect: (value) {
+              setState(() {
+                _selectValue = 'value';
+              });
+            },
+            hintText: 'Antiguedad en tu trabajo actual',
+            value: _selectValue,
+            isError: false,
+          ),
+        ],
       ),
     );
   }

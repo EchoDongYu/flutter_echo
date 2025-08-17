@@ -304,8 +304,8 @@ class _LoginCodePageState extends State<LoginCodePage> {
     final isActive = index == _inputCode.length;
 
     return Container(
-      width: 56.w,
-      height: 56.w,
+      width: 56.r,
+      height: 56.r,
       alignment: Alignment.center,
       decoration: BoxDecoration(
         color: hasValue

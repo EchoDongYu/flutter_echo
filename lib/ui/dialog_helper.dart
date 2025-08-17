@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_echo/models/common_model.dart';
 import 'package:flutter_echo/ui/dialogs/captcha_dialog.dart';
 import 'package:flutter_echo/ui/dialogs/compensation_dialog.dart';
 import 'package:flutter_echo/ui/dialogs/permission_dialog.dart';
@@ -75,14 +76,18 @@ class DialogHelper {
   }
 
   /// 显示认证项弹窗
-  static Future<String?> showPickItemDialog({required BuildContext context}) {
-    return showModalBottomSheet<String>(
+  static Future<StepItem?> showPickItemDialog({
+    required BuildContext context,
+    required List<StepItem> items,
+  }) {
+    return showModalBottomSheet<StepItem>(
       context: context,
       enableDrag: false,
       isDismissible: false,
       isScrollControlled: true,
       builder: (context) => PickItemDialog(
-        onConfirm: (code) => context.pop(code),
+        items: items,
+        onConfirm: (item) => context.pop(item),
         onClosing: () => context.pop(),
       ),
     );

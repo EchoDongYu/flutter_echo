@@ -84,7 +84,11 @@ class CompensationDialog extends StatelessWidget {
                       horizontal: 60.w,
                       vertical: 10.h,
                     ),
-                    child: Image.asset(R.drawable('img_jietu1')),
+                    child: Image.asset(
+                      R.drawable('img_jietu1'),
+                      width: double.infinity,
+                      fit: BoxFit.fitWidth,
+                    ),
                   ),
                   _buildStepItem(1),
                   Padding(
@@ -92,7 +96,11 @@ class CompensationDialog extends StatelessWidget {
                       horizontal: 60.w,
                       vertical: 10.h,
                     ),
-                    child: Image.asset(R.drawable('img_jietu2')),
+                    child: Image.asset(
+                      R.drawable('img_jietu2'),
+                      width: double.infinity,
+                      fit: BoxFit.fitWidth,
+                    ),
                   ),
                   _buildStepItem(2),
                 ],
@@ -117,8 +125,8 @@ class CompensationDialog extends StatelessWidget {
         children: [
           // 编号圆形图标
           Container(
-            width: 22.w,
-            height: 22.w,
+            width: 22.r,
+            height: 22.r,
             decoration: BoxDecoration(
               shape: BoxShape.circle,
               gradient: const LinearGradient(

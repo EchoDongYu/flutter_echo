@@ -69,8 +69,8 @@ class _CaptchaDialogState extends State<CaptchaDialog> {
                   onTap: widget.onClosing,
                   borderRadius: const BorderRadius.all(Radius.circular(12)),
                   child: Container(
-                    width: 24.w,
-                    height: 24.w,
+                    width: 24.r,
+                    height: 24.r,
                     alignment: Alignment.center,
                     decoration: BoxDecoration(
                       shape: BoxShape.circle,
