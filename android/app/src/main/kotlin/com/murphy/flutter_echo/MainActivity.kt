@@ -38,7 +38,7 @@ class MainActivity: FlutterActivity() {
         }
     }
 
-    fun onPickContact(contactUri: Uri) {
+    private fun onPickContact(contactUri: Uri) {
         try {
             contentResolver.query(
                 contactUri,
@@ -55,7 +55,7 @@ class MainActivity: FlutterActivity() {
                     if (nameIndex == -1 || numberIndex == -1) {
                         pendingResult?.error("invalid_cursor", "Could not find required columns in contact data", null)
                         pendingResult = null
-                        return true
+                        return
                     }
 
                     val name = cursor.getString(nameIndex) ?: ""
@@ -67,17 +67,17 @@ class MainActivity: FlutterActivity() {
 
                     pendingResult?.success(contact)
                     pendingResult = null
-                    return true
+                    return
                 }
             }
 
             pendingResult?.error("no_contact", "Could not read contact data", null)
             pendingResult = null
-            return true
+            return
         } catch (e: Exception) {
             pendingResult?.error("contact_picker_error", e.message, null)
             pendingResult = null
-            return true
+            return
         }
     }
 }
