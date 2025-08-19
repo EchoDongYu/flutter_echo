@@ -1,3 +1,7 @@
+import 'package:json_annotation/json_annotation.dart';
+
+part 'common_model.g.dart';
+
 /// 通用数据模型二元组
 class Pair<F, S> {
   final F first;
@@ -17,4 +21,32 @@ class Triple<F, S, T> {
     required this.second,
     required this.third,
   });
+}
+
+/// 字典项
+@JsonSerializable()
+class StepItem {
+  final int key;
+  final String value;
+  final String type;
+  final int sort;
+  final int l16h95; //o_updateTime
+
+  StepItem({
+    required this.key,
+    required this.value,
+    required this.type,
+    required this.sort,
+    required this.l16h95,
+  });
+
+  factory StepItem.fromJson(Map<String, dynamic> json) =>
+      _$StepItemFromJson(json);
+
+  Map<String, dynamic> toJson() => _$StepItemToJson(this);
+
+  @override
+  String toString() {
+    return 'StepItem{value: $value, type: $type}';
+  }
 }

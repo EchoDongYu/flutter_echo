@@ -26,7 +26,7 @@ class HomePage extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                _buildCenterBody(),
+                _buildCenterBody(context),
                 SizedBox(height: 30.h),
                 Padding(
                   padding: EdgeInsets.only(left: 16.w),
@@ -54,18 +54,14 @@ class HomePage extends StatelessWidget {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
-        SizedBox(width: 45.h, height: 45.h),
+        SizedBox(width: 45.r, height: 45.r),
         Expanded(
           child: Row(
             mainAxisAlignment: MainAxisAlignment.center,
             mainAxisSize: MainAxisSize.min,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              SizedBox(
-                width: 32.w,
-                height: 32.w,
-                child: Image.asset(R.drawable('icon_logo1')),
-              ),
+              Image.asset(R.drawable('icon_logo1'), width: 32.r, height: 32.r),
               SizedBox(width: 8.w),
               Text(
                 'CrediGo',
@@ -80,14 +76,14 @@ class HomePage extends StatelessWidget {
           ),
         ),
         InkWell(
-          onTap: () => context.push(AppRouter.demo),
+          onTap: () => {},
           borderRadius: const BorderRadius.all(Radius.circular(24)),
           child: Padding(
             padding: const EdgeInsets.all(10),
             child: Image.asset(
               R.drawable('icon_xtcustomer'),
-              width: 24.h,
-              height: 24.h,
+              width: 24.r,
+              height: 24.r,
               color: Colors.black,
             ),
           ),
@@ -97,7 +93,7 @@ class HomePage extends StatelessWidget {
     );
   }
 
-  Widget _buildCenterBody() {
+  Widget _buildCenterBody(BuildContext context) {
     return Stack(
       alignment: Alignment.topRight,
       children: [
@@ -136,7 +132,7 @@ class HomePage extends StatelessWidget {
               ),
               SizedBox(height: 40.h),
               EchoSecondaryButton(
-                onPressed: () {},
+                onPressed: () => context.push(AppRouter.demo),
                 text: 'Obtener un préstamo',
                 textColor: NowColors.c0xFF3288F1,
                 filledColor: Colors.white,
@@ -144,11 +140,7 @@ class HomePage extends StatelessWidget {
             ],
           ),
         ),
-        SizedBox(
-          width: 140.w,
-          height: 140.w,
-          child: Image.asset(R.drawable('img_guard')),
-        ),
+        Image.asset(R.drawable('img_guard'), width: 140.r, height: 140.r),
       ],
     );
   }
@@ -197,8 +189,8 @@ class HomePage extends StatelessWidget {
 
   Widget _buildStepDot() {
     return SizedBox(
-      width: 12.w,
-      height: 12.w,
+      width: 12.r,
+      height: 12.r,
       child: DecoratedBox(
         decoration: BoxDecoration(
           color: NowColors.c0xFF3288F1,

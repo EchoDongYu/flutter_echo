@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_echo/common/app_theme.dart';
-import 'package:flutter_echo/ui/dialog_helper.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class StepSelectField extends StatefulWidget {
@@ -37,7 +36,7 @@ class _StepSelectFieldState extends State<StepSelectField> {
     return InkWell(
       onTap: () async {
         _onFocusChanged(true);
-        await DialogHelper.showCaptchaDialog(context: context);
+        //await DialogHelper.showPickItemDialog(context: context);
         _onFocusChanged(false);
       },
       borderRadius: const BorderRadius.all(Radius.circular(12)),

@@ -13,11 +13,13 @@ import 'package:provider/provider.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
-  // 设置状态栏样式
+  // 设置系统状态栏&导航栏样式
   SystemChrome.setSystemUIOverlayStyle(
     const SystemUiOverlayStyle(
       statusBarColor: Colors.transparent,
       statusBarIconBrightness: Brightness.light,
+      systemNavigationBarColor: Colors.white,
+      systemNavigationBarIconBrightness: Brightness.dark,
     ),
   );
   // 设置屏幕方向
@@ -59,7 +61,7 @@ class MyApp extends StatelessWidget {
             title: AppConstants.appName,
             routerConfig: AppRouter.router,
             theme: AppTheme.lightTheme,
-            darkTheme: AppTheme.darkTheme,
+            themeMode: ThemeMode.light,
             locale: const Locale('es', 'GT'),
             debugShowCheckedModeBanner: false,
           ),

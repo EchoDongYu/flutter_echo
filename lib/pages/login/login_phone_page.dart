@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_echo/common/app_theme.dart';
+import 'package:flutter_echo/common/constants.dart';
 import 'package:flutter_echo/pages/app_router.dart';
+import 'package:flutter_echo/ui/widget_helper.dart';
 import 'package:flutter_echo/ui/widgets/common_button.dart';
+import 'package:flutter_echo/ui/widgets/step_input_field.dart';
 import 'package:flutter_echo/ui/widgets/top_bar.dart';
 import 'package:flutter_echo/utils/resource_utils.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -21,7 +24,6 @@ class _LoginPhonePageState extends State<LoginPhonePage> {
   final FocusNode _focusNode = FocusNode();
   bool _isPhoneValid = false;
   bool _isExpanded = false;
-  int _phoneLength = 0;
 
   @override
   void initState() {
@@ -40,12 +42,12 @@ class _LoginPhonePageState extends State<LoginPhonePage> {
 
   /// 手机号输入变化监听
   void _onPhoneChanged() {
-    final value = _controller.text;
-    final isValid = value.length >= 8;
-    setState(() {
-      _phoneLength = value.length;
-      _isPhoneValid = isValid;
-    });
+    final phoneValid = _controller.text.length == 8;
+    if (_isPhoneValid != phoneValid) {
+      setState(() {
+        _isPhoneValid = phoneValid;
+      });
+    }
   }
 
   /// 焦点变化监听
@@ -72,26 +74,19 @@ class _LoginPhonePageState extends State<LoginPhonePage> {
       resizeToAvoidBottomInset: true,
       body: Stack(
         children: [
-          Container(
-            width: double.infinity,
-            height: 308.h,
-            decoration: BoxDecoration(
-              gradient: const LinearGradient(
-                begin: Alignment.centerLeft,
-                end: Alignment.centerRight,
-                colors: [NowColors.c0xFF3288F1, NowColors.c0xFF4FAAFF],
-              ),
-              borderRadius: BorderRadius.only(
-                bottomLeft: Radius.circular(20.r),
-                bottomRight: Radius.circular(20.r),
-              ),
+          WidgetHelper.buildTopGradient(
+            context: context,
+            height: 265.h,
+            child: Image.asset(
+              R.drawable('login_top_bg'),
+              width: double.infinity,
+              fit: BoxFit.fitWidth,
             ),
-            child: Image.asset(R.drawable('login_top_bg')),
           ),
           SafeArea(
             child: Column(
               children: [
-                EchoTopBar(title: 'Registro/Conecte-se'),
+                EchoTopBar(title: 'Iniciar sesión Registrarse'),
                 Expanded(
                   child: Container(
                     margin: EdgeInsets.symmetric(horizontal: 12.w),
@@ -161,7 +156,7 @@ class _LoginPhonePageState extends State<LoginPhonePage> {
           SizedBox(height: 32.h),
           // 发送按钮
           EchoPrimaryButton(
-            text: 'Próximo passo',
+            text: 'Iniciar sesión',
             onPressed: _isPhoneValid ? _onNextPressed : null,
           ),
         ],
@@ -170,150 +165,31 @@ class _LoginPhonePageState extends State<LoginPhonePage> {
   }
 
   Widget _buildPhoneField() {
-    return Stack(
-      alignment: Alignment.centerLeft,
-      children: [
-        // hintText
-        if (!_isExpanded)
-          Padding(
-            padding: EdgeInsets.symmetric(horizontal: 12.w),
-            child: Text(
-              'Número de teléfono',
-              style: TextStyle(
-                fontSize: 16.sp,
-                fontWeight: FontWeight.w400,
-                color: NowColors.c0xFF77797B,
-                height: 24 / 16,
-              ),
-            ),
-          ),
-        Container(
-          width: double.infinity,
-          height: 60.h,
-          decoration: BoxDecoration(
-            borderRadius: const BorderRadius.all(Radius.circular(12)),
-            border: Border.all(
-              color: _focusNode.hasFocus
-                  ? NowColors.c0xFF3288F1
-                  : NowColors.c0xFFD8D8D8,
-              width: 1,
-            ),
-          ),
-          child: Row(
-            children: [
-              Expanded(
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    // labelText
-                    if (_isExpanded)
-                      Padding(
-                        padding: EdgeInsets.only(left: 12.w, top: 4.h),
-                        child: Text(
-                          'Número de teléfono',
-                          style: TextStyle(
-                            fontSize: 12.sp,
-                            fontWeight: FontWeight.w400,
-                            color: NowColors.c0xFF77797B,
-                            height: 16 / 12,
-                          ),
-                        ),
-                      ),
-                    TextField(
-                      focusNode: _focusNode,
-                      controller: _controller,
-                      keyboardType: TextInputType.number,
-                      inputFormatters: [FilteringTextInputFormatter.digitsOnly],
-                      textInputAction: TextInputAction.send,
-                      maxLength: 8,
-                      maxLines: 1,
-                      style: TextStyle(
-                        fontSize: 16.sp,
-                        fontWeight: FontWeight.w500,
-                        color: NowColors.c0xFF1C1F23,
-                        height: 22 / 16,
-                      ),
-                      decoration: InputDecoration(
-                        border: InputBorder.none,
-                        errorBorder: InputBorder.none,
-                        focusedBorder: InputBorder.none,
-                        focusedErrorBorder: InputBorder.none,
-                        enabledBorder: InputBorder.none,
-                        disabledBorder: InputBorder.none,
-                        counterText: '',
-                        isCollapsed: _isExpanded,
-                        contentPadding: EdgeInsets.fromLTRB(12.w, 0, 12.w, 5.h),
-                        prefix: Container(
-                          margin: EdgeInsets.only(right: 8.w),
-                          padding: EdgeInsets.symmetric(
-                            horizontal: 6.w,
-                            vertical: 2.h,
-                          ),
-                          decoration: BoxDecoration(
-                            color: NowColors.c0xFFEFF7FF,
-                            borderRadius: const BorderRadius.all(
-                              Radius.circular(16),
-                            ),
-                            border: Border.all(
-                              color: NowColors.c0xFF3288F1,
-                              width: 0.5,
-                            ),
-                          ),
-                          child: Text(
-                            '+502',
-                            style: TextStyle(
-                              fontSize: 12.sp,
-                              fontWeight: FontWeight.w500,
-                              color: NowColors.c0xFF3288F1,
-                              height: 14 / 12,
-                            ),
-                          ),
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-              // suffixIcon
-              if (_isExpanded)
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.end,
-                  children: [
-                    Text(
-                      '$_phoneLength/8',
-                      style: TextStyle(
-                        fontSize: 13.sp,
-                        fontWeight: FontWeight.w400,
-                        color: NowColors.c0xFFB0B1B2,
-                        height: 20 / 13,
-                      ),
-                    ),
-                    SizedBox(width: 9.w),
-                    InkWell(
-                      onTap: () => _controller.clear(),
-                      child: Container(
-                        width: 18.w,
-                        height: 18.w,
-                        alignment: Alignment.center,
-                        decoration: BoxDecoration(
-                          color: NowColors.c0xFFB0B1B2,
-                          shape: BoxShape.circle,
-                        ),
-                        child: const Icon(
-                          Icons.close_rounded,
-                          color: Colors.white,
-                          size: 13,
-                        ),
-                      ),
-                    ),
-                    SizedBox(width: 13.w),
-                  ],
-                ),
-            ],
+    return StepInputField(
+      controller: _controller,
+      hintText: 'Número de teléfono',
+      maxLength: AppConstants.phoneLength,
+      keyboardType: TextInputType.number,
+      inputFormatters: [FilteringTextInputFormatter.digitsOnly],
+      showCounter: true,
+      prefix: Container(
+        margin: EdgeInsets.only(right: 8.w),
+        padding: EdgeInsets.symmetric(horizontal: 6.w, vertical: 2.h),
+        decoration: BoxDecoration(
+          color: NowColors.c0xFFEFF7FF,
+          borderRadius: const BorderRadius.all(Radius.circular(10)),
+          border: Border.all(color: NowColors.c0xFF3288F1, width: 0.5),
+        ),
+        child: Text(
+          '+502',
+          style: TextStyle(
+            fontSize: 12.sp,
+            fontWeight: FontWeight.w500,
+            color: NowColors.c0xFF3288F1,
+            height: 14 / 12,
           ),
         ),
-      ],
+      ),
     );
   }
 }

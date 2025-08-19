@@ -33,8 +33,8 @@ class EchoTopBar extends StatelessWidget {
                 padding: const EdgeInsets.all(10),
                 child: Image.asset(
                   R.drawable('icon_xtleft'),
-                  width: 24.h,
-                  height: 24.h,
+                  width: 24.r,
+                  height: 24.r,
                 ),
               ),
             )
@@ -66,8 +66,8 @@ class EchoTopBar extends StatelessWidget {
                 padding: const EdgeInsets.all(10),
                 child: Image.asset(
                   R.drawable('icon_xtcustomer'),
-                  width: 24.h,
-                  height: 24.h,
+                  width: 24.r,
+                  height: 24.r,
                 ),
               ),
             )

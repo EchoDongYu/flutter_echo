@@ -49,12 +49,34 @@ class StepCheckField extends StatelessWidget {
               child: ListView.separated(
                 scrollDirection: Axis.horizontal,
                 itemCount: items.length,
-                separatorBuilder: (context, index) => SizedBox(height: 12.w),
+                reverse: true,
+                separatorBuilder: (context, index) => SizedBox(width: 12.w),
                 itemBuilder: (context, index) {
-                  return InkWell(
-                    child: ChoiceChip(
-                      label: Text(items[index]),
-                      selected: index == value,
+                  final bool selected = index == value;
+                  return RawChip(
+                    label: Text(
+                      items[index],
+                      style: TextStyle(
+                        fontSize: 14.sp,
+                        fontWeight: FontWeight.w500,
+                        color: selected ? Colors.white : NowColors.c0xFF494C4F,
+                      ),
+                    ),
+                    selected: selected,
+                    onSelected: (value) {
+                      if (value) onCheck(index);
+                    },
+                    showCheckmark: false,
+                    backgroundColor: Colors.white,
+                    selectedColor: NowColors.c0xFF3288F1,
+                    shape: const RoundedRectangleBorder(
+                      borderRadius: BorderRadius.all(Radius.circular(20)),
+                    ),
+                    side: BorderSide(
+                      color: selected
+                          ? Colors.transparent
+                          : NowColors.c0xFF77797B,
+                      width: 1.w,
                     ),
                   );
                 },

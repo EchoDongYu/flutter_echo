@@ -58,12 +58,13 @@ class AppTheme {
       primarySwatch: Colors.blue,
       primaryColor: NowColors.c0xFF3288F1,
 
-      // 沉浸的关键代码
+      // 设置系统状态栏&导航栏样式
       appBarTheme: const AppBarTheme(
         systemOverlayStyle: SystemUiOverlayStyle(
-          statusBarColor: Colors.transparent, // 去除状态栏遮罩
-          statusBarIconBrightness: Brightness.dark, // 状态栏图标字体颜色
-          systemNavigationBarColor: Colors.amber, // 底部导航栏颜色
+          statusBarColor: Colors.transparent,
+          statusBarIconBrightness: Brightness.light,
+          systemNavigationBarColor: Colors.white,
+          systemNavigationBarIconBrightness: Brightness.dark,
         ),
       ),
 
@@ -74,35 +75,6 @@ class AppTheme {
       ),
 
       // 分割线主题
-      dividerTheme: const DividerThemeData(
-        color: NowColors.c0xFFC7C7C7,
-        thickness: 1,
-        space: 1,
-      ),
-    );
-  }
-
-  /// 暗色主题
-  static ThemeData get darkTheme {
-    return ThemeData(
-      brightness: Brightness.dark,
-      primarySwatch: Colors.blue,
-      primaryColor: NowColors.c0xFF3288F1,
-
-      // 沉浸的关键代码
-      appBarTheme: const AppBarTheme(
-        systemOverlayStyle: SystemUiOverlayStyle(
-          statusBarColor: Colors.transparent, // 去除状态栏遮罩
-          statusBarIconBrightness: Brightness.dark, // 状态栏图标字体颜色
-          systemNavigationBarColor: Colors.amber, // 底部导航栏颜色
-        ),
-      ),
-
-      colorScheme: ColorScheme.fromSeed(
-        seedColor: NowColors.c0xFF3288F1,
-        brightness: Brightness.dark,
-      ),
-
       dividerTheme: const DividerThemeData(
         color: NowColors.c0xFFC7C7C7,
         thickness: 1,

@@ -23,4 +23,8 @@ class AppConstants {
   static const String networkPermission = 'network';
   static const String deviceInfoPermission = 'device_info';
   static const String appListPermission = 'app_list';
+
+  // 电话配置
+  static const int phoneLength = 8;
+  static const int codeLength = 4;
 }

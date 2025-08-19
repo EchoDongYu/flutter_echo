@@ -48,6 +48,7 @@ class PermissionDialog extends StatelessWidget {
     final height = MediaQuery.of(context).size.height * 0.8;
     return BottomSheet(
       onClosing: onDisagree,
+      enableDrag: false,
       backgroundColor: Colors.white,
       constraints: BoxConstraints(maxHeight: height),
       shape: RoundedRectangleBorder(
@@ -112,8 +113,8 @@ class PermissionDialog extends StatelessWidget {
         Stack(
           children: [
             Container(
-              width: 22.w,
-              height: 22.w,
+              width: 22.r,
+              height: 22.r,
               decoration: BoxDecoration(
                 shape: BoxShape.circle,
                 gradient: const LinearGradient(
