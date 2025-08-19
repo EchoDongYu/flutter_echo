@@ -46,5 +46,3 @@ app.*.map.json
 
 # JsonSerializableGenerator
 /plugins/swagger-dart-code-generator
-/lib/models/*.g.dart
-/lib/swaggers/*.dart

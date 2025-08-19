@@ -275,6 +275,8 @@
         "consumes": [
           "application/json"
         ],
+        "modelId": "MyBankCard",
+        "operationId": "queryMyBankCardList",
         "parameters": [
           {
             "name": "root",
@@ -418,6 +420,8 @@
         "consumes": [
           "application/json"
         ],
+        "modelId": "BankVO",
+        "operationId": "queryBankList",
         "parameters": [
           {
             "name": "root",
@@ -497,6 +501,8 @@
         "consumes": [
           "application/json"
         ],
+        "modelId": "BankBin",
+        "operationId": "getBankCardBin",
         "parameters": [
           {
             "name": "root",
@@ -591,6 +597,8 @@
         "consumes": [
           "application/json"
         ],
+        "modelId": "BindResult",
+        "operationId": "getBankBindResult",
         "parameters": [
           {
             "name": "root",
@@ -663,6 +671,8 @@
         "consumes": [
           "application/json"
         ],
+        "modelId": "BindCard",
+        "operationId": "bindBankCard",
         "parameters": [
           {
             "name": "root",
@@ -800,6 +810,8 @@
         "consumes": [
           "application/json"
         ],
+        "modelId": "BankCard",
+        "operationId": "queryBankCardList",
         "parameters": [
           {
             "name": "root",
@@ -933,6 +945,8 @@
         "consumes": [
           "application/json"
         ],
+        "modelId": "TraderPwdCheck",
+        "operationId": "checkTraderPassword",
         "parameters": [
           {
             "name": "root",
@@ -997,6 +1011,8 @@
         "consumes": [
           "application/json"
         ],
+        "modelId": "AccountCancelJudge",
+        "operationId": "judgeAccountCancel",
         "parameters": [
           {
             "name": "root",
@@ -1087,6 +1103,8 @@
         "consumes": [
           "application/json"
         ],
+        "modelId": "IsRegister",
+        "operationId": "isRegister",
         "parameters": [
           {
             "name": "root",
@@ -1170,6 +1188,8 @@
         "consumes": [
           "application/json"
         ],
+        "modelId": "IsWhiteList",
+        "operationId": "isWhiteList",
         "parameters": [
           {
             "name": "root",
@@ -1211,6 +1231,8 @@
         "consumes": [
           "application/json"
         ],
+        "modelId": "NeedCaptcha",
+        "operationId": "needCheckCaptcha",
         "parameters": [
           {
             "name": "root",
@@ -1273,6 +1295,8 @@
         "consumes": [
           "application/json"
         ],
+        "modelId": "Register",
+        "operationId": "registerUser",
         "parameters": [
           {
             "name": "root",
@@ -1454,6 +1478,8 @@
         "consumes": [
           "application/json"
         ],
+        "modelId": "UserInfo",
+        "operationId": "getUserBaseInfo",
         "parameters": [
           {
             "name": "root",
@@ -1539,6 +1565,8 @@
         "consumes": [
           "application/json"
         ],
+        "modelId": "Login",
+        "operationId": "loginUser",
         "parameters": [
           {
             "name": "root",
@@ -1697,6 +1725,8 @@
         "consumes": [
           "application/json"
         ],
+        "modelId": "CaptchaGet",
+        "operationId": "getCaptchaCode",
         "parameters": [
           {
             "name": "ac0as4(o_mobileSn)",
@@ -1730,6 +1760,8 @@
         "consumes": [
           "application/json"
         ],
+        "modelId": "AccountCancelApp",
+        "operationId": "accountCancelApp",
         "parameters": [
           {
             "name": "root",
@@ -1895,6 +1927,8 @@
         "consumes": [
           "application/json"
         ],
+        "modelId": "AccountCancelLand",
+        "operationId": "accountCancelLand",
         "parameters": [
           {
             "name": "root",
@@ -2060,6 +2094,8 @@
         "consumes": [
           "application/json"
         ],
+        "modelId": "TraderPwdReset",
+        "operationId": "resetTraderPassword",
         "parameters": [
           {
             "name": "root",
@@ -2227,6 +2263,8 @@
         "consumes": [
           "application/json"
         ],
+        "modelId": "LoginPwdReset",
+        "operationId": "resetLoginPassword",
         "parameters": [
           {
             "name": "root",
@@ -2361,6 +2399,8 @@
         "consumes": [
           "application/json"
         ],
+        "modelId": "logUpload",
+        "operationId": "uploadLog",
         "parameters": [],
         "responses": {
           "200": {
@@ -2379,6 +2419,8 @@
         "consumes": [
           "application/json"
         ],
+        "modelId": "CaptchaCheck",
+        "operationId": "checkCaptchaCode",
         "parameters": [
           {
             "name": "root",
@@ -2500,6 +2542,8 @@
         "consumes": [
           "application/json"
         ],
+        "modelId": "CodeVerify",
+        "operationId": "checkVerificationCode",
         "parameters": [
           {
             "name": "root",
@@ -2648,6 +2692,8 @@
         "consumes": [
           "application/json"
         ],
+        "modelId": "CodeSend",
+        "operationId": "sendVerificationCode",
         "parameters": [
           {
             "name": "root",
@@ -2795,6 +2841,8 @@
         "consumes": [
           "application/json"
         ],
+        "modelId": "TrackReport",
+        "operationId": "reportTrack",
         "parameters": [
           {
             "name": "root",
@@ -3953,6 +4001,8 @@
         "consumes": [
           "application/json"
         ],
+        "modelId": "NeedReport",
+        "operationId": "needReport",
         "parameters": [
           {
             "name": "headers",
@@ -4041,6 +4091,8 @@
         "consumes": [
           "application/json"
         ],
+        "modelId": "RiskReport",
+        "operationId": "reportRiskConfig",
         "parameters": [
           {
             "name": "root",
@@ -4439,6 +4491,8 @@
         "consumes": [
           "application/json"
         ],
+        "modelId": "VaCreate",
+        "operationId": "createRepaymentVaAccount",
         "parameters": [
           {
             "name": "root",
@@ -4528,6 +4582,8 @@
         "consumes": [
           "application/json"
         ],
+        "modelId": "VoSubmit",
+        "operationId": "submitRepaymentVoucher",
         "parameters": [
           {
             "name": "root",
@@ -4650,6 +4706,8 @@
         "consumes": [
           "application/json"
         ],
+        "modelId": "VaGet",
+        "operationId": "getRepaymentVaAccount",
         "parameters": [
           {
             "name": "root",
@@ -4740,6 +4798,8 @@
         "consumes": [
           "application/json"
         ],
+        "modelId": "RepayApply",
+        "operationId": "applyRepay",
         "parameters": [
           {
             "name": "root",
@@ -5091,6 +5151,8 @@
         "consumes": [
           "application/json"
         ],
+        "modelId": "RepayRecord",
+        "operationId": "queryRepaymentRecord",
         "parameters": [
           {
             "name": "root",
@@ -5234,6 +5296,8 @@
         "consumes": [
           "application/json"
         ],
+        "modelId": "IsReviewAccount",
+        "operationId": "isReviewAccount",
         "parameters": [],
         "responses": {
           "200": {
@@ -5252,6 +5316,8 @@
         "consumes": [
           "application/json"
         ],
+        "modelId": "MainInfo",
+        "operationId": "getMainBaseInfo",
         "parameters": [
           {
             "name": "root",
@@ -5336,6 +5402,8 @@
         "consumes": [
           "application/json"
         ],
+        "modelId": "NoticeMain",
+        "operationId": "getNoticeMain",
         "parameters": [
           {
             "name": "root",
@@ -5379,6 +5447,8 @@
         "consumes": [
           "application/json"
         ],
+        "modelId": "VersionCheck",
+        "operationId": "checkAppVersion",
         "parameters": [
           {
             "name": "root",
@@ -5536,6 +5606,8 @@
         "consumes": [
           "application/json"
         ],
+        "modelId": "ColoanGp",
+        "operationId": "getCoLoanGpAppList",
         "parameters": [
           {
             "name": "root",
@@ -5672,6 +5744,8 @@
         "consumes": [
           "application/json"
         ],
+        "modelId": "HomeInfo",
+        "operationId": "getHomeInfo",
         "parameters": [
           {
             "name": "root",
@@ -6726,6 +6800,8 @@
         "consumes": [
           "application/json"
         ],
+        "modelId": "LoanConfirm",
+        "operationId": "confirmLoan",
         "parameters": [
           {
             "name": "root",
@@ -6883,6 +6959,8 @@
         "consumes": [
           "application/json"
         ],
+        "modelId": "PicUploadReq",
+        "operationId": "uploadPicture",
         "parameters": [
           {
             "name": "root",
@@ -7021,6 +7099,8 @@
         "consumes": [
           "application/json"
         ],
+        "modelId": "CollTime",
+        "operationId": "getLoanCollectTime",
         "parameters": [
           {
             "name": "root",
@@ -7119,6 +7199,8 @@
         "consumes": [
           "application/json"
         ],
+        "modelId": "IsFirstLoan",
+        "operationId": "isFirstLoan",
         "parameters": [
           {
             "name": "root",
@@ -7188,6 +7270,8 @@
         "consumes": [
           "application/json"
         ],
+        "modelId": "LoanOrder",
+        "operationId": "getLoanOrder",
         "parameters": [
           {
             "name": "root",
@@ -7712,6 +7796,8 @@
         "consumes": [
           "application/json"
         ],
+        "modelId": "LoanPreInfo",
+        "operationId": "getLoanPreInfo",
         "parameters": [
           {
             "name": "root",
@@ -8428,6 +8514,8 @@
         "consumes": [
           "application/json"
         ],
+        "modelId": "LoanFeeDetail",
+        "operationId": "getLoanFeeDetail",
         "parameters": [
           {
             "name": "root",
@@ -8575,6 +8663,8 @@
         "consumes": [
           "application/json"
         ],
+        "modelId": "BankValidInfo",
+        "operationId": "getBankValidInfo",
         "parameters": [
           {
             "name": "root",
@@ -8680,6 +8770,8 @@
         "consumes": [
           "application/json"
         ],
+        "modelId": "AbandonReason",
+        "operationId": "submitAbandonReason",
         "parameters": [
           {
             "name": "root",
@@ -8802,6 +8894,8 @@
         "consumes": [
           "application/json"
         ],
+        "modelId": "Feedback",
+        "operationId": "submitFeedback",
         "parameters": [
           {
             "name": "root",
@@ -8914,6 +9008,8 @@
         "consumes": [
           "application/json"
         ],
+        "modelId": "NeedAbandonReason",
+        "operationId": "needAbandonReason",
         "parameters": [
           {
             "name": "root",
@@ -9024,6 +9120,8 @@
         "consumes": [
           "application/json"
         ],
+        "modelId": "LoanNotice",
+        "operationId": "getLoanNotice",
         "parameters": [
           {
             "name": "root",
@@ -9186,6 +9284,8 @@
         "consumes": [
           "application/json"
         ],
+        "modelId": "CheckCredit",
+        "operationId": "refreshCredit",
         "parameters": [
           {
             "name": "root",
@@ -9274,6 +9374,8 @@
         "consumes": [
           "application/json"
         ],
+        "modelId": "LivingData",
+        "operationId": "uploadLivingData",
         "parameters": [
           {
             "name": "root",
@@ -9422,6 +9524,8 @@
         "consumes": [
           "application/json"
         ],
+        "modelId": "PhotoSubmit",
+        "operationId": "submitPhoto",
         "parameters": [
           {
             "name": "root",
@@ -9552,6 +9656,8 @@
         "consumes": [
           "application/json"
         ],
+        "modelId": "CreditRecord",
+        "operationId": "submitCreditData",
         "parameters": [
           {
             "name": "root",
@@ -9932,6 +10038,8 @@
         "consumes": [
           "application/json"
         ],
+        "modelId": "EmailCheck",
+        "operationId": "checkEmailValid",
         "parameters": [
           {
             "name": "root",
@@ -10037,6 +10145,8 @@
         "consumes": [
           "application/json"
         ],
+        "modelId": "HomeCoupon",
+        "operationId": "queryHomeCouponList",
         "parameters": [
           {
             "name": "root",
@@ -10256,6 +10366,8 @@
         "consumes": [
           "application/json"
         ],
+        "modelId": "LoanCoupon",
+        "operationId": "queryLoanCouponList",
         "parameters": [
           {
             "name": "root",
@@ -10640,6 +10752,8 @@
         "consumes": [
           "application/json"
         ],
+        "modelId": "MyCoupon",
+        "operationId": "queryMyCouponList",
         "parameters": [
           {
             "name": "root",
@@ -10867,6 +10981,8 @@
         "consumes": [
           "application/json"
         ],
+        "modelId": "CouponGet",
+        "operationId": "receiveCoupon",
         "parameters": [
           {
             "name": "root",
@@ -10965,6 +11081,8 @@
         "consumes": [
           "application/json"
         ],
+        "modelId": "LandCoupon",
+        "operationId": "queryLandCouponList",
         "parameters": [
           {
             "name": "root",
@@ -11192,6 +11310,8 @@
         "consumes": [
           "application/json"
         ],
+        "modelId": "CouponPop",
+        "operationId": "couponHomePop",
         "parameters": [
           {
             "name": "root",
@@ -11277,6 +11397,8 @@
         "consumes": [
           "application/json"
         ],
+        "modelId": "LoanBill",
+        "operationId": "queryLoanBillList",
         "parameters": [
           {
             "name": "root",
@@ -11603,6 +11725,8 @@
         "consumes": [
           "application/json"
         ],
+        "modelId": "BillStatus",
+        "operationId": "getBillStatus",
         "parameters": [
           {
             "name": "root",
@@ -11665,6 +11789,8 @@
         "consumes": [
           "application/json"
         ],
+        "modelId": "BillList",
+        "operationId": "queryBillList",
         "parameters": [
           {
             "name": "root",
@@ -11864,6 +11990,8 @@
         "consumes": [
           "application/json"
         ],
+        "modelId": "BillDetail",
+        "operationId": "getBillDetail",
         "parameters": [
           {
             "name": "root",
@@ -12741,6 +12869,8 @@
         "consumes": [
           "application/json"
         ],
+        "modelId": "BillRepay",
+        "operationId": "queryRepaymentList",
         "parameters": [
           {
             "name": "root",
