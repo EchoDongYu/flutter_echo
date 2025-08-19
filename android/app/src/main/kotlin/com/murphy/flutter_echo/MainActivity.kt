@@ -38,7 +38,7 @@ class MainActivity: FlutterActivity() {
         }
     }
 
-    fun onPickContact(contactUri: Uri) {
+    private fun onPickContact(contactUri: Uri) {
         try {
             contentResolver.query(
                 contactUri,

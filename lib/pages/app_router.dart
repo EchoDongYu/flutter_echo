@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_echo/pages/after/after_page.dart';
 import 'package:flutter_echo/pages/confirm/confirm_page.dart';
+import 'package:flutter_echo/pages/demo/demo_page.dart';
 import 'package:flutter_echo/pages/login/login_code_page.dart';
 import 'package:flutter_echo/pages/login/login_phone_page.dart';
 import 'package:flutter_echo/pages/main/main_page.dart';
-import 'package:flutter_echo/pages/other/demo_page.dart';
 import 'package:flutter_echo/pages/other/splash_page.dart';
 import 'package:flutter_echo/pages/submit/step_basic_page.dart';
 import 'package:flutter_echo/pages/submit/step_contact_page.dart';

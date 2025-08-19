@@ -57,6 +57,7 @@ class _StepInputFieldState extends State<StepInputField> {
         _inputLength = value;
       });
     }
+    _onFocusChanged();
   }
 
   /// 焦点变化监听
