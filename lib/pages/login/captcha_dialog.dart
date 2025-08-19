@@ -6,7 +6,7 @@ import 'package:flutter_echo/ui/widgets/common_button.dart';
 import 'package:flutter_echo/ui/widgets/step_input_field.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-/// 图形验证码弹窗组件
+/// 图形验证码弹窗
 class CaptchaDialog extends StatefulWidget {
   final VoidCallback onClosing;
   final Function(String) onConfirm;

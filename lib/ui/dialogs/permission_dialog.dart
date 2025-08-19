@@ -17,29 +17,24 @@ class PermissionDialog extends StatelessWidget {
 
   static const permissionItems = [
     Pair(
-      first: 'SMS',
-      second:
-          'Estimado estos son los nombres de refer encias encias disponibles para poder dlarle un ej emplo y facilitar cuando completas las infommaciones del prestamo que pago.Estimado estos son los nombres de refer encias disponibles para poder dlarle un ej emplo y facilitar cuando completas las infommaciones del prestamo que pago.',
+      'SMS',
+      'Estimado estos son los nombres de refer encias encias disponibles para poder dlarle un ej emplo y facilitar cuando completas las infommaciones del prestamo que pago.Estimado estos son los nombres de refer encias disponibles para poder dlarle un ej emplo y facilitar cuando completas las infommaciones del prestamo que pago.',
     ),
     Pair(
-      first: 'Solo contacto de emergencia',
-      second:
-          'Estimado estos son los nombres de refer encias encias disponibles para poder dlarle un ej emplo y facilitar cuando completas las ',
+      'Solo contacto de emergencia',
+      'Estimado estos son los nombres de refer encias encias disponibles para poder dlarle un ej emplo y facilitar cuando completas las ',
     ),
     Pair(
-      first: 'Ubicaciones',
-      second:
-          'Estimado estos son los nombres de refer encias encias disponibles para poder dla',
+      'Ubicaciones',
+      'Estimado estos son los nombres de refer encias encias disponibles para poder dla',
     ),
     Pair(
-      first: 'Camara',
-      second:
-          'Estimado estos son los nombres de refer encias encias disponibles para poder dla',
+      'Camara',
+      'Estimado estos son los nombres de refer encias encias disponibles para poder dla',
     ),
     Pair(
-      first: 'Datos del dispositivo',
-      second:
-          'Estimado estos son los nombres de refer encias encias disponibles para poder dlaEstimado estos son los nombres de refer encias encias disponibles para poder dlaEstimado estos son los nombres de refer encias encias disponibles para poder dla',
+      'Datos del dispositivo',
+      'Estimado estos son los nombres de refer encias encias disponibles para poder dlaEstimado estos son los nombres de refer encias encias disponibles para poder dlaEstimado estos son los nombres de refer encias encias disponibles para poder dla',
     ),
   ];
 

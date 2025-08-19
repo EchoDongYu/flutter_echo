@@ -7,7 +7,7 @@ class Pair<F, S> {
   final F first;
   final S second;
 
-  const Pair({required this.first, required this.second});
+  const Pair(this.first, this.second);
 }
 
 /// 通用数据模型三元组
@@ -16,11 +16,7 @@ class Triple<F, S, T> {
   final S second;
   final T third;
 
-  const Triple({
-    required this.first,
-    required this.second,
-    required this.third,
-  });
+  const Triple(this.first, this.second, this.third);
 }
 
 /// 字典项
@@ -32,9 +28,9 @@ class StepItem {
   final int sort;
   final int l16h95; //o_updateTime
 
-  StepItem({
+  const StepItem(
+    this.value, {
     required this.key,
-    required this.value,
     required this.type,
     required this.sort,
     required this.l16h95,

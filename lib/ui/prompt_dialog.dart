@@ -3,8 +3,8 @@ import 'package:flutter_echo/common/app_theme.dart';
 import 'package:flutter_echo/ui/widgets/common_button.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-/// 通用提示弹窗组件
-class PromptDialog extends StatefulWidget {
+/// 通用提示弹窗
+class PromptDialog extends StatelessWidget {
   final String title;
   final String content;
   final String confirmText;
@@ -22,22 +22,7 @@ class PromptDialog extends StatefulWidget {
     this.onCancel,
   });
 
-  @override
-  State<PromptDialog> createState() => _PromptDialogState();
-}
-
-class _PromptDialogState extends State<PromptDialog> {
-  @override
-  void initState() {
-    super.initState();
-  }
-
-  @override
-  void dispose() {
-    super.dispose();
-  }
-
-  bool get showCancel => widget.cancelText != null;
+  bool get showCancel => cancelText != null;
 
   @override
   Widget build(BuildContext context) {
@@ -55,7 +40,7 @@ class _PromptDialogState extends State<PromptDialog> {
           mainAxisSize: MainAxisSize.min,
           children: [
             Text(
-              widget.title,
+              title,
               textAlign: TextAlign.center,
               style: TextStyle(
                 color: NowColors.c0xFF1C1F23,
@@ -65,7 +50,7 @@ class _PromptDialogState extends State<PromptDialog> {
             ),
             SizedBox(height: showCancel ? 12.h : 16.h),
             Text(
-              widget.content,
+              content,
               textAlign: TextAlign.center,
               style: TextStyle(
                 color: NowColors.c0xFF494C4F,
@@ -80,8 +65,8 @@ class _PromptDialogState extends State<PromptDialog> {
                 children: [
                   Expanded(
                     child: EchoOutlinedButton(
-                      text: widget.cancelText!,
-                      onPressed: widget.onCancel,
+                      text: cancelText!,
+                      onPressed: onCancel,
                       textColor: NowColors.c0xFF3288F1,
                       borderColor: NowColors.c0xFF3288F1,
                       filledColor: NowColors.c0xFFEFF7FF,
@@ -90,17 +75,14 @@ class _PromptDialogState extends State<PromptDialog> {
                   SizedBox(width: 12.w),
                   Expanded(
                     child: EchoPrimaryButton(
-                      text: widget.confirmText,
-                      onPressed: widget.onConfirm,
+                      text: confirmText,
+                      onPressed: onConfirm,
                     ),
                   ),
                 ],
               )
             else
-              EchoPrimaryButton(
-                text: widget.confirmText,
-                onPressed: widget.onConfirm,
-              ),
+              EchoPrimaryButton(text: confirmText, onPressed: onConfirm),
           ],
         ),
       ),

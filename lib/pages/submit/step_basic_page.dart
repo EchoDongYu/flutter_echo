@@ -73,6 +73,7 @@ class _StepBasicPageState extends State<StepBasicPage> {
                               topLeft: Radius.circular(20),
                               topRight: Radius.circular(20),
                             ),
+                            boxShadow: NowStyles.cardShadows,
                           ),
                           child: Text(
                             'Informacion personal',
@@ -118,6 +119,7 @@ class _StepBasicPageState extends State<StepBasicPage> {
           bottomLeft: Radius.circular(20),
           bottomRight: Radius.circular(20),
         ),
+        boxShadow: NowStyles.cardShadows,
       ),
       child: Column(
         spacing: 12.h,

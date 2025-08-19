@@ -71,6 +71,7 @@ class _StepWorkPageState extends State<StepWorkPage> {
                               topLeft: Radius.circular(20),
                               topRight: Radius.circular(20),
                             ),
+                            boxShadow: NowStyles.cardShadows,
                           ),
                           child: Text(
                             'Cuenta bancaria',
@@ -119,6 +120,7 @@ class _StepWorkPageState extends State<StepWorkPage> {
           bottomLeft: Radius.circular(20),
           bottomRight: Radius.circular(20),
         ),
+        boxShadow: NowStyles.cardShadows,
       ),
       child: Column(
         spacing: 12.h,
@@ -167,6 +169,7 @@ class _StepWorkPageState extends State<StepWorkPage> {
       decoration: const BoxDecoration(
         color: Colors.white,
         borderRadius: BorderRadius.all(Radius.circular(20)),
+        boxShadow: NowStyles.cardShadows,
       ),
       child: Column(
         spacing: 12.h,
@@ -220,6 +223,7 @@ class _StepWorkPageState extends State<StepWorkPage> {
       decoration: const BoxDecoration(
         color: Colors.white,
         borderRadius: BorderRadius.all(Radius.circular(20)),
+        boxShadow: NowStyles.cardShadows,
       ),
       child: Column(
         spacing: 12.h,

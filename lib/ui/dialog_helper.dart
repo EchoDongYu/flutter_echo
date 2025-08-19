@@ -1,10 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_echo/models/common_model.dart';
-import 'package:flutter_echo/ui/dialogs/captcha_dialog.dart';
+import 'package:flutter_echo/pages/login/captcha_dialog.dart';
+import 'package:flutter_echo/pages/submit/confirm_step_dialog.dart';
+import 'package:flutter_echo/pages/submit/dpi_number_dialog.dart';
+import 'package:flutter_echo/pages/submit/pick_date_dialog.dart';
+import 'package:flutter_echo/pages/submit/pick_day_dialog.dart';
+import 'package:flutter_echo/pages/submit/pick_item_dialog.dart';
+import 'package:flutter_echo/pages/submit/step_bank_dialog.dart';
 import 'package:flutter_echo/ui/dialogs/compensation_dialog.dart';
 import 'package:flutter_echo/ui/dialogs/permission_dialog.dart';
-import 'package:flutter_echo/ui/dialogs/pick_item_dialog.dart';
-import 'package:flutter_echo/ui/dialogs/prompt_dialog.dart';
+import 'package:flutter_echo/ui/prompt_dialog.dart';
 import 'package:go_router/go_router.dart';
 
 class DialogHelper {
@@ -75,7 +80,7 @@ class DialogHelper {
     );
   }
 
-  /// 显示认证项弹窗
+  /// 显示认证项选择弹窗
   static Future<StepItem?> showPickItemDialog({
     required BuildContext context,
     required List<StepItem> items,
@@ -89,6 +94,74 @@ class DialogHelper {
         items: items,
         onConfirm: (item) => context.pop(item),
         onClosing: () => context.pop(),
+      ),
+    );
+  }
+
+  /// 显示认证项确认弹窗
+  static Future<bool?> showStepConfirmDialog({
+    required BuildContext context,
+    required List<Pair<String, String>> items,
+  }) {
+    return showModalBottomSheet<bool>(
+      context: context,
+      enableDrag: false,
+      isDismissible: false,
+      isScrollControlled: true,
+      builder: (context) => ConfirmStepDialog(
+        items: items,
+        onConfirm: () => context.pop(true),
+        onClosing: () => context.pop(false),
+      ),
+    );
+  }
+
+  /// 显示认证项选择日弹窗
+  static Future<int?> showPickDayDialog({required BuildContext context}) {
+    return showModalBottomSheet<int>(
+      context: context,
+      enableDrag: false,
+      isDismissible: false,
+      isScrollControlled: true,
+      builder: (context) => PickDayDialog(
+        onConfirm: (value) => context.pop(value),
+        onClosing: () => context.pop(),
+      ),
+    );
+  }
+
+  /// 显示认证项选择日期弹窗
+  static Future<DateTime?> showPickDateDialog({required BuildContext context}) {
+    return showModalBottomSheet<DateTime>(
+      context: context,
+      enableDrag: false,
+      isDismissible: false,
+      isScrollControlled: true,
+      builder: (context) => PickDateDialog(
+        onConfirm: (value) => context.pop(value),
+        onClosing: () => context.pop(),
+      ),
+    );
+  }
+
+  /// 显示证件号码弹窗
+  static Future<bool?> showDpiNumberDialog({required BuildContext context}) {
+    return showDialog<bool>(
+      context: context,
+      builder: (context) => DpiNumberDialog(onCancel: () => context.pop(false)),
+    );
+  }
+
+  /// 显示添加银行卡弹窗
+  static Future<bool?> showStepBankDialog({required BuildContext context}) {
+    return showModalBottomSheet<bool>(
+      context: context,
+      enableDrag: false,
+      isDismissible: false,
+      isScrollControlled: true,
+      builder: (context) => StepBankDialog(
+        onConfirm: () => context.pop(true),
+        onClosing: () => context.pop(false),
       ),
     );
   }

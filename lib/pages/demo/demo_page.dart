@@ -3,6 +3,7 @@ import 'package:flutter_echo/common/app_theme.dart';
 import 'package:flutter_echo/models/common_model.dart';
 import 'package:flutter_echo/pages/app_router.dart';
 import 'package:flutter_echo/ui/dialog_helper.dart';
+import 'package:flutter_echo/ui/dialogs/permission_dialog.dart';
 import 'package:flutter_echo/ui/widgets/common_button.dart';
 import 'package:flutter_echo/utils/context_ext.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -138,10 +139,50 @@ class _DemoPageState extends State<DemoPage> {
 
           _buildTestButton(
             context,
-            title: '认证选择项弹窗',
+            title: '认证项选择弹窗',
             icon: Icons.library_add_check_rounded,
             color: const Color(0xFFFF9800),
             onPressed: () => _showPickItemDialog(context),
+          ),
+
+          _buildTestButton(
+            context,
+            title: '认证项确认弹窗',
+            icon: Icons.confirmation_num_rounded,
+            color: const Color(0xFFFF9800),
+            onPressed: () => _showStepConfirmDialog(context),
+          ),
+
+          _buildTestButton(
+            context,
+            title: '选择天弹窗',
+            icon: Icons.view_day_rounded,
+            color: const Color(0xFF00D4FF),
+            onPressed: () => _showPickDayDialog(context),
+          ),
+
+          _buildTestButton(
+            context,
+            title: '系统选择日期弹窗',
+            icon: Icons.date_range_rounded,
+            color: const Color(0xFF00D4FF),
+            onPressed: () => _showPickDateDialog(context),
+          ),
+
+          _buildTestButton(
+            context,
+            title: '显示证件号码弹窗',
+            icon: Icons.numbers_rounded,
+            color: const Color(0xFF00D4FF),
+            onPressed: () => _showDpiNumberDialog(context),
+          ),
+
+          _buildTestButton(
+            context,
+            title: '显示添加银行卡弹窗',
+            icon: Icons.comment_bank_rounded,
+            color: const Color(0xFF00D4FF),
+            onPressed: () => _showStepBankDialog(context),
           ),
         ],
       ),
@@ -352,35 +393,34 @@ class _DemoPageState extends State<DemoPage> {
 
   static final List<StepItem> stepItems = [
     StepItem(
+      '¿Cómo obtengo un préstamo CreditYa?',
       key: 1,
-      value: '¿Cómo obtengo un préstamo CreditYa?',
       type: 'Item1',
       sort: 2,
       l16h95: 3,
     ),
     StepItem(
+      'La información personal no está seguraLa información personal no está seguraLa información personal no está segura',
       key: 1,
-      value:
-          'La información personal no está seguraLa información personal no está seguraLa información personal no está segura',
       type: 'Item1',
       sort: 2,
       l16h95: 3,
     ),
     StepItem(
+      '¿Cómo obtengo un préstamo CreditYa?',
       key: 1,
-      value: '¿Cómo obtengo un préstamo CreditYa?',
       type: 'Item1',
       sort: 2,
       l16h95: 3,
     ),
     StepItem(
+      '¿Cómo obtengo un préstamo CreditYa?',
       key: 1,
-      value: '¿Cómo obtengo un préstamo CreditYa?',
       type: 'Item1',
       sort: 2,
       l16h95: 3,
     ),
-    StepItem(key: 1, value: 'XXXXXXXXXX', type: 'Item1', sort: 2, l16h95: 3),
+    StepItem('XXXXXXXXXX', key: 1, type: 'Item1', sort: 2, l16h95: 3),
   ];
 
   void _showPickItemDialog(BuildContext context) async {
@@ -391,6 +431,64 @@ class _DemoPageState extends State<DemoPage> {
     if (context.mounted) {
       if (result != null) {
         context.showSuccessSnack('Pick $result');
+      } else {
+        context.showNormalSnack('Cancel $result');
+      }
+    }
+  }
+
+  void _showStepConfirmDialog(BuildContext context) async {
+    final result = await DialogHelper.showStepConfirmDialog(
+      context: context,
+      items: PermissionDialog.permissionItems,
+    );
+    if (context.mounted) {
+      if (result == true) {
+        context.showSuccessSnack('Confirm $result');
+      } else {
+        context.showNormalSnack('Cancel $result');
+      }
+    }
+  }
+
+  void _showPickDayDialog(BuildContext context) async {
+    final result = await DialogHelper.showPickDayDialog(context: context);
+    if (context.mounted) {
+      if (result != null) {
+        context.showSuccessSnack('Confirm $result');
+      } else {
+        context.showNormalSnack('Cancel $result');
+      }
+    }
+  }
+
+  void _showPickDateDialog(BuildContext context) async {
+    final result = await DialogHelper.showPickDateDialog(context: context);
+    if (context.mounted) {
+      if (result != null) {
+        context.showSuccessSnack('Confirm $result');
+      } else {
+        context.showNormalSnack('Cancel $result');
+      }
+    }
+  }
+
+  void _showDpiNumberDialog(BuildContext context) async {
+    final result = await DialogHelper.showDpiNumberDialog(context: context);
+    if (context.mounted) {
+      if (result == true) {
+        context.showSuccessSnack('Confirm $result');
+      } else {
+        context.showNormalSnack('Cancel $result');
+      }
+    }
+  }
+
+  void _showStepBankDialog(BuildContext context) async {
+    final result = await DialogHelper.showStepBankDialog(context: context);
+    if (context.mounted) {
+      if (result == true) {
+        context.showSuccessSnack('Confirm $result');
       } else {
         context.showNormalSnack('Cancel $result');
       }

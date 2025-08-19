@@ -5,6 +5,7 @@ import 'package:flutter_echo/ui/widgets/common_button.dart';
 import 'package:flutter_echo/utils/resource_utils.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
+/// 认证项选择弹窗
 class PickItemDialog extends StatefulWidget {
   final VoidCallback onClosing;
   final Function(StepItem?) onConfirm;

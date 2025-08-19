@@ -1,0 +1,91 @@
+import 'package:flutter/material.dart';
+import 'package:flutter_echo/common/app_theme.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+
+/// 证件号码弹窗
+class DpiNumberDialog extends StatelessWidget {
+  final VoidCallback? onCancel;
+
+  const DpiNumberDialog({super.key, this.onCancel});
+
+  @override
+  Widget build(BuildContext context) {
+    return Dialog(
+      alignment: Alignment.center,
+      backgroundColor: Colors.transparent,
+      insetPadding: EdgeInsets.symmetric(horizontal: 24.w),
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          Container(
+            width: double.infinity,
+            padding: EdgeInsets.only(top: 16.h, bottom: 24.h),
+            decoration: BoxDecoration(
+              color: Colors.white,
+              borderRadius: BorderRadius.all(Radius.circular(20)),
+            ),
+            child: Column(
+              children: [
+                Text(
+                  'Numero de DPI',
+                  style: TextStyle(
+                    fontSize: 18.sp,
+                    fontWeight: FontWeight.w500,
+                    color: NowColors.c0xFF1C1F23,
+                    height: 24 / 18,
+                  ),
+                ),
+                Container(
+                  width: double.infinity,
+                  margin: EdgeInsets.only(top: 16.h, bottom: 22.h),
+                  padding: EdgeInsets.symmetric(
+                    horizontal: 16.w,
+                    vertical: 10.h,
+                  ),
+                  decoration: BoxDecoration(color: NowColors.c0xFFFFF9EA),
+                  child: Text(
+                    'El numero de serie se solicita para verlificacion de identidad de nuestro sistema. Tus datos ostan seguros, tal ycomo lo dice nuestra politica do privacidad',
+                    style: TextStyle(
+                      fontSize: 13.sp,
+                      fontWeight: FontWeight.w400,
+                      color: NowColors.c0xFFFF9817,
+                      height: 18 / 13,
+                    ),
+                  ),
+                ),
+                Container(
+                  height: 169.h,
+                  margin: EdgeInsets.symmetric(horizontal: 16.w),
+                  decoration: BoxDecoration(
+                    color: NowColors.c0xFFB0B1B2,
+                    borderRadius: BorderRadius.all(Radius.circular(12)),
+                  ),
+                ),
+              ],
+            ),
+          ),
+          Container(
+            width: 24.r,
+            height: 24.r,
+            margin: EdgeInsets.only(top: 32.h),
+            alignment: Alignment.center,
+            decoration: BoxDecoration(
+              shape: BoxShape.circle,
+              border: BoxBorder.all(color: Colors.white, width: 1.6.w),
+            ),
+            child: InkWell(
+              onTap: onCancel,
+              borderRadius: const BorderRadius.all(Radius.circular(12)),
+              child: const Icon(
+                Icons.close_rounded,
+                color: Colors.white,
+                size: 16,
+              ),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}

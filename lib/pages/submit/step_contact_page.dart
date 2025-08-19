@@ -98,6 +98,7 @@ class _StepContactPageState extends State<StepContactPage> {
           topLeft: Radius.circular(20),
           topRight: Radius.circular(20),
         ),
+        boxShadow: NowStyles.cardShadows,
       ),
       child: Text(
         'Contacto $pos',
@@ -123,6 +124,7 @@ class _StepContactPageState extends State<StepContactPage> {
           bottomLeft: Radius.circular(20),
           bottomRight: Radius.circular(20),
         ),
+        boxShadow: NowStyles.cardShadows,
       ),
       child: Column(
         spacing: 12.h,

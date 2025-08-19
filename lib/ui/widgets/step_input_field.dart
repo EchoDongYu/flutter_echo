@@ -81,7 +81,7 @@ class _StepInputFieldState extends State<StepInputField> {
             child: Text(
               widget.hintText,
               style: TextStyle(
-                fontSize: 16.sp,
+                fontSize: widget.hintText.length > 30 ? 14.sp : 16.sp,
                 fontWeight: FontWeight.w400,
                 color: NowColors.c0xFF77797B,
                 height: 24 / 16,
