@@ -2,16 +2,16 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_echo/common/app_theme.dart';
 import 'package:flutter_echo/common/constants.dart';
-import 'package:flutter_echo/pages/app_router.dart';
+import 'package:flutter_echo/providers/login_provider.dart';
 import 'package:flutter_echo/ui/widget_helper.dart';
 import 'package:flutter_echo/ui/widgets/common_button.dart';
 import 'package:flutter_echo/ui/widgets/step_input_field.dart';
 import 'package:flutter_echo/ui/widgets/top_bar.dart';
 import 'package:flutter_echo/utils/resource_utils.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:go_router/go_router.dart';
+import 'package:provider/provider.dart';
 
-/// 登录手机号输入页面
+/// 登录-手机号输入页面
 class LoginPhonePage extends StatefulWidget {
   const LoginPhonePage({super.key});
 
@@ -21,22 +21,17 @@ class LoginPhonePage extends StatefulWidget {
 
 class _LoginPhonePageState extends State<LoginPhonePage> {
   final TextEditingController _controller = TextEditingController();
-  final FocusNode _focusNode = FocusNode();
   bool _isPhoneValid = false;
-  bool _isExpanded = false;
 
   @override
   void initState() {
     super.initState();
     _controller.addListener(_onPhoneChanged);
-    _controller.addListener(_onFocusChanged);
-    _focusNode.addListener(_onFocusChanged);
   }
 
   @override
   void dispose() {
     _controller.dispose();
-    _focusNode.dispose();
     super.dispose();
   }
 
@@ -50,25 +45,22 @@ class _LoginPhonePageState extends State<LoginPhonePage> {
     }
   }
 
-  /// 焦点变化监听
-  void _onFocusChanged() {
-    final expanded = _controller.text.isNotEmpty || _focusNode.hasFocus;
-    if (_isExpanded != expanded) {
-      setState(() {
-        _isExpanded = expanded;
-      });
-    }
-  }
-
   /// 下一步按钮点击
-  void _onNextPressed() {
-    if (!_isPhoneValid) return;
-    final phone = _controller.text;
-    context.push('${AppRouter.loginCode}?${NavKey.phone}=$phone');
-  }
+  // void _onNextPressed() {
+  //   if (!_isPhoneValid) return;
+  //   final phone = _controller.text;
+  //   context.push('${AppRouter.loginCode}?${NavKey.phone}=$phone');
+  // }
 
   @override
   Widget build(BuildContext context) {
+    return ChangeNotifierProvider(
+      create: (BuildContext context) => LoginProvider(),
+      builder: (context, child) => _buildPage(context),
+    );
+  }
+
+  Widget _buildPage(BuildContext context) {
     return Scaffold(
       backgroundColor: NowColors.c0xFFF3F3F5,
       resizeToAvoidBottomInset: true,
@@ -78,7 +70,7 @@ class _LoginPhonePageState extends State<LoginPhonePage> {
             context: context,
             height: 265.h,
             child: Image.asset(
-              R.drawable('login_top_bg'),
+              R.drawable('login_top_bg.png'),
               width: double.infinity,
               fit: BoxFit.fitWidth,
             ),
@@ -87,38 +79,27 @@ class _LoginPhonePageState extends State<LoginPhonePage> {
             child: Column(
               children: [
                 EchoTopBar(title: 'Iniciar sesión Registrarse'),
-                Expanded(
-                  child: Container(
-                    margin: EdgeInsets.symmetric(horizontal: 12.w),
-                    child: SingleChildScrollView(
-                      child: Column(
-                        children: [
-                          // Logo区域
-                          Container(
-                            width: 80.w,
-                            height: 80.h,
-                            margin: EdgeInsets.only(top: 28.h),
-                            alignment: Alignment.center,
-                            decoration: BoxDecoration(
-                              color: NowColors.c0xFF3288F1,
-                              borderRadius: BorderRadius.circular(24.r),
-                              border: Border.all(
-                                width: 3,
-                                color: Colors.white,
-                                style: BorderStyle.solid,
-                              ),
-                            ),
-                            child: const Icon(
-                              Icons.phone_android,
-                              color: Colors.white,
-                              size: 40,
-                            ),
-                          ),
-                          // 内容区域
-                          _buildContentCard(),
-                        ],
-                      ),
+                // Logo区域
+                Container(
+                  width: 80.r,
+                  height: 80.r,
+                  margin: EdgeInsets.only(top: 28.h),
+                  alignment: Alignment.center,
+                  decoration: BoxDecoration(
+                    color: NowColors.c0xFF3288F1,
+                    borderRadius: BorderRadius.circular(24.r),
+                    border: Border.all(
+                      width: 3,
+                      color: Colors.white,
+                      style: BorderStyle.solid,
                     ),
+                  ),
+                  child: Image.asset(R.drawable('icon_logo.png')),
+                ),
+                Expanded(
+                  child: SingleChildScrollView(
+                    padding: EdgeInsets.symmetric(horizontal: 12.w),
+                    child: _buildContentCard(),
                   ),
                 ),
               ],
@@ -141,23 +122,20 @@ class _LoginPhonePageState extends State<LoginPhonePage> {
       ),
       child: Column(
         children: [
-          Text(
-            'Utilice su número de teléfono para registrarse/ entrar',
-            style: TextStyle(
-              fontSize: 20.sp,
-              fontWeight: FontWeight.w500,
-              color: NowColors.c0xFF1C1F23,
-              height: 30 / 20,
-            ),
-          ),
-          SizedBox(height: 32.h),
           // 手机号输入框
           _buildPhoneField(),
           SizedBox(height: 32.h),
-          // 发送按钮
-          EchoPrimaryButton(
-            text: 'Iniciar sesión',
-            onPressed: _isPhoneValid ? _onNextPressed : null,
+          Consumer<LoginProvider>(
+            builder: (context, provider, _) {
+              void onNextPressed() {
+                provider.nextStep(context, mobile: _controller.text);
+              }
+
+              return EchoPrimaryButton(
+                text: 'Siguiente',
+                onPressed: _isPhoneValid ? onNextPressed : null,
+              );
+            },
           ),
         ],
       ),
@@ -168,7 +146,7 @@ class _LoginPhonePageState extends State<LoginPhonePage> {
     return StepInputField(
       controller: _controller,
       hintText: 'Número de teléfono',
-      maxLength: AppConstants.phoneLength,
+      maxLength: AppConst.phoneLength,
       keyboardType: TextInputType.number,
       inputFormatters: [FilteringTextInputFormatter.digitsOnly],
       showCounter: true,
@@ -181,7 +159,7 @@ class _LoginPhonePageState extends State<LoginPhonePage> {
           border: Border.all(color: NowColors.c0xFF3288F1, width: 0.5),
         ),
         child: Text(
-          '+502',
+          '+${AppConst.countryCode}',
           style: TextStyle(
             fontSize: 12.sp,
             fontWeight: FontWeight.w500,

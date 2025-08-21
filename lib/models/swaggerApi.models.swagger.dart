@@ -699,8 +699,8 @@ extension $AccountCancelJudgeReqExtension on AccountCancelJudgeReq {
 }
 
 @JsonSerializable(explicitToJson: true)
-class IsRegisterReq {
-  const IsRegisterReq({
+class CheckRegisterReq {
+  const CheckRegisterReq({
     required this.sordidOMobile,
     this.d7x52pOBizChannel,
     this.s377v5OBizLine,
@@ -713,18 +713,18 @@ class IsRegisterReq {
   @JsonKey(name: 's377v5')
   final String? s377v5OBizLine;
 
-  factory IsRegisterReq.fromJson(Map<String, dynamic> json) =>
-      _$IsRegisterReqFromJson(json);
+  factory CheckRegisterReq.fromJson(Map<String, dynamic> json) =>
+      _$CheckRegisterReqFromJson(json);
 
-  Map<String, dynamic> toJson() => _$IsRegisterReqToJson(this);
+  Map<String, dynamic> toJson() => _$CheckRegisterReqToJson(this);
 
-  static const fromJsonFactory = _$IsRegisterReqFromJson;
-  static const toJsonFactory = _$IsRegisterReqToJson;
+  static const fromJsonFactory = _$CheckRegisterReqFromJson;
+  static const toJsonFactory = _$CheckRegisterReqToJson;
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
-        (other is IsRegisterReq &&
+        (other is CheckRegisterReq &&
             (identical(other.sordidOMobile, sordidOMobile) ||
                 const DeepCollectionEquality().equals(
                   other.sordidOMobile,
@@ -753,25 +753,25 @@ class IsRegisterReq {
       runtimeType.hashCode;
 }
 
-extension $IsRegisterReqExtension on IsRegisterReq {
-  IsRegisterReq copyWith({
+extension $CheckRegisterReqExtension on CheckRegisterReq {
+  CheckRegisterReq copyWith({
     String? sordidOMobile,
     String? d7x52pOBizChannel,
     String? s377v5OBizLine,
   }) {
-    return IsRegisterReq(
+    return CheckRegisterReq(
       sordidOMobile: sordidOMobile ?? this.sordidOMobile,
       d7x52pOBizChannel: d7x52pOBizChannel ?? this.d7x52pOBizChannel,
       s377v5OBizLine: s377v5OBizLine ?? this.s377v5OBizLine,
     );
   }
 
-  IsRegisterReq copyWithWrapped({
+  CheckRegisterReq copyWithWrapped({
     Wrapped<String>? sordidOMobile,
     Wrapped<String?>? d7x52pOBizChannel,
     Wrapped<String?>? s377v5OBizLine,
   }) {
-    return IsRegisterReq(
+    return CheckRegisterReq(
       sordidOMobile:
           (sordidOMobile != null ? sordidOMobile.value : this.sordidOMobile),
       d7x52pOBizChannel:
@@ -785,24 +785,24 @@ extension $IsRegisterReqExtension on IsRegisterReq {
 }
 
 @JsonSerializable(explicitToJson: true)
-class IsWhiteListReq {
-  const IsWhiteListReq({required this.sordidOMobile});
+class WhiteListReq {
+  const WhiteListReq({required this.sordidOMobile});
 
   @JsonKey(name: 'sordid')
   final String sordidOMobile;
 
-  factory IsWhiteListReq.fromJson(Map<String, dynamic> json) =>
-      _$IsWhiteListReqFromJson(json);
+  factory WhiteListReq.fromJson(Map<String, dynamic> json) =>
+      _$WhiteListReqFromJson(json);
 
-  Map<String, dynamic> toJson() => _$IsWhiteListReqToJson(this);
+  Map<String, dynamic> toJson() => _$WhiteListReqToJson(this);
 
-  static const fromJsonFactory = _$IsWhiteListReqFromJson;
-  static const toJsonFactory = _$IsWhiteListReqToJson;
+  static const fromJsonFactory = _$WhiteListReqFromJson;
+  static const toJsonFactory = _$WhiteListReqToJson;
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
-        (other is IsWhiteListReq &&
+        (other is WhiteListReq &&
             (identical(other.sordidOMobile, sordidOMobile) ||
                 const DeepCollectionEquality().equals(
                   other.sordidOMobile,
@@ -818,13 +818,13 @@ class IsWhiteListReq {
       const DeepCollectionEquality().hash(sordidOMobile) ^ runtimeType.hashCode;
 }
 
-extension $IsWhiteListReqExtension on IsWhiteListReq {
-  IsWhiteListReq copyWith({String? sordidOMobile}) {
-    return IsWhiteListReq(sordidOMobile: sordidOMobile ?? this.sordidOMobile);
+extension $WhiteListReqExtension on WhiteListReq {
+  WhiteListReq copyWith({String? sordidOMobile}) {
+    return WhiteListReq(sordidOMobile: sordidOMobile ?? this.sordidOMobile);
   }
 
-  IsWhiteListReq copyWithWrapped({Wrapped<String>? sordidOMobile}) {
-    return IsWhiteListReq(
+  WhiteListReq copyWithWrapped({Wrapped<String>? sordidOMobile}) {
+    return WhiteListReq(
       sordidOMobile:
           (sordidOMobile != null ? sordidOMobile.value : this.sordidOMobile),
     );
@@ -4583,24 +4583,24 @@ extension $CollTimeReqExtension on CollTimeReq {
 }
 
 @JsonSerializable(explicitToJson: true)
-class IsFirstLoanReq {
-  const IsFirstLoanReq({required this.raiaOUserGid});
+class CheckFirstLoanReq {
+  const CheckFirstLoanReq({required this.raiaOUserGid});
 
   @JsonKey(name: 'raia')
   final int raiaOUserGid;
 
-  factory IsFirstLoanReq.fromJson(Map<String, dynamic> json) =>
-      _$IsFirstLoanReqFromJson(json);
+  factory CheckFirstLoanReq.fromJson(Map<String, dynamic> json) =>
+      _$CheckFirstLoanReqFromJson(json);
 
-  Map<String, dynamic> toJson() => _$IsFirstLoanReqToJson(this);
+  Map<String, dynamic> toJson() => _$CheckFirstLoanReqToJson(this);
 
-  static const fromJsonFactory = _$IsFirstLoanReqFromJson;
-  static const toJsonFactory = _$IsFirstLoanReqToJson;
+  static const fromJsonFactory = _$CheckFirstLoanReqFromJson;
+  static const toJsonFactory = _$CheckFirstLoanReqToJson;
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
-        (other is IsFirstLoanReq &&
+        (other is CheckFirstLoanReq &&
             (identical(other.raiaOUserGid, raiaOUserGid) ||
                 const DeepCollectionEquality().equals(
                   other.raiaOUserGid,
@@ -4616,13 +4616,13 @@ class IsFirstLoanReq {
       const DeepCollectionEquality().hash(raiaOUserGid) ^ runtimeType.hashCode;
 }
 
-extension $IsFirstLoanReqExtension on IsFirstLoanReq {
-  IsFirstLoanReq copyWith({int? raiaOUserGid}) {
-    return IsFirstLoanReq(raiaOUserGid: raiaOUserGid ?? this.raiaOUserGid);
+extension $CheckFirstLoanReqExtension on CheckFirstLoanReq {
+  CheckFirstLoanReq copyWith({int? raiaOUserGid}) {
+    return CheckFirstLoanReq(raiaOUserGid: raiaOUserGid ?? this.raiaOUserGid);
   }
 
-  IsFirstLoanReq copyWithWrapped({Wrapped<int>? raiaOUserGid}) {
-    return IsFirstLoanReq(
+  CheckFirstLoanReq copyWithWrapped({Wrapped<int>? raiaOUserGid}) {
+    return CheckFirstLoanReq(
       raiaOUserGid:
           (raiaOUserGid != null ? raiaOUserGid.value : this.raiaOUserGid),
     );
@@ -8457,8 +8457,8 @@ extension $AccountCancelJudgeRespExtension on AccountCancelJudgeResp {
 }
 
 @JsonSerializable(explicitToJson: true)
-class IsRegisterResp {
-  const IsRegisterResp({
+class CheckRegisterResp {
+  const CheckRegisterResp({
     this.qm5h5tOIsRegistered,
     this.fm50w8OLoginPwd,
     this.cressyOTraderPwd,
@@ -8477,18 +8477,18 @@ class IsRegisterResp {
   @JsonKey(name: 'assab')
   final String? assabODeviceChangeMsg;
 
-  factory IsRegisterResp.fromJson(Map<String, dynamic> json) =>
-      _$IsRegisterRespFromJson(json);
+  factory CheckRegisterResp.fromJson(Map<String, dynamic> json) =>
+      _$CheckRegisterRespFromJson(json);
 
-  Map<String, dynamic> toJson() => _$IsRegisterRespToJson(this);
+  Map<String, dynamic> toJson() => _$CheckRegisterRespToJson(this);
 
-  static const fromJsonFactory = _$IsRegisterRespFromJson;
-  static const toJsonFactory = _$IsRegisterRespToJson;
+  static const fromJsonFactory = _$CheckRegisterRespFromJson;
+  static const toJsonFactory = _$CheckRegisterRespToJson;
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
-        (other is IsRegisterResp &&
+        (other is CheckRegisterResp &&
             (identical(other.qm5h5tOIsRegistered, qm5h5tOIsRegistered) ||
                 const DeepCollectionEquality().equals(
                   other.qm5h5tOIsRegistered,
@@ -8532,15 +8532,15 @@ class IsRegisterResp {
       runtimeType.hashCode;
 }
 
-extension $IsRegisterRespExtension on IsRegisterResp {
-  IsRegisterResp copyWith({
+extension $CheckRegisterRespExtension on CheckRegisterResp {
+  CheckRegisterResp copyWith({
     bool? qm5h5tOIsRegistered,
     bool? fm50w8OLoginPwd,
     bool? cressyOTraderPwd,
     bool? orcadianOIsDeviceChange,
     String? assabODeviceChangeMsg,
   }) {
-    return IsRegisterResp(
+    return CheckRegisterResp(
       qm5h5tOIsRegistered: qm5h5tOIsRegistered ?? this.qm5h5tOIsRegistered,
       fm50w8OLoginPwd: fm50w8OLoginPwd ?? this.fm50w8OLoginPwd,
       cressyOTraderPwd: cressyOTraderPwd ?? this.cressyOTraderPwd,
@@ -8551,14 +8551,14 @@ extension $IsRegisterRespExtension on IsRegisterResp {
     );
   }
 
-  IsRegisterResp copyWithWrapped({
+  CheckRegisterResp copyWithWrapped({
     Wrapped<bool?>? qm5h5tOIsRegistered,
     Wrapped<bool?>? fm50w8OLoginPwd,
     Wrapped<bool?>? cressyOTraderPwd,
     Wrapped<bool>? orcadianOIsDeviceChange,
     Wrapped<String?>? assabODeviceChangeMsg,
   }) {
-    return IsRegisterResp(
+    return CheckRegisterResp(
       qm5h5tOIsRegistered:
           (qm5h5tOIsRegistered != null
               ? qm5h5tOIsRegistered.value
@@ -8584,16 +8584,16 @@ extension $IsRegisterRespExtension on IsRegisterResp {
 }
 
 @JsonSerializable(explicitToJson: true)
-class IsWhiteListResp {
-  const IsWhiteListResp();
+class WhiteListResp {
+  const WhiteListResp();
 
-  factory IsWhiteListResp.fromJson(Map<String, dynamic> json) =>
-      _$IsWhiteListRespFromJson(json);
+  factory WhiteListResp.fromJson(Map<String, dynamic> json) =>
+      _$WhiteListRespFromJson(json);
 
-  Map<String, dynamic> toJson() => _$IsWhiteListRespToJson(this);
+  Map<String, dynamic> toJson() => _$WhiteListRespToJson(this);
 
-  static const fromJsonFactory = _$IsWhiteListRespFromJson;
-  static const toJsonFactory = _$IsWhiteListRespToJson;
+  static const fromJsonFactory = _$WhiteListRespFromJson;
+  static const toJsonFactory = _$WhiteListRespToJson;
 
   @override
   String toString() => jsonEncode(this);
@@ -11216,16 +11216,16 @@ extension $RepayRecordResp$ItemExtension on RepayRecordResp$Item {
 }
 
 @JsonSerializable(explicitToJson: true)
-class IsReviewAccountResp {
-  const IsReviewAccountResp();
+class CheckReviewAccountResp {
+  const CheckReviewAccountResp();
 
-  factory IsReviewAccountResp.fromJson(Map<String, dynamic> json) =>
-      _$IsReviewAccountRespFromJson(json);
+  factory CheckReviewAccountResp.fromJson(Map<String, dynamic> json) =>
+      _$CheckReviewAccountRespFromJson(json);
 
-  Map<String, dynamic> toJson() => _$IsReviewAccountRespToJson(this);
+  Map<String, dynamic> toJson() => _$CheckReviewAccountRespToJson(this);
 
-  static const fromJsonFactory = _$IsReviewAccountRespFromJson;
-  static const toJsonFactory = _$IsReviewAccountRespToJson;
+  static const fromJsonFactory = _$CheckReviewAccountRespFromJson;
+  static const toJsonFactory = _$CheckReviewAccountRespToJson;
 
   @override
   String toString() => jsonEncode(this);
@@ -12329,8 +12329,8 @@ extension $CollTimeRespExtension on CollTimeResp {
 }
 
 @JsonSerializable(explicitToJson: true)
-class IsFirstLoanResp {
-  const IsFirstLoanResp({
+class CheckFirstLoanResp {
+  const CheckFirstLoanResp({
     this.raiaOUserGid,
     this.candidlyOIsFirst,
     this.tassesOPopUpNotice,
@@ -12343,18 +12343,18 @@ class IsFirstLoanResp {
   @JsonKey(name: 'tasses')
   final bool? tassesOPopUpNotice;
 
-  factory IsFirstLoanResp.fromJson(Map<String, dynamic> json) =>
-      _$IsFirstLoanRespFromJson(json);
+  factory CheckFirstLoanResp.fromJson(Map<String, dynamic> json) =>
+      _$CheckFirstLoanRespFromJson(json);
 
-  Map<String, dynamic> toJson() => _$IsFirstLoanRespToJson(this);
+  Map<String, dynamic> toJson() => _$CheckFirstLoanRespToJson(this);
 
-  static const fromJsonFactory = _$IsFirstLoanRespFromJson;
-  static const toJsonFactory = _$IsFirstLoanRespToJson;
+  static const fromJsonFactory = _$CheckFirstLoanRespFromJson;
+  static const toJsonFactory = _$CheckFirstLoanRespToJson;
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
-        (other is IsFirstLoanResp &&
+        (other is CheckFirstLoanResp &&
             (identical(other.raiaOUserGid, raiaOUserGid) ||
                 const DeepCollectionEquality().equals(
                   other.raiaOUserGid,
@@ -12383,25 +12383,25 @@ class IsFirstLoanResp {
       runtimeType.hashCode;
 }
 
-extension $IsFirstLoanRespExtension on IsFirstLoanResp {
-  IsFirstLoanResp copyWith({
+extension $CheckFirstLoanRespExtension on CheckFirstLoanResp {
+  CheckFirstLoanResp copyWith({
     int? raiaOUserGid,
     bool? candidlyOIsFirst,
     bool? tassesOPopUpNotice,
   }) {
-    return IsFirstLoanResp(
+    return CheckFirstLoanResp(
       raiaOUserGid: raiaOUserGid ?? this.raiaOUserGid,
       candidlyOIsFirst: candidlyOIsFirst ?? this.candidlyOIsFirst,
       tassesOPopUpNotice: tassesOPopUpNotice ?? this.tassesOPopUpNotice,
     );
   }
 
-  IsFirstLoanResp copyWithWrapped({
+  CheckFirstLoanResp copyWithWrapped({
     Wrapped<int?>? raiaOUserGid,
     Wrapped<bool?>? candidlyOIsFirst,
     Wrapped<bool?>? tassesOPopUpNotice,
   }) {
-    return IsFirstLoanResp(
+    return CheckFirstLoanResp(
       raiaOUserGid:
           (raiaOUserGid != null ? raiaOUserGid.value : this.raiaOUserGid),
       candidlyOIsFirst:

@@ -85,7 +85,7 @@ class CompensationDialog extends StatelessWidget {
                       vertical: 10.h,
                     ),
                     child: Image.asset(
-                      R.drawable('img_jietu1'),
+                      R.drawable('img_jietu1.png'),
                       width: double.infinity,
                       fit: BoxFit.fitWidth,
                     ),
@@ -97,7 +97,7 @@ class CompensationDialog extends StatelessWidget {
                       vertical: 10.h,
                     ),
                     child: Image.asset(
-                      R.drawable('img_jietu2'),
+                      R.drawable('img_jietu2.png'),
                       width: double.infinity,
                       fit: BoxFit.fitWidth,
                     ),

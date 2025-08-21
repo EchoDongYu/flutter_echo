@@ -107,24 +107,24 @@ Map<String, dynamic> _$AccountCancelJudgeReqToJson(
   AccountCancelJudgeReq instance,
 ) => <String, dynamic>{'raia': instance.raiaOUserGid};
 
-IsRegisterReq _$IsRegisterReqFromJson(Map<String, dynamic> json) =>
-    IsRegisterReq(
+CheckRegisterReq _$CheckRegisterReqFromJson(Map<String, dynamic> json) =>
+    CheckRegisterReq(
       sordidOMobile: json['sordid'] as String,
       d7x52pOBizChannel: json['d7x52p'] as String?,
       s377v5OBizLine: json['s377v5'] as String?,
     );
 
-Map<String, dynamic> _$IsRegisterReqToJson(IsRegisterReq instance) =>
+Map<String, dynamic> _$CheckRegisterReqToJson(CheckRegisterReq instance) =>
     <String, dynamic>{
       'sordid': instance.sordidOMobile,
       'd7x52p': instance.d7x52pOBizChannel,
       's377v5': instance.s377v5OBizLine,
     };
 
-IsWhiteListReq _$IsWhiteListReqFromJson(Map<String, dynamic> json) =>
-    IsWhiteListReq(sordidOMobile: json['sordid'] as String);
+WhiteListReq _$WhiteListReqFromJson(Map<String, dynamic> json) =>
+    WhiteListReq(sordidOMobile: json['sordid'] as String);
 
-Map<String, dynamic> _$IsWhiteListReqToJson(IsWhiteListReq instance) =>
+Map<String, dynamic> _$WhiteListReqToJson(WhiteListReq instance) =>
     <String, dynamic>{'sordid': instance.sordidOMobile};
 
 NeedCaptchaReq _$NeedCaptchaReqFromJson(Map<String, dynamic> json) =>
@@ -722,10 +722,10 @@ Map<String, dynamic> _$CollTimeReqToJson(CollTimeReq instance) =>
       'e479lg': instance.e479lgOCollectTimeType,
     };
 
-IsFirstLoanReq _$IsFirstLoanReqFromJson(Map<String, dynamic> json) =>
-    IsFirstLoanReq(raiaOUserGid: (json['raia'] as num).toInt());
+CheckFirstLoanReq _$CheckFirstLoanReqFromJson(Map<String, dynamic> json) =>
+    CheckFirstLoanReq(raiaOUserGid: (json['raia'] as num).toInt());
 
-Map<String, dynamic> _$IsFirstLoanReqToJson(IsFirstLoanReq instance) =>
+Map<String, dynamic> _$CheckFirstLoanReqToJson(CheckFirstLoanReq instance) =>
     <String, dynamic>{'raia': instance.raiaOUserGid};
 
 LoanOrderReq _$LoanOrderReqFromJson(Map<String, dynamic> json) => LoanOrderReq(
@@ -1318,8 +1318,8 @@ Map<String, dynamic> _$AccountCancelJudgeRespToJson(
   'i9145g': instance.i9145gOMsgBtn02,
 };
 
-IsRegisterResp _$IsRegisterRespFromJson(Map<String, dynamic> json) =>
-    IsRegisterResp(
+CheckRegisterResp _$CheckRegisterRespFromJson(Map<String, dynamic> json) =>
+    CheckRegisterResp(
       qm5h5tOIsRegistered: json['qm5h5t'] as bool?,
       fm50w8OLoginPwd: json['fm50w8'] as bool?,
       cressyOTraderPwd: json['cressy'] as bool?,
@@ -1327,7 +1327,7 @@ IsRegisterResp _$IsRegisterRespFromJson(Map<String, dynamic> json) =>
       assabODeviceChangeMsg: json['assab'] as String?,
     );
 
-Map<String, dynamic> _$IsRegisterRespToJson(IsRegisterResp instance) =>
+Map<String, dynamic> _$CheckRegisterRespToJson(CheckRegisterResp instance) =>
     <String, dynamic>{
       'qm5h5t': instance.qm5h5tOIsRegistered,
       'fm50w8': instance.fm50w8OLoginPwd,
@@ -1336,10 +1336,10 @@ Map<String, dynamic> _$IsRegisterRespToJson(IsRegisterResp instance) =>
       'assab': instance.assabODeviceChangeMsg,
     };
 
-IsWhiteListResp _$IsWhiteListRespFromJson(Map<String, dynamic> json) =>
-    IsWhiteListResp();
+WhiteListResp _$WhiteListRespFromJson(Map<String, dynamic> json) =>
+    WhiteListResp();
 
-Map<String, dynamic> _$IsWhiteListRespToJson(IsWhiteListResp instance) =>
+Map<String, dynamic> _$WhiteListRespToJson(WhiteListResp instance) =>
     <String, dynamic>{};
 
 NeedCaptchaResp _$NeedCaptchaRespFromJson(Map<String, dynamic> json) =>
@@ -1755,11 +1755,12 @@ Map<String, dynamic> _$RepayRecordResp$ItemToJson(
   'ratteen': instance.ratteenORejectReason,
 };
 
-IsReviewAccountResp _$IsReviewAccountRespFromJson(Map<String, dynamic> json) =>
-    IsReviewAccountResp();
+CheckReviewAccountResp _$CheckReviewAccountRespFromJson(
+  Map<String, dynamic> json,
+) => CheckReviewAccountResp();
 
-Map<String, dynamic> _$IsReviewAccountRespToJson(
-  IsReviewAccountResp instance,
+Map<String, dynamic> _$CheckReviewAccountRespToJson(
+  CheckReviewAccountResp instance,
 ) => <String, dynamic>{};
 
 MainInfoResp _$MainInfoRespFromJson(Map<String, dynamic> json) =>
@@ -1981,14 +1982,14 @@ Map<String, dynamic> _$CollTimeRespToJson(CollTimeResp instance) =>
       'i9145g': instance.i9145gOMsgBtn02,
     };
 
-IsFirstLoanResp _$IsFirstLoanRespFromJson(Map<String, dynamic> json) =>
-    IsFirstLoanResp(
+CheckFirstLoanResp _$CheckFirstLoanRespFromJson(Map<String, dynamic> json) =>
+    CheckFirstLoanResp(
       raiaOUserGid: (json['raia'] as num?)?.toInt(),
       candidlyOIsFirst: json['candidly'] as bool?,
       tassesOPopUpNotice: json['tasses'] as bool?,
     );
 
-Map<String, dynamic> _$IsFirstLoanRespToJson(IsFirstLoanResp instance) =>
+Map<String, dynamic> _$CheckFirstLoanRespToJson(CheckFirstLoanResp instance) =>
     <String, dynamic>{
       'raia': instance.raiaOUserGid,
       'candidly': instance.candidlyOIsFirst,

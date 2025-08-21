@@ -19,7 +19,7 @@ class EchoTopBar extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       width: double.infinity,
-      height: 45.h,
+      height: 55.h,
       padding: EdgeInsets.symmetric(horizontal: 6.w),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -32,7 +32,7 @@ class EchoTopBar extends StatelessWidget {
               child: Padding(
                 padding: const EdgeInsets.all(10),
                 child: Image.asset(
-                  R.drawable('icon_xtleft'),
+                  R.drawable('icon_xtleft.png'),
                   width: 24.r,
                   height: 24.r,
                 ),
@@ -65,7 +65,7 @@ class EchoTopBar extends StatelessWidget {
               child: Padding(
                 padding: const EdgeInsets.all(10),
                 child: Image.asset(
-                  R.drawable('icon_xtcustomer'),
+                  R.drawable('icon_xtcustomer.png'),
                   width: 24.r,
                   height: 24.r,
                 ),

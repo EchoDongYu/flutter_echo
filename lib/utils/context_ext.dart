@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_echo/common/app_theme.dart';
 
-extension ContextExt on BuildContext {
+extension ContextExtension on BuildContext {
   void showSuccessSnack(String message) {
     ScaffoldMessenger.of(this).showSnackBar(
       SnackBar(

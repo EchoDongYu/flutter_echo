@@ -1,0 +1,157 @@
+import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:flutter_echo/common/app_theme.dart';
+import 'package:flutter_echo/ui/widget_helper.dart';
+import 'package:flutter_echo/ui/widgets/common_button.dart';
+import 'package:flutter_echo/ui/widgets/step_input_field.dart';
+import 'package:flutter_echo/ui/widgets/top_bar.dart';
+import 'package:flutter_echo/utils/format_utils.dart';
+import 'package:flutter_echo/utils/resource_utils.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+
+/// 登录-密码输入页面
+class LoginPasswordPage extends StatefulWidget {
+  /// 手机号码
+  final String phoneNumber;
+
+  const LoginPasswordPage({super.key, required this.phoneNumber});
+
+  @override
+  State<LoginPasswordPage> createState() => _LoginPasswordPageState();
+}
+
+class _LoginPasswordPageState extends State<LoginPasswordPage> {
+  final TextEditingController _controller = TextEditingController();
+  bool _obscureText = true;
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      backgroundColor: NowColors.c0xFFF3F3F5,
+      resizeToAvoidBottomInset: true,
+      body: Stack(
+        children: [
+          WidgetHelper.buildTopGradient(context: context, height: 55.h),
+          SafeArea(
+            child: Column(
+              children: [
+                EchoTopBar(),
+                Expanded(
+                  child: SingleChildScrollView(
+                    padding: EdgeInsets.symmetric(horizontal: 12.w),
+                    child: _buildContentCard(),
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  /// 构建内容卡片
+  Widget _buildContentCard() {
+    return Container(
+      margin: EdgeInsets.only(top: 12.h),
+      padding: EdgeInsets.fromLTRB(16.w, 28.h, 16.w, 40.h),
+      decoration: const BoxDecoration(
+        color: Colors.white,
+        borderRadius: BorderRadius.all(Radius.circular(20)),
+        boxShadow: NowStyles.cardShadows,
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(
+            'Ingrese la contraseña para iniciar sesión',
+            style: TextStyle(
+              fontSize: 24.sp,
+              fontWeight: FontWeight.w500,
+              color: NowColors.c0xFF1C1F23,
+              height: 34 / 24,
+            ),
+          ),
+          SizedBox(height: 12.h),
+          RichText(
+            text: TextSpan(
+              style: TextStyle(fontSize: 14.sp, height: 22 / 14),
+              children: [
+                const TextSpan(
+                  text: 'Ingrese el número de teléfono móvil ',
+                  style: TextStyle(
+                    fontWeight: FontWeight.w400,
+                    color: NowColors.c0xFF77797B,
+                  ),
+                ),
+                TextSpan(
+                  text: FormatUtils.blurPhone(widget.phoneNumber),
+                  style: TextStyle(
+                    fontWeight: FontWeight.w500,
+                    color: NowColors.c0xFF1C1F23,
+                  ),
+                ),
+                const TextSpan(
+                  text: ' puntos iniciar sesión contraseña',
+                  style: TextStyle(
+                    fontWeight: FontWeight.w400,
+                    color: NowColors.c0xFF77797B,
+                  ),
+                ),
+              ],
+            ),
+          ),
+          SizedBox(height: 32.h),
+          _buildPasswordField(),
+          SizedBox(height: 12.h),
+          RichText(
+            text: TextSpan(
+              style: TextStyle(fontSize: 13.sp, height: 18 / 13),
+              children: [
+                const TextSpan(
+                  text: 'Recuperar contraseña, ',
+                  style: TextStyle(
+                    color: NowColors.c0xFF494C4F,
+                    fontWeight: FontWeight.w400,
+                  ),
+                ),
+                const TextSpan(
+                  text: 'haga chic aqui',
+                  style: TextStyle(
+                    color: NowColors.c0xFF3288F1,
+                    fontWeight: FontWeight.w500,
+                    decoration: TextDecoration.underline,
+                  ),
+                ),
+              ],
+            ),
+          ),
+          SizedBox(height: 32.h),
+          EchoPrimaryButton(text: 'Iniciar sesión', onPressed: () {}),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildPasswordField() {
+    return StepInputField(
+      controller: _controller,
+      hintText: 'Contraseña de 4 dígitos',
+      maxLength: 4,
+      keyboardType: TextInputType.number,
+      inputFormatters: [FilteringTextInputFormatter.digitsOnly],
+      obscureText: _obscureText,
+      suffix: Padding(
+        padding: EdgeInsets.only(right: 12.w),
+        child: InkWell(
+          onTap: () => setState(() => _obscureText = !_obscureText),
+          child: Image.asset(
+            R.drawable(_obscureText ? 'icon_eyeclose.png' : 'icon_eyeopen.png'),
+            width: 20.r,
+            height: 20.r,
+          ),
+        ),
+      ),
+    );
+  }
+}

@@ -27,7 +27,6 @@ class _StepBasicPageState extends State<StepBasicPage> {
           SafeArea(
             child: Column(
               children: [
-                SizedBox(height: 5.h),
                 EchoTopBar(title: 'Informação Básica'),
                 SizedBox(height: 16.h),
                 WidgetHelper.buildStepProgress(step: 1),

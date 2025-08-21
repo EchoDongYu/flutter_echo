@@ -4,8 +4,8 @@ import 'package:flutter_echo/common/app_theme.dart';
 import 'package:flutter_echo/common/constants.dart';
 import 'package:flutter_echo/pages/app_router.dart';
 import 'package:flutter_echo/providers/app_provider.dart';
-import 'package:flutter_echo/services/http_service.dart';
 import 'package:flutter_echo/services/storage_service.dart';
+import 'package:flutter_echo/utils/common_utils.dart';
 import 'package:flutter_echo/utils/device_utils.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
@@ -33,9 +33,6 @@ void main() async {
 
 /// 初始化服务
 Future<void> _initServices() async {
-  // 初始化HTTP服务
-  HttpService().init();
-
   // 初始化存储服务
   await StorageService().init();
 
@@ -58,12 +55,13 @@ class MyApp extends StatelessWidget {
         return ChangeNotifierProvider(
           create: (context) => AppProvider(),
           child: MaterialApp.router(
-            title: AppConstants.appName,
+            title: AppConst.applicationName,
             routerConfig: AppRouter.router,
             theme: AppTheme.lightTheme,
             themeMode: ThemeMode.light,
             locale: const Locale('es', 'GT'),
             debugShowCheckedModeBanner: false,
+            scaffoldMessengerKey: scaffoldMessengerKey,
           ),
         );
       },

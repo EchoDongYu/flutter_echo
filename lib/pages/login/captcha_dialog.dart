@@ -142,7 +142,7 @@ class _CaptchaDialogState extends State<CaptchaDialog> {
                 StepInputField(
                   controller: _controller,
                   hintText: 'Código de verificación',
-                  maxLength: AppConstants.codeLength,
+                  maxLength: AppConst.codeLength,
                   keyboardType: TextInputType.number,
                   inputFormatters: [FilteringTextInputFormatter.digitsOnly],
                   suffix: Padding(

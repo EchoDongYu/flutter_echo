@@ -133,7 +133,9 @@ class _PickItemDialogState extends State<PickItemDialog> {
         child: Row(
           children: [
             Image.asset(
-              R.drawable(isSelected ? 'icon_select_on' : 'icon_select_off'),
+              R.drawable(
+                isSelected ? 'icon_select_on.png' : 'icon_select_off.png',
+              ),
               width: 22.r,
               height: 22.r,
             ),

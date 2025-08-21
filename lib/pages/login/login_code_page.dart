@@ -13,7 +13,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:go_router/go_router.dart';
 
-/// 登录验证码输入页面
+/// 登录-验证码输入页面
 class LoginCodePage extends StatefulWidget {
   /// 手机号码
   final String phoneNumber;
@@ -137,7 +137,7 @@ class _LoginCodePageState extends State<LoginCodePage> {
             context: context,
             height: 265.h,
             child: Image.asset(
-              R.drawable('login_top_bg'),
+              R.drawable('login_top_bg.png'),
               width: double.infinity,
               fit: BoxFit.fitWidth,
             ),
@@ -146,38 +146,27 @@ class _LoginCodePageState extends State<LoginCodePage> {
             child: Column(
               children: [
                 EchoTopBar(),
-                Expanded(
-                  child: Container(
-                    margin: EdgeInsets.symmetric(horizontal: 12.w),
-                    child: SingleChildScrollView(
-                      child: Column(
-                        children: [
-                          // Logo区域
-                          Container(
-                            width: 80.w,
-                            height: 80.h,
-                            margin: EdgeInsets.only(top: 28.h),
-                            alignment: Alignment.center,
-                            decoration: BoxDecoration(
-                              color: NowColors.c0xFF3288F1,
-                              borderRadius: BorderRadius.circular(24.r),
-                              border: Border.all(
-                                width: 3,
-                                color: Colors.white,
-                                style: BorderStyle.solid,
-                              ),
-                            ),
-                            child: const Icon(
-                              Icons.phone_android,
-                              color: Colors.white,
-                              size: 40,
-                            ),
-                          ),
-                          // 内容区域
-                          _buildContentCard(),
-                        ],
-                      ),
+                // Logo区域
+                Container(
+                  width: 80.r,
+                  height: 80.r,
+                  margin: EdgeInsets.only(top: 28.h),
+                  alignment: Alignment.center,
+                  decoration: BoxDecoration(
+                    color: NowColors.c0xFF3288F1,
+                    borderRadius: BorderRadius.circular(24.r),
+                    border: Border.all(
+                      width: 3,
+                      color: Colors.white,
+                      style: BorderStyle.solid,
                     ),
+                  ),
+                  child: Image.asset(R.drawable('icon_logo.png')),
+                ),
+                Expanded(
+                  child: SingleChildScrollView(
+                    padding: EdgeInsets.symmetric(horizontal: 12.w),
+                    child: _buildContentCard(),
                   ),
                 ),
               ],
@@ -216,8 +205,7 @@ class _LoginCodePageState extends State<LoginCodePage> {
               style: TextStyle(fontSize: 14.sp, height: 22 / 14),
               children: [
                 const TextSpan(
-                  text:
-                      'Hemos enviado un código de verificación a tu número de telefóno ',
+                  text: 'El código se ha enviado a ',
                   style: TextStyle(
                     fontWeight: FontWeight.w400,
                     color: NowColors.c0xFF77797B,
@@ -231,7 +219,7 @@ class _LoginCodePageState extends State<LoginCodePage> {
                   ),
                 ),
                 const TextSpan(
-                  text: ' vía SMS',
+                  text: ' por SMS.',
                   style: TextStyle(
                     fontWeight: FontWeight.w400,
                     color: NowColors.c0xFF77797B,

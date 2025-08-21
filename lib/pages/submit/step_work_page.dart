@@ -25,7 +25,6 @@ class _StepWorkPageState extends State<StepWorkPage> {
           SafeArea(
             child: Column(
               children: [
-                SizedBox(height: 5.h),
                 EchoTopBar(title: 'Cuenta bancaria'),
                 SizedBox(height: 16.h),
                 WidgetHelper.buildStepProgress(step: 2),

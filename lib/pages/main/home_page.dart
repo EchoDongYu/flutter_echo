@@ -61,7 +61,7 @@ class HomePage extends StatelessWidget {
             mainAxisSize: MainAxisSize.min,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              Image.asset(R.drawable('icon_logo1'), width: 32.r, height: 32.r),
+              Image.asset(R.drawable('icon_logo.png'), width: 32.r, height: 32.r),
               SizedBox(width: 8.w),
               Text(
                 'CrediGo',
@@ -81,7 +81,7 @@ class HomePage extends StatelessWidget {
           child: Padding(
             padding: const EdgeInsets.all(10),
             child: Image.asset(
-              R.drawable('icon_xtcustomer'),
+              R.drawable('icon_xtcustomer.png'),
               width: 24.r,
               height: 24.r,
               color: Colors.black,
@@ -140,7 +140,7 @@ class HomePage extends StatelessWidget {
             ],
           ),
         ),
-        Image.asset(R.drawable('img_guard'), width: 140.r, height: 140.r),
+        Image.asset(R.drawable('img_guard.png'), width: 140.r, height: 140.r),
       ],
     );
   }

@@ -3,6 +3,7 @@ import 'package:flutter_echo/common/app_theme.dart';
 import 'package:flutter_echo/models/common_model.dart';
 import 'package:flutter_echo/pages/app_router.dart';
 import 'package:flutter_echo/ui/dialog_helper.dart';
+import 'package:flutter_echo/ui/dialogs/loading_dialog.dart';
 import 'package:flutter_echo/ui/dialogs/permission_dialog.dart';
 import 'package:flutter_echo/ui/widgets/common_button.dart';
 import 'package:flutter_echo/utils/context_ext.dart';
@@ -99,6 +100,14 @@ class _DemoPageState extends State<DemoPage> {
         children: [
           _buildTestButton(
             context,
+            title: '加载弹窗',
+            icon: Icons.refresh_rounded,
+            color: const Color(0xFF3288F1),
+            onPressed: () => LoadingDialog.show(context),
+          ),
+
+          _buildTestButton(
+            context,
             title: '通用提示弹窗1',
             icon: Icons.tips_and_updates_rounded,
             color: const Color(0xFF3288F1),
@@ -119,6 +128,22 @@ class _DemoPageState extends State<DemoPage> {
             icon: Icons.catching_pokemon_rounded,
             color: const Color(0xFF3288F1),
             onPressed: () => _showCaptchaDialog(context),
+          ),
+
+          _buildTestButton(
+            context,
+            title: '选择收取验证码方式弹窗',
+            icon: Icons.sms_rounded,
+            color: const Color(0xFF3288F1),
+            onPressed: () => _showCodeModeDialog(context),
+          ),
+
+          _buildTestButton(
+            context,
+            title: '退出输入手机号页面挽留弹窗',
+            icon: Icons.real_estate_agent_rounded,
+            color: const Color(0xFF3288F1),
+            onPressed: () => _showRetainLoginDialog(context),
           ),
 
           _buildTestButton(
@@ -219,10 +244,27 @@ class _DemoPageState extends State<DemoPage> {
           _buildTestButton(
             context,
             title: '登录验证码输入页面',
-            icon: Icons.qr_code_rounded,
+            icon: Icons.verified_rounded,
             color: NowColors.c0xFF3288F1,
             onPressed: () =>
                 context.push('${AppRouter.loginCode}?phone=1234567890'),
+          ),
+
+          _buildTestButton(
+            context,
+            title: '登录密码输入页面',
+            icon: Icons.password_rounded,
+            color: NowColors.c0xFF3288F1,
+            onPressed: () =>
+                context.push('${AppRouter.loginPassword}?phone=1234567890'),
+          ),
+
+          _buildTestButton(
+            context,
+            title: '设置登录密码页面',
+            icon: Icons.password_rounded,
+            color: NowColors.c0xFF3288F1,
+            onPressed: () => context.push(AppRouter.loginPwdSetup),
           ),
 
           // 业务流程测试
@@ -362,6 +404,28 @@ class _DemoPageState extends State<DemoPage> {
     final result = await DialogHelper.showCaptchaDialog(context: context);
     if (context.mounted) {
       if (result != null && result.isNotEmpty) {
+        context.showSuccessSnack('Success $result');
+      } else {
+        context.showNormalSnack('Cancel $result');
+      }
+    }
+  }
+
+  void _showCodeModeDialog(BuildContext context) async {
+    final result = await DialogHelper.showCodeModeDialog(context: context);
+    if (context.mounted) {
+      if (result != null) {
+        context.showSuccessSnack('Success $result');
+      } else {
+        context.showNormalSnack('Cancel $result');
+      }
+    }
+  }
+
+  void _showRetainLoginDialog(BuildContext context) async {
+    final result = await DialogHelper.showRetainLoginDialog(context: context);
+    if (context.mounted) {
+      if (result == true) {
         context.showSuccessSnack('Success $result');
       } else {
         context.showNormalSnack('Cancel $result');

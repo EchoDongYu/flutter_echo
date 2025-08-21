@@ -18,6 +18,13 @@ class StepContactPage extends StatefulWidget {
 class _StepContactPageState extends State<StepContactPage> {
   static const platform = MethodChannel('com.murphy.flutter_echo/channel');
 
+  Future<void> _pickContact() async {
+    final result = await platform.invokeMethod<Map>('pickContact');
+    if (result != null) {
+      _controller.text = '${result['name']} - ${result['phone']}';
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -29,7 +36,6 @@ class _StepContactPageState extends State<StepContactPage> {
           SafeArea(
             child: Column(
               children: [
-                SizedBox(height: 5.h),
                 EchoTopBar(title: 'Informação Básica'),
                 SizedBox(height: 16.h),
                 WidgetHelper.buildStepProgress(step: 3),
@@ -135,17 +141,12 @@ class _StepContactPageState extends State<StepContactPage> {
             keyboardType: TextInputType.text,
             textInputAction: TextInputAction.next,
             inputFormatters: [FilteringTextInputFormatter.digitsOnly],
-            suffix: InkWell(
-              onTap: () async {
-                final result = await platform.invokeMethod<Map>('pickContact');
-                if (result != null) {
-                  _controller.text = "${result['name']} - ${result['phone']}";
-                }
-              },
-              child: Padding(
-                padding: EdgeInsets.only(right: 12.w),
+            suffix: Padding(
+              padding: EdgeInsets.only(right: 12.w),
+              child: InkWell(
+                onTap: () => _pickContact(),
                 child: Image.asset(
-                  R.drawable('icon_contact'),
+                  R.drawable('icon_contact.png'),
                   width: 24.r,
                   height: 24.r,
                 ),

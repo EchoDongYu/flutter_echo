@@ -1,10 +1,12 @@
-import 'package:flutter/material.dart';
 import 'package:flutter_echo/pages/after/after_page.dart';
 import 'package:flutter_echo/pages/confirm/confirm_page.dart';
 import 'package:flutter_echo/pages/demo/demo_page.dart';
 import 'package:flutter_echo/pages/login/login_code_page.dart';
+import 'package:flutter_echo/pages/login/login_password_page.dart';
+import 'package:flutter_echo/pages/login/login_password_setup_page.dart';
 import 'package:flutter_echo/pages/login/login_phone_page.dart';
 import 'package:flutter_echo/pages/main/main_page.dart';
+import 'package:flutter_echo/pages/other/not_found_page.dart';
 import 'package:flutter_echo/pages/other/splash_page.dart';
 import 'package:flutter_echo/pages/submit/step_basic_page.dart';
 import 'package:flutter_echo/pages/submit/step_contact_page.dart';
@@ -18,6 +20,8 @@ class AppRouter {
   static const String main = '/main';
   static const String loginPhone = '/login_phone';
   static const String loginCode = '/login_code';
+  static const String loginPassword = '/login_password';
+  static const String loginPwdSetup = '/login_pwd_setup';
   static const String stepBasic = '/step_basic';
   static const String stepWork = '/step_work';
   static const String stepContact = '/step_contact';
@@ -48,6 +52,21 @@ class AppRouter {
           final phone = state.uri.queryParameters[NavKey.phone] ?? '';
           return LoginCodePage(phoneNumber: phone);
         },
+      ),
+
+      /// 登录页面-密码输入
+      GoRoute(
+        path: loginPassword,
+        builder: (context, state) {
+          final phone = state.uri.queryParameters[NavKey.phone] ?? '';
+          return LoginPasswordPage(phoneNumber: phone);
+        },
+      ),
+
+      /// 设置登录密码页面
+      GoRoute(
+        path: loginPwdSetup,
+        builder: (context, state) => const LoginPasswordSetupPage(),
       ),
 
       /// 授信表单页面-基本信息
@@ -85,24 +104,7 @@ class AppRouter {
     ],
 
     /// 错误页面
-    errorBuilder: (context, state) => Scaffold(
-      appBar: AppBar(title: const Text('页面未找到')),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            const Icon(Icons.error_outline, size: 64, color: Colors.grey),
-            const SizedBox(height: 16),
-            Text('页面未找到: ${state.uri}', style: const TextStyle(fontSize: 16)),
-            const SizedBox(height: 16),
-            ElevatedButton(
-              onPressed: () => context.go(main),
-              child: const Text('返回首页'),
-            ),
-          ],
-        ),
-      ),
-    ),
+    errorBuilder: (context, state) => NotFoundPage(state: state),
   );
 }
 

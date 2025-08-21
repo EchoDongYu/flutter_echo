@@ -31,8 +31,8 @@ class _MainPageState extends State<MainPage> {
   }
 
   static const bottomItems = [
-    Triple('icon_home_on', 'icon_home_off', 'Inicio'),
-    Triple('icon_mine_on', 'icon_mine_off', 'Mi'),
+    Triple('icon_home_on.png', 'icon_home_off.png', 'Inicio'),
+    Triple('icon_mine_on.png', 'icon_mine_off.png', 'Mi'),
   ];
 
   @override

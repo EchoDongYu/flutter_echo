@@ -1103,7 +1103,7 @@
         "consumes": [
           "application/json"
         ],
-        "modelId": "IsRegister",
+        "modelId": "CheckRegister",
         "operationId": "isRegister",
         "parameters": [
           {
@@ -1188,7 +1188,7 @@
         "consumes": [
           "application/json"
         ],
-        "modelId": "IsWhiteList",
+        "modelId": "WhiteList",
         "operationId": "isWhiteList",
         "parameters": [
           {
@@ -5296,7 +5296,7 @@
         "consumes": [
           "application/json"
         ],
-        "modelId": "IsReviewAccount",
+        "modelId": "CheckReviewAccount",
         "operationId": "isReviewAccount",
         "parameters": [],
         "responses": {
@@ -7199,7 +7199,7 @@
         "consumes": [
           "application/json"
         ],
-        "modelId": "IsFirstLoan",
+        "modelId": "CheckFirstLoan",
         "operationId": "isFirstLoan",
         "parameters": [
           {

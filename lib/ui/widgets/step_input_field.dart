@@ -8,6 +8,7 @@ class StepInputField extends StatefulWidget {
   final String hintText;
   final int? maxLength;
   final bool showCounter;
+  final bool obscureText;
   final Widget? prefix;
   final Widget? suffix;
   final TextInputType? keyboardType;
@@ -22,6 +23,7 @@ class StepInputField extends StatefulWidget {
     this.prefix,
     this.suffix,
     this.showCounter = false,
+    this.obscureText = false,
     this.keyboardType = TextInputType.text,
     this.textInputAction = TextInputAction.done,
     this.inputFormatters,
@@ -39,7 +41,9 @@ class _StepInputFieldState extends State<StepInputField> {
   @override
   void initState() {
     super.initState();
-    widget.controller.addListener(_onInputChanged);
+    widget.controller.addListener(
+      widget.showCounter ? _onInputChanged : _onFocusChanged,
+    );
     _focusNode.addListener(_onFocusChanged);
   }
 
@@ -131,6 +135,8 @@ class _StepInputFieldState extends State<StepInputField> {
                       textInputAction: widget.textInputAction,
                       inputFormatters: widget.inputFormatters,
                       maxLength: widget.maxLength,
+                      obscureText: widget.obscureText,
+                      obscuringCharacter: '*',
                       maxLines: 1,
                       style: TextStyle(
                         fontSize: 16.sp,

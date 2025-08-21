@@ -1,3 +1,4 @@
+import 'package:flutter_echo/common/constants.dart';
 import 'package:json_annotation/json_annotation.dart';
 
 part 'api_response.g.dart';
@@ -21,4 +22,12 @@ class ApiResponse {
       _$ApiResponseFromJson(json);
 
   Map<String, dynamic> toJson() => _$ApiResponseToJson(this);
+}
+
+extension ApiResponseExtension on ApiResponse {
+  bool get needLogin =>
+      code == AppConst.tokenError || code == AppConst.tokenExpire;
+
+  bool get needCapture =>
+      code == AppConst.codeMuchError || code == AppConst.captureError;
 }
