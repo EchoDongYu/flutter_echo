@@ -3,7 +3,7 @@ class AppConst {
   // 产品名称：CrediGo
   // biz_channel：CrediGo
   // 包名：com.credigo.rapidos.prestamos.app
-  static const String packageName = 'com.credigo.rapidos.prestamos.app';
+  static const String applicationId = 'com.credigo.rapidos.prestamos.app';
   static const String applicationName = 'CrediGo';
   static const String channel = "CrediGo";
   static const String bizLine = "7";
@@ -38,6 +38,7 @@ class AppConst {
   static const String captureError = 'IS8131'; // T1019
 
   // 本地存储键名
+  static const String deviceIdKey = 'device_id';
   static const String tokenKey = 'token';
   static const String userGidKey = 'user_id';
   static const String userInfoKey = 'user_info';

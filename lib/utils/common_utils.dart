@@ -20,16 +20,14 @@ void showNormalSnack(String message) {
 }
 
 class FlutterPlatform {
-  static const _methodChannel = MethodChannel(
-    'com.credigo.rapidos.prestamos.app/channel',
-  );
+  static const _method = MethodChannel('${AppConst.applicationId}/channel');
 
   static Future<Map?> pickContact() {
-    return _methodChannel.invokeMethod<Map>('pickContact');
+    return _method.invokeMethod<Map>('pickContact');
   }
 
   static Future<String?> getDeviceId() {
-    return _methodChannel.invokeMethod<String>('getDeviceId');
+    return _method.invokeMethod<String>('getDeviceId');
   }
 
   /// 请求渠道:0-微信；1-ios客户端；2-android客户端；3-网页

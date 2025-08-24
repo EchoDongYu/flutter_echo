@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:flutter_echo/common/constants.dart';
+import 'package:flutter_echo/utils/common_utils.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 /// 本地存储服务类
@@ -17,15 +18,6 @@ class LocalStorage {
   Future<void> init() async {
     _prefs = await SharedPreferences.getInstance();
   }
-
-  bool get isLogin {
-    String? token = _prefs.getString(AppConst.tokenKey);
-    return token != null && token.isNotEmpty;
-  }
-
-  String? get token => _prefs.getString(AppConst.tokenKey);
-
-  String? get userGid => _prefs.getString(AppConst.userGidKey);
 
   Future<bool> set(String key, dynamic object) async {
     return switch (object) {
@@ -60,6 +52,27 @@ class LocalStorage {
   Future<bool> remove(String key) async {
     return await _prefs.remove(key);
   }
+
+  /// 获取设备号
+  Future<String> getDeviceId() async {
+    final cacheDeviceId = _prefs.getString(AppConst.deviceIdKey);
+    if (cacheDeviceId == null) {
+      final deviceId = await FlutterPlatform.getDeviceId();
+      await _prefs.setString(AppConst.deviceIdKey, deviceId!);
+      return deviceId;
+    } else {
+      return cacheDeviceId;
+    }
+  }
+
+  bool get isLogin {
+    String? token = _prefs.getString(AppConst.tokenKey);
+    return token != null && token.isNotEmpty;
+  }
+
+  String? get token => _prefs.getString(AppConst.tokenKey);
+
+  String? get userGid => _prefs.getString(AppConst.userGidKey);
 
   Future<void> logout() async {
     _prefs.remove(AppConst.tokenKey);

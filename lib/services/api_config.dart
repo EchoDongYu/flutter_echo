@@ -56,6 +56,10 @@ class ApiController {
 }
 
 class _ApiInterceptor extends Interceptor {
+  static final _encrypter = Encrypter(
+    RSA(publicKey: RSAKeyParser().parse(AppConst.apiKey) as RSAPublicKey),
+  );
+
   @override
   void onRequest(
     RequestOptions options,
@@ -65,7 +69,7 @@ class _ApiInterceptor extends Interceptor {
     final storage = LocalStorage();
     final token = storage.token;
     final userGid = storage.userGid;
-    final deviceId = await FlutterPlatform.getDeviceId();
+    final deviceId = storage.getDeviceId();
     options.headers.addAll({
       'Accept-Language': AppConst.languageCode, // es西语
       'ys6955': userGid, // 用户Gid
@@ -82,26 +86,29 @@ class _ApiInterceptor extends Interceptor {
         options.data != null &&
         options.data is Map) {
       final data = options.data as Map;
-      final publicKey = RSAKeyParser().parse(AppConst.apiKey) as RSAPublicKey;
-      final encrypter = Encrypter(RSA(publicKey: publicKey));
-      // 加密 password
+      // 手机号加密 o_mobile
+      if (data.containsKey('sordid')) {
+        String password = data['sordid'];
+        data['sordid'] = _encrypter.encrypt(password);
+      }
+      // 密码加密 password
       if (data.containsKey('password')) {
         String password = data['password'];
-        data['password'] = encrypter.encrypt(password);
+        data['password'] = _encrypter.encrypt(password);
       }
-      // 马甲渠道
+      // o_bizChannel 马甲渠道
       if (data.containsKey('d7x52p')) {
         data['d7x52p'] = AppConst.channel;
       }
-      // 业务线
+      // o_bizLine 业务线
       if (data.containsKey('s377v5')) {
         data['s377v5'] = AppConst.bizLine;
       }
-      // App版本号
+      // o_appVersion App版本号
       if (data.containsKey('z775ud')) {
         data['z775ud'] = packageInfo.version;
       }
-      // 设备号
+      // o_mobileSn 设备号
       if (data.containsKey('ac0as4')) {
         data['ac0as4'] = deviceId;
       }
