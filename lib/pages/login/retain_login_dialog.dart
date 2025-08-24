@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_echo/common/app_theme.dart';
 import 'package:flutter_echo/models/common_model.dart';
 import 'package:flutter_echo/ui/widgets/common_button.dart';
-import 'package:flutter_echo/utils/resource_utils.dart';
+import 'package:flutter_echo/utils/drawable_utils.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 /// 退出输入手机号页面挽留弹窗
@@ -17,12 +17,12 @@ class RetainLoginDialog extends StatelessWidget {
   });
 
   static const retainItems = [
-    Pair('icon_retain_login1.png', 'Hasta Q 5,000 '),
+    Pair(Drawable.iconRetainLogin1, 'Hasta Q 5,000 '),
     Pair(
-      'icon_retain_login2.png',
+      Drawable.iconRetainLogin2,
       'Aumente rápidamente el límite de crédito hasta 4 veces',
     ),
-    Pair('icon_retain_login3.png', 'En 5 minutos puede obtener el crédito'),
+    Pair(Drawable.iconRetainLogin3, 'En 5 minutos puede obtener el crédito'),
   ];
 
   @override
@@ -80,7 +80,7 @@ class RetainLoginDialog extends StatelessWidget {
       child: Row(
         spacing: 12.w,
         children: [
-          Image.asset(R.drawable(item.first), width: 40.r, height: 40.r),
+          Image.asset(item.first, width: 40.r, height: 40.r),
           Expanded(
             child: Text(
               item.second,

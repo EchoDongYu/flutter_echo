@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_echo/common/app_theme.dart';
 import 'package:flutter_echo/pages/app_router.dart';
-import 'package:flutter_echo/utils/resource_utils.dart';
+import 'package:flutter_echo/utils/drawable_utils.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
 
@@ -29,11 +29,7 @@ class SplashPage extends StatelessWidget {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Image.asset(
-                  R.drawable('icon_logo.png'),
-                  width: 80.r,
-                  height: 80.r,
-                ),
+                Image.asset(Drawable.iconLogo, width: 80.r, height: 80.r),
                 SizedBox(height: 30.h),
                 Text(
                   'CrediGo',

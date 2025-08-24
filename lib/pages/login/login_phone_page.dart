@@ -7,7 +7,7 @@ import 'package:flutter_echo/ui/widget_helper.dart';
 import 'package:flutter_echo/ui/widgets/common_button.dart';
 import 'package:flutter_echo/ui/widgets/step_input_field.dart';
 import 'package:flutter_echo/ui/widgets/top_bar.dart';
-import 'package:flutter_echo/utils/resource_utils.dart';
+import 'package:flutter_echo/utils/drawable_utils.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
 
@@ -70,7 +70,7 @@ class _LoginPhonePageState extends State<LoginPhonePage> {
             context: context,
             height: 265.h,
             child: Image.asset(
-              R.drawable('login_top_bg.png'),
+              Drawable.bgLoginTop,
               width: double.infinity,
               fit: BoxFit.fitWidth,
             ),
@@ -94,7 +94,7 @@ class _LoginPhonePageState extends State<LoginPhonePage> {
                       style: BorderStyle.solid,
                     ),
                   ),
-                  child: Image.asset(R.drawable('icon_logo.png')),
+                  child: Image.asset(Drawable.iconLogo),
                 ),
                 Expanded(
                   child: SingleChildScrollView(

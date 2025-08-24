@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_echo/common/app_theme.dart';
 import 'package:flutter_echo/pages/app_router.dart';
 import 'package:flutter_echo/ui/widgets/common_button.dart';
-import 'package:flutter_echo/utils/resource_utils.dart';
+import 'package:flutter_echo/utils/drawable_utils.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
 
@@ -61,7 +61,7 @@ class HomePage extends StatelessWidget {
             mainAxisSize: MainAxisSize.min,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              Image.asset(R.drawable('icon_logo.png'), width: 32.r, height: 32.r),
+              Image.asset(Drawable.iconLogo, width: 32.r, height: 32.r),
               SizedBox(width: 8.w),
               Text(
                 'CrediGo',
@@ -81,7 +81,7 @@ class HomePage extends StatelessWidget {
           child: Padding(
             padding: const EdgeInsets.all(10),
             child: Image.asset(
-              R.drawable('icon_xtcustomer.png'),
+              Drawable.iconXtcustomer,
               width: 24.r,
               height: 24.r,
               color: Colors.black,
@@ -140,7 +140,7 @@ class HomePage extends StatelessWidget {
             ],
           ),
         ),
-        Image.asset(R.drawable('img_guard.png'), width: 140.r, height: 140.r),
+        Image.asset(Drawable.imageGuard, width: 140.r, height: 140.r),
       ],
     );
   }

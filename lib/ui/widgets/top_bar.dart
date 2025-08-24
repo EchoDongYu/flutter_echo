@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_echo/utils/resource_utils.dart';
+import 'package:flutter_echo/utils/drawable_utils.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
 
@@ -32,7 +32,7 @@ class EchoTopBar extends StatelessWidget {
               child: Padding(
                 padding: const EdgeInsets.all(10),
                 child: Image.asset(
-                  R.drawable('icon_xtleft.png'),
+                  Drawable.iconXtleft,
                   width: 24.r,
                   height: 24.r,
                 ),
@@ -65,7 +65,7 @@ class EchoTopBar extends StatelessWidget {
               child: Padding(
                 padding: const EdgeInsets.all(10),
                 child: Image.asset(
-                  R.drawable('icon_xtcustomer.png'),
+                  Drawable.iconXtcustomer,
                   width: 24.r,
                   height: 24.r,
                 ),

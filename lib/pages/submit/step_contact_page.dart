@@ -6,7 +6,7 @@ import 'package:flutter_echo/ui/widgets/step_input_field.dart';
 import 'package:flutter_echo/ui/widgets/step_select_field.dart';
 import 'package:flutter_echo/ui/widgets/top_bar.dart';
 import 'package:flutter_echo/utils/common_utils.dart';
-import 'package:flutter_echo/utils/resource_utils.dart';
+import 'package:flutter_echo/utils/drawable_utils.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class StepContactPage extends StatefulWidget {
@@ -145,7 +145,7 @@ class _StepContactPageState extends State<StepContactPage> {
               child: InkWell(
                 onTap: () => _pickContact(),
                 child: Image.asset(
-                  R.drawable('icon_contact.png'),
+                  Drawable.iconContact,
                   width: 24.r,
                   height: 24.r,
                 ),

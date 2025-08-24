@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_echo/common/app_theme.dart';
 import 'package:flutter_echo/models/common_model.dart';
 import 'package:flutter_echo/ui/widgets/common_button.dart';
-import 'package:flutter_echo/utils/resource_utils.dart';
+import 'package:flutter_echo/utils/drawable_utils.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 /// 认证项选择弹窗
@@ -133,9 +133,7 @@ class _PickItemDialogState extends State<PickItemDialog> {
         child: Row(
           children: [
             Image.asset(
-              R.drawable(
-                isSelected ? 'icon_select_on.png' : 'icon_select_off.png',
-              ),
+              isSelected ? Drawable.iconSelectOn : Drawable.iconSelectOff,
               width: 22.r,
               height: 22.r,
             ),

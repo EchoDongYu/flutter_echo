@@ -5,8 +5,8 @@ import 'package:flutter_echo/ui/widget_helper.dart';
 import 'package:flutter_echo/ui/widgets/common_button.dart';
 import 'package:flutter_echo/ui/widgets/step_input_field.dart';
 import 'package:flutter_echo/ui/widgets/top_bar.dart';
+import 'package:flutter_echo/utils/drawable_utils.dart';
 import 'package:flutter_echo/utils/format_utils.dart';
-import 'package:flutter_echo/utils/resource_utils.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 /// 登录-密码输入页面
@@ -146,7 +146,7 @@ class _LoginPasswordPageState extends State<LoginPasswordPage> {
         child: InkWell(
           onTap: () => setState(() => _obscureText = !_obscureText),
           child: Image.asset(
-            R.drawable(_obscureText ? 'icon_eyeclose.png' : 'icon_eyeopen.png'),
+            _obscureText ? Drawable.iconEyeclose : Drawable.iconEyeopen,
             width: 20.r,
             height: 20.r,
           ),

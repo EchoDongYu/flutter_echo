@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_echo/common/app_theme.dart';
 import 'package:flutter_echo/ui/widget_helper.dart';
-import 'package:flutter_echo/utils/resource_utils.dart';
+import 'package:flutter_echo/utils/drawable_utils.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 /// 授权声明补偿弹窗
@@ -85,7 +85,7 @@ class CompensationDialog extends StatelessWidget {
                       vertical: 10.h,
                     ),
                     child: Image.asset(
-                      R.drawable('img_jietu1.png'),
+                      Drawable.imageScreenshot1,
                       width: double.infinity,
                       fit: BoxFit.fitWidth,
                     ),
@@ -97,7 +97,7 @@ class CompensationDialog extends StatelessWidget {
                       vertical: 10.h,
                     ),
                     child: Image.asset(
-                      R.drawable('img_jietu2.png'),
+                      Drawable.imageScreenshot2,
                       width: double.infinity,
                       fit: BoxFit.fitWidth,
                     ),

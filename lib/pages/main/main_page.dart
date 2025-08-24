@@ -4,7 +4,7 @@ import 'package:flutter_echo/common/app_theme.dart';
 import 'package:flutter_echo/models/common_model.dart';
 import 'package:flutter_echo/pages/main/home_page.dart';
 import 'package:flutter_echo/pages/main/mine_page.dart';
-import 'package:flutter_echo/utils/resource_utils.dart';
+import 'package:flutter_echo/utils/drawable_utils.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 /// 主页面
@@ -31,8 +31,8 @@ class _MainPageState extends State<MainPage> {
   }
 
   static const bottomItems = [
-    Triple('icon_home_on.png', 'icon_home_off.png', 'Inicio'),
-    Triple('icon_mine_on.png', 'icon_mine_off.png', 'Mi'),
+    Triple(Drawable.iconHomeOn, Drawable.iconHomeOff, 'Inicio'),
+    Triple(Drawable.iconMineOn, Drawable.iconMineOff, 'Mi'),
   ];
 
   @override
@@ -100,9 +100,7 @@ class _MainPageState extends State<MainPage> {
           children: [
             SizedBox(height: 8.h),
             Image.asset(
-              isActive
-                  ? R.drawable(bottomItems[index].first)
-                  : R.drawable(bottomItems[index].second),
+              isActive ? bottomItems[index].first : bottomItems[index].second,
               width: 28.r,
               height: 28.r,
             ),
