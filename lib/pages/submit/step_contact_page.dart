@@ -5,6 +5,7 @@ import 'package:flutter_echo/ui/widget_helper.dart';
 import 'package:flutter_echo/ui/widgets/step_input_field.dart';
 import 'package:flutter_echo/ui/widgets/step_select_field.dart';
 import 'package:flutter_echo/ui/widgets/top_bar.dart';
+import 'package:flutter_echo/utils/common_utils.dart';
 import 'package:flutter_echo/utils/resource_utils.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -16,10 +17,8 @@ class StepContactPage extends StatefulWidget {
 }
 
 class _StepContactPageState extends State<StepContactPage> {
-  static const platform = MethodChannel('com.murphy.flutter_echo/channel');
-
   Future<void> _pickContact() async {
-    final result = await platform.invokeMethod<Map>('pickContact');
+    final result = await FlutterPlatform.pickContact();
     if (result != null) {
       _controller.text = '${result['name']} - ${result['phone']}';
     }

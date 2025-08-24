@@ -6,25 +6,30 @@ import android.database.Cursor
 import android.net.Uri
 import android.os.Bundle
 import android.provider.ContactsContract
+import android.provider.Settings
 import io.flutter.embedding.android.FlutterActivity
 import io.flutter.plugin.common.MethodChannel
 
 class MainActivity: FlutterActivity() {
-    private val CHANNEL = "com.murphy.flutter_echo/channel"
+    private val CHANNEL = "com.credigo.rapidos.prestamos.app/channel"
     private val PICK_CONTACT = 1001
     private var pendingResult: MethodChannel.Result? = null
 
     override fun configureFlutterEngine(flutterEngine: io.flutter.embedding.engine.FlutterEngine) {
         super.configureFlutterEngine(flutterEngine)
         MethodChannel(flutterEngine.dartExecutor.binaryMessenger, CHANNEL).setMethodCallHandler { call, result ->
-            if (call.method == "pickContact") {
-                pendingResult = result
-                val intent = Intent(Intent.ACTION_PICK).apply {
-                    type = ContactsContract.CommonDataKinds.Phone.CONTENT_TYPE
+            when (call.method) {
+                "pickContact" -> {
+                    pendingResult = result
+                    val intent = Intent(Intent.ACTION_PICK).apply {
+                        type = ContactsContract.CommonDataKinds.Phone.CONTENT_TYPE
+                    }
+                    startActivityForResult(intent, PICK_CONTACT)
                 }
-                startActivityForResult(intent, PICK_CONTACT)
-            } else {
-                result.notImplemented()
+
+                "getDeviceId" -> result.success(deviceId)
+
+                else -> result.notImplemented()
             }
         }
     }
@@ -80,5 +85,8 @@ class MainActivity: FlutterActivity() {
             return
         }
     }
+
+    private val deviceId: String
+        get() = Settings.Secure.getString(contentResolver, Settings.Secure.ANDROID_ID)
 }
 

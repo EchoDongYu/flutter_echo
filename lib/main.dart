@@ -6,7 +6,6 @@ import 'package:flutter_echo/pages/app_router.dart';
 import 'package:flutter_echo/providers/app_provider.dart';
 import 'package:flutter_echo/services/storage_service.dart';
 import 'package:flutter_echo/utils/common_utils.dart';
-import 'package:flutter_echo/utils/device_utils.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
 
@@ -33,11 +32,8 @@ void main() async {
 
 /// 初始化服务
 Future<void> _initServices() async {
-  // 初始化存储服务
-  await StorageService().init();
-
-  // 初始化设备工具
-  await DeviceUtils().init();
+  // 初始化缓存服务
+  await LocalStorage().init();
 
   // 初始化应用状态管理
   final appProvider = AppProvider();

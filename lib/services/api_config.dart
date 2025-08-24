@@ -5,15 +5,17 @@ import 'package:dio/dio.dart';
 import 'package:encrypt/encrypt.dart';
 import 'package:flutter_echo/common/constants.dart';
 import 'package:flutter_echo/models/api_response.dart';
+import 'package:flutter_echo/services/storage_service.dart';
 import 'package:flutter_echo/utils/common_utils.dart';
 import 'package:package_info_plus/package_info_plus.dart';
+import 'package:pointycastle/asymmetric/api.dart';
 
 class ApiController {
   final _dio = Dio(
     BaseOptions(
-      connectTimeout: const Duration(seconds: 10),
-      sendTimeout: const Duration(seconds: 30),
-      receiveTimeout: const Duration(seconds: 30),
+      connectTimeout: const Duration(seconds: 30),
+      sendTimeout: const Duration(seconds: 60),
+      receiveTimeout: const Duration(seconds: 60),
     ),
   );
 
@@ -60,29 +62,56 @@ class _ApiInterceptor extends Interceptor {
     RequestInterceptorHandler handler,
   ) async {
     final packageInfo = await PackageInfo.fromPlatform();
+    final storage = LocalStorage();
+    final token = storage.token;
+    final userGid = storage.userGid;
+    final deviceId = await FlutterPlatform.getDeviceId();
     options.headers.addAll({
       'Accept-Language': AppConst.languageCode, // es西语
-      'ys6955': null, // 用户Gid
-      'kw0980': null, // 身份凭证
+      'ys6955': userGid, // 用户Gid
+      'kw0980': token, // 身份凭证
       'tp5366': AppConst.applicationName, // 包名
       'wr3384': AppConst.bizLine, // 业务线
       'zg3739': null, // appfly Id
       'jv9290': packageInfo.version, // app版本
       'ie3728': null, // google广告id
-      'hk4661': null, // 安卓id
+      'hk4661': deviceId, // 安卓id
     });
-
-    final encrypter = Encrypter(RSA());
 
     if (options.method == 'POST' &&
         options.data != null &&
         options.data is Map) {
       final data = options.data as Map;
-
+      final publicKey = RSAKeyParser().parse(AppConst.apiKey) as RSAPublicKey;
+      final encrypter = Encrypter(RSA(publicKey: publicKey));
       // 加密 password
       if (data.containsKey('password')) {
         String password = data['password'];
         data['password'] = encrypter.encrypt(password);
+      }
+      // 马甲渠道
+      if (data.containsKey('d7x52p')) {
+        data['d7x52p'] = AppConst.channel;
+      }
+      // 业务线
+      if (data.containsKey('s377v5')) {
+        data['s377v5'] = AppConst.bizLine;
+      }
+      // App版本号
+      if (data.containsKey('z775ud')) {
+        data['z775ud'] = packageInfo.version;
+      }
+      // 设备号
+      if (data.containsKey('ac0as4')) {
+        data['ac0as4'] = deviceId;
+      }
+      // o_token
+      if (data.containsKey('y260zp')) {
+        data['y260zp'] = token;
+      }
+      // o_userGid
+      if (data.containsKey('raia')) {
+        data['raia'] = userGid;
       }
     }
     super.onRequest(options, handler);

@@ -1,6 +1,9 @@
 /// 应用常量定义
 class AppConst {
-  // 应用信息
+  // 产品名称：CrediGo
+  // biz_channel：CrediGo
+  // 包名：com.credigo.rapidos.prestamos.app
+  static const String packageName = 'com.credigo.rapidos.prestamos.app';
   static const String applicationName = 'CrediGo';
   static const String channel = "CrediGo";
   static const String bizLine = "7";
@@ -13,25 +16,31 @@ class AppConst {
   /// 是否生产环境
   static const bool production = false;
 
-  /// API 地址
+  /// 1.大数据上报域名（SMS及埋点事件上报）：https://insights.davaloan.com/insights
+  /// 2.业务侧上报域名/生产域名（除SMS以外数据上报）：https://insights.davaloan.com/insights
+  /// 3.测试域名：test-credifacilgo.com/insights
   static const String baseUrl = AppConst.production
-      ? 'http://159.138.174.19:3000'
-      : 'http://159.138.174.19:3000';
+      ? 'https://insights.davaloan.com/insights'
+      : 'http://credifacilgo.com';
 
-  // API 响应码
+  static const String apiKey = AppConst.production
+      ? 'MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCUNOcnExGUXzbT0ZYw9wNOsCSxT6dpgW0qiWD4v4bTWC9h9+RWzzZxaZNLLS6aSM4uPKWYHRy/swDsikWBondq7bQZhr/rTlX7DeICli3eKUPNcEh6xhpffyy+rksCsxDIQAzRMevXqXpRP6Y2GGGw3H8FOjQXHH6lG/Uo1ozPDwIDAQAB'
+      : 'MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQC+tVyzd+zg14CgVSQ95MMjHnQB6rfgAyMNJJxM5IIOLoNgjX4VCaDUcX1MMhAQkBaZ2iupIh8i1KOcjOGyzu7chsDP+bZqDjtsbBf4LID7HdNnRZU5tXsQ+2SmkSxIaDc88/C1Zn7mV14GDqdj2ePQ+YQcfUEIB+xiWRxAJopgQwIDAQAB';
+
+  // 1、EE7149 (ori: T1003) 或者 YL0395 (ori: T1005)  ，需要退出到登录页 （背景：身份验证失败或失效）
+  // 2、DO0413 (ori: T1021) ，需要弹出换设备短信校验 （背景：换设备登录校验）
+  // 3、TJ2605 (ori: T1023)、RO6710 (ori: T1024) , 换设备登录场景报此code, 需要退出登录页 （背景：换设备登录且短信次数超过限制；）
+  // 4、MO9942 (ori: T1013)、IS8131 (ori: T1019) 需弹图形验证码 （背景：短信验证码校验失败超过次数场景）
   static const String success = 'RF6101'; // 0000
   static const String tokenError = 'EE7149'; // T1003
   static const String tokenExpire = 'YL0395'; // T1005
   static const String codeMuchError = 'MO9942'; // T1013
   static const String captureError = 'IS8131'; // T1019
-  ///   1、EE7149 (ori: T1003) 或者 YL0395 (ori: T1005)  ，需要退出到登录页 （背景：身份验证失败或失效）
-  ///   2、DO0413 (ori: T1021) ，需要弹出换设备短信校验 （背景：换设备登录校验）
-  ///   3、TJ2605 (ori: T1023)、RO6710 (ori: T1024) , 换设备登录场景报此code, 需要退出登录页 （背景：换设备登录且短信次数超过限制；）
-  ///   4、MO9942 (ori: T1013)、IS8131 (ori: T1019) 需弹图形验证码 （背景：短信验证码校验失败超过次数场景）
 
   // 本地存储键名
   static const String tokenKey = 'token';
-  static const String userIdKey = 'user_id';
+  static const String userGidKey = 'user_id';
+  static const String userInfoKey = 'user_info';
 }
 
 class ApiPath {
@@ -81,7 +90,7 @@ class ApiPath {
   static const String loginUser = '/aitch/q2i1/vwi0';
 
   /// 获取图形验证码
-  static const String getCaptchaCode = '/s3r/{mobileSn_}';
+  static String getCaptchaCode(String mobile) => '/s3r/$mobile';
 
   /// 账户注销(APP)
   static const String accountCancelApp = '/w6y/jacky/hh7g';
