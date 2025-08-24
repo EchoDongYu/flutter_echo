@@ -100,6 +100,14 @@ class _DemoPageState extends State<DemoPage> {
         children: [
           _buildTestButton(
             context,
+            title: '版本升级弹窗',
+            icon: Icons.comment_bank_rounded,
+            color: const Color(0xFF00D4FF),
+            onPressed: () => _showUpgradeDialog(context),
+          ),
+
+          _buildTestButton(
+            context,
             title: '加载弹窗',
             icon: Icons.refresh_rounded,
             color: const Color(0xFF3288F1),
@@ -550,6 +558,17 @@ class _DemoPageState extends State<DemoPage> {
 
   void _showStepBankDialog(BuildContext context) async {
     final result = await DialogHelper.showStepBankDialog(context: context);
+    if (context.mounted) {
+      if (result == true) {
+        context.showSuccessSnack('Confirm $result');
+      } else {
+        context.showNormalSnack('Cancel $result');
+      }
+    }
+  }
+
+  void _showUpgradeDialog(BuildContext context) async {
+    final result = await DialogHelper.showUpgradeDialog(context: context);
     if (context.mounted) {
       if (result == true) {
         context.showSuccessSnack('Confirm $result');

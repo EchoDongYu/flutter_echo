@@ -65,22 +65,22 @@ class DpiNumberDialog extends StatelessWidget {
               ],
             ),
           ),
-          Container(
-            width: 24.r,
-            height: 24.r,
-            margin: EdgeInsets.only(top: 32.h),
-            alignment: Alignment.center,
-            decoration: BoxDecoration(
-              shape: BoxShape.circle,
-              border: BoxBorder.all(color: Colors.white, width: 1.6.w),
-            ),
-            child: InkWell(
-              onTap: onCancel,
-              borderRadius: const BorderRadius.all(Radius.circular(12)),
+          SizedBox(height: 32.h),
+          InkWell(
+            onTap: onCancel,
+            borderRadius: const BorderRadius.all(Radius.circular(16)),
+            child: Container(
+              width: 28.r,
+              height: 28.r,
+              alignment: Alignment.center,
+              decoration: BoxDecoration(
+                shape: BoxShape.circle,
+                border: BoxBorder.all(color: Colors.white, width: 1.6.w),
+              ),
               child: const Icon(
                 Icons.close_rounded,
                 color: Colors.white,
-                size: 16,
+                size: 18,
               ),
             ),
           ),
