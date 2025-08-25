@@ -6,7 +6,6 @@ import 'package:flutter_echo/ui/widgets/common_button.dart';
 import 'package:flutter_echo/ui/widgets/step_input_field.dart';
 import 'package:flutter_echo/ui/widgets/top_bar.dart';
 import 'package:flutter_echo/utils/drawable_utils.dart';
-import 'package:flutter_echo/utils/format_utils.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 /// 登录-密码输入页面
@@ -85,7 +84,7 @@ class _LoginPasswordPageState extends State<LoginPasswordPage> {
                   ),
                 ),
                 TextSpan(
-                  text: FormatUtils.blurPhone(widget.phoneNumber),
+                  text: widget.phoneNumber,
                   style: TextStyle(
                     fontWeight: FontWeight.w500,
                     color: NowColors.c0xFF1C1F23,

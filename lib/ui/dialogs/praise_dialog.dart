@@ -36,7 +36,7 @@ class PraiseDialog extends StatelessWidget {
             child: Column(
               children: [
                 Image.asset(
-                  Drawable.imageUpgrade,
+                  Drawable.imageGoodview,
                   width: double.infinity,
                   fit: BoxFit.fitWidth,
                 ),

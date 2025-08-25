@@ -124,7 +124,7 @@ class _DemoPageState extends State<DemoPage> {
 
           _buildTestButton(
             context,
-            title: '通用提示弹窗1',
+            title: '通用提示弹窗',
             icon: Icons.tips_and_updates_rounded,
             color: const Color(0xFF3288F1),
             onPressed: () => _showPromptDialog1(context),
@@ -141,9 +141,17 @@ class _DemoPageState extends State<DemoPage> {
           _buildTestButton(
             context,
             title: '图形验证码弹窗',
-            icon: Icons.catching_pokemon_rounded,
+            icon: Icons.verified_rounded,
             color: const Color(0xFF3288F1),
             onPressed: () => _showCaptchaDialog(context),
+          ),
+
+          _buildTestButton(
+            context,
+            title: '更换设备验证弹窗',
+            icon: Icons.verified_outlined,
+            color: const Color(0xFF3288F1),
+            onPressed: () => _showDeviceVerifyDialog(context),
           ),
 
           _buildTestButton(
@@ -418,6 +426,17 @@ class _DemoPageState extends State<DemoPage> {
 
   void _showCaptchaDialog(BuildContext context) async {
     final result = await DialogHelper.showCaptchaDialog(context: context);
+    if (context.mounted) {
+      if (result != null && result.isNotEmpty) {
+        context.showSuccessSnack('Success $result');
+      } else {
+        context.showNormalSnack('Cancel $result');
+      }
+    }
+  }
+
+  void _showDeviceVerifyDialog(BuildContext context) async {
+    final result = await DialogHelper.showDeviceVerifyDialog(context: context);
     if (context.mounted) {
       if (result != null && result.isNotEmpty) {
         context.showSuccessSnack('Success $result');

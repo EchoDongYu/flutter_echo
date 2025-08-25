@@ -33,6 +33,7 @@ class Drawable {
   static const String iconStatusWrong3 = 'assets/images/icon_status_wrong3.png';
   static const String iconXtcustomer = 'assets/images/icon_xtcustomer.png';
   static const String iconXtleft = 'assets/images/icon_xtleft.png';
+  static const String imageGoodview = 'assets/images/image_goodview.png';
   static const String imageGuard = 'assets/images/image_guard.png';
   static const String imageScreenshot1 = 'assets/images/image_screenshot1.png';
   static const String imageScreenshot2 = 'assets/images/image_screenshot2.png';
