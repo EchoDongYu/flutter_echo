@@ -101,9 +101,17 @@ class _DemoPageState extends State<DemoPage> {
           _buildTestButton(
             context,
             title: '版本升级弹窗',
-            icon: Icons.comment_bank_rounded,
+            icon: Icons.upgrade_rounded,
             color: const Color(0xFF00D4FF),
             onPressed: () => _showUpgradeDialog(context),
+          ),
+
+          _buildTestButton(
+            context,
+            title: '好评引导弹窗',
+            icon: Icons.reviews_rounded,
+            color: const Color(0xFF00D4FF),
+            onPressed: () => _showPraiseDialog(context),
           ),
 
           _buildTestButton(
@@ -571,6 +579,17 @@ class _DemoPageState extends State<DemoPage> {
     final result = await DialogHelper.showUpgradeDialog(context: context);
     if (context.mounted) {
       if (result == true) {
+        context.showSuccessSnack('Confirm $result');
+      } else {
+        context.showNormalSnack('Cancel $result');
+      }
+    }
+  }
+
+  void _showPraiseDialog(BuildContext context) async {
+    final result = await DialogHelper.showPraiseDialog(context: context);
+    if (context.mounted) {
+      if (result != null) {
         context.showSuccessSnack('Confirm $result');
       } else {
         context.showNormalSnack('Cancel $result');

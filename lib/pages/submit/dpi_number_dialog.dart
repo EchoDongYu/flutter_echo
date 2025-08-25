@@ -4,9 +4,9 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 /// 证件号码弹窗
 class DpiNumberDialog extends StatelessWidget {
-  final VoidCallback? onCancel;
+  final VoidCallback onCancel;
 
-  const DpiNumberDialog({super.key, this.onCancel});
+  const DpiNumberDialog({super.key, required this.onCancel});
 
   @override
   Widget build(BuildContext context) {

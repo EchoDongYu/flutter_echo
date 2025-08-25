@@ -11,6 +11,7 @@ import 'package:flutter_echo/pages/submit/pick_item_dialog.dart';
 import 'package:flutter_echo/pages/submit/step_bank_dialog.dart';
 import 'package:flutter_echo/ui/dialogs/compensation_dialog.dart';
 import 'package:flutter_echo/ui/dialogs/permission_dialog.dart';
+import 'package:flutter_echo/ui/dialogs/praise_dialog.dart';
 import 'package:flutter_echo/ui/dialogs/prompt_dialog.dart';
 import 'package:flutter_echo/ui/dialogs/upgrade_dialog.dart';
 import 'package:go_router/go_router.dart';
@@ -198,6 +199,18 @@ class DialogHelper {
       builder: (context) => UpgradeDialog(
         onConfirm: () => context.pop(true),
         onCancel: () => context.pop(false),
+      ),
+    );
+  }
+
+  /// 显示好评引导弹窗
+  static Future<int?> showPraiseDialog({required BuildContext context}) {
+    return showDialog<int>(
+      context: context,
+      builder: (context) => PraiseDialog(
+        onConfirm: () => context.pop(1),
+        onReport: () => context.pop(2),
+        onCancel: () => context.pop(),
       ),
     );
   }
