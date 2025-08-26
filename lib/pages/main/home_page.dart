@@ -17,36 +17,38 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        _buildTopBar(context),
-        Expanded(
-          child: SingleChildScrollView(
-            padding: EdgeInsets.fromLTRB(12.w, 5.h, 12.w, 82.h),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                _buildCenterBody(context),
-                SizedBox(height: 30.h),
-                Padding(
-                  padding: EdgeInsets.only(left: 16.w),
-                  child: Text(
-                    'Fácil de usar, rápido e seguro',
-                    style: TextStyle(
-                      fontSize: 18.sp,
-                      fontWeight: FontWeight.w500,
-                      color: NowColors.c0xFF1C1F23,
-                      height: 26 / 18,
+    return SafeArea(
+      child: Column(
+        children: [
+          _buildTopBar(context),
+          Expanded(
+            child: SingleChildScrollView(
+              padding: EdgeInsets.fromLTRB(12.w, 5.h, 12.w, 90.h),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  _buildCenterBody(context),
+                  SizedBox(height: 30.h),
+                  Padding(
+                    padding: EdgeInsets.only(left: 16.w),
+                    child: Text(
+                      'Fácil de usar, rápido e seguro',
+                      style: TextStyle(
+                        fontSize: 18.sp,
+                        fontWeight: FontWeight.w500,
+                        color: NowColors.c0xFF1C1F23,
+                        height: 26 / 18,
+                      ),
                     ),
                   ),
-                ),
-                SizedBox(height: 10.h),
-                _buildBottomBody(),
-              ],
+                  SizedBox(height: 10.h),
+                  _buildBottomBody(),
+                ],
+              ),
             ),
           ),
-        ),
-      ],
+        ],
+      ),
     );
   }
 
@@ -54,7 +56,7 @@ class HomePage extends StatelessWidget {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
-        SizedBox(width: 45.r, height: 45.r),
+        SizedBox(width: 44.r, height: 55.r),
         Expanded(
           child: Row(
             mainAxisAlignment: MainAxisAlignment.center,

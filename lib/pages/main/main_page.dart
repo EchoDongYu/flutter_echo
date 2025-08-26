@@ -38,32 +38,30 @@ class _MainPageState extends State<MainPage> {
   @override
   Widget build(BuildContext context) {
     return AnnotatedRegion(
-      value: const SystemUiOverlayStyle(
+      value: SystemUiOverlayStyle(
         statusBarColor: Colors.transparent,
-        statusBarIconBrightness: Brightness.dark,
-        systemNavigationBarColor: Colors.white,
+        systemNavigationBarColor: Colors.transparent,
+        statusBarIconBrightness: _currentPage == 0
+            ? Brightness.dark
+            : Brightness.light,
         systemNavigationBarIconBrightness: Brightness.dark,
       ),
       child: Scaffold(
         backgroundColor: NowColors.c0xFFF3F3F5,
-        body: SafeArea(
-          child: Stack(
-            alignment: Alignment.bottomCenter,
-            children: [
-              PageView(
-                controller: _controller,
-                onPageChanged: (value) {
-                  if (_currentPage != value) {
-                    setState(() {
-                      _currentPage = value;
-                    });
-                  }
-                },
-                children: const [HomePage(), MinePage()],
-              ),
-              _buildBottomBar(),
-            ],
-          ),
+        body: Stack(
+          alignment: Alignment.bottomCenter,
+          children: [
+            PageView(
+              controller: _controller,
+              onPageChanged: (value) {
+                if (_currentPage != value) {
+                  setState(() => _currentPage = value);
+                }
+              },
+              children: const [HomePage(), MinePage()],
+            ),
+            _buildBottomBar(),
+          ],
         ),
       ),
     );
@@ -77,7 +75,7 @@ class _MainPageState extends State<MainPage> {
       margin: EdgeInsets.symmetric(horizontal: 16.w, vertical: 12.h),
       decoration: BoxDecoration(
         color: const Color(0xD9FFFFFF),
-        borderRadius: const BorderRadius.all(Radius.circular(20)),
+        borderRadius: const BorderRadius.all(Radius.circular(35)),
         border: Border.all(color: Colors.white, width: 1),
         boxShadow: NowStyles.bottomShadows,
       ),
