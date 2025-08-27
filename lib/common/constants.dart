@@ -5,11 +5,11 @@ class AppConst {
   // 包名：com.credigo.rapidos.prestamos.app
   static const String applicationId = 'com.credigo.rapidos.prestamos.app';
   static const String applicationName = 'CrediGo';
-  static const String channel = "CrediGo";
-  static const String bizLine = "7";
-  static const String countryCode = "502";
-  static const String isoCountryCode = "GT";
-  static const String languageCode = "es";
+  static const String channel = 'CrediGo';
+  static const String bizLine = '7';
+  static const String countryCode = '502';
+  static const String isoCountryCode = 'gt';
+  static const String languageCode = 'es';
   static const int phoneLength = 8;
   static const int codeLength = 4;
 
@@ -21,11 +21,14 @@ class AppConst {
   /// 3.测试域名：test-credifacilgo.com/insights
   static const String baseUrl = AppConst.production
       ? 'https://insights.davaloan.com/insights'
-      : 'http://credifacilgo.com';
+      : 'http://159.138.164.19:8089/titans';
 
-  static const String apiKey = AppConst.production
+  static const String _rsaKey = AppConst.production
       ? 'MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCUNOcnExGUXzbT0ZYw9wNOsCSxT6dpgW0qiWD4v4bTWC9h9+RWzzZxaZNLLS6aSM4uPKWYHRy/swDsikWBondq7bQZhr/rTlX7DeICli3eKUPNcEh6xhpffyy+rksCsxDIQAzRMevXqXpRP6Y2GGGw3H8FOjQXHH6lG/Uo1ozPDwIDAQAB'
       : 'MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQC+tVyzd+zg14CgVSQ95MMjHnQB6rfgAyMNJJxM5IIOLoNgjX4VCaDUcX1MMhAQkBaZ2iupIh8i1KOcjOGyzu7chsDP+bZqDjtsbBf4LID7HdNnRZU5tXsQ+2SmkSxIaDc88/C1Zn7mV14GDqdj2ePQ+YQcfUEIB+xiWRxAJopgQwIDAQAB';
+
+  static const String apiKey =
+      '-----BEGIN PUBLIC KEY-----\n$_rsaKey\n-----END PUBLIC KEY-----';
 
   // 1、EE7149 (ori: T1003) 或者 YL0395 (ori: T1005)  ，需要退出到登录页 （背景：身份验证失败或失效）
   // 2、DO0413 (ori: T1021) ，需要弹出换设备短信校验 （背景：换设备登录校验）

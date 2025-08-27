@@ -7,13 +7,13 @@ part of 'swaggerApi.models.swagger.dart';
 // **************************************************************************
 
 BankDeleteReq _$BankDeleteReqFromJson(Map<String, dynamic> json) =>
-    BankDeleteReq(vnbh46OBankCardGid: (json['vnbh46'] as num).toInt());
+    BankDeleteReq(vnbh46OBankCardGid: (json['vnbh46'] as num?)?.toInt());
 
 Map<String, dynamic> _$BankDeleteReqToJson(BankDeleteReq instance) =>
     <String, dynamic>{'vnbh46': instance.vnbh46OBankCardGid};
 
 MyBankCardReq _$MyBankCardReqFromJson(Map<String, dynamic> json) =>
-    MyBankCardReq(raiaOUserGid: (json['raia'] as num).toInt());
+    MyBankCardReq(raiaOUserGid: (json['raia'] as num?)?.toInt());
 
 Map<String, dynamic> _$MyBankCardReqToJson(MyBankCardReq instance) =>
     <String, dynamic>{'raia': instance.raiaOUserGid};
@@ -26,9 +26,9 @@ Map<String, dynamic> _$BankVOReqToJson(BankVOReq instance) => <String, dynamic>{
 };
 
 BankBinReq _$BankBinReqFromJson(Map<String, dynamic> json) => BankBinReq(
-  raiaOUserGid: (json['raia'] as num).toInt(),
-  ojf007OBankAccount: json['ojf007'] as String,
-  exhedraOAccountType: (json['exhedra'] as num).toInt(),
+  raiaOUserGid: (json['raia'] as num?)?.toInt(),
+  ojf007OBankAccount: json['ojf007'] as String?,
+  exhedraOAccountType: (json['exhedra'] as num?)?.toInt(),
 );
 
 Map<String, dynamic> _$BankBinReqToJson(BankBinReq instance) =>
@@ -40,8 +40,8 @@ Map<String, dynamic> _$BankBinReqToJson(BankBinReq instance) =>
 
 BindResultReq _$BindResultReqFromJson(Map<String, dynamic> json) =>
     BindResultReq(
-      raiaOUserGid: (json['raia'] as num).toInt(),
-      lynceanOBindcardGid: (json['lyncean'] as num).toInt(),
+      raiaOUserGid: (json['raia'] as num?)?.toInt(),
+      lynceanOBindcardGid: (json['lyncean'] as num?)?.toInt(),
     );
 
 Map<String, dynamic> _$BindResultReqToJson(BindResultReq instance) =>
@@ -51,11 +51,11 @@ Map<String, dynamic> _$BindResultReqToJson(BindResultReq instance) =>
     };
 
 BindCardReq _$BindCardReqFromJson(Map<String, dynamic> json) => BindCardReq(
-  raiaOUserGid: (json['raia'] as num).toInt(),
+  raiaOUserGid: (json['raia'] as num?)?.toInt(),
   exonymOBankGid: json['exonym'] as String?,
-  t1h91pOBankName: json['t1h91p'] as String,
+  t1h91pOBankName: json['t1h91p'] as String?,
   insolentOBankCode: json['insolent'] as String?,
-  zebrineOCardNo: json['zebrine'] as String,
+  zebrineOCardNo: json['zebrine'] as String?,
   s90dw0OCciNumber: json['s90dw0'] as String?,
   cvn: json['cvn'] as String?,
   stukaOExpiryDate: json['stuka'] as String?,
@@ -78,16 +78,16 @@ Map<String, dynamic> _$BindCardReqToJson(BindCardReq instance) =>
     };
 
 BankCardReq _$BankCardReqFromJson(Map<String, dynamic> json) =>
-    BankCardReq(raiaOUserGid: (json['raia'] as num).toInt());
+    BankCardReq(raiaOUserGid: (json['raia'] as num?)?.toInt());
 
 Map<String, dynamic> _$BankCardReqToJson(BankCardReq instance) =>
     <String, dynamic>{'raia': instance.raiaOUserGid};
 
 TraderPwdCheckReq _$TraderPwdCheckReqFromJson(Map<String, dynamic> json) =>
     TraderPwdCheckReq(
-      raiaOUserGid: (json['raia'] as num).toInt(),
-      z38e62OOrderGid: json['z38e62'] as String,
-      c4s47hOTransPassword: json['c4s47h'] as String,
+      raiaOUserGid: (json['raia'] as num?)?.toInt(),
+      z38e62OOrderGid: json['z38e62'] as String?,
+      c4s47hOTransPassword: json['c4s47h'] as String?,
       s377v5OBizLine: json['s377v5'] as String?,
     );
 
@@ -101,7 +101,7 @@ Map<String, dynamic> _$TraderPwdCheckReqToJson(TraderPwdCheckReq instance) =>
 
 AccountCancelJudgeReq _$AccountCancelJudgeReqFromJson(
   Map<String, dynamic> json,
-) => AccountCancelJudgeReq(raiaOUserGid: (json['raia'] as num).toInt());
+) => AccountCancelJudgeReq(raiaOUserGid: (json['raia'] as num?)?.toInt());
 
 Map<String, dynamic> _$AccountCancelJudgeReqToJson(
   AccountCancelJudgeReq instance,
@@ -109,7 +109,7 @@ Map<String, dynamic> _$AccountCancelJudgeReqToJson(
 
 CheckRegisterReq _$CheckRegisterReqFromJson(Map<String, dynamic> json) =>
     CheckRegisterReq(
-      sordidOMobile: json['sordid'] as String,
+      sordidOMobile: json['sordid'] as String?,
       d7x52pOBizChannel: json['d7x52p'] as String?,
       s377v5OBizLine: json['s377v5'] as String?,
     );
@@ -122,24 +122,24 @@ Map<String, dynamic> _$CheckRegisterReqToJson(CheckRegisterReq instance) =>
     };
 
 WhiteListReq _$WhiteListReqFromJson(Map<String, dynamic> json) =>
-    WhiteListReq(sordidOMobile: json['sordid'] as String);
+    WhiteListReq(sordidOMobile: json['sordid'] as String?);
 
 Map<String, dynamic> _$WhiteListReqToJson(WhiteListReq instance) =>
     <String, dynamic>{'sordid': instance.sordidOMobile};
 
 NeedCaptchaReq _$NeedCaptchaReqFromJson(Map<String, dynamic> json) =>
     NeedCaptchaReq(
-      sordidOMobile: json['sordid'] as String,
-      type: (json['type'] as num).toInt(),
+      sordidOMobile: json['sordid'] as String?,
+      type: (json['type'] as num?)?.toInt(),
     );
 
 Map<String, dynamic> _$NeedCaptchaReqToJson(NeedCaptchaReq instance) =>
     <String, dynamic>{'sordid': instance.sordidOMobile, 'type': instance.type};
 
 RegisterReq _$RegisterReqFromJson(Map<String, dynamic> json) => RegisterReq(
-  sordidOMobile: json['sordid'] as String,
-  password: json['password'] as String,
-  presageOVerCode: json['presage'] as String,
+  sordidOMobile: json['sordid'] as String?,
+  password: json['password'] as String?,
+  presageOVerCode: json['presage'] as String?,
   vkql27OReqChannel: json['vkql27'] as String?,
   zebrassOReqSubChannel: json['zebrass'] as String?,
   s37m00OReqSubChannelAf: json['s37m00'] as String?,
@@ -172,13 +172,13 @@ Map<String, dynamic> _$RegisterReqToJson(RegisterReq instance) =>
     };
 
 UserInfoReq _$UserInfoReqFromJson(Map<String, dynamic> json) =>
-    UserInfoReq(raiaOUserGid: (json['raia'] as num).toInt());
+    UserInfoReq(raiaOUserGid: (json['raia'] as num?)?.toInt());
 
 Map<String, dynamic> _$UserInfoReqToJson(UserInfoReq instance) =>
     <String, dynamic>{'raia': instance.raiaOUserGid};
 
 LoginReq _$LoginReqFromJson(Map<String, dynamic> json) => LoginReq(
-  sordidOMobile: json['sordid'] as String,
+  sordidOMobile: json['sordid'] as String?,
   password: json['password'] as String?,
   y260zpOToken: json['y260zp'] as String?,
   raiaOUserGid: (json['raia'] as num?)?.toInt(),
@@ -208,14 +208,14 @@ Map<String, dynamic> _$LoginReqToJson(LoginReq instance) => <String, dynamic>{
 AccountCancelAppReq _$AccountCancelAppReqFromJson(Map<String, dynamic> json) =>
     AccountCancelAppReq(
       raiaOUserGid: (json['raia'] as num?)?.toInt(),
-      sordidOMobile: json['sordid'] as String,
-      d7x52pOBizChannel: json['d7x52p'] as String,
-      s377v5OBizLine: json['s377v5'] as String,
-      presageOVerCode: json['presage'] as String,
+      sordidOMobile: json['sordid'] as String?,
+      d7x52pOBizChannel: json['d7x52p'] as String?,
+      s377v5OBizLine: json['s377v5'] as String?,
+      presageOVerCode: json['presage'] as String?,
       snafuOVerImageCode: json['snafu'] as String?,
       ac0as4OMobileSn: json['ac0as4'] as String?,
-      source: (json['source'] as num).toInt(),
-      pageId: json['pageId'] as String,
+      source: (json['source'] as num?)?.toInt(),
+      pageId: json['pageId'] as String?,
       vsu233OCancelCode: json['vsu233'] as String?,
       tgifOCancelReason: json['tgif'] as String?,
     );
@@ -240,14 +240,14 @@ AccountCancelLandReq _$AccountCancelLandReqFromJson(
   Map<String, dynamic> json,
 ) => AccountCancelLandReq(
   raiaOUserGid: (json['raia'] as num?)?.toInt(),
-  sordidOMobile: json['sordid'] as String,
-  d7x52pOBizChannel: json['d7x52p'] as String,
-  s377v5OBizLine: json['s377v5'] as String,
-  presageOVerCode: json['presage'] as String,
+  sordidOMobile: json['sordid'] as String?,
+  d7x52pOBizChannel: json['d7x52p'] as String?,
+  s377v5OBizLine: json['s377v5'] as String?,
+  presageOVerCode: json['presage'] as String?,
   snafuOVerImageCode: json['snafu'] as String?,
   ac0as4OMobileSn: json['ac0as4'] as String?,
-  source: (json['source'] as num).toInt(),
-  pageId: json['pageId'] as String,
+  source: (json['source'] as num?)?.toInt(),
+  pageId: json['pageId'] as String?,
   vsu233OCancelCode: json['vsu233'] as String?,
   tgifOCancelReason: json['tgif'] as String?,
 );
@@ -271,7 +271,7 @@ Map<String, dynamic> _$AccountCancelLandReqToJson(
 TraderPwdResetReq _$TraderPwdResetReqFromJson(Map<String, dynamic> json) =>
     TraderPwdResetReq(
       raiaOUserGid: json['raia'] as String?,
-      password: json['password'] as String,
+      password: json['password'] as String?,
       sordidOMobile: json['sordid'] as String?,
       presageOVerCode: json['presage'] as String?,
       snafuOVerImageCode: json['snafu'] as String?,
@@ -302,10 +302,10 @@ Map<String, dynamic> _$TraderPwdResetReqToJson(TraderPwdResetReq instance) =>
 
 LoginPwdResetReq _$LoginPwdResetReqFromJson(Map<String, dynamic> json) =>
     LoginPwdResetReq(
-      sordidOMobile: json['sordid'] as String,
-      password: json['password'] as String,
+      sordidOMobile: json['sordid'] as String?,
+      password: json['password'] as String?,
       ac0as4OMobileSn: json['ac0as4'] as String?,
-      presageOVerCode: json['presage'] as String,
+      presageOVerCode: json['presage'] as String?,
       snafuOVerImageCode: json['snafu'] as String?,
       d7x52pOBizChannel: json['d7x52p'] as String?,
       s377v5OBizLine: json['s377v5'] as String?,
@@ -324,11 +324,11 @@ Map<String, dynamic> _$LoginPwdResetReqToJson(LoginPwdResetReq instance) =>
 
 CaptchaCheckReq _$CaptchaCheckReqFromJson(Map<String, dynamic> json) =>
     CaptchaCheckReq(
-      sordidOMobile: json['sordid'] as String,
+      sordidOMobile: json['sordid'] as String?,
       raiaOUserGid: (json['raia'] as num?)?.toInt(),
-      type: (json['type'] as num).toInt(),
-      ac0as4OMobileSn: json['ac0as4'] as String,
-      xwkarvOImageCode: json['xwkarv'] as String,
+      type: (json['type'] as num?)?.toInt(),
+      ac0as4OMobileSn: json['ac0as4'] as String?,
+      xwkarvOImageCode: json['xwkarv'] as String?,
     );
 
 Map<String, dynamic> _$CaptchaCheckReqToJson(CaptchaCheckReq instance) =>
@@ -342,11 +342,11 @@ Map<String, dynamic> _$CaptchaCheckReqToJson(CaptchaCheckReq instance) =>
 
 CodeVerifyReq _$CodeVerifyReqFromJson(Map<String, dynamic> json) =>
     CodeVerifyReq(
-      sordidOMobile: json['sordid'] as String,
+      sordidOMobile: json['sordid'] as String?,
       raiaOUserGid: (json['raia'] as num?)?.toInt(),
       o4r2h6OIsBvnMobile: json['o4r2h6'] as bool?,
-      type: (json['type'] as num).toInt(),
-      presageOVerCode: json['presage'] as String,
+      type: (json['type'] as num?)?.toInt(),
+      presageOVerCode: json['presage'] as String?,
       z38e62OOrderGid: json['z38e62'] as String?,
       ac0as4OMobileSn: json['ac0as4'] as String?,
       snafuOVerImageCode: json['snafu'] as String?,
@@ -367,8 +367,8 @@ Map<String, dynamic> _$CodeVerifyReqToJson(CodeVerifyReq instance) =>
     };
 
 CodeSendReq _$CodeSendReqFromJson(Map<String, dynamic> json) => CodeSendReq(
-  sordidOMobile: json['sordid'] as String,
-  type: json['type'] as String,
+  sordidOMobile: json['sordid'] as String?,
+  type: json['type'] as String?,
   j62tn1OMsgType: json['j62tn1'] as String?,
   d7x52pOBizChannel: json['d7x52p'] as String?,
   s377v5OBizLine: json['s377v5'] as String?,
@@ -394,7 +394,7 @@ Map<String, dynamic> _$CodeSendReqToJson(CodeSendReq instance) =>
 TrackReportReq _$TrackReportReqFromJson(
   Map<String, dynamic> json,
 ) => TrackReportReq(
-  raiaOUserGid: json['raia'] as String,
+  raiaOUserGid: json['raia'] as String?,
   z775udOAppVersion: json['z775ud'] as String?,
   hk4762OUploadTime: (json['hk4762'] as num?)?.toInt(),
   fibulaOReportBaseInfo:
@@ -490,17 +490,17 @@ Map<String, dynamic> _$RiskReportReqToJson(RiskReportReq instance) =>
     };
 
 VaCreateReq _$VaCreateReqFromJson(Map<String, dynamic> json) =>
-    VaCreateReq(raiaOUserGid: (json['raia'] as num).toInt());
+    VaCreateReq(raiaOUserGid: (json['raia'] as num?)?.toInt());
 
 Map<String, dynamic> _$VaCreateReqToJson(VaCreateReq instance) =>
     <String, dynamic>{'raia': instance.raiaOUserGid};
 
 VoSubmitReq _$VoSubmitReqFromJson(Map<String, dynamic> json) => VoSubmitReq(
-  raiaOUserGid: (json['raia'] as num).toInt(),
-  r5a4x8OLoanGid: (json['r5a4x8'] as num).toInt(),
-  krddvvOReference: json['krddvv'] as String,
-  di6pi4OTransferTime: (json['di6pi4'] as num).toInt(),
-  o12sd0OAmount: (json['o12sd0'] as num).toDouble(),
+  raiaOUserGid: (json['raia'] as num?)?.toInt(),
+  r5a4x8OLoanGid: (json['r5a4x8'] as num?)?.toInt(),
+  krddvvOReference: json['krddvv'] as String?,
+  di6pi4OTransferTime: (json['di6pi4'] as num?)?.toInt(),
+  o12sd0OAmount: (json['o12sd0'] as num?)?.toDouble(),
 );
 
 Map<String, dynamic> _$VoSubmitReqToJson(VoSubmitReq instance) =>
@@ -513,7 +513,7 @@ Map<String, dynamic> _$VoSubmitReqToJson(VoSubmitReq instance) =>
     };
 
 VaGetReq _$VaGetReqFromJson(Map<String, dynamic> json) => VaGetReq(
-  raiaOUserGid: (json['raia'] as num).toInt(),
+  raiaOUserGid: (json['raia'] as num?)?.toInt(),
   r5a4x8OLoanGid: (json['r5a4x8'] as num?)?.toInt(),
 );
 
@@ -524,9 +524,9 @@ Map<String, dynamic> _$VaGetReqToJson(VaGetReq instance) => <String, dynamic>{
 
 RepayApplyReq _$RepayApplyReqFromJson(Map<String, dynamic> json) =>
     RepayApplyReq(
-      r5a4x8OLoanGid: (json['r5a4x8'] as num).toInt(),
-      raiaOUserGid: (json['raia'] as num).toInt(),
-      o12sd0OAmount: (json['o12sd0'] as num).toDouble(),
+      r5a4x8OLoanGid: (json['r5a4x8'] as num?)?.toInt(),
+      raiaOUserGid: (json['raia'] as num?)?.toInt(),
+      o12sd0OAmount: (json['o12sd0'] as num?)?.toDouble(),
       vnbh46OBankCardGid: (json['vnbh46'] as num?)?.toInt(),
       bdvg46ORepaymentStage: (json['bdvg46'] as num?)?.toInt(),
       oe5u39OChannelName: json['oe5u39'] as String?,
@@ -572,8 +572,8 @@ Map<String, dynamic> _$RepayApplyReqToJson(RepayApplyReq instance) =>
 
 RepayRecordReq _$RepayRecordReqFromJson(Map<String, dynamic> json) =>
     RepayRecordReq(
-      r5a4x8OLoanGid: (json['r5a4x8'] as num).toInt(),
-      raiaOUserGid: (json['raia'] as num).toInt(),
+      r5a4x8OLoanGid: (json['r5a4x8'] as num?)?.toInt(),
+      raiaOUserGid: (json['raia'] as num?)?.toInt(),
       mahoganyORepaymentType: (json['mahogany'] as num?)?.toInt(),
       t1h91pOBankName: json['t1h91p'] as String?,
       e77490ORequestId: json['e77490'] as String?,
@@ -612,20 +612,20 @@ Map<String, dynamic> _$MainInfoReqToJson(MainInfoReq instance) =>
     };
 
 NoticeMainReq _$NoticeMainReqFromJson(Map<String, dynamic> json) =>
-    NoticeMainReq(m52v00OPlatform: json['m52v00'] as String);
+    NoticeMainReq(m52v00OPlatform: json['m52v00'] as String?);
 
 Map<String, dynamic> _$NoticeMainReqToJson(NoticeMainReq instance) =>
     <String, dynamic>{'m52v00': instance.m52v00OPlatform};
 
 VersionCheckReq _$VersionCheckReqFromJson(Map<String, dynamic> json) =>
-    VersionCheckReq(lutealOVersion: json['luteal'] as String);
+    VersionCheckReq(lutealOVersion: json['luteal'] as String?);
 
 Map<String, dynamic> _$VersionCheckReqToJson(VersionCheckReq instance) =>
     <String, dynamic>{'luteal': instance.lutealOVersion};
 
 ColoanGpReq _$ColoanGpReqFromJson(Map<String, dynamic> json) => ColoanGpReq(
   raiaOUserGid: json['raia'] as String?,
-  d7x52pOBizChannel: json['d7x52p'] as String,
+  d7x52pOBizChannel: json['d7x52p'] as String?,
   s377v5OBizLine: json['s377v5'] as String?,
 );
 
@@ -659,11 +659,11 @@ Map<String, dynamic> _$HomeInfoReqToJson(HomeInfoReq instance) =>
 
 LoanConfirmReq _$LoanConfirmReqFromJson(Map<String, dynamic> json) =>
     LoanConfirmReq(
-      raiaOUserGid: (json['raia'] as num).toInt(),
-      z38e62OOrderGid: json['z38e62'] as String,
-      retiaryOLoanAmount: (json['retiary'] as num).toDouble(),
-      foreyardOProductId: (json['foreyard'] as num).toInt(),
-      c4s47hOTransPassword: json['c4s47h'] as String,
+      raiaOUserGid: (json['raia'] as num?)?.toInt(),
+      z38e62OOrderGid: json['z38e62'] as String?,
+      retiaryOLoanAmount: (json['retiary'] as num?)?.toDouble(),
+      foreyardOProductId: (json['foreyard'] as num?)?.toInt(),
+      c4s47hOTransPassword: json['c4s47h'] as String?,
       vnbh46OBankCardGid: (json['vnbh46'] as num?)?.toInt(),
       zebrineOCardNo: json['zebrine'] as String?,
       t1h91pOBankName: json['t1h91p'] as String?,
@@ -695,8 +695,8 @@ Map<String, dynamic> _$LoanConfirmReqToJson(LoanConfirmReq instance) =>
 
 PicUploadReqReq _$PicUploadReqReqFromJson(Map<String, dynamic> json) =>
     PicUploadReqReq(
-      raiaOUserGid: json['raia'] as String,
-      ha3xp9OPicType: (json['ha3xp9'] as num).toInt(),
+      raiaOUserGid: json['raia'] as String?,
+      ha3xp9OPicType: (json['ha3xp9'] as num?)?.toInt(),
       x01y7qOBase64String:
           (json['x01y7q'] as List<dynamic>?)
               ?.map((e) => e as String)
@@ -712,8 +712,8 @@ Map<String, dynamic> _$PicUploadReqReqToJson(PicUploadReqReq instance) =>
     };
 
 CollTimeReq _$CollTimeReqFromJson(Map<String, dynamic> json) => CollTimeReq(
-  raiaOUserGid: (json['raia'] as num).toInt(),
-  e479lgOCollectTimeType: (json['e479lg'] as num).toInt(),
+  raiaOUserGid: (json['raia'] as num?)?.toInt(),
+  e479lgOCollectTimeType: (json['e479lg'] as num?)?.toInt(),
 );
 
 Map<String, dynamic> _$CollTimeReqToJson(CollTimeReq instance) =>
@@ -723,14 +723,14 @@ Map<String, dynamic> _$CollTimeReqToJson(CollTimeReq instance) =>
     };
 
 CheckFirstLoanReq _$CheckFirstLoanReqFromJson(Map<String, dynamic> json) =>
-    CheckFirstLoanReq(raiaOUserGid: (json['raia'] as num).toInt());
+    CheckFirstLoanReq(raiaOUserGid: (json['raia'] as num?)?.toInt());
 
 Map<String, dynamic> _$CheckFirstLoanReqToJson(CheckFirstLoanReq instance) =>
     <String, dynamic>{'raia': instance.raiaOUserGid};
 
 LoanOrderReq _$LoanOrderReqFromJson(Map<String, dynamic> json) => LoanOrderReq(
-  raiaOUserGid: (json['raia'] as num).toInt(),
-  z38e62OOrderGid: json['z38e62'] as String,
+  raiaOUserGid: (json['raia'] as num?)?.toInt(),
+  z38e62OOrderGid: json['z38e62'] as String?,
 );
 
 Map<String, dynamic> _$LoanOrderReqToJson(LoanOrderReq instance) =>
@@ -741,8 +741,8 @@ Map<String, dynamic> _$LoanOrderReqToJson(LoanOrderReq instance) =>
 
 LoanPreInfoReq _$LoanPreInfoReqFromJson(Map<String, dynamic> json) =>
     LoanPreInfoReq(
-      raiaOUserGid: (json['raia'] as num).toInt(),
-      retiaryOLoanAmount: (json['retiary'] as num).toDouble(),
+      raiaOUserGid: (json['raia'] as num?)?.toInt(),
+      retiaryOLoanAmount: (json['retiary'] as num?)?.toDouble(),
       foreyardOProductId: (json['foreyard'] as num?)?.toInt(),
       pinionOUserCouponGid: (json['pinion'] as num?)?.toInt(),
       x2anh3OStageFlag: (json['x2anh3'] as num?)?.toInt(),
@@ -764,7 +764,7 @@ Map<String, dynamic> _$LoanPreInfoReqToJson(LoanPreInfoReq instance) =>
 LoanFeeDetailReq _$LoanFeeDetailReqFromJson(Map<String, dynamic> json) =>
     LoanFeeDetailReq(
       raiaOUserGid: json['raia'] as String?,
-      d7x52pOBizChannel: json['d7x52p'] as String,
+      d7x52pOBizChannel: json['d7x52p'] as String?,
       s377v5OBizLine: json['s377v5'] as String?,
     );
 
@@ -776,22 +776,22 @@ Map<String, dynamic> _$LoanFeeDetailReqToJson(LoanFeeDetailReq instance) =>
     };
 
 BankValidInfoReq _$BankValidInfoReqFromJson(Map<String, dynamic> json) =>
-    BankValidInfoReq(raiaOUserGid: (json['raia'] as num).toInt());
+    BankValidInfoReq(raiaOUserGid: (json['raia'] as num?)?.toInt());
 
 Map<String, dynamic> _$BankValidInfoReqToJson(BankValidInfoReq instance) =>
     <String, dynamic>{'raia': instance.raiaOUserGid};
 
 AbandonReasonReq _$AbandonReasonReqFromJson(Map<String, dynamic> json) =>
     AbandonReasonReq(
-      raiaOUserGid: (json['raia'] as num).toInt(),
-      pageId: json['pageId'] as String,
+      raiaOUserGid: (json['raia'] as num?)?.toInt(),
+      pageId: json['pageId'] as String?,
       artificeOAbandonCode:
           (json['artifice'] as List<dynamic>?)
               ?.map((e) => e as Object)
               .toList() ??
           [],
       fl93q8OAbandonReason: json['fl93q8'] as String?,
-      ej04h8OReasonVersion: json['ej04h8'] as String,
+      ej04h8OReasonVersion: json['ej04h8'] as String?,
     );
 
 Map<String, dynamic> _$AbandonReasonReqToJson(AbandonReasonReq instance) =>
@@ -804,10 +804,10 @@ Map<String, dynamic> _$AbandonReasonReqToJson(AbandonReasonReq instance) =>
     };
 
 FeedbackReq _$FeedbackReqFromJson(Map<String, dynamic> json) => FeedbackReq(
-  raiaOUserGid: (json['raia'] as num).toInt(),
+  raiaOUserGid: (json['raia'] as num?)?.toInt(),
   content: json['content'] as String?,
   type: json['type'] as String?,
-  source: json['source'] as String,
+  source: json['source'] as String?,
 );
 
 Map<String, dynamic> _$FeedbackReqToJson(FeedbackReq instance) =>
@@ -821,9 +821,9 @@ Map<String, dynamic> _$FeedbackReqToJson(FeedbackReq instance) =>
 NeedAbandonReasonReq _$NeedAbandonReasonReqFromJson(
   Map<String, dynamic> json,
 ) => NeedAbandonReasonReq(
-  raiaOUserGid: (json['raia'] as num).toInt(),
-  pageId: json['pageId'] as String,
-  ej04h8OReasonVersion: json['ej04h8'] as String,
+  raiaOUserGid: (json['raia'] as num?)?.toInt(),
+  pageId: json['pageId'] as String?,
+  ej04h8OReasonVersion: json['ej04h8'] as String?,
 );
 
 Map<String, dynamic> _$NeedAbandonReasonReqToJson(
@@ -851,7 +851,7 @@ Map<String, dynamic> _$LoanNoticeReqToJson(LoanNoticeReq instance) =>
     };
 
 CheckCreditReq _$CheckCreditReqFromJson(Map<String, dynamic> json) =>
-    CheckCreditReq(raiaOUserGid: (json['raia'] as num).toInt());
+    CheckCreditReq(raiaOUserGid: (json['raia'] as num?)?.toInt());
 
 Map<String, dynamic> _$CheckCreditReqToJson(CheckCreditReq instance) =>
     <String, dynamic>{'raia': instance.raiaOUserGid};
@@ -908,8 +908,8 @@ Map<String, dynamic> _$PhotoSubmitReqToJson(PhotoSubmitReq instance) =>
 
 CreditRecordReq _$CreditRecordReqFromJson(Map<String, dynamic> json) =>
     CreditRecordReq(
-      raiaOUserGid: (json['raia'] as num).toInt(),
-      sordidOMobile: json['sordid'] as String,
+      raiaOUserGid: (json['raia'] as num?)?.toInt(),
+      sordidOMobile: json['sordid'] as String?,
       gargetOBirthday: (json['garget'] as num?)?.toInt(),
       merdekaOIdCard: json['merdeka'] as String?,
       name: json['name'] as String?,
@@ -998,9 +998,9 @@ Map<String, dynamic> _$CreditRecordReqToJson(CreditRecordReq instance) =>
 
 EmailCheckReq _$EmailCheckReqFromJson(Map<String, dynamic> json) =>
     EmailCheckReq(
-      raiaOUserGid: (json['raia'] as num).toInt(),
+      raiaOUserGid: (json['raia'] as num?)?.toInt(),
       f31u3kOEmail: json['f31u3k'] as String?,
-      merdekaOIdCard: json['merdeka'] as String,
+      merdekaOIdCard: json['merdeka'] as String?,
     );
 
 Map<String, dynamic> _$EmailCheckReqToJson(EmailCheckReq instance) =>
@@ -1011,15 +1011,15 @@ Map<String, dynamic> _$EmailCheckReqToJson(EmailCheckReq instance) =>
     };
 
 HomeCouponReq _$HomeCouponReqFromJson(Map<String, dynamic> json) =>
-    HomeCouponReq(raiaOUserGid: (json['raia'] as num).toInt());
+    HomeCouponReq(raiaOUserGid: (json['raia'] as num?)?.toInt());
 
 Map<String, dynamic> _$HomeCouponReqToJson(HomeCouponReq instance) =>
     <String, dynamic>{'raia': instance.raiaOUserGid};
 
 LoanCouponReq _$LoanCouponReqFromJson(Map<String, dynamic> json) =>
     LoanCouponReq(
-      raiaOUserGid: (json['raia'] as num).toInt(),
-      retiaryOLoanAmount: (json['retiary'] as num).toDouble(),
+      raiaOUserGid: (json['raia'] as num?)?.toInt(),
+      retiaryOLoanAmount: (json['retiary'] as num?)?.toDouble(),
     );
 
 Map<String, dynamic> _$LoanCouponReqToJson(LoanCouponReq instance) =>
@@ -1029,16 +1029,16 @@ Map<String, dynamic> _$LoanCouponReqToJson(LoanCouponReq instance) =>
     };
 
 MyCouponReq _$MyCouponReqFromJson(Map<String, dynamic> json) => MyCouponReq(
-  raiaOUserGid: (json['raia'] as num).toInt(),
-  type: (json['type'] as num).toInt(),
+  raiaOUserGid: (json['raia'] as num?)?.toInt(),
+  type: (json['type'] as num?)?.toInt(),
 );
 
 Map<String, dynamic> _$MyCouponReqToJson(MyCouponReq instance) =>
     <String, dynamic>{'raia': instance.raiaOUserGid, 'type': instance.type};
 
 CouponGetReq _$CouponGetReqFromJson(Map<String, dynamic> json) => CouponGetReq(
-  raiaOUserGid: json['raia'] as String,
-  a17s38OActivityGid: json['a17s38'] as String,
+  raiaOUserGid: json['raia'] as String?,
+  a17s38OActivityGid: json['a17s38'] as String?,
 );
 
 Map<String, dynamic> _$CouponGetReqToJson(CouponGetReq instance) =>
@@ -1049,8 +1049,8 @@ Map<String, dynamic> _$CouponGetReqToJson(CouponGetReq instance) =>
 
 LandCouponReq _$LandCouponReqFromJson(Map<String, dynamic> json) =>
     LandCouponReq(
-      raiaOUserGid: json['raia'] as String,
-      a17s38OActivityGid: json['a17s38'] as String,
+      raiaOUserGid: json['raia'] as String?,
+      a17s38OActivityGid: json['a17s38'] as String?,
     );
 
 Map<String, dynamic> _$LandCouponReqToJson(LandCouponReq instance) =>
@@ -1060,8 +1060,8 @@ Map<String, dynamic> _$LandCouponReqToJson(LandCouponReq instance) =>
     };
 
 CouponPopReq _$CouponPopReqFromJson(Map<String, dynamic> json) => CouponPopReq(
-  raiaOUserGid: json['raia'] as String,
-  a17s38OActivityGid: json['a17s38'] as String,
+  raiaOUserGid: json['raia'] as String?,
+  a17s38OActivityGid: json['a17s38'] as String?,
 );
 
 Map<String, dynamic> _$CouponPopReqToJson(CouponPopReq instance) =>
@@ -1071,9 +1071,9 @@ Map<String, dynamic> _$CouponPopReqToJson(CouponPopReq instance) =>
     };
 
 LoanBillReq _$LoanBillReqFromJson(Map<String, dynamic> json) => LoanBillReq(
-  raiaOUserGid: (json['raia'] as num).toInt(),
-  size: (json['size'] as num).toInt(),
-  current: (json['current'] as num).toInt(),
+  raiaOUserGid: (json['raia'] as num?)?.toInt(),
+  size: (json['size'] as num?)?.toInt(),
+  current: (json['current'] as num?)?.toInt(),
   d95091ORepaymentStatus:
       (json['d95091'] as List<dynamic>?)?.map((e) => e as Object).toList() ??
       [],
@@ -1092,7 +1092,7 @@ Map<String, dynamic> _$LoanBillReqToJson(LoanBillReq instance) =>
 
 BillStatusReq _$BillStatusReqFromJson(Map<String, dynamic> json) =>
     BillStatusReq(
-      r5a4x8OLoanGid: (json['r5a4x8'] as num).toInt(),
+      r5a4x8OLoanGid: (json['r5a4x8'] as num?)?.toInt(),
       a4wq4jORenewAmountRate: json['a4wq4j'] as String?,
     );
 
@@ -1103,14 +1103,14 @@ Map<String, dynamic> _$BillStatusReqToJson(BillStatusReq instance) =>
     };
 
 BillListReq _$BillListReqFromJson(Map<String, dynamic> json) =>
-    BillListReq(raiaOUserGid: (json['raia'] as num).toInt());
+    BillListReq(raiaOUserGid: (json['raia'] as num?)?.toInt());
 
 Map<String, dynamic> _$BillListReqToJson(BillListReq instance) =>
     <String, dynamic>{'raia': instance.raiaOUserGid};
 
 BillDetailReq _$BillDetailReqFromJson(Map<String, dynamic> json) =>
     BillDetailReq(
-      r5a4x8OLoanGid: (json['r5a4x8'] as num).toInt(),
+      r5a4x8OLoanGid: (json['r5a4x8'] as num?)?.toInt(),
       a4wq4jORenewAmountRate: json['a4wq4j'] as String?,
     );
 
@@ -1121,10 +1121,10 @@ Map<String, dynamic> _$BillDetailReqToJson(BillDetailReq instance) =>
     };
 
 BillRepayReq _$BillRepayReqFromJson(Map<String, dynamic> json) => BillRepayReq(
-  raiaOUserGid: (json['raia'] as num).toInt(),
+  raiaOUserGid: (json['raia'] as num?)?.toInt(),
   r5a4x8OLoanGid: (json['r5a4x8'] as num?)?.toInt(),
-  size: (json['size'] as num).toInt(),
-  current: (json['current'] as num).toInt(),
+  size: (json['size'] as num?)?.toInt(),
+  current: (json['current'] as num?)?.toInt(),
 );
 
 Map<String, dynamic> _$BillRepayReqToJson(BillRepayReq instance) =>
@@ -1136,8 +1136,8 @@ Map<String, dynamic> _$BillRepayReqToJson(BillRepayReq instance) =>
     };
 
 HeadResp _$HeadRespFromJson(Map<String, dynamic> json) => HeadResp(
-  code: json['code'] as String,
-  msg: json['msg'] as String,
+  code: json['code'] as String?,
+  msg: json['msg'] as String?,
   data: json['data'],
 );
 
@@ -1171,15 +1171,15 @@ Map<String, dynamic> _$BankDeleteRespToJson(BankDeleteResp instance) =>
 
 MyBankCardResp$Item _$MyBankCardResp$ItemFromJson(Map<String, dynamic> json) =>
     MyBankCardResp$Item(
-      vnbh46OBankCardGid: (json['vnbh46'] as num).toInt(),
-      t1h91pOBankName: json['t1h91p'] as String,
-      insolentOBankCode: json['insolent'] as String,
-      zebrineOCardNo: json['zebrine'] as String,
+      vnbh46OBankCardGid: (json['vnbh46'] as num?)?.toInt(),
+      t1h91pOBankName: json['t1h91p'] as String?,
+      insolentOBankCode: json['insolent'] as String?,
+      zebrineOCardNo: json['zebrine'] as String?,
       tigonOCardNoReal: json['tigon'] as String?,
-      aot1jaOBindType: (json['aot1ja'] as num).toInt(),
+      aot1jaOBindType: (json['aot1ja'] as num?)?.toInt(),
       f31u3kOEmail: json['f31u3k'] as String?,
-      cvn: json['cvn'] as String,
-      stukaOExpiryDate: json['stuka'] as String,
+      cvn: json['cvn'] as String?,
+      stukaOExpiryDate: json['stuka'] as String?,
       journeyOIsValid: json['journey'] as bool?,
       moffieOIsAutoDeduct: json['moffie'] as bool?,
       exhedraOAccountType: (json['exhedra'] as num?)?.toInt(),
@@ -1205,7 +1205,7 @@ Map<String, dynamic> _$MyBankCardResp$ItemToJson(
 BankVOResp$Item _$BankVOResp$ItemFromJson(Map<String, dynamic> json) =>
     BankVOResp$Item(
       exonymOBankGid: json['exonym'] as String?,
-      t1h91pOBankName: json['t1h91p'] as String,
+      t1h91pOBankName: json['t1h91p'] as String?,
       insolentOBankCode: json['insolent'] as String?,
       songODigits: json['song'] as String?,
     );
@@ -1220,7 +1220,7 @@ Map<String, dynamic> _$BankVOResp$ItemToJson(BankVOResp$Item instance) =>
 
 BankBinResp _$BankBinRespFromJson(Map<String, dynamic> json) => BankBinResp(
   exonymOBankGid: json['exonym'] as String?,
-  t1h91pOBankName: json['t1h91p'] as String,
+  t1h91pOBankName: json['t1h91p'] as String?,
   insolentOBankCode: json['insolent'] as String?,
   songODigits: json['song'] as String?,
 );
@@ -1235,7 +1235,7 @@ Map<String, dynamic> _$BankBinRespToJson(BankBinResp instance) =>
 
 BindResultResp _$BindResultRespFromJson(Map<String, dynamic> json) =>
     BindResultResp(
-      status: (json['status'] as num).toInt(),
+      status: (json['status'] as num?)?.toInt(),
       vx4165OFailReason: json['vx4165'] as String?,
     );
 
@@ -1246,8 +1246,8 @@ Map<String, dynamic> _$BindResultRespToJson(BindResultResp instance) =>
     };
 
 BindCardResp _$BindCardRespFromJson(Map<String, dynamic> json) => BindCardResp(
-  lynceanOBindcardGid: (json['lyncean'] as num).toInt(),
-  vnbh46OBankCardGid: (json['vnbh46'] as num).toInt(),
+  lynceanOBindcardGid: (json['lyncean'] as num?)?.toInt(),
+  vnbh46OBankCardGid: (json['vnbh46'] as num?)?.toInt(),
   zj1m73OIsBindSuccess: json['zj1m73'] as bool?,
 );
 
@@ -1260,10 +1260,10 @@ Map<String, dynamic> _$BindCardRespToJson(BindCardResp instance) =>
 
 BankCardResp$Item _$BankCardResp$ItemFromJson(Map<String, dynamic> json) =>
     BankCardResp$Item(
-      vnbh46OBankCardGid: (json['vnbh46'] as num).toInt(),
-      t1h91pOBankName: json['t1h91p'] as String,
-      insolentOBankCode: json['insolent'] as String,
-      zebrineOCardNo: json['zebrine'] as String,
+      vnbh46OBankCardGid: (json['vnbh46'] as num?)?.toInt(),
+      t1h91pOBankName: json['t1h91p'] as String?,
+      insolentOBankCode: json['insolent'] as String?,
+      zebrineOCardNo: json['zebrine'] as String?,
       s90dw0OCciNumber: json['s90dw0'] as String?,
       f31u3kOEmail: json['f31u3k'] as String?,
       exhedraOAccountType: (json['exhedra'] as num?)?.toInt(),
@@ -1323,7 +1323,7 @@ CheckRegisterResp _$CheckRegisterRespFromJson(Map<String, dynamic> json) =>
       qm5h5tOIsRegistered: json['qm5h5t'] as bool?,
       fm50w8OLoginPwd: json['fm50w8'] as bool?,
       cressyOTraderPwd: json['cressy'] as bool?,
-      orcadianOIsDeviceChange: json['orcadian'] as bool,
+      orcadianOIsDeviceChange: json['orcadian'] as bool?,
       assabODeviceChangeMsg: json['assab'] as String?,
     );
 
@@ -1343,16 +1343,16 @@ Map<String, dynamic> _$WhiteListRespToJson(WhiteListResp instance) =>
     <String, dynamic>{};
 
 NeedCaptchaResp _$NeedCaptchaRespFromJson(Map<String, dynamic> json) =>
-    NeedCaptchaResp(data: json['data'] as bool);
+    NeedCaptchaResp(data: json['data'] as bool?);
 
 Map<String, dynamic> _$NeedCaptchaRespToJson(NeedCaptchaResp instance) =>
     <String, dynamic>{'data': instance.data};
 
 RegisterResp _$RegisterRespFromJson(Map<String, dynamic> json) => RegisterResp(
-  sordidOMobile: json['sordid'] as String,
-  y260zpOToken: json['y260zp'] as String,
-  name: json['name'] as String,
-  raiaOUserGid: (json['raia'] as num).toInt(),
+  sordidOMobile: json['sordid'] as String?,
+  y260zpOToken: json['y260zp'] as String?,
+  name: json['name'] as String?,
+  raiaOUserGid: (json['raia'] as num?)?.toInt(),
   hik0qmORegisterTime: (json['hik0qm'] as num?)?.toInt(),
 );
 
@@ -1366,7 +1366,7 @@ Map<String, dynamic> _$RegisterRespToJson(RegisterResp instance) =>
     };
 
 UserInfoResp _$UserInfoRespFromJson(Map<String, dynamic> json) => UserInfoResp(
-  name: json['name'] as String,
+  name: json['name'] as String?,
   bvn: json['bvn'] as String?,
   merdekaOIdCard: json['merdeka'] as String?,
   hashIdCard: json['hashIdCard'] as String?,
@@ -1383,10 +1383,10 @@ Map<String, dynamic> _$UserInfoRespToJson(UserInfoResp instance) =>
     };
 
 LoginResp _$LoginRespFromJson(Map<String, dynamic> json) => LoginResp(
-  sordidOMobile: json['sordid'] as String,
-  y260zpOToken: json['y260zp'] as String,
-  name: json['name'] as String,
-  raiaOUserGid: (json['raia'] as num).toInt(),
+  sordidOMobile: json['sordid'] as String?,
+  y260zpOToken: json['y260zp'] as String?,
+  name: json['name'] as String?,
+  raiaOUserGid: (json['raia'] as num?)?.toInt(),
   hik0qmORegisterTime: (json['hik0qm'] as num?)?.toInt(),
 );
 
@@ -1678,8 +1678,8 @@ Map<String, dynamic> _$VaGetRespToJson(VaGetResp instance) => <String, dynamic>{
 
 RepayApplyResp _$RepayApplyRespFromJson(Map<String, dynamic> json) =>
     RepayApplyResp(
-      r5a4x8OLoanGid: (json['r5a4x8'] as num).toInt(),
-      raiaOUserGid: (json['raia'] as num).toInt(),
+      r5a4x8OLoanGid: (json['r5a4x8'] as num?)?.toInt(),
+      raiaOUserGid: (json['raia'] as num?)?.toInt(),
       n410zdOLoanTime: (json['n410zd'] as num?)?.toInt(),
       r5k31qODueTime: (json['r5k31q'] as num?)?.toInt(),
       coandaODueDays: (json['coanda'] as num?)?.toInt(),
@@ -1823,8 +1823,8 @@ Map<String, dynamic> _$ColoanGpRespToJson(
 };
 
 HomeInfoResp _$HomeInfoRespFromJson(Map<String, dynamic> json) => HomeInfoResp(
-  bopomofoOCreditStatus: (json['bopomofo'] as num).toInt(),
-  rnpu7fOCreditLine: (json['rnpu7f'] as num).toDouble(),
+  bopomofoOCreditStatus: (json['bopomofo'] as num?)?.toInt(),
+  rnpu7fOCreditLine: (json['rnpu7f'] as num?)?.toDouble(),
   papuanOLastRecordLoan:
       json['papuan'] == null
           ? null
@@ -1843,8 +1843,8 @@ HomeInfoResp _$HomeInfoRespFromJson(Map<String, dynamic> json) => HomeInfoResp(
   marrowOLoanRangeUnit: (json['marrow'] as num?)?.toDouble(),
   fx6b0yOIsFreeze: (json['fx6b0y'] as num?)?.toInt(),
   grafterOIsWhiteUser: json['grafter'] as bool?,
-  za1s1eOSpareCreditLine: (json['za1s1e'] as num).toDouble(),
-  u6n134OSpareCanBorrowAmount: (json['u6n134'] as num).toDouble(),
+  za1s1eOSpareCreditLine: (json['za1s1e'] as num?)?.toDouble(),
+  u6n134OSpareCanBorrowAmount: (json['u6n134'] as num?)?.toDouble(),
   nailheadOIsSpareLockAll: json['nailhead'] as bool?,
   lysogenOSpareProductGroup:
       (json['lysogen'] as List<dynamic>?)
@@ -1884,8 +1884,8 @@ HomeInfoResp _$HomeInfoRespFromJson(Map<String, dynamic> json) => HomeInfoResp(
           .toList(),
   co5i9lOForceUpdateFlag: json['co5i9l'] as bool?,
   y934teOTotalAmount: (json['y934te'] as num?)?.toDouble(),
-  yawnOExpectTime: (json['yawn'] as num).toInt(),
-  undyedOHasLoan: json['undyed'] as bool,
+  yawnOExpectTime: (json['yawn'] as num?)?.toInt(),
+  undyedOHasLoan: json['undyed'] as bool?,
 );
 
 Map<String, dynamic> _$HomeInfoRespToJson(
@@ -2141,30 +2141,30 @@ Map<String, dynamic> _$LoanOrderRespToJson(LoanOrderResp instance) =>
 LoanPreInfoResp _$LoanPreInfoRespFromJson(Map<String, dynamic> json) =>
     LoanPreInfoResp(
       raiaOUserGid: (json['raia'] as num?)?.toInt(),
-      r5k31qODueTime: (json['r5k31q'] as num).toInt(),
-      retiaryOLoanAmount: (json['retiary'] as num).toDouble(),
-      pluralOReceiveAmount: (json['plural'] as num).toDouble(),
+      r5k31qODueTime: (json['r5k31q'] as num?)?.toInt(),
+      retiaryOLoanAmount: (json['retiary'] as num?)?.toDouble(),
+      pluralOReceiveAmount: (json['plural'] as num?)?.toDouble(),
       mt66nzOReceiveSubAmount: (json['mt66nz'] as num?)?.toDouble(),
       q922g5OReceiveAddAmount: (json['q922g5'] as num?)?.toDouble(),
-      gatemanORepaymentAmount: (json['gateman'] as num).toDouble(),
+      gatemanORepaymentAmount: (json['gateman'] as num?)?.toDouble(),
       v4nynoOFeeType: (json['v4nyno'] as num?)?.toInt(),
-      e88wy1OLoanFee: (json['e88wy1'] as num).toDouble(),
+      e88wy1OLoanFee: (json['e88wy1'] as num?)?.toDouble(),
       b9h5ndOPreLoanFee: (json['b9h5nd'] as num?)?.toDouble(),
       l6v3npOPreFeeRate: (json['l6v3np'] as num?)?.toDouble(),
       fissionOAfterLoanFee: (json['fission'] as num?)?.toDouble(),
       ringhalsOAfterFeeRate: (json['ringhals'] as num?)?.toDouble(),
       h4f7x4OCoupon: (json['h4f7x4'] as num?)?.toDouble(),
-      prelaticOReceiveAccount: json['prelatic'] as String,
+      prelaticOReceiveAccount: json['prelatic'] as String?,
       qn9yimOHasTransPwd: (json['qn9yim'] as num?)?.toInt(),
       lumberlyOFeeRate: (json['lumberly'] as num?)?.toDouble(),
       reprisalOReceiveAccountHash: json['reprisal'] as String?,
-      z38e62OOrderGid: json['z38e62'] as String,
+      z38e62OOrderGid: json['z38e62'] as String?,
       unciformOOriginationFee: (json['unciform'] as num?)?.toDouble(),
       centiareOServiceFee: (json['centiare'] as num?)?.toDouble(),
       pinionOUserCouponGid: (json['pinion'] as num?)?.toInt(),
       sk6s63OCouponAmount: (json['sk6s63'] as num?)?.toDouble(),
       u04098OIsFirstLoan: json['u04098'] as bool?,
-      nkf6o5OIsOtpValid: json['nkf6o5'] as bool,
+      nkf6o5OIsOtpValid: json['nkf6o5'] as bool?,
       taphouseOMobileList:
           (json['taphouse'] as List<dynamic>?)
               ?.map((e) => e as String)
@@ -2197,7 +2197,7 @@ LoanPreInfoResp _$LoanPreInfoRespFromJson(Map<String, dynamic> json) =>
       chuseOLoanProductType: (json['chuse'] as num?)?.toInt(),
       orderOrigin: (json['orderOrigin'] as num?)?.toInt(),
       satCheckStatus: (json['satCheckStatus'] as num?)?.toInt(),
-      cressyOTraderPwd: json['cressy'] as bool,
+      cressyOTraderPwd: json['cressy'] as bool?,
     );
 
 Map<String, dynamic> _$LoanPreInfoRespToJson(
@@ -2284,7 +2284,7 @@ BankValidInfoResp _$BankValidInfoRespFromJson(Map<String, dynamic> json) =>
       songODigits: json['song'] as String?,
       vnbh46OBankCardGid: (json['vnbh46'] as num?)?.toInt(),
       q732r7OCardTransMessage: json['q732r7'] as String?,
-      zebrineOCardNo: json['zebrine'] as String,
+      zebrineOCardNo: json['zebrine'] as String?,
       exhedraOAccountType: (json['exhedra'] as num?)?.toInt(),
     );
 
@@ -2399,10 +2399,10 @@ Map<String, dynamic> _$LoanNoticeRespToJson(LoanNoticeResp instance) =>
 
 CheckCreditResp _$CheckCreditRespFromJson(Map<String, dynamic> json) =>
     CheckCreditResp(
-      raiaOUserGid: (json['raia'] as num).toInt(),
-      bopomofoOCreditStatus: (json['bopomofo'] as num).toInt(),
-      rnpu7fOCreditLine: (json['rnpu7f'] as num).toDouble(),
-      nookieOCanBorrowAmount: (json['nookie'] as num).toDouble(),
+      raiaOUserGid: (json['raia'] as num?)?.toInt(),
+      bopomofoOCreditStatus: (json['bopomofo'] as num?)?.toInt(),
+      rnpu7fOCreditLine: (json['rnpu7f'] as num?)?.toDouble(),
+      nookieOCanBorrowAmount: (json['nookie'] as num?)?.toDouble(),
       foreyardOProductId: (json['foreyard'] as num?)?.toInt(),
     );
 
@@ -2468,7 +2468,7 @@ CreditRecordResp _$CreditRecordRespFromJson(Map<String, dynamic> json) =>
       tympanumOMsgTitle: json['tympanum'] as String?,
       directOMsgBtn01: json['direct'] as String?,
       i9145gOMsgBtn02: json['i9145g'] as String?,
-      data: (json['data'] as num).toInt(),
+      data: (json['data'] as num?)?.toInt(),
     );
 
 Map<String, dynamic> _$CreditRecordRespToJson(CreditRecordResp instance) =>
@@ -2685,13 +2685,13 @@ Map<String, dynamic> _$BillListRespToJson(BillListResp instance) =>
 BillDetailResp _$BillDetailRespFromJson(Map<String, dynamic> json) =>
     BillDetailResp(
       n410zdOLoanTime: (json['n410zd'] as num?)?.toInt(),
-      r5k31qODueTime: (json['r5k31q'] as num).toInt(),
+      r5k31qODueTime: (json['r5k31q'] as num?)?.toInt(),
       coandaODueDays: (json['coanda'] as num?)?.toInt(),
       faciendOOverdueFee: (json['faciend'] as num?)?.toDouble(),
-      retiaryOLoanAmount: (json['retiary'] as num).toDouble(),
-      pluralOReceiveAmount: (json['plural'] as num).toDouble(),
-      e88wy1OLoanFee: (json['e88wy1'] as num).toDouble(),
-      gatemanORepaymentAmount: (json['gateman'] as num).toDouble(),
+      retiaryOLoanAmount: (json['retiary'] as num?)?.toDouble(),
+      pluralOReceiveAmount: (json['plural'] as num?)?.toDouble(),
+      e88wy1OLoanFee: (json['e88wy1'] as num?)?.toDouble(),
+      gatemanORepaymentAmount: (json['gateman'] as num?)?.toDouble(),
       wantonlyOLoanLeftAmount: (json['wantonly'] as num?)?.toDouble(),
       h4f7x4OCoupon: (json['h4f7x4'] as num?)?.toDouble(),
       d95091ORepaymentStatus: (json['d95091'] as num?)?.toInt(),
@@ -3429,9 +3429,9 @@ Map<String, dynamic> _$HomeInfoResp$S2c1wyOAppCoLoanGpDetailPOList$ItemToJson(
 PicUploadReqResp$Data _$PicUploadReqResp$DataFromJson(
   Map<String, dynamic> json,
 ) => PicUploadReqResp$Data(
-  raiaOUserGid: json['raia'] as String,
-  gx0f5kOPictureUrl: json['gx0f5k'] as String,
-  nvooyfOObjectKey: json['nvooyf'] as String,
+  raiaOUserGid: json['raia'] as String?,
+  gx0f5kOPictureUrl: json['gx0f5k'] as String?,
+  nvooyfOObjectKey: json['nvooyf'] as String?,
 );
 
 Map<String, dynamic> _$PicUploadReqResp$DataToJson(
@@ -3514,8 +3514,8 @@ _$LoanPreInfoResp$GlacisORepaymentPlanList$ItemFromJson(
   retiaryOLoanAmount: (json['retiary'] as num?)?.toDouble(),
   timesOBillAmount: (json['times'] as num?)?.toDouble(),
   fl92yrOBillLeftAmount: (json['fl92yr'] as num?)?.toDouble(),
-  uqm81lOPrincipalAmount: (json['uqm81l'] as num).toDouble(),
-  v6e22nOPrincipalLeftAmount: (json['v6e22n'] as num).toDouble(),
+  uqm81lOPrincipalAmount: (json['uqm81l'] as num?)?.toDouble(),
+  v6e22nOPrincipalLeftAmount: (json['v6e22n'] as num?)?.toDouble(),
   wantonlyOLoanLeftAmount: (json['wantonly'] as num?)?.toDouble(),
   pinionOUserCouponGid: (json['pinion'] as num?)?.toInt(),
   sk6s63OCouponAmount: (json['sk6s63'] as num?)?.toDouble(),
@@ -4091,8 +4091,8 @@ _$BillDetailResp$GlacisORepaymentPlanList$ItemFromJson(
   retiaryOLoanAmount: (json['retiary'] as num?)?.toDouble(),
   timesOBillAmount: (json['times'] as num?)?.toDouble(),
   fl92yrOBillLeftAmount: (json['fl92yr'] as num?)?.toDouble(),
-  uqm81lOPrincipalAmount: (json['uqm81l'] as num).toDouble(),
-  v6e22nOPrincipalLeftAmount: (json['v6e22n'] as num).toDouble(),
+  uqm81lOPrincipalAmount: (json['uqm81l'] as num?)?.toDouble(),
+  v6e22nOPrincipalLeftAmount: (json['v6e22n'] as num?)?.toDouble(),
   wantonlyOLoanLeftAmount: (json['wantonly'] as num?)?.toDouble(),
   pinionOUserCouponGid: (json['pinion'] as num?)?.toInt(),
   sk6s63OCouponAmount: (json['sk6s63'] as num?)?.toDouble(),

@@ -69,16 +69,17 @@ class _ApiInterceptor extends Interceptor {
     final storage = LocalStorage();
     final token = storage.token;
     final userGid = storage.userGid;
-    final deviceId = storage.getDeviceId();
+    final deviceId = await storage.getDeviceId();
     options.headers.addAll({
       'Accept-Language': AppConst.languageCode, // es西语
       'ys6955': userGid, // 用户Gid
       'kw0980': token, // 身份凭证
       'tp5366': AppConst.applicationName, // 包名
       'wr3384': AppConst.bizLine, // 业务线
-      'zg3739': null, // appfly Id
+      'zc8974': AppConst.isoCountryCode,
+      //'zg3739': null, // appfly Id
       'jv9290': packageInfo.version, // app版本
-      'ie3728': null, // google广告id
+      //'ie3728': null, // google广告id
       'hk4661': deviceId, // 安卓id
     });
 
@@ -88,13 +89,13 @@ class _ApiInterceptor extends Interceptor {
       final data = options.data as Map;
       // 手机号加密 o_mobile
       if (data.containsKey('sordid')) {
-        String password = data['sordid'];
-        data['sordid'] = _encrypter.encrypt(password);
+        String value = data['sordid'];
+        data['sordid'] = _encrypter.encrypt(value).base64;
       }
       // 密码加密 password
       if (data.containsKey('password')) {
-        String password = data['password'];
-        data['password'] = _encrypter.encrypt(password);
+        String value = data['password'];
+        data['password'] = _encrypter.encrypt(value).base64;
       }
       // o_bizChannel 马甲渠道
       if (data.containsKey('d7x52p')) {

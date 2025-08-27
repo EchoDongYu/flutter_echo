@@ -11,7 +11,7 @@ class BankDeleteReq {
   const BankDeleteReq({required this.vnbh46OBankCardGid});
 
   @JsonKey(name: 'vnbh46')
-  final int vnbh46OBankCardGid;
+  final int? vnbh46OBankCardGid;
 
   factory BankDeleteReq.fromJson(Map<String, dynamic> json) =>
       _$BankDeleteReqFromJson(json);
@@ -63,7 +63,7 @@ class MyBankCardReq {
   const MyBankCardReq({required this.raiaOUserGid});
 
   @JsonKey(name: 'raia')
-  final int raiaOUserGid;
+  final int? raiaOUserGid;
 
   factory MyBankCardReq.fromJson(Map<String, dynamic> json) =>
       _$MyBankCardReqFromJson(json);
@@ -164,11 +164,11 @@ class BankBinReq {
   });
 
   @JsonKey(name: 'raia')
-  final int raiaOUserGid;
+  final int? raiaOUserGid;
   @JsonKey(name: 'ojf007')
-  final String ojf007OBankAccount;
+  final String? ojf007OBankAccount;
   @JsonKey(name: 'exhedra')
-  final int exhedraOAccountType;
+  final int? exhedraOAccountType;
 
   factory BankBinReq.fromJson(Map<String, dynamic> json) =>
       _$BankBinReqFromJson(json);
@@ -251,9 +251,9 @@ class BindResultReq {
   });
 
   @JsonKey(name: 'raia')
-  final int raiaOUserGid;
+  final int? raiaOUserGid;
   @JsonKey(name: 'lyncean')
-  final int lynceanOBindcardGid;
+  final int? lynceanOBindcardGid;
 
   factory BindResultReq.fromJson(Map<String, dynamic> json) =>
       _$BindResultReqFromJson(json);
@@ -328,15 +328,15 @@ class BindCardReq {
   });
 
   @JsonKey(name: 'raia')
-  final int raiaOUserGid;
+  final int? raiaOUserGid;
   @JsonKey(name: 'exonym')
   final String? exonymOBankGid;
   @JsonKey(name: 't1h91p')
-  final String t1h91pOBankName;
+  final String? t1h91pOBankName;
   @JsonKey(name: 'insolent')
   final String? insolentOBankCode;
   @JsonKey(name: 'zebrine')
-  final String zebrineOCardNo;
+  final String? zebrineOCardNo;
   @JsonKey(name: 's90dw0')
   final String? s90dw0OCciNumber;
   @JsonKey(name: 'cvn')
@@ -505,7 +505,7 @@ class BankCardReq {
   const BankCardReq({required this.raiaOUserGid});
 
   @JsonKey(name: 'raia')
-  final int raiaOUserGid;
+  final int? raiaOUserGid;
 
   factory BankCardReq.fromJson(Map<String, dynamic> json) =>
       _$BankCardReqFromJson(json);
@@ -557,11 +557,11 @@ class TraderPwdCheckReq {
   });
 
   @JsonKey(name: 'raia')
-  final int raiaOUserGid;
+  final int? raiaOUserGid;
   @JsonKey(name: 'z38e62')
-  final String z38e62OOrderGid;
+  final String? z38e62OOrderGid;
   @JsonKey(name: 'c4s47h')
-  final String c4s47hOTransPassword;
+  final String? c4s47hOTransPassword;
   @JsonKey(name: 's377v5')
   final String? s377v5OBizLine;
 
@@ -654,7 +654,7 @@ class AccountCancelJudgeReq {
   const AccountCancelJudgeReq({required this.raiaOUserGid});
 
   @JsonKey(name: 'raia')
-  final int raiaOUserGid;
+  final int? raiaOUserGid;
 
   factory AccountCancelJudgeReq.fromJson(Map<String, dynamic> json) =>
       _$AccountCancelJudgeReqFromJson(json);
@@ -707,7 +707,7 @@ class CheckRegisterReq {
   });
 
   @JsonKey(name: 'sordid')
-  final String sordidOMobile;
+  final String? sordidOMobile;
   @JsonKey(name: 'd7x52p')
   final String? d7x52pOBizChannel;
   @JsonKey(name: 's377v5')
@@ -789,7 +789,7 @@ class WhiteListReq {
   const WhiteListReq({required this.sordidOMobile});
 
   @JsonKey(name: 'sordid')
-  final String sordidOMobile;
+  final String? sordidOMobile;
 
   factory WhiteListReq.fromJson(Map<String, dynamic> json) =>
       _$WhiteListReqFromJson(json);
@@ -836,9 +836,9 @@ class NeedCaptchaReq {
   const NeedCaptchaReq({required this.sordidOMobile, required this.type});
 
   @JsonKey(name: 'sordid')
-  final String sordidOMobile;
+  final String? sordidOMobile;
   @JsonKey(name: 'type')
-  final int type;
+  final int? type;
 
   factory NeedCaptchaReq.fromJson(Map<String, dynamic> json) =>
       _$NeedCaptchaReqFromJson(json);
@@ -911,11 +911,11 @@ class RegisterReq {
   });
 
   @JsonKey(name: 'sordid')
-  final String sordidOMobile;
+  final String? sordidOMobile;
   @JsonKey(name: 'password')
-  final String password;
+  final String? password;
   @JsonKey(name: 'presage')
-  final String presageOVerCode;
+  final String? presageOVerCode;
   @JsonKey(name: 'vkql27')
   final String? vkql27OReqChannel;
   @JsonKey(name: 'zebrass')
@@ -1155,7 +1155,7 @@ class UserInfoReq {
   const UserInfoReq({required this.raiaOUserGid});
 
   @JsonKey(name: 'raia')
-  final int raiaOUserGid;
+  final int? raiaOUserGid;
 
   factory UserInfoReq.fromJson(Map<String, dynamic> json) =>
       _$UserInfoReqFromJson(json);
@@ -1214,7 +1214,7 @@ class LoginReq {
   });
 
   @JsonKey(name: 'sordid')
-  final String sordidOMobile;
+  final String? sordidOMobile;
   @JsonKey(name: 'password')
   final String? password;
   @JsonKey(name: 'y260zp')
@@ -1417,21 +1417,21 @@ class AccountCancelAppReq {
   @JsonKey(name: 'raia')
   final int? raiaOUserGid;
   @JsonKey(name: 'sordid')
-  final String sordidOMobile;
+  final String? sordidOMobile;
   @JsonKey(name: 'd7x52p')
-  final String d7x52pOBizChannel;
+  final String? d7x52pOBizChannel;
   @JsonKey(name: 's377v5')
-  final String s377v5OBizLine;
+  final String? s377v5OBizLine;
   @JsonKey(name: 'presage')
-  final String presageOVerCode;
+  final String? presageOVerCode;
   @JsonKey(name: 'snafu')
   final String? snafuOVerImageCode;
   @JsonKey(name: 'ac0as4')
   final String? ac0as4OMobileSn;
   @JsonKey(name: 'source')
-  final int source;
+  final int? source;
   @JsonKey(name: 'pageId')
-  final String pageId;
+  final String? pageId;
   @JsonKey(name: 'vsu233')
   final String? vsu233OCancelCode;
   @JsonKey(name: 'tgif')
@@ -1617,21 +1617,21 @@ class AccountCancelLandReq {
   @JsonKey(name: 'raia')
   final int? raiaOUserGid;
   @JsonKey(name: 'sordid')
-  final String sordidOMobile;
+  final String? sordidOMobile;
   @JsonKey(name: 'd7x52p')
-  final String d7x52pOBizChannel;
+  final String? d7x52pOBizChannel;
   @JsonKey(name: 's377v5')
-  final String s377v5OBizLine;
+  final String? s377v5OBizLine;
   @JsonKey(name: 'presage')
-  final String presageOVerCode;
+  final String? presageOVerCode;
   @JsonKey(name: 'snafu')
   final String? snafuOVerImageCode;
   @JsonKey(name: 'ac0as4')
   final String? ac0as4OMobileSn;
   @JsonKey(name: 'source')
-  final int source;
+  final int? source;
   @JsonKey(name: 'pageId')
-  final String pageId;
+  final String? pageId;
   @JsonKey(name: 'vsu233')
   final String? vsu233OCancelCode;
   @JsonKey(name: 'tgif')
@@ -1818,7 +1818,7 @@ class TraderPwdResetReq {
   @JsonKey(name: 'raia')
   final String? raiaOUserGid;
   @JsonKey(name: 'password')
-  final String password;
+  final String? password;
   @JsonKey(name: 'sordid')
   final String? sordidOMobile;
   @JsonKey(name: 'presage')
@@ -2016,13 +2016,13 @@ class LoginPwdResetReq {
   });
 
   @JsonKey(name: 'sordid')
-  final String sordidOMobile;
+  final String? sordidOMobile;
   @JsonKey(name: 'password')
-  final String password;
+  final String? password;
   @JsonKey(name: 'ac0as4')
   final String? ac0as4OMobileSn;
   @JsonKey(name: 'presage')
-  final String presageOVerCode;
+  final String? presageOVerCode;
   @JsonKey(name: 'snafu')
   final String? snafuOVerImageCode;
   @JsonKey(name: 'd7x52p')
@@ -2161,15 +2161,15 @@ class CaptchaCheckReq {
   });
 
   @JsonKey(name: 'sordid')
-  final String sordidOMobile;
+  final String? sordidOMobile;
   @JsonKey(name: 'raia')
   final int? raiaOUserGid;
   @JsonKey(name: 'type')
-  final int type;
+  final int? type;
   @JsonKey(name: 'ac0as4')
-  final String ac0as4OMobileSn;
+  final String? ac0as4OMobileSn;
   @JsonKey(name: 'xwkarv')
-  final String xwkarvOImageCode;
+  final String? xwkarvOImageCode;
 
   factory CaptchaCheckReq.fromJson(Map<String, dynamic> json) =>
       _$CaptchaCheckReqFromJson(json);
@@ -2277,15 +2277,15 @@ class CodeVerifyReq {
   });
 
   @JsonKey(name: 'sordid')
-  final String sordidOMobile;
+  final String? sordidOMobile;
   @JsonKey(name: 'raia')
   final int? raiaOUserGid;
   @JsonKey(name: 'o4r2h6')
   final bool? o4r2h6OIsBvnMobile;
   @JsonKey(name: 'type')
-  final int type;
+  final int? type;
   @JsonKey(name: 'presage')
-  final String presageOVerCode;
+  final String? presageOVerCode;
   @JsonKey(name: 'z38e62')
   final String? z38e62OOrderGid;
   @JsonKey(name: 'ac0as4')
@@ -2451,9 +2451,9 @@ class CodeSendReq {
   });
 
   @JsonKey(name: 'sordid')
-  final String sordidOMobile;
+  final String? sordidOMobile;
   @JsonKey(name: 'type')
-  final String type;
+  final String? type;
   @JsonKey(name: 'j62tn1')
   final String? j62tn1OMsgType;
   @JsonKey(name: 'd7x52p')
@@ -2622,7 +2622,7 @@ class TrackReportReq {
   });
 
   @JsonKey(name: 'raia')
-  final String raiaOUserGid;
+  final String? raiaOUserGid;
   @JsonKey(name: 'z775ud')
   final String? z775udOAppVersion;
   @JsonKey(name: 'hk4762')
@@ -2956,7 +2956,7 @@ class VaCreateReq {
   const VaCreateReq({required this.raiaOUserGid});
 
   @JsonKey(name: 'raia')
-  final int raiaOUserGid;
+  final int? raiaOUserGid;
 
   factory VaCreateReq.fromJson(Map<String, dynamic> json) =>
       _$VaCreateReqFromJson(json);
@@ -3009,15 +3009,15 @@ class VoSubmitReq {
   });
 
   @JsonKey(name: 'raia')
-  final int raiaOUserGid;
+  final int? raiaOUserGid;
   @JsonKey(name: 'r5a4x8')
-  final int r5a4x8OLoanGid;
+  final int? r5a4x8OLoanGid;
   @JsonKey(name: 'krddvv')
-  final String krddvvOReference;
+  final String? krddvvOReference;
   @JsonKey(name: 'di6pi4')
-  final int di6pi4OTransferTime;
+  final int? di6pi4OTransferTime;
   @JsonKey(name: 'o12sd0')
-  final double o12sd0OAmount;
+  final double? o12sd0OAmount;
 
   factory VoSubmitReq.fromJson(Map<String, dynamic> json) =>
       _$VoSubmitReqFromJson(json);
@@ -3119,7 +3119,7 @@ class VaGetReq {
   const VaGetReq({required this.raiaOUserGid, this.r5a4x8OLoanGid});
 
   @JsonKey(name: 'raia')
-  final int raiaOUserGid;
+  final int? raiaOUserGid;
   @JsonKey(name: 'r5a4x8')
   final int? r5a4x8OLoanGid;
 
@@ -3204,11 +3204,11 @@ class RepayApplyReq {
   });
 
   @JsonKey(name: 'r5a4x8')
-  final int r5a4x8OLoanGid;
+  final int? r5a4x8OLoanGid;
   @JsonKey(name: 'raia')
-  final int raiaOUserGid;
+  final int? raiaOUserGid;
   @JsonKey(name: 'o12sd0')
-  final double o12sd0OAmount;
+  final double? o12sd0OAmount;
   @JsonKey(name: 'vnbh46')
   final int? vnbh46OBankCardGid;
   @JsonKey(name: 'bdvg46')
@@ -3555,9 +3555,9 @@ class RepayRecordReq {
   });
 
   @JsonKey(name: 'r5a4x8')
-  final int r5a4x8OLoanGid;
+  final int? r5a4x8OLoanGid;
   @JsonKey(name: 'raia')
-  final int raiaOUserGid;
+  final int? raiaOUserGid;
   @JsonKey(name: 'mahogany')
   final int? mahoganyORepaymentType;
   @JsonKey(name: 't1h91p')
@@ -3835,7 +3835,7 @@ class NoticeMainReq {
   const NoticeMainReq({required this.m52v00OPlatform});
 
   @JsonKey(name: 'm52v00')
-  final String m52v00OPlatform;
+  final String? m52v00OPlatform;
 
   factory NoticeMainReq.fromJson(Map<String, dynamic> json) =>
       _$NoticeMainReqFromJson(json);
@@ -3887,7 +3887,7 @@ class VersionCheckReq {
   const VersionCheckReq({required this.lutealOVersion});
 
   @JsonKey(name: 'luteal')
-  final String lutealOVersion;
+  final String? lutealOVersion;
 
   factory VersionCheckReq.fromJson(Map<String, dynamic> json) =>
       _$VersionCheckReqFromJson(json);
@@ -3943,7 +3943,7 @@ class ColoanGpReq {
   @JsonKey(name: 'raia')
   final String? raiaOUserGid;
   @JsonKey(name: 'd7x52p')
-  final String d7x52pOBizChannel;
+  final String? d7x52pOBizChannel;
   @JsonKey(name: 's377v5')
   final String? s377v5OBizLine;
 
@@ -4192,15 +4192,15 @@ class LoanConfirmReq {
   });
 
   @JsonKey(name: 'raia')
-  final int raiaOUserGid;
+  final int? raiaOUserGid;
   @JsonKey(name: 'z38e62')
-  final String z38e62OOrderGid;
+  final String? z38e62OOrderGid;
   @JsonKey(name: 'retiary')
-  final double retiaryOLoanAmount;
+  final double? retiaryOLoanAmount;
   @JsonKey(name: 'foreyard')
-  final int foreyardOProductId;
+  final int? foreyardOProductId;
   @JsonKey(name: 'c4s47h')
-  final String c4s47hOTransPassword;
+  final String? c4s47hOTransPassword;
   @JsonKey(name: 'vnbh46')
   final int? vnbh46OBankCardGid;
   @JsonKey(name: 'zebrine')
@@ -4435,9 +4435,9 @@ class PicUploadReqReq {
   });
 
   @JsonKey(name: 'raia')
-  final String raiaOUserGid;
+  final String? raiaOUserGid;
   @JsonKey(name: 'ha3xp9')
-  final int ha3xp9OPicType;
+  final int? ha3xp9OPicType;
   @JsonKey(name: 'x01y7q', defaultValue: <String>[])
   final List<String> x01y7qOBase64String;
 
@@ -4520,9 +4520,9 @@ class CollTimeReq {
   });
 
   @JsonKey(name: 'raia')
-  final int raiaOUserGid;
+  final int? raiaOUserGid;
   @JsonKey(name: 'e479lg')
-  final int e479lgOCollectTimeType;
+  final int? e479lgOCollectTimeType;
 
   factory CollTimeReq.fromJson(Map<String, dynamic> json) =>
       _$CollTimeReqFromJson(json);
@@ -4587,7 +4587,7 @@ class CheckFirstLoanReq {
   const CheckFirstLoanReq({required this.raiaOUserGid});
 
   @JsonKey(name: 'raia')
-  final int raiaOUserGid;
+  final int? raiaOUserGid;
 
   factory CheckFirstLoanReq.fromJson(Map<String, dynamic> json) =>
       _$CheckFirstLoanReqFromJson(json);
@@ -4637,9 +4637,9 @@ class LoanOrderReq {
   });
 
   @JsonKey(name: 'raia')
-  final int raiaOUserGid;
+  final int? raiaOUserGid;
   @JsonKey(name: 'z38e62')
-  final String z38e62OOrderGid;
+  final String? z38e62OOrderGid;
 
   factory LoanOrderReq.fromJson(Map<String, dynamic> json) =>
       _$LoanOrderReqFromJson(json);
@@ -4711,9 +4711,9 @@ class LoanPreInfoReq {
   });
 
   @JsonKey(name: 'raia')
-  final int raiaOUserGid;
+  final int? raiaOUserGid;
   @JsonKey(name: 'retiary')
-  final double retiaryOLoanAmount;
+  final double? retiaryOLoanAmount;
   @JsonKey(name: 'foreyard')
   final int? foreyardOProductId;
   @JsonKey(name: 'pinion')
@@ -4861,7 +4861,7 @@ class LoanFeeDetailReq {
   @JsonKey(name: 'raia')
   final String? raiaOUserGid;
   @JsonKey(name: 'd7x52p')
-  final String d7x52pOBizChannel;
+  final String? d7x52pOBizChannel;
   @JsonKey(name: 's377v5')
   final String? s377v5OBizLine;
 
@@ -4941,7 +4941,7 @@ class BankValidInfoReq {
   const BankValidInfoReq({required this.raiaOUserGid});
 
   @JsonKey(name: 'raia')
-  final int raiaOUserGid;
+  final int? raiaOUserGid;
 
   factory BankValidInfoReq.fromJson(Map<String, dynamic> json) =>
       _$BankValidInfoReqFromJson(json);
@@ -4994,15 +4994,15 @@ class AbandonReasonReq {
   });
 
   @JsonKey(name: 'raia')
-  final int raiaOUserGid;
+  final int? raiaOUserGid;
   @JsonKey(name: 'pageId')
-  final String pageId;
+  final String? pageId;
   @JsonKey(name: 'artifice', defaultValue: <Object>[])
   final List<Object> artificeOAbandonCode;
   @JsonKey(name: 'fl93q8')
   final String? fl93q8OAbandonReason;
   @JsonKey(name: 'ej04h8')
-  final String ej04h8OReasonVersion;
+  final String? ej04h8OReasonVersion;
 
   factory AbandonReasonReq.fromJson(Map<String, dynamic> json) =>
       _$AbandonReasonReqFromJson(json);
@@ -5107,13 +5107,13 @@ class FeedbackReq {
   });
 
   @JsonKey(name: 'raia')
-  final int raiaOUserGid;
+  final int? raiaOUserGid;
   @JsonKey(name: 'content')
   final String? content;
   @JsonKey(name: 'type')
   final String? type;
   @JsonKey(name: 'source')
-  final String source;
+  final String? source;
 
   factory FeedbackReq.fromJson(Map<String, dynamic> json) =>
       _$FeedbackReqFromJson(json);
@@ -5195,11 +5195,11 @@ class NeedAbandonReasonReq {
   });
 
   @JsonKey(name: 'raia')
-  final int raiaOUserGid;
+  final int? raiaOUserGid;
   @JsonKey(name: 'pageId')
-  final String pageId;
+  final String? pageId;
   @JsonKey(name: 'ej04h8')
-  final String ej04h8OReasonVersion;
+  final String? ej04h8OReasonVersion;
 
   factory NeedAbandonReasonReq.fromJson(Map<String, dynamic> json) =>
       _$NeedAbandonReasonReqFromJson(json);
@@ -5379,7 +5379,7 @@ class CheckCreditReq {
   const CheckCreditReq({required this.raiaOUserGid});
 
   @JsonKey(name: 'raia')
-  final int raiaOUserGid;
+  final int? raiaOUserGid;
 
   factory CheckCreditReq.fromJson(Map<String, dynamic> json) =>
       _$CheckCreditReqFromJson(json);
@@ -5754,9 +5754,9 @@ class CreditRecordReq {
   });
 
   @JsonKey(name: 'raia')
-  final int raiaOUserGid;
+  final int? raiaOUserGid;
   @JsonKey(name: 'sordid')
-  final String sordidOMobile;
+  final String? sordidOMobile;
   @JsonKey(name: 'garget')
   final int? gargetOBirthday;
   @JsonKey(name: 'merdeka')
@@ -6429,11 +6429,11 @@ class EmailCheckReq {
   });
 
   @JsonKey(name: 'raia')
-  final int raiaOUserGid;
+  final int? raiaOUserGid;
   @JsonKey(name: 'f31u3k')
   final String? f31u3kOEmail;
   @JsonKey(name: 'merdeka')
-  final String merdekaOIdCard;
+  final String? merdekaOIdCard;
 
   factory EmailCheckReq.fromJson(Map<String, dynamic> json) =>
       _$EmailCheckReqFromJson(json);
@@ -6509,7 +6509,7 @@ class HomeCouponReq {
   const HomeCouponReq({required this.raiaOUserGid});
 
   @JsonKey(name: 'raia')
-  final int raiaOUserGid;
+  final int? raiaOUserGid;
 
   factory HomeCouponReq.fromJson(Map<String, dynamic> json) =>
       _$HomeCouponReqFromJson(json);
@@ -6559,9 +6559,9 @@ class LoanCouponReq {
   });
 
   @JsonKey(name: 'raia')
-  final int raiaOUserGid;
+  final int? raiaOUserGid;
   @JsonKey(name: 'retiary')
-  final double retiaryOLoanAmount;
+  final double? retiaryOLoanAmount;
 
   factory LoanCouponReq.fromJson(Map<String, dynamic> json) =>
       _$LoanCouponReqFromJson(json);
@@ -6625,9 +6625,9 @@ class MyCouponReq {
   const MyCouponReq({required this.raiaOUserGid, required this.type});
 
   @JsonKey(name: 'raia')
-  final int raiaOUserGid;
+  final int? raiaOUserGid;
   @JsonKey(name: 'type')
-  final int type;
+  final int? type;
 
   factory MyCouponReq.fromJson(Map<String, dynamic> json) =>
       _$MyCouponReqFromJson(json);
@@ -6688,9 +6688,9 @@ class CouponGetReq {
   });
 
   @JsonKey(name: 'raia')
-  final String raiaOUserGid;
+  final String? raiaOUserGid;
   @JsonKey(name: 'a17s38')
-  final String a17s38OActivityGid;
+  final String? a17s38OActivityGid;
 
   factory CouponGetReq.fromJson(Map<String, dynamic> json) =>
       _$CouponGetReqFromJson(json);
@@ -6757,9 +6757,9 @@ class LandCouponReq {
   });
 
   @JsonKey(name: 'raia')
-  final String raiaOUserGid;
+  final String? raiaOUserGid;
   @JsonKey(name: 'a17s38')
-  final String a17s38OActivityGid;
+  final String? a17s38OActivityGid;
 
   factory LandCouponReq.fromJson(Map<String, dynamic> json) =>
       _$LandCouponReqFromJson(json);
@@ -6826,9 +6826,9 @@ class CouponPopReq {
   });
 
   @JsonKey(name: 'raia')
-  final String raiaOUserGid;
+  final String? raiaOUserGid;
   @JsonKey(name: 'a17s38')
-  final String a17s38OActivityGid;
+  final String? a17s38OActivityGid;
 
   factory CouponPopReq.fromJson(Map<String, dynamic> json) =>
       _$CouponPopReqFromJson(json);
@@ -6898,11 +6898,11 @@ class LoanBillReq {
   });
 
   @JsonKey(name: 'raia')
-  final int raiaOUserGid;
+  final int? raiaOUserGid;
   @JsonKey(name: 'size')
-  final int size;
+  final int? size;
   @JsonKey(name: 'current')
-  final int current;
+  final int? current;
   @JsonKey(name: 'd95091', defaultValue: <Object>[])
   final List<Object>? d95091ORepaymentStatus;
   @JsonKey(name: 'suff', defaultValue: <Object>[])
@@ -7007,7 +7007,7 @@ class BillStatusReq {
   });
 
   @JsonKey(name: 'r5a4x8')
-  final int r5a4x8OLoanGid;
+  final int? r5a4x8OLoanGid;
   @JsonKey(name: 'a4wq4j')
   final String? a4wq4jORenewAmountRate;
 
@@ -7077,7 +7077,7 @@ class BillListReq {
   const BillListReq({required this.raiaOUserGid});
 
   @JsonKey(name: 'raia')
-  final int raiaOUserGid;
+  final int? raiaOUserGid;
 
   factory BillListReq.fromJson(Map<String, dynamic> json) =>
       _$BillListReqFromJson(json);
@@ -7127,7 +7127,7 @@ class BillDetailReq {
   });
 
   @JsonKey(name: 'r5a4x8')
-  final int r5a4x8OLoanGid;
+  final int? r5a4x8OLoanGid;
   @JsonKey(name: 'a4wq4j')
   final String? a4wq4jORenewAmountRate;
 
@@ -7202,13 +7202,13 @@ class BillRepayReq {
   });
 
   @JsonKey(name: 'raia')
-  final int raiaOUserGid;
+  final int? raiaOUserGid;
   @JsonKey(name: 'r5a4x8')
   final int? r5a4x8OLoanGid;
   @JsonKey(name: 'size')
-  final int size;
+  final int? size;
   @JsonKey(name: 'current')
-  final int current;
+  final int? current;
 
   factory BillRepayReq.fromJson(Map<String, dynamic> json) =>
       _$BillRepayReqFromJson(json);
@@ -7287,9 +7287,9 @@ class HeadResp {
   const HeadResp({required this.code, required this.msg, this.data});
 
   @JsonKey(name: 'code')
-  final String code;
+  final String? code;
   @JsonKey(name: 'msg')
-  final String msg;
+  final String? msg;
   @JsonKey(name: 'data')
   final Object? data;
 
@@ -7508,23 +7508,23 @@ class MyBankCardResp$Item {
   });
 
   @JsonKey(name: 'vnbh46')
-  final int vnbh46OBankCardGid;
+  final int? vnbh46OBankCardGid;
   @JsonKey(name: 't1h91p')
-  final String t1h91pOBankName;
+  final String? t1h91pOBankName;
   @JsonKey(name: 'insolent')
-  final String insolentOBankCode;
+  final String? insolentOBankCode;
   @JsonKey(name: 'zebrine')
-  final String zebrineOCardNo;
+  final String? zebrineOCardNo;
   @JsonKey(name: 'tigon')
   final String? tigonOCardNoReal;
   @JsonKey(name: 'aot1ja')
-  final int aot1jaOBindType;
+  final int? aot1jaOBindType;
   @JsonKey(name: 'f31u3k')
   final String? f31u3kOEmail;
   @JsonKey(name: 'cvn')
-  final String cvn;
+  final String? cvn;
   @JsonKey(name: 'stuka')
-  final String stukaOExpiryDate;
+  final String? stukaOExpiryDate;
   @JsonKey(name: 'journey')
   final bool? journeyOIsValid;
   @JsonKey(name: 'moffie')
@@ -7728,7 +7728,7 @@ class BankVOResp$Item {
   @JsonKey(name: 'exonym')
   final String? exonymOBankGid;
   @JsonKey(name: 't1h91p')
-  final String t1h91pOBankName;
+  final String? t1h91pOBankName;
   @JsonKey(name: 'insolent')
   final String? insolentOBankCode;
   @JsonKey(name: 'song')
@@ -7829,7 +7829,7 @@ class BankBinResp {
   @JsonKey(name: 'exonym')
   final String? exonymOBankGid;
   @JsonKey(name: 't1h91p')
-  final String t1h91pOBankName;
+  final String? t1h91pOBankName;
   @JsonKey(name: 'insolent')
   final String? insolentOBankCode;
   @JsonKey(name: 'song')
@@ -7923,7 +7923,7 @@ class BindResultResp {
   const BindResultResp({required this.status, this.vx4165OFailReason});
 
   @JsonKey(name: 'status')
-  final int status;
+  final int? status;
   @JsonKey(name: 'vx4165')
   final String? vx4165OFailReason;
 
@@ -7989,9 +7989,9 @@ class BindCardResp {
   });
 
   @JsonKey(name: 'lyncean')
-  final int lynceanOBindcardGid;
+  final int? lynceanOBindcardGid;
   @JsonKey(name: 'vnbh46')
-  final int vnbh46OBankCardGid;
+  final int? vnbh46OBankCardGid;
   @JsonKey(name: 'zj1m73')
   final bool? zj1m73OIsBindSuccess;
 
@@ -8089,13 +8089,13 @@ class BankCardResp$Item {
   });
 
   @JsonKey(name: 'vnbh46')
-  final int vnbh46OBankCardGid;
+  final int? vnbh46OBankCardGid;
   @JsonKey(name: 't1h91p')
-  final String t1h91pOBankName;
+  final String? t1h91pOBankName;
   @JsonKey(name: 'insolent')
-  final String insolentOBankCode;
+  final String? insolentOBankCode;
   @JsonKey(name: 'zebrine')
-  final String zebrineOCardNo;
+  final String? zebrineOCardNo;
   @JsonKey(name: 's90dw0')
   final String? s90dw0OCciNumber;
   @JsonKey(name: 'f31u3k')
@@ -8473,7 +8473,7 @@ class CheckRegisterResp {
   @JsonKey(name: 'cressy')
   final bool? cressyOTraderPwd;
   @JsonKey(name: 'orcadian')
-  final bool orcadianOIsDeviceChange;
+  final bool? orcadianOIsDeviceChange;
   @JsonKey(name: 'assab')
   final String? assabODeviceChangeMsg;
 
@@ -8607,7 +8607,7 @@ class NeedCaptchaResp {
   const NeedCaptchaResp({required this.data});
 
   @JsonKey(name: 'data')
-  final bool data;
+  final bool? data;
 
   factory NeedCaptchaResp.fromJson(Map<String, dynamic> json) =>
       _$NeedCaptchaRespFromJson(json);
@@ -8654,13 +8654,13 @@ class RegisterResp {
   });
 
   @JsonKey(name: 'sordid')
-  final String sordidOMobile;
+  final String? sordidOMobile;
   @JsonKey(name: 'y260zp')
-  final String y260zpOToken;
+  final String? y260zpOToken;
   @JsonKey(name: 'name')
-  final String name;
+  final String? name;
   @JsonKey(name: 'raia')
-  final int raiaOUserGid;
+  final int? raiaOUserGid;
   @JsonKey(name: 'hik0qm')
   final int? hik0qmORegisterTime;
 
@@ -8764,7 +8764,7 @@ class UserInfoResp {
   });
 
   @JsonKey(name: 'name')
-  final String name;
+  final String? name;
   @JsonKey(name: 'bvn')
   final String? bvn;
   @JsonKey(name: 'merdeka')
@@ -8869,13 +8869,13 @@ class LoginResp {
   });
 
   @JsonKey(name: 'sordid')
-  final String sordidOMobile;
+  final String? sordidOMobile;
   @JsonKey(name: 'y260zp')
-  final String y260zpOToken;
+  final String? y260zpOToken;
   @JsonKey(name: 'name')
-  final String name;
+  final String? name;
   @JsonKey(name: 'raia')
-  final int raiaOUserGid;
+  final int? raiaOUserGid;
   @JsonKey(name: 'hik0qm')
   final int? hik0qmORegisterTime;
 
@@ -10741,9 +10741,9 @@ class RepayApplyResp {
   });
 
   @JsonKey(name: 'r5a4x8')
-  final int r5a4x8OLoanGid;
+  final int? r5a4x8OLoanGid;
   @JsonKey(name: 'raia')
-  final int raiaOUserGid;
+  final int? raiaOUserGid;
   @JsonKey(name: 'n410zd')
   final int? n410zdOLoanTime;
   @JsonKey(name: 'r5k31q')
@@ -11518,9 +11518,9 @@ class HomeInfoResp {
   });
 
   @JsonKey(name: 'bopomofo')
-  final int bopomofoOCreditStatus;
+  final int? bopomofoOCreditStatus;
   @JsonKey(name: 'rnpu7f')
-  final double rnpu7fOCreditLine;
+  final double? rnpu7fOCreditLine;
   @JsonKey(name: 'papuan')
   final HomeInfoResp$PapuanOLastRecordLoan? papuanOLastRecordLoan;
   @JsonKey(name: 'xu551u')
@@ -11538,9 +11538,9 @@ class HomeInfoResp {
   @JsonKey(name: 'grafter')
   final bool? grafterOIsWhiteUser;
   @JsonKey(name: 'za1s1e')
-  final double za1s1eOSpareCreditLine;
+  final double? za1s1eOSpareCreditLine;
   @JsonKey(name: 'u6n134')
-  final double u6n134OSpareCanBorrowAmount;
+  final double? u6n134OSpareCanBorrowAmount;
   @JsonKey(name: 'nailhead')
   final bool? nailheadOIsSpareLockAll;
   @JsonKey(name: 'lysogen')
@@ -11566,9 +11566,9 @@ class HomeInfoResp {
   @JsonKey(name: 'y934te')
   final double? y934teOTotalAmount;
   @JsonKey(name: 'yawn')
-  final int yawnOExpectTime;
+  final int? yawnOExpectTime;
   @JsonKey(name: 'undyed')
-  final bool undyedOHasLoan;
+  final bool? undyedOHasLoan;
 
   factory HomeInfoResp.fromJson(Map<String, dynamic> json) =>
       _$HomeInfoRespFromJson(json);
@@ -13583,21 +13583,21 @@ class LoanPreInfoResp {
   @JsonKey(name: 'raia')
   final int? raiaOUserGid;
   @JsonKey(name: 'r5k31q')
-  final int r5k31qODueTime;
+  final int? r5k31qODueTime;
   @JsonKey(name: 'retiary')
-  final double retiaryOLoanAmount;
+  final double? retiaryOLoanAmount;
   @JsonKey(name: 'plural')
-  final double pluralOReceiveAmount;
+  final double? pluralOReceiveAmount;
   @JsonKey(name: 'mt66nz')
   final double? mt66nzOReceiveSubAmount;
   @JsonKey(name: 'q922g5')
   final double? q922g5OReceiveAddAmount;
   @JsonKey(name: 'gateman')
-  final double gatemanORepaymentAmount;
+  final double? gatemanORepaymentAmount;
   @JsonKey(name: 'v4nyno')
   final int? v4nynoOFeeType;
   @JsonKey(name: 'e88wy1')
-  final double e88wy1OLoanFee;
+  final double? e88wy1OLoanFee;
   @JsonKey(name: 'b9h5nd')
   final double? b9h5ndOPreLoanFee;
   @JsonKey(name: 'l6v3np')
@@ -13609,7 +13609,7 @@ class LoanPreInfoResp {
   @JsonKey(name: 'h4f7x4')
   final double? h4f7x4OCoupon;
   @JsonKey(name: 'prelatic')
-  final String prelaticOReceiveAccount;
+  final String? prelaticOReceiveAccount;
   @JsonKey(name: 'qn9yim')
   final int? qn9yimOHasTransPwd;
   @JsonKey(name: 'lumberly')
@@ -13617,7 +13617,7 @@ class LoanPreInfoResp {
   @JsonKey(name: 'reprisal')
   final String? reprisalOReceiveAccountHash;
   @JsonKey(name: 'z38e62')
-  final String z38e62OOrderGid;
+  final String? z38e62OOrderGid;
   @JsonKey(name: 'unciform')
   final double? unciformOOriginationFee;
   @JsonKey(name: 'centiare')
@@ -13629,7 +13629,7 @@ class LoanPreInfoResp {
   @JsonKey(name: 'u04098')
   final bool? u04098OIsFirstLoan;
   @JsonKey(name: 'nkf6o5')
-  final bool nkf6o5OIsOtpValid;
+  final bool? nkf6o5OIsOtpValid;
   @JsonKey(name: 'taphouse', defaultValue: <String>[])
   final List<String>? taphouseOMobileList;
   @JsonKey(name: 'cadreman')
@@ -13664,7 +13664,7 @@ class LoanPreInfoResp {
   @JsonKey(name: 'satCheckStatus')
   final int? satCheckStatus;
   @JsonKey(name: 'cressy')
-  final bool cressyOTraderPwd;
+  final bool? cressyOTraderPwd;
 
   factory LoanPreInfoResp.fromJson(Map<String, dynamic> json) =>
       _$LoanPreInfoRespFromJson(json);
@@ -14444,7 +14444,7 @@ class BankValidInfoResp {
   @JsonKey(name: 'q732r7')
   final String? q732r7OCardTransMessage;
   @JsonKey(name: 'zebrine')
-  final String zebrineOCardNo;
+  final String? zebrineOCardNo;
   @JsonKey(name: 'exhedra')
   final int? exhedraOAccountType;
 
@@ -15142,13 +15142,13 @@ class CheckCreditResp {
   });
 
   @JsonKey(name: 'raia')
-  final int raiaOUserGid;
+  final int? raiaOUserGid;
   @JsonKey(name: 'bopomofo')
-  final int bopomofoOCreditStatus;
+  final int? bopomofoOCreditStatus;
   @JsonKey(name: 'rnpu7f')
-  final double rnpu7fOCreditLine;
+  final double? rnpu7fOCreditLine;
   @JsonKey(name: 'nookie')
-  final double nookieOCanBorrowAmount;
+  final double? nookieOCanBorrowAmount;
   @JsonKey(name: 'foreyard')
   final int? foreyardOProductId;
 
@@ -15565,7 +15565,7 @@ class CreditRecordResp {
   @JsonKey(name: 'i9145g')
   final String? i9145gOMsgBtn02;
   @JsonKey(name: 'data')
-  final int data;
+  final int? data;
 
   factory CreditRecordResp.fromJson(Map<String, dynamic> json) =>
       _$CreditRecordRespFromJson(json);
@@ -16627,19 +16627,19 @@ class BillDetailResp {
   @JsonKey(name: 'n410zd')
   final int? n410zdOLoanTime;
   @JsonKey(name: 'r5k31q')
-  final int r5k31qODueTime;
+  final int? r5k31qODueTime;
   @JsonKey(name: 'coanda')
   final int? coandaODueDays;
   @JsonKey(name: 'faciend')
   final double? faciendOOverdueFee;
   @JsonKey(name: 'retiary')
-  final double retiaryOLoanAmount;
+  final double? retiaryOLoanAmount;
   @JsonKey(name: 'plural')
-  final double pluralOReceiveAmount;
+  final double? pluralOReceiveAmount;
   @JsonKey(name: 'e88wy1')
-  final double e88wy1OLoanFee;
+  final double? e88wy1OLoanFee;
   @JsonKey(name: 'gateman')
-  final double gatemanORepaymentAmount;
+  final double? gatemanORepaymentAmount;
   @JsonKey(name: 'wantonly')
   final double? wantonlyOLoanLeftAmount;
   @JsonKey(name: 'h4f7x4')
@@ -20669,11 +20669,11 @@ class PicUploadReqResp$Data {
   });
 
   @JsonKey(name: 'raia')
-  final String raiaOUserGid;
+  final String? raiaOUserGid;
   @JsonKey(name: 'gx0f5k')
-  final String gx0f5kOPictureUrl;
+  final String? gx0f5kOPictureUrl;
   @JsonKey(name: 'nvooyf')
-  final String nvooyfOObjectKey;
+  final String? nvooyfOObjectKey;
 
   factory PicUploadReqResp$Data.fromJson(Map<String, dynamic> json) =>
       _$PicUploadReqResp$DataFromJson(json);
@@ -21159,9 +21159,9 @@ class LoanPreInfoResp$GlacisORepaymentPlanList$Item {
   @JsonKey(name: 'fl92yr')
   final double? fl92yrOBillLeftAmount;
   @JsonKey(name: 'uqm81l')
-  final double uqm81lOPrincipalAmount;
+  final double? uqm81lOPrincipalAmount;
   @JsonKey(name: 'v6e22n')
-  final double v6e22nOPrincipalLeftAmount;
+  final double? v6e22nOPrincipalLeftAmount;
   @JsonKey(name: 'wantonly')
   final double? wantonlyOLoanLeftAmount;
   @JsonKey(name: 'pinion')
@@ -25006,9 +25006,9 @@ class BillDetailResp$GlacisORepaymentPlanList$Item {
   @JsonKey(name: 'fl92yr')
   final double? fl92yrOBillLeftAmount;
   @JsonKey(name: 'uqm81l')
-  final double uqm81lOPrincipalAmount;
+  final double? uqm81lOPrincipalAmount;
   @JsonKey(name: 'v6e22n')
-  final double v6e22nOPrincipalLeftAmount;
+  final double? v6e22nOPrincipalLeftAmount;
   @JsonKey(name: 'wantonly')
   final double? wantonlyOLoanLeftAmount;
   @JsonKey(name: 'pinion')
