@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_echo/common/app_theme.dart';
 import 'package:flutter_echo/common/constants.dart';
-import 'package:flutter_echo/common/page_consumer.dart';
 import 'package:flutter_echo/providers/login_provider.dart';
 import 'package:flutter_echo/ui/widget_helper.dart';
 import 'package:flutter_echo/ui/widgets/common_button.dart';
@@ -55,15 +54,6 @@ class _LoginPhonePageState extends State<LoginPhonePage> {
 
   @override
   Widget build(BuildContext context) {
-    return ChangeNotifierProvider(
-      create: (BuildContext context) => LoginProvider(),
-      builder: (context, child) {
-        return PageConsumer<LoginProvider>(child: _buildPage(context));
-      },
-    );
-  }
-
-  Widget _buildPage(BuildContext context) {
     return Scaffold(
       backgroundColor: NowColors.c0xFFF3F3F5,
       resizeToAvoidBottomInset: true,
@@ -102,7 +92,7 @@ class _LoginPhonePageState extends State<LoginPhonePage> {
                 Expanded(
                   child: SingleChildScrollView(
                     padding: EdgeInsets.symmetric(horizontal: 12.w),
-                    child: _buildContentCard(),
+                    child: _buildContentCard(context),
                   ),
                 ),
               ],
@@ -114,7 +104,8 @@ class _LoginPhonePageState extends State<LoginPhonePage> {
   }
 
   /// 构建内容卡片
-  Widget _buildContentCard() {
+  Widget _buildContentCard(BuildContext context) {
+    final loginProvider = Provider.of<LoginProvider>(context, listen: false);
     return Container(
       margin: EdgeInsets.only(top: 36.h),
       padding: EdgeInsets.fromLTRB(16.w, 28.h, 16.w, 40.h),
@@ -128,17 +119,11 @@ class _LoginPhonePageState extends State<LoginPhonePage> {
           // 手机号输入框
           _buildPhoneField(),
           SizedBox(height: 32.h),
-          Consumer<LoginProvider>(
-            builder: (context, provider, _) {
-              void onNextPressed() {
-                provider.nextStep(mobile: _controller.text);
-              }
-
-              return EchoPrimaryButton(
-                text: 'Siguiente',
-                onPressed: _isPhoneValid ? onNextPressed : null,
-              );
-            },
+          EchoPrimaryButton(
+            text: 'Siguiente',
+            onPressed: _isPhoneValid
+                ? () => loginProvider.checkRegister(_controller.text)
+                : null,
           ),
         ],
       ),

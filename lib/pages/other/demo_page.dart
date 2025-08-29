@@ -270,8 +270,7 @@ class _DemoPageState extends State<DemoPage> {
             title: '登录验证码输入页面',
             icon: Icons.verified_rounded,
             color: NowColors.c0xFF3288F1,
-            onPressed: () =>
-                context.push('${AppRouter.loginCode}?phone=1234567890'),
+            onPressed: () => context.push(AppRouter.loginCode),
           ),
 
           _buildTestButton(
@@ -279,8 +278,7 @@ class _DemoPageState extends State<DemoPage> {
             title: '登录密码输入页面',
             icon: Icons.password_rounded,
             color: NowColors.c0xFF3288F1,
-            onPressed: () =>
-                context.push('${AppRouter.loginPassword}?phone=1234567890'),
+            onPressed: () => context.push(AppRouter.loginPassword),
           ),
 
           _buildTestButton(

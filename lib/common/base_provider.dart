@@ -8,35 +8,38 @@ import 'package:fluttertoast/fluttertoast.dart';
 
 class BaseProvider extends ChangeNotifier {
   final apiService = ApiController(AppConst.baseUrl);
-  LoadingEvent? loading;
-  String? navRoute;
-  String? errorCode;
-  ApiResponse? apiError;
+  bool? _loading;
+  String? _location;
+  ApiResponse? _apiError;
 
   /// 执行网络请求，并自动管理 loading/error
-  Future<bool> launchRequest({
+  Future<bool> launchRequest(
+    Future Function() action, {
     bool showLoading = true,
-    bool consumeError = true,
-    required Future Function() onRequest,
+    bool toastError = true,
+    Function(String?, String?)? onError,
   }) async {
     dynamic error;
     try {
-      if (showLoading) loading = LoadingEvent.showLoading();
-      errorCode = null;
+      if (showLoading) _loading = true;
+      _apiError = null;
       notifyListeners();
-      await onRequest();
+      await action();
       return true;
     } catch (e, s) {
       debugLog('ApiError', error: e, stackTrace: s);
       error = e;
       return false;
     } finally {
-      if (showLoading) loading = LoadingEvent.closeLoading();
+      if (showLoading) _loading = false;
       notifyListeners();
       if (error != null) {
         if (error is ApiResponse) {
-          onApiResponseError(error);
-        } else if (error! is DioException) {
+          if (!_handleApiError(error)) {
+            if (toastError) Fluttertoast.showToast(msg: error.msg);
+            onError?.call(error.code, error.msg);
+          }
+        } else if (!error is DioException) {
           Fluttertoast.showToast(msg: error.toString());
         }
         error = null;
@@ -44,17 +47,23 @@ class BaseProvider extends ChangeNotifier {
     }
   }
 
-  void onApiResponseError(ApiResponse apiResp) {
-    Fluttertoast.showToast(msg: apiResp.msg);
+  /// 全局响应code处理，返回是否拦截
+  bool _handleApiError(ApiResponse apiResp) {
+    return false;
   }
-}
 
-class LoadingEvent {
-  final bool value;
+  bool? get loading => _loading;
 
-  LoadingEvent(this.value);
+  String? get location => _location;
 
-  factory LoadingEvent.showLoading() => LoadingEvent(true);
+  ApiResponse? get apiError => _apiError;
 
-  factory LoadingEvent.closeLoading() => LoadingEvent(false);
+  void consumeLoading() => _loading = null;
+
+  void consumeNavigation() => _location = null;
+
+  void navigation(String destination) {
+    _location = destination;
+    notifyListeners();
+  }
 }

@@ -16,19 +16,18 @@ class PageConsumer<T extends BaseProvider> extends StatelessWidget {
         WidgetsBinding.instance.addPostFrameCallback((_) {
           final loading = provider.loading;
           if (loading != null) {
-            final showLoading = loading.value;
-            if (showLoading) {
+            if (loading) {
               LoadingDialog.show(context);
             } else {
               final navigator = Navigator.of(context, rootNavigator: true);
               if (navigator.canPop()) navigator.pop();
             }
-            provider.loading = null;
+            provider.consumeLoading();
           }
-          final route = provider.navRoute;
-          if (route != null) {
-            context.push(route);
-            provider.navRoute = null;
+          final location = provider.location;
+          if (location != null) {
+            GoRouter.of(context).push(location);
+            provider.consumeNavigation();
           }
         });
         return child!;

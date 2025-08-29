@@ -1,3 +1,4 @@
+import 'package:flutter_echo/common/page_consumer.dart';
 import 'package:flutter_echo/pages/after/after_page.dart';
 import 'package:flutter_echo/pages/confirm/confirm_page.dart';
 import 'package:flutter_echo/pages/login/login_code_page.dart';
@@ -12,7 +13,9 @@ import 'package:flutter_echo/pages/submit/step_basic_page.dart';
 import 'package:flutter_echo/pages/submit/step_contact_page.dart';
 import 'package:flutter_echo/pages/submit/step_result_page.dart';
 import 'package:flutter_echo/pages/submit/step_work_page.dart';
+import 'package:flutter_echo/providers/login_provider.dart';
 import 'package:go_router/go_router.dart';
+import 'package:provider/provider.dart';
 
 /// 应用路由配置
 class AppRouter {
@@ -39,28 +42,32 @@ class AppRouter {
       /// 主页面
       GoRoute(path: main, builder: (context, state) => const MainPage()),
 
-      /// 登录页面-手机号输入
-      GoRoute(
-        path: loginPhone,
-        builder: (context, state) => const LoginPhonePage(),
-      ),
-
-      /// 登录页面-验证码输入
-      GoRoute(
-        path: loginCode,
-        builder: (context, state) {
-          final phone = state.uri.queryParameters[NavKey.phone] ?? '';
-          return LoginCodePage(phoneNumber: phone);
+      ShellRoute(
+        builder: (context, state, child) {
+          return ChangeNotifierProvider(
+            create: (context) => LoginProvider(),
+            builder: (context, _) => PageConsumer<LoginProvider>(child: child),
+          );
         },
-      ),
+        routes: [
+          /// 登录页面-手机号输入
+          GoRoute(
+            path: loginPhone,
+            builder: (context, state) => const LoginPhonePage(),
+          ),
 
-      /// 登录页面-密码输入
-      GoRoute(
-        path: loginPassword,
-        builder: (context, state) {
-          final phone = state.uri.queryParameters[NavKey.phone] ?? '';
-          return LoginPasswordPage(phoneNumber: phone);
-        },
+          /// 登录页面-验证码输入
+          GoRoute(
+            path: loginCode,
+            builder: (context, state) => const LoginCodePage(),
+          ),
+
+          /// 登录页面-密码输入
+          GoRoute(
+            path: loginPassword,
+            builder: (context, state) => const LoginPasswordPage(),
+          ),
+        ],
       ),
 
       /// 设置登录密码页面
