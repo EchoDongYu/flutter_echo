@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_echo/common/app_theme.dart';
 import 'package:flutter_echo/common/constants.dart';
+import 'package:flutter_echo/common/page_consumer.dart';
 import 'package:flutter_echo/providers/login_provider.dart';
 import 'package:flutter_echo/ui/widget_helper.dart';
 import 'package:flutter_echo/ui/widgets/common_button.dart';
@@ -56,7 +57,9 @@ class _LoginPhonePageState extends State<LoginPhonePage> {
   Widget build(BuildContext context) {
     return ChangeNotifierProvider(
       create: (BuildContext context) => LoginProvider(),
-      builder: (context, child) => _buildPage(context),
+      builder: (context, child) {
+        return PageConsumer<LoginProvider>(child: _buildPage(context));
+      },
     );
   }
 
@@ -128,7 +131,7 @@ class _LoginPhonePageState extends State<LoginPhonePage> {
           Consumer<LoginProvider>(
             builder: (context, provider, _) {
               void onNextPressed() {
-                provider.nextStep(context, mobile: _controller.text);
+                provider.nextStep(mobile: _controller.text);
               }
 
               return EchoPrimaryButton(
