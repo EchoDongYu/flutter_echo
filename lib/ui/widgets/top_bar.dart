@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_echo/pages/app_router.dart';
 import 'package:flutter_echo/utils/drawable_utils.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
@@ -27,7 +28,13 @@ class EchoTopBar extends StatelessWidget {
           // 返回按钮
           if (showBack)
             InkWell(
-              onTap: () => context.pop(),
+              onTap: () {
+                if (context.canPop()) {
+                  context.pop();
+                } else {
+                  context.pushReplacement(AppRouter.main);
+                }
+              },
               borderRadius: const BorderRadius.all(Radius.circular(24)),
               child: Padding(
                 padding: const EdgeInsets.all(10),

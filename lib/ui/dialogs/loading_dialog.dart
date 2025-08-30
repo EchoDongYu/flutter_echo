@@ -28,7 +28,7 @@ class LoadingDialog {
   }
 
   static void hide(BuildContext context) {
-    final navigatorState = Navigator.of(context, rootNavigator: true);
-    if (navigatorState.canPop()) navigatorState.pop();
+    final navigator = Navigator.of(context, rootNavigator: true);
+    if (navigator.canPop()) navigator.pop();
   }
 }

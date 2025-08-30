@@ -1,8 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_echo/common/app_theme.dart';
+import 'package:flutter_echo/pages/app_router.dart';
+import 'package:flutter_echo/ui/dialog_helper.dart';
 import 'package:flutter_echo/ui/widgets/top_bar.dart';
+import 'package:flutter_echo/utils/context_ext.dart';
 import 'package:flutter_echo/utils/drawable_utils.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:go_router/go_router.dart';
 
 class MinePage extends StatelessWidget {
   const MinePage({super.key});
@@ -95,7 +99,7 @@ class MinePage extends StatelessWidget {
                       SizedBox(height: 12.h),
                       _buildCard3(),
                       SizedBox(height: 12.h),
-                      _buildCard4(),
+                      _buildCard4(context),
                     ],
                   ),
                 ),
@@ -264,7 +268,7 @@ class MinePage extends StatelessWidget {
     );
   }
 
-  Widget _buildCard4() {
+  Widget _buildCard4(BuildContext context) {
     return Container(
       width: double.infinity,
       padding: EdgeInsets.fromLTRB(16.w, 20.h, 16.w, 24.h),
@@ -294,7 +298,22 @@ class MinePage extends StatelessWidget {
           _buildCard4Item(
             icon: Drawable.iconMineH4,
             text: 'Cerrar\nsesión',
-            onTap: () {},
+            onTap: () async {
+              final result = await DialogHelper.showPromptDialog(
+                context: context,
+                title: "Cerrar sesión",
+                content: "¿Estás seguro de cerrar sesión?",
+                confirmText: "Confirmar",
+                cancelText: "Cancelar",
+              );
+              if (context.mounted) {
+                if (result == true) {
+                  context.pushReplacement(AppRouter.loginPhone);
+                } else {
+                  context.showNormalSnack('Cancelar');
+                }
+              }
+            },
           ),
         ],
       ),
