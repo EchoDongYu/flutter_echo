@@ -150,7 +150,6 @@ class HomePage extends StatelessWidget {
   Widget _buildBottomBody() {
     return Container(
       width: double.infinity,
-      height: 212.h,
       padding: EdgeInsets.fromLTRB(20.w, 20.h, 16.w, 20.h),
       decoration: const BoxDecoration(
         color: Colors.white,
@@ -160,14 +159,15 @@ class HomePage extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          Padding(
-            padding: EdgeInsets.symmetric(vertical: 17.h),
+          SizedBox(
+            height: 140.h,
             child: Stack(
               alignment: Alignment.center,
               children: [
                 VerticalDivider(width: 2.w, color: NowColors.c0xFFD8D8D8),
                 Column(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  mainAxisSize: MainAxisSize.max,
                   children: [_buildStepDot(), _buildStepDot(), _buildStepDot()],
                 ),
               ],
@@ -176,7 +176,7 @@ class HomePage extends StatelessWidget {
           SizedBox(width: 20.w),
           Expanded(
             child: Column(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              spacing: 20.h,
               children: [
                 _buildStepItem(0),
                 _buildStepItem(1),
@@ -206,8 +206,7 @@ class HomePage extends StatelessWidget {
   Widget _buildStepItem(int index) {
     return Container(
       width: double.infinity,
-      height: 45.h,
-      padding: EdgeInsets.symmetric(horizontal: 20.w),
+      padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 10.h),
       decoration: const BoxDecoration(
         color: Color(0xFFF4F3F2),
         borderRadius: BorderRadius.all(Radius.circular(24)),

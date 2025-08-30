@@ -71,7 +71,6 @@ class _MainPageState extends State<MainPage> {
   Widget _buildBottomBar() {
     return Container(
       width: double.infinity,
-      constraints: BoxConstraints(minHeight: 60.h, maxHeight: 65.h),
       margin: EdgeInsets.symmetric(horizontal: 16.w, vertical: 12.h),
       decoration: BoxDecoration(
         color: const Color(0xD9FFFFFF),
@@ -91,18 +90,18 @@ class _MainPageState extends State<MainPage> {
     final isActive = _currentPage == index;
     return InkWell(
       onTap: () => _controller.jumpToPage(index),
-      child: ConstrainedBox(
+      child: Container(
+        padding: EdgeInsets.symmetric(vertical: 8.h),
         constraints: BoxConstraints(minWidth: 120.w),
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          mainAxisSize: MainAxisSize.min,
+          spacing: 2.h,
           children: [
-            SizedBox(height: 8.h),
             Image.asset(
               isActive ? bottomItems[index].first : bottomItems[index].second,
               width: 28.r,
               height: 28.r,
             ),
-            SizedBox(height: 2.h),
             Text(
               bottomItems[index].third,
               style: TextStyle(
@@ -112,7 +111,6 @@ class _MainPageState extends State<MainPage> {
                 height: 14 / 10,
               ),
             ),
-            SizedBox(height: 8.h),
           ],
         ),
       ),

@@ -11,7 +11,7 @@ class DeviceVerifyDialog extends StatefulWidget {
   /// 手机号码
   final String phoneNumber;
   final VoidCallback onClosing;
-  final Function(String) onConfirm;
+  final Function(Map) onConfirm;
 
   const DeviceVerifyDialog({
     super.key,
@@ -340,7 +340,7 @@ class _DeviceVerifyDialogState extends State<DeviceVerifyDialog> {
       ),
       child: EchoPrimaryButton(
         text: 'Código de verificación',
-        onPressed: () => widget.onConfirm(_verCtrl.text),
+        onPressed: () => widget.onConfirm({'first': _verCtrl.text}),
       ),
     );
   }

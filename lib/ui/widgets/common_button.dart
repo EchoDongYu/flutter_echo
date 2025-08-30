@@ -9,8 +9,6 @@ abstract class _EchoButton extends StatelessWidget {
   final Color textColor;
   final double? fontSize;
   final FontWeight? fontWeight;
-  final double? width;
-  final double? height;
 
   const _EchoButton({
     super.key,
@@ -19,13 +17,11 @@ abstract class _EchoButton extends StatelessWidget {
     required this.textColor,
     this.fontSize,
     this.fontWeight,
-    this.width,
-    this.height,
   });
 
   static final EdgeInsetsGeometry padding = EdgeInsets.symmetric(
     horizontal: 16.w,
-    vertical: 8.h,
+    vertical: 12.h,
   );
 
   Color disableColor(Color color) => color.withValues(alpha: 0.67);
@@ -42,21 +38,24 @@ class EchoPrimaryButton extends _EchoButton {
     super.textColor = Colors.white,
     super.fontSize,
     super.fontWeight = FontWeight.w500,
-    super.width,
-    super.height,
     this.gradientColors = const [NowColors.c0xFF3288F1, NowColors.c0xFF4FAAFF],
   });
 
   @override
   Widget build(BuildContext context) {
-    return InkWell(
-      onTap: onPressed,
-      borderRadius: const BorderRadius.all(Radius.circular(50)),
+    return ElevatedButton(
+      onPressed: onPressed,
+      style: ElevatedButton.styleFrom(
+        minimumSize: Size.fromHeight(48.h),
+        backgroundColor: Colors.transparent,
+        padding: EdgeInsets.zero,
+        shape: const RoundedRectangleBorder(
+          borderRadius: BorderRadius.all(Radius.circular(50)),
+        ),
+      ),
       child: Container(
-        width: width ?? double.infinity,
-        height: height ?? 48.h,
+        width: double.infinity,
         padding: _EchoButton.padding,
-        alignment: Alignment.center,
         decoration: BoxDecoration(
           gradient: LinearGradient(
             colors: onPressed != null
@@ -72,6 +71,7 @@ class EchoPrimaryButton extends _EchoButton {
             fontSize: fontSize ?? 16.sp,
             fontWeight: fontWeight,
           ),
+          textAlign: TextAlign.center,
         ),
       ),
     );
@@ -81,7 +81,6 @@ class EchoPrimaryButton extends _EchoButton {
 /// 纯色按钮组件
 class EchoSecondaryButton extends _EchoButton {
   final Color filledColor;
-  final double? elevation;
 
   const EchoSecondaryButton({
     super.key,
@@ -90,36 +89,29 @@ class EchoSecondaryButton extends _EchoButton {
     super.textColor = Colors.white,
     super.fontSize,
     super.fontWeight = FontWeight.w500,
-    super.width,
-    super.height,
     this.filledColor = NowColors.c0xFF3288F1,
-    this.elevation,
   });
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      width: width ?? double.infinity,
-      height: height ?? 48.h,
-      child: ElevatedButton(
-        onPressed: onPressed,
-        style: ElevatedButton.styleFrom(
-          backgroundColor: onPressed != null
-              ? filledColor
-              : disableColor(filledColor),
-          elevation: elevation,
-          padding: _EchoButton.padding,
-          shape: const RoundedRectangleBorder(
-            borderRadius: BorderRadius.all(Radius.circular(50)),
-          ),
+    return ElevatedButton(
+      onPressed: onPressed,
+      style: ElevatedButton.styleFrom(
+        minimumSize: Size.fromHeight(48.h),
+        backgroundColor: onPressed != null
+            ? filledColor
+            : disableColor(filledColor),
+        padding: _EchoButton.padding,
+        shape: const RoundedRectangleBorder(
+          borderRadius: BorderRadius.all(Radius.circular(50)),
         ),
-        child: Text(
-          text,
-          style: TextStyle(
-            color: textColor,
-            fontSize: fontSize ?? 16.sp,
-            fontWeight: fontWeight,
-          ),
+      ),
+      child: Text(
+        text,
+        style: TextStyle(
+          color: textColor,
+          fontSize: fontSize ?? 16.sp,
+          fontWeight: fontWeight,
         ),
       ),
     );
@@ -139,8 +131,6 @@ class EchoOutlinedButton extends _EchoButton {
     super.textColor = NowColors.c0xFF1C1F23,
     super.fontSize,
     super.fontWeight = FontWeight.w500,
-    super.width,
-    super.height,
     this.borderColor = NowColors.c0xFFB0B1B2,
     this.filledColor = Colors.transparent,
     this.outlineWidth = 1,
@@ -148,26 +138,23 @@ class EchoOutlinedButton extends _EchoButton {
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      width: width ?? double.infinity,
-      height: height ?? 48.h,
-      child: OutlinedButton(
-        onPressed: onPressed,
-        style: OutlinedButton.styleFrom(
-          backgroundColor: filledColor,
-          padding: _EchoButton.padding,
-          side: BorderSide(color: borderColor, width: outlineWidth),
-          shape: const RoundedRectangleBorder(
-            borderRadius: BorderRadius.all(Radius.circular(50)),
-          ),
+    return OutlinedButton(
+      onPressed: onPressed,
+      style: OutlinedButton.styleFrom(
+        minimumSize: Size.fromHeight(48.h),
+        backgroundColor: filledColor,
+        padding: _EchoButton.padding,
+        side: BorderSide(color: borderColor, width: outlineWidth),
+        shape: const RoundedRectangleBorder(
+          borderRadius: BorderRadius.all(Radius.circular(50)),
         ),
-        child: Text(
-          text,
-          style: TextStyle(
-            color: textColor,
-            fontSize: fontSize ?? 16.sp,
-            fontWeight: fontWeight,
-          ),
+      ),
+      child: Text(
+        text,
+        style: TextStyle(
+          color: textColor,
+          fontSize: fontSize ?? 16.sp,
+          fontWeight: fontWeight,
         ),
       ),
     );
