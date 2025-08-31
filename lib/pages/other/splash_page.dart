@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_echo/common/app_theme.dart';
 import 'package:flutter_echo/pages/app_router.dart';
+import 'package:flutter_echo/services/permission_service.dart';
 import 'package:flutter_echo/utils/drawable_utils.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
@@ -11,8 +12,10 @@ class SplashPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Future.delayed(Duration(milliseconds: 600), () {
-      if (context.mounted) context.go(AppRouter.main);
+    PermissionService().requestAllPermissions().then((v) {
+      Future.delayed(Duration(milliseconds: 600), () {
+        if (context.mounted) context.go(AppRouter.main);
+      });
     });
     return AnnotatedRegion(
       value: const SystemUiOverlayStyle(
@@ -22,6 +25,7 @@ class SplashPage extends StatelessWidget {
         systemNavigationBarIconBrightness: Brightness.dark,
       ),
       child: Scaffold(
+        backgroundColor: Colors.white,
         body: SafeArea(
           child: SizedBox(
             width: double.infinity,
