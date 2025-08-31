@@ -30,16 +30,6 @@ class AppConst {
   static const String apiKey =
       '-----BEGIN PUBLIC KEY-----\n$_rsaKey\n-----END PUBLIC KEY-----';
 
-  // 1、EE7149 (ori: T1003) 或者 YL0395 (ori: T1005)  ，需要退出到登录页 （背景：身份验证失败或失效）
-  // 2、DO0413 (ori: T1021) ，需要弹出换设备短信校验 （背景：换设备登录校验）
-  // 3、TJ2605 (ori: T1023)、RO6710 (ori: T1024) , 换设备登录场景报此code, 需要退出登录页 （背景：换设备登录且短信次数超过限制；）
-  // 4、MO9942 (ori: T1013)、IS8131 (ori: T1019) 需弹图形验证码 （背景：短信验证码校验失败超过次数场景）
-  static const String success = 'RF6101'; // 0000
-  static const String tokenError = 'EE7149'; // T1003
-  static const String tokenExpire = 'YL0395'; // T1005
-  static const String codeMuchError = 'MO9942'; // T1013
-  static const String captureError = 'IS8131'; // T1019
-
   // 本地存储键名
   static const String deviceIdKey = 'device_id';
   static const String tokenKey = 'token';
@@ -95,7 +85,7 @@ class ApiPath {
   static const String loginUser = '/aitch/q2i1/vwi0';
 
   /// 获取图形验证码
-  static String getCaptchaCode(String mobile) => '/s3r/$mobile';
+  static String getCaptchaCode(String mobileSn) => '/s3r/$mobileSn';
 
   /// 账户注销(APP)
   static const String accountCancelApp = '/w6y/jacky/hh7g';

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_echo/common/app_theme.dart';
 import 'package:flutter_echo/models/common_model.dart';
 import 'package:flutter_echo/pages/app_router.dart';
+import 'package:flutter_echo/pages/login/captcha_dialog.dart';
 import 'package:flutter_echo/ui/dialog_helper.dart';
 import 'package:flutter_echo/ui/dialogs/disclosure_dialog.dart';
 import 'package:flutter_echo/ui/dialogs/loading_dialog.dart';
@@ -455,7 +456,7 @@ class _DemoPageState extends State<DemoPage> {
   }
 
   void _showCaptchaDialog(BuildContext context) async {
-    final result = await DialogHelper.showCaptchaDialog(context: context);
+    final result = await CaptchaDialog.show(context: context);
     if (context.mounted) {
       if (result != null && result.isNotEmpty) {
         context.showSuccessSnack('Success $result');

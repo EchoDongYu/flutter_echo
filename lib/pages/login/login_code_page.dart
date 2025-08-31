@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_echo/common/app_theme.dart';
 import 'package:flutter_echo/pages/app_router.dart';
+import 'package:flutter_echo/pages/login/captcha_dialog.dart';
 import 'package:flutter_echo/providers/login_provider.dart';
 import 'package:flutter_echo/ui/widget_helper.dart';
 import 'package:flutter_echo/ui/widgets/common_button.dart';
@@ -37,13 +38,18 @@ class _LoginCodePageState extends State<LoginCodePage> {
   @override
   void initState() {
     super.initState();
-    _startCountdown();
-    // 为隐藏输入框添加监听器
     _controller.addListener(_onCodeChanged);
-    // 页面加载完成后自动聚焦
     WidgetsBinding.instance.addPostFrameCallback((_) {
-      _focusNode.requestFocus();
+      final loginProvider = Provider.of<LoginProvider>(context, listen: false);
+      loginProvider.needCheckCaptcha();
     });
+    //_startCountdown();
+    // 为隐藏输入框添加监听器
+    //_controller.addListener(_onCodeChanged);
+    // 页面加载完成后自动聚焦
+    // WidgetsBinding.instance.addPostFrameCallback((_) {
+    //   _focusNode.requestFocus();
+    // });
   }
 
   @override
@@ -126,6 +132,22 @@ class _LoginCodePageState extends State<LoginCodePage> {
 
   @override
   Widget build(BuildContext context) {
+    return Consumer<LoginProvider>(
+      builder: (context, provider, child) {
+        WidgetsBinding.instance.addPostFrameCallback((_) async {
+          if (provider.needCaptcha == true) {
+            provider.needCaptcha = null;
+            final code = await CaptchaDialog.show(context: context);
+            if (code != null) provider.checkCaptchaCode(code);
+          }
+        });
+        return child!;
+      },
+      child: _buildPage(context),
+    );
+  }
+
+  Widget _buildPage(BuildContext context) {
     return Scaffold(
       backgroundColor: NowColors.c0xFFF3F3F5,
       resizeToAvoidBottomInset: true,

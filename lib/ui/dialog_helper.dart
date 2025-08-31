@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_echo/models/common_model.dart';
-import 'package:flutter_echo/pages/login/captcha_dialog.dart';
 import 'package:flutter_echo/pages/login/code_mode_dialog.dart';
 import 'package:flutter_echo/pages/login/device_verify_dialog.dart';
 import 'package:flutter_echo/pages/login/retain_login_dialog.dart';
@@ -64,24 +63,6 @@ class DialogHelper {
       builder: (context) => CompensationDialog(
         onConfirm: () => context.pop(true),
         onClosing: () => context.pop(false),
-      ),
-    );
-  }
-
-  /// 显示图形验证码弹窗
-  static Future<String?> showCaptchaDialog({required BuildContext context}) {
-    return showModalBottomSheet<String>(
-      context: context,
-      enableDrag: false,
-      isDismissible: false,
-      isScrollControlled: true,
-      builder: (context) => AnimatedPadding(
-        padding: MediaQuery.of(context).viewInsets,
-        duration: const Duration(milliseconds: 100),
-        child: CaptchaDialog(
-          onConfirm: (code) => context.pop(code),
-          onClosing: () => context.pop(),
-        ),
       ),
     );
   }

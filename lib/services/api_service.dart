@@ -21,31 +21,30 @@ class Api {
   }
 
   /// [type] 验证码类型：1注册验证码；2修改登录密码；3修改交易密码；4 借款验证码； 5换设备验证码；6 账户注销 ; 7 登录验证码
-  static Future<NeedCaptchaResp> needCheckCaptcha({
+  static Future<bool?> needCheckCaptcha({
     required String mobile,
     required int type,
-  }) {
-    return _apiService.post(
+  }) async {
+    final needCheck = await _apiService.post(
       ApiPath.needCheckCaptcha,
       body: NeedCaptchaReq(sordidOMobile: mobile, type: type).toJson(),
-      convert: (json) => NeedCaptchaResp.fromJson(json),
     );
-  }
-
-  static Future<CaptchaGetResp> getCaptchaCode({required String mobile}) {
-    return _apiService.post(ApiPath.getCaptchaCode(mobile));
+    if (!needCheck) {
+      await sendVerificationCode(mobile: mobile, type: type.toString());
+    }
+    return needCheck;
   }
 
   /// [type] 验证码类型：1注册验证码；2修改登录密码；3修改交易密码；4借款验证码；5登录验证码
   /// [mobileSn] 设备号
   /// [imageCode] 图形验证码
-  static Future<CaptchaCheckResp> checkCaptchaCode({
+  static Future<bool> checkCaptchaCode({
     required String mobile,
     required int type,
-    required String mobileSn,
+    required String? mobileSn,
     required String imageCode,
   }) {
-    return _apiService.post(
+    return _apiService.postSt(
       ApiPath.checkCaptchaCode,
       body: CaptchaCheckReq(
         sordidOMobile: mobile,
@@ -53,20 +52,19 @@ class Api {
         ac0as4OMobileSn: mobileSn,
         xwkarvOImageCode: imageCode,
       ).toJson(),
-      convert: (json) => CaptchaCheckResp.fromJson(json),
     );
   }
 
   /// [type] 验证码类型：1注册验证码；2修改登录密码；3修改交易密码；4借款验证码；5登录验证码；6账户注销; 7 登录验证码
   /// [msgType] 消息类型：0:短信，1：语音，不填默认短信
   /// [dType] 消息类型:0短信（默认），1whatsapp
-  static Future<CodeSendResp> sendVerificationCode({
+  static Future<bool> sendVerificationCode({
     required String mobile,
     required String type,
     String? msgType,
     int? dType,
   }) {
-    return _apiService.post(
+    return _apiService.postSt(
       ApiPath.sendVerificationCode,
       body: CodeSendReq(
         sordidOMobile: mobile,
@@ -74,20 +72,19 @@ class Api {
         j62tn1OMsgType: msgType,
         n66w89ODtype: dType,
       ).toJson(),
-      convert: (json) => CodeSendResp.fromJson(json),
     );
   }
 
   /// [type] 验证码类型：1注册验证码；2修改登录密码；3修改交易密码；4借款验证码；5登录验证码
   /// [verifyCode] 验证码
   /// [imageCode] 图形验证码
-  static Future<CodeVerifyResp> checkVerificationCode({
+  static Future<bool> checkVerificationCode({
     required String mobile,
     required int type,
     required String verifyCode,
     String? imageCode,
   }) {
-    return _apiService.post(
+    return _apiService.postSt(
       ApiPath.checkVerificationCode,
       body: CodeVerifyReq(
         sordidOMobile: mobile,
@@ -95,7 +92,6 @@ class Api {
         presageOVerCode: verifyCode,
         snafuOVerImageCode: imageCode,
       ).toJson(),
-      convert: (json) => CodeVerifyResp.fromJson(json),
     );
   }
 
