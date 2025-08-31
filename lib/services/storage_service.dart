@@ -17,6 +17,10 @@ class LocalStorage {
   /// 初始化
   Future<void> init() async {
     _prefs = await SharedPreferences.getInstance();
+    if (_prefs.getString(AppConst.deviceIdKey) == null) {
+      final deviceId = await FlutterPlatform.getDeviceId();
+      await _prefs.setString(AppConst.deviceIdKey, deviceId!);
+    }
   }
 
   Future<bool> set(String key, dynamic object) async {
@@ -75,6 +79,8 @@ class LocalStorage {
   String? get token => _prefs.getString(AppConst.tokenKey);
 
   String? get userGid => _prefs.getString(AppConst.userGidKey);
+
+  String? get deviceId => _prefs.getString(AppConst.deviceIdKey);
 
   Future<void> logout() async {
     _prefs.remove(AppConst.tokenKey);
