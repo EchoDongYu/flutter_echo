@@ -3,6 +3,9 @@ class Drawable {
   Drawable._();
 
   static const String bgLoginTop = 'assets/images/bg_login_top.png';
+  static const String iconAboutCopy = 'assets/images/icon_about_copy.png';
+  static const String iconAboutForward = 'assets/images/icon_about_forward.png';
+  static const String iconAboutPhone = 'assets/images/icon_about_phone.png';
   static const String iconContact = 'assets/images/icon_contact.png';
   static const String iconEyeclose = 'assets/images/icon_eyeclose.png';
   static const String iconEyeopen = 'assets/images/icon_eyeopen.png';

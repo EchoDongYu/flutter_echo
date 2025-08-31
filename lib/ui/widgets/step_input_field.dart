@@ -94,7 +94,7 @@ class _StepInputFieldState extends State<StepInputField> {
           ),
         Container(
           width: double.infinity,
-          constraints: BoxConstraints(minHeight: 60.h),
+          constraints: BoxConstraints(minHeight: 62.h),
           decoration: BoxDecoration(
             borderRadius: const BorderRadius.all(Radius.circular(12)),
             border: Border.all(
@@ -115,7 +115,7 @@ class _StepInputFieldState extends State<StepInputField> {
                       Padding(
                         padding: EdgeInsets.only(
                           left: 12.w,
-                          top: 9.h,
+                          top: 8.h,
                           bottom: 4.h,
                         ),
                         child: Text(
@@ -156,7 +156,7 @@ class _StepInputFieldState extends State<StepInputField> {
                         contentPadding: EdgeInsets.only(
                           left: 12.w,
                           right: 12.w,
-                          bottom: 9.h,
+                          bottom: 8.h,
                         ),
                         prefix: widget.prefix,
                       ),

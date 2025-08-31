@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
-/// 授信状态页面
-class StepResultPage extends StatelessWidget {
-  const StepResultPage({super.key});
+/// 用户银行卡页面
+class UserBankPage extends StatelessWidget {
+  const UserBankPage({super.key});
 
   @override
   Widget build(BuildContext context) {

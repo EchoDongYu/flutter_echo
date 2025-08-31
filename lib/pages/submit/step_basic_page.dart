@@ -8,6 +8,7 @@ import 'package:flutter_echo/ui/widgets/step_select_field.dart';
 import 'package:flutter_echo/ui/widgets/top_bar.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
+/// 授信表单页面-基本信息
 class StepBasicPage extends StatefulWidget {
   const StepBasicPage({super.key});
 

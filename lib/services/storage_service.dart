@@ -70,6 +70,8 @@ class LocalStorage {
     return token != null && token.isNotEmpty;
   }
 
+  bool get showDisclosure => _prefs.getBool(AppConst.disclosureKey) != true;
+
   String? get token => _prefs.getString(AppConst.tokenKey);
 
   String? get userGid => _prefs.getString(AppConst.userGidKey);

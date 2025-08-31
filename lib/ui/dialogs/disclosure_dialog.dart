@@ -5,11 +5,11 @@ import 'package:flutter_echo/ui/widgets/common_button.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 /// 授权声明弹窗
-class PermissionDialog extends StatelessWidget {
+class DisclosureDialog extends StatelessWidget {
   final VoidCallback onAgree;
   final VoidCallback onDisagree;
 
-  const PermissionDialog({
+  const DisclosureDialog({
     super.key,
     required this.onAgree,
     required this.onDisagree,

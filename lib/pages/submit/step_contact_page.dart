@@ -9,6 +9,7 @@ import 'package:flutter_echo/utils/common_utils.dart';
 import 'package:flutter_echo/utils/drawable_utils.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
+/// 授信表单页面-联系人信息
 class StepContactPage extends StatefulWidget {
   const StepContactPage({super.key});
 

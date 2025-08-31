@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
-/// 还款页面
-class AfterPage extends StatelessWidget {
-  const AfterPage({super.key});
+/// 还款确认页面
+class RepayConfirmPage extends StatelessWidget {
+  const RepayConfirmPage({super.key});
 
   @override
   Widget build(BuildContext context) {

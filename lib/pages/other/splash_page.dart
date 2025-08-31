@@ -1,21 +1,33 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_echo/common/app_theme.dart';
+import 'package:flutter_echo/common/constants.dart';
 import 'package:flutter_echo/pages/app_router.dart';
 import 'package:flutter_echo/services/permission_service.dart';
+import 'package:flutter_echo/services/storage_service.dart';
+import 'package:flutter_echo/ui/dialogs/disclosure_dialog.dart';
 import 'package:flutter_echo/utils/drawable_utils.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
 
-class SplashPage extends StatelessWidget {
+/// 闪屏页面
+class SplashPage extends StatefulWidget {
   const SplashPage({super.key});
 
   @override
+  State<SplashPage> createState() => _SplashPageState();
+}
+
+class _SplashPageState extends State<SplashPage> {
+  bool _disclosureChecked = false;
+
+  @override
   Widget build(BuildContext context) {
-    PermissionService().requestAllPermissions().then((v) {
-      Future.delayed(Duration(milliseconds: 600), () {
-        if (context.mounted) context.go(AppRouter.main);
-      });
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      if (!_disclosureChecked) {
+        _checkDisclosure(context, () => context.go(AppRouter.main));
+        _disclosureChecked = true;
+      }
     });
     return AnnotatedRegion(
       value: const SystemUiOverlayStyle(
@@ -51,5 +63,31 @@ class SplashPage extends StatelessWidget {
         ),
       ),
     );
+  }
+
+  void _checkDisclosure(BuildContext context, Function() onFinish) {
+    if (LocalStorage().showDisclosure) {
+      showModalBottomSheet<bool>(
+        context: context,
+        enableDrag: false,
+        isDismissible: false,
+        isScrollControlled: true,
+        builder: (context) => PopScope(
+          canPop: false,
+          child: DisclosureDialog(
+            onAgree: () async {
+              context.pop();
+              await LocalStorage().set(AppConst.disclosureKey, true);
+              await PermissionService().requestAllPermissions();
+              Future.delayed(Duration(milliseconds: 500), onFinish);
+            },
+            onDisagree: () =>
+                SystemChannels.platform.invokeMethod('SystemNavigator.pop'),
+          ),
+        ),
+      );
+    } else {
+      Future.delayed(Duration(milliseconds: 500), onFinish);
+    }
   }
 }

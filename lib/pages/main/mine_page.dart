@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_echo/common/app_theme.dart';
 import 'package:flutter_echo/pages/app_router.dart';
-import 'package:flutter_echo/ui/dialog_helper.dart';
+import 'package:flutter_echo/pages/user/removal_dailog.dart';
+import 'package:flutter_echo/ui/dialogs/prompt_dialog.dart';
 import 'package:flutter_echo/ui/widgets/top_bar.dart';
 import 'package:flutter_echo/utils/context_ext.dart';
 import 'package:flutter_echo/utils/drawable_utils.dart';
@@ -93,11 +94,11 @@ class MinePage extends StatelessWidget {
                         ),
                       ),
                       SizedBox(height: 24.h),
-                      _buildCard1(),
+                      _buildCard1(context),
                       SizedBox(height: 12.h),
-                      _buildCard2(),
+                      _buildCard2(context),
                       SizedBox(height: 12.h),
-                      _buildCard3(),
+                      _buildCard3(context),
                       SizedBox(height: 12.h),
                       _buildCard4(context),
                     ],
@@ -111,7 +112,7 @@ class MinePage extends StatelessWidget {
     );
   }
 
-  Widget _buildCard1() {
+  Widget _buildCard1(BuildContext context) {
     return Container(
       width: double.infinity,
       padding: EdgeInsets.fromLTRB(16.w, 16.h, 6.w, 16.h),
@@ -151,7 +152,7 @@ class MinePage extends StatelessWidget {
     );
   }
 
-  Widget _buildCard2() {
+  Widget _buildCard2(BuildContext context) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       mainAxisSize: MainAxisSize.max,
@@ -160,12 +161,12 @@ class MinePage extends StatelessWidget {
         _buildCard2Item(
           icon: Drawable.iconMineLeft,
           text: 'Sobre nosotros',
-          onTap: () {},
+          onTap: () => context.push(AppRouter.aboutUs),
         ),
         _buildCard2Item(
           icon: Drawable.iconMineRight,
           text: 'Conta Bancária',
-          onTap: () {},
+          onTap: () => context.push(AppRouter.userBank),
         ),
       ],
     );
@@ -208,7 +209,7 @@ class MinePage extends StatelessWidget {
     );
   }
 
-  Widget _buildCard3() {
+  Widget _buildCard3(BuildContext context) {
     return Container(
       width: double.infinity,
       padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 22.h),
@@ -293,27 +294,12 @@ class MinePage extends StatelessWidget {
           _buildCard4Item(
             icon: Drawable.iconMineH3,
             text: 'Eliminación\nde cuenta',
-            onTap: () {},
+            onTap: () => _showRemovalDailog(context),
           ),
           _buildCard4Item(
             icon: Drawable.iconMineH4,
             text: 'Cerrar\nsesión',
-            onTap: () async {
-              final result = await DialogHelper.showPromptDialog(
-                context: context,
-                title: "Cerrar sesión",
-                content: "¿Estás seguro de cerrar sesión?",
-                confirmText: "Confirmar",
-                cancelText: "Cancelar",
-              );
-              if (context.mounted) {
-                if (result == true) {
-                  context.pushReplacement(AppRouter.loginPhone);
-                } else {
-                  context.showNormalSnack('Cancelar');
-                }
-              }
-            },
+            onTap: () => _showLogoutDialog(context),
           ),
         ],
       ),
@@ -344,6 +330,42 @@ class MinePage extends StatelessWidget {
             ),
           ],
         ),
+      ),
+    );
+  }
+
+  void _showLogoutDialog(BuildContext context) {
+    showDialog<bool>(
+      context: context,
+      builder: (context) => PromptDialog(
+        title: "Cerrar sesión",
+        content: "¿Estás seguro de cerrar sesión?",
+        confirmText: "Confirmar",
+        cancelText: "Cancelar",
+        onConfirm: () {
+          context.pop();
+          context.go(AppRouter.loginPhone);
+        },
+        onCancel: () {
+          context.pop();
+          context.showNormalSnack('Cancelar');
+        },
+      ),
+    );
+  }
+
+  void _showRemovalDailog(BuildContext context) {
+    showDialog<bool>(
+      context: context,
+      builder: (context) => RemovalDailog(
+        onConfirm: () {
+          context.pop();
+          context.showSuccessSnack('Confirm');
+        },
+        onCancel: () {
+          context.pop();
+          context.showNormalSnack('Cancelar');
+        },
       ),
     );
   }

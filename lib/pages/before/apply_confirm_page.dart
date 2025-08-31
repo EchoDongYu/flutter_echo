@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
-/// 借款页面
-class ConfirmPage extends StatelessWidget {
-  const ConfirmPage({super.key});
+/// 借款确认页面
+class ApplyConfirmPage extends StatelessWidget {
+  const ApplyConfirmPage({super.key});
 
   @override
   Widget build(BuildContext context) {

@@ -32,7 +32,7 @@ class EchoTopBar extends StatelessWidget {
                 if (context.canPop()) {
                   context.pop();
                 } else {
-                  context.pushReplacement(AppRouter.main);
+                  context.go(AppRouter.main);
                 }
               },
               borderRadius: const BorderRadius.all(Radius.circular(24)),

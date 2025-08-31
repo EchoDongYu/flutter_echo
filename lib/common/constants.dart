@@ -45,6 +45,7 @@ class AppConst {
   static const String tokenKey = 'token';
   static const String userGidKey = 'user_id';
   static const String userInfoKey = 'user_info';
+  static const String disclosureKey = 'disclosure'; //已同意披露
 }
 
 class ApiPath {

@@ -6,6 +6,7 @@ import 'package:flutter_echo/ui/widgets/step_select_field.dart';
 import 'package:flutter_echo/ui/widgets/top_bar.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
+/// 授信表单页面-工作信息
 class StepWorkPage extends StatefulWidget {
   const StepWorkPage({super.key});
 

@@ -1,10 +1,10 @@
 import 'package:flutter_echo/common/page_consumer.dart';
-import 'package:flutter_echo/pages/after/after_page.dart';
-import 'package:flutter_echo/pages/confirm/confirm_page.dart';
+import 'package:flutter_echo/pages/after/repay_confirm_page.dart';
+import 'package:flutter_echo/pages/before/apply_confirm_page.dart';
 import 'package:flutter_echo/pages/login/login_code_page.dart';
 import 'package:flutter_echo/pages/login/login_password_page.dart';
-import 'package:flutter_echo/pages/login/login_password_setup_page.dart';
 import 'package:flutter_echo/pages/login/login_phone_page.dart';
+import 'package:flutter_echo/pages/login/login_pwd_setup_page.dart';
 import 'package:flutter_echo/pages/main/main_page.dart';
 import 'package:flutter_echo/pages/other/demo_page.dart';
 import 'package:flutter_echo/pages/other/not_found_page.dart';
@@ -13,6 +13,11 @@ import 'package:flutter_echo/pages/submit/step_basic_page.dart';
 import 'package:flutter_echo/pages/submit/step_contact_page.dart';
 import 'package:flutter_echo/pages/submit/step_result_page.dart';
 import 'package:flutter_echo/pages/submit/step_work_page.dart';
+import 'package:flutter_echo/pages/user/about_us_page.dart';
+import 'package:flutter_echo/pages/user/reset_login_pwd_page.dart';
+import 'package:flutter_echo/pages/user/reset_trader_pwd_page.dart';
+import 'package:flutter_echo/pages/user/safety_verify_page.dart';
+import 'package:flutter_echo/pages/user/user_bank_page.dart';
 import 'package:flutter_echo/providers/login_provider.dart';
 import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
@@ -29,8 +34,13 @@ class AppRouter {
   static const String stepWork = '/step_work';
   static const String stepContact = '/step_contact';
   static const String stepResult = '/step_result';
-  static const String confirm = '/confirm';
-  static const String after = '/after';
+  static const String applyConfirm = '/apply_confirm';
+  static const String repayConfirm = '/repay_confirm';
+  static const String safetyVerify = '/safety_verify';
+  static const String resetLoginPwd = '/reset_login_pwd';
+  static const String resetTraderPwd = '/reset_trader_pwd';
+  static const String aboutUs = '/about_us';
+  static const String userBank = '/user_bank';
   static const String demo = '/demo';
 
   static final GoRouter router = GoRouter(
@@ -67,13 +77,13 @@ class AppRouter {
             path: loginPassword,
             builder: (context, state) => const LoginPasswordPage(),
           ),
-        ],
-      ),
 
-      /// 设置登录密码页面
-      GoRoute(
-        path: loginPwdSetup,
-        builder: (context, state) => const LoginPasswordSetupPage(),
+          /// 设置登录密码页面
+          GoRoute(
+            path: loginPwdSetup,
+            builder: (context, state) => const LoginPwdSetupPage(),
+          ),
+        ],
       ),
 
       /// 授信表单页面-基本信息
@@ -100,13 +110,43 @@ class AppRouter {
         builder: (context, state) => const StepResultPage(),
       ),
 
-      /// 借款页面
-      GoRoute(path: confirm, builder: (context, state) => const ConfirmPage()),
+      /// 借款确认页面
+      GoRoute(
+        path: applyConfirm,
+        builder: (context, state) => const ApplyConfirmPage(),
+      ),
 
-      /// 还款页面
-      GoRoute(path: after, builder: (context, state) => const AfterPage()),
+      /// 还款确认页面
+      GoRoute(
+        path: repayConfirm,
+        builder: (context, state) => const RepayConfirmPage(),
+      ),
 
-      /// Demo
+      /// 安全验证页面
+      GoRoute(
+        path: safetyVerify,
+        builder: (context, state) => const SafetyVerifyPage(),
+      ),
+
+      /// 重置登录密码页面
+      GoRoute(
+        path: resetLoginPwd,
+        builder: (context, state) => const ResetLoginPwdPage(),
+      ),
+
+      /// 重置交易密码页面
+      GoRoute(
+        path: resetTraderPwd,
+        builder: (context, state) => const ResetTraderPwdPage(),
+      ),
+
+      /// 关于我们页面
+      GoRoute(path: aboutUs, builder: (context, state) => const AboutUsPage()),
+
+      /// 用户银行卡页面
+      GoRoute(path: userBank, builder: (context, state) => const UserBankPage()),
+
+      /// 测试入口
       GoRoute(path: demo, builder: (context, state) => const DemoPage()),
     ],
 

@@ -3,8 +3,8 @@ import 'package:flutter_echo/common/app_theme.dart';
 import 'package:flutter_echo/models/common_model.dart';
 import 'package:flutter_echo/pages/app_router.dart';
 import 'package:flutter_echo/ui/dialog_helper.dart';
+import 'package:flutter_echo/ui/dialogs/disclosure_dialog.dart';
 import 'package:flutter_echo/ui/dialogs/loading_dialog.dart';
-import 'package:flutter_echo/ui/dialogs/permission_dialog.dart';
 import 'package:flutter_echo/ui/widgets/common_button.dart';
 import 'package:flutter_echo/utils/context_ext.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -98,6 +98,14 @@ class _DemoPageState extends State<DemoPage> {
       },
       body: Column(
         children: [
+          _buildTestButton(
+            context,
+            title: '删除被账号登录时提示弹窗',
+            icon: Icons.auto_delete_rounded,
+            color: const Color(0xFFDB8D15),
+            onPressed: () => _showRemovedDialog(context),
+          ),
+
           _buildTestButton(
             context,
             title: '版本升级弹窗',
@@ -289,6 +297,30 @@ class _DemoPageState extends State<DemoPage> {
             onPressed: () => context.push(AppRouter.loginPwdSetup),
           ),
 
+          _buildTestButton(
+            context,
+            title: '安全验证页面',
+            icon: Icons.password_rounded,
+            color: NowColors.c0xFFFF9817,
+            onPressed: () => context.push(AppRouter.safetyVerify),
+          ),
+
+          _buildTestButton(
+            context,
+            title: '重置登录密码页面',
+            icon: Icons.password_rounded,
+            color: NowColors.c0xFFFF9817,
+            onPressed: () => context.push(AppRouter.resetLoginPwd),
+          ),
+
+          _buildTestButton(
+            context,
+            title: '重置交易密码页面',
+            icon: Icons.password_rounded,
+            color: NowColors.c0xFFFF9817,
+            onPressed: () => context.push(AppRouter.resetTraderPwd),
+          ),
+
           // 业务流程测试
           _buildTestButton(
             context,
@@ -319,7 +351,7 @@ class _DemoPageState extends State<DemoPage> {
             title: '借款页面',
             icon: Icons.request_page_rounded,
             color: NowColors.c0xFF4FAAFF,
-            onPressed: () => context.push(AppRouter.confirm),
+            onPressed: () => context.push(AppRouter.applyConfirm),
           ),
 
           _buildTestButton(
@@ -327,7 +359,7 @@ class _DemoPageState extends State<DemoPage> {
             title: '还款页面',
             icon: Icons.request_page_rounded,
             color: NowColors.c0xFF3EB34D,
-            onPressed: () => context.push(AppRouter.after),
+            onPressed: () => context.push(AppRouter.repayConfirm),
           ),
         ],
       ),
@@ -537,7 +569,7 @@ class _DemoPageState extends State<DemoPage> {
   void _showStepConfirmDialog(BuildContext context) async {
     final result = await DialogHelper.showStepConfirmDialog(
       context: context,
-      items: PermissionDialog.permissionItems,
+      items: DisclosureDialog.permissionItems,
     );
     if (context.mounted) {
       if (result == true) {
@@ -605,6 +637,17 @@ class _DemoPageState extends State<DemoPage> {
 
   void _showPraiseDialog(BuildContext context) async {
     final result = await DialogHelper.showPraiseDialog(context: context);
+    if (context.mounted) {
+      if (result != null) {
+        context.showSuccessSnack('Confirm $result');
+      } else {
+        context.showNormalSnack('Cancel $result');
+      }
+    }
+  }
+
+  void _showRemovedDialog(BuildContext context) async {
+    final result = await DialogHelper.showRemovedDialog(context: context);
     if (context.mounted) {
       if (result != null) {
         context.showSuccessSnack('Confirm $result');

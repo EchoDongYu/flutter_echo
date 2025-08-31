@@ -10,8 +10,9 @@ import 'package:flutter_echo/pages/submit/pick_date_dialog.dart';
 import 'package:flutter_echo/pages/submit/pick_day_dialog.dart';
 import 'package:flutter_echo/pages/submit/pick_item_dialog.dart';
 import 'package:flutter_echo/pages/submit/step_bank_dialog.dart';
+import 'package:flutter_echo/pages/user/removed_dialog.dart';
 import 'package:flutter_echo/ui/dialogs/compensation_dialog.dart';
-import 'package:flutter_echo/ui/dialogs/permission_dialog.dart';
+import 'package:flutter_echo/ui/dialogs/disclosure_dialog.dart';
 import 'package:flutter_echo/ui/dialogs/praise_dialog.dart';
 import 'package:flutter_echo/ui/dialogs/prompt_dialog.dart';
 import 'package:flutter_echo/ui/dialogs/upgrade_dialog.dart';
@@ -46,7 +47,7 @@ class DialogHelper {
       enableDrag: false,
       isDismissible: false,
       isScrollControlled: true,
-      builder: (context) => PermissionDialog(
+      builder: (context) => DisclosureDialog(
         onAgree: () => context.pop(true),
         onDisagree: () => context.pop(false),
       ),
@@ -232,6 +233,14 @@ class DialogHelper {
         onReport: () => context.pop(2),
         onCancel: () => context.pop(),
       ),
+    );
+  }
+
+  /// 显示删除被账号登录时提示弹窗
+  static Future<bool?> showRemovedDialog({required BuildContext context}) {
+    return showDialog<bool>(
+      context: context,
+      builder: (context) => RemovedDialog(onConfirm: () => context.pop(true)),
     );
   }
 }

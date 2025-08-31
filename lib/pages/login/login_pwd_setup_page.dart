@@ -9,14 +9,14 @@ import 'package:flutter_echo/utils/drawable_utils.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 /// 设置登录密码页面
-class LoginPasswordSetupPage extends StatefulWidget {
-  const LoginPasswordSetupPage({super.key});
+class LoginPwdSetupPage extends StatefulWidget {
+  const LoginPwdSetupPage({super.key});
 
   @override
-  State<LoginPasswordSetupPage> createState() => _LoginPasswordSetupPageState();
+  State<LoginPwdSetupPage> createState() => _LoginPwdSetupPageState();
 }
 
-class _LoginPasswordSetupPageState extends State<LoginPasswordSetupPage> {
+class _LoginPwdSetupPageState extends State<LoginPwdSetupPage> {
   final List<TextEditingController> _controller = [
     TextEditingController(),
     TextEditingController(),

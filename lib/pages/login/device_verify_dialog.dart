@@ -176,11 +176,12 @@ class _DeviceVerifyDialogState extends State<DeviceVerifyDialog> {
               Text(
                 'Reenviar el código',
                 style: TextStyle(
-                  fontSize: 14.sp,
-                  fontWeight: FontWeight.w500,
                   color: NowColors.c0xFF3288F1,
+                  fontWeight: FontWeight.w500,
+                  fontSize: 14.sp,
                   height: 22 / 14,
                   decoration: TextDecoration.underline,
+                  decorationColor: NowColors.c0xFF3288F1,
                 ),
               ),
               Text(
