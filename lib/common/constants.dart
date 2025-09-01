@@ -95,7 +95,7 @@ class ApiPath {
   static const String loginUser = '/aitch/q2i1/vwi0';
 
   /// 获取图形验证码
-  static String getCaptchaCode(String mobileSn) => '/s3r/$mobileSn';
+  static String getCaptchaCode(String mobile) => '/s3r/$mobile';
 
   /// 账户注销(APP)
   static const String accountCancelApp = '/w6y/jacky/hh7g';

@@ -45,6 +45,13 @@ class _LoginPhonePageState extends State<LoginPhonePage> {
     }
   }
 
+  /// 下一步按钮点击
+  // void _onNextPressed() {
+  //   if (!_isPhoneValid) return;
+  //   final phone = _controller.text;
+  //   context.push('${AppRouter.loginCode}?${NavKey.phone}=$phone');
+  // }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(

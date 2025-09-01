@@ -1,11 +1,9 @@
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_echo/common/app_theme.dart';
 import 'package:flutter_echo/common/constants.dart';
-import 'package:flutter_echo/services/storage_service.dart';
 import 'package:flutter_echo/ui/widgets/common_button.dart';
 import 'package:flutter_echo/ui/widgets/step_input_field.dart';
-import 'package:flutter_echo/utils/drawable_utils.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 /// 图形验证码弹窗
@@ -23,30 +21,19 @@ class CaptchaDialog extends StatefulWidget {
   State<CaptchaDialog> createState() => _CaptchaDialogState();
 }
 
-class _CaptchaDialogState extends State<CaptchaDialog>
-    with SingleTickerProviderStateMixin {
-  late TextEditingController _codeCtrl;
-  late AnimationController _animationCtrl;
-  late String imageUrl;
+class _CaptchaDialogState extends State<CaptchaDialog> {
+  final TextEditingController _controller = TextEditingController();
 
   @override
   void initState() {
-    imageUrl = captchaCode();
-    _codeCtrl = TextEditingController();
-    _animationCtrl = AnimationController(vsync: this)
-      ..repeat(period: const Duration(seconds: 1));
     super.initState();
   }
 
   @override
   void dispose() {
-    _codeCtrl.dispose();
-    _animationCtrl.dispose();
+    _controller.dispose();
     super.dispose();
   }
-
-  String captchaCode() =>
-      "${AppConst.baseUrl}/s3r/${LocalStorage().deviceId}?t=${DateTime.now().millisecondsSinceEpoch}";
 
   @override
   Widget build(BuildContext context) {
@@ -153,11 +140,20 @@ class _CaptchaDialogState extends State<CaptchaDialog>
               ),
               SizedBox(height: 16.h),
               StepInputField(
-                controller: _codeCtrl,
+                controller: _controller,
                 hintText: 'Código de verificación',
                 maxLength: AppConst.codeLength,
-                keyboardType: TextInputType.text,
-                suffix: _buildCaptcha(),
+                keyboardType: TextInputType.number,
+                inputFormatters: [FilteringTextInputFormatter.digitsOnly],
+                suffix: Container(
+                  width: 104.w,
+                  height: 44.h,
+                  margin: const EdgeInsets.all(8),
+                  decoration: BoxDecoration(
+                    borderRadius: const BorderRadius.all(Radius.circular(8)),
+                    border: Border.all(color: NowColors.c0xFFC7C7C7, width: 1),
+                  ),
+                ),
               ),
               SizedBox(height: 16.h),
               RichText(
@@ -190,33 +186,6 @@ class _CaptchaDialogState extends State<CaptchaDialog>
     );
   }
 
-  Widget _buildCaptcha() {
-    return InkWell(
-      onTap: () => setState(() => imageUrl = captchaCode()),
-      borderRadius: const BorderRadius.all(Radius.circular(8)),
-      child: Container(
-        width: 104.w,
-        height: 44.h,
-        margin: const EdgeInsets.all(8),
-        padding: EdgeInsets.symmetric(vertical: 7.h),
-        decoration: BoxDecoration(
-          borderRadius: const BorderRadius.all(Radius.circular(8)),
-          border: Border.all(color: NowColors.c0xFFC7C7C7, width: 1),
-        ),
-        child: CachedNetworkImage(
-          imageUrl: imageUrl,
-          progressIndicatorBuilder: (context, _, _) {
-            return RotationTransition(
-              turns: _animationCtrl,
-              child: Image.asset(Drawable.iconCaptchaRefresh),
-            );
-          },
-          errorWidget: (_, _, _) => Image.asset(Drawable.iconCaptchaBrokea),
-        ),
-      ),
-    );
-  }
-
   /// 构建底部按钮
   Widget _buildBottomButton() {
     return Container(
@@ -233,7 +202,7 @@ class _CaptchaDialogState extends State<CaptchaDialog>
       ),
       child: EchoPrimaryButton(
         text: 'Código de verificación',
-        onPressed: () => widget.onConfirm(_codeCtrl.text),
+        onPressed: () => widget.onConfirm(_controller.text),
       ),
     );
   }

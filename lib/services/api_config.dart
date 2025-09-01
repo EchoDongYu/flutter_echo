@@ -19,8 +19,6 @@ class ApiController {
     ),
   );
 
-  Dio get dio => _dio;
-
   ApiController(String baseUrl) {
     _dio.options.baseUrl = baseUrl;
     _dio.interceptors.add(_ApiInterceptor());
@@ -40,22 +38,20 @@ class ApiController {
     Map<String, dynamic>? body,
     T Function(dynamic json)? convert,
   }) async {
-    final response = await _dio.post(path, data: body);
-    final apiResponse = ApiResponse.fromJson(response.data);
-    if (apiResponse.code == AppConst.success) {
-      if (convert != null) {
-        return convert(apiResponse.data);
+    try {
+      final response = await _dio.post(path, data: body);
+      final apiResponse = ApiResponse.fromJson(response.data);
+      if (apiResponse.code == AppConst.success) {
+        if (convert != null) {
+          return convert(apiResponse.data);
+        }
+        return apiResponse.data;
+      } else {
+        throw apiResponse;
       }
-      return apiResponse.data;
-    } else {
-      throw apiResponse;
+    } catch (e) {
+      rethrow;
     }
-  }
-
-  Future<bool> postSt(String path, {Map<String, dynamic>? body}) async {
-    final response = await _dio.post(path, data: body);
-    final apiResponse = ApiResponse.fromJson(response.data);
-    return apiResponse.code == AppConst.success;
   }
 }
 
@@ -73,7 +69,7 @@ class _ApiInterceptor extends Interceptor {
     final storage = LocalStorage();
     final token = storage.token;
     final userGid = storage.userGid;
-    final deviceId = storage.deviceId;
+    final deviceId = await storage.getDeviceId();
     options.headers.addAll({
       'Accept-Language': AppConst.languageCode, // es西语
       'ys6955': userGid, // 用户Gid
