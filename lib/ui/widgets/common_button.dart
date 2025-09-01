@@ -6,17 +6,19 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 abstract class _EchoButton extends StatelessWidget {
   final String text;
   final VoidCallback? onPressed;
-  final Color textColor;
+  final Color? textColor;
   final double? fontSize;
   final FontWeight? fontWeight;
+  final bool enable;
 
   const _EchoButton({
     super.key,
     required this.text,
     this.onPressed,
-    required this.textColor,
-    this.fontSize,
+    this.textColor,
     this.fontWeight,
+    this.fontSize,
+    required this.enable,
   });
 
   static final EdgeInsetsGeometry padding = EdgeInsets.symmetric(
@@ -36,15 +38,16 @@ class EchoPrimaryButton extends _EchoButton {
     required super.text,
     super.onPressed,
     super.textColor = Colors.white,
-    super.fontSize,
     super.fontWeight = FontWeight.w500,
+    super.fontSize,
+    super.enable = true,
     this.gradientColors = const [NowColors.c0xFF3288F1, NowColors.c0xFF4FAAFF],
   });
 
   @override
   Widget build(BuildContext context) {
     return ElevatedButton(
-      onPressed: onPressed,
+      onPressed: enable ? onPressed : null,
       style: ElevatedButton.styleFrom(
         minimumSize: Size.fromHeight(48.h),
         backgroundColor: Colors.transparent,
@@ -58,7 +61,7 @@ class EchoPrimaryButton extends _EchoButton {
         padding: _EchoButton.padding,
         decoration: BoxDecoration(
           gradient: LinearGradient(
-            colors: onPressed != null
+            colors: enable
                 ? gradientColors
                 : gradientColors.map(disableColor).toList(),
           ),
@@ -87,18 +90,19 @@ class EchoSecondaryButton extends _EchoButton {
     required super.text,
     super.onPressed,
     super.textColor = Colors.white,
-    super.fontSize,
     super.fontWeight = FontWeight.w500,
+    super.fontSize,
+    super.enable = true,
     this.filledColor = NowColors.c0xFF3288F1,
   });
 
   @override
   Widget build(BuildContext context) {
     return ElevatedButton(
-      onPressed: onPressed,
+      onPressed: enable ? onPressed : null,
       style: ElevatedButton.styleFrom(
         minimumSize: Size.fromHeight(48.h),
-        backgroundColor: onPressed != null
+        backgroundColor: enable
             ? filledColor
             : disableColor(filledColor),
         padding: _EchoButton.padding,
@@ -129,8 +133,9 @@ class EchoOutlinedButton extends _EchoButton {
     required super.text,
     super.onPressed,
     super.textColor = NowColors.c0xFF1C1F23,
-    super.fontSize,
     super.fontWeight = FontWeight.w500,
+    super.fontSize,
+    super.enable = true,
     this.borderColor = NowColors.c0xFFB0B1B2,
     this.filledColor = Colors.transparent,
     this.outlineWidth = 1,
@@ -139,7 +144,7 @@ class EchoOutlinedButton extends _EchoButton {
   @override
   Widget build(BuildContext context) {
     return OutlinedButton(
-      onPressed: onPressed,
+      onPressed: enable ? onPressed : null,
       style: OutlinedButton.styleFrom(
         minimumSize: Size.fromHeight(48.h),
         backgroundColor: filledColor,

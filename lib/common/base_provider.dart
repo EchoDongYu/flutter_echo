@@ -13,43 +13,39 @@ class BaseProvider extends ChangeNotifier {
   ApiResponse? _apiError;
 
   /// 执行网络请求，并自动管理 loading/error
-  Future<bool> launchRequest(
-    Future Function() action, {
+  Future<R?> launchRequest<R>(
+    Future<R?> action, {
     bool showLoading = true,
     bool toastError = true,
-    Function(String?, String?)? onError,
   }) async {
+    R? result;
     dynamic error;
     try {
       if (showLoading) _loading = true;
       _apiError = null;
       notifyListeners();
-      await action();
-      return true;
+      result = await action;
     } catch (e, s) {
       debugLog('ApiError', error: e, stackTrace: s);
       error = e;
-      return false;
     } finally {
       if (showLoading) _loading = false;
       notifyListeners();
       if (error != null) {
         if (error is ApiResponse) {
-          if (!_handleApiError(error)) {
-            if (toastError) Fluttertoast.showToast(msg: error.msg);
-            onError?.call(error.code, error.msg);
+          if (error.globalCode) {
+            _apiError = error;
+            notifyListeners();
+          } else if (toastError) {
+            Fluttertoast.showToast(msg: error.msg);
           }
-        } else if (!error is DioException) {
+        } else if (error is! DioException) {
           Fluttertoast.showToast(msg: error.toString());
         }
         error = null;
       }
     }
-  }
-
-  /// 全局响应code处理，返回是否拦截
-  bool _handleApiError(ApiResponse apiResp) {
-    return false;
+    return result;
   }
 
   bool? get loading => _loading;
@@ -61,6 +57,8 @@ class BaseProvider extends ChangeNotifier {
   void consumeLoading() => _loading = null;
 
   void consumeNavigation() => _location = null;
+
+  void consumeApiError() => _apiError = null;
 
   void navigation(String destination) {
     _location = destination;

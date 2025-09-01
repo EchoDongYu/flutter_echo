@@ -39,18 +39,9 @@ class _LoginPhonePageState extends State<LoginPhonePage> {
   void _onPhoneChanged() {
     final phoneValid = _controller.text.length == 8;
     if (_isPhoneValid != phoneValid) {
-      setState(() {
-        _isPhoneValid = phoneValid;
-      });
+      setState(() => _isPhoneValid = phoneValid);
     }
   }
-
-  /// 下一步按钮点击
-  // void _onNextPressed() {
-  //   if (!_isPhoneValid) return;
-  //   final phone = _controller.text;
-  //   context.push('${AppRouter.loginCode}?${NavKey.phone}=$phone');
-  // }
 
   @override
   Widget build(BuildContext context) {
@@ -121,9 +112,8 @@ class _LoginPhonePageState extends State<LoginPhonePage> {
           SizedBox(height: 32.h),
           EchoPrimaryButton(
             text: 'Siguiente',
-            onPressed: _isPhoneValid
-                ? () => loginProvider.checkRegister(_controller.text)
-                : null,
+            enable: _isPhoneValid,
+            onPressed: () => loginProvider.checkRegister(_controller.text),
           ),
         ],
       ),
