@@ -895,7 +895,7 @@ extension $NeedCaptchaReqExtension on NeedCaptchaReq {
 class RegisterReq {
   const RegisterReq({
     required this.sordidOMobile,
-    required this.password,
+    this.password,
     required this.presageOVerCode,
     this.vkql27OReqChannel,
     this.zebrassOReqSubChannel,
@@ -8462,8 +8462,7 @@ class CheckRegisterResp {
     this.qm5h5tOIsRegistered,
     this.fm50w8OLoginPwd,
     this.cressyOTraderPwd,
-    required this.orcadianOIsDeviceChange,
-    this.assabODeviceChangeMsg,
+    this.j1mnl2OExistLoginPwd,
   });
 
   @JsonKey(name: 'qm5h5t')
@@ -8472,10 +8471,8 @@ class CheckRegisterResp {
   final bool? fm50w8OLoginPwd;
   @JsonKey(name: 'cressy')
   final bool? cressyOTraderPwd;
-  @JsonKey(name: 'orcadian')
-  final bool? orcadianOIsDeviceChange;
-  @JsonKey(name: 'assab')
-  final String? assabODeviceChangeMsg;
+  @JsonKey(name: 'j1mnl2')
+  final bool? j1mnl2OExistLoginPwd;
 
   factory CheckRegisterResp.fromJson(Map<String, dynamic> json) =>
       _$CheckRegisterRespFromJson(json);
@@ -8504,18 +8501,10 @@ class CheckRegisterResp {
                   other.cressyOTraderPwd,
                   cressyOTraderPwd,
                 )) &&
-            (identical(
-                  other.orcadianOIsDeviceChange,
-                  orcadianOIsDeviceChange,
-                ) ||
+            (identical(other.j1mnl2OExistLoginPwd, j1mnl2OExistLoginPwd) ||
                 const DeepCollectionEquality().equals(
-                  other.orcadianOIsDeviceChange,
-                  orcadianOIsDeviceChange,
-                )) &&
-            (identical(other.assabODeviceChangeMsg, assabODeviceChangeMsg) ||
-                const DeepCollectionEquality().equals(
-                  other.assabODeviceChangeMsg,
-                  assabODeviceChangeMsg,
+                  other.j1mnl2OExistLoginPwd,
+                  j1mnl2OExistLoginPwd,
                 )));
   }
 
@@ -8527,8 +8516,7 @@ class CheckRegisterResp {
       const DeepCollectionEquality().hash(qm5h5tOIsRegistered) ^
       const DeepCollectionEquality().hash(fm50w8OLoginPwd) ^
       const DeepCollectionEquality().hash(cressyOTraderPwd) ^
-      const DeepCollectionEquality().hash(orcadianOIsDeviceChange) ^
-      const DeepCollectionEquality().hash(assabODeviceChangeMsg) ^
+      const DeepCollectionEquality().hash(j1mnl2OExistLoginPwd) ^
       runtimeType.hashCode;
 }
 
@@ -8537,17 +8525,13 @@ extension $CheckRegisterRespExtension on CheckRegisterResp {
     bool? qm5h5tOIsRegistered,
     bool? fm50w8OLoginPwd,
     bool? cressyOTraderPwd,
-    bool? orcadianOIsDeviceChange,
-    String? assabODeviceChangeMsg,
+    bool? j1mnl2OExistLoginPwd,
   }) {
     return CheckRegisterResp(
       qm5h5tOIsRegistered: qm5h5tOIsRegistered ?? this.qm5h5tOIsRegistered,
       fm50w8OLoginPwd: fm50w8OLoginPwd ?? this.fm50w8OLoginPwd,
       cressyOTraderPwd: cressyOTraderPwd ?? this.cressyOTraderPwd,
-      orcadianOIsDeviceChange:
-          orcadianOIsDeviceChange ?? this.orcadianOIsDeviceChange,
-      assabODeviceChangeMsg:
-          assabODeviceChangeMsg ?? this.assabODeviceChangeMsg,
+      j1mnl2OExistLoginPwd: j1mnl2OExistLoginPwd ?? this.j1mnl2OExistLoginPwd,
     );
   }
 
@@ -8555,8 +8539,7 @@ extension $CheckRegisterRespExtension on CheckRegisterResp {
     Wrapped<bool?>? qm5h5tOIsRegistered,
     Wrapped<bool?>? fm50w8OLoginPwd,
     Wrapped<bool?>? cressyOTraderPwd,
-    Wrapped<bool>? orcadianOIsDeviceChange,
-    Wrapped<String?>? assabODeviceChangeMsg,
+    Wrapped<bool?>? j1mnl2OExistLoginPwd,
   }) {
     return CheckRegisterResp(
       qm5h5tOIsRegistered:
@@ -8571,14 +8554,10 @@ extension $CheckRegisterRespExtension on CheckRegisterResp {
           (cressyOTraderPwd != null
               ? cressyOTraderPwd.value
               : this.cressyOTraderPwd),
-      orcadianOIsDeviceChange:
-          (orcadianOIsDeviceChange != null
-              ? orcadianOIsDeviceChange.value
-              : this.orcadianOIsDeviceChange),
-      assabODeviceChangeMsg:
-          (assabODeviceChangeMsg != null
-              ? assabODeviceChangeMsg.value
-              : this.assabODeviceChangeMsg),
+      j1mnl2OExistLoginPwd:
+      (j1mnl2OExistLoginPwd != null
+          ? j1mnl2OExistLoginPwd.value
+          : this.j1mnl2OExistLoginPwd),
     );
   }
 }

@@ -3,7 +3,6 @@ import 'package:flutter_echo/common/base_provider.dart';
 import 'package:flutter_echo/models/api_response.dart';
 import 'package:flutter_echo/pages/app_router.dart';
 import 'package:flutter_echo/pages/login/captcha_dialog.dart';
-import 'package:flutter_echo/providers/login_provider.dart';
 import 'package:flutter_echo/ui/dialogs/loading_dialog.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:go_router/go_router.dart';
@@ -44,9 +43,7 @@ class PageConsumer<T extends BaseProvider> extends StatelessWidget {
               GoRouter.of(context).go(AppRouter.loginPhone);
             } else if (apiError.needCaptcha) {
               final code = await CaptchaDialog.show(context: context);
-              if (provider is LoginProvider && code != null) {
-                await provider.checkCaptchaCode(code);
-              }
+              if (code != null) provider.onCaptchaCode(code);
             }
           }
         });

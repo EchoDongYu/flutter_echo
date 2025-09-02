@@ -3,16 +3,12 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_echo/common/app_theme.dart';
-import 'package:flutter_echo/pages/app_router.dart';
-import 'package:flutter_echo/pages/login/captcha_dialog.dart';
 import 'package:flutter_echo/providers/login_provider.dart';
 import 'package:flutter_echo/ui/widget_helper.dart';
 import 'package:flutter_echo/ui/widgets/common_button.dart';
 import 'package:flutter_echo/ui/widgets/top_bar.dart';
 import 'package:flutter_echo/utils/drawable_utils.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:fluttertoast/fluttertoast.dart';
-import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
 
 /// 登录-验证码输入页面
@@ -27,11 +23,6 @@ class _LoginCodePageState extends State<LoginCodePage> {
   final TextEditingController _controller = TextEditingController();
   final FocusNode _focusNode = FocusNode();
 
-  // 倒计时相关
-  Timer? _timer;
-  int _countdown = 60;
-  bool _canResend = false;
-
   // 验证码
   String _inputCode = '';
 
@@ -39,115 +30,42 @@ class _LoginCodePageState extends State<LoginCodePage> {
   void initState() {
     super.initState();
     _controller.addListener(_onCodeChanged);
-    WidgetsBinding.instance.addPostFrameCallback((_) {
+    WidgetsBinding.instance.addPostFrameCallback((_) async {
       final loginProvider = Provider.of<LoginProvider>(context, listen: false);
-      loginProvider.needCheckCaptcha();
+      final sendOk = await loginProvider.sendVerifyCode();
+      if (sendOk == true) _focusNode.requestFocus();
     });
-    //_startCountdown();
-    // 为隐藏输入框添加监听器
-    //_controller.addListener(_onCodeChanged);
-    // 页面加载完成后自动聚焦
-    // WidgetsBinding.instance.addPostFrameCallback((_) {
-    //   _focusNode.requestFocus();
-    // });
   }
 
   @override
   void dispose() {
-    _timer?.cancel();
     _controller.dispose();
     _focusNode.dispose();
     super.dispose();
   }
 
-  /// 开始倒计时
-  void _startCountdown() {
-    setState(() {
-      _countdown = 60;
-      _canResend = false;
-    });
-
-    _timer = Timer.periodic(const Duration(seconds: 1), (timer) {
-      if (_countdown > 0) {
-        setState(() {
-          _countdown--;
-        });
-      } else {
-        setState(() {
-          _canResend = true;
-        });
-        timer.cancel();
-      }
-    });
-  }
-
   /// 验证码输入变化监听
-  void _onCodeChanged() {
+  void _onCodeChanged() async {
     final value = _controller.text;
-    setState(() {
-      _inputCode = value;
-    });
+    setState(() => _inputCode = value);
+    final loginProvider = Provider.of<LoginProvider>(context, listen: false);
     // 如果输入完整，自动验证
     if (value.length == 4) {
       FocusScope.of(context).unfocus();
-      _verifyCode();
-    }
-  }
-
-  /// 重新发送验证码
-  void _resendCode() {
-    if (!_canResend) return;
-    // TODO: 实现重新发送验证码逻辑
-    //debugPrint('重新发送验证码到: ${widget.phoneNumber}');
-    _startCountdown();
-    Fluttertoast.showToast(
-      msg: 'Obtener código de verificación',
-      gravity: ToastGravity.CENTER,
-    );
-  }
-
-  /// 验证验证码
-  void _verifyCode() {
-    // TODO: 实现验证码验证逻辑
-    debugPrint('验证码: $_inputCode');
-    if (_inputCode == '1234') {
-      // 验证成功，跳转到主页面
-      context.go(AppRouter.main);
-    } else {
-      // 验证失败
-      Fluttertoast.showToast(
-        msg: 'Por favor ingrese correctamente el código de verificación',
-        gravity: ToastGravity.CENTER,
-      );
-      Future.delayed(const Duration(milliseconds: 500), () {
-        _controller.clear();
-        setState(() {
-          _inputCode = '';
+      final checkOk = await loginProvider.checkVerifyCode(value);
+      if (checkOk != true) {
+        Future.delayed(const Duration(milliseconds: 500), () {
+          _controller.clear();
+          setState(() => _inputCode = '');
+          // 清空后自动聚焦
+          _focusNode.requestFocus();
         });
-        // 清空后自动聚焦
-        _focusNode.requestFocus();
-      });
+      }
     }
   }
 
   @override
   Widget build(BuildContext context) {
-    return Consumer<LoginProvider>(
-      builder: (context, provider, child) {
-        WidgetsBinding.instance.addPostFrameCallback((_) async {
-          if (provider.needCaptcha == true) {
-            provider.needCaptcha = null;
-            final code = await CaptchaDialog.show(context: context);
-            if (code != null) provider.checkCaptchaCode(code);
-          }
-        });
-        return child!;
-      },
-      child: _buildPage(context),
-    );
-  }
-
-  Widget _buildPage(BuildContext context) {
     return Scaffold(
       backgroundColor: NowColors.c0xFFF3F3F5,
       resizeToAvoidBottomInset: true,
@@ -257,11 +175,16 @@ class _LoginCodePageState extends State<LoginCodePage> {
           _buildCodeField(),
           SizedBox(height: 32.h),
           // 重新发送按钮
-          EchoPrimaryButton(
-            text: _canResend
-                ? 'Reenviar el código'
-                : 'Reenviar (${_countdown}s)',
-            onPressed: _canResend ? _resendCode : null,
+          Consumer<LoginProvider>(
+            builder: (context, provider, _) {
+              return EchoPrimaryButton(
+                text: provider.countdown == 0
+                    ? 'Reenviar el código'
+                    : 'Reenviar (${provider.countdown}s)',
+                enable: provider.countdown == 0,
+                onPressed: () => provider.resendVerifyCode(),
+              );
+            },
           ),
         ],
       ),

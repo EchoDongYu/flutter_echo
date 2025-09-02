@@ -6,7 +6,7 @@ import 'package:flutter_echo/services/api_config.dart';
 import 'package:flutter_echo/utils/common_utils.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 
-class BaseProvider extends ChangeNotifier {
+abstract class BaseProvider extends ChangeNotifier {
   final apiService = ApiController(AppConst.baseUrl);
   bool? _loading;
   String? _location;
@@ -14,7 +14,7 @@ class BaseProvider extends ChangeNotifier {
 
   /// 执行网络请求，并自动管理 loading/error
   Future<R?> launchRequest<R>(
-    Future<R?> action, {
+    Future<R?> Function() action, {
     bool showLoading = true,
     bool toastError = true,
   }) async {
@@ -24,7 +24,7 @@ class BaseProvider extends ChangeNotifier {
       if (showLoading) _loading = true;
       _apiError = null;
       notifyListeners();
-      result = await action;
+      result = await action();
     } catch (e, s) {
       debugLog('ApiError', error: e, stackTrace: s);
       error = e;
@@ -64,4 +64,6 @@ class BaseProvider extends ChangeNotifier {
     _location = destination;
     notifyListeners();
   }
+
+  void onCaptchaCode(String code) {}
 }

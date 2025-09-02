@@ -25,14 +25,10 @@ class Api {
     required String mobile,
     required int type,
   }) async {
-    final needCheck = await _apiService.post(
+    return await _apiService.post(
       ApiPath.needCheckCaptcha,
       body: NeedCaptchaReq(sordidOMobile: mobile, type: type).toJson(),
     );
-    if (!needCheck) {
-      await sendVerificationCode(mobile: mobile, type: type.toString());
-    }
-    return needCheck;
   }
 
   /// [type] 验证码类型：1注册验证码；2修改登录密码；3修改交易密码；4借款验证码；5登录验证码
@@ -125,9 +121,9 @@ class Api {
   /// [dType] 消息类型:0短信（默认），1whatsapp
   static Future<RegisterResp> registerUser({
     required String mobile,
-    required String password,
     required String verifyCode,
     String? imageCode,
+    String? password,
     int? dType,
   }) {
     return _apiService.post(

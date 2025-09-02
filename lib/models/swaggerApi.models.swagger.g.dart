@@ -1323,8 +1323,7 @@ CheckRegisterResp _$CheckRegisterRespFromJson(Map<String, dynamic> json) =>
       qm5h5tOIsRegistered: json['qm5h5t'] as bool?,
       fm50w8OLoginPwd: json['fm50w8'] as bool?,
       cressyOTraderPwd: json['cressy'] as bool?,
-      orcadianOIsDeviceChange: json['orcadian'] as bool?,
-      assabODeviceChangeMsg: json['assab'] as String?,
+      j1mnl2OExistLoginPwd: json['j1mnl2'] as bool?,
     );
 
 Map<String, dynamic> _$CheckRegisterRespToJson(CheckRegisterResp instance) =>
@@ -1332,8 +1331,7 @@ Map<String, dynamic> _$CheckRegisterRespToJson(CheckRegisterResp instance) =>
       'qm5h5t': instance.qm5h5tOIsRegistered,
       'fm50w8': instance.fm50w8OLoginPwd,
       'cressy': instance.cressyOTraderPwd,
-      'orcadian': instance.orcadianOIsDeviceChange,
-      'assab': instance.assabODeviceChangeMsg,
+      'j1mnl2': instance.j1mnl2OExistLoginPwd,
     };
 
 WhiteListResp _$WhiteListRespFromJson(Map<String, dynamic> json) =>

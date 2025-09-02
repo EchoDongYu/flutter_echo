@@ -19,6 +19,9 @@ class ApiResponse {
       _$ApiResponseFromJson(json);
 
   Map<String, dynamic> toJson() => _$ApiResponseToJson(this);
+
+  factory ApiResponse.needCaptchaError() =>
+      ApiResponse(code: 'MO9942', msg: '', data: null);
 }
 
 // **成功** RF6101 (ori: 0000)
@@ -33,5 +36,5 @@ extension ApiResponseExtension on ApiResponse {
 
   bool get needCaptcha => code == 'MO9942' || code == 'IS8131';
 
-  bool get globalCode => needLogin || needLogin;
+  bool get globalCode => needLogin || needCaptcha;
 }
