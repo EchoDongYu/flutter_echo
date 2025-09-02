@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_echo/common/app_theme.dart';
 import 'package:flutter_echo/common/constants.dart';
+import 'package:flutter_echo/pages/login/retain_login_dialog.dart';
 import 'package:flutter_echo/providers/login_provider.dart';
 import 'package:flutter_echo/ui/widget_helper.dart';
 import 'package:flutter_echo/ui/widgets/common_button.dart';
@@ -9,6 +10,7 @@ import 'package:flutter_echo/ui/widgets/step_input_field.dart';
 import 'package:flutter_echo/ui/widgets/top_bar.dart';
 import 'package:flutter_echo/utils/drawable_utils.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
 
 /// 登录-手机号输入页面
@@ -62,7 +64,13 @@ class _LoginPhonePageState extends State<LoginPhonePage> {
           SafeArea(
             child: Column(
               children: [
-                EchoTopBar(title: 'Iniciar sesión Registrarse'),
+                EchoTopBar(
+                  title: 'Iniciar sesión Registrarse',
+                  onPopBack: () async {
+                    final retain = await RetainLoginDialog.show(context);
+                    if (retain == false && context.mounted) context.pop();
+                  },
+                ),
                 // Logo区域
                 Container(
                   width: 80.r,
@@ -113,7 +121,10 @@ class _LoginPhonePageState extends State<LoginPhonePage> {
           EchoPrimaryButton(
             text: 'Siguiente',
             enable: _isPhoneValid,
-            onPressed: () => loginProvider.checkRegister(_controller.text),
+            onPressed: () {
+              FocusScope.of(context).unfocus();
+              loginProvider.checkRegister(_controller.text);
+            },
           ),
         ],
       ),

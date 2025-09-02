@@ -21,7 +21,7 @@ class CaptchaDialog extends StatefulWidget {
   });
 
   /// 显示图形验证码弹窗
-  static Future<String?> show({required BuildContext context}) {
+  static Future<String?> show(BuildContext context) {
     return showModalBottomSheet<String>(
       context: context,
       enableDrag: false,

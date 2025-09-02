@@ -8,7 +8,7 @@ part 'swaggerApi.models.swagger.g.dart';
 
 @JsonSerializable(explicitToJson: true)
 class BankDeleteReq {
-  const BankDeleteReq({required this.vnbh46OBankCardGid});
+  const BankDeleteReq({this.vnbh46OBankCardGid});
 
   @JsonKey(name: 'vnbh46')
   final int? vnbh46OBankCardGid;
@@ -48,22 +48,21 @@ extension $BankDeleteReqExtension on BankDeleteReq {
     );
   }
 
-  BankDeleteReq copyWithWrapped({Wrapped<int>? vnbh46OBankCardGid}) {
+  BankDeleteReq copyWithWrapped({Wrapped<int?>? vnbh46OBankCardGid}) {
     return BankDeleteReq(
-      vnbh46OBankCardGid:
-          (vnbh46OBankCardGid != null
-              ? vnbh46OBankCardGid.value
-              : this.vnbh46OBankCardGid),
+      vnbh46OBankCardGid: (vnbh46OBankCardGid != null
+          ? vnbh46OBankCardGid.value
+          : this.vnbh46OBankCardGid),
     );
   }
 }
 
 @JsonSerializable(explicitToJson: true)
 class MyBankCardReq {
-  const MyBankCardReq({required this.raiaOUserGid});
+  const MyBankCardReq({this.raiaOUserGid});
 
   @JsonKey(name: 'raia')
-  final int? raiaOUserGid;
+  final String? raiaOUserGid;
 
   factory MyBankCardReq.fromJson(Map<String, dynamic> json) =>
       _$MyBankCardReqFromJson(json);
@@ -93,14 +92,15 @@ class MyBankCardReq {
 }
 
 extension $MyBankCardReqExtension on MyBankCardReq {
-  MyBankCardReq copyWith({int? raiaOUserGid}) {
+  MyBankCardReq copyWith({String? raiaOUserGid}) {
     return MyBankCardReq(raiaOUserGid: raiaOUserGid ?? this.raiaOUserGid);
   }
 
-  MyBankCardReq copyWithWrapped({Wrapped<int>? raiaOUserGid}) {
+  MyBankCardReq copyWithWrapped({Wrapped<String?>? raiaOUserGid}) {
     return MyBankCardReq(
-      raiaOUserGid:
-          (raiaOUserGid != null ? raiaOUserGid.value : this.raiaOUserGid),
+      raiaOUserGid: (raiaOUserGid != null
+          ? raiaOUserGid.value
+          : this.raiaOUserGid),
     );
   }
 }
@@ -147,10 +147,9 @@ extension $BankVOReqExtension on BankVOReq {
 
   BankVOReq copyWithWrapped({Wrapped<String?>? t1h91pOBankName}) {
     return BankVOReq(
-      t1h91pOBankName:
-          (t1h91pOBankName != null
-              ? t1h91pOBankName.value
-              : this.t1h91pOBankName),
+      t1h91pOBankName: (t1h91pOBankName != null
+          ? t1h91pOBankName.value
+          : this.t1h91pOBankName),
     );
   }
 }
@@ -158,13 +157,13 @@ extension $BankVOReqExtension on BankVOReq {
 @JsonSerializable(explicitToJson: true)
 class BankBinReq {
   const BankBinReq({
-    required this.raiaOUserGid,
-    required this.ojf007OBankAccount,
-    required this.exhedraOAccountType,
+    this.raiaOUserGid,
+    this.ojf007OBankAccount,
+    this.exhedraOAccountType,
   });
 
   @JsonKey(name: 'raia')
-  final int? raiaOUserGid;
+  final String? raiaOUserGid;
   @JsonKey(name: 'ojf007')
   final String? ojf007OBankAccount;
   @JsonKey(name: 'exhedra')
@@ -212,7 +211,7 @@ class BankBinReq {
 
 extension $BankBinReqExtension on BankBinReq {
   BankBinReq copyWith({
-    int? raiaOUserGid,
+    String? raiaOUserGid,
     String? ojf007OBankAccount,
     int? exhedraOAccountType,
   }) {
@@ -224,34 +223,30 @@ extension $BankBinReqExtension on BankBinReq {
   }
 
   BankBinReq copyWithWrapped({
-    Wrapped<int>? raiaOUserGid,
-    Wrapped<String>? ojf007OBankAccount,
-    Wrapped<int>? exhedraOAccountType,
+    Wrapped<String?>? raiaOUserGid,
+    Wrapped<String?>? ojf007OBankAccount,
+    Wrapped<int?>? exhedraOAccountType,
   }) {
     return BankBinReq(
-      raiaOUserGid:
-          (raiaOUserGid != null ? raiaOUserGid.value : this.raiaOUserGid),
-      ojf007OBankAccount:
-          (ojf007OBankAccount != null
-              ? ojf007OBankAccount.value
-              : this.ojf007OBankAccount),
-      exhedraOAccountType:
-          (exhedraOAccountType != null
-              ? exhedraOAccountType.value
-              : this.exhedraOAccountType),
+      raiaOUserGid: (raiaOUserGid != null
+          ? raiaOUserGid.value
+          : this.raiaOUserGid),
+      ojf007OBankAccount: (ojf007OBankAccount != null
+          ? ojf007OBankAccount.value
+          : this.ojf007OBankAccount),
+      exhedraOAccountType: (exhedraOAccountType != null
+          ? exhedraOAccountType.value
+          : this.exhedraOAccountType),
     );
   }
 }
 
 @JsonSerializable(explicitToJson: true)
 class BindResultReq {
-  const BindResultReq({
-    required this.raiaOUserGid,
-    required this.lynceanOBindcardGid,
-  });
+  const BindResultReq({this.raiaOUserGid, this.lynceanOBindcardGid});
 
   @JsonKey(name: 'raia')
-  final int? raiaOUserGid;
+  final String? raiaOUserGid;
   @JsonKey(name: 'lyncean')
   final int? lynceanOBindcardGid;
 
@@ -290,7 +285,7 @@ class BindResultReq {
 }
 
 extension $BindResultReqExtension on BindResultReq {
-  BindResultReq copyWith({int? raiaOUserGid, int? lynceanOBindcardGid}) {
+  BindResultReq copyWith({String? raiaOUserGid, int? lynceanOBindcardGid}) {
     return BindResultReq(
       raiaOUserGid: raiaOUserGid ?? this.raiaOUserGid,
       lynceanOBindcardGid: lynceanOBindcardGid ?? this.lynceanOBindcardGid,
@@ -298,16 +293,16 @@ extension $BindResultReqExtension on BindResultReq {
   }
 
   BindResultReq copyWithWrapped({
-    Wrapped<int>? raiaOUserGid,
-    Wrapped<int>? lynceanOBindcardGid,
+    Wrapped<String?>? raiaOUserGid,
+    Wrapped<int?>? lynceanOBindcardGid,
   }) {
     return BindResultReq(
-      raiaOUserGid:
-          (raiaOUserGid != null ? raiaOUserGid.value : this.raiaOUserGid),
-      lynceanOBindcardGid:
-          (lynceanOBindcardGid != null
-              ? lynceanOBindcardGid.value
-              : this.lynceanOBindcardGid),
+      raiaOUserGid: (raiaOUserGid != null
+          ? raiaOUserGid.value
+          : this.raiaOUserGid),
+      lynceanOBindcardGid: (lynceanOBindcardGid != null
+          ? lynceanOBindcardGid.value
+          : this.lynceanOBindcardGid),
     );
   }
 }
@@ -315,11 +310,11 @@ extension $BindResultReqExtension on BindResultReq {
 @JsonSerializable(explicitToJson: true)
 class BindCardReq {
   const BindCardReq({
-    required this.raiaOUserGid,
+    this.raiaOUserGid,
     this.exonymOBankGid,
-    required this.t1h91pOBankName,
+    this.t1h91pOBankName,
     this.insolentOBankCode,
-    required this.zebrineOCardNo,
+    this.zebrineOCardNo,
     this.s90dw0OCciNumber,
     this.cvn,
     this.stukaOExpiryDate,
@@ -328,7 +323,7 @@ class BindCardReq {
   });
 
   @JsonKey(name: 'raia')
-  final int? raiaOUserGid;
+  final String? raiaOUserGid;
   @JsonKey(name: 'exonym')
   final String? exonymOBankGid;
   @JsonKey(name: 't1h91p')
@@ -429,7 +424,7 @@ class BindCardReq {
 
 extension $BindCardReqExtension on BindCardReq {
   BindCardReq copyWith({
-    int? raiaOUserGid,
+    String? raiaOUserGid,
     String? exonymOBankGid,
     String? t1h91pOBankName,
     String? insolentOBankCode,
@@ -455,11 +450,11 @@ extension $BindCardReqExtension on BindCardReq {
   }
 
   BindCardReq copyWithWrapped({
-    Wrapped<int>? raiaOUserGid,
+    Wrapped<String?>? raiaOUserGid,
     Wrapped<String?>? exonymOBankGid,
-    Wrapped<String>? t1h91pOBankName,
+    Wrapped<String?>? t1h91pOBankName,
     Wrapped<String?>? insolentOBankCode,
-    Wrapped<String>? zebrineOCardNo,
+    Wrapped<String?>? zebrineOCardNo,
     Wrapped<String?>? s90dw0OCciNumber,
     Wrapped<String?>? cvn,
     Wrapped<String?>? stukaOExpiryDate,
@@ -467,45 +462,44 @@ extension $BindCardReqExtension on BindCardReq {
     Wrapped<int?>? exhedraOAccountType,
   }) {
     return BindCardReq(
-      raiaOUserGid:
-          (raiaOUserGid != null ? raiaOUserGid.value : this.raiaOUserGid),
-      exonymOBankGid:
-          (exonymOBankGid != null ? exonymOBankGid.value : this.exonymOBankGid),
-      t1h91pOBankName:
-          (t1h91pOBankName != null
-              ? t1h91pOBankName.value
-              : this.t1h91pOBankName),
-      insolentOBankCode:
-          (insolentOBankCode != null
-              ? insolentOBankCode.value
-              : this.insolentOBankCode),
-      zebrineOCardNo:
-          (zebrineOCardNo != null ? zebrineOCardNo.value : this.zebrineOCardNo),
-      s90dw0OCciNumber:
-          (s90dw0OCciNumber != null
-              ? s90dw0OCciNumber.value
-              : this.s90dw0OCciNumber),
+      raiaOUserGid: (raiaOUserGid != null
+          ? raiaOUserGid.value
+          : this.raiaOUserGid),
+      exonymOBankGid: (exonymOBankGid != null
+          ? exonymOBankGid.value
+          : this.exonymOBankGid),
+      t1h91pOBankName: (t1h91pOBankName != null
+          ? t1h91pOBankName.value
+          : this.t1h91pOBankName),
+      insolentOBankCode: (insolentOBankCode != null
+          ? insolentOBankCode.value
+          : this.insolentOBankCode),
+      zebrineOCardNo: (zebrineOCardNo != null
+          ? zebrineOCardNo.value
+          : this.zebrineOCardNo),
+      s90dw0OCciNumber: (s90dw0OCciNumber != null
+          ? s90dw0OCciNumber.value
+          : this.s90dw0OCciNumber),
       cvn: (cvn != null ? cvn.value : this.cvn),
-      stukaOExpiryDate:
-          (stukaOExpiryDate != null
-              ? stukaOExpiryDate.value
-              : this.stukaOExpiryDate),
-      f31u3kOEmail:
-          (f31u3kOEmail != null ? f31u3kOEmail.value : this.f31u3kOEmail),
-      exhedraOAccountType:
-          (exhedraOAccountType != null
-              ? exhedraOAccountType.value
-              : this.exhedraOAccountType),
+      stukaOExpiryDate: (stukaOExpiryDate != null
+          ? stukaOExpiryDate.value
+          : this.stukaOExpiryDate),
+      f31u3kOEmail: (f31u3kOEmail != null
+          ? f31u3kOEmail.value
+          : this.f31u3kOEmail),
+      exhedraOAccountType: (exhedraOAccountType != null
+          ? exhedraOAccountType.value
+          : this.exhedraOAccountType),
     );
   }
 }
 
 @JsonSerializable(explicitToJson: true)
 class BankCardReq {
-  const BankCardReq({required this.raiaOUserGid});
+  const BankCardReq({this.raiaOUserGid});
 
   @JsonKey(name: 'raia')
-  final int? raiaOUserGid;
+  final String? raiaOUserGid;
 
   factory BankCardReq.fromJson(Map<String, dynamic> json) =>
       _$BankCardReqFromJson(json);
@@ -535,14 +529,15 @@ class BankCardReq {
 }
 
 extension $BankCardReqExtension on BankCardReq {
-  BankCardReq copyWith({int? raiaOUserGid}) {
+  BankCardReq copyWith({String? raiaOUserGid}) {
     return BankCardReq(raiaOUserGid: raiaOUserGid ?? this.raiaOUserGid);
   }
 
-  BankCardReq copyWithWrapped({Wrapped<int>? raiaOUserGid}) {
+  BankCardReq copyWithWrapped({Wrapped<String?>? raiaOUserGid}) {
     return BankCardReq(
-      raiaOUserGid:
-          (raiaOUserGid != null ? raiaOUserGid.value : this.raiaOUserGid),
+      raiaOUserGid: (raiaOUserGid != null
+          ? raiaOUserGid.value
+          : this.raiaOUserGid),
     );
   }
 }
@@ -550,14 +545,14 @@ extension $BankCardReqExtension on BankCardReq {
 @JsonSerializable(explicitToJson: true)
 class TraderPwdCheckReq {
   const TraderPwdCheckReq({
-    required this.raiaOUserGid,
-    required this.z38e62OOrderGid,
-    required this.c4s47hOTransPassword,
+    this.raiaOUserGid,
+    this.z38e62OOrderGid,
+    this.c4s47hOTransPassword,
     this.s377v5OBizLine,
   });
 
   @JsonKey(name: 'raia')
-  final int? raiaOUserGid;
+  final String? raiaOUserGid;
   @JsonKey(name: 'z38e62')
   final String? z38e62OOrderGid;
   @JsonKey(name: 'c4s47h')
@@ -613,7 +608,7 @@ class TraderPwdCheckReq {
 
 extension $TraderPwdCheckReqExtension on TraderPwdCheckReq {
   TraderPwdCheckReq copyWith({
-    int? raiaOUserGid,
+    String? raiaOUserGid,
     String? z38e62OOrderGid,
     String? c4s47hOTransPassword,
     String? s377v5OBizLine,
@@ -627,34 +622,34 @@ extension $TraderPwdCheckReqExtension on TraderPwdCheckReq {
   }
 
   TraderPwdCheckReq copyWithWrapped({
-    Wrapped<int>? raiaOUserGid,
-    Wrapped<String>? z38e62OOrderGid,
-    Wrapped<String>? c4s47hOTransPassword,
+    Wrapped<String?>? raiaOUserGid,
+    Wrapped<String?>? z38e62OOrderGid,
+    Wrapped<String?>? c4s47hOTransPassword,
     Wrapped<String?>? s377v5OBizLine,
   }) {
     return TraderPwdCheckReq(
-      raiaOUserGid:
-          (raiaOUserGid != null ? raiaOUserGid.value : this.raiaOUserGid),
-      z38e62OOrderGid:
-          (z38e62OOrderGid != null
-              ? z38e62OOrderGid.value
-              : this.z38e62OOrderGid),
-      c4s47hOTransPassword:
-          (c4s47hOTransPassword != null
-              ? c4s47hOTransPassword.value
-              : this.c4s47hOTransPassword),
-      s377v5OBizLine:
-          (s377v5OBizLine != null ? s377v5OBizLine.value : this.s377v5OBizLine),
+      raiaOUserGid: (raiaOUserGid != null
+          ? raiaOUserGid.value
+          : this.raiaOUserGid),
+      z38e62OOrderGid: (z38e62OOrderGid != null
+          ? z38e62OOrderGid.value
+          : this.z38e62OOrderGid),
+      c4s47hOTransPassword: (c4s47hOTransPassword != null
+          ? c4s47hOTransPassword.value
+          : this.c4s47hOTransPassword),
+      s377v5OBizLine: (s377v5OBizLine != null
+          ? s377v5OBizLine.value
+          : this.s377v5OBizLine),
     );
   }
 }
 
 @JsonSerializable(explicitToJson: true)
 class AccountCancelJudgeReq {
-  const AccountCancelJudgeReq({required this.raiaOUserGid});
+  const AccountCancelJudgeReq({this.raiaOUserGid});
 
   @JsonKey(name: 'raia')
-  final int? raiaOUserGid;
+  final String? raiaOUserGid;
 
   factory AccountCancelJudgeReq.fromJson(Map<String, dynamic> json) =>
       _$AccountCancelJudgeReqFromJson(json);
@@ -684,16 +679,17 @@ class AccountCancelJudgeReq {
 }
 
 extension $AccountCancelJudgeReqExtension on AccountCancelJudgeReq {
-  AccountCancelJudgeReq copyWith({int? raiaOUserGid}) {
+  AccountCancelJudgeReq copyWith({String? raiaOUserGid}) {
     return AccountCancelJudgeReq(
       raiaOUserGid: raiaOUserGid ?? this.raiaOUserGid,
     );
   }
 
-  AccountCancelJudgeReq copyWithWrapped({Wrapped<int>? raiaOUserGid}) {
+  AccountCancelJudgeReq copyWithWrapped({Wrapped<String?>? raiaOUserGid}) {
     return AccountCancelJudgeReq(
-      raiaOUserGid:
-          (raiaOUserGid != null ? raiaOUserGid.value : this.raiaOUserGid),
+      raiaOUserGid: (raiaOUserGid != null
+          ? raiaOUserGid.value
+          : this.raiaOUserGid),
     );
   }
 }
@@ -701,7 +697,7 @@ extension $AccountCancelJudgeReqExtension on AccountCancelJudgeReq {
 @JsonSerializable(explicitToJson: true)
 class CheckRegisterReq {
   const CheckRegisterReq({
-    required this.sordidOMobile,
+    this.sordidOMobile,
     this.d7x52pOBizChannel,
     this.s377v5OBizLine,
   });
@@ -767,26 +763,27 @@ extension $CheckRegisterReqExtension on CheckRegisterReq {
   }
 
   CheckRegisterReq copyWithWrapped({
-    Wrapped<String>? sordidOMobile,
+    Wrapped<String?>? sordidOMobile,
     Wrapped<String?>? d7x52pOBizChannel,
     Wrapped<String?>? s377v5OBizLine,
   }) {
     return CheckRegisterReq(
-      sordidOMobile:
-          (sordidOMobile != null ? sordidOMobile.value : this.sordidOMobile),
-      d7x52pOBizChannel:
-          (d7x52pOBizChannel != null
-              ? d7x52pOBizChannel.value
-              : this.d7x52pOBizChannel),
-      s377v5OBizLine:
-          (s377v5OBizLine != null ? s377v5OBizLine.value : this.s377v5OBizLine),
+      sordidOMobile: (sordidOMobile != null
+          ? sordidOMobile.value
+          : this.sordidOMobile),
+      d7x52pOBizChannel: (d7x52pOBizChannel != null
+          ? d7x52pOBizChannel.value
+          : this.d7x52pOBizChannel),
+      s377v5OBizLine: (s377v5OBizLine != null
+          ? s377v5OBizLine.value
+          : this.s377v5OBizLine),
     );
   }
 }
 
 @JsonSerializable(explicitToJson: true)
 class WhiteListReq {
-  const WhiteListReq({required this.sordidOMobile});
+  const WhiteListReq({this.sordidOMobile});
 
   @JsonKey(name: 'sordid')
   final String? sordidOMobile;
@@ -823,17 +820,18 @@ extension $WhiteListReqExtension on WhiteListReq {
     return WhiteListReq(sordidOMobile: sordidOMobile ?? this.sordidOMobile);
   }
 
-  WhiteListReq copyWithWrapped({Wrapped<String>? sordidOMobile}) {
+  WhiteListReq copyWithWrapped({Wrapped<String?>? sordidOMobile}) {
     return WhiteListReq(
-      sordidOMobile:
-          (sordidOMobile != null ? sordidOMobile.value : this.sordidOMobile),
+      sordidOMobile: (sordidOMobile != null
+          ? sordidOMobile.value
+          : this.sordidOMobile),
     );
   }
 }
 
 @JsonSerializable(explicitToJson: true)
 class NeedCaptchaReq {
-  const NeedCaptchaReq({required this.sordidOMobile, required this.type});
+  const NeedCaptchaReq({this.sordidOMobile, this.type});
 
   @JsonKey(name: 'sordid')
   final String? sordidOMobile;
@@ -880,12 +878,13 @@ extension $NeedCaptchaReqExtension on NeedCaptchaReq {
   }
 
   NeedCaptchaReq copyWithWrapped({
-    Wrapped<String>? sordidOMobile,
-    Wrapped<int>? type,
+    Wrapped<String?>? sordidOMobile,
+    Wrapped<int?>? type,
   }) {
     return NeedCaptchaReq(
-      sordidOMobile:
-          (sordidOMobile != null ? sordidOMobile.value : this.sordidOMobile),
+      sordidOMobile: (sordidOMobile != null
+          ? sordidOMobile.value
+          : this.sordidOMobile),
       type: (type != null ? type.value : this.type),
     );
   }
@@ -894,9 +893,9 @@ extension $NeedCaptchaReqExtension on NeedCaptchaReq {
 @JsonSerializable(explicitToJson: true)
 class RegisterReq {
   const RegisterReq({
-    required this.sordidOMobile,
+    this.sordidOMobile,
     this.password,
-    required this.presageOVerCode,
+    this.presageOVerCode,
     this.vkql27OReqChannel,
     this.zebrassOReqSubChannel,
     this.s37m00OReqSubChannelAf,
@@ -1083,9 +1082,9 @@ extension $RegisterReqExtension on RegisterReq {
   }
 
   RegisterReq copyWithWrapped({
-    Wrapped<String>? sordidOMobile,
-    Wrapped<String>? password,
-    Wrapped<String>? presageOVerCode,
+    Wrapped<String?>? sordidOMobile,
+    Wrapped<String?>? password,
+    Wrapped<String?>? presageOVerCode,
     Wrapped<String?>? vkql27OReqChannel,
     Wrapped<String?>? zebrassOReqSubChannel,
     Wrapped<String?>? s37m00OReqSubChannelAf,
@@ -1099,63 +1098,56 @@ extension $RegisterReqExtension on RegisterReq {
     Wrapped<int?>? n66w89ODtype,
   }) {
     return RegisterReq(
-      sordidOMobile:
-          (sordidOMobile != null ? sordidOMobile.value : this.sordidOMobile),
+      sordidOMobile: (sordidOMobile != null
+          ? sordidOMobile.value
+          : this.sordidOMobile),
       password: (password != null ? password.value : this.password),
-      presageOVerCode:
-          (presageOVerCode != null
-              ? presageOVerCode.value
-              : this.presageOVerCode),
-      vkql27OReqChannel:
-          (vkql27OReqChannel != null
-              ? vkql27OReqChannel.value
-              : this.vkql27OReqChannel),
-      zebrassOReqSubChannel:
-          (zebrassOReqSubChannel != null
-              ? zebrassOReqSubChannel.value
-              : this.zebrassOReqSubChannel),
-      s37m00OReqSubChannelAf:
-          (s37m00OReqSubChannelAf != null
-              ? s37m00OReqSubChannelAf.value
-              : this.s37m00OReqSubChannelAf),
-      spankOAppsflyerId:
-          (spankOAppsflyerId != null
-              ? spankOAppsflyerId.value
-              : this.spankOAppsflyerId),
-      ac0as4OMobileSn:
-          (ac0as4OMobileSn != null
-              ? ac0as4OMobileSn.value
-              : this.ac0as4OMobileSn),
-      d7x52pOBizChannel:
-          (d7x52pOBizChannel != null
-              ? d7x52pOBizChannel.value
-              : this.d7x52pOBizChannel),
-      s377v5OBizLine:
-          (s377v5OBizLine != null ? s377v5OBizLine.value : this.s377v5OBizLine),
-      snafuOVerImageCode:
-          (snafuOVerImageCode != null
-              ? snafuOVerImageCode.value
-              : this.snafuOVerImageCode),
-      monobuoyOLastAaid:
-          (monobuoyOLastAaid != null
-              ? monobuoyOLastAaid.value
-              : this.monobuoyOLastAaid),
-      neckbandOFirebaseId:
-          (neckbandOFirebaseId != null
-              ? neckbandOFirebaseId.value
-              : this.neckbandOFirebaseId),
-      n66w89ODtype:
-          (n66w89ODtype != null ? n66w89ODtype.value : this.n66w89ODtype),
+      presageOVerCode: (presageOVerCode != null
+          ? presageOVerCode.value
+          : this.presageOVerCode),
+      vkql27OReqChannel: (vkql27OReqChannel != null
+          ? vkql27OReqChannel.value
+          : this.vkql27OReqChannel),
+      zebrassOReqSubChannel: (zebrassOReqSubChannel != null
+          ? zebrassOReqSubChannel.value
+          : this.zebrassOReqSubChannel),
+      s37m00OReqSubChannelAf: (s37m00OReqSubChannelAf != null
+          ? s37m00OReqSubChannelAf.value
+          : this.s37m00OReqSubChannelAf),
+      spankOAppsflyerId: (spankOAppsflyerId != null
+          ? spankOAppsflyerId.value
+          : this.spankOAppsflyerId),
+      ac0as4OMobileSn: (ac0as4OMobileSn != null
+          ? ac0as4OMobileSn.value
+          : this.ac0as4OMobileSn),
+      d7x52pOBizChannel: (d7x52pOBizChannel != null
+          ? d7x52pOBizChannel.value
+          : this.d7x52pOBizChannel),
+      s377v5OBizLine: (s377v5OBizLine != null
+          ? s377v5OBizLine.value
+          : this.s377v5OBizLine),
+      snafuOVerImageCode: (snafuOVerImageCode != null
+          ? snafuOVerImageCode.value
+          : this.snafuOVerImageCode),
+      monobuoyOLastAaid: (monobuoyOLastAaid != null
+          ? monobuoyOLastAaid.value
+          : this.monobuoyOLastAaid),
+      neckbandOFirebaseId: (neckbandOFirebaseId != null
+          ? neckbandOFirebaseId.value
+          : this.neckbandOFirebaseId),
+      n66w89ODtype: (n66w89ODtype != null
+          ? n66w89ODtype.value
+          : this.n66w89ODtype),
     );
   }
 }
 
 @JsonSerializable(explicitToJson: true)
 class UserInfoReq {
-  const UserInfoReq({required this.raiaOUserGid});
+  const UserInfoReq({this.raiaOUserGid});
 
   @JsonKey(name: 'raia')
-  final int? raiaOUserGid;
+  final String? raiaOUserGid;
 
   factory UserInfoReq.fromJson(Map<String, dynamic> json) =>
       _$UserInfoReqFromJson(json);
@@ -1185,14 +1177,15 @@ class UserInfoReq {
 }
 
 extension $UserInfoReqExtension on UserInfoReq {
-  UserInfoReq copyWith({int? raiaOUserGid}) {
+  UserInfoReq copyWith({String? raiaOUserGid}) {
     return UserInfoReq(raiaOUserGid: raiaOUserGid ?? this.raiaOUserGid);
   }
 
-  UserInfoReq copyWithWrapped({Wrapped<int>? raiaOUserGid}) {
+  UserInfoReq copyWithWrapped({Wrapped<String?>? raiaOUserGid}) {
     return UserInfoReq(
-      raiaOUserGid:
-          (raiaOUserGid != null ? raiaOUserGid.value : this.raiaOUserGid),
+      raiaOUserGid: (raiaOUserGid != null
+          ? raiaOUserGid.value
+          : this.raiaOUserGid),
     );
   }
 }
@@ -1200,7 +1193,7 @@ extension $UserInfoReqExtension on UserInfoReq {
 @JsonSerializable(explicitToJson: true)
 class LoginReq {
   const LoginReq({
-    required this.sordidOMobile,
+    this.sordidOMobile,
     this.password,
     this.y260zpOToken,
     this.raiaOUserGid,
@@ -1220,7 +1213,7 @@ class LoginReq {
   @JsonKey(name: 'y260zp')
   final String? y260zpOToken;
   @JsonKey(name: 'raia')
-  final int? raiaOUserGid;
+  final String? raiaOUserGid;
   @JsonKey(name: 'ac0as4')
   final String? ac0as4OMobileSn;
   @JsonKey(name: 'd7x52p')
@@ -1326,7 +1319,7 @@ extension $LoginReqExtension on LoginReq {
     String? sordidOMobile,
     String? password,
     String? y260zpOToken,
-    int? raiaOUserGid,
+    String? raiaOUserGid,
     String? ac0as4OMobileSn,
     String? d7x52pOBizChannel,
     String? s377v5OBizLine,
@@ -1351,10 +1344,10 @@ extension $LoginReqExtension on LoginReq {
   }
 
   LoginReq copyWithWrapped({
-    Wrapped<String>? sordidOMobile,
+    Wrapped<String?>? sordidOMobile,
     Wrapped<String?>? password,
     Wrapped<String?>? y260zpOToken,
-    Wrapped<int?>? raiaOUserGid,
+    Wrapped<String?>? raiaOUserGid,
     Wrapped<String?>? ac0as4OMobileSn,
     Wrapped<String?>? d7x52pOBizChannel,
     Wrapped<String?>? s377v5OBizLine,
@@ -1364,36 +1357,35 @@ extension $LoginReqExtension on LoginReq {
     Wrapped<String?>? z775udOAppVersion,
   }) {
     return LoginReq(
-      sordidOMobile:
-          (sordidOMobile != null ? sordidOMobile.value : this.sordidOMobile),
+      sordidOMobile: (sordidOMobile != null
+          ? sordidOMobile.value
+          : this.sordidOMobile),
       password: (password != null ? password.value : this.password),
-      y260zpOToken:
-          (y260zpOToken != null ? y260zpOToken.value : this.y260zpOToken),
-      raiaOUserGid:
-          (raiaOUserGid != null ? raiaOUserGid.value : this.raiaOUserGid),
-      ac0as4OMobileSn:
-          (ac0as4OMobileSn != null
-              ? ac0as4OMobileSn.value
-              : this.ac0as4OMobileSn),
-      d7x52pOBizChannel:
-          (d7x52pOBizChannel != null
-              ? d7x52pOBizChannel.value
-              : this.d7x52pOBizChannel),
-      s377v5OBizLine:
-          (s377v5OBizLine != null ? s377v5OBizLine.value : this.s377v5OBizLine),
+      y260zpOToken: (y260zpOToken != null
+          ? y260zpOToken.value
+          : this.y260zpOToken),
+      raiaOUserGid: (raiaOUserGid != null
+          ? raiaOUserGid.value
+          : this.raiaOUserGid),
+      ac0as4OMobileSn: (ac0as4OMobileSn != null
+          ? ac0as4OMobileSn.value
+          : this.ac0as4OMobileSn),
+      d7x52pOBizChannel: (d7x52pOBizChannel != null
+          ? d7x52pOBizChannel.value
+          : this.d7x52pOBizChannel),
+      s377v5OBizLine: (s377v5OBizLine != null
+          ? s377v5OBizLine.value
+          : this.s377v5OBizLine),
       oc: (oc != null ? oc.value : this.oc),
-      presageOVerCode:
-          (presageOVerCode != null
-              ? presageOVerCode.value
-              : this.presageOVerCode),
-      snafuOVerImageCode:
-          (snafuOVerImageCode != null
-              ? snafuOVerImageCode.value
-              : this.snafuOVerImageCode),
-      z775udOAppVersion:
-          (z775udOAppVersion != null
-              ? z775udOAppVersion.value
-              : this.z775udOAppVersion),
+      presageOVerCode: (presageOVerCode != null
+          ? presageOVerCode.value
+          : this.presageOVerCode),
+      snafuOVerImageCode: (snafuOVerImageCode != null
+          ? snafuOVerImageCode.value
+          : this.snafuOVerImageCode),
+      z775udOAppVersion: (z775udOAppVersion != null
+          ? z775udOAppVersion.value
+          : this.z775udOAppVersion),
     );
   }
 }
@@ -1402,20 +1394,20 @@ extension $LoginReqExtension on LoginReq {
 class AccountCancelAppReq {
   const AccountCancelAppReq({
     this.raiaOUserGid,
-    required this.sordidOMobile,
-    required this.d7x52pOBizChannel,
-    required this.s377v5OBizLine,
-    required this.presageOVerCode,
+    this.sordidOMobile,
+    this.d7x52pOBizChannel,
+    this.s377v5OBizLine,
+    this.presageOVerCode,
     this.snafuOVerImageCode,
     this.ac0as4OMobileSn,
-    required this.source,
-    required this.pageId,
+    this.source,
+    this.pageId,
     this.vsu233OCancelCode,
     this.tgifOCancelReason,
   });
 
   @JsonKey(name: 'raia')
-  final int? raiaOUserGid;
+  final String? raiaOUserGid;
   @JsonKey(name: 'sordid')
   final String? sordidOMobile;
   @JsonKey(name: 'd7x52p')
@@ -1521,7 +1513,7 @@ class AccountCancelAppReq {
 
 extension $AccountCancelAppReqExtension on AccountCancelAppReq {
   AccountCancelAppReq copyWith({
-    int? raiaOUserGid,
+    String? raiaOUserGid,
     String? sordidOMobile,
     String? d7x52pOBizChannel,
     String? s377v5OBizLine,
@@ -1549,51 +1541,48 @@ extension $AccountCancelAppReqExtension on AccountCancelAppReq {
   }
 
   AccountCancelAppReq copyWithWrapped({
-    Wrapped<int?>? raiaOUserGid,
-    Wrapped<String>? sordidOMobile,
-    Wrapped<String>? d7x52pOBizChannel,
-    Wrapped<String>? s377v5OBizLine,
-    Wrapped<String>? presageOVerCode,
+    Wrapped<String?>? raiaOUserGid,
+    Wrapped<String?>? sordidOMobile,
+    Wrapped<String?>? d7x52pOBizChannel,
+    Wrapped<String?>? s377v5OBizLine,
+    Wrapped<String?>? presageOVerCode,
     Wrapped<String?>? snafuOVerImageCode,
     Wrapped<String?>? ac0as4OMobileSn,
-    Wrapped<int>? source,
-    Wrapped<String>? pageId,
+    Wrapped<int?>? source,
+    Wrapped<String?>? pageId,
     Wrapped<String?>? vsu233OCancelCode,
     Wrapped<String?>? tgifOCancelReason,
   }) {
     return AccountCancelAppReq(
-      raiaOUserGid:
-          (raiaOUserGid != null ? raiaOUserGid.value : this.raiaOUserGid),
-      sordidOMobile:
-          (sordidOMobile != null ? sordidOMobile.value : this.sordidOMobile),
-      d7x52pOBizChannel:
-          (d7x52pOBizChannel != null
-              ? d7x52pOBizChannel.value
-              : this.d7x52pOBizChannel),
-      s377v5OBizLine:
-          (s377v5OBizLine != null ? s377v5OBizLine.value : this.s377v5OBizLine),
-      presageOVerCode:
-          (presageOVerCode != null
-              ? presageOVerCode.value
-              : this.presageOVerCode),
-      snafuOVerImageCode:
-          (snafuOVerImageCode != null
-              ? snafuOVerImageCode.value
-              : this.snafuOVerImageCode),
-      ac0as4OMobileSn:
-          (ac0as4OMobileSn != null
-              ? ac0as4OMobileSn.value
-              : this.ac0as4OMobileSn),
+      raiaOUserGid: (raiaOUserGid != null
+          ? raiaOUserGid.value
+          : this.raiaOUserGid),
+      sordidOMobile: (sordidOMobile != null
+          ? sordidOMobile.value
+          : this.sordidOMobile),
+      d7x52pOBizChannel: (d7x52pOBizChannel != null
+          ? d7x52pOBizChannel.value
+          : this.d7x52pOBizChannel),
+      s377v5OBizLine: (s377v5OBizLine != null
+          ? s377v5OBizLine.value
+          : this.s377v5OBizLine),
+      presageOVerCode: (presageOVerCode != null
+          ? presageOVerCode.value
+          : this.presageOVerCode),
+      snafuOVerImageCode: (snafuOVerImageCode != null
+          ? snafuOVerImageCode.value
+          : this.snafuOVerImageCode),
+      ac0as4OMobileSn: (ac0as4OMobileSn != null
+          ? ac0as4OMobileSn.value
+          : this.ac0as4OMobileSn),
       source: (source != null ? source.value : this.source),
       pageId: (pageId != null ? pageId.value : this.pageId),
-      vsu233OCancelCode:
-          (vsu233OCancelCode != null
-              ? vsu233OCancelCode.value
-              : this.vsu233OCancelCode),
-      tgifOCancelReason:
-          (tgifOCancelReason != null
-              ? tgifOCancelReason.value
-              : this.tgifOCancelReason),
+      vsu233OCancelCode: (vsu233OCancelCode != null
+          ? vsu233OCancelCode.value
+          : this.vsu233OCancelCode),
+      tgifOCancelReason: (tgifOCancelReason != null
+          ? tgifOCancelReason.value
+          : this.tgifOCancelReason),
     );
   }
 }
@@ -1602,20 +1591,20 @@ extension $AccountCancelAppReqExtension on AccountCancelAppReq {
 class AccountCancelLandReq {
   const AccountCancelLandReq({
     this.raiaOUserGid,
-    required this.sordidOMobile,
-    required this.d7x52pOBizChannel,
-    required this.s377v5OBizLine,
-    required this.presageOVerCode,
+    this.sordidOMobile,
+    this.d7x52pOBizChannel,
+    this.s377v5OBizLine,
+    this.presageOVerCode,
     this.snafuOVerImageCode,
     this.ac0as4OMobileSn,
-    required this.source,
-    required this.pageId,
+    this.source,
+    this.pageId,
     this.vsu233OCancelCode,
     this.tgifOCancelReason,
   });
 
   @JsonKey(name: 'raia')
-  final int? raiaOUserGid;
+  final String? raiaOUserGid;
   @JsonKey(name: 'sordid')
   final String? sordidOMobile;
   @JsonKey(name: 'd7x52p')
@@ -1721,7 +1710,7 @@ class AccountCancelLandReq {
 
 extension $AccountCancelLandReqExtension on AccountCancelLandReq {
   AccountCancelLandReq copyWith({
-    int? raiaOUserGid,
+    String? raiaOUserGid,
     String? sordidOMobile,
     String? d7x52pOBizChannel,
     String? s377v5OBizLine,
@@ -1749,51 +1738,48 @@ extension $AccountCancelLandReqExtension on AccountCancelLandReq {
   }
 
   AccountCancelLandReq copyWithWrapped({
-    Wrapped<int?>? raiaOUserGid,
-    Wrapped<String>? sordidOMobile,
-    Wrapped<String>? d7x52pOBizChannel,
-    Wrapped<String>? s377v5OBizLine,
-    Wrapped<String>? presageOVerCode,
+    Wrapped<String?>? raiaOUserGid,
+    Wrapped<String?>? sordidOMobile,
+    Wrapped<String?>? d7x52pOBizChannel,
+    Wrapped<String?>? s377v5OBizLine,
+    Wrapped<String?>? presageOVerCode,
     Wrapped<String?>? snafuOVerImageCode,
     Wrapped<String?>? ac0as4OMobileSn,
-    Wrapped<int>? source,
-    Wrapped<String>? pageId,
+    Wrapped<int?>? source,
+    Wrapped<String?>? pageId,
     Wrapped<String?>? vsu233OCancelCode,
     Wrapped<String?>? tgifOCancelReason,
   }) {
     return AccountCancelLandReq(
-      raiaOUserGid:
-          (raiaOUserGid != null ? raiaOUserGid.value : this.raiaOUserGid),
-      sordidOMobile:
-          (sordidOMobile != null ? sordidOMobile.value : this.sordidOMobile),
-      d7x52pOBizChannel:
-          (d7x52pOBizChannel != null
-              ? d7x52pOBizChannel.value
-              : this.d7x52pOBizChannel),
-      s377v5OBizLine:
-          (s377v5OBizLine != null ? s377v5OBizLine.value : this.s377v5OBizLine),
-      presageOVerCode:
-          (presageOVerCode != null
-              ? presageOVerCode.value
-              : this.presageOVerCode),
-      snafuOVerImageCode:
-          (snafuOVerImageCode != null
-              ? snafuOVerImageCode.value
-              : this.snafuOVerImageCode),
-      ac0as4OMobileSn:
-          (ac0as4OMobileSn != null
-              ? ac0as4OMobileSn.value
-              : this.ac0as4OMobileSn),
+      raiaOUserGid: (raiaOUserGid != null
+          ? raiaOUserGid.value
+          : this.raiaOUserGid),
+      sordidOMobile: (sordidOMobile != null
+          ? sordidOMobile.value
+          : this.sordidOMobile),
+      d7x52pOBizChannel: (d7x52pOBizChannel != null
+          ? d7x52pOBizChannel.value
+          : this.d7x52pOBizChannel),
+      s377v5OBizLine: (s377v5OBizLine != null
+          ? s377v5OBizLine.value
+          : this.s377v5OBizLine),
+      presageOVerCode: (presageOVerCode != null
+          ? presageOVerCode.value
+          : this.presageOVerCode),
+      snafuOVerImageCode: (snafuOVerImageCode != null
+          ? snafuOVerImageCode.value
+          : this.snafuOVerImageCode),
+      ac0as4OMobileSn: (ac0as4OMobileSn != null
+          ? ac0as4OMobileSn.value
+          : this.ac0as4OMobileSn),
       source: (source != null ? source.value : this.source),
       pageId: (pageId != null ? pageId.value : this.pageId),
-      vsu233OCancelCode:
-          (vsu233OCancelCode != null
-              ? vsu233OCancelCode.value
-              : this.vsu233OCancelCode),
-      tgifOCancelReason:
-          (tgifOCancelReason != null
-              ? tgifOCancelReason.value
-              : this.tgifOCancelReason),
+      vsu233OCancelCode: (vsu233OCancelCode != null
+          ? vsu233OCancelCode.value
+          : this.vsu233OCancelCode),
+      tgifOCancelReason: (tgifOCancelReason != null
+          ? tgifOCancelReason.value
+          : this.tgifOCancelReason),
     );
   }
 }
@@ -1802,7 +1788,7 @@ extension $AccountCancelLandReqExtension on AccountCancelLandReq {
 class TraderPwdResetReq {
   const TraderPwdResetReq({
     this.raiaOUserGid,
-    required this.password,
+    this.password,
     this.sordidOMobile,
     this.presageOVerCode,
     this.snafuOVerImageCode,
@@ -1958,7 +1944,7 @@ extension $TraderPwdResetReqExtension on TraderPwdResetReq {
 
   TraderPwdResetReq copyWithWrapped({
     Wrapped<String?>? raiaOUserGid,
-    Wrapped<String>? password,
+    Wrapped<String?>? password,
     Wrapped<String?>? sordidOMobile,
     Wrapped<String?>? presageOVerCode,
     Wrapped<String?>? snafuOVerImageCode,
@@ -1971,34 +1957,34 @@ extension $TraderPwdResetReqExtension on TraderPwdResetReq {
     Wrapped<String?>? s377v5OBizLine,
   }) {
     return TraderPwdResetReq(
-      raiaOUserGid:
-          (raiaOUserGid != null ? raiaOUserGid.value : this.raiaOUserGid),
+      raiaOUserGid: (raiaOUserGid != null
+          ? raiaOUserGid.value
+          : this.raiaOUserGid),
       password: (password != null ? password.value : this.password),
-      sordidOMobile:
-          (sordidOMobile != null ? sordidOMobile.value : this.sordidOMobile),
-      presageOVerCode:
-          (presageOVerCode != null
-              ? presageOVerCode.value
-              : this.presageOVerCode),
-      snafuOVerImageCode:
-          (snafuOVerImageCode != null
-              ? snafuOVerImageCode.value
-              : this.snafuOVerImageCode),
-      merdekaOIdCard:
-          (merdekaOIdCard != null ? merdekaOIdCard.value : this.merdekaOIdCard),
-      gargetOBirthday:
-          (gargetOBirthday != null
-              ? gargetOBirthday.value
-              : this.gargetOBirthday),
+      sordidOMobile: (sordidOMobile != null
+          ? sordidOMobile.value
+          : this.sordidOMobile),
+      presageOVerCode: (presageOVerCode != null
+          ? presageOVerCode.value
+          : this.presageOVerCode),
+      snafuOVerImageCode: (snafuOVerImageCode != null
+          ? snafuOVerImageCode.value
+          : this.snafuOVerImageCode),
+      merdekaOIdCard: (merdekaOIdCard != null
+          ? merdekaOIdCard.value
+          : this.merdekaOIdCard),
+      gargetOBirthday: (gargetOBirthday != null
+          ? gargetOBirthday.value
+          : this.gargetOBirthday),
       type: (type != null ? type.value : this.type),
-      ac0as4OMobileSn:
-          (ac0as4OMobileSn != null
-              ? ac0as4OMobileSn.value
-              : this.ac0as4OMobileSn),
+      ac0as4OMobileSn: (ac0as4OMobileSn != null
+          ? ac0as4OMobileSn.value
+          : this.ac0as4OMobileSn),
       bvn: (bvn != null ? bvn.value : this.bvn),
       flag: (flag != null ? flag.value : this.flag),
-      s377v5OBizLine:
-          (s377v5OBizLine != null ? s377v5OBizLine.value : this.s377v5OBizLine),
+      s377v5OBizLine: (s377v5OBizLine != null
+          ? s377v5OBizLine.value
+          : this.s377v5OBizLine),
     );
   }
 }
@@ -2006,10 +1992,10 @@ extension $TraderPwdResetReqExtension on TraderPwdResetReq {
 @JsonSerializable(explicitToJson: true)
 class LoginPwdResetReq {
   const LoginPwdResetReq({
-    required this.sordidOMobile,
-    required this.password,
+    this.sordidOMobile,
+    this.password,
     this.ac0as4OMobileSn,
-    required this.presageOVerCode,
+    this.presageOVerCode,
     this.snafuOVerImageCode,
     this.d7x52pOBizChannel,
     this.s377v5OBizLine,
@@ -2116,36 +2102,34 @@ extension $LoginPwdResetReqExtension on LoginPwdResetReq {
   }
 
   LoginPwdResetReq copyWithWrapped({
-    Wrapped<String>? sordidOMobile,
-    Wrapped<String>? password,
+    Wrapped<String?>? sordidOMobile,
+    Wrapped<String?>? password,
     Wrapped<String?>? ac0as4OMobileSn,
-    Wrapped<String>? presageOVerCode,
+    Wrapped<String?>? presageOVerCode,
     Wrapped<String?>? snafuOVerImageCode,
     Wrapped<String?>? d7x52pOBizChannel,
     Wrapped<String?>? s377v5OBizLine,
   }) {
     return LoginPwdResetReq(
-      sordidOMobile:
-          (sordidOMobile != null ? sordidOMobile.value : this.sordidOMobile),
+      sordidOMobile: (sordidOMobile != null
+          ? sordidOMobile.value
+          : this.sordidOMobile),
       password: (password != null ? password.value : this.password),
-      ac0as4OMobileSn:
-          (ac0as4OMobileSn != null
-              ? ac0as4OMobileSn.value
-              : this.ac0as4OMobileSn),
-      presageOVerCode:
-          (presageOVerCode != null
-              ? presageOVerCode.value
-              : this.presageOVerCode),
-      snafuOVerImageCode:
-          (snafuOVerImageCode != null
-              ? snafuOVerImageCode.value
-              : this.snafuOVerImageCode),
-      d7x52pOBizChannel:
-          (d7x52pOBizChannel != null
-              ? d7x52pOBizChannel.value
-              : this.d7x52pOBizChannel),
-      s377v5OBizLine:
-          (s377v5OBizLine != null ? s377v5OBizLine.value : this.s377v5OBizLine),
+      ac0as4OMobileSn: (ac0as4OMobileSn != null
+          ? ac0as4OMobileSn.value
+          : this.ac0as4OMobileSn),
+      presageOVerCode: (presageOVerCode != null
+          ? presageOVerCode.value
+          : this.presageOVerCode),
+      snafuOVerImageCode: (snafuOVerImageCode != null
+          ? snafuOVerImageCode.value
+          : this.snafuOVerImageCode),
+      d7x52pOBizChannel: (d7x52pOBizChannel != null
+          ? d7x52pOBizChannel.value
+          : this.d7x52pOBizChannel),
+      s377v5OBizLine: (s377v5OBizLine != null
+          ? s377v5OBizLine.value
+          : this.s377v5OBizLine),
     );
   }
 }
@@ -2153,17 +2137,17 @@ extension $LoginPwdResetReqExtension on LoginPwdResetReq {
 @JsonSerializable(explicitToJson: true)
 class CaptchaCheckReq {
   const CaptchaCheckReq({
-    required this.sordidOMobile,
+    this.sordidOMobile,
     this.raiaOUserGid,
-    required this.type,
-    required this.ac0as4OMobileSn,
-    required this.xwkarvOImageCode,
+    this.type,
+    this.ac0as4OMobileSn,
+    this.xwkarvOImageCode,
   });
 
   @JsonKey(name: 'sordid')
   final String? sordidOMobile;
   @JsonKey(name: 'raia')
-  final int? raiaOUserGid;
+  final String? raiaOUserGid;
   @JsonKey(name: 'type')
   final int? type;
   @JsonKey(name: 'ac0as4')
@@ -2223,7 +2207,7 @@ class CaptchaCheckReq {
 extension $CaptchaCheckReqExtension on CaptchaCheckReq {
   CaptchaCheckReq copyWith({
     String? sordidOMobile,
-    int? raiaOUserGid,
+    String? raiaOUserGid,
     int? type,
     String? ac0as4OMobileSn,
     String? xwkarvOImageCode,
@@ -2238,26 +2222,26 @@ extension $CaptchaCheckReqExtension on CaptchaCheckReq {
   }
 
   CaptchaCheckReq copyWithWrapped({
-    Wrapped<String>? sordidOMobile,
-    Wrapped<int?>? raiaOUserGid,
-    Wrapped<int>? type,
-    Wrapped<String>? ac0as4OMobileSn,
-    Wrapped<String>? xwkarvOImageCode,
+    Wrapped<String?>? sordidOMobile,
+    Wrapped<String?>? raiaOUserGid,
+    Wrapped<int?>? type,
+    Wrapped<String?>? ac0as4OMobileSn,
+    Wrapped<String?>? xwkarvOImageCode,
   }) {
     return CaptchaCheckReq(
-      sordidOMobile:
-          (sordidOMobile != null ? sordidOMobile.value : this.sordidOMobile),
-      raiaOUserGid:
-          (raiaOUserGid != null ? raiaOUserGid.value : this.raiaOUserGid),
+      sordidOMobile: (sordidOMobile != null
+          ? sordidOMobile.value
+          : this.sordidOMobile),
+      raiaOUserGid: (raiaOUserGid != null
+          ? raiaOUserGid.value
+          : this.raiaOUserGid),
       type: (type != null ? type.value : this.type),
-      ac0as4OMobileSn:
-          (ac0as4OMobileSn != null
-              ? ac0as4OMobileSn.value
-              : this.ac0as4OMobileSn),
-      xwkarvOImageCode:
-          (xwkarvOImageCode != null
-              ? xwkarvOImageCode.value
-              : this.xwkarvOImageCode),
+      ac0as4OMobileSn: (ac0as4OMobileSn != null
+          ? ac0as4OMobileSn.value
+          : this.ac0as4OMobileSn),
+      xwkarvOImageCode: (xwkarvOImageCode != null
+          ? xwkarvOImageCode.value
+          : this.xwkarvOImageCode),
     );
   }
 }
@@ -2265,11 +2249,11 @@ extension $CaptchaCheckReqExtension on CaptchaCheckReq {
 @JsonSerializable(explicitToJson: true)
 class CodeVerifyReq {
   const CodeVerifyReq({
-    required this.sordidOMobile,
+    this.sordidOMobile,
     this.raiaOUserGid,
     this.o4r2h6OIsBvnMobile,
-    required this.type,
-    required this.presageOVerCode,
+    this.type,
+    this.presageOVerCode,
     this.z38e62OOrderGid,
     this.ac0as4OMobileSn,
     this.snafuOVerImageCode,
@@ -2279,7 +2263,7 @@ class CodeVerifyReq {
   @JsonKey(name: 'sordid')
   final String? sordidOMobile;
   @JsonKey(name: 'raia')
-  final int? raiaOUserGid;
+  final String? raiaOUserGid;
   @JsonKey(name: 'o4r2h6')
   final bool? o4r2h6OIsBvnMobile;
   @JsonKey(name: 'type')
@@ -2371,7 +2355,7 @@ class CodeVerifyReq {
 extension $CodeVerifyReqExtension on CodeVerifyReq {
   CodeVerifyReq copyWith({
     String? sordidOMobile,
-    int? raiaOUserGid,
+    String? raiaOUserGid,
     bool? o4r2h6OIsBvnMobile,
     int? type,
     String? presageOVerCode,
@@ -2394,44 +2378,42 @@ extension $CodeVerifyReqExtension on CodeVerifyReq {
   }
 
   CodeVerifyReq copyWithWrapped({
-    Wrapped<String>? sordidOMobile,
-    Wrapped<int?>? raiaOUserGid,
+    Wrapped<String?>? sordidOMobile,
+    Wrapped<String?>? raiaOUserGid,
     Wrapped<bool?>? o4r2h6OIsBvnMobile,
-    Wrapped<int>? type,
-    Wrapped<String>? presageOVerCode,
+    Wrapped<int?>? type,
+    Wrapped<String?>? presageOVerCode,
     Wrapped<String?>? z38e62OOrderGid,
     Wrapped<String?>? ac0as4OMobileSn,
     Wrapped<String?>? snafuOVerImageCode,
     Wrapped<String?>? s377v5OBizLine,
   }) {
     return CodeVerifyReq(
-      sordidOMobile:
-          (sordidOMobile != null ? sordidOMobile.value : this.sordidOMobile),
-      raiaOUserGid:
-          (raiaOUserGid != null ? raiaOUserGid.value : this.raiaOUserGid),
-      o4r2h6OIsBvnMobile:
-          (o4r2h6OIsBvnMobile != null
-              ? o4r2h6OIsBvnMobile.value
-              : this.o4r2h6OIsBvnMobile),
+      sordidOMobile: (sordidOMobile != null
+          ? sordidOMobile.value
+          : this.sordidOMobile),
+      raiaOUserGid: (raiaOUserGid != null
+          ? raiaOUserGid.value
+          : this.raiaOUserGid),
+      o4r2h6OIsBvnMobile: (o4r2h6OIsBvnMobile != null
+          ? o4r2h6OIsBvnMobile.value
+          : this.o4r2h6OIsBvnMobile),
       type: (type != null ? type.value : this.type),
-      presageOVerCode:
-          (presageOVerCode != null
-              ? presageOVerCode.value
-              : this.presageOVerCode),
-      z38e62OOrderGid:
-          (z38e62OOrderGid != null
-              ? z38e62OOrderGid.value
-              : this.z38e62OOrderGid),
-      ac0as4OMobileSn:
-          (ac0as4OMobileSn != null
-              ? ac0as4OMobileSn.value
-              : this.ac0as4OMobileSn),
-      snafuOVerImageCode:
-          (snafuOVerImageCode != null
-              ? snafuOVerImageCode.value
-              : this.snafuOVerImageCode),
-      s377v5OBizLine:
-          (s377v5OBizLine != null ? s377v5OBizLine.value : this.s377v5OBizLine),
+      presageOVerCode: (presageOVerCode != null
+          ? presageOVerCode.value
+          : this.presageOVerCode),
+      z38e62OOrderGid: (z38e62OOrderGid != null
+          ? z38e62OOrderGid.value
+          : this.z38e62OOrderGid),
+      ac0as4OMobileSn: (ac0as4OMobileSn != null
+          ? ac0as4OMobileSn.value
+          : this.ac0as4OMobileSn),
+      snafuOVerImageCode: (snafuOVerImageCode != null
+          ? snafuOVerImageCode.value
+          : this.snafuOVerImageCode),
+      s377v5OBizLine: (s377v5OBizLine != null
+          ? s377v5OBizLine.value
+          : this.s377v5OBizLine),
     );
   }
 }
@@ -2439,8 +2421,8 @@ extension $CodeVerifyReqExtension on CodeVerifyReq {
 @JsonSerializable(explicitToJson: true)
 class CodeSendReq {
   const CodeSendReq({
-    required this.sordidOMobile,
-    required this.type,
+    this.sordidOMobile,
+    this.type,
     this.j62tn1OMsgType,
     this.d7x52pOBizChannel,
     this.s377v5OBizLine,
@@ -2461,7 +2443,7 @@ class CodeSendReq {
   @JsonKey(name: 's377v5')
   final String? s377v5OBizLine;
   @JsonKey(name: 'raia')
-  final int? raiaOUserGid;
+  final String? raiaOUserGid;
   @JsonKey(name: 'o4r2h6')
   final bool? o4r2h6OIsBvnMobile;
   @JsonKey(name: 'z38e62')
@@ -2549,7 +2531,7 @@ extension $CodeSendReqExtension on CodeSendReq {
     String? j62tn1OMsgType,
     String? d7x52pOBizChannel,
     String? s377v5OBizLine,
-    int? raiaOUserGid,
+    String? raiaOUserGid,
     bool? o4r2h6OIsBvnMobile,
     String? z38e62OOrderGid,
     int? n66w89ODtype,
@@ -2568,40 +2550,42 @@ extension $CodeSendReqExtension on CodeSendReq {
   }
 
   CodeSendReq copyWithWrapped({
-    Wrapped<String>? sordidOMobile,
-    Wrapped<String>? type,
+    Wrapped<String?>? sordidOMobile,
+    Wrapped<String?>? type,
     Wrapped<String?>? j62tn1OMsgType,
     Wrapped<String?>? d7x52pOBizChannel,
     Wrapped<String?>? s377v5OBizLine,
-    Wrapped<int?>? raiaOUserGid,
+    Wrapped<String?>? raiaOUserGid,
     Wrapped<bool?>? o4r2h6OIsBvnMobile,
     Wrapped<String?>? z38e62OOrderGid,
     Wrapped<int?>? n66w89ODtype,
   }) {
     return CodeSendReq(
-      sordidOMobile:
-          (sordidOMobile != null ? sordidOMobile.value : this.sordidOMobile),
+      sordidOMobile: (sordidOMobile != null
+          ? sordidOMobile.value
+          : this.sordidOMobile),
       type: (type != null ? type.value : this.type),
-      j62tn1OMsgType:
-          (j62tn1OMsgType != null ? j62tn1OMsgType.value : this.j62tn1OMsgType),
-      d7x52pOBizChannel:
-          (d7x52pOBizChannel != null
-              ? d7x52pOBizChannel.value
-              : this.d7x52pOBizChannel),
-      s377v5OBizLine:
-          (s377v5OBizLine != null ? s377v5OBizLine.value : this.s377v5OBizLine),
-      raiaOUserGid:
-          (raiaOUserGid != null ? raiaOUserGid.value : this.raiaOUserGid),
-      o4r2h6OIsBvnMobile:
-          (o4r2h6OIsBvnMobile != null
-              ? o4r2h6OIsBvnMobile.value
-              : this.o4r2h6OIsBvnMobile),
-      z38e62OOrderGid:
-          (z38e62OOrderGid != null
-              ? z38e62OOrderGid.value
-              : this.z38e62OOrderGid),
-      n66w89ODtype:
-          (n66w89ODtype != null ? n66w89ODtype.value : this.n66w89ODtype),
+      j62tn1OMsgType: (j62tn1OMsgType != null
+          ? j62tn1OMsgType.value
+          : this.j62tn1OMsgType),
+      d7x52pOBizChannel: (d7x52pOBizChannel != null
+          ? d7x52pOBizChannel.value
+          : this.d7x52pOBizChannel),
+      s377v5OBizLine: (s377v5OBizLine != null
+          ? s377v5OBizLine.value
+          : this.s377v5OBizLine),
+      raiaOUserGid: (raiaOUserGid != null
+          ? raiaOUserGid.value
+          : this.raiaOUserGid),
+      o4r2h6OIsBvnMobile: (o4r2h6OIsBvnMobile != null
+          ? o4r2h6OIsBvnMobile.value
+          : this.o4r2h6OIsBvnMobile),
+      z38e62OOrderGid: (z38e62OOrderGid != null
+          ? z38e62OOrderGid.value
+          : this.z38e62OOrderGid),
+      n66w89ODtype: (n66w89ODtype != null
+          ? n66w89ODtype.value
+          : this.n66w89ODtype),
     );
   }
 }
@@ -2609,7 +2593,7 @@ extension $CodeSendReqExtension on CodeSendReq {
 @JsonSerializable(explicitToJson: true)
 class TrackReportReq {
   const TrackReportReq({
-    required this.raiaOUserGid,
+    this.raiaOUserGid,
     this.z775udOAppVersion,
     this.hk4762OUploadTime,
     this.fibulaOReportBaseInfo,
@@ -2753,7 +2737,7 @@ extension $TrackReportReqExtension on TrackReportReq {
   }
 
   TrackReportReq copyWithWrapped({
-    Wrapped<String>? raiaOUserGid,
+    Wrapped<String?>? raiaOUserGid,
     Wrapped<String?>? z775udOAppVersion,
     Wrapped<int?>? hk4762OUploadTime,
     Wrapped<TrackReportReq$FibulaOReportBaseInfo?>? fibulaOReportBaseInfo,
@@ -2767,40 +2751,36 @@ extension $TrackReportReqExtension on TrackReportReq {
     Wrapped<List<TrackReportReq$FrcoOSmsItems$Item>?>? frcoOSmsItems,
   }) {
     return TrackReportReq(
-      raiaOUserGid:
-          (raiaOUserGid != null ? raiaOUserGid.value : this.raiaOUserGid),
-      z775udOAppVersion:
-          (z775udOAppVersion != null
-              ? z775udOAppVersion.value
-              : this.z775udOAppVersion),
-      hk4762OUploadTime:
-          (hk4762OUploadTime != null
-              ? hk4762OUploadTime.value
-              : this.hk4762OUploadTime),
-      fibulaOReportBaseInfo:
-          (fibulaOReportBaseInfo != null
-              ? fibulaOReportBaseInfo.value
-              : this.fibulaOReportBaseInfo),
-      adcraftOAddressBook:
-          (adcraftOAddressBook != null
-              ? adcraftOAddressBook.value
-              : this.adcraftOAddressBook),
-      jx3w61OAppList:
-          (jx3w61OAppList != null ? jx3w61OAppList.value : this.jx3w61OAppList),
-      banallyOReportDevDTO:
-          (banallyOReportDevDTO != null
-              ? banallyOReportDevDTO.value
-              : this.banallyOReportDevDTO),
-      silaneOReportGyroDTO:
-          (silaneOReportGyroDTO != null
-              ? silaneOReportGyroDTO.value
-              : this.silaneOReportGyroDTO),
-      spankOAppsflyerId:
-          (spankOAppsflyerId != null
-              ? spankOAppsflyerId.value
-              : this.spankOAppsflyerId),
-      frcoOSmsItems:
-          (frcoOSmsItems != null ? frcoOSmsItems.value : this.frcoOSmsItems),
+      raiaOUserGid: (raiaOUserGid != null
+          ? raiaOUserGid.value
+          : this.raiaOUserGid),
+      z775udOAppVersion: (z775udOAppVersion != null
+          ? z775udOAppVersion.value
+          : this.z775udOAppVersion),
+      hk4762OUploadTime: (hk4762OUploadTime != null
+          ? hk4762OUploadTime.value
+          : this.hk4762OUploadTime),
+      fibulaOReportBaseInfo: (fibulaOReportBaseInfo != null
+          ? fibulaOReportBaseInfo.value
+          : this.fibulaOReportBaseInfo),
+      adcraftOAddressBook: (adcraftOAddressBook != null
+          ? adcraftOAddressBook.value
+          : this.adcraftOAddressBook),
+      jx3w61OAppList: (jx3w61OAppList != null
+          ? jx3w61OAppList.value
+          : this.jx3w61OAppList),
+      banallyOReportDevDTO: (banallyOReportDevDTO != null
+          ? banallyOReportDevDTO.value
+          : this.banallyOReportDevDTO),
+      silaneOReportGyroDTO: (silaneOReportGyroDTO != null
+          ? silaneOReportGyroDTO.value
+          : this.silaneOReportGyroDTO),
+      spankOAppsflyerId: (spankOAppsflyerId != null
+          ? spankOAppsflyerId.value
+          : this.spankOAppsflyerId),
+      frcoOSmsItems: (frcoOSmsItems != null
+          ? frcoOSmsItems.value
+          : this.frcoOSmsItems),
     );
   }
 }
@@ -2865,10 +2845,9 @@ extension $NeedReportReqExtension on NeedReportReq {
   }) {
     return NeedReportReq(
       manoOMapKey: (manoOMapKey != null ? manoOMapKey.value : this.manoOMapKey),
-      reopposeOMapValue:
-          (reopposeOMapValue != null
-              ? reopposeOMapValue.value
-              : this.reopposeOMapValue),
+      reopposeOMapValue: (reopposeOMapValue != null
+          ? reopposeOMapValue.value
+          : this.reopposeOMapValue),
     );
   }
 }
@@ -2940,12 +2919,12 @@ extension $RiskReportReqExtension on RiskReportReq {
     Wrapped<int?>? type,
   }) {
     return RiskReportReq(
-      s377v5OBizLine:
-          (s377v5OBizLine != null ? s377v5OBizLine.value : this.s377v5OBizLine),
-      d7x52pOBizChannel:
-          (d7x52pOBizChannel != null
-              ? d7x52pOBizChannel.value
-              : this.d7x52pOBizChannel),
+      s377v5OBizLine: (s377v5OBizLine != null
+          ? s377v5OBizLine.value
+          : this.s377v5OBizLine),
+      d7x52pOBizChannel: (d7x52pOBizChannel != null
+          ? d7x52pOBizChannel.value
+          : this.d7x52pOBizChannel),
       type: (type != null ? type.value : this.type),
     );
   }
@@ -2953,10 +2932,10 @@ extension $RiskReportReqExtension on RiskReportReq {
 
 @JsonSerializable(explicitToJson: true)
 class VaCreateReq {
-  const VaCreateReq({required this.raiaOUserGid});
+  const VaCreateReq({this.raiaOUserGid});
 
   @JsonKey(name: 'raia')
-  final int? raiaOUserGid;
+  final String? raiaOUserGid;
 
   factory VaCreateReq.fromJson(Map<String, dynamic> json) =>
       _$VaCreateReqFromJson(json);
@@ -2986,14 +2965,15 @@ class VaCreateReq {
 }
 
 extension $VaCreateReqExtension on VaCreateReq {
-  VaCreateReq copyWith({int? raiaOUserGid}) {
+  VaCreateReq copyWith({String? raiaOUserGid}) {
     return VaCreateReq(raiaOUserGid: raiaOUserGid ?? this.raiaOUserGid);
   }
 
-  VaCreateReq copyWithWrapped({Wrapped<int>? raiaOUserGid}) {
+  VaCreateReq copyWithWrapped({Wrapped<String?>? raiaOUserGid}) {
     return VaCreateReq(
-      raiaOUserGid:
-          (raiaOUserGid != null ? raiaOUserGid.value : this.raiaOUserGid),
+      raiaOUserGid: (raiaOUserGid != null
+          ? raiaOUserGid.value
+          : this.raiaOUserGid),
     );
   }
 }
@@ -3001,15 +2981,15 @@ extension $VaCreateReqExtension on VaCreateReq {
 @JsonSerializable(explicitToJson: true)
 class VoSubmitReq {
   const VoSubmitReq({
-    required this.raiaOUserGid,
-    required this.r5a4x8OLoanGid,
-    required this.krddvvOReference,
-    required this.di6pi4OTransferTime,
-    required this.o12sd0OAmount,
+    this.raiaOUserGid,
+    this.r5a4x8OLoanGid,
+    this.krddvvOReference,
+    this.di6pi4OTransferTime,
+    this.o12sd0OAmount,
   });
 
   @JsonKey(name: 'raia')
-  final int? raiaOUserGid;
+  final String? raiaOUserGid;
   @JsonKey(name: 'r5a4x8')
   final int? r5a4x8OLoanGid;
   @JsonKey(name: 'krddvv')
@@ -3073,7 +3053,7 @@ class VoSubmitReq {
 
 extension $VoSubmitReqExtension on VoSubmitReq {
   VoSubmitReq copyWith({
-    int? raiaOUserGid,
+    String? raiaOUserGid,
     int? r5a4x8OLoanGid,
     String? krddvvOReference,
     int? di6pi4OTransferTime,
@@ -3089,37 +3069,38 @@ extension $VoSubmitReqExtension on VoSubmitReq {
   }
 
   VoSubmitReq copyWithWrapped({
-    Wrapped<int>? raiaOUserGid,
-    Wrapped<int>? r5a4x8OLoanGid,
-    Wrapped<String>? krddvvOReference,
-    Wrapped<int>? di6pi4OTransferTime,
-    Wrapped<double>? o12sd0OAmount,
+    Wrapped<String?>? raiaOUserGid,
+    Wrapped<int?>? r5a4x8OLoanGid,
+    Wrapped<String?>? krddvvOReference,
+    Wrapped<int?>? di6pi4OTransferTime,
+    Wrapped<double?>? o12sd0OAmount,
   }) {
     return VoSubmitReq(
-      raiaOUserGid:
-          (raiaOUserGid != null ? raiaOUserGid.value : this.raiaOUserGid),
-      r5a4x8OLoanGid:
-          (r5a4x8OLoanGid != null ? r5a4x8OLoanGid.value : this.r5a4x8OLoanGid),
-      krddvvOReference:
-          (krddvvOReference != null
-              ? krddvvOReference.value
-              : this.krddvvOReference),
-      di6pi4OTransferTime:
-          (di6pi4OTransferTime != null
-              ? di6pi4OTransferTime.value
-              : this.di6pi4OTransferTime),
-      o12sd0OAmount:
-          (o12sd0OAmount != null ? o12sd0OAmount.value : this.o12sd0OAmount),
+      raiaOUserGid: (raiaOUserGid != null
+          ? raiaOUserGid.value
+          : this.raiaOUserGid),
+      r5a4x8OLoanGid: (r5a4x8OLoanGid != null
+          ? r5a4x8OLoanGid.value
+          : this.r5a4x8OLoanGid),
+      krddvvOReference: (krddvvOReference != null
+          ? krddvvOReference.value
+          : this.krddvvOReference),
+      di6pi4OTransferTime: (di6pi4OTransferTime != null
+          ? di6pi4OTransferTime.value
+          : this.di6pi4OTransferTime),
+      o12sd0OAmount: (o12sd0OAmount != null
+          ? o12sd0OAmount.value
+          : this.o12sd0OAmount),
     );
   }
 }
 
 @JsonSerializable(explicitToJson: true)
 class VaGetReq {
-  const VaGetReq({required this.raiaOUserGid, this.r5a4x8OLoanGid});
+  const VaGetReq({this.raiaOUserGid, this.r5a4x8OLoanGid});
 
   @JsonKey(name: 'raia')
-  final int? raiaOUserGid;
+  final String? raiaOUserGid;
   @JsonKey(name: 'r5a4x8')
   final int? r5a4x8OLoanGid;
 
@@ -3158,7 +3139,7 @@ class VaGetReq {
 }
 
 extension $VaGetReqExtension on VaGetReq {
-  VaGetReq copyWith({int? raiaOUserGid, int? r5a4x8OLoanGid}) {
+  VaGetReq copyWith({String? raiaOUserGid, int? r5a4x8OLoanGid}) {
     return VaGetReq(
       raiaOUserGid: raiaOUserGid ?? this.raiaOUserGid,
       r5a4x8OLoanGid: r5a4x8OLoanGid ?? this.r5a4x8OLoanGid,
@@ -3166,14 +3147,16 @@ extension $VaGetReqExtension on VaGetReq {
   }
 
   VaGetReq copyWithWrapped({
-    Wrapped<int>? raiaOUserGid,
+    Wrapped<String?>? raiaOUserGid,
     Wrapped<int?>? r5a4x8OLoanGid,
   }) {
     return VaGetReq(
-      raiaOUserGid:
-          (raiaOUserGid != null ? raiaOUserGid.value : this.raiaOUserGid),
-      r5a4x8OLoanGid:
-          (r5a4x8OLoanGid != null ? r5a4x8OLoanGid.value : this.r5a4x8OLoanGid),
+      raiaOUserGid: (raiaOUserGid != null
+          ? raiaOUserGid.value
+          : this.raiaOUserGid),
+      r5a4x8OLoanGid: (r5a4x8OLoanGid != null
+          ? r5a4x8OLoanGid.value
+          : this.r5a4x8OLoanGid),
     );
   }
 }
@@ -3181,9 +3164,9 @@ extension $VaGetReqExtension on VaGetReq {
 @JsonSerializable(explicitToJson: true)
 class RepayApplyReq {
   const RepayApplyReq({
-    required this.r5a4x8OLoanGid,
-    required this.raiaOUserGid,
-    required this.o12sd0OAmount,
+    this.r5a4x8OLoanGid,
+    this.raiaOUserGid,
+    this.o12sd0OAmount,
     this.vnbh46OBankCardGid,
     this.bdvg46ORepaymentStage,
     this.oe5u39OChannelName,
@@ -3206,7 +3189,7 @@ class RepayApplyReq {
   @JsonKey(name: 'r5a4x8')
   final int? r5a4x8OLoanGid;
   @JsonKey(name: 'raia')
-  final int? raiaOUserGid;
+  final String? raiaOUserGid;
   @JsonKey(name: 'o12sd0')
   final double? o12sd0OAmount;
   @JsonKey(name: 'vnbh46')
@@ -3395,7 +3378,7 @@ class RepayApplyReq {
 extension $RepayApplyReqExtension on RepayApplyReq {
   RepayApplyReq copyWith({
     int? r5a4x8OLoanGid,
-    int? raiaOUserGid,
+    String? raiaOUserGid,
     double? o12sd0OAmount,
     int? vnbh46OBankCardGid,
     int? bdvg46ORepaymentStage,
@@ -3446,9 +3429,9 @@ extension $RepayApplyReqExtension on RepayApplyReq {
   }
 
   RepayApplyReq copyWithWrapped({
-    Wrapped<int>? r5a4x8OLoanGid,
-    Wrapped<int>? raiaOUserGid,
-    Wrapped<double>? o12sd0OAmount,
+    Wrapped<int?>? r5a4x8OLoanGid,
+    Wrapped<String?>? raiaOUserGid,
+    Wrapped<double?>? o12sd0OAmount,
     Wrapped<int?>? vnbh46OBankCardGid,
     Wrapped<int?>? bdvg46ORepaymentStage,
     Wrapped<String?>? oe5u39OChannelName,
@@ -3468,77 +3451,64 @@ extension $RepayApplyReqExtension on RepayApplyReq {
     Wrapped<String?>? x01y7qOBase64String,
   }) {
     return RepayApplyReq(
-      r5a4x8OLoanGid:
-          (r5a4x8OLoanGid != null ? r5a4x8OLoanGid.value : this.r5a4x8OLoanGid),
-      raiaOUserGid:
-          (raiaOUserGid != null ? raiaOUserGid.value : this.raiaOUserGid),
-      o12sd0OAmount:
-          (o12sd0OAmount != null ? o12sd0OAmount.value : this.o12sd0OAmount),
-      vnbh46OBankCardGid:
-          (vnbh46OBankCardGid != null
-              ? vnbh46OBankCardGid.value
-              : this.vnbh46OBankCardGid),
-      bdvg46ORepaymentStage:
-          (bdvg46ORepaymentStage != null
-              ? bdvg46ORepaymentStage.value
-              : this.bdvg46ORepaymentStage),
-      oe5u39OChannelName:
-          (oe5u39OChannelName != null
-              ? oe5u39OChannelName.value
-              : this.oe5u39OChannelName),
-      worstOChannelCode:
-          (worstOChannelCode != null
-              ? worstOChannelCode.value
-              : this.worstOChannelCode),
-      y28nd4OChannelType:
-          (y28nd4OChannelType != null
-              ? y28nd4OChannelType.value
-              : this.y28nd4OChannelType),
-      jewellyOIsRenew:
-          (jewellyOIsRenew != null
-              ? jewellyOIsRenew.value
-              : this.jewellyOIsRenew),
-      mahoganyORepaymentType:
-          (mahoganyORepaymentType != null
-              ? mahoganyORepaymentType.value
-              : this.mahoganyORepaymentType),
-      percherOJumpSourceType:
-          (percherOJumpSourceType != null
-              ? percherOJumpSourceType.value
-              : this.percherOJumpSourceType),
-      z1vi8nORenewRepaymentType:
-          (z1vi8nORenewRepaymentType != null
-              ? z1vi8nORenewRepaymentType.value
-              : this.z1vi8nORenewRepaymentType),
-      g3x614ORepaymentFee:
-          (g3x614ORepaymentFee != null
-              ? g3x614ORepaymentFee.value
-              : this.g3x614ORepaymentFee),
-      hm7756OCheckLoanLeftAmount:
-          (hm7756OCheckLoanLeftAmount != null
-              ? hm7756OCheckLoanLeftAmount.value
-              : this.hm7756OCheckLoanLeftAmount),
+      r5a4x8OLoanGid: (r5a4x8OLoanGid != null
+          ? r5a4x8OLoanGid.value
+          : this.r5a4x8OLoanGid),
+      raiaOUserGid: (raiaOUserGid != null
+          ? raiaOUserGid.value
+          : this.raiaOUserGid),
+      o12sd0OAmount: (o12sd0OAmount != null
+          ? o12sd0OAmount.value
+          : this.o12sd0OAmount),
+      vnbh46OBankCardGid: (vnbh46OBankCardGid != null
+          ? vnbh46OBankCardGid.value
+          : this.vnbh46OBankCardGid),
+      bdvg46ORepaymentStage: (bdvg46ORepaymentStage != null
+          ? bdvg46ORepaymentStage.value
+          : this.bdvg46ORepaymentStage),
+      oe5u39OChannelName: (oe5u39OChannelName != null
+          ? oe5u39OChannelName.value
+          : this.oe5u39OChannelName),
+      worstOChannelCode: (worstOChannelCode != null
+          ? worstOChannelCode.value
+          : this.worstOChannelCode),
+      y28nd4OChannelType: (y28nd4OChannelType != null
+          ? y28nd4OChannelType.value
+          : this.y28nd4OChannelType),
+      jewellyOIsRenew: (jewellyOIsRenew != null
+          ? jewellyOIsRenew.value
+          : this.jewellyOIsRenew),
+      mahoganyORepaymentType: (mahoganyORepaymentType != null
+          ? mahoganyORepaymentType.value
+          : this.mahoganyORepaymentType),
+      percherOJumpSourceType: (percherOJumpSourceType != null
+          ? percherOJumpSourceType.value
+          : this.percherOJumpSourceType),
+      z1vi8nORenewRepaymentType: (z1vi8nORenewRepaymentType != null
+          ? z1vi8nORenewRepaymentType.value
+          : this.z1vi8nORenewRepaymentType),
+      g3x614ORepaymentFee: (g3x614ORepaymentFee != null
+          ? g3x614ORepaymentFee.value
+          : this.g3x614ORepaymentFee),
+      hm7756OCheckLoanLeftAmount: (hm7756OCheckLoanLeftAmount != null
+          ? hm7756OCheckLoanLeftAmount.value
+          : this.hm7756OCheckLoanLeftAmount),
       fratOMark: (fratOMark != null ? fratOMark.value : this.fratOMark),
-      t1h91pOBankName:
-          (t1h91pOBankName != null
-              ? t1h91pOBankName.value
-              : this.t1h91pOBankName),
-      e77490ORequestId:
-          (e77490ORequestId != null
-              ? e77490ORequestId.value
-              : this.e77490ORequestId),
-      lz09kpOUserName:
-          (lz09kpOUserName != null
-              ? lz09kpOUserName.value
-              : this.lz09kpOUserName),
-      k5j6q9OChannelAccount:
-          (k5j6q9OChannelAccount != null
-              ? k5j6q9OChannelAccount.value
-              : this.k5j6q9OChannelAccount),
-      x01y7qOBase64String:
-          (x01y7qOBase64String != null
-              ? x01y7qOBase64String.value
-              : this.x01y7qOBase64String),
+      t1h91pOBankName: (t1h91pOBankName != null
+          ? t1h91pOBankName.value
+          : this.t1h91pOBankName),
+      e77490ORequestId: (e77490ORequestId != null
+          ? e77490ORequestId.value
+          : this.e77490ORequestId),
+      lz09kpOUserName: (lz09kpOUserName != null
+          ? lz09kpOUserName.value
+          : this.lz09kpOUserName),
+      k5j6q9OChannelAccount: (k5j6q9OChannelAccount != null
+          ? k5j6q9OChannelAccount.value
+          : this.k5j6q9OChannelAccount),
+      x01y7qOBase64String: (x01y7qOBase64String != null
+          ? x01y7qOBase64String.value
+          : this.x01y7qOBase64String),
     );
   }
 }
@@ -3546,8 +3516,8 @@ extension $RepayApplyReqExtension on RepayApplyReq {
 @JsonSerializable(explicitToJson: true)
 class RepayRecordReq {
   const RepayRecordReq({
-    required this.r5a4x8OLoanGid,
-    required this.raiaOUserGid,
+    this.r5a4x8OLoanGid,
+    this.raiaOUserGid,
     this.mahoganyORepaymentType,
     this.t1h91pOBankName,
     this.e77490ORequestId,
@@ -3557,7 +3527,7 @@ class RepayRecordReq {
   @JsonKey(name: 'r5a4x8')
   final int? r5a4x8OLoanGid;
   @JsonKey(name: 'raia')
-  final int? raiaOUserGid;
+  final String? raiaOUserGid;
   @JsonKey(name: 'mahogany')
   final int? mahoganyORepaymentType;
   @JsonKey(name: 't1h91p')
@@ -3628,7 +3598,7 @@ class RepayRecordReq {
 extension $RepayRecordReqExtension on RepayRecordReq {
   RepayRecordReq copyWith({
     int? r5a4x8OLoanGid,
-    int? raiaOUserGid,
+    String? raiaOUserGid,
     int? mahoganyORepaymentType,
     String? t1h91pOBankName,
     String? e77490ORequestId,
@@ -3646,32 +3616,32 @@ extension $RepayRecordReqExtension on RepayRecordReq {
   }
 
   RepayRecordReq copyWithWrapped({
-    Wrapped<int>? r5a4x8OLoanGid,
-    Wrapped<int>? raiaOUserGid,
+    Wrapped<int?>? r5a4x8OLoanGid,
+    Wrapped<String?>? raiaOUserGid,
     Wrapped<int?>? mahoganyORepaymentType,
     Wrapped<String?>? t1h91pOBankName,
     Wrapped<String?>? e77490ORequestId,
     Wrapped<double?>? o12sd0OAmount,
   }) {
     return RepayRecordReq(
-      r5a4x8OLoanGid:
-          (r5a4x8OLoanGid != null ? r5a4x8OLoanGid.value : this.r5a4x8OLoanGid),
-      raiaOUserGid:
-          (raiaOUserGid != null ? raiaOUserGid.value : this.raiaOUserGid),
-      mahoganyORepaymentType:
-          (mahoganyORepaymentType != null
-              ? mahoganyORepaymentType.value
-              : this.mahoganyORepaymentType),
-      t1h91pOBankName:
-          (t1h91pOBankName != null
-              ? t1h91pOBankName.value
-              : this.t1h91pOBankName),
-      e77490ORequestId:
-          (e77490ORequestId != null
-              ? e77490ORequestId.value
-              : this.e77490ORequestId),
-      o12sd0OAmount:
-          (o12sd0OAmount != null ? o12sd0OAmount.value : this.o12sd0OAmount),
+      r5a4x8OLoanGid: (r5a4x8OLoanGid != null
+          ? r5a4x8OLoanGid.value
+          : this.r5a4x8OLoanGid),
+      raiaOUserGid: (raiaOUserGid != null
+          ? raiaOUserGid.value
+          : this.raiaOUserGid),
+      mahoganyORepaymentType: (mahoganyORepaymentType != null
+          ? mahoganyORepaymentType.value
+          : this.mahoganyORepaymentType),
+      t1h91pOBankName: (t1h91pOBankName != null
+          ? t1h91pOBankName.value
+          : this.t1h91pOBankName),
+      e77490ORequestId: (e77490ORequestId != null
+          ? e77490ORequestId.value
+          : this.e77490ORequestId),
+      o12sd0OAmount: (o12sd0OAmount != null
+          ? o12sd0OAmount.value
+          : this.o12sd0OAmount),
     );
   }
 }
@@ -3689,7 +3659,7 @@ class MainInfoReq {
   });
 
   @JsonKey(name: 'raia')
-  final int? raiaOUserGid;
+  final String? raiaOUserGid;
   @JsonKey(name: 'zebrass')
   final String? zebrassOReqSubChannel;
   @JsonKey(name: 's37m00')
@@ -3769,7 +3739,7 @@ class MainInfoReq {
 
 extension $MainInfoReqExtension on MainInfoReq {
   MainInfoReq copyWith({
-    int? raiaOUserGid,
+    String? raiaOUserGid,
     String? zebrassOReqSubChannel,
     String? s37m00OReqSubChannelAf,
     String? spankOAppsflyerId,
@@ -3791,7 +3761,7 @@ extension $MainInfoReqExtension on MainInfoReq {
   }
 
   MainInfoReq copyWithWrapped({
-    Wrapped<int?>? raiaOUserGid,
+    Wrapped<String?>? raiaOUserGid,
     Wrapped<String?>? zebrassOReqSubChannel,
     Wrapped<String?>? s37m00OReqSubChannelAf,
     Wrapped<String?>? spankOAppsflyerId,
@@ -3800,39 +3770,34 @@ extension $MainInfoReqExtension on MainInfoReq {
     Wrapped<String?>? neckbandOFirebaseId,
   }) {
     return MainInfoReq(
-      raiaOUserGid:
-          (raiaOUserGid != null ? raiaOUserGid.value : this.raiaOUserGid),
-      zebrassOReqSubChannel:
-          (zebrassOReqSubChannel != null
-              ? zebrassOReqSubChannel.value
-              : this.zebrassOReqSubChannel),
-      s37m00OReqSubChannelAf:
-          (s37m00OReqSubChannelAf != null
-              ? s37m00OReqSubChannelAf.value
-              : this.s37m00OReqSubChannelAf),
-      spankOAppsflyerId:
-          (spankOAppsflyerId != null
-              ? spankOAppsflyerId.value
-              : this.spankOAppsflyerId),
-      z775udOAppVersion:
-          (z775udOAppVersion != null
-              ? z775udOAppVersion.value
-              : this.z775udOAppVersion),
-      monobuoyOLastAaid:
-          (monobuoyOLastAaid != null
-              ? monobuoyOLastAaid.value
-              : this.monobuoyOLastAaid),
-      neckbandOFirebaseId:
-          (neckbandOFirebaseId != null
-              ? neckbandOFirebaseId.value
-              : this.neckbandOFirebaseId),
+      raiaOUserGid: (raiaOUserGid != null
+          ? raiaOUserGid.value
+          : this.raiaOUserGid),
+      zebrassOReqSubChannel: (zebrassOReqSubChannel != null
+          ? zebrassOReqSubChannel.value
+          : this.zebrassOReqSubChannel),
+      s37m00OReqSubChannelAf: (s37m00OReqSubChannelAf != null
+          ? s37m00OReqSubChannelAf.value
+          : this.s37m00OReqSubChannelAf),
+      spankOAppsflyerId: (spankOAppsflyerId != null
+          ? spankOAppsflyerId.value
+          : this.spankOAppsflyerId),
+      z775udOAppVersion: (z775udOAppVersion != null
+          ? z775udOAppVersion.value
+          : this.z775udOAppVersion),
+      monobuoyOLastAaid: (monobuoyOLastAaid != null
+          ? monobuoyOLastAaid.value
+          : this.monobuoyOLastAaid),
+      neckbandOFirebaseId: (neckbandOFirebaseId != null
+          ? neckbandOFirebaseId.value
+          : this.neckbandOFirebaseId),
     );
   }
 }
 
 @JsonSerializable(explicitToJson: true)
 class NoticeMainReq {
-  const NoticeMainReq({required this.m52v00OPlatform});
+  const NoticeMainReq({this.m52v00OPlatform});
 
   @JsonKey(name: 'm52v00')
   final String? m52v00OPlatform;
@@ -3872,19 +3837,18 @@ extension $NoticeMainReqExtension on NoticeMainReq {
     );
   }
 
-  NoticeMainReq copyWithWrapped({Wrapped<String>? m52v00OPlatform}) {
+  NoticeMainReq copyWithWrapped({Wrapped<String?>? m52v00OPlatform}) {
     return NoticeMainReq(
-      m52v00OPlatform:
-          (m52v00OPlatform != null
-              ? m52v00OPlatform.value
-              : this.m52v00OPlatform),
+      m52v00OPlatform: (m52v00OPlatform != null
+          ? m52v00OPlatform.value
+          : this.m52v00OPlatform),
     );
   }
 }
 
 @JsonSerializable(explicitToJson: true)
 class VersionCheckReq {
-  const VersionCheckReq({required this.lutealOVersion});
+  const VersionCheckReq({this.lutealOVersion});
 
   @JsonKey(name: 'luteal')
   final String? lutealOVersion;
@@ -3924,10 +3888,11 @@ extension $VersionCheckReqExtension on VersionCheckReq {
     );
   }
 
-  VersionCheckReq copyWithWrapped({Wrapped<String>? lutealOVersion}) {
+  VersionCheckReq copyWithWrapped({Wrapped<String?>? lutealOVersion}) {
     return VersionCheckReq(
-      lutealOVersion:
-          (lutealOVersion != null ? lutealOVersion.value : this.lutealOVersion),
+      lutealOVersion: (lutealOVersion != null
+          ? lutealOVersion.value
+          : this.lutealOVersion),
     );
   }
 }
@@ -3936,7 +3901,7 @@ extension $VersionCheckReqExtension on VersionCheckReq {
 class ColoanGpReq {
   const ColoanGpReq({
     this.raiaOUserGid,
-    required this.d7x52pOBizChannel,
+    this.d7x52pOBizChannel,
     this.s377v5OBizLine,
   });
 
@@ -4002,18 +3967,19 @@ extension $ColoanGpReqExtension on ColoanGpReq {
 
   ColoanGpReq copyWithWrapped({
     Wrapped<String?>? raiaOUserGid,
-    Wrapped<String>? d7x52pOBizChannel,
+    Wrapped<String?>? d7x52pOBizChannel,
     Wrapped<String?>? s377v5OBizLine,
   }) {
     return ColoanGpReq(
-      raiaOUserGid:
-          (raiaOUserGid != null ? raiaOUserGid.value : this.raiaOUserGid),
-      d7x52pOBizChannel:
-          (d7x52pOBizChannel != null
-              ? d7x52pOBizChannel.value
-              : this.d7x52pOBizChannel),
-      s377v5OBizLine:
-          (s377v5OBizLine != null ? s377v5OBizLine.value : this.s377v5OBizLine),
+      raiaOUserGid: (raiaOUserGid != null
+          ? raiaOUserGid.value
+          : this.raiaOUserGid),
+      d7x52pOBizChannel: (d7x52pOBizChannel != null
+          ? d7x52pOBizChannel.value
+          : this.d7x52pOBizChannel),
+      s377v5OBizLine: (s377v5OBizLine != null
+          ? s377v5OBizLine.value
+          : this.s377v5OBizLine),
     );
   }
 }
@@ -4031,7 +3997,7 @@ class HomeInfoReq {
   });
 
   @JsonKey(name: 'raia')
-  final int? raiaOUserGid;
+  final String? raiaOUserGid;
   @JsonKey(name: 'zebrass')
   final String? zebrassOReqSubChannel;
   @JsonKey(name: 's37m00')
@@ -4111,7 +4077,7 @@ class HomeInfoReq {
 
 extension $HomeInfoReqExtension on HomeInfoReq {
   HomeInfoReq copyWith({
-    int? raiaOUserGid,
+    String? raiaOUserGid,
     String? zebrassOReqSubChannel,
     String? s37m00OReqSubChannelAf,
     String? spankOAppsflyerId,
@@ -4133,7 +4099,7 @@ extension $HomeInfoReqExtension on HomeInfoReq {
   }
 
   HomeInfoReq copyWithWrapped({
-    Wrapped<int?>? raiaOUserGid,
+    Wrapped<String?>? raiaOUserGid,
     Wrapped<String?>? zebrassOReqSubChannel,
     Wrapped<String?>? s37m00OReqSubChannelAf,
     Wrapped<String?>? spankOAppsflyerId,
@@ -4142,32 +4108,27 @@ extension $HomeInfoReqExtension on HomeInfoReq {
     Wrapped<String?>? neckbandOFirebaseId,
   }) {
     return HomeInfoReq(
-      raiaOUserGid:
-          (raiaOUserGid != null ? raiaOUserGid.value : this.raiaOUserGid),
-      zebrassOReqSubChannel:
-          (zebrassOReqSubChannel != null
-              ? zebrassOReqSubChannel.value
-              : this.zebrassOReqSubChannel),
-      s37m00OReqSubChannelAf:
-          (s37m00OReqSubChannelAf != null
-              ? s37m00OReqSubChannelAf.value
-              : this.s37m00OReqSubChannelAf),
-      spankOAppsflyerId:
-          (spankOAppsflyerId != null
-              ? spankOAppsflyerId.value
-              : this.spankOAppsflyerId),
-      z775udOAppVersion:
-          (z775udOAppVersion != null
-              ? z775udOAppVersion.value
-              : this.z775udOAppVersion),
-      monobuoyOLastAaid:
-          (monobuoyOLastAaid != null
-              ? monobuoyOLastAaid.value
-              : this.monobuoyOLastAaid),
-      neckbandOFirebaseId:
-          (neckbandOFirebaseId != null
-              ? neckbandOFirebaseId.value
-              : this.neckbandOFirebaseId),
+      raiaOUserGid: (raiaOUserGid != null
+          ? raiaOUserGid.value
+          : this.raiaOUserGid),
+      zebrassOReqSubChannel: (zebrassOReqSubChannel != null
+          ? zebrassOReqSubChannel.value
+          : this.zebrassOReqSubChannel),
+      s37m00OReqSubChannelAf: (s37m00OReqSubChannelAf != null
+          ? s37m00OReqSubChannelAf.value
+          : this.s37m00OReqSubChannelAf),
+      spankOAppsflyerId: (spankOAppsflyerId != null
+          ? spankOAppsflyerId.value
+          : this.spankOAppsflyerId),
+      z775udOAppVersion: (z775udOAppVersion != null
+          ? z775udOAppVersion.value
+          : this.z775udOAppVersion),
+      monobuoyOLastAaid: (monobuoyOLastAaid != null
+          ? monobuoyOLastAaid.value
+          : this.monobuoyOLastAaid),
+      neckbandOFirebaseId: (neckbandOFirebaseId != null
+          ? neckbandOFirebaseId.value
+          : this.neckbandOFirebaseId),
     );
   }
 }
@@ -4175,11 +4136,11 @@ extension $HomeInfoReqExtension on HomeInfoReq {
 @JsonSerializable(explicitToJson: true)
 class LoanConfirmReq {
   const LoanConfirmReq({
-    required this.raiaOUserGid,
-    required this.z38e62OOrderGid,
-    required this.retiaryOLoanAmount,
-    required this.foreyardOProductId,
-    required this.c4s47hOTransPassword,
+    this.raiaOUserGid,
+    this.z38e62OOrderGid,
+    this.retiaryOLoanAmount,
+    this.foreyardOProductId,
+    this.c4s47hOTransPassword,
     this.vnbh46OBankCardGid,
     this.zebrineOCardNo,
     this.t1h91pOBankName,
@@ -4192,7 +4153,7 @@ class LoanConfirmReq {
   });
 
   @JsonKey(name: 'raia')
-  final int? raiaOUserGid;
+  final String? raiaOUserGid;
   @JsonKey(name: 'z38e62')
   final String? z38e62OOrderGid;
   @JsonKey(name: 'retiary')
@@ -4325,7 +4286,7 @@ class LoanConfirmReq {
 
 extension $LoanConfirmReqExtension on LoanConfirmReq {
   LoanConfirmReq copyWith({
-    int? raiaOUserGid,
+    String? raiaOUserGid,
     String? z38e62OOrderGid,
     double? retiaryOLoanAmount,
     int? foreyardOProductId,
@@ -4359,11 +4320,11 @@ extension $LoanConfirmReqExtension on LoanConfirmReq {
   }
 
   LoanConfirmReq copyWithWrapped({
-    Wrapped<int>? raiaOUserGid,
-    Wrapped<String>? z38e62OOrderGid,
-    Wrapped<double>? retiaryOLoanAmount,
-    Wrapped<int>? foreyardOProductId,
-    Wrapped<String>? c4s47hOTransPassword,
+    Wrapped<String?>? raiaOUserGid,
+    Wrapped<String?>? z38e62OOrderGid,
+    Wrapped<double?>? retiaryOLoanAmount,
+    Wrapped<int?>? foreyardOProductId,
+    Wrapped<String?>? c4s47hOTransPassword,
     Wrapped<int?>? vnbh46OBankCardGid,
     Wrapped<String?>? zebrineOCardNo,
     Wrapped<String?>? t1h91pOBankName,
@@ -4375,53 +4336,46 @@ extension $LoanConfirmReqExtension on LoanConfirmReq {
     Wrapped<int?>? rf6k6bOCheckType,
   }) {
     return LoanConfirmReq(
-      raiaOUserGid:
-          (raiaOUserGid != null ? raiaOUserGid.value : this.raiaOUserGid),
-      z38e62OOrderGid:
-          (z38e62OOrderGid != null
-              ? z38e62OOrderGid.value
-              : this.z38e62OOrderGid),
-      retiaryOLoanAmount:
-          (retiaryOLoanAmount != null
-              ? retiaryOLoanAmount.value
-              : this.retiaryOLoanAmount),
-      foreyardOProductId:
-          (foreyardOProductId != null
-              ? foreyardOProductId.value
-              : this.foreyardOProductId),
-      c4s47hOTransPassword:
-          (c4s47hOTransPassword != null
-              ? c4s47hOTransPassword.value
-              : this.c4s47hOTransPassword),
-      vnbh46OBankCardGid:
-          (vnbh46OBankCardGid != null
-              ? vnbh46OBankCardGid.value
-              : this.vnbh46OBankCardGid),
-      zebrineOCardNo:
-          (zebrineOCardNo != null ? zebrineOCardNo.value : this.zebrineOCardNo),
-      t1h91pOBankName:
-          (t1h91pOBankName != null
-              ? t1h91pOBankName.value
-              : this.t1h91pOBankName),
-      insolentOBankCode:
-          (insolentOBankCode != null
-              ? insolentOBankCode.value
-              : this.insolentOBankCode),
+      raiaOUserGid: (raiaOUserGid != null
+          ? raiaOUserGid.value
+          : this.raiaOUserGid),
+      z38e62OOrderGid: (z38e62OOrderGid != null
+          ? z38e62OOrderGid.value
+          : this.z38e62OOrderGid),
+      retiaryOLoanAmount: (retiaryOLoanAmount != null
+          ? retiaryOLoanAmount.value
+          : this.retiaryOLoanAmount),
+      foreyardOProductId: (foreyardOProductId != null
+          ? foreyardOProductId.value
+          : this.foreyardOProductId),
+      c4s47hOTransPassword: (c4s47hOTransPassword != null
+          ? c4s47hOTransPassword.value
+          : this.c4s47hOTransPassword),
+      vnbh46OBankCardGid: (vnbh46OBankCardGid != null
+          ? vnbh46OBankCardGid.value
+          : this.vnbh46OBankCardGid),
+      zebrineOCardNo: (zebrineOCardNo != null
+          ? zebrineOCardNo.value
+          : this.zebrineOCardNo),
+      t1h91pOBankName: (t1h91pOBankName != null
+          ? t1h91pOBankName.value
+          : this.t1h91pOBankName),
+      insolentOBankCode: (insolentOBankCode != null
+          ? insolentOBankCode.value
+          : this.insolentOBankCode),
       flag: (flag != null ? flag.value : this.flag),
-      pinionOUserCouponGid:
-          (pinionOUserCouponGid != null
-              ? pinionOUserCouponGid.value
-              : this.pinionOUserCouponGid),
-      x2anh3OStageFlag:
-          (x2anh3OStageFlag != null
-              ? x2anh3OStageFlag.value
-              : this.x2anh3OStageFlag),
-      brantOPurpose:
-          (brantOPurpose != null ? brantOPurpose.value : this.brantOPurpose),
-      rf6k6bOCheckType:
-          (rf6k6bOCheckType != null
-              ? rf6k6bOCheckType.value
-              : this.rf6k6bOCheckType),
+      pinionOUserCouponGid: (pinionOUserCouponGid != null
+          ? pinionOUserCouponGid.value
+          : this.pinionOUserCouponGid),
+      x2anh3OStageFlag: (x2anh3OStageFlag != null
+          ? x2anh3OStageFlag.value
+          : this.x2anh3OStageFlag),
+      brantOPurpose: (brantOPurpose != null
+          ? brantOPurpose.value
+          : this.brantOPurpose),
+      rf6k6bOCheckType: (rf6k6bOCheckType != null
+          ? rf6k6bOCheckType.value
+          : this.rf6k6bOCheckType),
     );
   }
 }
@@ -4429,9 +4383,9 @@ extension $LoanConfirmReqExtension on LoanConfirmReq {
 @JsonSerializable(explicitToJson: true)
 class PicUploadReqReq {
   const PicUploadReqReq({
-    required this.raiaOUserGid,
-    required this.ha3xp9OPicType,
-    required this.x01y7qOBase64String,
+    this.raiaOUserGid,
+    this.ha3xp9OPicType,
+    this.x01y7qOBase64String,
   });
 
   @JsonKey(name: 'raia')
@@ -4439,7 +4393,7 @@ class PicUploadReqReq {
   @JsonKey(name: 'ha3xp9')
   final int? ha3xp9OPicType;
   @JsonKey(name: 'x01y7q', defaultValue: <String>[])
-  final List<String> x01y7qOBase64String;
+  final List<String>? x01y7qOBase64String;
 
   factory PicUploadReqReq.fromJson(Map<String, dynamic> json) =>
       _$PicUploadReqReqFromJson(json);
@@ -4495,32 +4449,30 @@ extension $PicUploadReqReqExtension on PicUploadReqReq {
   }
 
   PicUploadReqReq copyWithWrapped({
-    Wrapped<String>? raiaOUserGid,
-    Wrapped<int>? ha3xp9OPicType,
-    Wrapped<List<String>>? x01y7qOBase64String,
+    Wrapped<String?>? raiaOUserGid,
+    Wrapped<int?>? ha3xp9OPicType,
+    Wrapped<List<String>?>? x01y7qOBase64String,
   }) {
     return PicUploadReqReq(
-      raiaOUserGid:
-          (raiaOUserGid != null ? raiaOUserGid.value : this.raiaOUserGid),
-      ha3xp9OPicType:
-          (ha3xp9OPicType != null ? ha3xp9OPicType.value : this.ha3xp9OPicType),
-      x01y7qOBase64String:
-          (x01y7qOBase64String != null
-              ? x01y7qOBase64String.value
-              : this.x01y7qOBase64String),
+      raiaOUserGid: (raiaOUserGid != null
+          ? raiaOUserGid.value
+          : this.raiaOUserGid),
+      ha3xp9OPicType: (ha3xp9OPicType != null
+          ? ha3xp9OPicType.value
+          : this.ha3xp9OPicType),
+      x01y7qOBase64String: (x01y7qOBase64String != null
+          ? x01y7qOBase64String.value
+          : this.x01y7qOBase64String),
     );
   }
 }
 
 @JsonSerializable(explicitToJson: true)
 class CollTimeReq {
-  const CollTimeReq({
-    required this.raiaOUserGid,
-    required this.e479lgOCollectTimeType,
-  });
+  const CollTimeReq({this.raiaOUserGid, this.e479lgOCollectTimeType});
 
   @JsonKey(name: 'raia')
-  final int? raiaOUserGid;
+  final String? raiaOUserGid;
   @JsonKey(name: 'e479lg')
   final int? e479lgOCollectTimeType;
 
@@ -4559,7 +4511,7 @@ class CollTimeReq {
 }
 
 extension $CollTimeReqExtension on CollTimeReq {
-  CollTimeReq copyWith({int? raiaOUserGid, int? e479lgOCollectTimeType}) {
+  CollTimeReq copyWith({String? raiaOUserGid, int? e479lgOCollectTimeType}) {
     return CollTimeReq(
       raiaOUserGid: raiaOUserGid ?? this.raiaOUserGid,
       e479lgOCollectTimeType:
@@ -4568,26 +4520,26 @@ extension $CollTimeReqExtension on CollTimeReq {
   }
 
   CollTimeReq copyWithWrapped({
-    Wrapped<int>? raiaOUserGid,
-    Wrapped<int>? e479lgOCollectTimeType,
+    Wrapped<String?>? raiaOUserGid,
+    Wrapped<int?>? e479lgOCollectTimeType,
   }) {
     return CollTimeReq(
-      raiaOUserGid:
-          (raiaOUserGid != null ? raiaOUserGid.value : this.raiaOUserGid),
-      e479lgOCollectTimeType:
-          (e479lgOCollectTimeType != null
-              ? e479lgOCollectTimeType.value
-              : this.e479lgOCollectTimeType),
+      raiaOUserGid: (raiaOUserGid != null
+          ? raiaOUserGid.value
+          : this.raiaOUserGid),
+      e479lgOCollectTimeType: (e479lgOCollectTimeType != null
+          ? e479lgOCollectTimeType.value
+          : this.e479lgOCollectTimeType),
     );
   }
 }
 
 @JsonSerializable(explicitToJson: true)
 class CheckFirstLoanReq {
-  const CheckFirstLoanReq({required this.raiaOUserGid});
+  const CheckFirstLoanReq({this.raiaOUserGid});
 
   @JsonKey(name: 'raia')
-  final int? raiaOUserGid;
+  final String? raiaOUserGid;
 
   factory CheckFirstLoanReq.fromJson(Map<String, dynamic> json) =>
       _$CheckFirstLoanReqFromJson(json);
@@ -4617,27 +4569,25 @@ class CheckFirstLoanReq {
 }
 
 extension $CheckFirstLoanReqExtension on CheckFirstLoanReq {
-  CheckFirstLoanReq copyWith({int? raiaOUserGid}) {
+  CheckFirstLoanReq copyWith({String? raiaOUserGid}) {
     return CheckFirstLoanReq(raiaOUserGid: raiaOUserGid ?? this.raiaOUserGid);
   }
 
-  CheckFirstLoanReq copyWithWrapped({Wrapped<int>? raiaOUserGid}) {
+  CheckFirstLoanReq copyWithWrapped({Wrapped<String?>? raiaOUserGid}) {
     return CheckFirstLoanReq(
-      raiaOUserGid:
-          (raiaOUserGid != null ? raiaOUserGid.value : this.raiaOUserGid),
+      raiaOUserGid: (raiaOUserGid != null
+          ? raiaOUserGid.value
+          : this.raiaOUserGid),
     );
   }
 }
 
 @JsonSerializable(explicitToJson: true)
 class LoanOrderReq {
-  const LoanOrderReq({
-    required this.raiaOUserGid,
-    required this.z38e62OOrderGid,
-  });
+  const LoanOrderReq({this.raiaOUserGid, this.z38e62OOrderGid});
 
   @JsonKey(name: 'raia')
-  final int? raiaOUserGid;
+  final String? raiaOUserGid;
   @JsonKey(name: 'z38e62')
   final String? z38e62OOrderGid;
 
@@ -4676,7 +4626,7 @@ class LoanOrderReq {
 }
 
 extension $LoanOrderReqExtension on LoanOrderReq {
-  LoanOrderReq copyWith({int? raiaOUserGid, String? z38e62OOrderGid}) {
+  LoanOrderReq copyWith({String? raiaOUserGid, String? z38e62OOrderGid}) {
     return LoanOrderReq(
       raiaOUserGid: raiaOUserGid ?? this.raiaOUserGid,
       z38e62OOrderGid: z38e62OOrderGid ?? this.z38e62OOrderGid,
@@ -4684,16 +4634,16 @@ extension $LoanOrderReqExtension on LoanOrderReq {
   }
 
   LoanOrderReq copyWithWrapped({
-    Wrapped<int>? raiaOUserGid,
-    Wrapped<String>? z38e62OOrderGid,
+    Wrapped<String?>? raiaOUserGid,
+    Wrapped<String?>? z38e62OOrderGid,
   }) {
     return LoanOrderReq(
-      raiaOUserGid:
-          (raiaOUserGid != null ? raiaOUserGid.value : this.raiaOUserGid),
-      z38e62OOrderGid:
-          (z38e62OOrderGid != null
-              ? z38e62OOrderGid.value
-              : this.z38e62OOrderGid),
+      raiaOUserGid: (raiaOUserGid != null
+          ? raiaOUserGid.value
+          : this.raiaOUserGid),
+      z38e62OOrderGid: (z38e62OOrderGid != null
+          ? z38e62OOrderGid.value
+          : this.z38e62OOrderGid),
     );
   }
 }
@@ -4701,8 +4651,8 @@ extension $LoanOrderReqExtension on LoanOrderReq {
 @JsonSerializable(explicitToJson: true)
 class LoanPreInfoReq {
   const LoanPreInfoReq({
-    required this.raiaOUserGid,
-    required this.retiaryOLoanAmount,
+    this.raiaOUserGid,
+    this.retiaryOLoanAmount,
     this.foreyardOProductId,
     this.pinionOUserCouponGid,
     this.x2anh3OStageFlag,
@@ -4711,7 +4661,7 @@ class LoanPreInfoReq {
   });
 
   @JsonKey(name: 'raia')
-  final int? raiaOUserGid;
+  final String? raiaOUserGid;
   @JsonKey(name: 'retiary')
   final double? retiaryOLoanAmount;
   @JsonKey(name: 'foreyard')
@@ -4791,7 +4741,7 @@ class LoanPreInfoReq {
 
 extension $LoanPreInfoReqExtension on LoanPreInfoReq {
   LoanPreInfoReq copyWith({
-    int? raiaOUserGid,
+    String? raiaOUserGid,
     double? retiaryOLoanAmount,
     int? foreyardOProductId,
     int? pinionOUserCouponGid,
@@ -4811,8 +4761,8 @@ extension $LoanPreInfoReqExtension on LoanPreInfoReq {
   }
 
   LoanPreInfoReq copyWithWrapped({
-    Wrapped<int>? raiaOUserGid,
-    Wrapped<double>? retiaryOLoanAmount,
+    Wrapped<String?>? raiaOUserGid,
+    Wrapped<double?>? retiaryOLoanAmount,
     Wrapped<int?>? foreyardOProductId,
     Wrapped<int?>? pinionOUserCouponGid,
     Wrapped<int?>? x2anh3OStageFlag,
@@ -4820,32 +4770,27 @@ extension $LoanPreInfoReqExtension on LoanPreInfoReq {
     Wrapped<int?>? vnbh46OBankCardGid,
   }) {
     return LoanPreInfoReq(
-      raiaOUserGid:
-          (raiaOUserGid != null ? raiaOUserGid.value : this.raiaOUserGid),
-      retiaryOLoanAmount:
-          (retiaryOLoanAmount != null
-              ? retiaryOLoanAmount.value
-              : this.retiaryOLoanAmount),
-      foreyardOProductId:
-          (foreyardOProductId != null
-              ? foreyardOProductId.value
-              : this.foreyardOProductId),
-      pinionOUserCouponGid:
-          (pinionOUserCouponGid != null
-              ? pinionOUserCouponGid.value
-              : this.pinionOUserCouponGid),
-      x2anh3OStageFlag:
-          (x2anh3OStageFlag != null
-              ? x2anh3OStageFlag.value
-              : this.x2anh3OStageFlag),
-      z38e62OOrderGid:
-          (z38e62OOrderGid != null
-              ? z38e62OOrderGid.value
-              : this.z38e62OOrderGid),
-      vnbh46OBankCardGid:
-          (vnbh46OBankCardGid != null
-              ? vnbh46OBankCardGid.value
-              : this.vnbh46OBankCardGid),
+      raiaOUserGid: (raiaOUserGid != null
+          ? raiaOUserGid.value
+          : this.raiaOUserGid),
+      retiaryOLoanAmount: (retiaryOLoanAmount != null
+          ? retiaryOLoanAmount.value
+          : this.retiaryOLoanAmount),
+      foreyardOProductId: (foreyardOProductId != null
+          ? foreyardOProductId.value
+          : this.foreyardOProductId),
+      pinionOUserCouponGid: (pinionOUserCouponGid != null
+          ? pinionOUserCouponGid.value
+          : this.pinionOUserCouponGid),
+      x2anh3OStageFlag: (x2anh3OStageFlag != null
+          ? x2anh3OStageFlag.value
+          : this.x2anh3OStageFlag),
+      z38e62OOrderGid: (z38e62OOrderGid != null
+          ? z38e62OOrderGid.value
+          : this.z38e62OOrderGid),
+      vnbh46OBankCardGid: (vnbh46OBankCardGid != null
+          ? vnbh46OBankCardGid.value
+          : this.vnbh46OBankCardGid),
     );
   }
 }
@@ -4854,7 +4799,7 @@ extension $LoanPreInfoReqExtension on LoanPreInfoReq {
 class LoanFeeDetailReq {
   const LoanFeeDetailReq({
     this.raiaOUserGid,
-    required this.d7x52pOBizChannel,
+    this.d7x52pOBizChannel,
     this.s377v5OBizLine,
   });
 
@@ -4920,28 +4865,29 @@ extension $LoanFeeDetailReqExtension on LoanFeeDetailReq {
 
   LoanFeeDetailReq copyWithWrapped({
     Wrapped<String?>? raiaOUserGid,
-    Wrapped<String>? d7x52pOBizChannel,
+    Wrapped<String?>? d7x52pOBizChannel,
     Wrapped<String?>? s377v5OBizLine,
   }) {
     return LoanFeeDetailReq(
-      raiaOUserGid:
-          (raiaOUserGid != null ? raiaOUserGid.value : this.raiaOUserGid),
-      d7x52pOBizChannel:
-          (d7x52pOBizChannel != null
-              ? d7x52pOBizChannel.value
-              : this.d7x52pOBizChannel),
-      s377v5OBizLine:
-          (s377v5OBizLine != null ? s377v5OBizLine.value : this.s377v5OBizLine),
+      raiaOUserGid: (raiaOUserGid != null
+          ? raiaOUserGid.value
+          : this.raiaOUserGid),
+      d7x52pOBizChannel: (d7x52pOBizChannel != null
+          ? d7x52pOBizChannel.value
+          : this.d7x52pOBizChannel),
+      s377v5OBizLine: (s377v5OBizLine != null
+          ? s377v5OBizLine.value
+          : this.s377v5OBizLine),
     );
   }
 }
 
 @JsonSerializable(explicitToJson: true)
 class BankValidInfoReq {
-  const BankValidInfoReq({required this.raiaOUserGid});
+  const BankValidInfoReq({this.raiaOUserGid});
 
   @JsonKey(name: 'raia')
-  final int? raiaOUserGid;
+  final String? raiaOUserGid;
 
   factory BankValidInfoReq.fromJson(Map<String, dynamic> json) =>
       _$BankValidInfoReqFromJson(json);
@@ -4971,14 +4917,15 @@ class BankValidInfoReq {
 }
 
 extension $BankValidInfoReqExtension on BankValidInfoReq {
-  BankValidInfoReq copyWith({int? raiaOUserGid}) {
+  BankValidInfoReq copyWith({String? raiaOUserGid}) {
     return BankValidInfoReq(raiaOUserGid: raiaOUserGid ?? this.raiaOUserGid);
   }
 
-  BankValidInfoReq copyWithWrapped({Wrapped<int>? raiaOUserGid}) {
+  BankValidInfoReq copyWithWrapped({Wrapped<String?>? raiaOUserGid}) {
     return BankValidInfoReq(
-      raiaOUserGid:
-          (raiaOUserGid != null ? raiaOUserGid.value : this.raiaOUserGid),
+      raiaOUserGid: (raiaOUserGid != null
+          ? raiaOUserGid.value
+          : this.raiaOUserGid),
     );
   }
 }
@@ -4986,19 +4933,19 @@ extension $BankValidInfoReqExtension on BankValidInfoReq {
 @JsonSerializable(explicitToJson: true)
 class AbandonReasonReq {
   const AbandonReasonReq({
-    required this.raiaOUserGid,
-    required this.pageId,
-    required this.artificeOAbandonCode,
+    this.raiaOUserGid,
+    this.pageId,
+    this.artificeOAbandonCode,
     this.fl93q8OAbandonReason,
-    required this.ej04h8OReasonVersion,
+    this.ej04h8OReasonVersion,
   });
 
   @JsonKey(name: 'raia')
-  final int? raiaOUserGid;
+  final String? raiaOUserGid;
   @JsonKey(name: 'pageId')
   final String? pageId;
   @JsonKey(name: 'artifice', defaultValue: <Object>[])
-  final List<Object> artificeOAbandonCode;
+  final List<Object>? artificeOAbandonCode;
   @JsonKey(name: 'fl93q8')
   final String? fl93q8OAbandonReason;
   @JsonKey(name: 'ej04h8')
@@ -5055,7 +5002,7 @@ class AbandonReasonReq {
 
 extension $AbandonReasonReqExtension on AbandonReasonReq {
   AbandonReasonReq copyWith({
-    int? raiaOUserGid,
+    String? raiaOUserGid,
     String? pageId,
     List<Object>? artificeOAbandonCode,
     String? fl93q8OAbandonReason,
@@ -5071,43 +5018,36 @@ extension $AbandonReasonReqExtension on AbandonReasonReq {
   }
 
   AbandonReasonReq copyWithWrapped({
-    Wrapped<int>? raiaOUserGid,
-    Wrapped<String>? pageId,
-    Wrapped<List<Object>>? artificeOAbandonCode,
+    Wrapped<String?>? raiaOUserGid,
+    Wrapped<String?>? pageId,
+    Wrapped<List<Object>?>? artificeOAbandonCode,
     Wrapped<String?>? fl93q8OAbandonReason,
-    Wrapped<String>? ej04h8OReasonVersion,
+    Wrapped<String?>? ej04h8OReasonVersion,
   }) {
     return AbandonReasonReq(
-      raiaOUserGid:
-          (raiaOUserGid != null ? raiaOUserGid.value : this.raiaOUserGid),
+      raiaOUserGid: (raiaOUserGid != null
+          ? raiaOUserGid.value
+          : this.raiaOUserGid),
       pageId: (pageId != null ? pageId.value : this.pageId),
-      artificeOAbandonCode:
-          (artificeOAbandonCode != null
-              ? artificeOAbandonCode.value
-              : this.artificeOAbandonCode),
-      fl93q8OAbandonReason:
-          (fl93q8OAbandonReason != null
-              ? fl93q8OAbandonReason.value
-              : this.fl93q8OAbandonReason),
-      ej04h8OReasonVersion:
-          (ej04h8OReasonVersion != null
-              ? ej04h8OReasonVersion.value
-              : this.ej04h8OReasonVersion),
+      artificeOAbandonCode: (artificeOAbandonCode != null
+          ? artificeOAbandonCode.value
+          : this.artificeOAbandonCode),
+      fl93q8OAbandonReason: (fl93q8OAbandonReason != null
+          ? fl93q8OAbandonReason.value
+          : this.fl93q8OAbandonReason),
+      ej04h8OReasonVersion: (ej04h8OReasonVersion != null
+          ? ej04h8OReasonVersion.value
+          : this.ej04h8OReasonVersion),
     );
   }
 }
 
 @JsonSerializable(explicitToJson: true)
 class FeedbackReq {
-  const FeedbackReq({
-    required this.raiaOUserGid,
-    this.content,
-    this.type,
-    required this.source,
-  });
+  const FeedbackReq({this.raiaOUserGid, this.content, this.type, this.source});
 
   @JsonKey(name: 'raia')
-  final int? raiaOUserGid;
+  final String? raiaOUserGid;
   @JsonKey(name: 'content')
   final String? content;
   @JsonKey(name: 'type')
@@ -5157,7 +5097,7 @@ class FeedbackReq {
 
 extension $FeedbackReqExtension on FeedbackReq {
   FeedbackReq copyWith({
-    int? raiaOUserGid,
+    String? raiaOUserGid,
     String? content,
     String? type,
     String? source,
@@ -5171,14 +5111,15 @@ extension $FeedbackReqExtension on FeedbackReq {
   }
 
   FeedbackReq copyWithWrapped({
-    Wrapped<int>? raiaOUserGid,
+    Wrapped<String?>? raiaOUserGid,
     Wrapped<String?>? content,
     Wrapped<String?>? type,
-    Wrapped<String>? source,
+    Wrapped<String?>? source,
   }) {
     return FeedbackReq(
-      raiaOUserGid:
-          (raiaOUserGid != null ? raiaOUserGid.value : this.raiaOUserGid),
+      raiaOUserGid: (raiaOUserGid != null
+          ? raiaOUserGid.value
+          : this.raiaOUserGid),
       content: (content != null ? content.value : this.content),
       type: (type != null ? type.value : this.type),
       source: (source != null ? source.value : this.source),
@@ -5189,13 +5130,13 @@ extension $FeedbackReqExtension on FeedbackReq {
 @JsonSerializable(explicitToJson: true)
 class NeedAbandonReasonReq {
   const NeedAbandonReasonReq({
-    required this.raiaOUserGid,
-    required this.pageId,
-    required this.ej04h8OReasonVersion,
+    this.raiaOUserGid,
+    this.pageId,
+    this.ej04h8OReasonVersion,
   });
 
   @JsonKey(name: 'raia')
-  final int? raiaOUserGid;
+  final String? raiaOUserGid;
   @JsonKey(name: 'pageId')
   final String? pageId;
   @JsonKey(name: 'ej04h8')
@@ -5240,7 +5181,7 @@ class NeedAbandonReasonReq {
 
 extension $NeedAbandonReasonReqExtension on NeedAbandonReasonReq {
   NeedAbandonReasonReq copyWith({
-    int? raiaOUserGid,
+    String? raiaOUserGid,
     String? pageId,
     String? ej04h8OReasonVersion,
   }) {
@@ -5252,18 +5193,18 @@ extension $NeedAbandonReasonReqExtension on NeedAbandonReasonReq {
   }
 
   NeedAbandonReasonReq copyWithWrapped({
-    Wrapped<int>? raiaOUserGid,
-    Wrapped<String>? pageId,
-    Wrapped<String>? ej04h8OReasonVersion,
+    Wrapped<String?>? raiaOUserGid,
+    Wrapped<String?>? pageId,
+    Wrapped<String?>? ej04h8OReasonVersion,
   }) {
     return NeedAbandonReasonReq(
-      raiaOUserGid:
-          (raiaOUserGid != null ? raiaOUserGid.value : this.raiaOUserGid),
+      raiaOUserGid: (raiaOUserGid != null
+          ? raiaOUserGid.value
+          : this.raiaOUserGid),
       pageId: (pageId != null ? pageId.value : this.pageId),
-      ej04h8OReasonVersion:
-          (ej04h8OReasonVersion != null
-              ? ej04h8OReasonVersion.value
-              : this.ej04h8OReasonVersion),
+      ej04h8OReasonVersion: (ej04h8OReasonVersion != null
+          ? ej04h8OReasonVersion.value
+          : this.ej04h8OReasonVersion),
     );
   }
 }
@@ -5358,28 +5299,28 @@ extension $LoanNoticeReqExtension on LoanNoticeReq {
     Wrapped<String?>? s377v5OBizLine,
   }) {
     return LoanNoticeReq(
-      raiaOUserGid:
-          (raiaOUserGid != null ? raiaOUserGid.value : this.raiaOUserGid),
-      gynecoidOLoanNoticeCode:
-          (gynecoidOLoanNoticeCode != null
-              ? gynecoidOLoanNoticeCode.value
-              : this.gynecoidOLoanNoticeCode),
-      d7x52pOBizChannel:
-          (d7x52pOBizChannel != null
-              ? d7x52pOBizChannel.value
-              : this.d7x52pOBizChannel),
-      s377v5OBizLine:
-          (s377v5OBizLine != null ? s377v5OBizLine.value : this.s377v5OBizLine),
+      raiaOUserGid: (raiaOUserGid != null
+          ? raiaOUserGid.value
+          : this.raiaOUserGid),
+      gynecoidOLoanNoticeCode: (gynecoidOLoanNoticeCode != null
+          ? gynecoidOLoanNoticeCode.value
+          : this.gynecoidOLoanNoticeCode),
+      d7x52pOBizChannel: (d7x52pOBizChannel != null
+          ? d7x52pOBizChannel.value
+          : this.d7x52pOBizChannel),
+      s377v5OBizLine: (s377v5OBizLine != null
+          ? s377v5OBizLine.value
+          : this.s377v5OBizLine),
     );
   }
 }
 
 @JsonSerializable(explicitToJson: true)
 class CheckCreditReq {
-  const CheckCreditReq({required this.raiaOUserGid});
+  const CheckCreditReq({this.raiaOUserGid});
 
   @JsonKey(name: 'raia')
-  final int? raiaOUserGid;
+  final String? raiaOUserGid;
 
   factory CheckCreditReq.fromJson(Map<String, dynamic> json) =>
       _$CheckCreditReqFromJson(json);
@@ -5409,14 +5350,15 @@ class CheckCreditReq {
 }
 
 extension $CheckCreditReqExtension on CheckCreditReq {
-  CheckCreditReq copyWith({int? raiaOUserGid}) {
+  CheckCreditReq copyWith({String? raiaOUserGid}) {
     return CheckCreditReq(raiaOUserGid: raiaOUserGid ?? this.raiaOUserGid);
   }
 
-  CheckCreditReq copyWithWrapped({Wrapped<int>? raiaOUserGid}) {
+  CheckCreditReq copyWithWrapped({Wrapped<String?>? raiaOUserGid}) {
     return CheckCreditReq(
-      raiaOUserGid:
-          (raiaOUserGid != null ? raiaOUserGid.value : this.raiaOUserGid),
+      raiaOUserGid: (raiaOUserGid != null
+          ? raiaOUserGid.value
+          : this.raiaOUserGid),
     );
   }
 }
@@ -5533,26 +5475,24 @@ extension $LivingDataReqExtension on LivingDataReq {
     outsungOLivingDataList,
   }) {
     return LivingDataReq(
-      raiaOUserGid:
-          (raiaOUserGid != null ? raiaOUserGid.value : this.raiaOUserGid),
-      d7x52pOBizChannel:
-          (d7x52pOBizChannel != null
-              ? d7x52pOBizChannel.value
-              : this.d7x52pOBizChannel),
-      s377v5OBizLine:
-          (s377v5OBizLine != null ? s377v5OBizLine.value : this.s377v5OBizLine),
-      u2g032OStartTime:
-          (u2g032OStartTime != null
-              ? u2g032OStartTime.value
-              : this.u2g032OStartTime),
-      colubridOEndTime:
-          (colubridOEndTime != null
-              ? colubridOEndTime.value
-              : this.colubridOEndTime),
-      outsungOLivingDataList:
-          (outsungOLivingDataList != null
-              ? outsungOLivingDataList.value
-              : this.outsungOLivingDataList),
+      raiaOUserGid: (raiaOUserGid != null
+          ? raiaOUserGid.value
+          : this.raiaOUserGid),
+      d7x52pOBizChannel: (d7x52pOBizChannel != null
+          ? d7x52pOBizChannel.value
+          : this.d7x52pOBizChannel),
+      s377v5OBizLine: (s377v5OBizLine != null
+          ? s377v5OBizLine.value
+          : this.s377v5OBizLine),
+      u2g032OStartTime: (u2g032OStartTime != null
+          ? u2g032OStartTime.value
+          : this.u2g032OStartTime),
+      colubridOEndTime: (colubridOEndTime != null
+          ? colubridOEndTime.value
+          : this.colubridOEndTime),
+      outsungOLivingDataList: (outsungOLivingDataList != null
+          ? outsungOLivingDataList.value
+          : this.outsungOLivingDataList),
     );
   }
 }
@@ -5570,7 +5510,7 @@ class PhotoSubmitReq {
   });
 
   @JsonKey(name: 'raia')
-  final int? raiaOUserGid;
+  final String? raiaOUserGid;
   @JsonKey(name: 'merdeka')
   final String? merdekaOIdCard;
   @JsonKey(name: 'is9e52')
@@ -5650,7 +5590,7 @@ class PhotoSubmitReq {
 
 extension $PhotoSubmitReqExtension on PhotoSubmitReq {
   PhotoSubmitReq copyWith({
-    int? raiaOUserGid,
+    String? raiaOUserGid,
     String? merdekaOIdCard,
     int? is9e52OIdCardType,
     String? d7x52pOBizChannel,
@@ -5670,7 +5610,7 @@ extension $PhotoSubmitReqExtension on PhotoSubmitReq {
   }
 
   PhotoSubmitReq copyWithWrapped({
-    Wrapped<int?>? raiaOUserGid,
+    Wrapped<String?>? raiaOUserGid,
     Wrapped<String?>? merdekaOIdCard,
     Wrapped<int?>? is9e52OIdCardType,
     Wrapped<String?>? d7x52pOBizChannel,
@@ -5679,30 +5619,27 @@ extension $PhotoSubmitReqExtension on PhotoSubmitReq {
     Wrapped<String?>? hognutOLivingUrl,
   }) {
     return PhotoSubmitReq(
-      raiaOUserGid:
-          (raiaOUserGid != null ? raiaOUserGid.value : this.raiaOUserGid),
-      merdekaOIdCard:
-          (merdekaOIdCard != null ? merdekaOIdCard.value : this.merdekaOIdCard),
-      is9e52OIdCardType:
-          (is9e52OIdCardType != null
-              ? is9e52OIdCardType.value
-              : this.is9e52OIdCardType),
-      d7x52pOBizChannel:
-          (d7x52pOBizChannel != null
-              ? d7x52pOBizChannel.value
-              : this.d7x52pOBizChannel),
-      su31n2OIdFrontUrl:
-          (su31n2OIdFrontUrl != null
-              ? su31n2OIdFrontUrl.value
-              : this.su31n2OIdFrontUrl),
-      plutusOIdBackUrl:
-          (plutusOIdBackUrl != null
-              ? plutusOIdBackUrl.value
-              : this.plutusOIdBackUrl),
-      hognutOLivingUrl:
-          (hognutOLivingUrl != null
-              ? hognutOLivingUrl.value
-              : this.hognutOLivingUrl),
+      raiaOUserGid: (raiaOUserGid != null
+          ? raiaOUserGid.value
+          : this.raiaOUserGid),
+      merdekaOIdCard: (merdekaOIdCard != null
+          ? merdekaOIdCard.value
+          : this.merdekaOIdCard),
+      is9e52OIdCardType: (is9e52OIdCardType != null
+          ? is9e52OIdCardType.value
+          : this.is9e52OIdCardType),
+      d7x52pOBizChannel: (d7x52pOBizChannel != null
+          ? d7x52pOBizChannel.value
+          : this.d7x52pOBizChannel),
+      su31n2OIdFrontUrl: (su31n2OIdFrontUrl != null
+          ? su31n2OIdFrontUrl.value
+          : this.su31n2OIdFrontUrl),
+      plutusOIdBackUrl: (plutusOIdBackUrl != null
+          ? plutusOIdBackUrl.value
+          : this.plutusOIdBackUrl),
+      hognutOLivingUrl: (hognutOLivingUrl != null
+          ? hognutOLivingUrl.value
+          : this.hognutOLivingUrl),
     );
   }
 }
@@ -5710,8 +5647,8 @@ extension $PhotoSubmitReqExtension on PhotoSubmitReq {
 @JsonSerializable(explicitToJson: true)
 class CreditRecordReq {
   const CreditRecordReq({
-    required this.raiaOUserGid,
-    required this.sordidOMobile,
+    this.raiaOUserGid,
+    this.sordidOMobile,
     this.gargetOBirthday,
     this.merdekaOIdCard,
     this.name,
@@ -5754,7 +5691,7 @@ class CreditRecordReq {
   });
 
   @JsonKey(name: 'raia')
-  final int? raiaOUserGid;
+  final String? raiaOUserGid;
   @JsonKey(name: 'sordid')
   final String? sordidOMobile;
   @JsonKey(name: 'garget')
@@ -6127,7 +6064,7 @@ class CreditRecordReq {
 
 extension $CreditRecordReqExtension on CreditRecordReq {
   CreditRecordReq copyWith({
-    int? raiaOUserGid,
+    String? raiaOUserGid,
     String? sordidOMobile,
     int? gargetOBirthday,
     String? merdekaOIdCard,
@@ -6229,8 +6166,8 @@ extension $CreditRecordReqExtension on CreditRecordReq {
   }
 
   CreditRecordReq copyWithWrapped({
-    Wrapped<int>? raiaOUserGid,
-    Wrapped<String>? sordidOMobile,
+    Wrapped<String?>? raiaOUserGid,
+    Wrapped<String?>? sordidOMobile,
     Wrapped<int?>? gargetOBirthday,
     Wrapped<String?>? merdekaOIdCard,
     Wrapped<String?>? name,
@@ -6272,150 +6209,125 @@ extension $CreditRecordReqExtension on CreditRecordReq {
     Wrapped<int?>? z4s937OHouseholdMonthlyExpenses,
   }) {
     return CreditRecordReq(
-      raiaOUserGid:
-          (raiaOUserGid != null ? raiaOUserGid.value : this.raiaOUserGid),
-      sordidOMobile:
-          (sordidOMobile != null ? sordidOMobile.value : this.sordidOMobile),
-      gargetOBirthday:
-          (gargetOBirthday != null
-              ? gargetOBirthday.value
-              : this.gargetOBirthday),
-      merdekaOIdCard:
-          (merdekaOIdCard != null ? merdekaOIdCard.value : this.merdekaOIdCard),
+      raiaOUserGid: (raiaOUserGid != null
+          ? raiaOUserGid.value
+          : this.raiaOUserGid),
+      sordidOMobile: (sordidOMobile != null
+          ? sordidOMobile.value
+          : this.sordidOMobile),
+      gargetOBirthday: (gargetOBirthday != null
+          ? gargetOBirthday.value
+          : this.gargetOBirthday),
+      merdekaOIdCard: (merdekaOIdCard != null
+          ? merdekaOIdCard.value
+          : this.merdekaOIdCard),
       name: (name != null ? name.value : this.name),
-      lq1s05OFirstName:
-          (lq1s05OFirstName != null
-              ? lq1s05OFirstName.value
-              : this.lq1s05OFirstName),
-      darktownOLastName:
-          (darktownOLastName != null
-              ? darktownOLastName.value
-              : this.darktownOLastName),
-      floozieOFatherSurname:
-          (floozieOFatherSurname != null
-              ? floozieOFatherSurname.value
-              : this.floozieOFatherSurname),
-      orpinOMatherSurname:
-          (orpinOMatherSurname != null
-              ? orpinOMatherSurname.value
-              : this.orpinOMatherSurname),
-      grippleOFirstContactName:
-          (grippleOFirstContactName != null
-              ? grippleOFirstContactName.value
-              : this.grippleOFirstContactName),
-      rainOFirstContactMobile:
-          (rainOFirstContactMobile != null
-              ? rainOFirstContactMobile.value
-              : this.rainOFirstContactMobile),
-      baryeOFirstContactRelationship:
-          (baryeOFirstContactRelationship != null
-              ? baryeOFirstContactRelationship.value
-              : this.baryeOFirstContactRelationship),
-      aquarianOSecondContactName:
-          (aquarianOSecondContactName != null
-              ? aquarianOSecondContactName.value
-              : this.aquarianOSecondContactName),
-      h3d2wfOSecondContactMobile:
-          (h3d2wfOSecondContactMobile != null
-              ? h3d2wfOSecondContactMobile.value
-              : this.h3d2wfOSecondContactMobile),
-      kibeOSecondContactRelationship:
-          (kibeOSecondContactRelationship != null
-              ? kibeOSecondContactRelationship.value
-              : this.kibeOSecondContactRelationship),
+      lq1s05OFirstName: (lq1s05OFirstName != null
+          ? lq1s05OFirstName.value
+          : this.lq1s05OFirstName),
+      darktownOLastName: (darktownOLastName != null
+          ? darktownOLastName.value
+          : this.darktownOLastName),
+      floozieOFatherSurname: (floozieOFatherSurname != null
+          ? floozieOFatherSurname.value
+          : this.floozieOFatherSurname),
+      orpinOMatherSurname: (orpinOMatherSurname != null
+          ? orpinOMatherSurname.value
+          : this.orpinOMatherSurname),
+      grippleOFirstContactName: (grippleOFirstContactName != null
+          ? grippleOFirstContactName.value
+          : this.grippleOFirstContactName),
+      rainOFirstContactMobile: (rainOFirstContactMobile != null
+          ? rainOFirstContactMobile.value
+          : this.rainOFirstContactMobile),
+      baryeOFirstContactRelationship: (baryeOFirstContactRelationship != null
+          ? baryeOFirstContactRelationship.value
+          : this.baryeOFirstContactRelationship),
+      aquarianOSecondContactName: (aquarianOSecondContactName != null
+          ? aquarianOSecondContactName.value
+          : this.aquarianOSecondContactName),
+      h3d2wfOSecondContactMobile: (h3d2wfOSecondContactMobile != null
+          ? h3d2wfOSecondContactMobile.value
+          : this.h3d2wfOSecondContactMobile),
+      kibeOSecondContactRelationship: (kibeOSecondContactRelationship != null
+          ? kibeOSecondContactRelationship.value
+          : this.kibeOSecondContactRelationship),
       gender: (gender != null ? gender.value : this.gender),
-      limpidlyOIncomeLevel:
-          (limpidlyOIncomeLevel != null
-              ? limpidlyOIncomeLevel.value
-              : this.limpidlyOIncomeLevel),
-      coseOEducation:
-          (coseOEducation != null ? coseOEducation.value : this.coseOEducation),
-      m2wx4tOMaritalStatus:
-          (m2wx4tOMaritalStatus != null
-              ? m2wx4tOMaritalStatus.value
-              : this.m2wx4tOMaritalStatus),
-      danielaOPostalCode:
-          (danielaOPostalCode != null
-              ? danielaOPostalCode.value
-              : this.danielaOPostalCode),
-      x1iu04OOtherMobile:
-          (x1iu04OOtherMobile != null
-              ? x1iu04OOtherMobile.value
-              : this.x1iu04OOtherMobile),
-      spadicesOAddressState:
-          (spadicesOAddressState != null
-              ? spadicesOAddressState.value
-              : this.spadicesOAddressState),
-      gasconyOAddressCity:
-          (gasconyOAddressCity != null
-              ? gasconyOAddressCity.value
-              : this.gasconyOAddressCity),
-      enfetterOAddressDistrict:
-          (enfetterOAddressDistrict != null
-              ? enfetterOAddressDistrict.value
-              : this.enfetterOAddressDistrict),
-      craalOAddressDetail:
-          (craalOAddressDetail != null
-              ? craalOAddressDetail.value
-              : this.craalOAddressDetail),
-      chaffyOHouseStatus:
-          (chaffyOHouseStatus != null
-              ? chaffyOHouseStatus.value
-              : this.chaffyOHouseStatus),
-      a8vhhfOContactMobiles:
-          (a8vhhfOContactMobiles != null
-              ? a8vhhfOContactMobiles.value
-              : this.a8vhhfOContactMobiles),
-      f31u3kOEmail:
-          (f31u3kOEmail != null ? f31u3kOEmail.value : this.f31u3kOEmail),
-      diopsideOOccupation:
-          (diopsideOOccupation != null
-              ? diopsideOOccupation.value
-              : this.diopsideOOccupation),
-      alloOWorkingYears:
-          (alloOWorkingYears != null
-              ? alloOWorkingYears.value
-              : this.alloOWorkingYears),
-      b1417wOPayPeriod:
-          (b1417wOPayPeriod != null
-              ? b1417wOPayPeriod.value
-              : this.b1417wOPayPeriod),
-      r67p23OPayday:
-          (r67p23OPayday != null ? r67p23OPayday.value : this.r67p23OPayday),
-      plenishOSecondPayday:
-          (plenishOSecondPayday != null
-              ? plenishOSecondPayday.value
-              : this.plenishOSecondPayday),
-      staticsOCreateTime:
-          (staticsOCreateTime != null
-              ? staticsOCreateTime.value
-              : this.staticsOCreateTime),
-      l16h95OUpdateTime:
-          (l16h95OUpdateTime != null
-              ? l16h95OUpdateTime.value
-              : this.l16h95OUpdateTime),
-      s377v5OBizLine:
-          (s377v5OBizLine != null ? s377v5OBizLine.value : this.s377v5OBizLine),
-      r78s45ORandomNumber:
-          (r78s45ORandomNumber != null
-              ? r78s45ORandomNumber.value
-              : this.r78s45ORandomNumber),
-      himfjuOOtherLoans:
-          (himfjuOOtherLoans != null
-              ? himfjuOOtherLoans.value
-              : this.himfjuOOtherLoans),
-      bja8s5OElectricityBill:
-          (bja8s5OElectricityBill != null
-              ? bja8s5OElectricityBill.value
-              : this.bja8s5OElectricityBill),
-      volumenOElectricityRelated:
-          (volumenOElectricityRelated != null
-              ? volumenOElectricityRelated.value
-              : this.volumenOElectricityRelated),
-      z4s937OHouseholdMonthlyExpenses:
-          (z4s937OHouseholdMonthlyExpenses != null
-              ? z4s937OHouseholdMonthlyExpenses.value
-              : this.z4s937OHouseholdMonthlyExpenses),
+      limpidlyOIncomeLevel: (limpidlyOIncomeLevel != null
+          ? limpidlyOIncomeLevel.value
+          : this.limpidlyOIncomeLevel),
+      coseOEducation: (coseOEducation != null
+          ? coseOEducation.value
+          : this.coseOEducation),
+      m2wx4tOMaritalStatus: (m2wx4tOMaritalStatus != null
+          ? m2wx4tOMaritalStatus.value
+          : this.m2wx4tOMaritalStatus),
+      danielaOPostalCode: (danielaOPostalCode != null
+          ? danielaOPostalCode.value
+          : this.danielaOPostalCode),
+      x1iu04OOtherMobile: (x1iu04OOtherMobile != null
+          ? x1iu04OOtherMobile.value
+          : this.x1iu04OOtherMobile),
+      spadicesOAddressState: (spadicesOAddressState != null
+          ? spadicesOAddressState.value
+          : this.spadicesOAddressState),
+      gasconyOAddressCity: (gasconyOAddressCity != null
+          ? gasconyOAddressCity.value
+          : this.gasconyOAddressCity),
+      enfetterOAddressDistrict: (enfetterOAddressDistrict != null
+          ? enfetterOAddressDistrict.value
+          : this.enfetterOAddressDistrict),
+      craalOAddressDetail: (craalOAddressDetail != null
+          ? craalOAddressDetail.value
+          : this.craalOAddressDetail),
+      chaffyOHouseStatus: (chaffyOHouseStatus != null
+          ? chaffyOHouseStatus.value
+          : this.chaffyOHouseStatus),
+      a8vhhfOContactMobiles: (a8vhhfOContactMobiles != null
+          ? a8vhhfOContactMobiles.value
+          : this.a8vhhfOContactMobiles),
+      f31u3kOEmail: (f31u3kOEmail != null
+          ? f31u3kOEmail.value
+          : this.f31u3kOEmail),
+      diopsideOOccupation: (diopsideOOccupation != null
+          ? diopsideOOccupation.value
+          : this.diopsideOOccupation),
+      alloOWorkingYears: (alloOWorkingYears != null
+          ? alloOWorkingYears.value
+          : this.alloOWorkingYears),
+      b1417wOPayPeriod: (b1417wOPayPeriod != null
+          ? b1417wOPayPeriod.value
+          : this.b1417wOPayPeriod),
+      r67p23OPayday: (r67p23OPayday != null
+          ? r67p23OPayday.value
+          : this.r67p23OPayday),
+      plenishOSecondPayday: (plenishOSecondPayday != null
+          ? plenishOSecondPayday.value
+          : this.plenishOSecondPayday),
+      staticsOCreateTime: (staticsOCreateTime != null
+          ? staticsOCreateTime.value
+          : this.staticsOCreateTime),
+      l16h95OUpdateTime: (l16h95OUpdateTime != null
+          ? l16h95OUpdateTime.value
+          : this.l16h95OUpdateTime),
+      s377v5OBizLine: (s377v5OBizLine != null
+          ? s377v5OBizLine.value
+          : this.s377v5OBizLine),
+      r78s45ORandomNumber: (r78s45ORandomNumber != null
+          ? r78s45ORandomNumber.value
+          : this.r78s45ORandomNumber),
+      himfjuOOtherLoans: (himfjuOOtherLoans != null
+          ? himfjuOOtherLoans.value
+          : this.himfjuOOtherLoans),
+      bja8s5OElectricityBill: (bja8s5OElectricityBill != null
+          ? bja8s5OElectricityBill.value
+          : this.bja8s5OElectricityBill),
+      volumenOElectricityRelated: (volumenOElectricityRelated != null
+          ? volumenOElectricityRelated.value
+          : this.volumenOElectricityRelated),
+      z4s937OHouseholdMonthlyExpenses: (z4s937OHouseholdMonthlyExpenses != null
+          ? z4s937OHouseholdMonthlyExpenses.value
+          : this.z4s937OHouseholdMonthlyExpenses),
     );
   }
 }
@@ -6423,13 +6335,13 @@ extension $CreditRecordReqExtension on CreditRecordReq {
 @JsonSerializable(explicitToJson: true)
 class EmailCheckReq {
   const EmailCheckReq({
-    required this.raiaOUserGid,
+    this.raiaOUserGid,
     this.f31u3kOEmail,
-    required this.merdekaOIdCard,
+    this.merdekaOIdCard,
   });
 
   @JsonKey(name: 'raia')
-  final int? raiaOUserGid;
+  final String? raiaOUserGid;
   @JsonKey(name: 'f31u3k')
   final String? f31u3kOEmail;
   @JsonKey(name: 'merdeka')
@@ -6477,7 +6389,7 @@ class EmailCheckReq {
 
 extension $EmailCheckReqExtension on EmailCheckReq {
   EmailCheckReq copyWith({
-    int? raiaOUserGid,
+    String? raiaOUserGid,
     String? f31u3kOEmail,
     String? merdekaOIdCard,
   }) {
@@ -6489,27 +6401,30 @@ extension $EmailCheckReqExtension on EmailCheckReq {
   }
 
   EmailCheckReq copyWithWrapped({
-    Wrapped<int>? raiaOUserGid,
+    Wrapped<String?>? raiaOUserGid,
     Wrapped<String?>? f31u3kOEmail,
-    Wrapped<String>? merdekaOIdCard,
+    Wrapped<String?>? merdekaOIdCard,
   }) {
     return EmailCheckReq(
-      raiaOUserGid:
-          (raiaOUserGid != null ? raiaOUserGid.value : this.raiaOUserGid),
-      f31u3kOEmail:
-          (f31u3kOEmail != null ? f31u3kOEmail.value : this.f31u3kOEmail),
-      merdekaOIdCard:
-          (merdekaOIdCard != null ? merdekaOIdCard.value : this.merdekaOIdCard),
+      raiaOUserGid: (raiaOUserGid != null
+          ? raiaOUserGid.value
+          : this.raiaOUserGid),
+      f31u3kOEmail: (f31u3kOEmail != null
+          ? f31u3kOEmail.value
+          : this.f31u3kOEmail),
+      merdekaOIdCard: (merdekaOIdCard != null
+          ? merdekaOIdCard.value
+          : this.merdekaOIdCard),
     );
   }
 }
 
 @JsonSerializable(explicitToJson: true)
 class HomeCouponReq {
-  const HomeCouponReq({required this.raiaOUserGid});
+  const HomeCouponReq({this.raiaOUserGid});
 
   @JsonKey(name: 'raia')
-  final int? raiaOUserGid;
+  final String? raiaOUserGid;
 
   factory HomeCouponReq.fromJson(Map<String, dynamic> json) =>
       _$HomeCouponReqFromJson(json);
@@ -6539,27 +6454,25 @@ class HomeCouponReq {
 }
 
 extension $HomeCouponReqExtension on HomeCouponReq {
-  HomeCouponReq copyWith({int? raiaOUserGid}) {
+  HomeCouponReq copyWith({String? raiaOUserGid}) {
     return HomeCouponReq(raiaOUserGid: raiaOUserGid ?? this.raiaOUserGid);
   }
 
-  HomeCouponReq copyWithWrapped({Wrapped<int>? raiaOUserGid}) {
+  HomeCouponReq copyWithWrapped({Wrapped<String?>? raiaOUserGid}) {
     return HomeCouponReq(
-      raiaOUserGid:
-          (raiaOUserGid != null ? raiaOUserGid.value : this.raiaOUserGid),
+      raiaOUserGid: (raiaOUserGid != null
+          ? raiaOUserGid.value
+          : this.raiaOUserGid),
     );
   }
 }
 
 @JsonSerializable(explicitToJson: true)
 class LoanCouponReq {
-  const LoanCouponReq({
-    required this.raiaOUserGid,
-    required this.retiaryOLoanAmount,
-  });
+  const LoanCouponReq({this.raiaOUserGid, this.retiaryOLoanAmount});
 
   @JsonKey(name: 'raia')
-  final int? raiaOUserGid;
+  final String? raiaOUserGid;
   @JsonKey(name: 'retiary')
   final double? retiaryOLoanAmount;
 
@@ -6598,7 +6511,7 @@ class LoanCouponReq {
 }
 
 extension $LoanCouponReqExtension on LoanCouponReq {
-  LoanCouponReq copyWith({int? raiaOUserGid, double? retiaryOLoanAmount}) {
+  LoanCouponReq copyWith({String? raiaOUserGid, double? retiaryOLoanAmount}) {
     return LoanCouponReq(
       raiaOUserGid: raiaOUserGid ?? this.raiaOUserGid,
       retiaryOLoanAmount: retiaryOLoanAmount ?? this.retiaryOLoanAmount,
@@ -6606,26 +6519,26 @@ extension $LoanCouponReqExtension on LoanCouponReq {
   }
 
   LoanCouponReq copyWithWrapped({
-    Wrapped<int>? raiaOUserGid,
-    Wrapped<double>? retiaryOLoanAmount,
+    Wrapped<String?>? raiaOUserGid,
+    Wrapped<double?>? retiaryOLoanAmount,
   }) {
     return LoanCouponReq(
-      raiaOUserGid:
-          (raiaOUserGid != null ? raiaOUserGid.value : this.raiaOUserGid),
-      retiaryOLoanAmount:
-          (retiaryOLoanAmount != null
-              ? retiaryOLoanAmount.value
-              : this.retiaryOLoanAmount),
+      raiaOUserGid: (raiaOUserGid != null
+          ? raiaOUserGid.value
+          : this.raiaOUserGid),
+      retiaryOLoanAmount: (retiaryOLoanAmount != null
+          ? retiaryOLoanAmount.value
+          : this.retiaryOLoanAmount),
     );
   }
 }
 
 @JsonSerializable(explicitToJson: true)
 class MyCouponReq {
-  const MyCouponReq({required this.raiaOUserGid, required this.type});
+  const MyCouponReq({this.raiaOUserGid, this.type});
 
   @JsonKey(name: 'raia')
-  final int? raiaOUserGid;
+  final String? raiaOUserGid;
   @JsonKey(name: 'type')
   final int? type;
 
@@ -6661,7 +6574,7 @@ class MyCouponReq {
 }
 
 extension $MyCouponReqExtension on MyCouponReq {
-  MyCouponReq copyWith({int? raiaOUserGid, int? type}) {
+  MyCouponReq copyWith({String? raiaOUserGid, int? type}) {
     return MyCouponReq(
       raiaOUserGid: raiaOUserGid ?? this.raiaOUserGid,
       type: type ?? this.type,
@@ -6669,12 +6582,13 @@ extension $MyCouponReqExtension on MyCouponReq {
   }
 
   MyCouponReq copyWithWrapped({
-    Wrapped<int>? raiaOUserGid,
-    Wrapped<int>? type,
+    Wrapped<String?>? raiaOUserGid,
+    Wrapped<int?>? type,
   }) {
     return MyCouponReq(
-      raiaOUserGid:
-          (raiaOUserGid != null ? raiaOUserGid.value : this.raiaOUserGid),
+      raiaOUserGid: (raiaOUserGid != null
+          ? raiaOUserGid.value
+          : this.raiaOUserGid),
       type: (type != null ? type.value : this.type),
     );
   }
@@ -6682,10 +6596,7 @@ extension $MyCouponReqExtension on MyCouponReq {
 
 @JsonSerializable(explicitToJson: true)
 class CouponGetReq {
-  const CouponGetReq({
-    required this.raiaOUserGid,
-    required this.a17s38OActivityGid,
-  });
+  const CouponGetReq({this.raiaOUserGid, this.a17s38OActivityGid});
 
   @JsonKey(name: 'raia')
   final String? raiaOUserGid;
@@ -6735,26 +6646,23 @@ extension $CouponGetReqExtension on CouponGetReq {
   }
 
   CouponGetReq copyWithWrapped({
-    Wrapped<String>? raiaOUserGid,
-    Wrapped<String>? a17s38OActivityGid,
+    Wrapped<String?>? raiaOUserGid,
+    Wrapped<String?>? a17s38OActivityGid,
   }) {
     return CouponGetReq(
-      raiaOUserGid:
-          (raiaOUserGid != null ? raiaOUserGid.value : this.raiaOUserGid),
-      a17s38OActivityGid:
-          (a17s38OActivityGid != null
-              ? a17s38OActivityGid.value
-              : this.a17s38OActivityGid),
+      raiaOUserGid: (raiaOUserGid != null
+          ? raiaOUserGid.value
+          : this.raiaOUserGid),
+      a17s38OActivityGid: (a17s38OActivityGid != null
+          ? a17s38OActivityGid.value
+          : this.a17s38OActivityGid),
     );
   }
 }
 
 @JsonSerializable(explicitToJson: true)
 class LandCouponReq {
-  const LandCouponReq({
-    required this.raiaOUserGid,
-    required this.a17s38OActivityGid,
-  });
+  const LandCouponReq({this.raiaOUserGid, this.a17s38OActivityGid});
 
   @JsonKey(name: 'raia')
   final String? raiaOUserGid;
@@ -6804,26 +6712,23 @@ extension $LandCouponReqExtension on LandCouponReq {
   }
 
   LandCouponReq copyWithWrapped({
-    Wrapped<String>? raiaOUserGid,
-    Wrapped<String>? a17s38OActivityGid,
+    Wrapped<String?>? raiaOUserGid,
+    Wrapped<String?>? a17s38OActivityGid,
   }) {
     return LandCouponReq(
-      raiaOUserGid:
-          (raiaOUserGid != null ? raiaOUserGid.value : this.raiaOUserGid),
-      a17s38OActivityGid:
-          (a17s38OActivityGid != null
-              ? a17s38OActivityGid.value
-              : this.a17s38OActivityGid),
+      raiaOUserGid: (raiaOUserGid != null
+          ? raiaOUserGid.value
+          : this.raiaOUserGid),
+      a17s38OActivityGid: (a17s38OActivityGid != null
+          ? a17s38OActivityGid.value
+          : this.a17s38OActivityGid),
     );
   }
 }
 
 @JsonSerializable(explicitToJson: true)
 class CouponPopReq {
-  const CouponPopReq({
-    required this.raiaOUserGid,
-    required this.a17s38OActivityGid,
-  });
+  const CouponPopReq({this.raiaOUserGid, this.a17s38OActivityGid});
 
   @JsonKey(name: 'raia')
   final String? raiaOUserGid;
@@ -6873,16 +6778,16 @@ extension $CouponPopReqExtension on CouponPopReq {
   }
 
   CouponPopReq copyWithWrapped({
-    Wrapped<String>? raiaOUserGid,
-    Wrapped<String>? a17s38OActivityGid,
+    Wrapped<String?>? raiaOUserGid,
+    Wrapped<String?>? a17s38OActivityGid,
   }) {
     return CouponPopReq(
-      raiaOUserGid:
-          (raiaOUserGid != null ? raiaOUserGid.value : this.raiaOUserGid),
-      a17s38OActivityGid:
-          (a17s38OActivityGid != null
-              ? a17s38OActivityGid.value
-              : this.a17s38OActivityGid),
+      raiaOUserGid: (raiaOUserGid != null
+          ? raiaOUserGid.value
+          : this.raiaOUserGid),
+      a17s38OActivityGid: (a17s38OActivityGid != null
+          ? a17s38OActivityGid.value
+          : this.a17s38OActivityGid),
     );
   }
 }
@@ -6890,15 +6795,15 @@ extension $CouponPopReqExtension on CouponPopReq {
 @JsonSerializable(explicitToJson: true)
 class LoanBillReq {
   const LoanBillReq({
-    required this.raiaOUserGid,
-    required this.size,
-    required this.current,
+    this.raiaOUserGid,
+    this.size,
+    this.current,
     this.d95091ORepaymentStatus,
     this.suffOLoanStatus,
   });
 
   @JsonKey(name: 'raia')
-  final int? raiaOUserGid;
+  final String? raiaOUserGid;
   @JsonKey(name: 'size')
   final int? size;
   @JsonKey(name: 'current')
@@ -6959,7 +6864,7 @@ class LoanBillReq {
 
 extension $LoanBillReqExtension on LoanBillReq {
   LoanBillReq copyWith({
-    int? raiaOUserGid,
+    String? raiaOUserGid,
     int? size,
     int? current,
     List<Object>? d95091ORepaymentStatus,
@@ -6976,35 +6881,31 @@ extension $LoanBillReqExtension on LoanBillReq {
   }
 
   LoanBillReq copyWithWrapped({
-    Wrapped<int>? raiaOUserGid,
-    Wrapped<int>? size,
-    Wrapped<int>? current,
+    Wrapped<String?>? raiaOUserGid,
+    Wrapped<int?>? size,
+    Wrapped<int?>? current,
     Wrapped<List<Object>?>? d95091ORepaymentStatus,
     Wrapped<List<Object>?>? suffOLoanStatus,
   }) {
     return LoanBillReq(
-      raiaOUserGid:
-          (raiaOUserGid != null ? raiaOUserGid.value : this.raiaOUserGid),
+      raiaOUserGid: (raiaOUserGid != null
+          ? raiaOUserGid.value
+          : this.raiaOUserGid),
       size: (size != null ? size.value : this.size),
       current: (current != null ? current.value : this.current),
-      d95091ORepaymentStatus:
-          (d95091ORepaymentStatus != null
-              ? d95091ORepaymentStatus.value
-              : this.d95091ORepaymentStatus),
-      suffOLoanStatus:
-          (suffOLoanStatus != null
-              ? suffOLoanStatus.value
-              : this.suffOLoanStatus),
+      d95091ORepaymentStatus: (d95091ORepaymentStatus != null
+          ? d95091ORepaymentStatus.value
+          : this.d95091ORepaymentStatus),
+      suffOLoanStatus: (suffOLoanStatus != null
+          ? suffOLoanStatus.value
+          : this.suffOLoanStatus),
     );
   }
 }
 
 @JsonSerializable(explicitToJson: true)
 class BillStatusReq {
-  const BillStatusReq({
-    required this.r5a4x8OLoanGid,
-    this.a4wq4jORenewAmountRate,
-  });
+  const BillStatusReq({this.r5a4x8OLoanGid, this.a4wq4jORenewAmountRate});
 
   @JsonKey(name: 'r5a4x8')
   final int? r5a4x8OLoanGid;
@@ -7058,26 +6959,26 @@ extension $BillStatusReqExtension on BillStatusReq {
   }
 
   BillStatusReq copyWithWrapped({
-    Wrapped<int>? r5a4x8OLoanGid,
+    Wrapped<int?>? r5a4x8OLoanGid,
     Wrapped<String?>? a4wq4jORenewAmountRate,
   }) {
     return BillStatusReq(
-      r5a4x8OLoanGid:
-          (r5a4x8OLoanGid != null ? r5a4x8OLoanGid.value : this.r5a4x8OLoanGid),
-      a4wq4jORenewAmountRate:
-          (a4wq4jORenewAmountRate != null
-              ? a4wq4jORenewAmountRate.value
-              : this.a4wq4jORenewAmountRate),
+      r5a4x8OLoanGid: (r5a4x8OLoanGid != null
+          ? r5a4x8OLoanGid.value
+          : this.r5a4x8OLoanGid),
+      a4wq4jORenewAmountRate: (a4wq4jORenewAmountRate != null
+          ? a4wq4jORenewAmountRate.value
+          : this.a4wq4jORenewAmountRate),
     );
   }
 }
 
 @JsonSerializable(explicitToJson: true)
 class BillListReq {
-  const BillListReq({required this.raiaOUserGid});
+  const BillListReq({this.raiaOUserGid});
 
   @JsonKey(name: 'raia')
-  final int? raiaOUserGid;
+  final String? raiaOUserGid;
 
   factory BillListReq.fromJson(Map<String, dynamic> json) =>
       _$BillListReqFromJson(json);
@@ -7107,24 +7008,22 @@ class BillListReq {
 }
 
 extension $BillListReqExtension on BillListReq {
-  BillListReq copyWith({int? raiaOUserGid}) {
+  BillListReq copyWith({String? raiaOUserGid}) {
     return BillListReq(raiaOUserGid: raiaOUserGid ?? this.raiaOUserGid);
   }
 
-  BillListReq copyWithWrapped({Wrapped<int>? raiaOUserGid}) {
+  BillListReq copyWithWrapped({Wrapped<String?>? raiaOUserGid}) {
     return BillListReq(
-      raiaOUserGid:
-          (raiaOUserGid != null ? raiaOUserGid.value : this.raiaOUserGid),
+      raiaOUserGid: (raiaOUserGid != null
+          ? raiaOUserGid.value
+          : this.raiaOUserGid),
     );
   }
 }
 
 @JsonSerializable(explicitToJson: true)
 class BillDetailReq {
-  const BillDetailReq({
-    required this.r5a4x8OLoanGid,
-    this.a4wq4jORenewAmountRate,
-  });
+  const BillDetailReq({this.r5a4x8OLoanGid, this.a4wq4jORenewAmountRate});
 
   @JsonKey(name: 'r5a4x8')
   final int? r5a4x8OLoanGid;
@@ -7178,16 +7077,16 @@ extension $BillDetailReqExtension on BillDetailReq {
   }
 
   BillDetailReq copyWithWrapped({
-    Wrapped<int>? r5a4x8OLoanGid,
+    Wrapped<int?>? r5a4x8OLoanGid,
     Wrapped<String?>? a4wq4jORenewAmountRate,
   }) {
     return BillDetailReq(
-      r5a4x8OLoanGid:
-          (r5a4x8OLoanGid != null ? r5a4x8OLoanGid.value : this.r5a4x8OLoanGid),
-      a4wq4jORenewAmountRate:
-          (a4wq4jORenewAmountRate != null
-              ? a4wq4jORenewAmountRate.value
-              : this.a4wq4jORenewAmountRate),
+      r5a4x8OLoanGid: (r5a4x8OLoanGid != null
+          ? r5a4x8OLoanGid.value
+          : this.r5a4x8OLoanGid),
+      a4wq4jORenewAmountRate: (a4wq4jORenewAmountRate != null
+          ? a4wq4jORenewAmountRate.value
+          : this.a4wq4jORenewAmountRate),
     );
   }
 }
@@ -7195,14 +7094,14 @@ extension $BillDetailReqExtension on BillDetailReq {
 @JsonSerializable(explicitToJson: true)
 class BillRepayReq {
   const BillRepayReq({
-    required this.raiaOUserGid,
+    this.raiaOUserGid,
     this.r5a4x8OLoanGid,
-    required this.size,
-    required this.current,
+    this.size,
+    this.current,
   });
 
   @JsonKey(name: 'raia')
-  final int? raiaOUserGid;
+  final String? raiaOUserGid;
   @JsonKey(name: 'r5a4x8')
   final int? r5a4x8OLoanGid;
   @JsonKey(name: 'size')
@@ -7252,7 +7151,7 @@ class BillRepayReq {
 
 extension $BillRepayReqExtension on BillRepayReq {
   BillRepayReq copyWith({
-    int? raiaOUserGid,
+    String? raiaOUserGid,
     int? r5a4x8OLoanGid,
     int? size,
     int? current,
@@ -7266,16 +7165,18 @@ extension $BillRepayReqExtension on BillRepayReq {
   }
 
   BillRepayReq copyWithWrapped({
-    Wrapped<int>? raiaOUserGid,
+    Wrapped<String?>? raiaOUserGid,
     Wrapped<int?>? r5a4x8OLoanGid,
-    Wrapped<int>? size,
-    Wrapped<int>? current,
+    Wrapped<int?>? size,
+    Wrapped<int?>? current,
   }) {
     return BillRepayReq(
-      raiaOUserGid:
-          (raiaOUserGid != null ? raiaOUserGid.value : this.raiaOUserGid),
-      r5a4x8OLoanGid:
-          (r5a4x8OLoanGid != null ? r5a4x8OLoanGid.value : this.r5a4x8OLoanGid),
+      raiaOUserGid: (raiaOUserGid != null
+          ? raiaOUserGid.value
+          : this.raiaOUserGid),
+      r5a4x8OLoanGid: (r5a4x8OLoanGid != null
+          ? r5a4x8OLoanGid.value
+          : this.r5a4x8OLoanGid),
       size: (size != null ? size.value : this.size),
       current: (current != null ? current.value : this.current),
     );
@@ -7284,7 +7185,7 @@ extension $BillRepayReqExtension on BillRepayReq {
 
 @JsonSerializable(explicitToJson: true)
 class HeadResp {
-  const HeadResp({required this.code, required this.msg, this.data});
+  const HeadResp({this.code, this.msg, this.data});
 
   @JsonKey(name: 'code')
   final String? code;
@@ -7334,8 +7235,8 @@ extension $HeadRespExtension on HeadResp {
   }
 
   HeadResp copyWithWrapped({
-    Wrapped<String>? code,
-    Wrapped<String>? msg,
+    Wrapped<String?>? code,
+    Wrapped<String?>? msg,
     Wrapped<Object?>? data,
   }) {
     return HeadResp(
@@ -7464,26 +7365,21 @@ extension $BankDeleteRespExtension on BankDeleteResp {
     return BankDeleteResp(
       code: (code != null ? code.value : this.code),
       msg: (msg != null ? msg.value : this.msg),
-      antiicerOMsgType:
-          (antiicerOMsgType != null
-              ? antiicerOMsgType.value
-              : this.antiicerOMsgType),
-      rumfordOMsgDisplay:
-          (rumfordOMsgDisplay != null
-              ? rumfordOMsgDisplay.value
-              : this.rumfordOMsgDisplay),
-      tympanumOMsgTitle:
-          (tympanumOMsgTitle != null
-              ? tympanumOMsgTitle.value
-              : this.tympanumOMsgTitle),
-      directOMsgBtn01:
-          (directOMsgBtn01 != null
-              ? directOMsgBtn01.value
-              : this.directOMsgBtn01),
-      i9145gOMsgBtn02:
-          (i9145gOMsgBtn02 != null
-              ? i9145gOMsgBtn02.value
-              : this.i9145gOMsgBtn02),
+      antiicerOMsgType: (antiicerOMsgType != null
+          ? antiicerOMsgType.value
+          : this.antiicerOMsgType),
+      rumfordOMsgDisplay: (rumfordOMsgDisplay != null
+          ? rumfordOMsgDisplay.value
+          : this.rumfordOMsgDisplay),
+      tympanumOMsgTitle: (tympanumOMsgTitle != null
+          ? tympanumOMsgTitle.value
+          : this.tympanumOMsgTitle),
+      directOMsgBtn01: (directOMsgBtn01 != null
+          ? directOMsgBtn01.value
+          : this.directOMsgBtn01),
+      i9145gOMsgBtn02: (i9145gOMsgBtn02 != null
+          ? i9145gOMsgBtn02.value
+          : this.i9145gOMsgBtn02),
     );
   }
 }
@@ -7493,15 +7389,15 @@ typedef MyBankCardResp = List<MyBankCardResp$Item>;
 @JsonSerializable(explicitToJson: true)
 class MyBankCardResp$Item {
   const MyBankCardResp$Item({
-    required this.vnbh46OBankCardGid,
-    required this.t1h91pOBankName,
-    required this.insolentOBankCode,
-    required this.zebrineOCardNo,
+    this.vnbh46OBankCardGid,
+    this.t1h91pOBankName,
+    this.insolentOBankCode,
+    this.zebrineOCardNo,
     this.tigonOCardNoReal,
-    required this.aot1jaOBindType,
+    this.aot1jaOBindType,
     this.f31u3kOEmail,
-    required this.cvn,
-    required this.stukaOExpiryDate,
+    this.cvn,
+    this.stukaOExpiryDate,
     this.journeyOIsValid,
     this.moffieOIsAutoDeduct,
     this.exhedraOAccountType,
@@ -7655,61 +7551,54 @@ extension $MyBankCardResp$ItemExtension on MyBankCardResp$Item {
   }
 
   MyBankCardResp$Item copyWithWrapped({
-    Wrapped<int>? vnbh46OBankCardGid,
-    Wrapped<String>? t1h91pOBankName,
-    Wrapped<String>? insolentOBankCode,
-    Wrapped<String>? zebrineOCardNo,
+    Wrapped<int?>? vnbh46OBankCardGid,
+    Wrapped<String?>? t1h91pOBankName,
+    Wrapped<String?>? insolentOBankCode,
+    Wrapped<String?>? zebrineOCardNo,
     Wrapped<String?>? tigonOCardNoReal,
-    Wrapped<int>? aot1jaOBindType,
+    Wrapped<int?>? aot1jaOBindType,
     Wrapped<String?>? f31u3kOEmail,
-    Wrapped<String>? cvn,
-    Wrapped<String>? stukaOExpiryDate,
+    Wrapped<String?>? cvn,
+    Wrapped<String?>? stukaOExpiryDate,
     Wrapped<bool?>? journeyOIsValid,
     Wrapped<bool?>? moffieOIsAutoDeduct,
     Wrapped<int?>? exhedraOAccountType,
   }) {
     return MyBankCardResp$Item(
-      vnbh46OBankCardGid:
-          (vnbh46OBankCardGid != null
-              ? vnbh46OBankCardGid.value
-              : this.vnbh46OBankCardGid),
-      t1h91pOBankName:
-          (t1h91pOBankName != null
-              ? t1h91pOBankName.value
-              : this.t1h91pOBankName),
-      insolentOBankCode:
-          (insolentOBankCode != null
-              ? insolentOBankCode.value
-              : this.insolentOBankCode),
-      zebrineOCardNo:
-          (zebrineOCardNo != null ? zebrineOCardNo.value : this.zebrineOCardNo),
-      tigonOCardNoReal:
-          (tigonOCardNoReal != null
-              ? tigonOCardNoReal.value
-              : this.tigonOCardNoReal),
-      aot1jaOBindType:
-          (aot1jaOBindType != null
-              ? aot1jaOBindType.value
-              : this.aot1jaOBindType),
-      f31u3kOEmail:
-          (f31u3kOEmail != null ? f31u3kOEmail.value : this.f31u3kOEmail),
+      vnbh46OBankCardGid: (vnbh46OBankCardGid != null
+          ? vnbh46OBankCardGid.value
+          : this.vnbh46OBankCardGid),
+      t1h91pOBankName: (t1h91pOBankName != null
+          ? t1h91pOBankName.value
+          : this.t1h91pOBankName),
+      insolentOBankCode: (insolentOBankCode != null
+          ? insolentOBankCode.value
+          : this.insolentOBankCode),
+      zebrineOCardNo: (zebrineOCardNo != null
+          ? zebrineOCardNo.value
+          : this.zebrineOCardNo),
+      tigonOCardNoReal: (tigonOCardNoReal != null
+          ? tigonOCardNoReal.value
+          : this.tigonOCardNoReal),
+      aot1jaOBindType: (aot1jaOBindType != null
+          ? aot1jaOBindType.value
+          : this.aot1jaOBindType),
+      f31u3kOEmail: (f31u3kOEmail != null
+          ? f31u3kOEmail.value
+          : this.f31u3kOEmail),
       cvn: (cvn != null ? cvn.value : this.cvn),
-      stukaOExpiryDate:
-          (stukaOExpiryDate != null
-              ? stukaOExpiryDate.value
-              : this.stukaOExpiryDate),
-      journeyOIsValid:
-          (journeyOIsValid != null
-              ? journeyOIsValid.value
-              : this.journeyOIsValid),
-      moffieOIsAutoDeduct:
-          (moffieOIsAutoDeduct != null
-              ? moffieOIsAutoDeduct.value
-              : this.moffieOIsAutoDeduct),
-      exhedraOAccountType:
-          (exhedraOAccountType != null
-              ? exhedraOAccountType.value
-              : this.exhedraOAccountType),
+      stukaOExpiryDate: (stukaOExpiryDate != null
+          ? stukaOExpiryDate.value
+          : this.stukaOExpiryDate),
+      journeyOIsValid: (journeyOIsValid != null
+          ? journeyOIsValid.value
+          : this.journeyOIsValid),
+      moffieOIsAutoDeduct: (moffieOIsAutoDeduct != null
+          ? moffieOIsAutoDeduct.value
+          : this.moffieOIsAutoDeduct),
+      exhedraOAccountType: (exhedraOAccountType != null
+          ? exhedraOAccountType.value
+          : this.exhedraOAccountType),
     );
   }
 }
@@ -7720,7 +7609,7 @@ typedef BankVOResp = List<BankVOResp$Item>;
 class BankVOResp$Item {
   const BankVOResp$Item({
     this.exonymOBankGid,
-    required this.t1h91pOBankName,
+    this.t1h91pOBankName,
     this.insolentOBankCode,
     this.songODigits,
   });
@@ -7797,21 +7686,20 @@ extension $BankVOResp$ItemExtension on BankVOResp$Item {
 
   BankVOResp$Item copyWithWrapped({
     Wrapped<String?>? exonymOBankGid,
-    Wrapped<String>? t1h91pOBankName,
+    Wrapped<String?>? t1h91pOBankName,
     Wrapped<String?>? insolentOBankCode,
     Wrapped<String?>? songODigits,
   }) {
     return BankVOResp$Item(
-      exonymOBankGid:
-          (exonymOBankGid != null ? exonymOBankGid.value : this.exonymOBankGid),
-      t1h91pOBankName:
-          (t1h91pOBankName != null
-              ? t1h91pOBankName.value
-              : this.t1h91pOBankName),
-      insolentOBankCode:
-          (insolentOBankCode != null
-              ? insolentOBankCode.value
-              : this.insolentOBankCode),
+      exonymOBankGid: (exonymOBankGid != null
+          ? exonymOBankGid.value
+          : this.exonymOBankGid),
+      t1h91pOBankName: (t1h91pOBankName != null
+          ? t1h91pOBankName.value
+          : this.t1h91pOBankName),
+      insolentOBankCode: (insolentOBankCode != null
+          ? insolentOBankCode.value
+          : this.insolentOBankCode),
       songODigits: (songODigits != null ? songODigits.value : this.songODigits),
     );
   }
@@ -7821,7 +7709,7 @@ extension $BankVOResp$ItemExtension on BankVOResp$Item {
 class BankBinResp {
   const BankBinResp({
     this.exonymOBankGid,
-    required this.t1h91pOBankName,
+    this.t1h91pOBankName,
     this.insolentOBankCode,
     this.songODigits,
   });
@@ -7898,21 +7786,20 @@ extension $BankBinRespExtension on BankBinResp {
 
   BankBinResp copyWithWrapped({
     Wrapped<String?>? exonymOBankGid,
-    Wrapped<String>? t1h91pOBankName,
+    Wrapped<String?>? t1h91pOBankName,
     Wrapped<String?>? insolentOBankCode,
     Wrapped<String?>? songODigits,
   }) {
     return BankBinResp(
-      exonymOBankGid:
-          (exonymOBankGid != null ? exonymOBankGid.value : this.exonymOBankGid),
-      t1h91pOBankName:
-          (t1h91pOBankName != null
-              ? t1h91pOBankName.value
-              : this.t1h91pOBankName),
-      insolentOBankCode:
-          (insolentOBankCode != null
-              ? insolentOBankCode.value
-              : this.insolentOBankCode),
+      exonymOBankGid: (exonymOBankGid != null
+          ? exonymOBankGid.value
+          : this.exonymOBankGid),
+      t1h91pOBankName: (t1h91pOBankName != null
+          ? t1h91pOBankName.value
+          : this.t1h91pOBankName),
+      insolentOBankCode: (insolentOBankCode != null
+          ? insolentOBankCode.value
+          : this.insolentOBankCode),
       songODigits: (songODigits != null ? songODigits.value : this.songODigits),
     );
   }
@@ -7920,7 +7807,7 @@ extension $BankBinRespExtension on BankBinResp {
 
 @JsonSerializable(explicitToJson: true)
 class BindResultResp {
-  const BindResultResp({required this.status, this.vx4165OFailReason});
+  const BindResultResp({this.status, this.vx4165OFailReason});
 
   @JsonKey(name: 'status')
   final int? status;
@@ -7967,15 +7854,14 @@ extension $BindResultRespExtension on BindResultResp {
   }
 
   BindResultResp copyWithWrapped({
-    Wrapped<int>? status,
+    Wrapped<int?>? status,
     Wrapped<String?>? vx4165OFailReason,
   }) {
     return BindResultResp(
       status: (status != null ? status.value : this.status),
-      vx4165OFailReason:
-          (vx4165OFailReason != null
-              ? vx4165OFailReason.value
-              : this.vx4165OFailReason),
+      vx4165OFailReason: (vx4165OFailReason != null
+          ? vx4165OFailReason.value
+          : this.vx4165OFailReason),
     );
   }
 }
@@ -7983,8 +7869,8 @@ extension $BindResultRespExtension on BindResultResp {
 @JsonSerializable(explicitToJson: true)
 class BindCardResp {
   const BindCardResp({
-    required this.lynceanOBindcardGid,
-    required this.vnbh46OBankCardGid,
+    this.lynceanOBindcardGid,
+    this.vnbh46OBankCardGid,
     this.zj1m73OIsBindSuccess,
   });
 
@@ -8049,23 +7935,20 @@ extension $BindCardRespExtension on BindCardResp {
   }
 
   BindCardResp copyWithWrapped({
-    Wrapped<int>? lynceanOBindcardGid,
-    Wrapped<int>? vnbh46OBankCardGid,
+    Wrapped<int?>? lynceanOBindcardGid,
+    Wrapped<int?>? vnbh46OBankCardGid,
     Wrapped<bool?>? zj1m73OIsBindSuccess,
   }) {
     return BindCardResp(
-      lynceanOBindcardGid:
-          (lynceanOBindcardGid != null
-              ? lynceanOBindcardGid.value
-              : this.lynceanOBindcardGid),
-      vnbh46OBankCardGid:
-          (vnbh46OBankCardGid != null
-              ? vnbh46OBankCardGid.value
-              : this.vnbh46OBankCardGid),
-      zj1m73OIsBindSuccess:
-          (zj1m73OIsBindSuccess != null
-              ? zj1m73OIsBindSuccess.value
-              : this.zj1m73OIsBindSuccess),
+      lynceanOBindcardGid: (lynceanOBindcardGid != null
+          ? lynceanOBindcardGid.value
+          : this.lynceanOBindcardGid),
+      vnbh46OBankCardGid: (vnbh46OBankCardGid != null
+          ? vnbh46OBankCardGid.value
+          : this.vnbh46OBankCardGid),
+      zj1m73OIsBindSuccess: (zj1m73OIsBindSuccess != null
+          ? zj1m73OIsBindSuccess.value
+          : this.zj1m73OIsBindSuccess),
     );
   }
 }
@@ -8075,10 +7958,10 @@ typedef BankCardResp = List<BankCardResp$Item>;
 @JsonSerializable(explicitToJson: true)
 class BankCardResp$Item {
   const BankCardResp$Item({
-    required this.vnbh46OBankCardGid,
-    required this.t1h91pOBankName,
-    required this.insolentOBankCode,
-    required this.zebrineOCardNo,
+    this.vnbh46OBankCardGid,
+    this.t1h91pOBankName,
+    this.insolentOBankCode,
+    this.zebrineOCardNo,
     this.s90dw0OCciNumber,
     this.f31u3kOEmail,
     this.exhedraOAccountType,
@@ -8238,10 +8121,10 @@ extension $BankCardResp$ItemExtension on BankCardResp$Item {
   }
 
   BankCardResp$Item copyWithWrapped({
-    Wrapped<int>? vnbh46OBankCardGid,
-    Wrapped<String>? t1h91pOBankName,
-    Wrapped<String>? insolentOBankCode,
-    Wrapped<String>? zebrineOCardNo,
+    Wrapped<int?>? vnbh46OBankCardGid,
+    Wrapped<String?>? t1h91pOBankName,
+    Wrapped<String?>? insolentOBankCode,
+    Wrapped<String?>? zebrineOCardNo,
     Wrapped<String?>? s90dw0OCciNumber,
     Wrapped<String?>? f31u3kOEmail,
     Wrapped<int?>? exhedraOAccountType,
@@ -8251,46 +8134,39 @@ extension $BankCardResp$ItemExtension on BankCardResp$Item {
     Wrapped<int?>? l83bexOLastTriggerTime,
   }) {
     return BankCardResp$Item(
-      vnbh46OBankCardGid:
-          (vnbh46OBankCardGid != null
-              ? vnbh46OBankCardGid.value
-              : this.vnbh46OBankCardGid),
-      t1h91pOBankName:
-          (t1h91pOBankName != null
-              ? t1h91pOBankName.value
-              : this.t1h91pOBankName),
-      insolentOBankCode:
-          (insolentOBankCode != null
-              ? insolentOBankCode.value
-              : this.insolentOBankCode),
-      zebrineOCardNo:
-          (zebrineOCardNo != null ? zebrineOCardNo.value : this.zebrineOCardNo),
-      s90dw0OCciNumber:
-          (s90dw0OCciNumber != null
-              ? s90dw0OCciNumber.value
-              : this.s90dw0OCciNumber),
-      f31u3kOEmail:
-          (f31u3kOEmail != null ? f31u3kOEmail.value : this.f31u3kOEmail),
-      exhedraOAccountType:
-          (exhedraOAccountType != null
-              ? exhedraOAccountType.value
-              : this.exhedraOAccountType),
-      q732r7OCardTransMessage:
-          (q732r7OCardTransMessage != null
-              ? q732r7OCardTransMessage.value
-              : this.q732r7OCardTransMessage),
-      o049cxOTransType:
-          (o049cxOTransType != null
-              ? o049cxOTransType.value
-              : this.o049cxOTransType),
-      e29z9eODefaultCheckFlag:
-          (e29z9eODefaultCheckFlag != null
-              ? e29z9eODefaultCheckFlag.value
-              : this.e29z9eODefaultCheckFlag),
-      l83bexOLastTriggerTime:
-          (l83bexOLastTriggerTime != null
-              ? l83bexOLastTriggerTime.value
-              : this.l83bexOLastTriggerTime),
+      vnbh46OBankCardGid: (vnbh46OBankCardGid != null
+          ? vnbh46OBankCardGid.value
+          : this.vnbh46OBankCardGid),
+      t1h91pOBankName: (t1h91pOBankName != null
+          ? t1h91pOBankName.value
+          : this.t1h91pOBankName),
+      insolentOBankCode: (insolentOBankCode != null
+          ? insolentOBankCode.value
+          : this.insolentOBankCode),
+      zebrineOCardNo: (zebrineOCardNo != null
+          ? zebrineOCardNo.value
+          : this.zebrineOCardNo),
+      s90dw0OCciNumber: (s90dw0OCciNumber != null
+          ? s90dw0OCciNumber.value
+          : this.s90dw0OCciNumber),
+      f31u3kOEmail: (f31u3kOEmail != null
+          ? f31u3kOEmail.value
+          : this.f31u3kOEmail),
+      exhedraOAccountType: (exhedraOAccountType != null
+          ? exhedraOAccountType.value
+          : this.exhedraOAccountType),
+      q732r7OCardTransMessage: (q732r7OCardTransMessage != null
+          ? q732r7OCardTransMessage.value
+          : this.q732r7OCardTransMessage),
+      o049cxOTransType: (o049cxOTransType != null
+          ? o049cxOTransType.value
+          : this.o049cxOTransType),
+      e29z9eODefaultCheckFlag: (e29z9eODefaultCheckFlag != null
+          ? e29z9eODefaultCheckFlag.value
+          : this.e29z9eODefaultCheckFlag),
+      l83bexOLastTriggerTime: (l83bexOLastTriggerTime != null
+          ? l83bexOLastTriggerTime.value
+          : this.l83bexOLastTriggerTime),
     );
   }
 }
@@ -8432,26 +8308,21 @@ extension $AccountCancelJudgeRespExtension on AccountCancelJudgeResp {
     return AccountCancelJudgeResp(
       code: (code != null ? code.value : this.code),
       msg: (msg != null ? msg.value : this.msg),
-      antiicerOMsgType:
-          (antiicerOMsgType != null
-              ? antiicerOMsgType.value
-              : this.antiicerOMsgType),
-      rumfordOMsgDisplay:
-          (rumfordOMsgDisplay != null
-              ? rumfordOMsgDisplay.value
-              : this.rumfordOMsgDisplay),
-      tympanumOMsgTitle:
-          (tympanumOMsgTitle != null
-              ? tympanumOMsgTitle.value
-              : this.tympanumOMsgTitle),
-      directOMsgBtn01:
-          (directOMsgBtn01 != null
-              ? directOMsgBtn01.value
-              : this.directOMsgBtn01),
-      i9145gOMsgBtn02:
-          (i9145gOMsgBtn02 != null
-              ? i9145gOMsgBtn02.value
-              : this.i9145gOMsgBtn02),
+      antiicerOMsgType: (antiicerOMsgType != null
+          ? antiicerOMsgType.value
+          : this.antiicerOMsgType),
+      rumfordOMsgDisplay: (rumfordOMsgDisplay != null
+          ? rumfordOMsgDisplay.value
+          : this.rumfordOMsgDisplay),
+      tympanumOMsgTitle: (tympanumOMsgTitle != null
+          ? tympanumOMsgTitle.value
+          : this.tympanumOMsgTitle),
+      directOMsgBtn01: (directOMsgBtn01 != null
+          ? directOMsgBtn01.value
+          : this.directOMsgBtn01),
+      i9145gOMsgBtn02: (i9145gOMsgBtn02 != null
+          ? i9145gOMsgBtn02.value
+          : this.i9145gOMsgBtn02),
     );
   }
 }
@@ -8542,20 +8413,16 @@ extension $CheckRegisterRespExtension on CheckRegisterResp {
     Wrapped<bool?>? j1mnl2OExistLoginPwd,
   }) {
     return CheckRegisterResp(
-      qm5h5tOIsRegistered:
-          (qm5h5tOIsRegistered != null
-              ? qm5h5tOIsRegistered.value
-              : this.qm5h5tOIsRegistered),
-      fm50w8OLoginPwd:
-          (fm50w8OLoginPwd != null
-              ? fm50w8OLoginPwd.value
-              : this.fm50w8OLoginPwd),
-      cressyOTraderPwd:
-          (cressyOTraderPwd != null
-              ? cressyOTraderPwd.value
-              : this.cressyOTraderPwd),
-      j1mnl2OExistLoginPwd:
-      (j1mnl2OExistLoginPwd != null
+      qm5h5tOIsRegistered: (qm5h5tOIsRegistered != null
+          ? qm5h5tOIsRegistered.value
+          : this.qm5h5tOIsRegistered),
+      fm50w8OLoginPwd: (fm50w8OLoginPwd != null
+          ? fm50w8OLoginPwd.value
+          : this.fm50w8OLoginPwd),
+      cressyOTraderPwd: (cressyOTraderPwd != null
+          ? cressyOTraderPwd.value
+          : this.cressyOTraderPwd),
+      j1mnl2OExistLoginPwd: (j1mnl2OExistLoginPwd != null
           ? j1mnl2OExistLoginPwd.value
           : this.j1mnl2OExistLoginPwd),
     );
@@ -8583,7 +8450,7 @@ class WhiteListResp {
 
 @JsonSerializable(explicitToJson: true)
 class NeedCaptchaResp {
-  const NeedCaptchaResp({required this.data});
+  const NeedCaptchaResp({this.data});
 
   @JsonKey(name: 'data')
   final bool? data;
@@ -8617,7 +8484,7 @@ extension $NeedCaptchaRespExtension on NeedCaptchaResp {
     return NeedCaptchaResp(data: data ?? this.data);
   }
 
-  NeedCaptchaResp copyWithWrapped({Wrapped<bool>? data}) {
+  NeedCaptchaResp copyWithWrapped({Wrapped<bool?>? data}) {
     return NeedCaptchaResp(data: (data != null ? data.value : this.data));
   }
 }
@@ -8625,10 +8492,10 @@ extension $NeedCaptchaRespExtension on NeedCaptchaResp {
 @JsonSerializable(explicitToJson: true)
 class RegisterResp {
   const RegisterResp({
-    required this.sordidOMobile,
-    required this.y260zpOToken,
-    required this.name,
-    required this.raiaOUserGid,
+    this.sordidOMobile,
+    this.y260zpOToken,
+    this.name,
+    this.raiaOUserGid,
     this.hik0qmORegisterTime,
   });
 
@@ -8639,7 +8506,7 @@ class RegisterResp {
   @JsonKey(name: 'name')
   final String? name;
   @JsonKey(name: 'raia')
-  final int? raiaOUserGid;
+  final String? raiaOUserGid;
   @JsonKey(name: 'hik0qm')
   final int? hik0qmORegisterTime;
 
@@ -8697,7 +8564,7 @@ extension $RegisterRespExtension on RegisterResp {
     String? sordidOMobile,
     String? y260zpOToken,
     String? name,
-    int? raiaOUserGid,
+    String? raiaOUserGid,
     int? hik0qmORegisterTime,
   }) {
     return RegisterResp(
@@ -8710,24 +8577,26 @@ extension $RegisterRespExtension on RegisterResp {
   }
 
   RegisterResp copyWithWrapped({
-    Wrapped<String>? sordidOMobile,
-    Wrapped<String>? y260zpOToken,
-    Wrapped<String>? name,
-    Wrapped<int>? raiaOUserGid,
+    Wrapped<String?>? sordidOMobile,
+    Wrapped<String?>? y260zpOToken,
+    Wrapped<String?>? name,
+    Wrapped<String?>? raiaOUserGid,
     Wrapped<int?>? hik0qmORegisterTime,
   }) {
     return RegisterResp(
-      sordidOMobile:
-          (sordidOMobile != null ? sordidOMobile.value : this.sordidOMobile),
-      y260zpOToken:
-          (y260zpOToken != null ? y260zpOToken.value : this.y260zpOToken),
+      sordidOMobile: (sordidOMobile != null
+          ? sordidOMobile.value
+          : this.sordidOMobile),
+      y260zpOToken: (y260zpOToken != null
+          ? y260zpOToken.value
+          : this.y260zpOToken),
       name: (name != null ? name.value : this.name),
-      raiaOUserGid:
-          (raiaOUserGid != null ? raiaOUserGid.value : this.raiaOUserGid),
-      hik0qmORegisterTime:
-          (hik0qmORegisterTime != null
-              ? hik0qmORegisterTime.value
-              : this.hik0qmORegisterTime),
+      raiaOUserGid: (raiaOUserGid != null
+          ? raiaOUserGid.value
+          : this.raiaOUserGid),
+      hik0qmORegisterTime: (hik0qmORegisterTime != null
+          ? hik0qmORegisterTime.value
+          : this.hik0qmORegisterTime),
     );
   }
 }
@@ -8735,7 +8604,7 @@ extension $RegisterRespExtension on RegisterResp {
 @JsonSerializable(explicitToJson: true)
 class UserInfoResp {
   const UserInfoResp({
-    required this.name,
+    this.name,
     this.bvn,
     this.merdekaOIdCard,
     this.hashIdCard,
@@ -8817,7 +8686,7 @@ extension $UserInfoRespExtension on UserInfoResp {
   }
 
   UserInfoResp copyWithWrapped({
-    Wrapped<String>? name,
+    Wrapped<String?>? name,
     Wrapped<String?>? bvn,
     Wrapped<String?>? merdekaOIdCard,
     Wrapped<String?>? hashIdCard,
@@ -8826,13 +8695,13 @@ extension $UserInfoRespExtension on UserInfoResp {
     return UserInfoResp(
       name: (name != null ? name.value : this.name),
       bvn: (bvn != null ? bvn.value : this.bvn),
-      merdekaOIdCard:
-          (merdekaOIdCard != null ? merdekaOIdCard.value : this.merdekaOIdCard),
+      merdekaOIdCard: (merdekaOIdCard != null
+          ? merdekaOIdCard.value
+          : this.merdekaOIdCard),
       hashIdCard: (hashIdCard != null ? hashIdCard.value : this.hashIdCard),
-      s6bfq9OUserClass:
-          (s6bfq9OUserClass != null
-              ? s6bfq9OUserClass.value
-              : this.s6bfq9OUserClass),
+      s6bfq9OUserClass: (s6bfq9OUserClass != null
+          ? s6bfq9OUserClass.value
+          : this.s6bfq9OUserClass),
     );
   }
 }
@@ -8840,10 +8709,10 @@ extension $UserInfoRespExtension on UserInfoResp {
 @JsonSerializable(explicitToJson: true)
 class LoginResp {
   const LoginResp({
-    required this.sordidOMobile,
-    required this.y260zpOToken,
-    required this.name,
-    required this.raiaOUserGid,
+    this.sordidOMobile,
+    this.y260zpOToken,
+    this.name,
+    this.raiaOUserGid,
     this.hik0qmORegisterTime,
   });
 
@@ -8854,7 +8723,7 @@ class LoginResp {
   @JsonKey(name: 'name')
   final String? name;
   @JsonKey(name: 'raia')
-  final int? raiaOUserGid;
+  final String? raiaOUserGid;
   @JsonKey(name: 'hik0qm')
   final int? hik0qmORegisterTime;
 
@@ -8912,7 +8781,7 @@ extension $LoginRespExtension on LoginResp {
     String? sordidOMobile,
     String? y260zpOToken,
     String? name,
-    int? raiaOUserGid,
+    String? raiaOUserGid,
     int? hik0qmORegisterTime,
   }) {
     return LoginResp(
@@ -8925,24 +8794,26 @@ extension $LoginRespExtension on LoginResp {
   }
 
   LoginResp copyWithWrapped({
-    Wrapped<String>? sordidOMobile,
-    Wrapped<String>? y260zpOToken,
-    Wrapped<String>? name,
-    Wrapped<int>? raiaOUserGid,
+    Wrapped<String?>? sordidOMobile,
+    Wrapped<String?>? y260zpOToken,
+    Wrapped<String?>? name,
+    Wrapped<String?>? raiaOUserGid,
     Wrapped<int?>? hik0qmORegisterTime,
   }) {
     return LoginResp(
-      sordidOMobile:
-          (sordidOMobile != null ? sordidOMobile.value : this.sordidOMobile),
-      y260zpOToken:
-          (y260zpOToken != null ? y260zpOToken.value : this.y260zpOToken),
+      sordidOMobile: (sordidOMobile != null
+          ? sordidOMobile.value
+          : this.sordidOMobile),
+      y260zpOToken: (y260zpOToken != null
+          ? y260zpOToken.value
+          : this.y260zpOToken),
       name: (name != null ? name.value : this.name),
-      raiaOUserGid:
-          (raiaOUserGid != null ? raiaOUserGid.value : this.raiaOUserGid),
-      hik0qmORegisterTime:
-          (hik0qmORegisterTime != null
-              ? hik0qmORegisterTime.value
-              : this.hik0qmORegisterTime),
+      raiaOUserGid: (raiaOUserGid != null
+          ? raiaOUserGid.value
+          : this.raiaOUserGid),
+      hik0qmORegisterTime: (hik0qmORegisterTime != null
+          ? hik0qmORegisterTime.value
+          : this.hik0qmORegisterTime),
     );
   }
 }
@@ -9084,26 +8955,21 @@ extension $AccountCancelAppRespExtension on AccountCancelAppResp {
     return AccountCancelAppResp(
       code: (code != null ? code.value : this.code),
       msg: (msg != null ? msg.value : this.msg),
-      antiicerOMsgType:
-          (antiicerOMsgType != null
-              ? antiicerOMsgType.value
-              : this.antiicerOMsgType),
-      rumfordOMsgDisplay:
-          (rumfordOMsgDisplay != null
-              ? rumfordOMsgDisplay.value
-              : this.rumfordOMsgDisplay),
-      tympanumOMsgTitle:
-          (tympanumOMsgTitle != null
-              ? tympanumOMsgTitle.value
-              : this.tympanumOMsgTitle),
-      directOMsgBtn01:
-          (directOMsgBtn01 != null
-              ? directOMsgBtn01.value
-              : this.directOMsgBtn01),
-      i9145gOMsgBtn02:
-          (i9145gOMsgBtn02 != null
-              ? i9145gOMsgBtn02.value
-              : this.i9145gOMsgBtn02),
+      antiicerOMsgType: (antiicerOMsgType != null
+          ? antiicerOMsgType.value
+          : this.antiicerOMsgType),
+      rumfordOMsgDisplay: (rumfordOMsgDisplay != null
+          ? rumfordOMsgDisplay.value
+          : this.rumfordOMsgDisplay),
+      tympanumOMsgTitle: (tympanumOMsgTitle != null
+          ? tympanumOMsgTitle.value
+          : this.tympanumOMsgTitle),
+      directOMsgBtn01: (directOMsgBtn01 != null
+          ? directOMsgBtn01.value
+          : this.directOMsgBtn01),
+      i9145gOMsgBtn02: (i9145gOMsgBtn02 != null
+          ? i9145gOMsgBtn02.value
+          : this.i9145gOMsgBtn02),
     );
   }
 }
@@ -9226,26 +9092,21 @@ extension $AccountCancelLandRespExtension on AccountCancelLandResp {
     return AccountCancelLandResp(
       code: (code != null ? code.value : this.code),
       msg: (msg != null ? msg.value : this.msg),
-      antiicerOMsgType:
-          (antiicerOMsgType != null
-              ? antiicerOMsgType.value
-              : this.antiicerOMsgType),
-      rumfordOMsgDisplay:
-          (rumfordOMsgDisplay != null
-              ? rumfordOMsgDisplay.value
-              : this.rumfordOMsgDisplay),
-      tympanumOMsgTitle:
-          (tympanumOMsgTitle != null
-              ? tympanumOMsgTitle.value
-              : this.tympanumOMsgTitle),
-      directOMsgBtn01:
-          (directOMsgBtn01 != null
-              ? directOMsgBtn01.value
-              : this.directOMsgBtn01),
-      i9145gOMsgBtn02:
-          (i9145gOMsgBtn02 != null
-              ? i9145gOMsgBtn02.value
-              : this.i9145gOMsgBtn02),
+      antiicerOMsgType: (antiicerOMsgType != null
+          ? antiicerOMsgType.value
+          : this.antiicerOMsgType),
+      rumfordOMsgDisplay: (rumfordOMsgDisplay != null
+          ? rumfordOMsgDisplay.value
+          : this.rumfordOMsgDisplay),
+      tympanumOMsgTitle: (tympanumOMsgTitle != null
+          ? tympanumOMsgTitle.value
+          : this.tympanumOMsgTitle),
+      directOMsgBtn01: (directOMsgBtn01 != null
+          ? directOMsgBtn01.value
+          : this.directOMsgBtn01),
+      i9145gOMsgBtn02: (i9145gOMsgBtn02 != null
+          ? i9145gOMsgBtn02.value
+          : this.i9145gOMsgBtn02),
     );
   }
 }
@@ -9368,26 +9229,21 @@ extension $TraderPwdResetRespExtension on TraderPwdResetResp {
     return TraderPwdResetResp(
       code: (code != null ? code.value : this.code),
       msg: (msg != null ? msg.value : this.msg),
-      antiicerOMsgType:
-          (antiicerOMsgType != null
-              ? antiicerOMsgType.value
-              : this.antiicerOMsgType),
-      rumfordOMsgDisplay:
-          (rumfordOMsgDisplay != null
-              ? rumfordOMsgDisplay.value
-              : this.rumfordOMsgDisplay),
-      tympanumOMsgTitle:
-          (tympanumOMsgTitle != null
-              ? tympanumOMsgTitle.value
-              : this.tympanumOMsgTitle),
-      directOMsgBtn01:
-          (directOMsgBtn01 != null
-              ? directOMsgBtn01.value
-              : this.directOMsgBtn01),
-      i9145gOMsgBtn02:
-          (i9145gOMsgBtn02 != null
-              ? i9145gOMsgBtn02.value
-              : this.i9145gOMsgBtn02),
+      antiicerOMsgType: (antiicerOMsgType != null
+          ? antiicerOMsgType.value
+          : this.antiicerOMsgType),
+      rumfordOMsgDisplay: (rumfordOMsgDisplay != null
+          ? rumfordOMsgDisplay.value
+          : this.rumfordOMsgDisplay),
+      tympanumOMsgTitle: (tympanumOMsgTitle != null
+          ? tympanumOMsgTitle.value
+          : this.tympanumOMsgTitle),
+      directOMsgBtn01: (directOMsgBtn01 != null
+          ? directOMsgBtn01.value
+          : this.directOMsgBtn01),
+      i9145gOMsgBtn02: (i9145gOMsgBtn02 != null
+          ? i9145gOMsgBtn02.value
+          : this.i9145gOMsgBtn02),
     );
   }
 }
@@ -9510,26 +9366,21 @@ extension $LoginPwdResetRespExtension on LoginPwdResetResp {
     return LoginPwdResetResp(
       code: (code != null ? code.value : this.code),
       msg: (msg != null ? msg.value : this.msg),
-      antiicerOMsgType:
-          (antiicerOMsgType != null
-              ? antiicerOMsgType.value
-              : this.antiicerOMsgType),
-      rumfordOMsgDisplay:
-          (rumfordOMsgDisplay != null
-              ? rumfordOMsgDisplay.value
-              : this.rumfordOMsgDisplay),
-      tympanumOMsgTitle:
-          (tympanumOMsgTitle != null
-              ? tympanumOMsgTitle.value
-              : this.tympanumOMsgTitle),
-      directOMsgBtn01:
-          (directOMsgBtn01 != null
-              ? directOMsgBtn01.value
-              : this.directOMsgBtn01),
-      i9145gOMsgBtn02:
-          (i9145gOMsgBtn02 != null
-              ? i9145gOMsgBtn02.value
-              : this.i9145gOMsgBtn02),
+      antiicerOMsgType: (antiicerOMsgType != null
+          ? antiicerOMsgType.value
+          : this.antiicerOMsgType),
+      rumfordOMsgDisplay: (rumfordOMsgDisplay != null
+          ? rumfordOMsgDisplay.value
+          : this.rumfordOMsgDisplay),
+      tympanumOMsgTitle: (tympanumOMsgTitle != null
+          ? tympanumOMsgTitle.value
+          : this.tympanumOMsgTitle),
+      directOMsgBtn01: (directOMsgBtn01 != null
+          ? directOMsgBtn01.value
+          : this.directOMsgBtn01),
+      i9145gOMsgBtn02: (i9145gOMsgBtn02 != null
+          ? i9145gOMsgBtn02.value
+          : this.i9145gOMsgBtn02),
     );
   }
 }
@@ -9671,26 +9522,21 @@ extension $CaptchaCheckRespExtension on CaptchaCheckResp {
     return CaptchaCheckResp(
       code: (code != null ? code.value : this.code),
       msg: (msg != null ? msg.value : this.msg),
-      antiicerOMsgType:
-          (antiicerOMsgType != null
-              ? antiicerOMsgType.value
-              : this.antiicerOMsgType),
-      rumfordOMsgDisplay:
-          (rumfordOMsgDisplay != null
-              ? rumfordOMsgDisplay.value
-              : this.rumfordOMsgDisplay),
-      tympanumOMsgTitle:
-          (tympanumOMsgTitle != null
-              ? tympanumOMsgTitle.value
-              : this.tympanumOMsgTitle),
-      directOMsgBtn01:
-          (directOMsgBtn01 != null
-              ? directOMsgBtn01.value
-              : this.directOMsgBtn01),
-      i9145gOMsgBtn02:
-          (i9145gOMsgBtn02 != null
-              ? i9145gOMsgBtn02.value
-              : this.i9145gOMsgBtn02),
+      antiicerOMsgType: (antiicerOMsgType != null
+          ? antiicerOMsgType.value
+          : this.antiicerOMsgType),
+      rumfordOMsgDisplay: (rumfordOMsgDisplay != null
+          ? rumfordOMsgDisplay.value
+          : this.rumfordOMsgDisplay),
+      tympanumOMsgTitle: (tympanumOMsgTitle != null
+          ? tympanumOMsgTitle.value
+          : this.tympanumOMsgTitle),
+      directOMsgBtn01: (directOMsgBtn01 != null
+          ? directOMsgBtn01.value
+          : this.directOMsgBtn01),
+      i9145gOMsgBtn02: (i9145gOMsgBtn02 != null
+          ? i9145gOMsgBtn02.value
+          : this.i9145gOMsgBtn02),
     );
   }
 }
@@ -9813,26 +9659,21 @@ extension $CodeVerifyRespExtension on CodeVerifyResp {
     return CodeVerifyResp(
       code: (code != null ? code.value : this.code),
       msg: (msg != null ? msg.value : this.msg),
-      antiicerOMsgType:
-          (antiicerOMsgType != null
-              ? antiicerOMsgType.value
-              : this.antiicerOMsgType),
-      rumfordOMsgDisplay:
-          (rumfordOMsgDisplay != null
-              ? rumfordOMsgDisplay.value
-              : this.rumfordOMsgDisplay),
-      tympanumOMsgTitle:
-          (tympanumOMsgTitle != null
-              ? tympanumOMsgTitle.value
-              : this.tympanumOMsgTitle),
-      directOMsgBtn01:
-          (directOMsgBtn01 != null
-              ? directOMsgBtn01.value
-              : this.directOMsgBtn01),
-      i9145gOMsgBtn02:
-          (i9145gOMsgBtn02 != null
-              ? i9145gOMsgBtn02.value
-              : this.i9145gOMsgBtn02),
+      antiicerOMsgType: (antiicerOMsgType != null
+          ? antiicerOMsgType.value
+          : this.antiicerOMsgType),
+      rumfordOMsgDisplay: (rumfordOMsgDisplay != null
+          ? rumfordOMsgDisplay.value
+          : this.rumfordOMsgDisplay),
+      tympanumOMsgTitle: (tympanumOMsgTitle != null
+          ? tympanumOMsgTitle.value
+          : this.tympanumOMsgTitle),
+      directOMsgBtn01: (directOMsgBtn01 != null
+          ? directOMsgBtn01.value
+          : this.directOMsgBtn01),
+      i9145gOMsgBtn02: (i9145gOMsgBtn02 != null
+          ? i9145gOMsgBtn02.value
+          : this.i9145gOMsgBtn02),
     );
   }
 }
@@ -9955,26 +9796,21 @@ extension $CodeSendRespExtension on CodeSendResp {
     return CodeSendResp(
       code: (code != null ? code.value : this.code),
       msg: (msg != null ? msg.value : this.msg),
-      antiicerOMsgType:
-          (antiicerOMsgType != null
-              ? antiicerOMsgType.value
-              : this.antiicerOMsgType),
-      rumfordOMsgDisplay:
-          (rumfordOMsgDisplay != null
-              ? rumfordOMsgDisplay.value
-              : this.rumfordOMsgDisplay),
-      tympanumOMsgTitle:
-          (tympanumOMsgTitle != null
-              ? tympanumOMsgTitle.value
-              : this.tympanumOMsgTitle),
-      directOMsgBtn01:
-          (directOMsgBtn01 != null
-              ? directOMsgBtn01.value
-              : this.directOMsgBtn01),
-      i9145gOMsgBtn02:
-          (i9145gOMsgBtn02 != null
-              ? i9145gOMsgBtn02.value
-              : this.i9145gOMsgBtn02),
+      antiicerOMsgType: (antiicerOMsgType != null
+          ? antiicerOMsgType.value
+          : this.antiicerOMsgType),
+      rumfordOMsgDisplay: (rumfordOMsgDisplay != null
+          ? rumfordOMsgDisplay.value
+          : this.rumfordOMsgDisplay),
+      tympanumOMsgTitle: (tympanumOMsgTitle != null
+          ? tympanumOMsgTitle.value
+          : this.tympanumOMsgTitle),
+      directOMsgBtn01: (directOMsgBtn01 != null
+          ? directOMsgBtn01.value
+          : this.directOMsgBtn01),
+      i9145gOMsgBtn02: (i9145gOMsgBtn02 != null
+          ? i9145gOMsgBtn02.value
+          : this.i9145gOMsgBtn02),
     );
   }
 }
@@ -10097,26 +9933,21 @@ extension $TrackReportRespExtension on TrackReportResp {
     return TrackReportResp(
       code: (code != null ? code.value : this.code),
       msg: (msg != null ? msg.value : this.msg),
-      antiicerOMsgType:
-          (antiicerOMsgType != null
-              ? antiicerOMsgType.value
-              : this.antiicerOMsgType),
-      rumfordOMsgDisplay:
-          (rumfordOMsgDisplay != null
-              ? rumfordOMsgDisplay.value
-              : this.rumfordOMsgDisplay),
-      tympanumOMsgTitle:
-          (tympanumOMsgTitle != null
-              ? tympanumOMsgTitle.value
-              : this.tympanumOMsgTitle),
-      directOMsgBtn01:
-          (directOMsgBtn01 != null
-              ? directOMsgBtn01.value
-              : this.directOMsgBtn01),
-      i9145gOMsgBtn02:
-          (i9145gOMsgBtn02 != null
-              ? i9145gOMsgBtn02.value
-              : this.i9145gOMsgBtn02),
+      antiicerOMsgType: (antiicerOMsgType != null
+          ? antiicerOMsgType.value
+          : this.antiicerOMsgType),
+      rumfordOMsgDisplay: (rumfordOMsgDisplay != null
+          ? rumfordOMsgDisplay.value
+          : this.rumfordOMsgDisplay),
+      tympanumOMsgTitle: (tympanumOMsgTitle != null
+          ? tympanumOMsgTitle.value
+          : this.tympanumOMsgTitle),
+      directOMsgBtn01: (directOMsgBtn01 != null
+          ? directOMsgBtn01.value
+          : this.directOMsgBtn01),
+      i9145gOMsgBtn02: (i9145gOMsgBtn02 != null
+          ? i9145gOMsgBtn02.value
+          : this.i9145gOMsgBtn02),
     );
   }
 }
@@ -10212,22 +10043,18 @@ extension $NeedReportRespExtension on NeedReportResp {
     Wrapped<int?>? stationOReportLeftTimes,
   }) {
     return NeedReportResp(
-      q0ui28OIsNeedReport:
-          (q0ui28OIsNeedReport != null
-              ? q0ui28OIsNeedReport.value
-              : this.q0ui28OIsNeedReport),
-      paroxysmOReportTimeOut:
-          (paroxysmOReportTimeOut != null
-              ? paroxysmOReportTimeOut.value
-              : this.paroxysmOReportTimeOut),
-      f4d0s6OReportTimes:
-          (f4d0s6OReportTimes != null
-              ? f4d0s6OReportTimes.value
-              : this.f4d0s6OReportTimes),
-      stationOReportLeftTimes:
-          (stationOReportLeftTimes != null
-              ? stationOReportLeftTimes.value
-              : this.stationOReportLeftTimes),
+      q0ui28OIsNeedReport: (q0ui28OIsNeedReport != null
+          ? q0ui28OIsNeedReport.value
+          : this.q0ui28OIsNeedReport),
+      paroxysmOReportTimeOut: (paroxysmOReportTimeOut != null
+          ? paroxysmOReportTimeOut.value
+          : this.paroxysmOReportTimeOut),
+      f4d0s6OReportTimes: (f4d0s6OReportTimes != null
+          ? f4d0s6OReportTimes.value
+          : this.f4d0s6OReportTimes),
+      stationOReportLeftTimes: (stationOReportLeftTimes != null
+          ? stationOReportLeftTimes.value
+          : this.stationOReportLeftTimes),
     );
   }
 }
@@ -10285,10 +10112,9 @@ extension $RiskReportRespExtension on RiskReportResp {
     zdzsepOVerificationConfig,
   }) {
     return RiskReportResp(
-      zdzsepOVerificationConfig:
-          (zdzsepOVerificationConfig != null
-              ? zdzsepOVerificationConfig.value
-              : this.zdzsepOVerificationConfig),
+      zdzsepOVerificationConfig: (zdzsepOVerificationConfig != null
+          ? zdzsepOVerificationConfig.value
+          : this.zdzsepOVerificationConfig),
     );
   }
 }
@@ -10411,26 +10237,21 @@ extension $VaCreateRespExtension on VaCreateResp {
     return VaCreateResp(
       code: (code != null ? code.value : this.code),
       msg: (msg != null ? msg.value : this.msg),
-      antiicerOMsgType:
-          (antiicerOMsgType != null
-              ? antiicerOMsgType.value
-              : this.antiicerOMsgType),
-      rumfordOMsgDisplay:
-          (rumfordOMsgDisplay != null
-              ? rumfordOMsgDisplay.value
-              : this.rumfordOMsgDisplay),
-      tympanumOMsgTitle:
-          (tympanumOMsgTitle != null
-              ? tympanumOMsgTitle.value
-              : this.tympanumOMsgTitle),
-      directOMsgBtn01:
-          (directOMsgBtn01 != null
-              ? directOMsgBtn01.value
-              : this.directOMsgBtn01),
-      i9145gOMsgBtn02:
-          (i9145gOMsgBtn02 != null
-              ? i9145gOMsgBtn02.value
-              : this.i9145gOMsgBtn02),
+      antiicerOMsgType: (antiicerOMsgType != null
+          ? antiicerOMsgType.value
+          : this.antiicerOMsgType),
+      rumfordOMsgDisplay: (rumfordOMsgDisplay != null
+          ? rumfordOMsgDisplay.value
+          : this.rumfordOMsgDisplay),
+      tympanumOMsgTitle: (tympanumOMsgTitle != null
+          ? tympanumOMsgTitle.value
+          : this.tympanumOMsgTitle),
+      directOMsgBtn01: (directOMsgBtn01 != null
+          ? directOMsgBtn01.value
+          : this.directOMsgBtn01),
+      i9145gOMsgBtn02: (i9145gOMsgBtn02 != null
+          ? i9145gOMsgBtn02.value
+          : this.i9145gOMsgBtn02),
     );
   }
 }
@@ -10553,26 +10374,21 @@ extension $VoSubmitRespExtension on VoSubmitResp {
     return VoSubmitResp(
       code: (code != null ? code.value : this.code),
       msg: (msg != null ? msg.value : this.msg),
-      antiicerOMsgType:
-          (antiicerOMsgType != null
-              ? antiicerOMsgType.value
-              : this.antiicerOMsgType),
-      rumfordOMsgDisplay:
-          (rumfordOMsgDisplay != null
-              ? rumfordOMsgDisplay.value
-              : this.rumfordOMsgDisplay),
-      tympanumOMsgTitle:
-          (tympanumOMsgTitle != null
-              ? tympanumOMsgTitle.value
-              : this.tympanumOMsgTitle),
-      directOMsgBtn01:
-          (directOMsgBtn01 != null
-              ? directOMsgBtn01.value
-              : this.directOMsgBtn01),
-      i9145gOMsgBtn02:
-          (i9145gOMsgBtn02 != null
-              ? i9145gOMsgBtn02.value
-              : this.i9145gOMsgBtn02),
+      antiicerOMsgType: (antiicerOMsgType != null
+          ? antiicerOMsgType.value
+          : this.antiicerOMsgType),
+      rumfordOMsgDisplay: (rumfordOMsgDisplay != null
+          ? rumfordOMsgDisplay.value
+          : this.rumfordOMsgDisplay),
+      tympanumOMsgTitle: (tympanumOMsgTitle != null
+          ? tympanumOMsgTitle.value
+          : this.tympanumOMsgTitle),
+      directOMsgBtn01: (directOMsgBtn01 != null
+          ? directOMsgBtn01.value
+          : this.directOMsgBtn01),
+      i9145gOMsgBtn02: (i9145gOMsgBtn02 != null
+          ? i9145gOMsgBtn02.value
+          : this.i9145gOMsgBtn02),
     );
   }
 }
@@ -10675,22 +10491,21 @@ extension $VaGetRespExtension on VaGetResp {
     Wrapped<String?>? g550r5OAccountName,
   }) {
     return VaGetResp(
-      yca98cOAccount:
-          (yca98cOAccount != null ? yca98cOAccount.value : this.yca98cOAccount),
-      eff6jkOExpTime:
-          (eff6jkOExpTime != null ? eff6jkOExpTime.value : this.eff6jkOExpTime),
-      t1h91pOBankName:
-          (t1h91pOBankName != null
-              ? t1h91pOBankName.value
-              : this.t1h91pOBankName),
-      insolentOBankCode:
-          (insolentOBankCode != null
-              ? insolentOBankCode.value
-              : this.insolentOBankCode),
-      g550r5OAccountName:
-          (g550r5OAccountName != null
-              ? g550r5OAccountName.value
-              : this.g550r5OAccountName),
+      yca98cOAccount: (yca98cOAccount != null
+          ? yca98cOAccount.value
+          : this.yca98cOAccount),
+      eff6jkOExpTime: (eff6jkOExpTime != null
+          ? eff6jkOExpTime.value
+          : this.eff6jkOExpTime),
+      t1h91pOBankName: (t1h91pOBankName != null
+          ? t1h91pOBankName.value
+          : this.t1h91pOBankName),
+      insolentOBankCode: (insolentOBankCode != null
+          ? insolentOBankCode.value
+          : this.insolentOBankCode),
+      g550r5OAccountName: (g550r5OAccountName != null
+          ? g550r5OAccountName.value
+          : this.g550r5OAccountName),
     );
   }
 }
@@ -10698,8 +10513,8 @@ extension $VaGetRespExtension on VaGetResp {
 @JsonSerializable(explicitToJson: true)
 class RepayApplyResp {
   const RepayApplyResp({
-    required this.r5a4x8OLoanGid,
-    required this.raiaOUserGid,
+    this.r5a4x8OLoanGid,
+    this.raiaOUserGid,
     this.n410zdOLoanTime,
     this.r5k31qODueTime,
     this.coandaODueDays,
@@ -10722,7 +10537,7 @@ class RepayApplyResp {
   @JsonKey(name: 'r5a4x8')
   final int? r5a4x8OLoanGid;
   @JsonKey(name: 'raia')
-  final int? raiaOUserGid;
+  final String? raiaOUserGid;
   @JsonKey(name: 'n410zd')
   final int? n410zdOLoanTime;
   @JsonKey(name: 'r5k31q')
@@ -10900,7 +10715,7 @@ class RepayApplyResp {
 extension $RepayApplyRespExtension on RepayApplyResp {
   RepayApplyResp copyWith({
     int? r5a4x8OLoanGid,
-    int? raiaOUserGid,
+    String? raiaOUserGid,
     int? n410zdOLoanTime,
     int? r5k31qODueTime,
     int? coandaODueDays,
@@ -10946,8 +10761,8 @@ extension $RepayApplyRespExtension on RepayApplyResp {
   }
 
   RepayApplyResp copyWithWrapped({
-    Wrapped<int>? r5a4x8OLoanGid,
-    Wrapped<int>? raiaOUserGid,
+    Wrapped<int?>? r5a4x8OLoanGid,
+    Wrapped<String?>? raiaOUserGid,
     Wrapped<int?>? n410zdOLoanTime,
     Wrapped<int?>? r5k31qODueTime,
     Wrapped<int?>? coandaODueDays,
@@ -10967,65 +10782,61 @@ extension $RepayApplyRespExtension on RepayApplyResp {
     Wrapped<List<RepayApplyResp$TartarlyOPins$Item>?>? tartarlyOPins,
   }) {
     return RepayApplyResp(
-      r5a4x8OLoanGid:
-          (r5a4x8OLoanGid != null ? r5a4x8OLoanGid.value : this.r5a4x8OLoanGid),
-      raiaOUserGid:
-          (raiaOUserGid != null ? raiaOUserGid.value : this.raiaOUserGid),
-      n410zdOLoanTime:
-          (n410zdOLoanTime != null
-              ? n410zdOLoanTime.value
-              : this.n410zdOLoanTime),
-      r5k31qODueTime:
-          (r5k31qODueTime != null ? r5k31qODueTime.value : this.r5k31qODueTime),
-      coandaODueDays:
-          (coandaODueDays != null ? coandaODueDays.value : this.coandaODueDays),
-      faciendOOverdueFee:
-          (faciendOOverdueFee != null
-              ? faciendOOverdueFee.value
-              : this.faciendOOverdueFee),
-      gatemanORepaymentAmount:
-          (gatemanORepaymentAmount != null
-              ? gatemanORepaymentAmount.value
-              : this.gatemanORepaymentAmount),
-      wantonlyOLoanLeftAmount:
-          (wantonlyOLoanLeftAmount != null
-              ? wantonlyOLoanLeftAmount.value
-              : this.wantonlyOLoanLeftAmount),
-      d95091ORepaymentStatus:
-          (d95091ORepaymentStatus != null
-              ? d95091ORepaymentStatus.value
-              : this.d95091ORepaymentStatus),
-      oj603uOApplyId:
-          (oj603uOApplyId != null ? oj603uOApplyId.value : this.oj603uOApplyId),
-      parquetORedirectUrl:
-          (parquetORedirectUrl != null
-              ? parquetORedirectUrl.value
-              : this.parquetORedirectUrl),
-      zebrineOCardNo:
-          (zebrineOCardNo != null ? zebrineOCardNo.value : this.zebrineOCardNo),
+      r5a4x8OLoanGid: (r5a4x8OLoanGid != null
+          ? r5a4x8OLoanGid.value
+          : this.r5a4x8OLoanGid),
+      raiaOUserGid: (raiaOUserGid != null
+          ? raiaOUserGid.value
+          : this.raiaOUserGid),
+      n410zdOLoanTime: (n410zdOLoanTime != null
+          ? n410zdOLoanTime.value
+          : this.n410zdOLoanTime),
+      r5k31qODueTime: (r5k31qODueTime != null
+          ? r5k31qODueTime.value
+          : this.r5k31qODueTime),
+      coandaODueDays: (coandaODueDays != null
+          ? coandaODueDays.value
+          : this.coandaODueDays),
+      faciendOOverdueFee: (faciendOOverdueFee != null
+          ? faciendOOverdueFee.value
+          : this.faciendOOverdueFee),
+      gatemanORepaymentAmount: (gatemanORepaymentAmount != null
+          ? gatemanORepaymentAmount.value
+          : this.gatemanORepaymentAmount),
+      wantonlyOLoanLeftAmount: (wantonlyOLoanLeftAmount != null
+          ? wantonlyOLoanLeftAmount.value
+          : this.wantonlyOLoanLeftAmount),
+      d95091ORepaymentStatus: (d95091ORepaymentStatus != null
+          ? d95091ORepaymentStatus.value
+          : this.d95091ORepaymentStatus),
+      oj603uOApplyId: (oj603uOApplyId != null
+          ? oj603uOApplyId.value
+          : this.oj603uOApplyId),
+      parquetORedirectUrl: (parquetORedirectUrl != null
+          ? parquetORedirectUrl.value
+          : this.parquetORedirectUrl),
+      zebrineOCardNo: (zebrineOCardNo != null
+          ? zebrineOCardNo.value
+          : this.zebrineOCardNo),
       cvv: (cvv != null ? cvv.value : this.cvv),
-      courtierOAccessCode:
-          (courtierOAccessCode != null
-              ? courtierOAccessCode.value
-              : this.courtierOAccessCode),
-      p9428vOExpireTime:
-          (p9428vOExpireTime != null
-              ? p9428vOExpireTime.value
-              : this.p9428vOExpireTime),
-      krddvvOReference:
-          (krddvvOReference != null
-              ? krddvvOReference.value
-              : this.krddvvOReference),
-      w2y37vOOrderType:
-          (w2y37vOOrderType != null
-              ? w2y37vOOrderType.value
-              : this.w2y37vOOrderType),
-      oe5u39OChannelName:
-          (oe5u39OChannelName != null
-              ? oe5u39OChannelName.value
-              : this.oe5u39OChannelName),
-      tartarlyOPins:
-          (tartarlyOPins != null ? tartarlyOPins.value : this.tartarlyOPins),
+      courtierOAccessCode: (courtierOAccessCode != null
+          ? courtierOAccessCode.value
+          : this.courtierOAccessCode),
+      p9428vOExpireTime: (p9428vOExpireTime != null
+          ? p9428vOExpireTime.value
+          : this.p9428vOExpireTime),
+      krddvvOReference: (krddvvOReference != null
+          ? krddvvOReference.value
+          : this.krddvvOReference),
+      w2y37vOOrderType: (w2y37vOOrderType != null
+          ? w2y37vOOrderType.value
+          : this.w2y37vOOrderType),
+      oe5u39OChannelName: (oe5u39OChannelName != null
+          ? oe5u39OChannelName.value
+          : this.oe5u39OChannelName),
+      tartarlyOPins: (tartarlyOPins != null
+          ? tartarlyOPins.value
+          : this.tartarlyOPins),
     );
   }
 }
@@ -11163,33 +10974,28 @@ extension $RepayRecordResp$ItemExtension on RepayRecordResp$Item {
     Wrapped<String?>? ratteenORejectReason,
   }) {
     return RepayRecordResp$Item(
-      e77490ORequestId:
-          (e77490ORequestId != null
-              ? e77490ORequestId.value
-              : this.e77490ORequestId),
-      t1h91pOBankName:
-          (t1h91pOBankName != null
-              ? t1h91pOBankName.value
-              : this.t1h91pOBankName),
-      o12sd0OAmount:
-          (o12sd0OAmount != null ? o12sd0OAmount.value : this.o12sd0OAmount),
-      lz09kpOUserName:
-          (lz09kpOUserName != null
-              ? lz09kpOUserName.value
-              : this.lz09kpOUserName),
-      staticsOCreateTime:
-          (staticsOCreateTime != null
-              ? staticsOCreateTime.value
-              : this.staticsOCreateTime),
+      e77490ORequestId: (e77490ORequestId != null
+          ? e77490ORequestId.value
+          : this.e77490ORequestId),
+      t1h91pOBankName: (t1h91pOBankName != null
+          ? t1h91pOBankName.value
+          : this.t1h91pOBankName),
+      o12sd0OAmount: (o12sd0OAmount != null
+          ? o12sd0OAmount.value
+          : this.o12sd0OAmount),
+      lz09kpOUserName: (lz09kpOUserName != null
+          ? lz09kpOUserName.value
+          : this.lz09kpOUserName),
+      staticsOCreateTime: (staticsOCreateTime != null
+          ? staticsOCreateTime.value
+          : this.staticsOCreateTime),
       status: (status != null ? status.value : this.status),
-      electiveOPicUrl:
-          (electiveOPicUrl != null
-              ? electiveOPicUrl.value
-              : this.electiveOPicUrl),
-      ratteenORejectReason:
-          (ratteenORejectReason != null
-              ? ratteenORejectReason.value
-              : this.ratteenORejectReason),
+      electiveOPicUrl: (electiveOPicUrl != null
+          ? electiveOPicUrl.value
+          : this.electiveOPicUrl),
+      ratteenORejectReason: (ratteenORejectReason != null
+          ? ratteenORejectReason.value
+          : this.ratteenORejectReason),
     );
   }
 }
@@ -11378,26 +11184,21 @@ extension $VersionCheckRespExtension on VersionCheckResp {
     return VersionCheckResp(
       code: (code != null ? code.value : this.code),
       msg: (msg != null ? msg.value : this.msg),
-      antiicerOMsgType:
-          (antiicerOMsgType != null
-              ? antiicerOMsgType.value
-              : this.antiicerOMsgType),
-      rumfordOMsgDisplay:
-          (rumfordOMsgDisplay != null
-              ? rumfordOMsgDisplay.value
-              : this.rumfordOMsgDisplay),
-      tympanumOMsgTitle:
-          (tympanumOMsgTitle != null
-              ? tympanumOMsgTitle.value
-              : this.tympanumOMsgTitle),
-      directOMsgBtn01:
-          (directOMsgBtn01 != null
-              ? directOMsgBtn01.value
-              : this.directOMsgBtn01),
-      i9145gOMsgBtn02:
-          (i9145gOMsgBtn02 != null
-              ? i9145gOMsgBtn02.value
-              : this.i9145gOMsgBtn02),
+      antiicerOMsgType: (antiicerOMsgType != null
+          ? antiicerOMsgType.value
+          : this.antiicerOMsgType),
+      rumfordOMsgDisplay: (rumfordOMsgDisplay != null
+          ? rumfordOMsgDisplay.value
+          : this.rumfordOMsgDisplay),
+      tympanumOMsgTitle: (tympanumOMsgTitle != null
+          ? tympanumOMsgTitle.value
+          : this.tympanumOMsgTitle),
+      directOMsgBtn01: (directOMsgBtn01 != null
+          ? directOMsgBtn01.value
+          : this.directOMsgBtn01),
+      i9145gOMsgBtn02: (i9145gOMsgBtn02 != null
+          ? i9145gOMsgBtn02.value
+          : this.i9145gOMsgBtn02),
       data: (data != null ? data.value : this.data),
     );
   }
@@ -11458,10 +11259,9 @@ extension $ColoanGpRespExtension on ColoanGpResp {
     s2c1wyOAppCoLoanGpDetailPOList,
   }) {
     return ColoanGpResp(
-      s2c1wyOAppCoLoanGpDetailPOList:
-          (s2c1wyOAppCoLoanGpDetailPOList != null
-              ? s2c1wyOAppCoLoanGpDetailPOList.value
-              : this.s2c1wyOAppCoLoanGpDetailPOList),
+      s2c1wyOAppCoLoanGpDetailPOList: (s2c1wyOAppCoLoanGpDetailPOList != null
+          ? s2c1wyOAppCoLoanGpDetailPOList.value
+          : this.s2c1wyOAppCoLoanGpDetailPOList),
     );
   }
 }
@@ -11469,8 +11269,8 @@ extension $ColoanGpRespExtension on ColoanGpResp {
 @JsonSerializable(explicitToJson: true)
 class HomeInfoResp {
   const HomeInfoResp({
-    required this.bopomofoOCreditStatus,
-    required this.rnpu7fOCreditLine,
+    this.bopomofoOCreditStatus,
+    this.rnpu7fOCreditLine,
     this.papuanOLastRecordLoan,
     this.xu551uOSpareLastRecordLoan,
     this.overdidOIsLockAll,
@@ -11479,8 +11279,8 @@ class HomeInfoResp {
     this.marrowOLoanRangeUnit,
     this.fx6b0yOIsFreeze,
     this.grafterOIsWhiteUser,
-    required this.za1s1eOSpareCreditLine,
-    required this.u6n134OSpareCanBorrowAmount,
+    this.za1s1eOSpareCreditLine,
+    this.u6n134OSpareCanBorrowAmount,
     this.nailheadOIsSpareLockAll,
     this.lysogenOSpareProductGroup,
     this.spicateOSpareLoanRangeMin,
@@ -11492,8 +11292,8 @@ class HomeInfoResp {
     this.s2c1wyOAppCoLoanGpDetailPOList,
     this.co5i9lOForceUpdateFlag,
     this.y934teOTotalAmount,
-    required this.yawnOExpectTime,
-    required this.undyedOHasLoan,
+    this.yawnOExpectTime,
+    this.undyedOHasLoan,
   });
 
   @JsonKey(name: 'bopomofo')
@@ -11817,8 +11617,8 @@ extension $HomeInfoRespExtension on HomeInfoResp {
   }
 
   HomeInfoResp copyWithWrapped({
-    Wrapped<int>? bopomofoOCreditStatus,
-    Wrapped<double>? rnpu7fOCreditLine,
+    Wrapped<int?>? bopomofoOCreditStatus,
+    Wrapped<double?>? rnpu7fOCreditLine,
     Wrapped<HomeInfoResp$PapuanOLastRecordLoan?>? papuanOLastRecordLoan,
     Wrapped<HomeInfoResp$Xu551uOSpareLastRecordLoan?>?
     xu551uOSpareLastRecordLoan,
@@ -11828,8 +11628,8 @@ extension $HomeInfoRespExtension on HomeInfoResp {
     Wrapped<double?>? marrowOLoanRangeUnit,
     Wrapped<int?>? fx6b0yOIsFreeze,
     Wrapped<bool?>? grafterOIsWhiteUser,
-    Wrapped<double>? za1s1eOSpareCreditLine,
-    Wrapped<double>? u6n134OSpareCanBorrowAmount,
+    Wrapped<double?>? za1s1eOSpareCreditLine,
+    Wrapped<double?>? u6n134OSpareCanBorrowAmount,
     Wrapped<bool?>? nailheadOIsSpareLockAll,
     Wrapped<List<HomeInfoResp$LysogenOSpareProductGroup$Item>?>?
     lysogenOSpareProductGroup,
@@ -11843,106 +11643,85 @@ extension $HomeInfoRespExtension on HomeInfoResp {
     s2c1wyOAppCoLoanGpDetailPOList,
     Wrapped<bool?>? co5i9lOForceUpdateFlag,
     Wrapped<double?>? y934teOTotalAmount,
-    Wrapped<int>? yawnOExpectTime,
-    Wrapped<bool>? undyedOHasLoan,
+    Wrapped<int?>? yawnOExpectTime,
+    Wrapped<bool?>? undyedOHasLoan,
   }) {
     return HomeInfoResp(
-      bopomofoOCreditStatus:
-          (bopomofoOCreditStatus != null
-              ? bopomofoOCreditStatus.value
-              : this.bopomofoOCreditStatus),
-      rnpu7fOCreditLine:
-          (rnpu7fOCreditLine != null
-              ? rnpu7fOCreditLine.value
-              : this.rnpu7fOCreditLine),
-      papuanOLastRecordLoan:
-          (papuanOLastRecordLoan != null
-              ? papuanOLastRecordLoan.value
-              : this.papuanOLastRecordLoan),
-      xu551uOSpareLastRecordLoan:
-          (xu551uOSpareLastRecordLoan != null
-              ? xu551uOSpareLastRecordLoan.value
-              : this.xu551uOSpareLastRecordLoan),
-      overdidOIsLockAll:
-          (overdidOIsLockAll != null
-              ? overdidOIsLockAll.value
-              : this.overdidOIsLockAll),
-      mojr11OLoanRangeMin:
-          (mojr11OLoanRangeMin != null
-              ? mojr11OLoanRangeMin.value
-              : this.mojr11OLoanRangeMin),
-      xuwh2oOLoanRangeMax:
-          (xuwh2oOLoanRangeMax != null
-              ? xuwh2oOLoanRangeMax.value
-              : this.xuwh2oOLoanRangeMax),
-      marrowOLoanRangeUnit:
-          (marrowOLoanRangeUnit != null
-              ? marrowOLoanRangeUnit.value
-              : this.marrowOLoanRangeUnit),
-      fx6b0yOIsFreeze:
-          (fx6b0yOIsFreeze != null
-              ? fx6b0yOIsFreeze.value
-              : this.fx6b0yOIsFreeze),
-      grafterOIsWhiteUser:
-          (grafterOIsWhiteUser != null
-              ? grafterOIsWhiteUser.value
-              : this.grafterOIsWhiteUser),
-      za1s1eOSpareCreditLine:
-          (za1s1eOSpareCreditLine != null
-              ? za1s1eOSpareCreditLine.value
-              : this.za1s1eOSpareCreditLine),
-      u6n134OSpareCanBorrowAmount:
-          (u6n134OSpareCanBorrowAmount != null
-              ? u6n134OSpareCanBorrowAmount.value
-              : this.u6n134OSpareCanBorrowAmount),
-      nailheadOIsSpareLockAll:
-          (nailheadOIsSpareLockAll != null
-              ? nailheadOIsSpareLockAll.value
-              : this.nailheadOIsSpareLockAll),
-      lysogenOSpareProductGroup:
-          (lysogenOSpareProductGroup != null
-              ? lysogenOSpareProductGroup.value
-              : this.lysogenOSpareProductGroup),
-      spicateOSpareLoanRangeMin:
-          (spicateOSpareLoanRangeMin != null
-              ? spicateOSpareLoanRangeMin.value
-              : this.spicateOSpareLoanRangeMin),
-      cumarinOSpareLoanRangeMax:
-          (cumarinOSpareLoanRangeMax != null
-              ? cumarinOSpareLoanRangeMax.value
-              : this.cumarinOSpareLoanRangeMax),
-      iwibiuOSpareLoanRangeUnit:
-          (iwibiuOSpareLoanRangeUnit != null
-              ? iwibiuOSpareLoanRangeUnit.value
-              : this.iwibiuOSpareLoanRangeUnit),
-      assurOFaceList:
-          (assurOFaceList != null ? assurOFaceList.value : this.assurOFaceList),
-      v7d1moOSpareFaceType:
-          (v7d1moOSpareFaceType != null
-              ? v7d1moOSpareFaceType.value
-              : this.v7d1moOSpareFaceType),
-      parryOSpareFaceList:
-          (parryOSpareFaceList != null
-              ? parryOSpareFaceList.value
-              : this.parryOSpareFaceList),
-      s2c1wyOAppCoLoanGpDetailPOList:
-          (s2c1wyOAppCoLoanGpDetailPOList != null
-              ? s2c1wyOAppCoLoanGpDetailPOList.value
-              : this.s2c1wyOAppCoLoanGpDetailPOList),
-      co5i9lOForceUpdateFlag:
-          (co5i9lOForceUpdateFlag != null
-              ? co5i9lOForceUpdateFlag.value
-              : this.co5i9lOForceUpdateFlag),
-      y934teOTotalAmount:
-          (y934teOTotalAmount != null
-              ? y934teOTotalAmount.value
-              : this.y934teOTotalAmount),
-      yawnOExpectTime:
-          (yawnOExpectTime != null
-              ? yawnOExpectTime.value
-              : this.yawnOExpectTime),
-      undyedOHasLoan:
-          (undyedOHasLoan != null ? undyedOHasLoan.value : this.undyedOHasLoan),
+      bopomofoOCreditStatus: (bopomofoOCreditStatus != null
+          ? bopomofoOCreditStatus.value
+          : this.bopomofoOCreditStatus),
+      rnpu7fOCreditLine: (rnpu7fOCreditLine != null
+          ? rnpu7fOCreditLine.value
+          : this.rnpu7fOCreditLine),
+      papuanOLastRecordLoan: (papuanOLastRecordLoan != null
+          ? papuanOLastRecordLoan.value
+          : this.papuanOLastRecordLoan),
+      xu551uOSpareLastRecordLoan: (xu551uOSpareLastRecordLoan != null
+          ? xu551uOSpareLastRecordLoan.value
+          : this.xu551uOSpareLastRecordLoan),
+      overdidOIsLockAll: (overdidOIsLockAll != null
+          ? overdidOIsLockAll.value
+          : this.overdidOIsLockAll),
+      mojr11OLoanRangeMin: (mojr11OLoanRangeMin != null
+          ? mojr11OLoanRangeMin.value
+          : this.mojr11OLoanRangeMin),
+      xuwh2oOLoanRangeMax: (xuwh2oOLoanRangeMax != null
+          ? xuwh2oOLoanRangeMax.value
+          : this.xuwh2oOLoanRangeMax),
+      marrowOLoanRangeUnit: (marrowOLoanRangeUnit != null
+          ? marrowOLoanRangeUnit.value
+          : this.marrowOLoanRangeUnit),
+      fx6b0yOIsFreeze: (fx6b0yOIsFreeze != null
+          ? fx6b0yOIsFreeze.value
+          : this.fx6b0yOIsFreeze),
+      grafterOIsWhiteUser: (grafterOIsWhiteUser != null
+          ? grafterOIsWhiteUser.value
+          : this.grafterOIsWhiteUser),
+      za1s1eOSpareCreditLine: (za1s1eOSpareCreditLine != null
+          ? za1s1eOSpareCreditLine.value
+          : this.za1s1eOSpareCreditLine),
+      u6n134OSpareCanBorrowAmount: (u6n134OSpareCanBorrowAmount != null
+          ? u6n134OSpareCanBorrowAmount.value
+          : this.u6n134OSpareCanBorrowAmount),
+      nailheadOIsSpareLockAll: (nailheadOIsSpareLockAll != null
+          ? nailheadOIsSpareLockAll.value
+          : this.nailheadOIsSpareLockAll),
+      lysogenOSpareProductGroup: (lysogenOSpareProductGroup != null
+          ? lysogenOSpareProductGroup.value
+          : this.lysogenOSpareProductGroup),
+      spicateOSpareLoanRangeMin: (spicateOSpareLoanRangeMin != null
+          ? spicateOSpareLoanRangeMin.value
+          : this.spicateOSpareLoanRangeMin),
+      cumarinOSpareLoanRangeMax: (cumarinOSpareLoanRangeMax != null
+          ? cumarinOSpareLoanRangeMax.value
+          : this.cumarinOSpareLoanRangeMax),
+      iwibiuOSpareLoanRangeUnit: (iwibiuOSpareLoanRangeUnit != null
+          ? iwibiuOSpareLoanRangeUnit.value
+          : this.iwibiuOSpareLoanRangeUnit),
+      assurOFaceList: (assurOFaceList != null
+          ? assurOFaceList.value
+          : this.assurOFaceList),
+      v7d1moOSpareFaceType: (v7d1moOSpareFaceType != null
+          ? v7d1moOSpareFaceType.value
+          : this.v7d1moOSpareFaceType),
+      parryOSpareFaceList: (parryOSpareFaceList != null
+          ? parryOSpareFaceList.value
+          : this.parryOSpareFaceList),
+      s2c1wyOAppCoLoanGpDetailPOList: (s2c1wyOAppCoLoanGpDetailPOList != null
+          ? s2c1wyOAppCoLoanGpDetailPOList.value
+          : this.s2c1wyOAppCoLoanGpDetailPOList),
+      co5i9lOForceUpdateFlag: (co5i9lOForceUpdateFlag != null
+          ? co5i9lOForceUpdateFlag.value
+          : this.co5i9lOForceUpdateFlag),
+      y934teOTotalAmount: (y934teOTotalAmount != null
+          ? y934teOTotalAmount.value
+          : this.y934teOTotalAmount),
+      yawnOExpectTime: (yawnOExpectTime != null
+          ? yawnOExpectTime.value
+          : this.yawnOExpectTime),
+      undyedOHasLoan: (undyedOHasLoan != null
+          ? undyedOHasLoan.value
+          : this.undyedOHasLoan),
     );
   }
 }
@@ -12003,12 +11782,12 @@ extension $LoanConfirmRespExtension on LoanConfirmResp {
     Wrapped<String?>? hyphenOReason,
   }) {
     return LoanConfirmResp(
-      suffOLoanStatus:
-          (suffOLoanStatus != null
-              ? suffOLoanStatus.value
-              : this.suffOLoanStatus),
-      hyphenOReason:
-          (hyphenOReason != null ? hyphenOReason.value : this.hyphenOReason),
+      suffOLoanStatus: (suffOLoanStatus != null
+          ? suffOLoanStatus.value
+          : this.suffOLoanStatus),
+      hyphenOReason: (hyphenOReason != null
+          ? hyphenOReason.value
+          : this.hyphenOReason),
     );
   }
 }
@@ -12140,26 +11919,21 @@ extension $PicUploadReqRespExtension on PicUploadReqResp {
     return PicUploadReqResp(
       code: (code != null ? code.value : this.code),
       msg: (msg != null ? msg.value : this.msg),
-      antiicerOMsgType:
-          (antiicerOMsgType != null
-              ? antiicerOMsgType.value
-              : this.antiicerOMsgType),
-      rumfordOMsgDisplay:
-          (rumfordOMsgDisplay != null
-              ? rumfordOMsgDisplay.value
-              : this.rumfordOMsgDisplay),
-      tympanumOMsgTitle:
-          (tympanumOMsgTitle != null
-              ? tympanumOMsgTitle.value
-              : this.tympanumOMsgTitle),
-      directOMsgBtn01:
-          (directOMsgBtn01 != null
-              ? directOMsgBtn01.value
-              : this.directOMsgBtn01),
-      i9145gOMsgBtn02:
-          (i9145gOMsgBtn02 != null
-              ? i9145gOMsgBtn02.value
-              : this.i9145gOMsgBtn02),
+      antiicerOMsgType: (antiicerOMsgType != null
+          ? antiicerOMsgType.value
+          : this.antiicerOMsgType),
+      rumfordOMsgDisplay: (rumfordOMsgDisplay != null
+          ? rumfordOMsgDisplay.value
+          : this.rumfordOMsgDisplay),
+      tympanumOMsgTitle: (tympanumOMsgTitle != null
+          ? tympanumOMsgTitle.value
+          : this.tympanumOMsgTitle),
+      directOMsgBtn01: (directOMsgBtn01 != null
+          ? directOMsgBtn01.value
+          : this.directOMsgBtn01),
+      i9145gOMsgBtn02: (i9145gOMsgBtn02 != null
+          ? i9145gOMsgBtn02.value
+          : this.i9145gOMsgBtn02),
       data: (data != null ? data.value : this.data),
     );
   }
@@ -12283,26 +12057,21 @@ extension $CollTimeRespExtension on CollTimeResp {
     return CollTimeResp(
       code: (code != null ? code.value : this.code),
       msg: (msg != null ? msg.value : this.msg),
-      antiicerOMsgType:
-          (antiicerOMsgType != null
-              ? antiicerOMsgType.value
-              : this.antiicerOMsgType),
-      rumfordOMsgDisplay:
-          (rumfordOMsgDisplay != null
-              ? rumfordOMsgDisplay.value
-              : this.rumfordOMsgDisplay),
-      tympanumOMsgTitle:
-          (tympanumOMsgTitle != null
-              ? tympanumOMsgTitle.value
-              : this.tympanumOMsgTitle),
-      directOMsgBtn01:
-          (directOMsgBtn01 != null
-              ? directOMsgBtn01.value
-              : this.directOMsgBtn01),
-      i9145gOMsgBtn02:
-          (i9145gOMsgBtn02 != null
-              ? i9145gOMsgBtn02.value
-              : this.i9145gOMsgBtn02),
+      antiicerOMsgType: (antiicerOMsgType != null
+          ? antiicerOMsgType.value
+          : this.antiicerOMsgType),
+      rumfordOMsgDisplay: (rumfordOMsgDisplay != null
+          ? rumfordOMsgDisplay.value
+          : this.rumfordOMsgDisplay),
+      tympanumOMsgTitle: (tympanumOMsgTitle != null
+          ? tympanumOMsgTitle.value
+          : this.tympanumOMsgTitle),
+      directOMsgBtn01: (directOMsgBtn01 != null
+          ? directOMsgBtn01.value
+          : this.directOMsgBtn01),
+      i9145gOMsgBtn02: (i9145gOMsgBtn02 != null
+          ? i9145gOMsgBtn02.value
+          : this.i9145gOMsgBtn02),
     );
   }
 }
@@ -12316,7 +12085,7 @@ class CheckFirstLoanResp {
   });
 
   @JsonKey(name: 'raia')
-  final int? raiaOUserGid;
+  final String? raiaOUserGid;
   @JsonKey(name: 'candidly')
   final bool? candidlyOIsFirst;
   @JsonKey(name: 'tasses')
@@ -12364,7 +12133,7 @@ class CheckFirstLoanResp {
 
 extension $CheckFirstLoanRespExtension on CheckFirstLoanResp {
   CheckFirstLoanResp copyWith({
-    int? raiaOUserGid,
+    String? raiaOUserGid,
     bool? candidlyOIsFirst,
     bool? tassesOPopUpNotice,
   }) {
@@ -12376,21 +12145,20 @@ extension $CheckFirstLoanRespExtension on CheckFirstLoanResp {
   }
 
   CheckFirstLoanResp copyWithWrapped({
-    Wrapped<int?>? raiaOUserGid,
+    Wrapped<String?>? raiaOUserGid,
     Wrapped<bool?>? candidlyOIsFirst,
     Wrapped<bool?>? tassesOPopUpNotice,
   }) {
     return CheckFirstLoanResp(
-      raiaOUserGid:
-          (raiaOUserGid != null ? raiaOUserGid.value : this.raiaOUserGid),
-      candidlyOIsFirst:
-          (candidlyOIsFirst != null
-              ? candidlyOIsFirst.value
-              : this.candidlyOIsFirst),
-      tassesOPopUpNotice:
-          (tassesOPopUpNotice != null
-              ? tassesOPopUpNotice.value
-              : this.tassesOPopUpNotice),
+      raiaOUserGid: (raiaOUserGid != null
+          ? raiaOUserGid.value
+          : this.raiaOUserGid),
+      candidlyOIsFirst: (candidlyOIsFirst != null
+          ? candidlyOIsFirst.value
+          : this.candidlyOIsFirst),
+      tassesOPopUpNotice: (tassesOPopUpNotice != null
+          ? tassesOPopUpNotice.value
+          : this.tassesOPopUpNotice),
     );
   }
 }
@@ -12476,7 +12244,7 @@ class LoanOrderResp {
   @JsonKey(name: 'l16h95')
   final int? l16h95OUpdateTime;
   @JsonKey(name: 'raia')
-  final int? raiaOUserGid;
+  final String? raiaOUserGid;
   @JsonKey(name: 'vkql27')
   final int? vkql27OReqChannel;
   @JsonKey(name: 'zebrass')
@@ -13053,7 +12821,7 @@ extension $LoanOrderRespExtension on LoanOrderResp {
     int? r5a4x8OLoanGid,
     int? staticsOCreateTime,
     int? l16h95OUpdateTime,
-    int? raiaOUserGid,
+    String? raiaOUserGid,
     int? vkql27OReqChannel,
     int? zebrassOReqSubChannel,
     String? feminieOCardAccount,
@@ -13210,7 +12978,7 @@ extension $LoanOrderRespExtension on LoanOrderResp {
     Wrapped<int?>? r5a4x8OLoanGid,
     Wrapped<int?>? staticsOCreateTime,
     Wrapped<int?>? l16h95OUpdateTime,
-    Wrapped<int?>? raiaOUserGid,
+    Wrapped<String?>? raiaOUserGid,
     Wrapped<int?>? vkql27OReqChannel,
     Wrapped<int?>? zebrassOReqSubChannel,
     Wrapped<String?>? feminieOCardAccount,
@@ -13276,238 +13044,196 @@ extension $LoanOrderRespExtension on LoanOrderResp {
   }) {
     return LoanOrderResp(
       id: (id != null ? id.value : this.id),
-      r5a4x8OLoanGid:
-          (r5a4x8OLoanGid != null ? r5a4x8OLoanGid.value : this.r5a4x8OLoanGid),
-      staticsOCreateTime:
-          (staticsOCreateTime != null
-              ? staticsOCreateTime.value
-              : this.staticsOCreateTime),
-      l16h95OUpdateTime:
-          (l16h95OUpdateTime != null
-              ? l16h95OUpdateTime.value
-              : this.l16h95OUpdateTime),
-      raiaOUserGid:
-          (raiaOUserGid != null ? raiaOUserGid.value : this.raiaOUserGid),
-      vkql27OReqChannel:
-          (vkql27OReqChannel != null
-              ? vkql27OReqChannel.value
-              : this.vkql27OReqChannel),
-      zebrassOReqSubChannel:
-          (zebrassOReqSubChannel != null
-              ? zebrassOReqSubChannel.value
-              : this.zebrassOReqSubChannel),
-      feminieOCardAccount:
-          (feminieOCardAccount != null
-              ? feminieOCardAccount.value
-              : this.feminieOCardAccount),
-      diosmoseOLoanType:
-          (diosmoseOLoanType != null
-              ? diosmoseOLoanType.value
-              : this.diosmoseOLoanType),
-      qc5edvORepaymentChannel:
-          (qc5edvORepaymentChannel != null
-              ? qc5edvORepaymentChannel.value
-              : this.qc5edvORepaymentChannel),
-      tonelessORepaymentChannelName:
-          (tonelessORepaymentChannelName != null
-              ? tonelessORepaymentChannelName.value
-              : this.tonelessORepaymentChannelName),
-      ussuriOPaymentChannel:
-          (ussuriOPaymentChannel != null
-              ? ussuriOPaymentChannel.value
-              : this.ussuriOPaymentChannel),
-      dauntingOPaymentChannelName:
-          (dauntingOPaymentChannelName != null
-              ? dauntingOPaymentChannelName.value
-              : this.dauntingOPaymentChannelName),
-      foreyardOProductId:
-          (foreyardOProductId != null
-              ? foreyardOProductId.value
-              : this.foreyardOProductId),
-      spinachyOLoanPeriod:
-          (spinachyOLoanPeriod != null
-              ? spinachyOLoanPeriod.value
-              : this.spinachyOLoanPeriod),
-      n410zdOLoanTime:
-          (n410zdOLoanTime != null
-              ? n410zdOLoanTime.value
-              : this.n410zdOLoanTime),
-      r5k31qODueTime:
-          (r5k31qODueTime != null ? r5k31qODueTime.value : this.r5k31qODueTime),
-      retiaryOLoanAmount:
-          (retiaryOLoanAmount != null
-              ? retiaryOLoanAmount.value
-              : this.retiaryOLoanAmount),
-      suffOLoanStatus:
-          (suffOLoanStatus != null
-              ? suffOLoanStatus.value
-              : this.suffOLoanStatus),
-      vx4165OFailReason:
-          (vx4165OFailReason != null
-              ? vx4165OFailReason.value
-              : this.vx4165OFailReason),
-      v4nynoOFeeType:
-          (v4nynoOFeeType != null ? v4nynoOFeeType.value : this.v4nynoOFeeType),
-      e88wy1OLoanFee:
-          (e88wy1OLoanFee != null ? e88wy1OLoanFee.value : this.e88wy1OLoanFee),
-      q3568aOLoanPrefixRate:
-          (q3568aOLoanPrefixRate != null
-              ? q3568aOLoanPrefixRate.value
-              : this.q3568aOLoanPrefixRate),
-      muscleOPrefixFee:
-          (muscleOPrefixFee != null
-              ? muscleOPrefixFee.value
-              : this.muscleOPrefixFee),
-      e2x2waOPayableFee:
-          (e2x2waOPayableFee != null
-              ? e2x2waOPayableFee.value
-              : this.e2x2waOPayableFee),
+      r5a4x8OLoanGid: (r5a4x8OLoanGid != null
+          ? r5a4x8OLoanGid.value
+          : this.r5a4x8OLoanGid),
+      staticsOCreateTime: (staticsOCreateTime != null
+          ? staticsOCreateTime.value
+          : this.staticsOCreateTime),
+      l16h95OUpdateTime: (l16h95OUpdateTime != null
+          ? l16h95OUpdateTime.value
+          : this.l16h95OUpdateTime),
+      raiaOUserGid: (raiaOUserGid != null
+          ? raiaOUserGid.value
+          : this.raiaOUserGid),
+      vkql27OReqChannel: (vkql27OReqChannel != null
+          ? vkql27OReqChannel.value
+          : this.vkql27OReqChannel),
+      zebrassOReqSubChannel: (zebrassOReqSubChannel != null
+          ? zebrassOReqSubChannel.value
+          : this.zebrassOReqSubChannel),
+      feminieOCardAccount: (feminieOCardAccount != null
+          ? feminieOCardAccount.value
+          : this.feminieOCardAccount),
+      diosmoseOLoanType: (diosmoseOLoanType != null
+          ? diosmoseOLoanType.value
+          : this.diosmoseOLoanType),
+      qc5edvORepaymentChannel: (qc5edvORepaymentChannel != null
+          ? qc5edvORepaymentChannel.value
+          : this.qc5edvORepaymentChannel),
+      tonelessORepaymentChannelName: (tonelessORepaymentChannelName != null
+          ? tonelessORepaymentChannelName.value
+          : this.tonelessORepaymentChannelName),
+      ussuriOPaymentChannel: (ussuriOPaymentChannel != null
+          ? ussuriOPaymentChannel.value
+          : this.ussuriOPaymentChannel),
+      dauntingOPaymentChannelName: (dauntingOPaymentChannelName != null
+          ? dauntingOPaymentChannelName.value
+          : this.dauntingOPaymentChannelName),
+      foreyardOProductId: (foreyardOProductId != null
+          ? foreyardOProductId.value
+          : this.foreyardOProductId),
+      spinachyOLoanPeriod: (spinachyOLoanPeriod != null
+          ? spinachyOLoanPeriod.value
+          : this.spinachyOLoanPeriod),
+      n410zdOLoanTime: (n410zdOLoanTime != null
+          ? n410zdOLoanTime.value
+          : this.n410zdOLoanTime),
+      r5k31qODueTime: (r5k31qODueTime != null
+          ? r5k31qODueTime.value
+          : this.r5k31qODueTime),
+      retiaryOLoanAmount: (retiaryOLoanAmount != null
+          ? retiaryOLoanAmount.value
+          : this.retiaryOLoanAmount),
+      suffOLoanStatus: (suffOLoanStatus != null
+          ? suffOLoanStatus.value
+          : this.suffOLoanStatus),
+      vx4165OFailReason: (vx4165OFailReason != null
+          ? vx4165OFailReason.value
+          : this.vx4165OFailReason),
+      v4nynoOFeeType: (v4nynoOFeeType != null
+          ? v4nynoOFeeType.value
+          : this.v4nynoOFeeType),
+      e88wy1OLoanFee: (e88wy1OLoanFee != null
+          ? e88wy1OLoanFee.value
+          : this.e88wy1OLoanFee),
+      q3568aOLoanPrefixRate: (q3568aOLoanPrefixRate != null
+          ? q3568aOLoanPrefixRate.value
+          : this.q3568aOLoanPrefixRate),
+      muscleOPrefixFee: (muscleOPrefixFee != null
+          ? muscleOPrefixFee.value
+          : this.muscleOPrefixFee),
+      e2x2waOPayableFee: (e2x2waOPayableFee != null
+          ? e2x2waOPayableFee.value
+          : this.e2x2waOPayableFee),
       tax: (tax != null ? tax.value : this.tax),
-      pluralOReceiveAmount:
-          (pluralOReceiveAmount != null
-              ? pluralOReceiveAmount.value
-              : this.pluralOReceiveAmount),
-      nbk975OPlatformAmount:
-          (nbk975OPlatformAmount != null
-              ? nbk975OPlatformAmount.value
-              : this.nbk975OPlatformAmount),
-      faciendOOverdueFee:
-          (faciendOOverdueFee != null
-              ? faciendOOverdueFee.value
-              : this.faciendOOverdueFee),
-      wantonlyOLoanLeftAmount:
-          (wantonlyOLoanLeftAmount != null
-              ? wantonlyOLoanLeftAmount.value
-              : this.wantonlyOLoanLeftAmount),
-      gatemanORepaymentAmount:
-          (gatemanORepaymentAmount != null
-              ? gatemanORepaymentAmount.value
-              : this.gatemanORepaymentAmount),
-      hakodateOLastRepaymentTime:
-          (hakodateOLastRepaymentTime != null
-              ? hakodateOLastRepaymentTime.value
-              : this.hakodateOLastRepaymentTime),
-      d95091ORepaymentStatus:
-          (d95091ORepaymentStatus != null
-              ? d95091ORepaymentStatus.value
-              : this.d95091ORepaymentStatus),
-      johannesODosettleFeeTime:
-          (johannesODosettleFeeTime != null
-              ? johannesODosettleFeeTime.value
-              : this.johannesODosettleFeeTime),
-      slackOIsOverdue:
-          (slackOIsOverdue != null
-              ? slackOIsOverdue.value
-              : this.slackOIsOverdue),
-      c2r90qOLoanRefixRate:
-          (c2r90qOLoanRefixRate != null
-              ? c2r90qOLoanRefixRate.value
-              : this.c2r90qOLoanRefixRate),
-      tigereyeOInterest:
-          (tigereyeOInterest != null
-              ? tigereyeOInterest.value
-              : this.tigereyeOInterest),
+      pluralOReceiveAmount: (pluralOReceiveAmount != null
+          ? pluralOReceiveAmount.value
+          : this.pluralOReceiveAmount),
+      nbk975OPlatformAmount: (nbk975OPlatformAmount != null
+          ? nbk975OPlatformAmount.value
+          : this.nbk975OPlatformAmount),
+      faciendOOverdueFee: (faciendOOverdueFee != null
+          ? faciendOOverdueFee.value
+          : this.faciendOOverdueFee),
+      wantonlyOLoanLeftAmount: (wantonlyOLoanLeftAmount != null
+          ? wantonlyOLoanLeftAmount.value
+          : this.wantonlyOLoanLeftAmount),
+      gatemanORepaymentAmount: (gatemanORepaymentAmount != null
+          ? gatemanORepaymentAmount.value
+          : this.gatemanORepaymentAmount),
+      hakodateOLastRepaymentTime: (hakodateOLastRepaymentTime != null
+          ? hakodateOLastRepaymentTime.value
+          : this.hakodateOLastRepaymentTime),
+      d95091ORepaymentStatus: (d95091ORepaymentStatus != null
+          ? d95091ORepaymentStatus.value
+          : this.d95091ORepaymentStatus),
+      johannesODosettleFeeTime: (johannesODosettleFeeTime != null
+          ? johannesODosettleFeeTime.value
+          : this.johannesODosettleFeeTime),
+      slackOIsOverdue: (slackOIsOverdue != null
+          ? slackOIsOverdue.value
+          : this.slackOIsOverdue),
+      c2r90qOLoanRefixRate: (c2r90qOLoanRefixRate != null
+          ? c2r90qOLoanRefixRate.value
+          : this.c2r90qOLoanRefixRate),
+      tigereyeOInterest: (tigereyeOInterest != null
+          ? tigereyeOInterest.value
+          : this.tigereyeOInterest),
       remark: (remark != null ? remark.value : this.remark),
-      z38e62OOrderGid:
-          (z38e62OOrderGid != null
-              ? z38e62OOrderGid.value
-              : this.z38e62OOrderGid),
-      vnbh46OBankCardGid:
-          (vnbh46OBankCardGid != null
-              ? vnbh46OBankCardGid.value
-              : this.vnbh46OBankCardGid),
-      t1h91pOBankName:
-          (t1h91pOBankName != null
-              ? t1h91pOBankName.value
-              : this.t1h91pOBankName),
-      r8fgx7OHashCardAccount:
-          (r8fgx7OHashCardAccount != null
-              ? r8fgx7OHashCardAccount.value
-              : this.r8fgx7OHashCardAccount),
-      e0a79hOIsCollectCase:
-          (e0a79hOIsCollectCase != null
-              ? e0a79hOIsCollectCase.value
-              : this.e0a79hOIsCollectCase),
-      n5ioy3ORenewLoanGid:
-          (n5ioy3ORenewLoanGid != null
-              ? n5ioy3ORenewLoanGid.value
-              : this.n5ioy3ORenewLoanGid),
-      d7x52pOBizChannel:
-          (d7x52pOBizChannel != null
-              ? d7x52pOBizChannel.value
-              : this.d7x52pOBizChannel),
-      pinionOUserCouponGid:
-          (pinionOUserCouponGid != null
-              ? pinionOUserCouponGid.value
-              : this.pinionOUserCouponGid),
-      sk6s63OCouponAmount:
-          (sk6s63OCouponAmount != null
-              ? sk6s63OCouponAmount.value
-              : this.sk6s63OCouponAmount),
-      sweenyOWorkFlowId:
-          (sweenyOWorkFlowId != null
-              ? sweenyOWorkFlowId.value
-              : this.sweenyOWorkFlowId),
-      brantOPurpose:
-          (brantOPurpose != null ? brantOPurpose.value : this.brantOPurpose),
-      mxs06uOApplyStatus:
-          (mxs06uOApplyStatus != null
-              ? mxs06uOApplyStatus.value
-              : this.mxs06uOApplyStatus),
-      r86mu7OProductTag:
-          (r86mu7OProductTag != null
-              ? r86mu7OProductTag.value
-              : this.r86mu7OProductTag),
-      ez64t7OPeriodCount:
-          (ez64t7OPeriodCount != null
-              ? ez64t7OPeriodCount.value
-              : this.ez64t7OPeriodCount),
+      z38e62OOrderGid: (z38e62OOrderGid != null
+          ? z38e62OOrderGid.value
+          : this.z38e62OOrderGid),
+      vnbh46OBankCardGid: (vnbh46OBankCardGid != null
+          ? vnbh46OBankCardGid.value
+          : this.vnbh46OBankCardGid),
+      t1h91pOBankName: (t1h91pOBankName != null
+          ? t1h91pOBankName.value
+          : this.t1h91pOBankName),
+      r8fgx7OHashCardAccount: (r8fgx7OHashCardAccount != null
+          ? r8fgx7OHashCardAccount.value
+          : this.r8fgx7OHashCardAccount),
+      e0a79hOIsCollectCase: (e0a79hOIsCollectCase != null
+          ? e0a79hOIsCollectCase.value
+          : this.e0a79hOIsCollectCase),
+      n5ioy3ORenewLoanGid: (n5ioy3ORenewLoanGid != null
+          ? n5ioy3ORenewLoanGid.value
+          : this.n5ioy3ORenewLoanGid),
+      d7x52pOBizChannel: (d7x52pOBizChannel != null
+          ? d7x52pOBizChannel.value
+          : this.d7x52pOBizChannel),
+      pinionOUserCouponGid: (pinionOUserCouponGid != null
+          ? pinionOUserCouponGid.value
+          : this.pinionOUserCouponGid),
+      sk6s63OCouponAmount: (sk6s63OCouponAmount != null
+          ? sk6s63OCouponAmount.value
+          : this.sk6s63OCouponAmount),
+      sweenyOWorkFlowId: (sweenyOWorkFlowId != null
+          ? sweenyOWorkFlowId.value
+          : this.sweenyOWorkFlowId),
+      brantOPurpose: (brantOPurpose != null
+          ? brantOPurpose.value
+          : this.brantOPurpose),
+      mxs06uOApplyStatus: (mxs06uOApplyStatus != null
+          ? mxs06uOApplyStatus.value
+          : this.mxs06uOApplyStatus),
+      r86mu7OProductTag: (r86mu7OProductTag != null
+          ? r86mu7OProductTag.value
+          : this.r86mu7OProductTag),
+      ez64t7OPeriodCount: (ez64t7OPeriodCount != null
+          ? ez64t7OPeriodCount.value
+          : this.ez64t7OPeriodCount),
       maxDueDay: (maxDueDay != null ? maxDueDay.value : this.maxDueDay),
-      j4n2j6ODueRate:
-          (j4n2j6ODueRate != null ? j4n2j6ODueRate.value : this.j4n2j6ODueRate),
-      periodPaidCount:
-          (periodPaidCount != null
-              ? periodPaidCount.value
-              : this.periodPaidCount),
-      z7c658OPrincipalPaidAmount:
-          (z7c658OPrincipalPaidAmount != null
-              ? z7c658OPrincipalPaidAmount.value
-              : this.z7c658OPrincipalPaidAmount),
-      reeditOServiceFeePaidAmount:
-          (reeditOServiceFeePaidAmount != null
-              ? reeditOServiceFeePaidAmount.value
-              : this.reeditOServiceFeePaidAmount),
-      guilefulOOverdueFeePaidAmount:
-          (guilefulOOverdueFeePaidAmount != null
-              ? guilefulOOverdueFeePaidAmount.value
-              : this.guilefulOOverdueFeePaidAmount),
-      emceeOReduceAmount:
-          (emceeOReduceAmount != null
-              ? emceeOReduceAmount.value
-              : this.emceeOReduceAmount),
-      spriteOBusinessFee:
-          (spriteOBusinessFee != null
-              ? spriteOBusinessFee.value
-              : this.spriteOBusinessFee),
+      j4n2j6ODueRate: (j4n2j6ODueRate != null
+          ? j4n2j6ODueRate.value
+          : this.j4n2j6ODueRate),
+      periodPaidCount: (periodPaidCount != null
+          ? periodPaidCount.value
+          : this.periodPaidCount),
+      z7c658OPrincipalPaidAmount: (z7c658OPrincipalPaidAmount != null
+          ? z7c658OPrincipalPaidAmount.value
+          : this.z7c658OPrincipalPaidAmount),
+      reeditOServiceFeePaidAmount: (reeditOServiceFeePaidAmount != null
+          ? reeditOServiceFeePaidAmount.value
+          : this.reeditOServiceFeePaidAmount),
+      guilefulOOverdueFeePaidAmount: (guilefulOOverdueFeePaidAmount != null
+          ? guilefulOOverdueFeePaidAmount.value
+          : this.guilefulOOverdueFeePaidAmount),
+      emceeOReduceAmount: (emceeOReduceAmount != null
+          ? emceeOReduceAmount.value
+          : this.emceeOReduceAmount),
+      spriteOBusinessFee: (spriteOBusinessFee != null
+          ? spriteOBusinessFee.value
+          : this.spriteOBusinessFee),
       loanRank: (loanRank != null ? loanRank.value : this.loanRank),
-      renewPaidAmount:
-          (renewPaidAmount != null
-              ? renewPaidAmount.value
-              : this.renewPaidAmount),
-      renewLoanFee:
-          (renewLoanFee != null ? renewLoanFee.value : this.renewLoanFee),
-      originDueTime:
-          (originDueTime != null ? originDueTime.value : this.originDueTime),
-      firstRenewLoanTime:
-          (firstRenewLoanTime != null
-              ? firstRenewLoanTime.value
-              : this.firstRenewLoanTime),
-      chuseOLoanProductType:
-          (chuseOLoanProductType != null
-              ? chuseOLoanProductType.value
-              : this.chuseOLoanProductType),
-      riskUserType:
-          (riskUserType != null ? riskUserType.value : this.riskUserType),
+      renewPaidAmount: (renewPaidAmount != null
+          ? renewPaidAmount.value
+          : this.renewPaidAmount),
+      renewLoanFee: (renewLoanFee != null
+          ? renewLoanFee.value
+          : this.renewLoanFee),
+      originDueTime: (originDueTime != null
+          ? originDueTime.value
+          : this.originDueTime),
+      firstRenewLoanTime: (firstRenewLoanTime != null
+          ? firstRenewLoanTime.value
+          : this.firstRenewLoanTime),
+      chuseOLoanProductType: (chuseOLoanProductType != null
+          ? chuseOLoanProductType.value
+          : this.chuseOLoanProductType),
+      riskUserType: (riskUserType != null
+          ? riskUserType.value
+          : this.riskUserType),
     );
   }
 }
@@ -13516,30 +13242,30 @@ extension $LoanOrderRespExtension on LoanOrderResp {
 class LoanPreInfoResp {
   const LoanPreInfoResp({
     this.raiaOUserGid,
-    required this.r5k31qODueTime,
-    required this.retiaryOLoanAmount,
-    required this.pluralOReceiveAmount,
+    this.r5k31qODueTime,
+    this.retiaryOLoanAmount,
+    this.pluralOReceiveAmount,
     this.mt66nzOReceiveSubAmount,
     this.q922g5OReceiveAddAmount,
-    required this.gatemanORepaymentAmount,
+    this.gatemanORepaymentAmount,
     this.v4nynoOFeeType,
-    required this.e88wy1OLoanFee,
+    this.e88wy1OLoanFee,
     this.b9h5ndOPreLoanFee,
     this.l6v3npOPreFeeRate,
     this.fissionOAfterLoanFee,
     this.ringhalsOAfterFeeRate,
     this.h4f7x4OCoupon,
-    required this.prelaticOReceiveAccount,
+    this.prelaticOReceiveAccount,
     this.qn9yimOHasTransPwd,
     this.lumberlyOFeeRate,
     this.reprisalOReceiveAccountHash,
-    required this.z38e62OOrderGid,
+    this.z38e62OOrderGid,
     this.unciformOOriginationFee,
     this.centiareOServiceFee,
     this.pinionOUserCouponGid,
     this.sk6s63OCouponAmount,
     this.u04098OIsFirstLoan,
-    required this.nkf6o5OIsOtpValid,
+    this.nkf6o5OIsOtpValid,
     this.taphouseOMobileList,
     this.cadremanOIsFaceValid,
     this.woopieOOtpValidSwitch,
@@ -13556,11 +13282,11 @@ class LoanPreInfoResp {
     this.chuseOLoanProductType,
     this.orderOrigin,
     this.satCheckStatus,
-    required this.cressyOTraderPwd,
+    this.cressyOTraderPwd,
   });
 
   @JsonKey(name: 'raia')
-  final int? raiaOUserGid;
+  final String? raiaOUserGid;
   @JsonKey(name: 'r5k31q')
   final int? r5k31qODueTime;
   @JsonKey(name: 'retiary')
@@ -13942,7 +13668,7 @@ class LoanPreInfoResp {
 
 extension $LoanPreInfoRespExtension on LoanPreInfoResp {
   LoanPreInfoResp copyWith({
-    int? raiaOUserGid,
+    String? raiaOUserGid,
     int? r5k31qODueTime,
     double? retiaryOLoanAmount,
     double? pluralOReceiveAmount,
@@ -14045,31 +13771,31 @@ extension $LoanPreInfoRespExtension on LoanPreInfoResp {
   }
 
   LoanPreInfoResp copyWithWrapped({
-    Wrapped<int?>? raiaOUserGid,
-    Wrapped<int>? r5k31qODueTime,
-    Wrapped<double>? retiaryOLoanAmount,
-    Wrapped<double>? pluralOReceiveAmount,
+    Wrapped<String?>? raiaOUserGid,
+    Wrapped<int?>? r5k31qODueTime,
+    Wrapped<double?>? retiaryOLoanAmount,
+    Wrapped<double?>? pluralOReceiveAmount,
     Wrapped<double?>? mt66nzOReceiveSubAmount,
     Wrapped<double?>? q922g5OReceiveAddAmount,
-    Wrapped<double>? gatemanORepaymentAmount,
+    Wrapped<double?>? gatemanORepaymentAmount,
     Wrapped<int?>? v4nynoOFeeType,
-    Wrapped<double>? e88wy1OLoanFee,
+    Wrapped<double?>? e88wy1OLoanFee,
     Wrapped<double?>? b9h5ndOPreLoanFee,
     Wrapped<double?>? l6v3npOPreFeeRate,
     Wrapped<double?>? fissionOAfterLoanFee,
     Wrapped<double?>? ringhalsOAfterFeeRate,
     Wrapped<double?>? h4f7x4OCoupon,
-    Wrapped<String>? prelaticOReceiveAccount,
+    Wrapped<String?>? prelaticOReceiveAccount,
     Wrapped<int?>? qn9yimOHasTransPwd,
     Wrapped<double?>? lumberlyOFeeRate,
     Wrapped<String?>? reprisalOReceiveAccountHash,
-    Wrapped<String>? z38e62OOrderGid,
+    Wrapped<String?>? z38e62OOrderGid,
     Wrapped<double?>? unciformOOriginationFee,
     Wrapped<double?>? centiareOServiceFee,
     Wrapped<int?>? pinionOUserCouponGid,
     Wrapped<double?>? sk6s63OCouponAmount,
     Wrapped<bool?>? u04098OIsFirstLoan,
-    Wrapped<bool>? nkf6o5OIsOtpValid,
+    Wrapped<bool?>? nkf6o5OIsOtpValid,
     Wrapped<List<String>?>? taphouseOMobileList,
     Wrapped<bool?>? cadremanOIsFaceValid,
     Wrapped<int?>? woopieOOtpValidSwitch,
@@ -14087,160 +13813,133 @@ extension $LoanPreInfoRespExtension on LoanPreInfoResp {
     Wrapped<int?>? chuseOLoanProductType,
     Wrapped<int?>? orderOrigin,
     Wrapped<int?>? satCheckStatus,
-    Wrapped<bool>? cressyOTraderPwd,
+    Wrapped<bool?>? cressyOTraderPwd,
   }) {
     return LoanPreInfoResp(
-      raiaOUserGid:
-          (raiaOUserGid != null ? raiaOUserGid.value : this.raiaOUserGid),
-      r5k31qODueTime:
-          (r5k31qODueTime != null ? r5k31qODueTime.value : this.r5k31qODueTime),
-      retiaryOLoanAmount:
-          (retiaryOLoanAmount != null
-              ? retiaryOLoanAmount.value
-              : this.retiaryOLoanAmount),
-      pluralOReceiveAmount:
-          (pluralOReceiveAmount != null
-              ? pluralOReceiveAmount.value
-              : this.pluralOReceiveAmount),
-      mt66nzOReceiveSubAmount:
-          (mt66nzOReceiveSubAmount != null
-              ? mt66nzOReceiveSubAmount.value
-              : this.mt66nzOReceiveSubAmount),
-      q922g5OReceiveAddAmount:
-          (q922g5OReceiveAddAmount != null
-              ? q922g5OReceiveAddAmount.value
-              : this.q922g5OReceiveAddAmount),
-      gatemanORepaymentAmount:
-          (gatemanORepaymentAmount != null
-              ? gatemanORepaymentAmount.value
-              : this.gatemanORepaymentAmount),
-      v4nynoOFeeType:
-          (v4nynoOFeeType != null ? v4nynoOFeeType.value : this.v4nynoOFeeType),
-      e88wy1OLoanFee:
-          (e88wy1OLoanFee != null ? e88wy1OLoanFee.value : this.e88wy1OLoanFee),
-      b9h5ndOPreLoanFee:
-          (b9h5ndOPreLoanFee != null
-              ? b9h5ndOPreLoanFee.value
-              : this.b9h5ndOPreLoanFee),
-      l6v3npOPreFeeRate:
-          (l6v3npOPreFeeRate != null
-              ? l6v3npOPreFeeRate.value
-              : this.l6v3npOPreFeeRate),
-      fissionOAfterLoanFee:
-          (fissionOAfterLoanFee != null
-              ? fissionOAfterLoanFee.value
-              : this.fissionOAfterLoanFee),
-      ringhalsOAfterFeeRate:
-          (ringhalsOAfterFeeRate != null
-              ? ringhalsOAfterFeeRate.value
-              : this.ringhalsOAfterFeeRate),
-      h4f7x4OCoupon:
-          (h4f7x4OCoupon != null ? h4f7x4OCoupon.value : this.h4f7x4OCoupon),
-      prelaticOReceiveAccount:
-          (prelaticOReceiveAccount != null
-              ? prelaticOReceiveAccount.value
-              : this.prelaticOReceiveAccount),
-      qn9yimOHasTransPwd:
-          (qn9yimOHasTransPwd != null
-              ? qn9yimOHasTransPwd.value
-              : this.qn9yimOHasTransPwd),
-      lumberlyOFeeRate:
-          (lumberlyOFeeRate != null
-              ? lumberlyOFeeRate.value
-              : this.lumberlyOFeeRate),
-      reprisalOReceiveAccountHash:
-          (reprisalOReceiveAccountHash != null
-              ? reprisalOReceiveAccountHash.value
-              : this.reprisalOReceiveAccountHash),
-      z38e62OOrderGid:
-          (z38e62OOrderGid != null
-              ? z38e62OOrderGid.value
-              : this.z38e62OOrderGid),
-      unciformOOriginationFee:
-          (unciformOOriginationFee != null
-              ? unciformOOriginationFee.value
-              : this.unciformOOriginationFee),
-      centiareOServiceFee:
-          (centiareOServiceFee != null
-              ? centiareOServiceFee.value
-              : this.centiareOServiceFee),
-      pinionOUserCouponGid:
-          (pinionOUserCouponGid != null
-              ? pinionOUserCouponGid.value
-              : this.pinionOUserCouponGid),
-      sk6s63OCouponAmount:
-          (sk6s63OCouponAmount != null
-              ? sk6s63OCouponAmount.value
-              : this.sk6s63OCouponAmount),
-      u04098OIsFirstLoan:
-          (u04098OIsFirstLoan != null
-              ? u04098OIsFirstLoan.value
-              : this.u04098OIsFirstLoan),
-      nkf6o5OIsOtpValid:
-          (nkf6o5OIsOtpValid != null
-              ? nkf6o5OIsOtpValid.value
-              : this.nkf6o5OIsOtpValid),
-      taphouseOMobileList:
-          (taphouseOMobileList != null
-              ? taphouseOMobileList.value
-              : this.taphouseOMobileList),
-      cadremanOIsFaceValid:
-          (cadremanOIsFaceValid != null
-              ? cadremanOIsFaceValid.value
-              : this.cadremanOIsFaceValid),
-      woopieOOtpValidSwitch:
-          (woopieOOtpValidSwitch != null
-              ? woopieOOtpValidSwitch.value
-              : this.woopieOOtpValidSwitch),
-      r86mu7OProductTag:
-          (r86mu7OProductTag != null
-              ? r86mu7OProductTag.value
-              : this.r86mu7OProductTag),
-      ez64t7OPeriodCount:
-          (ez64t7OPeriodCount != null
-              ? ez64t7OPeriodCount.value
-              : this.ez64t7OPeriodCount),
-      y5695eOProductFactory:
-          (y5695eOProductFactory != null
-              ? y5695eOProductFactory.value
-              : this.y5695eOProductFactory),
-      foreyardOProductId:
-          (foreyardOProductId != null
-              ? foreyardOProductId.value
-              : this.foreyardOProductId),
-      glacisORepaymentPlanList:
-          (glacisORepaymentPlanList != null
-              ? glacisORepaymentPlanList.value
-              : this.glacisORepaymentPlanList),
-      spinachyOLoanPeriod:
-          (spinachyOLoanPeriod != null
-              ? spinachyOLoanPeriod.value
-              : this.spinachyOLoanPeriod),
-      t72jj1OCreditSearchFee:
-          (t72jj1OCreditSearchFee != null
-              ? t72jj1OCreditSearchFee.value
-              : this.t72jj1OCreditSearchFee),
-      cdslOTransferFee:
-          (cdslOTransferFee != null
-              ? cdslOTransferFee.value
-              : this.cdslOTransferFee),
-      badnessOIgvFee:
-          (badnessOIgvFee != null ? badnessOIgvFee.value : this.badnessOIgvFee),
-      spriteOBusinessFee:
-          (spriteOBusinessFee != null
-              ? spriteOBusinessFee.value
-              : this.spriteOBusinessFee),
-      chuseOLoanProductType:
-          (chuseOLoanProductType != null
-              ? chuseOLoanProductType.value
-              : this.chuseOLoanProductType),
+      raiaOUserGid: (raiaOUserGid != null
+          ? raiaOUserGid.value
+          : this.raiaOUserGid),
+      r5k31qODueTime: (r5k31qODueTime != null
+          ? r5k31qODueTime.value
+          : this.r5k31qODueTime),
+      retiaryOLoanAmount: (retiaryOLoanAmount != null
+          ? retiaryOLoanAmount.value
+          : this.retiaryOLoanAmount),
+      pluralOReceiveAmount: (pluralOReceiveAmount != null
+          ? pluralOReceiveAmount.value
+          : this.pluralOReceiveAmount),
+      mt66nzOReceiveSubAmount: (mt66nzOReceiveSubAmount != null
+          ? mt66nzOReceiveSubAmount.value
+          : this.mt66nzOReceiveSubAmount),
+      q922g5OReceiveAddAmount: (q922g5OReceiveAddAmount != null
+          ? q922g5OReceiveAddAmount.value
+          : this.q922g5OReceiveAddAmount),
+      gatemanORepaymentAmount: (gatemanORepaymentAmount != null
+          ? gatemanORepaymentAmount.value
+          : this.gatemanORepaymentAmount),
+      v4nynoOFeeType: (v4nynoOFeeType != null
+          ? v4nynoOFeeType.value
+          : this.v4nynoOFeeType),
+      e88wy1OLoanFee: (e88wy1OLoanFee != null
+          ? e88wy1OLoanFee.value
+          : this.e88wy1OLoanFee),
+      b9h5ndOPreLoanFee: (b9h5ndOPreLoanFee != null
+          ? b9h5ndOPreLoanFee.value
+          : this.b9h5ndOPreLoanFee),
+      l6v3npOPreFeeRate: (l6v3npOPreFeeRate != null
+          ? l6v3npOPreFeeRate.value
+          : this.l6v3npOPreFeeRate),
+      fissionOAfterLoanFee: (fissionOAfterLoanFee != null
+          ? fissionOAfterLoanFee.value
+          : this.fissionOAfterLoanFee),
+      ringhalsOAfterFeeRate: (ringhalsOAfterFeeRate != null
+          ? ringhalsOAfterFeeRate.value
+          : this.ringhalsOAfterFeeRate),
+      h4f7x4OCoupon: (h4f7x4OCoupon != null
+          ? h4f7x4OCoupon.value
+          : this.h4f7x4OCoupon),
+      prelaticOReceiveAccount: (prelaticOReceiveAccount != null
+          ? prelaticOReceiveAccount.value
+          : this.prelaticOReceiveAccount),
+      qn9yimOHasTransPwd: (qn9yimOHasTransPwd != null
+          ? qn9yimOHasTransPwd.value
+          : this.qn9yimOHasTransPwd),
+      lumberlyOFeeRate: (lumberlyOFeeRate != null
+          ? lumberlyOFeeRate.value
+          : this.lumberlyOFeeRate),
+      reprisalOReceiveAccountHash: (reprisalOReceiveAccountHash != null
+          ? reprisalOReceiveAccountHash.value
+          : this.reprisalOReceiveAccountHash),
+      z38e62OOrderGid: (z38e62OOrderGid != null
+          ? z38e62OOrderGid.value
+          : this.z38e62OOrderGid),
+      unciformOOriginationFee: (unciformOOriginationFee != null
+          ? unciformOOriginationFee.value
+          : this.unciformOOriginationFee),
+      centiareOServiceFee: (centiareOServiceFee != null
+          ? centiareOServiceFee.value
+          : this.centiareOServiceFee),
+      pinionOUserCouponGid: (pinionOUserCouponGid != null
+          ? pinionOUserCouponGid.value
+          : this.pinionOUserCouponGid),
+      sk6s63OCouponAmount: (sk6s63OCouponAmount != null
+          ? sk6s63OCouponAmount.value
+          : this.sk6s63OCouponAmount),
+      u04098OIsFirstLoan: (u04098OIsFirstLoan != null
+          ? u04098OIsFirstLoan.value
+          : this.u04098OIsFirstLoan),
+      nkf6o5OIsOtpValid: (nkf6o5OIsOtpValid != null
+          ? nkf6o5OIsOtpValid.value
+          : this.nkf6o5OIsOtpValid),
+      taphouseOMobileList: (taphouseOMobileList != null
+          ? taphouseOMobileList.value
+          : this.taphouseOMobileList),
+      cadremanOIsFaceValid: (cadremanOIsFaceValid != null
+          ? cadremanOIsFaceValid.value
+          : this.cadremanOIsFaceValid),
+      woopieOOtpValidSwitch: (woopieOOtpValidSwitch != null
+          ? woopieOOtpValidSwitch.value
+          : this.woopieOOtpValidSwitch),
+      r86mu7OProductTag: (r86mu7OProductTag != null
+          ? r86mu7OProductTag.value
+          : this.r86mu7OProductTag),
+      ez64t7OPeriodCount: (ez64t7OPeriodCount != null
+          ? ez64t7OPeriodCount.value
+          : this.ez64t7OPeriodCount),
+      y5695eOProductFactory: (y5695eOProductFactory != null
+          ? y5695eOProductFactory.value
+          : this.y5695eOProductFactory),
+      foreyardOProductId: (foreyardOProductId != null
+          ? foreyardOProductId.value
+          : this.foreyardOProductId),
+      glacisORepaymentPlanList: (glacisORepaymentPlanList != null
+          ? glacisORepaymentPlanList.value
+          : this.glacisORepaymentPlanList),
+      spinachyOLoanPeriod: (spinachyOLoanPeriod != null
+          ? spinachyOLoanPeriod.value
+          : this.spinachyOLoanPeriod),
+      t72jj1OCreditSearchFee: (t72jj1OCreditSearchFee != null
+          ? t72jj1OCreditSearchFee.value
+          : this.t72jj1OCreditSearchFee),
+      cdslOTransferFee: (cdslOTransferFee != null
+          ? cdslOTransferFee.value
+          : this.cdslOTransferFee),
+      badnessOIgvFee: (badnessOIgvFee != null
+          ? badnessOIgvFee.value
+          : this.badnessOIgvFee),
+      spriteOBusinessFee: (spriteOBusinessFee != null
+          ? spriteOBusinessFee.value
+          : this.spriteOBusinessFee),
+      chuseOLoanProductType: (chuseOLoanProductType != null
+          ? chuseOLoanProductType.value
+          : this.chuseOLoanProductType),
       orderOrigin: (orderOrigin != null ? orderOrigin.value : this.orderOrigin),
-      satCheckStatus:
-          (satCheckStatus != null ? satCheckStatus.value : this.satCheckStatus),
-      cressyOTraderPwd:
-          (cressyOTraderPwd != null
-              ? cressyOTraderPwd.value
-              : this.cressyOTraderPwd),
+      satCheckStatus: (satCheckStatus != null
+          ? satCheckStatus.value
+          : this.satCheckStatus),
+      cressyOTraderPwd: (cressyOTraderPwd != null
+          ? cressyOTraderPwd.value
+          : this.cressyOTraderPwd),
     );
   }
 }
@@ -14372,26 +14071,21 @@ extension $LoanFeeDetailRespExtension on LoanFeeDetailResp {
     return LoanFeeDetailResp(
       code: (code != null ? code.value : this.code),
       msg: (msg != null ? msg.value : this.msg),
-      antiicerOMsgType:
-          (antiicerOMsgType != null
-              ? antiicerOMsgType.value
-              : this.antiicerOMsgType),
-      rumfordOMsgDisplay:
-          (rumfordOMsgDisplay != null
-              ? rumfordOMsgDisplay.value
-              : this.rumfordOMsgDisplay),
-      tympanumOMsgTitle:
-          (tympanumOMsgTitle != null
-              ? tympanumOMsgTitle.value
-              : this.tympanumOMsgTitle),
-      directOMsgBtn01:
-          (directOMsgBtn01 != null
-              ? directOMsgBtn01.value
-              : this.directOMsgBtn01),
-      i9145gOMsgBtn02:
-          (i9145gOMsgBtn02 != null
-              ? i9145gOMsgBtn02.value
-              : this.i9145gOMsgBtn02),
+      antiicerOMsgType: (antiicerOMsgType != null
+          ? antiicerOMsgType.value
+          : this.antiicerOMsgType),
+      rumfordOMsgDisplay: (rumfordOMsgDisplay != null
+          ? rumfordOMsgDisplay.value
+          : this.rumfordOMsgDisplay),
+      tympanumOMsgTitle: (tympanumOMsgTitle != null
+          ? tympanumOMsgTitle.value
+          : this.tympanumOMsgTitle),
+      directOMsgBtn01: (directOMsgBtn01 != null
+          ? directOMsgBtn01.value
+          : this.directOMsgBtn01),
+      i9145gOMsgBtn02: (i9145gOMsgBtn02 != null
+          ? i9145gOMsgBtn02.value
+          : this.i9145gOMsgBtn02),
       data: (data != null ? data.value : this.data),
     );
   }
@@ -14406,7 +14100,7 @@ class BankValidInfoResp {
     this.songODigits,
     this.vnbh46OBankCardGid,
     this.q732r7OCardTransMessage,
-    required this.zebrineOCardNo,
+    this.zebrineOCardNo,
     this.exhedraOAccountType,
   });
 
@@ -14531,35 +14225,32 @@ extension $BankValidInfoRespExtension on BankValidInfoResp {
     Wrapped<String?>? songODigits,
     Wrapped<int?>? vnbh46OBankCardGid,
     Wrapped<String?>? q732r7OCardTransMessage,
-    Wrapped<String>? zebrineOCardNo,
+    Wrapped<String?>? zebrineOCardNo,
     Wrapped<int?>? exhedraOAccountType,
   }) {
     return BankValidInfoResp(
-      exonymOBankGid:
-          (exonymOBankGid != null ? exonymOBankGid.value : this.exonymOBankGid),
-      t1h91pOBankName:
-          (t1h91pOBankName != null
-              ? t1h91pOBankName.value
-              : this.t1h91pOBankName),
-      insolentOBankCode:
-          (insolentOBankCode != null
-              ? insolentOBankCode.value
-              : this.insolentOBankCode),
+      exonymOBankGid: (exonymOBankGid != null
+          ? exonymOBankGid.value
+          : this.exonymOBankGid),
+      t1h91pOBankName: (t1h91pOBankName != null
+          ? t1h91pOBankName.value
+          : this.t1h91pOBankName),
+      insolentOBankCode: (insolentOBankCode != null
+          ? insolentOBankCode.value
+          : this.insolentOBankCode),
       songODigits: (songODigits != null ? songODigits.value : this.songODigits),
-      vnbh46OBankCardGid:
-          (vnbh46OBankCardGid != null
-              ? vnbh46OBankCardGid.value
-              : this.vnbh46OBankCardGid),
-      q732r7OCardTransMessage:
-          (q732r7OCardTransMessage != null
-              ? q732r7OCardTransMessage.value
-              : this.q732r7OCardTransMessage),
-      zebrineOCardNo:
-          (zebrineOCardNo != null ? zebrineOCardNo.value : this.zebrineOCardNo),
-      exhedraOAccountType:
-          (exhedraOAccountType != null
-              ? exhedraOAccountType.value
-              : this.exhedraOAccountType),
+      vnbh46OBankCardGid: (vnbh46OBankCardGid != null
+          ? vnbh46OBankCardGid.value
+          : this.vnbh46OBankCardGid),
+      q732r7OCardTransMessage: (q732r7OCardTransMessage != null
+          ? q732r7OCardTransMessage.value
+          : this.q732r7OCardTransMessage),
+      zebrineOCardNo: (zebrineOCardNo != null
+          ? zebrineOCardNo.value
+          : this.zebrineOCardNo),
+      exhedraOAccountType: (exhedraOAccountType != null
+          ? exhedraOAccountType.value
+          : this.exhedraOAccountType),
     );
   }
 }
@@ -14682,26 +14373,21 @@ extension $AbandonReasonRespExtension on AbandonReasonResp {
     return AbandonReasonResp(
       code: (code != null ? code.value : this.code),
       msg: (msg != null ? msg.value : this.msg),
-      antiicerOMsgType:
-          (antiicerOMsgType != null
-              ? antiicerOMsgType.value
-              : this.antiicerOMsgType),
-      rumfordOMsgDisplay:
-          (rumfordOMsgDisplay != null
-              ? rumfordOMsgDisplay.value
-              : this.rumfordOMsgDisplay),
-      tympanumOMsgTitle:
-          (tympanumOMsgTitle != null
-              ? tympanumOMsgTitle.value
-              : this.tympanumOMsgTitle),
-      directOMsgBtn01:
-          (directOMsgBtn01 != null
-              ? directOMsgBtn01.value
-              : this.directOMsgBtn01),
-      i9145gOMsgBtn02:
-          (i9145gOMsgBtn02 != null
-              ? i9145gOMsgBtn02.value
-              : this.i9145gOMsgBtn02),
+      antiicerOMsgType: (antiicerOMsgType != null
+          ? antiicerOMsgType.value
+          : this.antiicerOMsgType),
+      rumfordOMsgDisplay: (rumfordOMsgDisplay != null
+          ? rumfordOMsgDisplay.value
+          : this.rumfordOMsgDisplay),
+      tympanumOMsgTitle: (tympanumOMsgTitle != null
+          ? tympanumOMsgTitle.value
+          : this.tympanumOMsgTitle),
+      directOMsgBtn01: (directOMsgBtn01 != null
+          ? directOMsgBtn01.value
+          : this.directOMsgBtn01),
+      i9145gOMsgBtn02: (i9145gOMsgBtn02 != null
+          ? i9145gOMsgBtn02.value
+          : this.i9145gOMsgBtn02),
     );
   }
 }
@@ -14824,26 +14510,21 @@ extension $FeedbackRespExtension on FeedbackResp {
     return FeedbackResp(
       code: (code != null ? code.value : this.code),
       msg: (msg != null ? msg.value : this.msg),
-      antiicerOMsgType:
-          (antiicerOMsgType != null
-              ? antiicerOMsgType.value
-              : this.antiicerOMsgType),
-      rumfordOMsgDisplay:
-          (rumfordOMsgDisplay != null
-              ? rumfordOMsgDisplay.value
-              : this.rumfordOMsgDisplay),
-      tympanumOMsgTitle:
-          (tympanumOMsgTitle != null
-              ? tympanumOMsgTitle.value
-              : this.tympanumOMsgTitle),
-      directOMsgBtn01:
-          (directOMsgBtn01 != null
-              ? directOMsgBtn01.value
-              : this.directOMsgBtn01),
-      i9145gOMsgBtn02:
-          (i9145gOMsgBtn02 != null
-              ? i9145gOMsgBtn02.value
-              : this.i9145gOMsgBtn02),
+      antiicerOMsgType: (antiicerOMsgType != null
+          ? antiicerOMsgType.value
+          : this.antiicerOMsgType),
+      rumfordOMsgDisplay: (rumfordOMsgDisplay != null
+          ? rumfordOMsgDisplay.value
+          : this.rumfordOMsgDisplay),
+      tympanumOMsgTitle: (tympanumOMsgTitle != null
+          ? tympanumOMsgTitle.value
+          : this.tympanumOMsgTitle),
+      directOMsgBtn01: (directOMsgBtn01 != null
+          ? directOMsgBtn01.value
+          : this.directOMsgBtn01),
+      i9145gOMsgBtn02: (i9145gOMsgBtn02 != null
+          ? i9145gOMsgBtn02.value
+          : this.i9145gOMsgBtn02),
     );
   }
 }
@@ -14938,22 +14619,18 @@ extension $NeedAbandonReasonRespExtension on NeedAbandonReasonResp {
     du00hsOAbandonReasons,
   }) {
     return NeedAbandonReasonResp(
-      s6bfq9OUserClass:
-          (s6bfq9OUserClass != null
-              ? s6bfq9OUserClass.value
-              : this.s6bfq9OUserClass),
-      h1rhepOIsOnLoan:
-          (h1rhepOIsOnLoan != null
-              ? h1rhepOIsOnLoan.value
-              : this.h1rhepOIsOnLoan),
-      q0ui28OIsNeedReport:
-          (q0ui28OIsNeedReport != null
-              ? q0ui28OIsNeedReport.value
-              : this.q0ui28OIsNeedReport),
-      du00hsOAbandonReasons:
-          (du00hsOAbandonReasons != null
-              ? du00hsOAbandonReasons.value
-              : this.du00hsOAbandonReasons),
+      s6bfq9OUserClass: (s6bfq9OUserClass != null
+          ? s6bfq9OUserClass.value
+          : this.s6bfq9OUserClass),
+      h1rhepOIsOnLoan: (h1rhepOIsOnLoan != null
+          ? h1rhepOIsOnLoan.value
+          : this.h1rhepOIsOnLoan),
+      q0ui28OIsNeedReport: (q0ui28OIsNeedReport != null
+          ? q0ui28OIsNeedReport.value
+          : this.q0ui28OIsNeedReport),
+      du00hsOAbandonReasons: (du00hsOAbandonReasons != null
+          ? du00hsOAbandonReasons.value
+          : this.du00hsOAbandonReasons),
     );
   }
 }
@@ -15085,26 +14762,21 @@ extension $LoanNoticeRespExtension on LoanNoticeResp {
     return LoanNoticeResp(
       code: (code != null ? code.value : this.code),
       msg: (msg != null ? msg.value : this.msg),
-      antiicerOMsgType:
-          (antiicerOMsgType != null
-              ? antiicerOMsgType.value
-              : this.antiicerOMsgType),
-      rumfordOMsgDisplay:
-          (rumfordOMsgDisplay != null
-              ? rumfordOMsgDisplay.value
-              : this.rumfordOMsgDisplay),
-      tympanumOMsgTitle:
-          (tympanumOMsgTitle != null
-              ? tympanumOMsgTitle.value
-              : this.tympanumOMsgTitle),
-      directOMsgBtn01:
-          (directOMsgBtn01 != null
-              ? directOMsgBtn01.value
-              : this.directOMsgBtn01),
-      i9145gOMsgBtn02:
-          (i9145gOMsgBtn02 != null
-              ? i9145gOMsgBtn02.value
-              : this.i9145gOMsgBtn02),
+      antiicerOMsgType: (antiicerOMsgType != null
+          ? antiicerOMsgType.value
+          : this.antiicerOMsgType),
+      rumfordOMsgDisplay: (rumfordOMsgDisplay != null
+          ? rumfordOMsgDisplay.value
+          : this.rumfordOMsgDisplay),
+      tympanumOMsgTitle: (tympanumOMsgTitle != null
+          ? tympanumOMsgTitle.value
+          : this.tympanumOMsgTitle),
+      directOMsgBtn01: (directOMsgBtn01 != null
+          ? directOMsgBtn01.value
+          : this.directOMsgBtn01),
+      i9145gOMsgBtn02: (i9145gOMsgBtn02 != null
+          ? i9145gOMsgBtn02.value
+          : this.i9145gOMsgBtn02),
       data: (data != null ? data.value : this.data),
     );
   }
@@ -15113,15 +14785,15 @@ extension $LoanNoticeRespExtension on LoanNoticeResp {
 @JsonSerializable(explicitToJson: true)
 class CheckCreditResp {
   const CheckCreditResp({
-    required this.raiaOUserGid,
-    required this.bopomofoOCreditStatus,
-    required this.rnpu7fOCreditLine,
-    required this.nookieOCanBorrowAmount,
+    this.raiaOUserGid,
+    this.bopomofoOCreditStatus,
+    this.rnpu7fOCreditLine,
+    this.nookieOCanBorrowAmount,
     this.foreyardOProductId,
   });
 
   @JsonKey(name: 'raia')
-  final int? raiaOUserGid;
+  final String? raiaOUserGid;
   @JsonKey(name: 'bopomofo')
   final int? bopomofoOCreditStatus;
   @JsonKey(name: 'rnpu7f')
@@ -15185,7 +14857,7 @@ class CheckCreditResp {
 
 extension $CheckCreditRespExtension on CheckCreditResp {
   CheckCreditResp copyWith({
-    int? raiaOUserGid,
+    String? raiaOUserGid,
     int? bopomofoOCreditStatus,
     double? rnpu7fOCreditLine,
     double? nookieOCanBorrowAmount,
@@ -15203,31 +14875,28 @@ extension $CheckCreditRespExtension on CheckCreditResp {
   }
 
   CheckCreditResp copyWithWrapped({
-    Wrapped<int>? raiaOUserGid,
-    Wrapped<int>? bopomofoOCreditStatus,
-    Wrapped<double>? rnpu7fOCreditLine,
-    Wrapped<double>? nookieOCanBorrowAmount,
+    Wrapped<String?>? raiaOUserGid,
+    Wrapped<int?>? bopomofoOCreditStatus,
+    Wrapped<double?>? rnpu7fOCreditLine,
+    Wrapped<double?>? nookieOCanBorrowAmount,
     Wrapped<int?>? foreyardOProductId,
   }) {
     return CheckCreditResp(
-      raiaOUserGid:
-          (raiaOUserGid != null ? raiaOUserGid.value : this.raiaOUserGid),
-      bopomofoOCreditStatus:
-          (bopomofoOCreditStatus != null
-              ? bopomofoOCreditStatus.value
-              : this.bopomofoOCreditStatus),
-      rnpu7fOCreditLine:
-          (rnpu7fOCreditLine != null
-              ? rnpu7fOCreditLine.value
-              : this.rnpu7fOCreditLine),
-      nookieOCanBorrowAmount:
-          (nookieOCanBorrowAmount != null
-              ? nookieOCanBorrowAmount.value
-              : this.nookieOCanBorrowAmount),
-      foreyardOProductId:
-          (foreyardOProductId != null
-              ? foreyardOProductId.value
-              : this.foreyardOProductId),
+      raiaOUserGid: (raiaOUserGid != null
+          ? raiaOUserGid.value
+          : this.raiaOUserGid),
+      bopomofoOCreditStatus: (bopomofoOCreditStatus != null
+          ? bopomofoOCreditStatus.value
+          : this.bopomofoOCreditStatus),
+      rnpu7fOCreditLine: (rnpu7fOCreditLine != null
+          ? rnpu7fOCreditLine.value
+          : this.rnpu7fOCreditLine),
+      nookieOCanBorrowAmount: (nookieOCanBorrowAmount != null
+          ? nookieOCanBorrowAmount.value
+          : this.nookieOCanBorrowAmount),
+      foreyardOProductId: (foreyardOProductId != null
+          ? foreyardOProductId.value
+          : this.foreyardOProductId),
     );
   }
 }
@@ -15350,26 +15019,21 @@ extension $LivingDataRespExtension on LivingDataResp {
     return LivingDataResp(
       code: (code != null ? code.value : this.code),
       msg: (msg != null ? msg.value : this.msg),
-      antiicerOMsgType:
-          (antiicerOMsgType != null
-              ? antiicerOMsgType.value
-              : this.antiicerOMsgType),
-      rumfordOMsgDisplay:
-          (rumfordOMsgDisplay != null
-              ? rumfordOMsgDisplay.value
-              : this.rumfordOMsgDisplay),
-      tympanumOMsgTitle:
-          (tympanumOMsgTitle != null
-              ? tympanumOMsgTitle.value
-              : this.tympanumOMsgTitle),
-      directOMsgBtn01:
-          (directOMsgBtn01 != null
-              ? directOMsgBtn01.value
-              : this.directOMsgBtn01),
-      i9145gOMsgBtn02:
-          (i9145gOMsgBtn02 != null
-              ? i9145gOMsgBtn02.value
-              : this.i9145gOMsgBtn02),
+      antiicerOMsgType: (antiicerOMsgType != null
+          ? antiicerOMsgType.value
+          : this.antiicerOMsgType),
+      rumfordOMsgDisplay: (rumfordOMsgDisplay != null
+          ? rumfordOMsgDisplay.value
+          : this.rumfordOMsgDisplay),
+      tympanumOMsgTitle: (tympanumOMsgTitle != null
+          ? tympanumOMsgTitle.value
+          : this.tympanumOMsgTitle),
+      directOMsgBtn01: (directOMsgBtn01 != null
+          ? directOMsgBtn01.value
+          : this.directOMsgBtn01),
+      i9145gOMsgBtn02: (i9145gOMsgBtn02 != null
+          ? i9145gOMsgBtn02.value
+          : this.i9145gOMsgBtn02),
     );
   }
 }
@@ -15492,26 +15156,21 @@ extension $PhotoSubmitRespExtension on PhotoSubmitResp {
     return PhotoSubmitResp(
       code: (code != null ? code.value : this.code),
       msg: (msg != null ? msg.value : this.msg),
-      antiicerOMsgType:
-          (antiicerOMsgType != null
-              ? antiicerOMsgType.value
-              : this.antiicerOMsgType),
-      rumfordOMsgDisplay:
-          (rumfordOMsgDisplay != null
-              ? rumfordOMsgDisplay.value
-              : this.rumfordOMsgDisplay),
-      tympanumOMsgTitle:
-          (tympanumOMsgTitle != null
-              ? tympanumOMsgTitle.value
-              : this.tympanumOMsgTitle),
-      directOMsgBtn01:
-          (directOMsgBtn01 != null
-              ? directOMsgBtn01.value
-              : this.directOMsgBtn01),
-      i9145gOMsgBtn02:
-          (i9145gOMsgBtn02 != null
-              ? i9145gOMsgBtn02.value
-              : this.i9145gOMsgBtn02),
+      antiicerOMsgType: (antiicerOMsgType != null
+          ? antiicerOMsgType.value
+          : this.antiicerOMsgType),
+      rumfordOMsgDisplay: (rumfordOMsgDisplay != null
+          ? rumfordOMsgDisplay.value
+          : this.rumfordOMsgDisplay),
+      tympanumOMsgTitle: (tympanumOMsgTitle != null
+          ? tympanumOMsgTitle.value
+          : this.tympanumOMsgTitle),
+      directOMsgBtn01: (directOMsgBtn01 != null
+          ? directOMsgBtn01.value
+          : this.directOMsgBtn01),
+      i9145gOMsgBtn02: (i9145gOMsgBtn02 != null
+          ? i9145gOMsgBtn02.value
+          : this.i9145gOMsgBtn02),
     );
   }
 }
@@ -15526,7 +15185,7 @@ class CreditRecordResp {
     this.tympanumOMsgTitle,
     this.directOMsgBtn01,
     this.i9145gOMsgBtn02,
-    required this.data,
+    this.data,
   });
 
   @JsonKey(name: 'code')
@@ -15638,31 +15297,26 @@ extension $CreditRecordRespExtension on CreditRecordResp {
     Wrapped<String?>? tympanumOMsgTitle,
     Wrapped<String?>? directOMsgBtn01,
     Wrapped<String?>? i9145gOMsgBtn02,
-    Wrapped<int>? data,
+    Wrapped<int?>? data,
   }) {
     return CreditRecordResp(
       code: (code != null ? code.value : this.code),
       msg: (msg != null ? msg.value : this.msg),
-      antiicerOMsgType:
-          (antiicerOMsgType != null
-              ? antiicerOMsgType.value
-              : this.antiicerOMsgType),
-      rumfordOMsgDisplay:
-          (rumfordOMsgDisplay != null
-              ? rumfordOMsgDisplay.value
-              : this.rumfordOMsgDisplay),
-      tympanumOMsgTitle:
-          (tympanumOMsgTitle != null
-              ? tympanumOMsgTitle.value
-              : this.tympanumOMsgTitle),
-      directOMsgBtn01:
-          (directOMsgBtn01 != null
-              ? directOMsgBtn01.value
-              : this.directOMsgBtn01),
-      i9145gOMsgBtn02:
-          (i9145gOMsgBtn02 != null
-              ? i9145gOMsgBtn02.value
-              : this.i9145gOMsgBtn02),
+      antiicerOMsgType: (antiicerOMsgType != null
+          ? antiicerOMsgType.value
+          : this.antiicerOMsgType),
+      rumfordOMsgDisplay: (rumfordOMsgDisplay != null
+          ? rumfordOMsgDisplay.value
+          : this.rumfordOMsgDisplay),
+      tympanumOMsgTitle: (tympanumOMsgTitle != null
+          ? tympanumOMsgTitle.value
+          : this.tympanumOMsgTitle),
+      directOMsgBtn01: (directOMsgBtn01 != null
+          ? directOMsgBtn01.value
+          : this.directOMsgBtn01),
+      i9145gOMsgBtn02: (i9145gOMsgBtn02 != null
+          ? i9145gOMsgBtn02.value
+          : this.i9145gOMsgBtn02),
       data: (data != null ? data.value : this.data),
     );
   }
@@ -15786,26 +15440,21 @@ extension $EmailCheckRespExtension on EmailCheckResp {
     return EmailCheckResp(
       code: (code != null ? code.value : this.code),
       msg: (msg != null ? msg.value : this.msg),
-      antiicerOMsgType:
-          (antiicerOMsgType != null
-              ? antiicerOMsgType.value
-              : this.antiicerOMsgType),
-      rumfordOMsgDisplay:
-          (rumfordOMsgDisplay != null
-              ? rumfordOMsgDisplay.value
-              : this.rumfordOMsgDisplay),
-      tympanumOMsgTitle:
-          (tympanumOMsgTitle != null
-              ? tympanumOMsgTitle.value
-              : this.tympanumOMsgTitle),
-      directOMsgBtn01:
-          (directOMsgBtn01 != null
-              ? directOMsgBtn01.value
-              : this.directOMsgBtn01),
-      i9145gOMsgBtn02:
-          (i9145gOMsgBtn02 != null
-              ? i9145gOMsgBtn02.value
-              : this.i9145gOMsgBtn02),
+      antiicerOMsgType: (antiicerOMsgType != null
+          ? antiicerOMsgType.value
+          : this.antiicerOMsgType),
+      rumfordOMsgDisplay: (rumfordOMsgDisplay != null
+          ? rumfordOMsgDisplay.value
+          : this.rumfordOMsgDisplay),
+      tympanumOMsgTitle: (tympanumOMsgTitle != null
+          ? tympanumOMsgTitle.value
+          : this.tympanumOMsgTitle),
+      directOMsgBtn01: (directOMsgBtn01 != null
+          ? directOMsgBtn01.value
+          : this.directOMsgBtn01),
+      i9145gOMsgBtn02: (i9145gOMsgBtn02 != null
+          ? i9145gOMsgBtn02.value
+          : this.i9145gOMsgBtn02),
     );
   }
 }
@@ -15875,14 +15524,12 @@ extension $HomeCouponRespExtension on HomeCouponResp {
     Wrapped<int?>? gmn2dbOCouponNum,
   }) {
     return HomeCouponResp(
-      fireballOUserCouponList:
-          (fireballOUserCouponList != null
-              ? fireballOUserCouponList.value
-              : this.fireballOUserCouponList),
-      gmn2dbOCouponNum:
-          (gmn2dbOCouponNum != null
-              ? gmn2dbOCouponNum.value
-              : this.gmn2dbOCouponNum),
+      fireballOUserCouponList: (fireballOUserCouponList != null
+          ? fireballOUserCouponList.value
+          : this.fireballOUserCouponList),
+      gmn2dbOCouponNum: (gmn2dbOCouponNum != null
+          ? gmn2dbOCouponNum.value
+          : this.gmn2dbOCouponNum),
     );
   }
 }
@@ -15964,14 +15611,13 @@ extension $LoanCouponRespExtension on LoanCouponResp {
     stannateOUserCouponUnavailableList,
   }) {
     return LoanCouponResp(
-      t933d6OUserCouponAvailableList:
-          (t933d6OUserCouponAvailableList != null
-              ? t933d6OUserCouponAvailableList.value
-              : this.t933d6OUserCouponAvailableList),
+      t933d6OUserCouponAvailableList: (t933d6OUserCouponAvailableList != null
+          ? t933d6OUserCouponAvailableList.value
+          : this.t933d6OUserCouponAvailableList),
       stannateOUserCouponUnavailableList:
           (stannateOUserCouponUnavailableList != null
-              ? stannateOUserCouponUnavailableList.value
-              : this.stannateOUserCouponUnavailableList),
+          ? stannateOUserCouponUnavailableList.value
+          : this.stannateOUserCouponUnavailableList),
     );
   }
 }
@@ -16041,14 +15687,12 @@ extension $MyCouponRespExtension on MyCouponResp {
     Wrapped<int?>? gmn2dbOCouponNum,
   }) {
     return MyCouponResp(
-      fireballOUserCouponList:
-          (fireballOUserCouponList != null
-              ? fireballOUserCouponList.value
-              : this.fireballOUserCouponList),
-      gmn2dbOCouponNum:
-          (gmn2dbOCouponNum != null
-              ? gmn2dbOCouponNum.value
-              : this.gmn2dbOCouponNum),
+      fireballOUserCouponList: (fireballOUserCouponList != null
+          ? fireballOUserCouponList.value
+          : this.fireballOUserCouponList),
+      gmn2dbOCouponNum: (gmn2dbOCouponNum != null
+          ? gmn2dbOCouponNum.value
+          : this.gmn2dbOCouponNum),
     );
   }
 }
@@ -16171,26 +15815,21 @@ extension $CouponGetRespExtension on CouponGetResp {
     return CouponGetResp(
       code: (code != null ? code.value : this.code),
       msg: (msg != null ? msg.value : this.msg),
-      antiicerOMsgType:
-          (antiicerOMsgType != null
-              ? antiicerOMsgType.value
-              : this.antiicerOMsgType),
-      rumfordOMsgDisplay:
-          (rumfordOMsgDisplay != null
-              ? rumfordOMsgDisplay.value
-              : this.rumfordOMsgDisplay),
-      tympanumOMsgTitle:
-          (tympanumOMsgTitle != null
-              ? tympanumOMsgTitle.value
-              : this.tympanumOMsgTitle),
-      directOMsgBtn01:
-          (directOMsgBtn01 != null
-              ? directOMsgBtn01.value
-              : this.directOMsgBtn01),
-      i9145gOMsgBtn02:
-          (i9145gOMsgBtn02 != null
-              ? i9145gOMsgBtn02.value
-              : this.i9145gOMsgBtn02),
+      antiicerOMsgType: (antiicerOMsgType != null
+          ? antiicerOMsgType.value
+          : this.antiicerOMsgType),
+      rumfordOMsgDisplay: (rumfordOMsgDisplay != null
+          ? rumfordOMsgDisplay.value
+          : this.rumfordOMsgDisplay),
+      tympanumOMsgTitle: (tympanumOMsgTitle != null
+          ? tympanumOMsgTitle.value
+          : this.tympanumOMsgTitle),
+      directOMsgBtn01: (directOMsgBtn01 != null
+          ? directOMsgBtn01.value
+          : this.directOMsgBtn01),
+      i9145gOMsgBtn02: (i9145gOMsgBtn02 != null
+          ? i9145gOMsgBtn02.value
+          : this.i9145gOMsgBtn02),
     );
   }
 }
@@ -16260,14 +15899,12 @@ extension $LandCouponRespExtension on LandCouponResp {
     Wrapped<int?>? gmn2dbOCouponNum,
   }) {
     return LandCouponResp(
-      fireballOUserCouponList:
-          (fireballOUserCouponList != null
-              ? fireballOUserCouponList.value
-              : this.fireballOUserCouponList),
-      gmn2dbOCouponNum:
-          (gmn2dbOCouponNum != null
-              ? gmn2dbOCouponNum.value
-              : this.gmn2dbOCouponNum),
+      fireballOUserCouponList: (fireballOUserCouponList != null
+          ? fireballOUserCouponList.value
+          : this.fireballOUserCouponList),
+      gmn2dbOCouponNum: (gmn2dbOCouponNum != null
+          ? gmn2dbOCouponNum.value
+          : this.gmn2dbOCouponNum),
     );
   }
 }
@@ -16331,14 +15968,12 @@ extension $CouponPopRespExtension on CouponPopResp {
     Wrapped<int?>? gmn2dbOCouponNum,
   }) {
     return CouponPopResp(
-      oxmqq4OHomePopFlag:
-          (oxmqq4OHomePopFlag != null
-              ? oxmqq4OHomePopFlag.value
-              : this.oxmqq4OHomePopFlag),
-      gmn2dbOCouponNum:
-          (gmn2dbOCouponNum != null
-              ? gmn2dbOCouponNum.value
-              : this.gmn2dbOCouponNum),
+      oxmqq4OHomePopFlag: (oxmqq4OHomePopFlag != null
+          ? oxmqq4OHomePopFlag.value
+          : this.oxmqq4OHomePopFlag),
+      gmn2dbOCouponNum: (gmn2dbOCouponNum != null
+          ? gmn2dbOCouponNum.value
+          : this.gmn2dbOCouponNum),
     );
   }
 }
@@ -16423,16 +16058,14 @@ extension $LoanBillRespExtension on LoanBillResp {
     Wrapped<List<LoanBillResp$Ouxtd3OLoanList$Item>?>? ouxtd3OLoanList,
   }) {
     return LoanBillResp(
-      y934teOTotalAmount:
-          (y934teOTotalAmount != null
-              ? y934teOTotalAmount.value
-              : this.y934teOTotalAmount),
+      y934teOTotalAmount: (y934teOTotalAmount != null
+          ? y934teOTotalAmount.value
+          : this.y934teOTotalAmount),
       total: (total != null ? total.value : this.total),
       pages: (pages != null ? pages.value : this.pages),
-      ouxtd3OLoanList:
-          (ouxtd3OLoanList != null
-              ? ouxtd3OLoanList.value
-              : this.ouxtd3OLoanList),
+      ouxtd3OLoanList: (ouxtd3OLoanList != null
+          ? ouxtd3OLoanList.value
+          : this.ouxtd3OLoanList),
     );
   }
 }
@@ -16482,10 +16115,9 @@ extension $BillStatusRespExtension on BillStatusResp {
 
   BillStatusResp copyWithWrapped({Wrapped<int?>? d95091ORepaymentStatus}) {
     return BillStatusResp(
-      d95091ORepaymentStatus:
-          (d95091ORepaymentStatus != null
-              ? d95091ORepaymentStatus.value
-              : this.d95091ORepaymentStatus),
+      d95091ORepaymentStatus: (d95091ORepaymentStatus != null
+          ? d95091ORepaymentStatus.value
+          : this.d95091ORepaymentStatus),
     );
   }
 }
@@ -16549,12 +16181,12 @@ extension $BillListRespExtension on BillListResp {
     Wrapped<List<BillListResp$SoberOBillList$Item>?>? soberOBillList,
   }) {
     return BillListResp(
-      y934teOTotalAmount:
-          (y934teOTotalAmount != null
-              ? y934teOTotalAmount.value
-              : this.y934teOTotalAmount),
-      soberOBillList:
-          (soberOBillList != null ? soberOBillList.value : this.soberOBillList),
+      y934teOTotalAmount: (y934teOTotalAmount != null
+          ? y934teOTotalAmount.value
+          : this.y934teOTotalAmount),
+      soberOBillList: (soberOBillList != null
+          ? soberOBillList.value
+          : this.soberOBillList),
     );
   }
 }
@@ -16563,13 +16195,13 @@ extension $BillListRespExtension on BillListResp {
 class BillDetailResp {
   const BillDetailResp({
     this.n410zdOLoanTime,
-    required this.r5k31qODueTime,
+    this.r5k31qODueTime,
     this.coandaODueDays,
     this.faciendOOverdueFee,
-    required this.retiaryOLoanAmount,
-    required this.pluralOReceiveAmount,
-    required this.e88wy1OLoanFee,
-    required this.gatemanORepaymentAmount,
+    this.retiaryOLoanAmount,
+    this.pluralOReceiveAmount,
+    this.e88wy1OLoanFee,
+    this.gatemanORepaymentAmount,
     this.wantonlyOLoanLeftAmount,
     this.h4f7x4OCoupon,
     this.d95091ORepaymentStatus,
@@ -17065,13 +16697,13 @@ extension $BillDetailRespExtension on BillDetailResp {
 
   BillDetailResp copyWithWrapped({
     Wrapped<int?>? n410zdOLoanTime,
-    Wrapped<int>? r5k31qODueTime,
+    Wrapped<int?>? r5k31qODueTime,
     Wrapped<int?>? coandaODueDays,
     Wrapped<double?>? faciendOOverdueFee,
-    Wrapped<double>? retiaryOLoanAmount,
-    Wrapped<double>? pluralOReceiveAmount,
-    Wrapped<double>? e88wy1OLoanFee,
-    Wrapped<double>? gatemanORepaymentAmount,
+    Wrapped<double?>? retiaryOLoanAmount,
+    Wrapped<double?>? pluralOReceiveAmount,
+    Wrapped<double?>? e88wy1OLoanFee,
+    Wrapped<double?>? gatemanORepaymentAmount,
     Wrapped<double?>? wantonlyOLoanLeftAmount,
     Wrapped<double?>? h4f7x4OCoupon,
     Wrapped<int?>? d95091ORepaymentStatus,
@@ -17107,152 +16739,123 @@ extension $BillDetailRespExtension on BillDetailResp {
     Wrapped<BillDetailResp$Bac6b3OUserInfoDetail?>? bac6b3OUserInfoDetail,
   }) {
     return BillDetailResp(
-      n410zdOLoanTime:
-          (n410zdOLoanTime != null
-              ? n410zdOLoanTime.value
-              : this.n410zdOLoanTime),
-      r5k31qODueTime:
-          (r5k31qODueTime != null ? r5k31qODueTime.value : this.r5k31qODueTime),
-      coandaODueDays:
-          (coandaODueDays != null ? coandaODueDays.value : this.coandaODueDays),
-      faciendOOverdueFee:
-          (faciendOOverdueFee != null
-              ? faciendOOverdueFee.value
-              : this.faciendOOverdueFee),
-      retiaryOLoanAmount:
-          (retiaryOLoanAmount != null
-              ? retiaryOLoanAmount.value
-              : this.retiaryOLoanAmount),
-      pluralOReceiveAmount:
-          (pluralOReceiveAmount != null
-              ? pluralOReceiveAmount.value
-              : this.pluralOReceiveAmount),
-      e88wy1OLoanFee:
-          (e88wy1OLoanFee != null ? e88wy1OLoanFee.value : this.e88wy1OLoanFee),
-      gatemanORepaymentAmount:
-          (gatemanORepaymentAmount != null
-              ? gatemanORepaymentAmount.value
-              : this.gatemanORepaymentAmount),
-      wantonlyOLoanLeftAmount:
-          (wantonlyOLoanLeftAmount != null
-              ? wantonlyOLoanLeftAmount.value
-              : this.wantonlyOLoanLeftAmount),
-      h4f7x4OCoupon:
-          (h4f7x4OCoupon != null ? h4f7x4OCoupon.value : this.h4f7x4OCoupon),
-      d95091ORepaymentStatus:
-          (d95091ORepaymentStatus != null
-              ? d95091ORepaymentStatus.value
-              : this.d95091ORepaymentStatus),
-      suffOLoanStatus:
-          (suffOLoanStatus != null
-              ? suffOLoanStatus.value
-              : this.suffOLoanStatus),
-      slackOIsOverdue:
-          (slackOIsOverdue != null
-              ? slackOIsOverdue.value
-              : this.slackOIsOverdue),
-      feminieOCardAccount:
-          (feminieOCardAccount != null
-              ? feminieOCardAccount.value
-              : this.feminieOCardAccount),
-      ux8tv0OTotalLeftAmount:
-          (ux8tv0OTotalLeftAmount != null
-              ? ux8tv0OTotalLeftAmount.value
-              : this.ux8tv0OTotalLeftAmount),
-      wt3258OOverdueRate:
-          (wt3258OOverdueRate != null
-              ? wt3258OOverdueRate.value
-              : this.wt3258OOverdueRate),
-      asiaticOOverduePfMgrRate:
-          (asiaticOOverduePfMgrRate != null
-              ? asiaticOOverduePfMgrRate.value
-              : this.asiaticOOverduePfMgrRate),
-      foreyardOProductId:
-          (foreyardOProductId != null
-              ? foreyardOProductId.value
-              : this.foreyardOProductId),
-      unciformOOriginationFee:
-          (unciformOOriginationFee != null
-              ? unciformOOriginationFee.value
-              : this.unciformOOriginationFee),
-      centiareOServiceFee:
-          (centiareOServiceFee != null
-              ? centiareOServiceFee.value
-              : this.centiareOServiceFee),
-      v08uw3ORepaymentChannelList:
-          (v08uw3ORepaymentChannelList != null
-              ? v08uw3ORepaymentChannelList.value
-              : this.v08uw3ORepaymentChannelList),
-      pinionOUserCouponGid:
-          (pinionOUserCouponGid != null
-              ? pinionOUserCouponGid.value
-              : this.pinionOUserCouponGid),
-      sk6s63OCouponAmount:
-          (sk6s63OCouponAmount != null
-              ? sk6s63OCouponAmount.value
-              : this.sk6s63OCouponAmount),
-      mt66nzOReceiveSubAmount:
-          (mt66nzOReceiveSubAmount != null
-              ? mt66nzOReceiveSubAmount.value
-              : this.mt66nzOReceiveSubAmount),
-      q922g5OReceiveAddAmount:
-          (q922g5OReceiveAddAmount != null
-              ? q922g5OReceiveAddAmount.value
-              : this.q922g5OReceiveAddAmount),
-      vx4165OFailReason:
-          (vx4165OFailReason != null
-              ? vx4165OFailReason.value
-              : this.vx4165OFailReason),
-      mxs06uOApplyStatus:
-          (mxs06uOApplyStatus != null
-              ? mxs06uOApplyStatus.value
-              : this.mxs06uOApplyStatus),
-      ez64t7OPeriodCount:
-          (ez64t7OPeriodCount != null
-              ? ez64t7OPeriodCount.value
-              : this.ez64t7OPeriodCount),
-      glacisORepaymentPlanList:
-          (glacisORepaymentPlanList != null
-              ? glacisORepaymentPlanList.value
-              : this.glacisORepaymentPlanList),
-      cherubimOOrderStatus:
-          (cherubimOOrderStatus != null
-              ? cherubimOOrderStatus.value
-              : this.cherubimOOrderStatus),
-      encloseOOrderTime:
-          (encloseOOrderTime != null
-              ? encloseOOrderTime.value
-              : this.encloseOOrderTime),
-      wa5f08OOrderDueDays:
-          (wa5f08OOrderDueDays != null
-              ? wa5f08OOrderDueDays.value
-              : this.wa5f08OOrderDueDays),
-      iy8ujyOIsShowTime:
-          (iy8ujyOIsShowTime != null
-              ? iy8ujyOIsShowTime.value
-              : this.iy8ujyOIsShowTime),
-      kinkyOOrderAmount:
-          (kinkyOOrderAmount != null
-              ? kinkyOOrderAmount.value
-              : this.kinkyOOrderAmount),
-      t72jj1OCreditSearchFee:
-          (t72jj1OCreditSearchFee != null
-              ? t72jj1OCreditSearchFee.value
-              : this.t72jj1OCreditSearchFee),
-      cdslOTransferFee:
-          (cdslOTransferFee != null
-              ? cdslOTransferFee.value
-              : this.cdslOTransferFee),
-      badnessOIgvFee:
-          (badnessOIgvFee != null ? badnessOIgvFee.value : this.badnessOIgvFee),
-      spriteOBusinessFee:
-          (spriteOBusinessFee != null
-              ? spriteOBusinessFee.value
-              : this.spriteOBusinessFee),
-      bac6b3OUserInfoDetail:
-          (bac6b3OUserInfoDetail != null
-              ? bac6b3OUserInfoDetail.value
-              : this.bac6b3OUserInfoDetail),
+      n410zdOLoanTime: (n410zdOLoanTime != null
+          ? n410zdOLoanTime.value
+          : this.n410zdOLoanTime),
+      r5k31qODueTime: (r5k31qODueTime != null
+          ? r5k31qODueTime.value
+          : this.r5k31qODueTime),
+      coandaODueDays: (coandaODueDays != null
+          ? coandaODueDays.value
+          : this.coandaODueDays),
+      faciendOOverdueFee: (faciendOOverdueFee != null
+          ? faciendOOverdueFee.value
+          : this.faciendOOverdueFee),
+      retiaryOLoanAmount: (retiaryOLoanAmount != null
+          ? retiaryOLoanAmount.value
+          : this.retiaryOLoanAmount),
+      pluralOReceiveAmount: (pluralOReceiveAmount != null
+          ? pluralOReceiveAmount.value
+          : this.pluralOReceiveAmount),
+      e88wy1OLoanFee: (e88wy1OLoanFee != null
+          ? e88wy1OLoanFee.value
+          : this.e88wy1OLoanFee),
+      gatemanORepaymentAmount: (gatemanORepaymentAmount != null
+          ? gatemanORepaymentAmount.value
+          : this.gatemanORepaymentAmount),
+      wantonlyOLoanLeftAmount: (wantonlyOLoanLeftAmount != null
+          ? wantonlyOLoanLeftAmount.value
+          : this.wantonlyOLoanLeftAmount),
+      h4f7x4OCoupon: (h4f7x4OCoupon != null
+          ? h4f7x4OCoupon.value
+          : this.h4f7x4OCoupon),
+      d95091ORepaymentStatus: (d95091ORepaymentStatus != null
+          ? d95091ORepaymentStatus.value
+          : this.d95091ORepaymentStatus),
+      suffOLoanStatus: (suffOLoanStatus != null
+          ? suffOLoanStatus.value
+          : this.suffOLoanStatus),
+      slackOIsOverdue: (slackOIsOverdue != null
+          ? slackOIsOverdue.value
+          : this.slackOIsOverdue),
+      feminieOCardAccount: (feminieOCardAccount != null
+          ? feminieOCardAccount.value
+          : this.feminieOCardAccount),
+      ux8tv0OTotalLeftAmount: (ux8tv0OTotalLeftAmount != null
+          ? ux8tv0OTotalLeftAmount.value
+          : this.ux8tv0OTotalLeftAmount),
+      wt3258OOverdueRate: (wt3258OOverdueRate != null
+          ? wt3258OOverdueRate.value
+          : this.wt3258OOverdueRate),
+      asiaticOOverduePfMgrRate: (asiaticOOverduePfMgrRate != null
+          ? asiaticOOverduePfMgrRate.value
+          : this.asiaticOOverduePfMgrRate),
+      foreyardOProductId: (foreyardOProductId != null
+          ? foreyardOProductId.value
+          : this.foreyardOProductId),
+      unciformOOriginationFee: (unciformOOriginationFee != null
+          ? unciformOOriginationFee.value
+          : this.unciformOOriginationFee),
+      centiareOServiceFee: (centiareOServiceFee != null
+          ? centiareOServiceFee.value
+          : this.centiareOServiceFee),
+      v08uw3ORepaymentChannelList: (v08uw3ORepaymentChannelList != null
+          ? v08uw3ORepaymentChannelList.value
+          : this.v08uw3ORepaymentChannelList),
+      pinionOUserCouponGid: (pinionOUserCouponGid != null
+          ? pinionOUserCouponGid.value
+          : this.pinionOUserCouponGid),
+      sk6s63OCouponAmount: (sk6s63OCouponAmount != null
+          ? sk6s63OCouponAmount.value
+          : this.sk6s63OCouponAmount),
+      mt66nzOReceiveSubAmount: (mt66nzOReceiveSubAmount != null
+          ? mt66nzOReceiveSubAmount.value
+          : this.mt66nzOReceiveSubAmount),
+      q922g5OReceiveAddAmount: (q922g5OReceiveAddAmount != null
+          ? q922g5OReceiveAddAmount.value
+          : this.q922g5OReceiveAddAmount),
+      vx4165OFailReason: (vx4165OFailReason != null
+          ? vx4165OFailReason.value
+          : this.vx4165OFailReason),
+      mxs06uOApplyStatus: (mxs06uOApplyStatus != null
+          ? mxs06uOApplyStatus.value
+          : this.mxs06uOApplyStatus),
+      ez64t7OPeriodCount: (ez64t7OPeriodCount != null
+          ? ez64t7OPeriodCount.value
+          : this.ez64t7OPeriodCount),
+      glacisORepaymentPlanList: (glacisORepaymentPlanList != null
+          ? glacisORepaymentPlanList.value
+          : this.glacisORepaymentPlanList),
+      cherubimOOrderStatus: (cherubimOOrderStatus != null
+          ? cherubimOOrderStatus.value
+          : this.cherubimOOrderStatus),
+      encloseOOrderTime: (encloseOOrderTime != null
+          ? encloseOOrderTime.value
+          : this.encloseOOrderTime),
+      wa5f08OOrderDueDays: (wa5f08OOrderDueDays != null
+          ? wa5f08OOrderDueDays.value
+          : this.wa5f08OOrderDueDays),
+      iy8ujyOIsShowTime: (iy8ujyOIsShowTime != null
+          ? iy8ujyOIsShowTime.value
+          : this.iy8ujyOIsShowTime),
+      kinkyOOrderAmount: (kinkyOOrderAmount != null
+          ? kinkyOOrderAmount.value
+          : this.kinkyOOrderAmount),
+      t72jj1OCreditSearchFee: (t72jj1OCreditSearchFee != null
+          ? t72jj1OCreditSearchFee.value
+          : this.t72jj1OCreditSearchFee),
+      cdslOTransferFee: (cdslOTransferFee != null
+          ? cdslOTransferFee.value
+          : this.cdslOTransferFee),
+      badnessOIgvFee: (badnessOIgvFee != null
+          ? badnessOIgvFee.value
+          : this.badnessOIgvFee),
+      spriteOBusinessFee: (spriteOBusinessFee != null
+          ? spriteOBusinessFee.value
+          : this.spriteOBusinessFee),
+      bac6b3OUserInfoDetail: (bac6b3OUserInfoDetail != null
+          ? bac6b3OUserInfoDetail.value
+          : this.bac6b3OUserInfoDetail),
     );
   }
 }
@@ -17344,14 +16947,12 @@ extension $BillRepayRespExtension on BillRepayResp {
     return BillRepayResp(
       total: (total != null ? total.value : this.total),
       pages: (pages != null ? pages.value : this.pages),
-      endmostOTotalLoanLeftAmount:
-          (endmostOTotalLoanLeftAmount != null
-              ? endmostOTotalLoanLeftAmount.value
-              : this.endmostOTotalLoanLeftAmount),
-      my4dd2ORepaymentList:
-          (my4dd2ORepaymentList != null
-              ? my4dd2ORepaymentList.value
-              : this.my4dd2ORepaymentList),
+      endmostOTotalLoanLeftAmount: (endmostOTotalLoanLeftAmount != null
+          ? endmostOTotalLoanLeftAmount.value
+          : this.endmostOTotalLoanLeftAmount),
+      my4dd2ORepaymentList: (my4dd2ORepaymentList != null
+          ? my4dd2ORepaymentList.value
+          : this.my4dd2ORepaymentList),
     );
   }
 }
@@ -17718,74 +17319,68 @@ extension $TrackReportReq$FibulaOReportBaseInfoExtension
     Wrapped<String?>? ja3Hash,
   }) {
     return TrackReportReq$FibulaOReportBaseInfo(
-      h0390bOWifiName:
-          (h0390bOWifiName != null
-              ? h0390bOWifiName.value
-              : this.h0390bOWifiName),
-      alackOIpAddress:
-          (alackOIpAddress != null
-              ? alackOIpAddress.value
-              : this.alackOIpAddress),
-      qianaOMacAddress:
-          (qianaOMacAddress != null
-              ? qianaOMacAddress.value
-              : this.qianaOMacAddress),
+      h0390bOWifiName: (h0390bOWifiName != null
+          ? h0390bOWifiName.value
+          : this.h0390bOWifiName),
+      alackOIpAddress: (alackOIpAddress != null
+          ? alackOIpAddress.value
+          : this.alackOIpAddress),
+      qianaOMacAddress: (qianaOMacAddress != null
+          ? qianaOMacAddress.value
+          : this.qianaOMacAddress),
       trj8s6OImei: (trj8s6OImei != null ? trj8s6OImei.value : this.trj8s6OImei),
-      novellyOBssid:
-          (novellyOBssid != null ? novellyOBssid.value : this.novellyOBssid),
-      p4fv8oOMemory:
-          (p4fv8oOMemory != null ? p4fv8oOMemory.value : this.p4fv8oOMemory),
-      yr0nx3OPower:
-          (yr0nx3OPower != null ? yr0nx3OPower.value : this.yr0nx3OPower),
+      novellyOBssid: (novellyOBssid != null
+          ? novellyOBssid.value
+          : this.novellyOBssid),
+      p4fv8oOMemory: (p4fv8oOMemory != null
+          ? p4fv8oOMemory.value
+          : this.p4fv8oOMemory),
+      yr0nx3OPower: (yr0nx3OPower != null
+          ? yr0nx3OPower.value
+          : this.yr0nx3OPower),
       illthOBrand: (illthOBrand != null ? illthOBrand.value : this.illthOBrand),
-      lawfullyOSysVersion:
-          (lawfullyOSysVersion != null
-              ? lawfullyOSysVersion.value
-              : this.lawfullyOSysVersion),
-      r307x2ONetType:
-          (r307x2ONetType != null ? r307x2ONetType.value : this.r307x2ONetType),
-      acetylcoOGeolocation:
-          (acetylcoOGeolocation != null
-              ? acetylcoOGeolocation.value
-              : this.acetylcoOGeolocation),
-      sodalistODeviceInfo:
-          (sodalistODeviceInfo != null
-              ? sodalistODeviceInfo.value
-              : this.sodalistODeviceInfo),
+      lawfullyOSysVersion: (lawfullyOSysVersion != null
+          ? lawfullyOSysVersion.value
+          : this.lawfullyOSysVersion),
+      r307x2ONetType: (r307x2ONetType != null
+          ? r307x2ONetType.value
+          : this.r307x2ONetType),
+      acetylcoOGeolocation: (acetylcoOGeolocation != null
+          ? acetylcoOGeolocation.value
+          : this.acetylcoOGeolocation),
+      sodalistODeviceInfo: (sodalistODeviceInfo != null
+          ? sodalistODeviceInfo.value
+          : this.sodalistODeviceInfo),
       model: (model != null ? model.value : this.model),
       root: (root != null ? root.value : this.root),
-      wb8jk2OEmulator:
-          (wb8jk2OEmulator != null
-              ? wb8jk2OEmulator.value
-              : this.wb8jk2OEmulator),
+      wb8jk2OEmulator: (wb8jk2OEmulator != null
+          ? wb8jk2OEmulator.value
+          : this.wb8jk2OEmulator),
       anilOMid: (anilOMid != null ? anilOMid.value : this.anilOMid),
-      fnwdw7OPhotoNum:
-          (fnwdw7OPhotoNum != null
-              ? fnwdw7OPhotoNum.value
-              : this.fnwdw7OPhotoNum),
-      eztov7OVideoNum:
-          (eztov7OVideoNum != null
-              ? eztov7OVideoNum.value
-              : this.eztov7OVideoNum),
-      dai86eOMusicNum:
-          (dai86eOMusicNum != null
-              ? dai86eOMusicNum.value
-              : this.dai86eOMusicNum),
-      gze221OBootTime:
-          (gze221OBootTime != null
-              ? gze221OBootTime.value
-              : this.gze221OBootTime),
-      hmdso0OMemUsed:
-          (hmdso0OMemUsed != null ? hmdso0OMemUsed.value : this.hmdso0OMemUsed),
-      so31o2OImeis:
-          (so31o2OImeis != null ? so31o2OImeis.value : this.so31o2OImeis),
+      fnwdw7OPhotoNum: (fnwdw7OPhotoNum != null
+          ? fnwdw7OPhotoNum.value
+          : this.fnwdw7OPhotoNum),
+      eztov7OVideoNum: (eztov7OVideoNum != null
+          ? eztov7OVideoNum.value
+          : this.eztov7OVideoNum),
+      dai86eOMusicNum: (dai86eOMusicNum != null
+          ? dai86eOMusicNum.value
+          : this.dai86eOMusicNum),
+      gze221OBootTime: (gze221OBootTime != null
+          ? gze221OBootTime.value
+          : this.gze221OBootTime),
+      hmdso0OMemUsed: (hmdso0OMemUsed != null
+          ? hmdso0OMemUsed.value
+          : this.hmdso0OMemUsed),
+      so31o2OImeis: (so31o2OImeis != null
+          ? so31o2OImeis.value
+          : this.so31o2OImeis),
       inb: (inb != null ? inb.value : this.inb),
       z5pioqOOutb: (z5pioqOOutb != null ? z5pioqOOutb.value : this.z5pioqOOutb),
       hass: (hass != null ? hass.value : this.hass),
-      n7e5diOMidOriginal:
-          (n7e5diOMidOriginal != null
-              ? n7e5diOMidOriginal.value
-              : this.n7e5diOMidOriginal),
+      n7e5diOMidOriginal: (n7e5diOMidOriginal != null
+          ? n7e5diOMidOriginal.value
+          : this.n7e5diOMidOriginal),
       buid: (buid != null ? buid.value : this.buid),
       ja3Hash: (ja3Hash != null ? ja3Hash.value : this.ja3Hash),
     );
@@ -18062,23 +17657,23 @@ extension $TrackReportReq$Jx3w61OAppList$ItemExtension
   }) {
     return TrackReportReq$Jx3w61OAppList$Item(
       name: (name != null ? name.value : this.name),
-      n1s2v2OPackageName:
-          (n1s2v2OPackageName != null
-              ? n1s2v2OPackageName.value
-              : this.n1s2v2OPackageName),
-      a8h656OVersionCode:
-          (a8h656OVersionCode != null
-              ? a8h656OVersionCode.value
-              : this.a8h656OVersionCode),
+      n1s2v2OPackageName: (n1s2v2OPackageName != null
+          ? n1s2v2OPackageName.value
+          : this.n1s2v2OPackageName),
+      a8h656OVersionCode: (a8h656OVersionCode != null
+          ? a8h656OVersionCode.value
+          : this.a8h656OVersionCode),
       b: (b != null ? b.value : this.b),
       a: (a != null ? a.value : this.a),
       c: (c != null ? c.value : this.c),
       itu: (itu != null ? itu.value : this.itu),
-      y3xrccOAddTime:
-          (y3xrccOAddTime != null ? y3xrccOAddTime.value : this.y3xrccOAddTime),
+      y3xrccOAddTime: (y3xrccOAddTime != null
+          ? y3xrccOAddTime.value
+          : this.y3xrccOAddTime),
       dtu: (dtu != null ? dtu.value : this.dtu),
-      f1fc0dOUTime:
-          (f1fc0dOUTime != null ? f1fc0dOUTime.value : this.f1fc0dOUTime),
+      f1fc0dOUTime: (f1fc0dOUTime != null
+          ? f1fc0dOUTime.value
+          : this.f1fc0dOUTime),
     );
   }
 }
@@ -18273,42 +17868,38 @@ extension $TrackReportReq$BanallyOReportDevDTOExtension
     Wrapped<String?>? jp689uOTimeZone,
   }) {
     return TrackReportReq$BanallyOReportDevDTO(
-      hafizORootPlus:
-          (hafizORootPlus != null ? hafizORootPlus.value : this.hafizORootPlus),
-      hdcopyOBattery:
-          (hdcopyOBattery != null ? hdcopyOBattery.value : this.hdcopyOBattery),
-      i39296OBluetooth:
-          (i39296OBluetooth != null
-              ? i39296OBluetooth.value
-              : this.i39296OBluetooth),
-      costingOCameras:
-          (costingOCameras != null
-              ? costingOCameras.value
-              : this.costingOCameras),
+      hafizORootPlus: (hafizORootPlus != null
+          ? hafizORootPlus.value
+          : this.hafizORootPlus),
+      hdcopyOBattery: (hdcopyOBattery != null
+          ? hdcopyOBattery.value
+          : this.hdcopyOBattery),
+      i39296OBluetooth: (i39296OBluetooth != null
+          ? i39296OBluetooth.value
+          : this.i39296OBluetooth),
+      costingOCameras: (costingOCameras != null
+          ? costingOCameras.value
+          : this.costingOCameras),
       cpu: (cpu != null ? cpu.value : this.cpu),
-      slqri6OGeneral:
-          (slqri6OGeneral != null ? slqri6OGeneral.value : this.slqri6OGeneral),
-      r6i83kONetSignal:
-          (r6i83kONetSignal != null
-              ? r6i83kONetSignal.value
-              : this.r6i83kONetSignal),
-      autumnalOSensors:
-          (autumnalOSensors != null
-              ? autumnalOSensors.value
-              : this.autumnalOSensors),
+      slqri6OGeneral: (slqri6OGeneral != null
+          ? slqri6OGeneral.value
+          : this.slqri6OGeneral),
+      r6i83kONetSignal: (r6i83kONetSignal != null
+          ? r6i83kONetSignal.value
+          : this.r6i83kONetSignal),
+      autumnalOSensors: (autumnalOSensors != null
+          ? autumnalOSensors.value
+          : this.autumnalOSensors),
       system: (system != null ? system.value : this.system),
-      e3d40eOStructure:
-          (e3d40eOStructure != null
-              ? e3d40eOStructure.value
-              : this.e3d40eOStructure),
-      h4878cOLanguage:
-          (h4878cOLanguage != null
-              ? h4878cOLanguage.value
-              : this.h4878cOLanguage),
-      jp689uOTimeZone:
-          (jp689uOTimeZone != null
-              ? jp689uOTimeZone.value
-              : this.jp689uOTimeZone),
+      e3d40eOStructure: (e3d40eOStructure != null
+          ? e3d40eOStructure.value
+          : this.e3d40eOStructure),
+      h4878cOLanguage: (h4878cOLanguage != null
+          ? h4878cOLanguage.value
+          : this.h4878cOLanguage),
+      jp689uOTimeZone: (jp689uOTimeZone != null
+          ? jp689uOTimeZone.value
+          : this.jp689uOTimeZone),
     );
   }
 }
@@ -18483,8 +18074,9 @@ extension $TrackReportReq$FrcoOSmsItems$ItemExtension
     Wrapped<int?>? roumc2ODate,
   }) {
     return TrackReportReq$FrcoOSmsItems$Item(
-      yi3y78OItemId:
-          (yi3y78OItemId != null ? yi3y78OItemId.value : this.yi3y78OItemId),
+      yi3y78OItemId: (yi3y78OItemId != null
+          ? yi3y78OItemId.value
+          : this.yi3y78OItemId),
       type: (type != null ? type.value : this.type),
       address: (address != null ? address.value : this.address),
       u7m1kfOBody: (u7m1kfOBody != null ? u7m1kfOBody.value : this.u7m1kfOBody),
@@ -18617,18 +18209,15 @@ extension $LivingDataReq$OutsungOLivingDataList$ItemExtension
     Wrapped<int?>? impiOTriggerTime,
   }) {
     return LivingDataReq$OutsungOLivingDataList$Item(
-      sanctionOResultStage:
-          (sanctionOResultStage != null
-              ? sanctionOResultStage.value
-              : this.sanctionOResultStage),
-      woodbindOResultType:
-          (woodbindOResultType != null
-              ? woodbindOResultType.value
-              : this.woodbindOResultType),
-      impiOTriggerTime:
-          (impiOTriggerTime != null
-              ? impiOTriggerTime.value
-              : this.impiOTriggerTime),
+      sanctionOResultStage: (sanctionOResultStage != null
+          ? sanctionOResultStage.value
+          : this.sanctionOResultStage),
+      woodbindOResultType: (woodbindOResultType != null
+          ? woodbindOResultType.value
+          : this.woodbindOResultType),
+      impiOTriggerTime: (impiOTriggerTime != null
+          ? impiOTriggerTime.value
+          : this.impiOTriggerTime),
     );
   }
 }
@@ -18696,10 +18285,9 @@ extension $RiskReportResp$ZdzsepOVerificationConfigExtension
     u7yl7cOItemsDisplayConfig,
   }) {
     return RiskReportResp$ZdzsepOVerificationConfig(
-      u7yl7cOItemsDisplayConfig:
-          (u7yl7cOItemsDisplayConfig != null
-              ? u7yl7cOItemsDisplayConfig.value
-              : this.u7yl7cOItemsDisplayConfig),
+      u7yl7cOItemsDisplayConfig: (u7yl7cOItemsDisplayConfig != null
+          ? u7yl7cOItemsDisplayConfig.value
+          : this.u7yl7cOItemsDisplayConfig),
     );
   }
 }
@@ -18771,10 +18359,12 @@ extension $RepayApplyResp$TartarlyOPins$ItemExtension
     ruralOAgentes,
   }) {
     return RepayApplyResp$TartarlyOPins$Item(
-      nakhodkaOPin:
-          (nakhodkaOPin != null ? nakhodkaOPin.value : this.nakhodkaOPin),
-      ruralOAgentes:
-          (ruralOAgentes != null ? ruralOAgentes.value : this.ruralOAgentes),
+      nakhodkaOPin: (nakhodkaOPin != null
+          ? nakhodkaOPin.value
+          : this.nakhodkaOPin),
+      ruralOAgentes: (ruralOAgentes != null
+          ? ruralOAgentes.value
+          : this.ruralOAgentes),
     );
   }
 }
@@ -18841,14 +18431,12 @@ extension $VersionCheckResp$DataExtension on VersionCheckResp$Data {
     Wrapped<VersionCheckResp$Data$C1o9nqONewVersion?>? c1o9nqONewVersion,
   }) {
     return VersionCheckResp$Data(
-      populousOHasUpdate:
-          (populousOHasUpdate != null
-              ? populousOHasUpdate.value
-              : this.populousOHasUpdate),
-      c1o9nqONewVersion:
-          (c1o9nqONewVersion != null
-              ? c1o9nqONewVersion.value
-              : this.c1o9nqONewVersion),
+      populousOHasUpdate: (populousOHasUpdate != null
+          ? populousOHasUpdate.value
+          : this.populousOHasUpdate),
+      c1o9nqONewVersion: (c1o9nqONewVersion != null
+          ? c1o9nqONewVersion.value
+          : this.c1o9nqONewVersion),
     );
   }
 }
@@ -19004,34 +18592,29 @@ extension $ColoanGpResp$S2c1wyOAppCoLoanGpDetailPOList$ItemExtension
     Wrapped<bool?>? lubricOGpStatus,
   }) {
     return ColoanGpResp$S2c1wyOAppCoLoanGpDetailPOList$Item(
-      audacityOAppTags:
-          (audacityOAppTags != null
-              ? audacityOAppTags.value
-              : this.audacityOAppTags),
-      es8l4kOCoLoanAppName:
-          (es8l4kOCoLoanAppName != null
-              ? es8l4kOCoLoanAppName.value
-              : this.es8l4kOCoLoanAppName),
-      fatherlyOShowAppName:
-          (fatherlyOShowAppName != null
-              ? fatherlyOShowAppName.value
-              : this.fatherlyOShowAppName),
-      n1s2v2OPackageName:
-          (n1s2v2OPackageName != null
-              ? n1s2v2OPackageName.value
-              : this.n1s2v2OPackageName),
+      audacityOAppTags: (audacityOAppTags != null
+          ? audacityOAppTags.value
+          : this.audacityOAppTags),
+      es8l4kOCoLoanAppName: (es8l4kOCoLoanAppName != null
+          ? es8l4kOCoLoanAppName.value
+          : this.es8l4kOCoLoanAppName),
+      fatherlyOShowAppName: (fatherlyOShowAppName != null
+          ? fatherlyOShowAppName.value
+          : this.fatherlyOShowAppName),
+      n1s2v2OPackageName: (n1s2v2OPackageName != null
+          ? n1s2v2OPackageName.value
+          : this.n1s2v2OPackageName),
       a2787eOLogo: (a2787eOLogo != null ? a2787eOLogo.value : this.a2787eOLogo),
       ui1pz2OLink: (ui1pz2OLink != null ? ui1pz2OLink.value : this.ui1pz2OLink),
-      o053asOAppDesc:
-          (o053asOAppDesc != null ? o053asOAppDesc.value : this.o053asOAppDesc),
-      thousandOIsEffect:
-          (thousandOIsEffect != null
-              ? thousandOIsEffect.value
-              : this.thousandOIsEffect),
-      lubricOGpStatus:
-          (lubricOGpStatus != null
-              ? lubricOGpStatus.value
-              : this.lubricOGpStatus),
+      o053asOAppDesc: (o053asOAppDesc != null
+          ? o053asOAppDesc.value
+          : this.o053asOAppDesc),
+      thousandOIsEffect: (thousandOIsEffect != null
+          ? thousandOIsEffect.value
+          : this.thousandOIsEffect),
+      lubricOGpStatus: (lubricOGpStatus != null
+          ? lubricOGpStatus.value
+          : this.lubricOGpStatus),
     );
   }
 }
@@ -19372,93 +18955,76 @@ extension $HomeInfoResp$PapuanOLastRecordLoanExtension
     Wrapped<bool?>? kc1347OEnableRenew,
   }) {
     return HomeInfoResp$PapuanOLastRecordLoan(
-      r5a4x8OLoanGid:
-          (r5a4x8OLoanGid != null ? r5a4x8OLoanGid.value : this.r5a4x8OLoanGid),
-      n410zdOLoanTime:
-          (n410zdOLoanTime != null
-              ? n410zdOLoanTime.value
-              : this.n410zdOLoanTime),
-      r5k31qODueTime:
-          (r5k31qODueTime != null ? r5k31qODueTime.value : this.r5k31qODueTime),
-      wantonlyOLoanLeftAmount:
-          (wantonlyOLoanLeftAmount != null
-              ? wantonlyOLoanLeftAmount.value
-              : this.wantonlyOLoanLeftAmount),
-      retiaryOLoanAmount:
-          (retiaryOLoanAmount != null
-              ? retiaryOLoanAmount.value
-              : this.retiaryOLoanAmount),
-      d95091ORepaymentStatus:
-          (d95091ORepaymentStatus != null
-              ? d95091ORepaymentStatus.value
-              : this.d95091ORepaymentStatus),
-      suffOLoanStatus:
-          (suffOLoanStatus != null
-              ? suffOLoanStatus.value
-              : this.suffOLoanStatus),
-      feminieOCardAccount:
-          (feminieOCardAccount != null
-              ? feminieOCardAccount.value
-              : this.feminieOCardAccount),
-      ah1e18OBillStatus:
-          (ah1e18OBillStatus != null
-              ? ah1e18OBillStatus.value
-              : this.ah1e18OBillStatus),
-      coandaODueDays:
-          (coandaODueDays != null ? coandaODueDays.value : this.coandaODueDays),
-      vx4165OFailReason:
-          (vx4165OFailReason != null
-              ? vx4165OFailReason.value
-              : this.vx4165OFailReason),
-      pinionOUserCouponGid:
-          (pinionOUserCouponGid != null
-              ? pinionOUserCouponGid.value
-              : this.pinionOUserCouponGid),
-      sk6s63OCouponAmount:
-          (sk6s63OCouponAmount != null
-              ? sk6s63OCouponAmount.value
-              : this.sk6s63OCouponAmount),
-      mxs06uOApplyStatus:
-          (mxs06uOApplyStatus != null
-              ? mxs06uOApplyStatus.value
-              : this.mxs06uOApplyStatus),
-      ez64t7OPeriodCount:
-          (ez64t7OPeriodCount != null
-              ? ez64t7OPeriodCount.value
-              : this.ez64t7OPeriodCount),
-      cherubimOOrderStatus:
-          (cherubimOOrderStatus != null
-              ? cherubimOOrderStatus.value
-              : this.cherubimOOrderStatus),
-      encloseOOrderTime:
-          (encloseOOrderTime != null
-              ? encloseOOrderTime.value
-              : this.encloseOOrderTime),
-      wa5f08OOrderDueDays:
-          (wa5f08OOrderDueDays != null
-              ? wa5f08OOrderDueDays.value
-              : this.wa5f08OOrderDueDays),
-      iy8ujyOIsShowTime:
-          (iy8ujyOIsShowTime != null
-              ? iy8ujyOIsShowTime.value
-              : this.iy8ujyOIsShowTime),
-      kinkyOOrderAmount:
-          (kinkyOOrderAmount != null
-              ? kinkyOOrderAmount.value
-              : this.kinkyOOrderAmount),
-      outdoOPlanSimpleList:
-          (outdoOPlanSimpleList != null
-              ? outdoOPlanSimpleList.value
-              : this.outdoOPlanSimpleList),
-      slackOIsOverdue:
-          (slackOIsOverdue != null
-              ? slackOIsOverdue.value
-              : this.slackOIsOverdue),
+      r5a4x8OLoanGid: (r5a4x8OLoanGid != null
+          ? r5a4x8OLoanGid.value
+          : this.r5a4x8OLoanGid),
+      n410zdOLoanTime: (n410zdOLoanTime != null
+          ? n410zdOLoanTime.value
+          : this.n410zdOLoanTime),
+      r5k31qODueTime: (r5k31qODueTime != null
+          ? r5k31qODueTime.value
+          : this.r5k31qODueTime),
+      wantonlyOLoanLeftAmount: (wantonlyOLoanLeftAmount != null
+          ? wantonlyOLoanLeftAmount.value
+          : this.wantonlyOLoanLeftAmount),
+      retiaryOLoanAmount: (retiaryOLoanAmount != null
+          ? retiaryOLoanAmount.value
+          : this.retiaryOLoanAmount),
+      d95091ORepaymentStatus: (d95091ORepaymentStatus != null
+          ? d95091ORepaymentStatus.value
+          : this.d95091ORepaymentStatus),
+      suffOLoanStatus: (suffOLoanStatus != null
+          ? suffOLoanStatus.value
+          : this.suffOLoanStatus),
+      feminieOCardAccount: (feminieOCardAccount != null
+          ? feminieOCardAccount.value
+          : this.feminieOCardAccount),
+      ah1e18OBillStatus: (ah1e18OBillStatus != null
+          ? ah1e18OBillStatus.value
+          : this.ah1e18OBillStatus),
+      coandaODueDays: (coandaODueDays != null
+          ? coandaODueDays.value
+          : this.coandaODueDays),
+      vx4165OFailReason: (vx4165OFailReason != null
+          ? vx4165OFailReason.value
+          : this.vx4165OFailReason),
+      pinionOUserCouponGid: (pinionOUserCouponGid != null
+          ? pinionOUserCouponGid.value
+          : this.pinionOUserCouponGid),
+      sk6s63OCouponAmount: (sk6s63OCouponAmount != null
+          ? sk6s63OCouponAmount.value
+          : this.sk6s63OCouponAmount),
+      mxs06uOApplyStatus: (mxs06uOApplyStatus != null
+          ? mxs06uOApplyStatus.value
+          : this.mxs06uOApplyStatus),
+      ez64t7OPeriodCount: (ez64t7OPeriodCount != null
+          ? ez64t7OPeriodCount.value
+          : this.ez64t7OPeriodCount),
+      cherubimOOrderStatus: (cherubimOOrderStatus != null
+          ? cherubimOOrderStatus.value
+          : this.cherubimOOrderStatus),
+      encloseOOrderTime: (encloseOOrderTime != null
+          ? encloseOOrderTime.value
+          : this.encloseOOrderTime),
+      wa5f08OOrderDueDays: (wa5f08OOrderDueDays != null
+          ? wa5f08OOrderDueDays.value
+          : this.wa5f08OOrderDueDays),
+      iy8ujyOIsShowTime: (iy8ujyOIsShowTime != null
+          ? iy8ujyOIsShowTime.value
+          : this.iy8ujyOIsShowTime),
+      kinkyOOrderAmount: (kinkyOOrderAmount != null
+          ? kinkyOOrderAmount.value
+          : this.kinkyOOrderAmount),
+      outdoOPlanSimpleList: (outdoOPlanSimpleList != null
+          ? outdoOPlanSimpleList.value
+          : this.outdoOPlanSimpleList),
+      slackOIsOverdue: (slackOIsOverdue != null
+          ? slackOIsOverdue.value
+          : this.slackOIsOverdue),
       remark: (remark != null ? remark.value : this.remark),
-      kc1347OEnableRenew:
-          (kc1347OEnableRenew != null
-              ? kc1347OEnableRenew.value
-              : this.kc1347OEnableRenew),
+      kc1347OEnableRenew: (kc1347OEnableRenew != null
+          ? kc1347OEnableRenew.value
+          : this.kc1347OEnableRenew),
     );
   }
 }
@@ -19800,93 +19366,76 @@ extension $HomeInfoResp$Xu551uOSpareLastRecordLoanExtension
     Wrapped<bool?>? kc1347OEnableRenew,
   }) {
     return HomeInfoResp$Xu551uOSpareLastRecordLoan(
-      r5a4x8OLoanGid:
-          (r5a4x8OLoanGid != null ? r5a4x8OLoanGid.value : this.r5a4x8OLoanGid),
-      n410zdOLoanTime:
-          (n410zdOLoanTime != null
-              ? n410zdOLoanTime.value
-              : this.n410zdOLoanTime),
-      r5k31qODueTime:
-          (r5k31qODueTime != null ? r5k31qODueTime.value : this.r5k31qODueTime),
-      wantonlyOLoanLeftAmount:
-          (wantonlyOLoanLeftAmount != null
-              ? wantonlyOLoanLeftAmount.value
-              : this.wantonlyOLoanLeftAmount),
-      retiaryOLoanAmount:
-          (retiaryOLoanAmount != null
-              ? retiaryOLoanAmount.value
-              : this.retiaryOLoanAmount),
-      d95091ORepaymentStatus:
-          (d95091ORepaymentStatus != null
-              ? d95091ORepaymentStatus.value
-              : this.d95091ORepaymentStatus),
-      suffOLoanStatus:
-          (suffOLoanStatus != null
-              ? suffOLoanStatus.value
-              : this.suffOLoanStatus),
-      feminieOCardAccount:
-          (feminieOCardAccount != null
-              ? feminieOCardAccount.value
-              : this.feminieOCardAccount),
-      ah1e18OBillStatus:
-          (ah1e18OBillStatus != null
-              ? ah1e18OBillStatus.value
-              : this.ah1e18OBillStatus),
-      coandaODueDays:
-          (coandaODueDays != null ? coandaODueDays.value : this.coandaODueDays),
-      vx4165OFailReason:
-          (vx4165OFailReason != null
-              ? vx4165OFailReason.value
-              : this.vx4165OFailReason),
-      pinionOUserCouponGid:
-          (pinionOUserCouponGid != null
-              ? pinionOUserCouponGid.value
-              : this.pinionOUserCouponGid),
-      sk6s63OCouponAmount:
-          (sk6s63OCouponAmount != null
-              ? sk6s63OCouponAmount.value
-              : this.sk6s63OCouponAmount),
-      mxs06uOApplyStatus:
-          (mxs06uOApplyStatus != null
-              ? mxs06uOApplyStatus.value
-              : this.mxs06uOApplyStatus),
-      ez64t7OPeriodCount:
-          (ez64t7OPeriodCount != null
-              ? ez64t7OPeriodCount.value
-              : this.ez64t7OPeriodCount),
-      cherubimOOrderStatus:
-          (cherubimOOrderStatus != null
-              ? cherubimOOrderStatus.value
-              : this.cherubimOOrderStatus),
-      encloseOOrderTime:
-          (encloseOOrderTime != null
-              ? encloseOOrderTime.value
-              : this.encloseOOrderTime),
-      wa5f08OOrderDueDays:
-          (wa5f08OOrderDueDays != null
-              ? wa5f08OOrderDueDays.value
-              : this.wa5f08OOrderDueDays),
-      iy8ujyOIsShowTime:
-          (iy8ujyOIsShowTime != null
-              ? iy8ujyOIsShowTime.value
-              : this.iy8ujyOIsShowTime),
-      kinkyOOrderAmount:
-          (kinkyOOrderAmount != null
-              ? kinkyOOrderAmount.value
-              : this.kinkyOOrderAmount),
-      outdoOPlanSimpleList:
-          (outdoOPlanSimpleList != null
-              ? outdoOPlanSimpleList.value
-              : this.outdoOPlanSimpleList),
-      slackOIsOverdue:
-          (slackOIsOverdue != null
-              ? slackOIsOverdue.value
-              : this.slackOIsOverdue),
+      r5a4x8OLoanGid: (r5a4x8OLoanGid != null
+          ? r5a4x8OLoanGid.value
+          : this.r5a4x8OLoanGid),
+      n410zdOLoanTime: (n410zdOLoanTime != null
+          ? n410zdOLoanTime.value
+          : this.n410zdOLoanTime),
+      r5k31qODueTime: (r5k31qODueTime != null
+          ? r5k31qODueTime.value
+          : this.r5k31qODueTime),
+      wantonlyOLoanLeftAmount: (wantonlyOLoanLeftAmount != null
+          ? wantonlyOLoanLeftAmount.value
+          : this.wantonlyOLoanLeftAmount),
+      retiaryOLoanAmount: (retiaryOLoanAmount != null
+          ? retiaryOLoanAmount.value
+          : this.retiaryOLoanAmount),
+      d95091ORepaymentStatus: (d95091ORepaymentStatus != null
+          ? d95091ORepaymentStatus.value
+          : this.d95091ORepaymentStatus),
+      suffOLoanStatus: (suffOLoanStatus != null
+          ? suffOLoanStatus.value
+          : this.suffOLoanStatus),
+      feminieOCardAccount: (feminieOCardAccount != null
+          ? feminieOCardAccount.value
+          : this.feminieOCardAccount),
+      ah1e18OBillStatus: (ah1e18OBillStatus != null
+          ? ah1e18OBillStatus.value
+          : this.ah1e18OBillStatus),
+      coandaODueDays: (coandaODueDays != null
+          ? coandaODueDays.value
+          : this.coandaODueDays),
+      vx4165OFailReason: (vx4165OFailReason != null
+          ? vx4165OFailReason.value
+          : this.vx4165OFailReason),
+      pinionOUserCouponGid: (pinionOUserCouponGid != null
+          ? pinionOUserCouponGid.value
+          : this.pinionOUserCouponGid),
+      sk6s63OCouponAmount: (sk6s63OCouponAmount != null
+          ? sk6s63OCouponAmount.value
+          : this.sk6s63OCouponAmount),
+      mxs06uOApplyStatus: (mxs06uOApplyStatus != null
+          ? mxs06uOApplyStatus.value
+          : this.mxs06uOApplyStatus),
+      ez64t7OPeriodCount: (ez64t7OPeriodCount != null
+          ? ez64t7OPeriodCount.value
+          : this.ez64t7OPeriodCount),
+      cherubimOOrderStatus: (cherubimOOrderStatus != null
+          ? cherubimOOrderStatus.value
+          : this.cherubimOOrderStatus),
+      encloseOOrderTime: (encloseOOrderTime != null
+          ? encloseOOrderTime.value
+          : this.encloseOOrderTime),
+      wa5f08OOrderDueDays: (wa5f08OOrderDueDays != null
+          ? wa5f08OOrderDueDays.value
+          : this.wa5f08OOrderDueDays),
+      iy8ujyOIsShowTime: (iy8ujyOIsShowTime != null
+          ? iy8ujyOIsShowTime.value
+          : this.iy8ujyOIsShowTime),
+      kinkyOOrderAmount: (kinkyOOrderAmount != null
+          ? kinkyOOrderAmount.value
+          : this.kinkyOOrderAmount),
+      outdoOPlanSimpleList: (outdoOPlanSimpleList != null
+          ? outdoOPlanSimpleList.value
+          : this.outdoOPlanSimpleList),
+      slackOIsOverdue: (slackOIsOverdue != null
+          ? slackOIsOverdue.value
+          : this.slackOIsOverdue),
       remark: (remark != null ? remark.value : this.remark),
-      kc1347OEnableRenew:
-          (kc1347OEnableRenew != null
-              ? kc1347OEnableRenew.value
-              : this.kc1347OEnableRenew),
+      kc1347OEnableRenew: (kc1347OEnableRenew != null
+          ? kc1347OEnableRenew.value
+          : this.kc1347OEnableRenew),
     );
   }
 }
@@ -19968,14 +19517,12 @@ extension $HomeInfoResp$LysogenOSpareProductGroup$ItemExtension
     Wrapped<List<HomeInfoResp$LysogenOSpareProductGroup$Item$List$Item>?>? list,
   }) {
     return HomeInfoResp$LysogenOSpareProductGroup$Item(
-      b49d07OProductPeriodId:
-          (b49d07OProductPeriodId != null
-              ? b49d07OProductPeriodId.value
-              : this.b49d07OProductPeriodId),
-      faroucheOIsLock:
-          (faroucheOIsLock != null
-              ? faroucheOIsLock.value
-              : this.faroucheOIsLock),
+      b49d07OProductPeriodId: (b49d07OProductPeriodId != null
+          ? b49d07OProductPeriodId.value
+          : this.b49d07OProductPeriodId),
+      faroucheOIsLock: (faroucheOIsLock != null
+          ? faroucheOIsLock.value
+          : this.faroucheOIsLock),
       list: (list != null ? list.value : this.list),
     );
   }
@@ -20168,52 +19715,42 @@ extension $HomeInfoResp$AssurOFaceList$ItemExtension
     Wrapped<String?>? i41lj0OProductTags,
   }) {
     return HomeInfoResp$AssurOFaceList$Item(
-      foreyardOProductId:
-          (foreyardOProductId != null
-              ? foreyardOProductId.value
-              : this.foreyardOProductId),
-      za6d92OProductName:
-          (za6d92OProductName != null
-              ? za6d92OProductName.value
-              : this.za6d92OProductName),
-      b49d07OProductPeriodId:
-          (b49d07OProductPeriodId != null
-              ? b49d07OProductPeriodId.value
-              : this.b49d07OProductPeriodId),
-      peddlerOPeriodCountId:
-          (peddlerOPeriodCountId != null
-              ? peddlerOPeriodCountId.value
-              : this.peddlerOPeriodCountId),
-      morticeOFeeTypeId:
-          (morticeOFeeTypeId != null
-              ? morticeOFeeTypeId.value
-              : this.morticeOFeeTypeId),
-      faroucheOIsLock:
-          (faroucheOIsLock != null
-              ? faroucheOIsLock.value
-              : this.faroucheOIsLock),
-      mojr11OLoanRangeMin:
-          (mojr11OLoanRangeMin != null
-              ? mojr11OLoanRangeMin.value
-              : this.mojr11OLoanRangeMin),
-      xuwh2oOLoanRangeMax:
-          (xuwh2oOLoanRangeMax != null
-              ? xuwh2oOLoanRangeMax.value
-              : this.xuwh2oOLoanRangeMax),
-      marrowOLoanRangeUnit:
-          (marrowOLoanRangeUnit != null
-              ? marrowOLoanRangeUnit.value
-              : this.marrowOLoanRangeUnit),
-      newbornOSigPeriod:
-          (newbornOSigPeriod != null
-              ? newbornOSigPeriod.value
-              : this.newbornOSigPeriod),
-      elbaOSigRate:
-          (elbaOSigRate != null ? elbaOSigRate.value : this.elbaOSigRate),
-      i41lj0OProductTags:
-          (i41lj0OProductTags != null
-              ? i41lj0OProductTags.value
-              : this.i41lj0OProductTags),
+      foreyardOProductId: (foreyardOProductId != null
+          ? foreyardOProductId.value
+          : this.foreyardOProductId),
+      za6d92OProductName: (za6d92OProductName != null
+          ? za6d92OProductName.value
+          : this.za6d92OProductName),
+      b49d07OProductPeriodId: (b49d07OProductPeriodId != null
+          ? b49d07OProductPeriodId.value
+          : this.b49d07OProductPeriodId),
+      peddlerOPeriodCountId: (peddlerOPeriodCountId != null
+          ? peddlerOPeriodCountId.value
+          : this.peddlerOPeriodCountId),
+      morticeOFeeTypeId: (morticeOFeeTypeId != null
+          ? morticeOFeeTypeId.value
+          : this.morticeOFeeTypeId),
+      faroucheOIsLock: (faroucheOIsLock != null
+          ? faroucheOIsLock.value
+          : this.faroucheOIsLock),
+      mojr11OLoanRangeMin: (mojr11OLoanRangeMin != null
+          ? mojr11OLoanRangeMin.value
+          : this.mojr11OLoanRangeMin),
+      xuwh2oOLoanRangeMax: (xuwh2oOLoanRangeMax != null
+          ? xuwh2oOLoanRangeMax.value
+          : this.xuwh2oOLoanRangeMax),
+      marrowOLoanRangeUnit: (marrowOLoanRangeUnit != null
+          ? marrowOLoanRangeUnit.value
+          : this.marrowOLoanRangeUnit),
+      newbornOSigPeriod: (newbornOSigPeriod != null
+          ? newbornOSigPeriod.value
+          : this.newbornOSigPeriod),
+      elbaOSigRate: (elbaOSigRate != null
+          ? elbaOSigRate.value
+          : this.elbaOSigRate),
+      i41lj0OProductTags: (i41lj0OProductTags != null
+          ? i41lj0OProductTags.value
+          : this.i41lj0OProductTags),
     );
   }
 }
@@ -20406,52 +19943,42 @@ extension $HomeInfoResp$ParryOSpareFaceList$ItemExtension
     Wrapped<String?>? i41lj0OProductTags,
   }) {
     return HomeInfoResp$ParryOSpareFaceList$Item(
-      foreyardOProductId:
-          (foreyardOProductId != null
-              ? foreyardOProductId.value
-              : this.foreyardOProductId),
-      za6d92OProductName:
-          (za6d92OProductName != null
-              ? za6d92OProductName.value
-              : this.za6d92OProductName),
-      b49d07OProductPeriodId:
-          (b49d07OProductPeriodId != null
-              ? b49d07OProductPeriodId.value
-              : this.b49d07OProductPeriodId),
-      peddlerOPeriodCountId:
-          (peddlerOPeriodCountId != null
-              ? peddlerOPeriodCountId.value
-              : this.peddlerOPeriodCountId),
-      morticeOFeeTypeId:
-          (morticeOFeeTypeId != null
-              ? morticeOFeeTypeId.value
-              : this.morticeOFeeTypeId),
-      faroucheOIsLock:
-          (faroucheOIsLock != null
-              ? faroucheOIsLock.value
-              : this.faroucheOIsLock),
-      mojr11OLoanRangeMin:
-          (mojr11OLoanRangeMin != null
-              ? mojr11OLoanRangeMin.value
-              : this.mojr11OLoanRangeMin),
-      xuwh2oOLoanRangeMax:
-          (xuwh2oOLoanRangeMax != null
-              ? xuwh2oOLoanRangeMax.value
-              : this.xuwh2oOLoanRangeMax),
-      marrowOLoanRangeUnit:
-          (marrowOLoanRangeUnit != null
-              ? marrowOLoanRangeUnit.value
-              : this.marrowOLoanRangeUnit),
-      newbornOSigPeriod:
-          (newbornOSigPeriod != null
-              ? newbornOSigPeriod.value
-              : this.newbornOSigPeriod),
-      elbaOSigRate:
-          (elbaOSigRate != null ? elbaOSigRate.value : this.elbaOSigRate),
-      i41lj0OProductTags:
-          (i41lj0OProductTags != null
-              ? i41lj0OProductTags.value
-              : this.i41lj0OProductTags),
+      foreyardOProductId: (foreyardOProductId != null
+          ? foreyardOProductId.value
+          : this.foreyardOProductId),
+      za6d92OProductName: (za6d92OProductName != null
+          ? za6d92OProductName.value
+          : this.za6d92OProductName),
+      b49d07OProductPeriodId: (b49d07OProductPeriodId != null
+          ? b49d07OProductPeriodId.value
+          : this.b49d07OProductPeriodId),
+      peddlerOPeriodCountId: (peddlerOPeriodCountId != null
+          ? peddlerOPeriodCountId.value
+          : this.peddlerOPeriodCountId),
+      morticeOFeeTypeId: (morticeOFeeTypeId != null
+          ? morticeOFeeTypeId.value
+          : this.morticeOFeeTypeId),
+      faroucheOIsLock: (faroucheOIsLock != null
+          ? faroucheOIsLock.value
+          : this.faroucheOIsLock),
+      mojr11OLoanRangeMin: (mojr11OLoanRangeMin != null
+          ? mojr11OLoanRangeMin.value
+          : this.mojr11OLoanRangeMin),
+      xuwh2oOLoanRangeMax: (xuwh2oOLoanRangeMax != null
+          ? xuwh2oOLoanRangeMax.value
+          : this.xuwh2oOLoanRangeMax),
+      marrowOLoanRangeUnit: (marrowOLoanRangeUnit != null
+          ? marrowOLoanRangeUnit.value
+          : this.marrowOLoanRangeUnit),
+      newbornOSigPeriod: (newbornOSigPeriod != null
+          ? newbornOSigPeriod.value
+          : this.newbornOSigPeriod),
+      elbaOSigRate: (elbaOSigRate != null
+          ? elbaOSigRate.value
+          : this.elbaOSigRate),
+      i41lj0OProductTags: (i41lj0OProductTags != null
+          ? i41lj0OProductTags.value
+          : this.i41lj0OProductTags),
     );
   }
 }
@@ -20607,34 +20134,29 @@ extension $HomeInfoResp$S2c1wyOAppCoLoanGpDetailPOList$ItemExtension
     Wrapped<bool?>? lubricOGpStatus,
   }) {
     return HomeInfoResp$S2c1wyOAppCoLoanGpDetailPOList$Item(
-      audacityOAppTags:
-          (audacityOAppTags != null
-              ? audacityOAppTags.value
-              : this.audacityOAppTags),
-      es8l4kOCoLoanAppName:
-          (es8l4kOCoLoanAppName != null
-              ? es8l4kOCoLoanAppName.value
-              : this.es8l4kOCoLoanAppName),
-      fatherlyOShowAppName:
-          (fatherlyOShowAppName != null
-              ? fatherlyOShowAppName.value
-              : this.fatherlyOShowAppName),
-      n1s2v2OPackageName:
-          (n1s2v2OPackageName != null
-              ? n1s2v2OPackageName.value
-              : this.n1s2v2OPackageName),
+      audacityOAppTags: (audacityOAppTags != null
+          ? audacityOAppTags.value
+          : this.audacityOAppTags),
+      es8l4kOCoLoanAppName: (es8l4kOCoLoanAppName != null
+          ? es8l4kOCoLoanAppName.value
+          : this.es8l4kOCoLoanAppName),
+      fatherlyOShowAppName: (fatherlyOShowAppName != null
+          ? fatherlyOShowAppName.value
+          : this.fatherlyOShowAppName),
+      n1s2v2OPackageName: (n1s2v2OPackageName != null
+          ? n1s2v2OPackageName.value
+          : this.n1s2v2OPackageName),
       a2787eOLogo: (a2787eOLogo != null ? a2787eOLogo.value : this.a2787eOLogo),
       ui1pz2OLink: (ui1pz2OLink != null ? ui1pz2OLink.value : this.ui1pz2OLink),
-      o053asOAppDesc:
-          (o053asOAppDesc != null ? o053asOAppDesc.value : this.o053asOAppDesc),
-      thousandOIsEffect:
-          (thousandOIsEffect != null
-              ? thousandOIsEffect.value
-              : this.thousandOIsEffect),
-      lubricOGpStatus:
-          (lubricOGpStatus != null
-              ? lubricOGpStatus.value
-              : this.lubricOGpStatus),
+      o053asOAppDesc: (o053asOAppDesc != null
+          ? o053asOAppDesc.value
+          : this.o053asOAppDesc),
+      thousandOIsEffect: (thousandOIsEffect != null
+          ? thousandOIsEffect.value
+          : this.thousandOIsEffect),
+      lubricOGpStatus: (lubricOGpStatus != null
+          ? lubricOGpStatus.value
+          : this.lubricOGpStatus),
     );
   }
 }
@@ -20642,9 +20164,9 @@ extension $HomeInfoResp$S2c1wyOAppCoLoanGpDetailPOList$ItemExtension
 @JsonSerializable(explicitToJson: true)
 class PicUploadReqResp$Data {
   const PicUploadReqResp$Data({
-    required this.raiaOUserGid,
-    required this.gx0f5kOPictureUrl,
-    required this.nvooyfOObjectKey,
+    this.raiaOUserGid,
+    this.gx0f5kOPictureUrl,
+    this.nvooyfOObjectKey,
   });
 
   @JsonKey(name: 'raia')
@@ -20708,21 +20230,20 @@ extension $PicUploadReqResp$DataExtension on PicUploadReqResp$Data {
   }
 
   PicUploadReqResp$Data copyWithWrapped({
-    Wrapped<String>? raiaOUserGid,
-    Wrapped<String>? gx0f5kOPictureUrl,
-    Wrapped<String>? nvooyfOObjectKey,
+    Wrapped<String?>? raiaOUserGid,
+    Wrapped<String?>? gx0f5kOPictureUrl,
+    Wrapped<String?>? nvooyfOObjectKey,
   }) {
     return PicUploadReqResp$Data(
-      raiaOUserGid:
-          (raiaOUserGid != null ? raiaOUserGid.value : this.raiaOUserGid),
-      gx0f5kOPictureUrl:
-          (gx0f5kOPictureUrl != null
-              ? gx0f5kOPictureUrl.value
-              : this.gx0f5kOPictureUrl),
-      nvooyfOObjectKey:
-          (nvooyfOObjectKey != null
-              ? nvooyfOObjectKey.value
-              : this.nvooyfOObjectKey),
+      raiaOUserGid: (raiaOUserGid != null
+          ? raiaOUserGid.value
+          : this.raiaOUserGid),
+      gx0f5kOPictureUrl: (gx0f5kOPictureUrl != null
+          ? gx0f5kOPictureUrl.value
+          : this.gx0f5kOPictureUrl),
+      nvooyfOObjectKey: (nvooyfOObjectKey != null
+          ? nvooyfOObjectKey.value
+          : this.nvooyfOObjectKey),
     );
   }
 }
@@ -20998,78 +20519,63 @@ extension $LoanPreInfoResp$Y5695eOProductFactoryExtension
     Wrapped<int?>? comfortOProductType,
   }) {
     return LoanPreInfoResp$Y5695eOProductFactory(
-      foreyardOProductId:
-          (foreyardOProductId != null
-              ? foreyardOProductId.value
-              : this.foreyardOProductId),
-      za6d92OProductName:
-          (za6d92OProductName != null
-              ? za6d92OProductName.value
-              : this.za6d92OProductName),
-      om06ldOProductPeriod:
-          (om06ldOProductPeriod != null
-              ? om06ldOProductPeriod.value
-              : this.om06ldOProductPeriod),
-      ez64t7OPeriodCount:
-          (ez64t7OPeriodCount != null
-              ? ez64t7OPeriodCount.value
-              : this.ez64t7OPeriodCount),
-      ningsiaOPeriodRate:
-          (ningsiaOPeriodRate != null
-              ? ningsiaOPeriodRate.value
-              : this.ningsiaOPeriodRate),
-      spinachyOLoanPeriod:
-          (spinachyOLoanPeriod != null
-              ? spinachyOLoanPeriod.value
-              : this.spinachyOLoanPeriod),
-      v4nynoOFeeType:
-          (v4nynoOFeeType != null ? v4nynoOFeeType.value : this.v4nynoOFeeType),
-      u26p9dODueRateId:
-          (u26p9dODueRateId != null
-              ? u26p9dODueRateId.value
-              : this.u26p9dODueRateId),
-      j4n2j6ODueRate:
-          (j4n2j6ODueRate != null ? j4n2j6ODueRate.value : this.j4n2j6ODueRate),
-      ltjgODueManageRate:
-          (ltjgODueManageRate != null
-              ? ltjgODueManageRate.value
-              : this.ltjgODueManageRate),
-      stropODueManageDay:
-          (stropODueManageDay != null
-              ? stropODueManageDay.value
-              : this.stropODueManageDay),
-      uppieODueStartDay:
-          (uppieODueStartDay != null
-              ? uppieODueStartDay.value
-              : this.uppieODueStartDay),
-      dandyismODueMaxLimit:
-          (dandyismODueMaxLimit != null
-              ? dandyismODueMaxLimit.value
-              : this.dandyismODueMaxLimit),
-      mojr11OLoanRangeMin:
-          (mojr11OLoanRangeMin != null
-              ? mojr11OLoanRangeMin.value
-              : this.mojr11OLoanRangeMin),
-      xuwh2oOLoanRangeMax:
-          (xuwh2oOLoanRangeMax != null
-              ? xuwh2oOLoanRangeMax.value
-              : this.xuwh2oOLoanRangeMax),
-      marrowOLoanRangeUnit:
-          (marrowOLoanRangeUnit != null
-              ? marrowOLoanRangeUnit.value
-              : this.marrowOLoanRangeUnit),
-      i41lj0OProductTags:
-          (i41lj0OProductTags != null
-              ? i41lj0OProductTags.value
-              : this.i41lj0OProductTags),
-      dieterOProductTagsList:
-          (dieterOProductTagsList != null
-              ? dieterOProductTagsList.value
-              : this.dieterOProductTagsList),
-      comfortOProductType:
-          (comfortOProductType != null
-              ? comfortOProductType.value
-              : this.comfortOProductType),
+      foreyardOProductId: (foreyardOProductId != null
+          ? foreyardOProductId.value
+          : this.foreyardOProductId),
+      za6d92OProductName: (za6d92OProductName != null
+          ? za6d92OProductName.value
+          : this.za6d92OProductName),
+      om06ldOProductPeriod: (om06ldOProductPeriod != null
+          ? om06ldOProductPeriod.value
+          : this.om06ldOProductPeriod),
+      ez64t7OPeriodCount: (ez64t7OPeriodCount != null
+          ? ez64t7OPeriodCount.value
+          : this.ez64t7OPeriodCount),
+      ningsiaOPeriodRate: (ningsiaOPeriodRate != null
+          ? ningsiaOPeriodRate.value
+          : this.ningsiaOPeriodRate),
+      spinachyOLoanPeriod: (spinachyOLoanPeriod != null
+          ? spinachyOLoanPeriod.value
+          : this.spinachyOLoanPeriod),
+      v4nynoOFeeType: (v4nynoOFeeType != null
+          ? v4nynoOFeeType.value
+          : this.v4nynoOFeeType),
+      u26p9dODueRateId: (u26p9dODueRateId != null
+          ? u26p9dODueRateId.value
+          : this.u26p9dODueRateId),
+      j4n2j6ODueRate: (j4n2j6ODueRate != null
+          ? j4n2j6ODueRate.value
+          : this.j4n2j6ODueRate),
+      ltjgODueManageRate: (ltjgODueManageRate != null
+          ? ltjgODueManageRate.value
+          : this.ltjgODueManageRate),
+      stropODueManageDay: (stropODueManageDay != null
+          ? stropODueManageDay.value
+          : this.stropODueManageDay),
+      uppieODueStartDay: (uppieODueStartDay != null
+          ? uppieODueStartDay.value
+          : this.uppieODueStartDay),
+      dandyismODueMaxLimit: (dandyismODueMaxLimit != null
+          ? dandyismODueMaxLimit.value
+          : this.dandyismODueMaxLimit),
+      mojr11OLoanRangeMin: (mojr11OLoanRangeMin != null
+          ? mojr11OLoanRangeMin.value
+          : this.mojr11OLoanRangeMin),
+      xuwh2oOLoanRangeMax: (xuwh2oOLoanRangeMax != null
+          ? xuwh2oOLoanRangeMax.value
+          : this.xuwh2oOLoanRangeMax),
+      marrowOLoanRangeUnit: (marrowOLoanRangeUnit != null
+          ? marrowOLoanRangeUnit.value
+          : this.marrowOLoanRangeUnit),
+      i41lj0OProductTags: (i41lj0OProductTags != null
+          ? i41lj0OProductTags.value
+          : this.i41lj0OProductTags),
+      dieterOProductTagsList: (dieterOProductTagsList != null
+          ? dieterOProductTagsList.value
+          : this.dieterOProductTagsList),
+      comfortOProductType: (comfortOProductType != null
+          ? comfortOProductType.value
+          : this.comfortOProductType),
     );
   }
 }
@@ -21093,8 +20599,8 @@ class LoanPreInfoResp$GlacisORepaymentPlanList$Item {
     this.retiaryOLoanAmount,
     this.timesOBillAmount,
     this.fl92yrOBillLeftAmount,
-    required this.uqm81lOPrincipalAmount,
-    required this.v6e22nOPrincipalLeftAmount,
+    this.uqm81lOPrincipalAmount,
+    this.v6e22nOPrincipalLeftAmount,
     this.wantonlyOLoanLeftAmount,
     this.pinionOUserCouponGid,
     this.sk6s63OCouponAmount,
@@ -21110,7 +20616,7 @@ class LoanPreInfoResp$GlacisORepaymentPlanList$Item {
   @JsonKey(name: 'r5a4x8')
   final int? r5a4x8OLoanGid;
   @JsonKey(name: 'raia')
-  final int? raiaOUserGid;
+  final String? raiaOUserGid;
   @JsonKey(name: 'ih2upq')
   final int? ih2upqOCtPeriod;
   @JsonKey(name: 'spinachy')
@@ -21354,7 +20860,7 @@ extension $LoanPreInfoResp$GlacisORepaymentPlanList$ItemExtension
   LoanPreInfoResp$GlacisORepaymentPlanList$Item copyWith({
     int? imprintOPlanGid,
     int? r5a4x8OLoanGid,
-    int? raiaOUserGid,
+    String? raiaOUserGid,
     int? ih2upqOCtPeriod,
     int? spinachyOLoanPeriod,
     int? ez64t7OPeriodCount,
@@ -21417,7 +20923,7 @@ extension $LoanPreInfoResp$GlacisORepaymentPlanList$ItemExtension
   LoanPreInfoResp$GlacisORepaymentPlanList$Item copyWithWrapped({
     Wrapped<int?>? imprintOPlanGid,
     Wrapped<int?>? r5a4x8OLoanGid,
-    Wrapped<int?>? raiaOUserGid,
+    Wrapped<String?>? raiaOUserGid,
     Wrapped<int?>? ih2upqOCtPeriod,
     Wrapped<int?>? spinachyOLoanPeriod,
     Wrapped<int?>? ez64t7OPeriodCount,
@@ -21431,8 +20937,8 @@ extension $LoanPreInfoResp$GlacisORepaymentPlanList$ItemExtension
     Wrapped<double?>? retiaryOLoanAmount,
     Wrapped<double?>? timesOBillAmount,
     Wrapped<double?>? fl92yrOBillLeftAmount,
-    Wrapped<double>? uqm81lOPrincipalAmount,
-    Wrapped<double>? v6e22nOPrincipalLeftAmount,
+    Wrapped<double?>? uqm81lOPrincipalAmount,
+    Wrapped<double?>? v6e22nOPrincipalLeftAmount,
     Wrapped<double?>? wantonlyOLoanLeftAmount,
     Wrapped<int?>? pinionOUserCouponGid,
     Wrapped<double?>? sk6s63OCouponAmount,
@@ -21443,100 +20949,84 @@ extension $LoanPreInfoResp$GlacisORepaymentPlanList$ItemExtension
     Wrapped<String?>? z38e62OOrderGid,
   }) {
     return LoanPreInfoResp$GlacisORepaymentPlanList$Item(
-      imprintOPlanGid:
-          (imprintOPlanGid != null
-              ? imprintOPlanGid.value
-              : this.imprintOPlanGid),
-      r5a4x8OLoanGid:
-          (r5a4x8OLoanGid != null ? r5a4x8OLoanGid.value : this.r5a4x8OLoanGid),
-      raiaOUserGid:
-          (raiaOUserGid != null ? raiaOUserGid.value : this.raiaOUserGid),
-      ih2upqOCtPeriod:
-          (ih2upqOCtPeriod != null
-              ? ih2upqOCtPeriod.value
-              : this.ih2upqOCtPeriod),
-      spinachyOLoanPeriod:
-          (spinachyOLoanPeriod != null
-              ? spinachyOLoanPeriod.value
-              : this.spinachyOLoanPeriod),
-      ez64t7OPeriodCount:
-          (ez64t7OPeriodCount != null
-              ? ez64t7OPeriodCount.value
-              : this.ez64t7OPeriodCount),
-      foreyardOProductId:
-          (foreyardOProductId != null
-              ? foreyardOProductId.value
-              : this.foreyardOProductId),
-      n410zdOLoanTime:
-          (n410zdOLoanTime != null
-              ? n410zdOLoanTime.value
-              : this.n410zdOLoanTime),
-      u2g032OStartTime:
-          (u2g032OStartTime != null
-              ? u2g032OStartTime.value
-              : this.u2g032OStartTime),
-      r5k31qODueTime:
-          (r5k31qODueTime != null ? r5k31qODueTime.value : this.r5k31qODueTime),
-      suffOLoanStatus:
-          (suffOLoanStatus != null
-              ? suffOLoanStatus.value
-              : this.suffOLoanStatus),
-      brantailOTotalLoanAmount:
-          (brantailOTotalLoanAmount != null
-              ? brantailOTotalLoanAmount.value
-              : this.brantailOTotalLoanAmount),
-      c5ju9nOTotalLoanFee:
-          (c5ju9nOTotalLoanFee != null
-              ? c5ju9nOTotalLoanFee.value
-              : this.c5ju9nOTotalLoanFee),
-      retiaryOLoanAmount:
-          (retiaryOLoanAmount != null
-              ? retiaryOLoanAmount.value
-              : this.retiaryOLoanAmount),
-      timesOBillAmount:
-          (timesOBillAmount != null
-              ? timesOBillAmount.value
-              : this.timesOBillAmount),
-      fl92yrOBillLeftAmount:
-          (fl92yrOBillLeftAmount != null
-              ? fl92yrOBillLeftAmount.value
-              : this.fl92yrOBillLeftAmount),
-      uqm81lOPrincipalAmount:
-          (uqm81lOPrincipalAmount != null
-              ? uqm81lOPrincipalAmount.value
-              : this.uqm81lOPrincipalAmount),
-      v6e22nOPrincipalLeftAmount:
-          (v6e22nOPrincipalLeftAmount != null
-              ? v6e22nOPrincipalLeftAmount.value
-              : this.v6e22nOPrincipalLeftAmount),
-      wantonlyOLoanLeftAmount:
-          (wantonlyOLoanLeftAmount != null
-              ? wantonlyOLoanLeftAmount.value
-              : this.wantonlyOLoanLeftAmount),
-      pinionOUserCouponGid:
-          (pinionOUserCouponGid != null
-              ? pinionOUserCouponGid.value
-              : this.pinionOUserCouponGid),
-      sk6s63OCouponAmount:
-          (sk6s63OCouponAmount != null
-              ? sk6s63OCouponAmount.value
-              : this.sk6s63OCouponAmount),
-      v4nynoOFeeType:
-          (v4nynoOFeeType != null ? v4nynoOFeeType.value : this.v4nynoOFeeType),
-      e88wy1OLoanFee:
-          (e88wy1OLoanFee != null ? e88wy1OLoanFee.value : this.e88wy1OLoanFee),
-      jp689uOTimeZone:
-          (jp689uOTimeZone != null
-              ? jp689uOTimeZone.value
-              : this.jp689uOTimeZone),
-      d7x52pOBizChannel:
-          (d7x52pOBizChannel != null
-              ? d7x52pOBizChannel.value
-              : this.d7x52pOBizChannel),
-      z38e62OOrderGid:
-          (z38e62OOrderGid != null
-              ? z38e62OOrderGid.value
-              : this.z38e62OOrderGid),
+      imprintOPlanGid: (imprintOPlanGid != null
+          ? imprintOPlanGid.value
+          : this.imprintOPlanGid),
+      r5a4x8OLoanGid: (r5a4x8OLoanGid != null
+          ? r5a4x8OLoanGid.value
+          : this.r5a4x8OLoanGid),
+      raiaOUserGid: (raiaOUserGid != null
+          ? raiaOUserGid.value
+          : this.raiaOUserGid),
+      ih2upqOCtPeriod: (ih2upqOCtPeriod != null
+          ? ih2upqOCtPeriod.value
+          : this.ih2upqOCtPeriod),
+      spinachyOLoanPeriod: (spinachyOLoanPeriod != null
+          ? spinachyOLoanPeriod.value
+          : this.spinachyOLoanPeriod),
+      ez64t7OPeriodCount: (ez64t7OPeriodCount != null
+          ? ez64t7OPeriodCount.value
+          : this.ez64t7OPeriodCount),
+      foreyardOProductId: (foreyardOProductId != null
+          ? foreyardOProductId.value
+          : this.foreyardOProductId),
+      n410zdOLoanTime: (n410zdOLoanTime != null
+          ? n410zdOLoanTime.value
+          : this.n410zdOLoanTime),
+      u2g032OStartTime: (u2g032OStartTime != null
+          ? u2g032OStartTime.value
+          : this.u2g032OStartTime),
+      r5k31qODueTime: (r5k31qODueTime != null
+          ? r5k31qODueTime.value
+          : this.r5k31qODueTime),
+      suffOLoanStatus: (suffOLoanStatus != null
+          ? suffOLoanStatus.value
+          : this.suffOLoanStatus),
+      brantailOTotalLoanAmount: (brantailOTotalLoanAmount != null
+          ? brantailOTotalLoanAmount.value
+          : this.brantailOTotalLoanAmount),
+      c5ju9nOTotalLoanFee: (c5ju9nOTotalLoanFee != null
+          ? c5ju9nOTotalLoanFee.value
+          : this.c5ju9nOTotalLoanFee),
+      retiaryOLoanAmount: (retiaryOLoanAmount != null
+          ? retiaryOLoanAmount.value
+          : this.retiaryOLoanAmount),
+      timesOBillAmount: (timesOBillAmount != null
+          ? timesOBillAmount.value
+          : this.timesOBillAmount),
+      fl92yrOBillLeftAmount: (fl92yrOBillLeftAmount != null
+          ? fl92yrOBillLeftAmount.value
+          : this.fl92yrOBillLeftAmount),
+      uqm81lOPrincipalAmount: (uqm81lOPrincipalAmount != null
+          ? uqm81lOPrincipalAmount.value
+          : this.uqm81lOPrincipalAmount),
+      v6e22nOPrincipalLeftAmount: (v6e22nOPrincipalLeftAmount != null
+          ? v6e22nOPrincipalLeftAmount.value
+          : this.v6e22nOPrincipalLeftAmount),
+      wantonlyOLoanLeftAmount: (wantonlyOLoanLeftAmount != null
+          ? wantonlyOLoanLeftAmount.value
+          : this.wantonlyOLoanLeftAmount),
+      pinionOUserCouponGid: (pinionOUserCouponGid != null
+          ? pinionOUserCouponGid.value
+          : this.pinionOUserCouponGid),
+      sk6s63OCouponAmount: (sk6s63OCouponAmount != null
+          ? sk6s63OCouponAmount.value
+          : this.sk6s63OCouponAmount),
+      v4nynoOFeeType: (v4nynoOFeeType != null
+          ? v4nynoOFeeType.value
+          : this.v4nynoOFeeType),
+      e88wy1OLoanFee: (e88wy1OLoanFee != null
+          ? e88wy1OLoanFee.value
+          : this.e88wy1OLoanFee),
+      jp689uOTimeZone: (jp689uOTimeZone != null
+          ? jp689uOTimeZone.value
+          : this.jp689uOTimeZone),
+      d7x52pOBizChannel: (d7x52pOBizChannel != null
+          ? d7x52pOBizChannel.value
+          : this.d7x52pOBizChannel),
+      z38e62OOrderGid: (z38e62OOrderGid != null
+          ? z38e62OOrderGid.value
+          : this.z38e62OOrderGid),
     );
   }
 }
@@ -21656,28 +21146,24 @@ extension $LoanFeeDetailResp$DataExtension on LoanFeeDetailResp$Data {
     Wrapped<bool?>? chagalORepaymentFeeFlag,
   }) {
     return LoanFeeDetailResp$Data(
-      t72jj1OCreditSearchFee:
-          (t72jj1OCreditSearchFee != null
-              ? t72jj1OCreditSearchFee.value
-              : this.t72jj1OCreditSearchFee),
-      cdslOTransferFee:
-          (cdslOTransferFee != null
-              ? cdslOTransferFee.value
-              : this.cdslOTransferFee),
-      badnessOIgvFee:
-          (badnessOIgvFee != null ? badnessOIgvFee.value : this.badnessOIgvFee),
-      meatballOAfterFee:
-          (meatballOAfterFee != null
-              ? meatballOAfterFee.value
-              : this.meatballOAfterFee),
-      g3x614ORepaymentFee:
-          (g3x614ORepaymentFee != null
-              ? g3x614ORepaymentFee.value
-              : this.g3x614ORepaymentFee),
-      chagalORepaymentFeeFlag:
-          (chagalORepaymentFeeFlag != null
-              ? chagalORepaymentFeeFlag.value
-              : this.chagalORepaymentFeeFlag),
+      t72jj1OCreditSearchFee: (t72jj1OCreditSearchFee != null
+          ? t72jj1OCreditSearchFee.value
+          : this.t72jj1OCreditSearchFee),
+      cdslOTransferFee: (cdslOTransferFee != null
+          ? cdslOTransferFee.value
+          : this.cdslOTransferFee),
+      badnessOIgvFee: (badnessOIgvFee != null
+          ? badnessOIgvFee.value
+          : this.badnessOIgvFee),
+      meatballOAfterFee: (meatballOAfterFee != null
+          ? meatballOAfterFee.value
+          : this.meatballOAfterFee),
+      g3x614ORepaymentFee: (g3x614ORepaymentFee != null
+          ? g3x614ORepaymentFee.value
+          : this.g3x614ORepaymentFee),
+      chagalORepaymentFeeFlag: (chagalORepaymentFeeFlag != null
+          ? chagalORepaymentFeeFlag.value
+          : this.chagalORepaymentFeeFlag),
     );
   }
 }
@@ -21747,10 +21233,9 @@ extension $NeedAbandonReasonResp$Du00hsOAbandonReasons$ItemExtension
   }) {
     return NeedAbandonReasonResp$Du00hsOAbandonReasons$Item(
       id: (id != null ? id.value : this.id),
-      fl93q8OAbandonReason:
-          (fl93q8OAbandonReason != null
-              ? fl93q8OAbandonReason.value
-              : this.fl93q8OAbandonReason),
+      fl93q8OAbandonReason: (fl93q8OAbandonReason != null
+          ? fl93q8OAbandonReason.value
+          : this.fl93q8OAbandonReason),
     );
   }
 }
@@ -21844,22 +21329,18 @@ extension $LoanNoticeResp$DataExtension on LoanNoticeResp$Data {
     Wrapped<int?>? diplegiaOUserType,
   }) {
     return LoanNoticeResp$Data(
-      cramboOLoanNoticeList:
-          (cramboOLoanNoticeList != null
-              ? cramboOLoanNoticeList.value
-              : this.cramboOLoanNoticeList),
-      jhxzxdOMainShowFlag:
-          (jhxzxdOMainShowFlag != null
-              ? jhxzxdOMainShowFlag.value
-              : this.jhxzxdOMainShowFlag),
-      qy99sbOLoanShowFlag:
-          (qy99sbOLoanShowFlag != null
-              ? qy99sbOLoanShowFlag.value
-              : this.qy99sbOLoanShowFlag),
-      diplegiaOUserType:
-          (diplegiaOUserType != null
-              ? diplegiaOUserType.value
-              : this.diplegiaOUserType),
+      cramboOLoanNoticeList: (cramboOLoanNoticeList != null
+          ? cramboOLoanNoticeList.value
+          : this.cramboOLoanNoticeList),
+      jhxzxdOMainShowFlag: (jhxzxdOMainShowFlag != null
+          ? jhxzxdOMainShowFlag.value
+          : this.jhxzxdOMainShowFlag),
+      qy99sbOLoanShowFlag: (qy99sbOLoanShowFlag != null
+          ? qy99sbOLoanShowFlag.value
+          : this.qy99sbOLoanShowFlag),
+      diplegiaOUserType: (diplegiaOUserType != null
+          ? diplegiaOUserType.value
+          : this.diplegiaOUserType),
     );
   }
 }
@@ -21898,7 +21379,7 @@ class HomeCouponResp$FireballOUserCouponList$Item {
   @JsonKey(name: 'a17s38')
   final int? a17s38OActivityGid;
   @JsonKey(name: 'raia')
-  final int? raiaOUserGid;
+  final String? raiaOUserGid;
   @JsonKey(name: 'tapette')
   final int? tapetteOCouponGid;
   @JsonKey(name: 'zevto4')
@@ -22094,7 +21575,7 @@ extension $HomeCouponResp$FireballOUserCouponList$ItemExtension
     int? id,
     int? pinionOUserCouponGid,
     int? a17s38OActivityGid,
-    int? raiaOUserGid,
+    String? raiaOUserGid,
     int? tapetteOCouponGid,
     String? zevto4OCouponName,
     int? type,
@@ -22145,7 +21626,7 @@ extension $HomeCouponResp$FireballOUserCouponList$ItemExtension
     Wrapped<int?>? id,
     Wrapped<int?>? pinionOUserCouponGid,
     Wrapped<int?>? a17s38OActivityGid,
-    Wrapped<int?>? raiaOUserGid,
+    Wrapped<String?>? raiaOUserGid,
     Wrapped<int?>? tapetteOCouponGid,
     Wrapped<String?>? zevto4OCouponName,
     Wrapped<int?>? type,
@@ -22167,78 +21648,65 @@ extension $HomeCouponResp$FireballOUserCouponList$ItemExtension
   }) {
     return HomeCouponResp$FireballOUserCouponList$Item(
       id: (id != null ? id.value : this.id),
-      pinionOUserCouponGid:
-          (pinionOUserCouponGid != null
-              ? pinionOUserCouponGid.value
-              : this.pinionOUserCouponGid),
-      a17s38OActivityGid:
-          (a17s38OActivityGid != null
-              ? a17s38OActivityGid.value
-              : this.a17s38OActivityGid),
-      raiaOUserGid:
-          (raiaOUserGid != null ? raiaOUserGid.value : this.raiaOUserGid),
-      tapetteOCouponGid:
-          (tapetteOCouponGid != null
-              ? tapetteOCouponGid.value
-              : this.tapetteOCouponGid),
-      zevto4OCouponName:
-          (zevto4OCouponName != null
-              ? zevto4OCouponName.value
-              : this.zevto4OCouponName),
+      pinionOUserCouponGid: (pinionOUserCouponGid != null
+          ? pinionOUserCouponGid.value
+          : this.pinionOUserCouponGid),
+      a17s38OActivityGid: (a17s38OActivityGid != null
+          ? a17s38OActivityGid.value
+          : this.a17s38OActivityGid),
+      raiaOUserGid: (raiaOUserGid != null
+          ? raiaOUserGid.value
+          : this.raiaOUserGid),
+      tapetteOCouponGid: (tapetteOCouponGid != null
+          ? tapetteOCouponGid.value
+          : this.tapetteOCouponGid),
+      zevto4OCouponName: (zevto4OCouponName != null
+          ? zevto4OCouponName.value
+          : this.zevto4OCouponName),
       type: (type != null ? type.value : this.type),
-      h05e55OLowerLimitAmount:
-          (h05e55OLowerLimitAmount != null
-              ? h05e55OLowerLimitAmount.value
-              : this.h05e55OLowerLimitAmount),
-      fbctseOCouponValue:
-          (fbctseOCouponValue != null
-              ? fbctseOCouponValue.value
-              : this.fbctseOCouponValue),
-      mammiferOEffectDays:
-          (mammiferOEffectDays != null
-              ? mammiferOEffectDays.value
-              : this.mammiferOEffectDays),
-      u2g032OStartTime:
-          (u2g032OStartTime != null
-              ? u2g032OStartTime.value
-              : this.u2g032OStartTime),
-      colubridOEndTime:
-          (colubridOEndTime != null
-              ? colubridOEndTime.value
-              : this.colubridOEndTime),
-      pqf70dOIsDeleted:
-          (pqf70dOIsDeleted != null
-              ? pqf70dOIsDeleted.value
-              : this.pqf70dOIsDeleted),
-      mtsv37OIsUsed:
-          (mtsv37OIsUsed != null ? mtsv37OIsUsed.value : this.mtsv37OIsUsed),
+      h05e55OLowerLimitAmount: (h05e55OLowerLimitAmount != null
+          ? h05e55OLowerLimitAmount.value
+          : this.h05e55OLowerLimitAmount),
+      fbctseOCouponValue: (fbctseOCouponValue != null
+          ? fbctseOCouponValue.value
+          : this.fbctseOCouponValue),
+      mammiferOEffectDays: (mammiferOEffectDays != null
+          ? mammiferOEffectDays.value
+          : this.mammiferOEffectDays),
+      u2g032OStartTime: (u2g032OStartTime != null
+          ? u2g032OStartTime.value
+          : this.u2g032OStartTime),
+      colubridOEndTime: (colubridOEndTime != null
+          ? colubridOEndTime.value
+          : this.colubridOEndTime),
+      pqf70dOIsDeleted: (pqf70dOIsDeleted != null
+          ? pqf70dOIsDeleted.value
+          : this.pqf70dOIsDeleted),
+      mtsv37OIsUsed: (mtsv37OIsUsed != null
+          ? mtsv37OIsUsed.value
+          : this.mtsv37OIsUsed),
       remark: (remark != null ? remark.value : this.remark),
-      staticsOCreateTime:
-          (staticsOCreateTime != null
-              ? staticsOCreateTime.value
-              : this.staticsOCreateTime),
-      l16h95OUpdateTime:
-          (l16h95OUpdateTime != null
-              ? l16h95OUpdateTime.value
-              : this.l16h95OUpdateTime),
-      l536ojOCreateUser:
-          (l536ojOCreateUser != null
-              ? l536ojOCreateUser.value
-              : this.l536ojOCreateUser),
-      og8l1yOUpdateUser:
-          (og8l1yOUpdateUser != null
-              ? og8l1yOUpdateUser.value
-              : this.og8l1yOUpdateUser),
-      besiegerOIsReceived:
-          (besiegerOIsReceived != null
-              ? besiegerOIsReceived.value
-              : this.besiegerOIsReceived),
-      bh9cjjOReceiveTime:
-          (bh9cjjOReceiveTime != null
-              ? bh9cjjOReceiveTime.value
-              : this.bh9cjjOReceiveTime),
-      dmza48OUseTime:
-          (dmza48OUseTime != null ? dmza48OUseTime.value : this.dmza48OUseTime),
+      staticsOCreateTime: (staticsOCreateTime != null
+          ? staticsOCreateTime.value
+          : this.staticsOCreateTime),
+      l16h95OUpdateTime: (l16h95OUpdateTime != null
+          ? l16h95OUpdateTime.value
+          : this.l16h95OUpdateTime),
+      l536ojOCreateUser: (l536ojOCreateUser != null
+          ? l536ojOCreateUser.value
+          : this.l536ojOCreateUser),
+      og8l1yOUpdateUser: (og8l1yOUpdateUser != null
+          ? og8l1yOUpdateUser.value
+          : this.og8l1yOUpdateUser),
+      besiegerOIsReceived: (besiegerOIsReceived != null
+          ? besiegerOIsReceived.value
+          : this.besiegerOIsReceived),
+      bh9cjjOReceiveTime: (bh9cjjOReceiveTime != null
+          ? bh9cjjOReceiveTime.value
+          : this.bh9cjjOReceiveTime),
+      dmza48OUseTime: (dmza48OUseTime != null
+          ? dmza48OUseTime.value
+          : this.dmza48OUseTime),
     );
   }
 }
@@ -22277,7 +21745,7 @@ class LoanCouponResp$T933d6OUserCouponAvailableList$Item {
   @JsonKey(name: 'a17s38')
   final int? a17s38OActivityGid;
   @JsonKey(name: 'raia')
-  final int? raiaOUserGid;
+  final String? raiaOUserGid;
   @JsonKey(name: 'tapette')
   final int? tapetteOCouponGid;
   @JsonKey(name: 'zevto4')
@@ -22473,7 +21941,7 @@ extension $LoanCouponResp$T933d6OUserCouponAvailableList$ItemExtension
     int? id,
     int? pinionOUserCouponGid,
     int? a17s38OActivityGid,
-    int? raiaOUserGid,
+    String? raiaOUserGid,
     int? tapetteOCouponGid,
     String? zevto4OCouponName,
     int? type,
@@ -22524,7 +21992,7 @@ extension $LoanCouponResp$T933d6OUserCouponAvailableList$ItemExtension
     Wrapped<int?>? id,
     Wrapped<int?>? pinionOUserCouponGid,
     Wrapped<int?>? a17s38OActivityGid,
-    Wrapped<int?>? raiaOUserGid,
+    Wrapped<String?>? raiaOUserGid,
     Wrapped<int?>? tapetteOCouponGid,
     Wrapped<String?>? zevto4OCouponName,
     Wrapped<int?>? type,
@@ -22546,78 +22014,65 @@ extension $LoanCouponResp$T933d6OUserCouponAvailableList$ItemExtension
   }) {
     return LoanCouponResp$T933d6OUserCouponAvailableList$Item(
       id: (id != null ? id.value : this.id),
-      pinionOUserCouponGid:
-          (pinionOUserCouponGid != null
-              ? pinionOUserCouponGid.value
-              : this.pinionOUserCouponGid),
-      a17s38OActivityGid:
-          (a17s38OActivityGid != null
-              ? a17s38OActivityGid.value
-              : this.a17s38OActivityGid),
-      raiaOUserGid:
-          (raiaOUserGid != null ? raiaOUserGid.value : this.raiaOUserGid),
-      tapetteOCouponGid:
-          (tapetteOCouponGid != null
-              ? tapetteOCouponGid.value
-              : this.tapetteOCouponGid),
-      zevto4OCouponName:
-          (zevto4OCouponName != null
-              ? zevto4OCouponName.value
-              : this.zevto4OCouponName),
+      pinionOUserCouponGid: (pinionOUserCouponGid != null
+          ? pinionOUserCouponGid.value
+          : this.pinionOUserCouponGid),
+      a17s38OActivityGid: (a17s38OActivityGid != null
+          ? a17s38OActivityGid.value
+          : this.a17s38OActivityGid),
+      raiaOUserGid: (raiaOUserGid != null
+          ? raiaOUserGid.value
+          : this.raiaOUserGid),
+      tapetteOCouponGid: (tapetteOCouponGid != null
+          ? tapetteOCouponGid.value
+          : this.tapetteOCouponGid),
+      zevto4OCouponName: (zevto4OCouponName != null
+          ? zevto4OCouponName.value
+          : this.zevto4OCouponName),
       type: (type != null ? type.value : this.type),
-      h05e55OLowerLimitAmount:
-          (h05e55OLowerLimitAmount != null
-              ? h05e55OLowerLimitAmount.value
-              : this.h05e55OLowerLimitAmount),
-      fbctseOCouponValue:
-          (fbctseOCouponValue != null
-              ? fbctseOCouponValue.value
-              : this.fbctseOCouponValue),
-      mammiferOEffectDays:
-          (mammiferOEffectDays != null
-              ? mammiferOEffectDays.value
-              : this.mammiferOEffectDays),
-      u2g032OStartTime:
-          (u2g032OStartTime != null
-              ? u2g032OStartTime.value
-              : this.u2g032OStartTime),
-      colubridOEndTime:
-          (colubridOEndTime != null
-              ? colubridOEndTime.value
-              : this.colubridOEndTime),
-      pqf70dOIsDeleted:
-          (pqf70dOIsDeleted != null
-              ? pqf70dOIsDeleted.value
-              : this.pqf70dOIsDeleted),
-      mtsv37OIsUsed:
-          (mtsv37OIsUsed != null ? mtsv37OIsUsed.value : this.mtsv37OIsUsed),
+      h05e55OLowerLimitAmount: (h05e55OLowerLimitAmount != null
+          ? h05e55OLowerLimitAmount.value
+          : this.h05e55OLowerLimitAmount),
+      fbctseOCouponValue: (fbctseOCouponValue != null
+          ? fbctseOCouponValue.value
+          : this.fbctseOCouponValue),
+      mammiferOEffectDays: (mammiferOEffectDays != null
+          ? mammiferOEffectDays.value
+          : this.mammiferOEffectDays),
+      u2g032OStartTime: (u2g032OStartTime != null
+          ? u2g032OStartTime.value
+          : this.u2g032OStartTime),
+      colubridOEndTime: (colubridOEndTime != null
+          ? colubridOEndTime.value
+          : this.colubridOEndTime),
+      pqf70dOIsDeleted: (pqf70dOIsDeleted != null
+          ? pqf70dOIsDeleted.value
+          : this.pqf70dOIsDeleted),
+      mtsv37OIsUsed: (mtsv37OIsUsed != null
+          ? mtsv37OIsUsed.value
+          : this.mtsv37OIsUsed),
       remark: (remark != null ? remark.value : this.remark),
-      staticsOCreateTime:
-          (staticsOCreateTime != null
-              ? staticsOCreateTime.value
-              : this.staticsOCreateTime),
-      l16h95OUpdateTime:
-          (l16h95OUpdateTime != null
-              ? l16h95OUpdateTime.value
-              : this.l16h95OUpdateTime),
-      l536ojOCreateUser:
-          (l536ojOCreateUser != null
-              ? l536ojOCreateUser.value
-              : this.l536ojOCreateUser),
-      og8l1yOUpdateUser:
-          (og8l1yOUpdateUser != null
-              ? og8l1yOUpdateUser.value
-              : this.og8l1yOUpdateUser),
-      besiegerOIsReceived:
-          (besiegerOIsReceived != null
-              ? besiegerOIsReceived.value
-              : this.besiegerOIsReceived),
-      bh9cjjOReceiveTime:
-          (bh9cjjOReceiveTime != null
-              ? bh9cjjOReceiveTime.value
-              : this.bh9cjjOReceiveTime),
-      dmza48OUseTime:
-          (dmza48OUseTime != null ? dmza48OUseTime.value : this.dmza48OUseTime),
+      staticsOCreateTime: (staticsOCreateTime != null
+          ? staticsOCreateTime.value
+          : this.staticsOCreateTime),
+      l16h95OUpdateTime: (l16h95OUpdateTime != null
+          ? l16h95OUpdateTime.value
+          : this.l16h95OUpdateTime),
+      l536ojOCreateUser: (l536ojOCreateUser != null
+          ? l536ojOCreateUser.value
+          : this.l536ojOCreateUser),
+      og8l1yOUpdateUser: (og8l1yOUpdateUser != null
+          ? og8l1yOUpdateUser.value
+          : this.og8l1yOUpdateUser),
+      besiegerOIsReceived: (besiegerOIsReceived != null
+          ? besiegerOIsReceived.value
+          : this.besiegerOIsReceived),
+      bh9cjjOReceiveTime: (bh9cjjOReceiveTime != null
+          ? bh9cjjOReceiveTime.value
+          : this.bh9cjjOReceiveTime),
+      dmza48OUseTime: (dmza48OUseTime != null
+          ? dmza48OUseTime.value
+          : this.dmza48OUseTime),
     );
   }
 }
@@ -22656,7 +22111,7 @@ class LoanCouponResp$StannateOUserCouponUnavailableList$Item {
   @JsonKey(name: 'a17s38')
   final int? a17s38OActivityGid;
   @JsonKey(name: 'raia')
-  final int? raiaOUserGid;
+  final String? raiaOUserGid;
   @JsonKey(name: 'tapette')
   final int? tapetteOCouponGid;
   @JsonKey(name: 'zevto4')
@@ -22852,7 +22307,7 @@ extension $LoanCouponResp$StannateOUserCouponUnavailableList$ItemExtension
     int? id,
     int? pinionOUserCouponGid,
     int? a17s38OActivityGid,
-    int? raiaOUserGid,
+    String? raiaOUserGid,
     int? tapetteOCouponGid,
     String? zevto4OCouponName,
     int? type,
@@ -22903,7 +22358,7 @@ extension $LoanCouponResp$StannateOUserCouponUnavailableList$ItemExtension
     Wrapped<int?>? id,
     Wrapped<int?>? pinionOUserCouponGid,
     Wrapped<int?>? a17s38OActivityGid,
-    Wrapped<int?>? raiaOUserGid,
+    Wrapped<String?>? raiaOUserGid,
     Wrapped<int?>? tapetteOCouponGid,
     Wrapped<String?>? zevto4OCouponName,
     Wrapped<int?>? type,
@@ -22925,78 +22380,65 @@ extension $LoanCouponResp$StannateOUserCouponUnavailableList$ItemExtension
   }) {
     return LoanCouponResp$StannateOUserCouponUnavailableList$Item(
       id: (id != null ? id.value : this.id),
-      pinionOUserCouponGid:
-          (pinionOUserCouponGid != null
-              ? pinionOUserCouponGid.value
-              : this.pinionOUserCouponGid),
-      a17s38OActivityGid:
-          (a17s38OActivityGid != null
-              ? a17s38OActivityGid.value
-              : this.a17s38OActivityGid),
-      raiaOUserGid:
-          (raiaOUserGid != null ? raiaOUserGid.value : this.raiaOUserGid),
-      tapetteOCouponGid:
-          (tapetteOCouponGid != null
-              ? tapetteOCouponGid.value
-              : this.tapetteOCouponGid),
-      zevto4OCouponName:
-          (zevto4OCouponName != null
-              ? zevto4OCouponName.value
-              : this.zevto4OCouponName),
+      pinionOUserCouponGid: (pinionOUserCouponGid != null
+          ? pinionOUserCouponGid.value
+          : this.pinionOUserCouponGid),
+      a17s38OActivityGid: (a17s38OActivityGid != null
+          ? a17s38OActivityGid.value
+          : this.a17s38OActivityGid),
+      raiaOUserGid: (raiaOUserGid != null
+          ? raiaOUserGid.value
+          : this.raiaOUserGid),
+      tapetteOCouponGid: (tapetteOCouponGid != null
+          ? tapetteOCouponGid.value
+          : this.tapetteOCouponGid),
+      zevto4OCouponName: (zevto4OCouponName != null
+          ? zevto4OCouponName.value
+          : this.zevto4OCouponName),
       type: (type != null ? type.value : this.type),
-      h05e55OLowerLimitAmount:
-          (h05e55OLowerLimitAmount != null
-              ? h05e55OLowerLimitAmount.value
-              : this.h05e55OLowerLimitAmount),
-      fbctseOCouponValue:
-          (fbctseOCouponValue != null
-              ? fbctseOCouponValue.value
-              : this.fbctseOCouponValue),
-      mammiferOEffectDays:
-          (mammiferOEffectDays != null
-              ? mammiferOEffectDays.value
-              : this.mammiferOEffectDays),
-      u2g032OStartTime:
-          (u2g032OStartTime != null
-              ? u2g032OStartTime.value
-              : this.u2g032OStartTime),
-      colubridOEndTime:
-          (colubridOEndTime != null
-              ? colubridOEndTime.value
-              : this.colubridOEndTime),
-      pqf70dOIsDeleted:
-          (pqf70dOIsDeleted != null
-              ? pqf70dOIsDeleted.value
-              : this.pqf70dOIsDeleted),
-      mtsv37OIsUsed:
-          (mtsv37OIsUsed != null ? mtsv37OIsUsed.value : this.mtsv37OIsUsed),
+      h05e55OLowerLimitAmount: (h05e55OLowerLimitAmount != null
+          ? h05e55OLowerLimitAmount.value
+          : this.h05e55OLowerLimitAmount),
+      fbctseOCouponValue: (fbctseOCouponValue != null
+          ? fbctseOCouponValue.value
+          : this.fbctseOCouponValue),
+      mammiferOEffectDays: (mammiferOEffectDays != null
+          ? mammiferOEffectDays.value
+          : this.mammiferOEffectDays),
+      u2g032OStartTime: (u2g032OStartTime != null
+          ? u2g032OStartTime.value
+          : this.u2g032OStartTime),
+      colubridOEndTime: (colubridOEndTime != null
+          ? colubridOEndTime.value
+          : this.colubridOEndTime),
+      pqf70dOIsDeleted: (pqf70dOIsDeleted != null
+          ? pqf70dOIsDeleted.value
+          : this.pqf70dOIsDeleted),
+      mtsv37OIsUsed: (mtsv37OIsUsed != null
+          ? mtsv37OIsUsed.value
+          : this.mtsv37OIsUsed),
       remark: (remark != null ? remark.value : this.remark),
-      staticsOCreateTime:
-          (staticsOCreateTime != null
-              ? staticsOCreateTime.value
-              : this.staticsOCreateTime),
-      l16h95OUpdateTime:
-          (l16h95OUpdateTime != null
-              ? l16h95OUpdateTime.value
-              : this.l16h95OUpdateTime),
-      l536ojOCreateUser:
-          (l536ojOCreateUser != null
-              ? l536ojOCreateUser.value
-              : this.l536ojOCreateUser),
-      og8l1yOUpdateUser:
-          (og8l1yOUpdateUser != null
-              ? og8l1yOUpdateUser.value
-              : this.og8l1yOUpdateUser),
-      besiegerOIsReceived:
-          (besiegerOIsReceived != null
-              ? besiegerOIsReceived.value
-              : this.besiegerOIsReceived),
-      bh9cjjOReceiveTime:
-          (bh9cjjOReceiveTime != null
-              ? bh9cjjOReceiveTime.value
-              : this.bh9cjjOReceiveTime),
-      dmza48OUseTime:
-          (dmza48OUseTime != null ? dmza48OUseTime.value : this.dmza48OUseTime),
+      staticsOCreateTime: (staticsOCreateTime != null
+          ? staticsOCreateTime.value
+          : this.staticsOCreateTime),
+      l16h95OUpdateTime: (l16h95OUpdateTime != null
+          ? l16h95OUpdateTime.value
+          : this.l16h95OUpdateTime),
+      l536ojOCreateUser: (l536ojOCreateUser != null
+          ? l536ojOCreateUser.value
+          : this.l536ojOCreateUser),
+      og8l1yOUpdateUser: (og8l1yOUpdateUser != null
+          ? og8l1yOUpdateUser.value
+          : this.og8l1yOUpdateUser),
+      besiegerOIsReceived: (besiegerOIsReceived != null
+          ? besiegerOIsReceived.value
+          : this.besiegerOIsReceived),
+      bh9cjjOReceiveTime: (bh9cjjOReceiveTime != null
+          ? bh9cjjOReceiveTime.value
+          : this.bh9cjjOReceiveTime),
+      dmza48OUseTime: (dmza48OUseTime != null
+          ? dmza48OUseTime.value
+          : this.dmza48OUseTime),
     );
   }
 }
@@ -23035,7 +22477,7 @@ class MyCouponResp$FireballOUserCouponList$Item {
   @JsonKey(name: 'a17s38')
   final int? a17s38OActivityGid;
   @JsonKey(name: 'raia')
-  final int? raiaOUserGid;
+  final String? raiaOUserGid;
   @JsonKey(name: 'tapette')
   final int? tapetteOCouponGid;
   @JsonKey(name: 'zevto4')
@@ -23231,7 +22673,7 @@ extension $MyCouponResp$FireballOUserCouponList$ItemExtension
     int? id,
     int? pinionOUserCouponGid,
     int? a17s38OActivityGid,
-    int? raiaOUserGid,
+    String? raiaOUserGid,
     int? tapetteOCouponGid,
     String? zevto4OCouponName,
     int? type,
@@ -23282,7 +22724,7 @@ extension $MyCouponResp$FireballOUserCouponList$ItemExtension
     Wrapped<int?>? id,
     Wrapped<int?>? pinionOUserCouponGid,
     Wrapped<int?>? a17s38OActivityGid,
-    Wrapped<int?>? raiaOUserGid,
+    Wrapped<String?>? raiaOUserGid,
     Wrapped<int?>? tapetteOCouponGid,
     Wrapped<String?>? zevto4OCouponName,
     Wrapped<int?>? type,
@@ -23304,78 +22746,65 @@ extension $MyCouponResp$FireballOUserCouponList$ItemExtension
   }) {
     return MyCouponResp$FireballOUserCouponList$Item(
       id: (id != null ? id.value : this.id),
-      pinionOUserCouponGid:
-          (pinionOUserCouponGid != null
-              ? pinionOUserCouponGid.value
-              : this.pinionOUserCouponGid),
-      a17s38OActivityGid:
-          (a17s38OActivityGid != null
-              ? a17s38OActivityGid.value
-              : this.a17s38OActivityGid),
-      raiaOUserGid:
-          (raiaOUserGid != null ? raiaOUserGid.value : this.raiaOUserGid),
-      tapetteOCouponGid:
-          (tapetteOCouponGid != null
-              ? tapetteOCouponGid.value
-              : this.tapetteOCouponGid),
-      zevto4OCouponName:
-          (zevto4OCouponName != null
-              ? zevto4OCouponName.value
-              : this.zevto4OCouponName),
+      pinionOUserCouponGid: (pinionOUserCouponGid != null
+          ? pinionOUserCouponGid.value
+          : this.pinionOUserCouponGid),
+      a17s38OActivityGid: (a17s38OActivityGid != null
+          ? a17s38OActivityGid.value
+          : this.a17s38OActivityGid),
+      raiaOUserGid: (raiaOUserGid != null
+          ? raiaOUserGid.value
+          : this.raiaOUserGid),
+      tapetteOCouponGid: (tapetteOCouponGid != null
+          ? tapetteOCouponGid.value
+          : this.tapetteOCouponGid),
+      zevto4OCouponName: (zevto4OCouponName != null
+          ? zevto4OCouponName.value
+          : this.zevto4OCouponName),
       type: (type != null ? type.value : this.type),
-      h05e55OLowerLimitAmount:
-          (h05e55OLowerLimitAmount != null
-              ? h05e55OLowerLimitAmount.value
-              : this.h05e55OLowerLimitAmount),
-      fbctseOCouponValue:
-          (fbctseOCouponValue != null
-              ? fbctseOCouponValue.value
-              : this.fbctseOCouponValue),
-      mammiferOEffectDays:
-          (mammiferOEffectDays != null
-              ? mammiferOEffectDays.value
-              : this.mammiferOEffectDays),
-      u2g032OStartTime:
-          (u2g032OStartTime != null
-              ? u2g032OStartTime.value
-              : this.u2g032OStartTime),
-      colubridOEndTime:
-          (colubridOEndTime != null
-              ? colubridOEndTime.value
-              : this.colubridOEndTime),
-      pqf70dOIsDeleted:
-          (pqf70dOIsDeleted != null
-              ? pqf70dOIsDeleted.value
-              : this.pqf70dOIsDeleted),
-      mtsv37OIsUsed:
-          (mtsv37OIsUsed != null ? mtsv37OIsUsed.value : this.mtsv37OIsUsed),
+      h05e55OLowerLimitAmount: (h05e55OLowerLimitAmount != null
+          ? h05e55OLowerLimitAmount.value
+          : this.h05e55OLowerLimitAmount),
+      fbctseOCouponValue: (fbctseOCouponValue != null
+          ? fbctseOCouponValue.value
+          : this.fbctseOCouponValue),
+      mammiferOEffectDays: (mammiferOEffectDays != null
+          ? mammiferOEffectDays.value
+          : this.mammiferOEffectDays),
+      u2g032OStartTime: (u2g032OStartTime != null
+          ? u2g032OStartTime.value
+          : this.u2g032OStartTime),
+      colubridOEndTime: (colubridOEndTime != null
+          ? colubridOEndTime.value
+          : this.colubridOEndTime),
+      pqf70dOIsDeleted: (pqf70dOIsDeleted != null
+          ? pqf70dOIsDeleted.value
+          : this.pqf70dOIsDeleted),
+      mtsv37OIsUsed: (mtsv37OIsUsed != null
+          ? mtsv37OIsUsed.value
+          : this.mtsv37OIsUsed),
       remark: (remark != null ? remark.value : this.remark),
-      staticsOCreateTime:
-          (staticsOCreateTime != null
-              ? staticsOCreateTime.value
-              : this.staticsOCreateTime),
-      l16h95OUpdateTime:
-          (l16h95OUpdateTime != null
-              ? l16h95OUpdateTime.value
-              : this.l16h95OUpdateTime),
-      l536ojOCreateUser:
-          (l536ojOCreateUser != null
-              ? l536ojOCreateUser.value
-              : this.l536ojOCreateUser),
-      og8l1yOUpdateUser:
-          (og8l1yOUpdateUser != null
-              ? og8l1yOUpdateUser.value
-              : this.og8l1yOUpdateUser),
-      besiegerOIsReceived:
-          (besiegerOIsReceived != null
-              ? besiegerOIsReceived.value
-              : this.besiegerOIsReceived),
-      bh9cjjOReceiveTime:
-          (bh9cjjOReceiveTime != null
-              ? bh9cjjOReceiveTime.value
-              : this.bh9cjjOReceiveTime),
-      dmza48OUseTime:
-          (dmza48OUseTime != null ? dmza48OUseTime.value : this.dmza48OUseTime),
+      staticsOCreateTime: (staticsOCreateTime != null
+          ? staticsOCreateTime.value
+          : this.staticsOCreateTime),
+      l16h95OUpdateTime: (l16h95OUpdateTime != null
+          ? l16h95OUpdateTime.value
+          : this.l16h95OUpdateTime),
+      l536ojOCreateUser: (l536ojOCreateUser != null
+          ? l536ojOCreateUser.value
+          : this.l536ojOCreateUser),
+      og8l1yOUpdateUser: (og8l1yOUpdateUser != null
+          ? og8l1yOUpdateUser.value
+          : this.og8l1yOUpdateUser),
+      besiegerOIsReceived: (besiegerOIsReceived != null
+          ? besiegerOIsReceived.value
+          : this.besiegerOIsReceived),
+      bh9cjjOReceiveTime: (bh9cjjOReceiveTime != null
+          ? bh9cjjOReceiveTime.value
+          : this.bh9cjjOReceiveTime),
+      dmza48OUseTime: (dmza48OUseTime != null
+          ? dmza48OUseTime.value
+          : this.dmza48OUseTime),
     );
   }
 }
@@ -23414,7 +22843,7 @@ class LandCouponResp$FireballOUserCouponList$Item {
   @JsonKey(name: 'a17s38')
   final int? a17s38OActivityGid;
   @JsonKey(name: 'raia')
-  final int? raiaOUserGid;
+  final String? raiaOUserGid;
   @JsonKey(name: 'tapette')
   final int? tapetteOCouponGid;
   @JsonKey(name: 'zevto4')
@@ -23610,7 +23039,7 @@ extension $LandCouponResp$FireballOUserCouponList$ItemExtension
     int? id,
     int? pinionOUserCouponGid,
     int? a17s38OActivityGid,
-    int? raiaOUserGid,
+    String? raiaOUserGid,
     int? tapetteOCouponGid,
     String? zevto4OCouponName,
     int? type,
@@ -23661,7 +23090,7 @@ extension $LandCouponResp$FireballOUserCouponList$ItemExtension
     Wrapped<int?>? id,
     Wrapped<int?>? pinionOUserCouponGid,
     Wrapped<int?>? a17s38OActivityGid,
-    Wrapped<int?>? raiaOUserGid,
+    Wrapped<String?>? raiaOUserGid,
     Wrapped<int?>? tapetteOCouponGid,
     Wrapped<String?>? zevto4OCouponName,
     Wrapped<int?>? type,
@@ -23683,78 +23112,65 @@ extension $LandCouponResp$FireballOUserCouponList$ItemExtension
   }) {
     return LandCouponResp$FireballOUserCouponList$Item(
       id: (id != null ? id.value : this.id),
-      pinionOUserCouponGid:
-          (pinionOUserCouponGid != null
-              ? pinionOUserCouponGid.value
-              : this.pinionOUserCouponGid),
-      a17s38OActivityGid:
-          (a17s38OActivityGid != null
-              ? a17s38OActivityGid.value
-              : this.a17s38OActivityGid),
-      raiaOUserGid:
-          (raiaOUserGid != null ? raiaOUserGid.value : this.raiaOUserGid),
-      tapetteOCouponGid:
-          (tapetteOCouponGid != null
-              ? tapetteOCouponGid.value
-              : this.tapetteOCouponGid),
-      zevto4OCouponName:
-          (zevto4OCouponName != null
-              ? zevto4OCouponName.value
-              : this.zevto4OCouponName),
+      pinionOUserCouponGid: (pinionOUserCouponGid != null
+          ? pinionOUserCouponGid.value
+          : this.pinionOUserCouponGid),
+      a17s38OActivityGid: (a17s38OActivityGid != null
+          ? a17s38OActivityGid.value
+          : this.a17s38OActivityGid),
+      raiaOUserGid: (raiaOUserGid != null
+          ? raiaOUserGid.value
+          : this.raiaOUserGid),
+      tapetteOCouponGid: (tapetteOCouponGid != null
+          ? tapetteOCouponGid.value
+          : this.tapetteOCouponGid),
+      zevto4OCouponName: (zevto4OCouponName != null
+          ? zevto4OCouponName.value
+          : this.zevto4OCouponName),
       type: (type != null ? type.value : this.type),
-      h05e55OLowerLimitAmount:
-          (h05e55OLowerLimitAmount != null
-              ? h05e55OLowerLimitAmount.value
-              : this.h05e55OLowerLimitAmount),
-      fbctseOCouponValue:
-          (fbctseOCouponValue != null
-              ? fbctseOCouponValue.value
-              : this.fbctseOCouponValue),
-      mammiferOEffectDays:
-          (mammiferOEffectDays != null
-              ? mammiferOEffectDays.value
-              : this.mammiferOEffectDays),
-      u2g032OStartTime:
-          (u2g032OStartTime != null
-              ? u2g032OStartTime.value
-              : this.u2g032OStartTime),
-      colubridOEndTime:
-          (colubridOEndTime != null
-              ? colubridOEndTime.value
-              : this.colubridOEndTime),
-      pqf70dOIsDeleted:
-          (pqf70dOIsDeleted != null
-              ? pqf70dOIsDeleted.value
-              : this.pqf70dOIsDeleted),
-      mtsv37OIsUsed:
-          (mtsv37OIsUsed != null ? mtsv37OIsUsed.value : this.mtsv37OIsUsed),
+      h05e55OLowerLimitAmount: (h05e55OLowerLimitAmount != null
+          ? h05e55OLowerLimitAmount.value
+          : this.h05e55OLowerLimitAmount),
+      fbctseOCouponValue: (fbctseOCouponValue != null
+          ? fbctseOCouponValue.value
+          : this.fbctseOCouponValue),
+      mammiferOEffectDays: (mammiferOEffectDays != null
+          ? mammiferOEffectDays.value
+          : this.mammiferOEffectDays),
+      u2g032OStartTime: (u2g032OStartTime != null
+          ? u2g032OStartTime.value
+          : this.u2g032OStartTime),
+      colubridOEndTime: (colubridOEndTime != null
+          ? colubridOEndTime.value
+          : this.colubridOEndTime),
+      pqf70dOIsDeleted: (pqf70dOIsDeleted != null
+          ? pqf70dOIsDeleted.value
+          : this.pqf70dOIsDeleted),
+      mtsv37OIsUsed: (mtsv37OIsUsed != null
+          ? mtsv37OIsUsed.value
+          : this.mtsv37OIsUsed),
       remark: (remark != null ? remark.value : this.remark),
-      staticsOCreateTime:
-          (staticsOCreateTime != null
-              ? staticsOCreateTime.value
-              : this.staticsOCreateTime),
-      l16h95OUpdateTime:
-          (l16h95OUpdateTime != null
-              ? l16h95OUpdateTime.value
-              : this.l16h95OUpdateTime),
-      l536ojOCreateUser:
-          (l536ojOCreateUser != null
-              ? l536ojOCreateUser.value
-              : this.l536ojOCreateUser),
-      og8l1yOUpdateUser:
-          (og8l1yOUpdateUser != null
-              ? og8l1yOUpdateUser.value
-              : this.og8l1yOUpdateUser),
-      besiegerOIsReceived:
-          (besiegerOIsReceived != null
-              ? besiegerOIsReceived.value
-              : this.besiegerOIsReceived),
-      bh9cjjOReceiveTime:
-          (bh9cjjOReceiveTime != null
-              ? bh9cjjOReceiveTime.value
-              : this.bh9cjjOReceiveTime),
-      dmza48OUseTime:
-          (dmza48OUseTime != null ? dmza48OUseTime.value : this.dmza48OUseTime),
+      staticsOCreateTime: (staticsOCreateTime != null
+          ? staticsOCreateTime.value
+          : this.staticsOCreateTime),
+      l16h95OUpdateTime: (l16h95OUpdateTime != null
+          ? l16h95OUpdateTime.value
+          : this.l16h95OUpdateTime),
+      l536ojOCreateUser: (l536ojOCreateUser != null
+          ? l536ojOCreateUser.value
+          : this.l536ojOCreateUser),
+      og8l1yOUpdateUser: (og8l1yOUpdateUser != null
+          ? og8l1yOUpdateUser.value
+          : this.og8l1yOUpdateUser),
+      besiegerOIsReceived: (besiegerOIsReceived != null
+          ? besiegerOIsReceived.value
+          : this.besiegerOIsReceived),
+      bh9cjjOReceiveTime: (bh9cjjOReceiveTime != null
+          ? bh9cjjOReceiveTime.value
+          : this.bh9cjjOReceiveTime),
+      dmza48OUseTime: (dmza48OUseTime != null
+          ? dmza48OUseTime.value
+          : this.dmza48OUseTime),
     );
   }
 }
@@ -23826,10 +23242,9 @@ extension $CouponPopResp$Oxmqq4OHomePopFlagExtension
   }) {
     return CouponPopResp$Oxmqq4OHomePopFlag(
       manoOMapKey: (manoOMapKey != null ? manoOMapKey.value : this.manoOMapKey),
-      reopposeOMapValue:
-          (reopposeOMapValue != null
-              ? reopposeOMapValue.value
-              : this.reopposeOMapValue),
+      reopposeOMapValue: (reopposeOMapValue != null
+          ? reopposeOMapValue.value
+          : this.reopposeOMapValue),
     );
   }
 }
@@ -24168,93 +23583,76 @@ extension $LoanBillResp$Ouxtd3OLoanList$ItemExtension
     Wrapped<bool?>? kc1347OEnableRenew,
   }) {
     return LoanBillResp$Ouxtd3OLoanList$Item(
-      r5a4x8OLoanGid:
-          (r5a4x8OLoanGid != null ? r5a4x8OLoanGid.value : this.r5a4x8OLoanGid),
-      n410zdOLoanTime:
-          (n410zdOLoanTime != null
-              ? n410zdOLoanTime.value
-              : this.n410zdOLoanTime),
-      r5k31qODueTime:
-          (r5k31qODueTime != null ? r5k31qODueTime.value : this.r5k31qODueTime),
-      wantonlyOLoanLeftAmount:
-          (wantonlyOLoanLeftAmount != null
-              ? wantonlyOLoanLeftAmount.value
-              : this.wantonlyOLoanLeftAmount),
-      retiaryOLoanAmount:
-          (retiaryOLoanAmount != null
-              ? retiaryOLoanAmount.value
-              : this.retiaryOLoanAmount),
-      d95091ORepaymentStatus:
-          (d95091ORepaymentStatus != null
-              ? d95091ORepaymentStatus.value
-              : this.d95091ORepaymentStatus),
-      suffOLoanStatus:
-          (suffOLoanStatus != null
-              ? suffOLoanStatus.value
-              : this.suffOLoanStatus),
-      feminieOCardAccount:
-          (feminieOCardAccount != null
-              ? feminieOCardAccount.value
-              : this.feminieOCardAccount),
-      ah1e18OBillStatus:
-          (ah1e18OBillStatus != null
-              ? ah1e18OBillStatus.value
-              : this.ah1e18OBillStatus),
-      coandaODueDays:
-          (coandaODueDays != null ? coandaODueDays.value : this.coandaODueDays),
-      vx4165OFailReason:
-          (vx4165OFailReason != null
-              ? vx4165OFailReason.value
-              : this.vx4165OFailReason),
-      pinionOUserCouponGid:
-          (pinionOUserCouponGid != null
-              ? pinionOUserCouponGid.value
-              : this.pinionOUserCouponGid),
-      sk6s63OCouponAmount:
-          (sk6s63OCouponAmount != null
-              ? sk6s63OCouponAmount.value
-              : this.sk6s63OCouponAmount),
-      mxs06uOApplyStatus:
-          (mxs06uOApplyStatus != null
-              ? mxs06uOApplyStatus.value
-              : this.mxs06uOApplyStatus),
-      ez64t7OPeriodCount:
-          (ez64t7OPeriodCount != null
-              ? ez64t7OPeriodCount.value
-              : this.ez64t7OPeriodCount),
-      cherubimOOrderStatus:
-          (cherubimOOrderStatus != null
-              ? cherubimOOrderStatus.value
-              : this.cherubimOOrderStatus),
-      encloseOOrderTime:
-          (encloseOOrderTime != null
-              ? encloseOOrderTime.value
-              : this.encloseOOrderTime),
-      wa5f08OOrderDueDays:
-          (wa5f08OOrderDueDays != null
-              ? wa5f08OOrderDueDays.value
-              : this.wa5f08OOrderDueDays),
-      iy8ujyOIsShowTime:
-          (iy8ujyOIsShowTime != null
-              ? iy8ujyOIsShowTime.value
-              : this.iy8ujyOIsShowTime),
-      kinkyOOrderAmount:
-          (kinkyOOrderAmount != null
-              ? kinkyOOrderAmount.value
-              : this.kinkyOOrderAmount),
-      outdoOPlanSimpleList:
-          (outdoOPlanSimpleList != null
-              ? outdoOPlanSimpleList.value
-              : this.outdoOPlanSimpleList),
-      slackOIsOverdue:
-          (slackOIsOverdue != null
-              ? slackOIsOverdue.value
-              : this.slackOIsOverdue),
+      r5a4x8OLoanGid: (r5a4x8OLoanGid != null
+          ? r5a4x8OLoanGid.value
+          : this.r5a4x8OLoanGid),
+      n410zdOLoanTime: (n410zdOLoanTime != null
+          ? n410zdOLoanTime.value
+          : this.n410zdOLoanTime),
+      r5k31qODueTime: (r5k31qODueTime != null
+          ? r5k31qODueTime.value
+          : this.r5k31qODueTime),
+      wantonlyOLoanLeftAmount: (wantonlyOLoanLeftAmount != null
+          ? wantonlyOLoanLeftAmount.value
+          : this.wantonlyOLoanLeftAmount),
+      retiaryOLoanAmount: (retiaryOLoanAmount != null
+          ? retiaryOLoanAmount.value
+          : this.retiaryOLoanAmount),
+      d95091ORepaymentStatus: (d95091ORepaymentStatus != null
+          ? d95091ORepaymentStatus.value
+          : this.d95091ORepaymentStatus),
+      suffOLoanStatus: (suffOLoanStatus != null
+          ? suffOLoanStatus.value
+          : this.suffOLoanStatus),
+      feminieOCardAccount: (feminieOCardAccount != null
+          ? feminieOCardAccount.value
+          : this.feminieOCardAccount),
+      ah1e18OBillStatus: (ah1e18OBillStatus != null
+          ? ah1e18OBillStatus.value
+          : this.ah1e18OBillStatus),
+      coandaODueDays: (coandaODueDays != null
+          ? coandaODueDays.value
+          : this.coandaODueDays),
+      vx4165OFailReason: (vx4165OFailReason != null
+          ? vx4165OFailReason.value
+          : this.vx4165OFailReason),
+      pinionOUserCouponGid: (pinionOUserCouponGid != null
+          ? pinionOUserCouponGid.value
+          : this.pinionOUserCouponGid),
+      sk6s63OCouponAmount: (sk6s63OCouponAmount != null
+          ? sk6s63OCouponAmount.value
+          : this.sk6s63OCouponAmount),
+      mxs06uOApplyStatus: (mxs06uOApplyStatus != null
+          ? mxs06uOApplyStatus.value
+          : this.mxs06uOApplyStatus),
+      ez64t7OPeriodCount: (ez64t7OPeriodCount != null
+          ? ez64t7OPeriodCount.value
+          : this.ez64t7OPeriodCount),
+      cherubimOOrderStatus: (cherubimOOrderStatus != null
+          ? cherubimOOrderStatus.value
+          : this.cherubimOOrderStatus),
+      encloseOOrderTime: (encloseOOrderTime != null
+          ? encloseOOrderTime.value
+          : this.encloseOOrderTime),
+      wa5f08OOrderDueDays: (wa5f08OOrderDueDays != null
+          ? wa5f08OOrderDueDays.value
+          : this.wa5f08OOrderDueDays),
+      iy8ujyOIsShowTime: (iy8ujyOIsShowTime != null
+          ? iy8ujyOIsShowTime.value
+          : this.iy8ujyOIsShowTime),
+      kinkyOOrderAmount: (kinkyOOrderAmount != null
+          ? kinkyOOrderAmount.value
+          : this.kinkyOOrderAmount),
+      outdoOPlanSimpleList: (outdoOPlanSimpleList != null
+          ? outdoOPlanSimpleList.value
+          : this.outdoOPlanSimpleList),
+      slackOIsOverdue: (slackOIsOverdue != null
+          ? slackOIsOverdue.value
+          : this.slackOIsOverdue),
       remark: (remark != null ? remark.value : this.remark),
-      kc1347OEnableRenew:
-          (kc1347OEnableRenew != null
-              ? kc1347OEnableRenew.value
-              : this.kc1347OEnableRenew),
+      kc1347OEnableRenew: (kc1347OEnableRenew != null
+          ? kc1347OEnableRenew.value
+          : this.kc1347OEnableRenew),
     );
   }
 }
@@ -24546,71 +23944,61 @@ extension $BillListResp$SoberOBillList$ItemExtension
     Wrapped<double?>? guilefulOOverdueFeePaidAmount,
   }) {
     return BillListResp$SoberOBillList$Item(
-      r5a4x8OLoanGid:
-          (r5a4x8OLoanGid != null ? r5a4x8OLoanGid.value : this.r5a4x8OLoanGid),
-      r5k31qODueTime:
-          (r5k31qODueTime != null ? r5k31qODueTime.value : this.r5k31qODueTime),
-      wantonlyOLoanLeftAmount:
-          (wantonlyOLoanLeftAmount != null
-              ? wantonlyOLoanLeftAmount.value
-              : this.wantonlyOLoanLeftAmount),
-      retiaryOLoanAmount:
-          (retiaryOLoanAmount != null
-              ? retiaryOLoanAmount.value
-              : this.retiaryOLoanAmount),
-      slackOIsOverdue:
-          (slackOIsOverdue != null
-              ? slackOIsOverdue.value
-              : this.slackOIsOverdue),
-      d95091ORepaymentStatus:
-          (d95091ORepaymentStatus != null
-              ? d95091ORepaymentStatus.value
-              : this.d95091ORepaymentStatus),
-      suffOLoanStatus:
-          (suffOLoanStatus != null
-              ? suffOLoanStatus.value
-              : this.suffOLoanStatus),
-      ux8tv0OTotalLeftAmount:
-          (ux8tv0OTotalLeftAmount != null
-              ? ux8tv0OTotalLeftAmount.value
-              : this.ux8tv0OTotalLeftAmount),
-      coandaODueDays:
-          (coandaODueDays != null ? coandaODueDays.value : this.coandaODueDays),
-      pinionOUserCouponGid:
-          (pinionOUserCouponGid != null
-              ? pinionOUserCouponGid.value
-              : this.pinionOUserCouponGid),
-      sk6s63OCouponAmount:
-          (sk6s63OCouponAmount != null
-              ? sk6s63OCouponAmount.value
-              : this.sk6s63OCouponAmount),
-      r86mu7OProductTag:
-          (r86mu7OProductTag != null
-              ? r86mu7OProductTag.value
-              : this.r86mu7OProductTag),
-      ez64t7OPeriodCount:
-          (ez64t7OPeriodCount != null
-              ? ez64t7OPeriodCount.value
-              : this.ez64t7OPeriodCount),
+      r5a4x8OLoanGid: (r5a4x8OLoanGid != null
+          ? r5a4x8OLoanGid.value
+          : this.r5a4x8OLoanGid),
+      r5k31qODueTime: (r5k31qODueTime != null
+          ? r5k31qODueTime.value
+          : this.r5k31qODueTime),
+      wantonlyOLoanLeftAmount: (wantonlyOLoanLeftAmount != null
+          ? wantonlyOLoanLeftAmount.value
+          : this.wantonlyOLoanLeftAmount),
+      retiaryOLoanAmount: (retiaryOLoanAmount != null
+          ? retiaryOLoanAmount.value
+          : this.retiaryOLoanAmount),
+      slackOIsOverdue: (slackOIsOverdue != null
+          ? slackOIsOverdue.value
+          : this.slackOIsOverdue),
+      d95091ORepaymentStatus: (d95091ORepaymentStatus != null
+          ? d95091ORepaymentStatus.value
+          : this.d95091ORepaymentStatus),
+      suffOLoanStatus: (suffOLoanStatus != null
+          ? suffOLoanStatus.value
+          : this.suffOLoanStatus),
+      ux8tv0OTotalLeftAmount: (ux8tv0OTotalLeftAmount != null
+          ? ux8tv0OTotalLeftAmount.value
+          : this.ux8tv0OTotalLeftAmount),
+      coandaODueDays: (coandaODueDays != null
+          ? coandaODueDays.value
+          : this.coandaODueDays),
+      pinionOUserCouponGid: (pinionOUserCouponGid != null
+          ? pinionOUserCouponGid.value
+          : this.pinionOUserCouponGid),
+      sk6s63OCouponAmount: (sk6s63OCouponAmount != null
+          ? sk6s63OCouponAmount.value
+          : this.sk6s63OCouponAmount),
+      r86mu7OProductTag: (r86mu7OProductTag != null
+          ? r86mu7OProductTag.value
+          : this.r86mu7OProductTag),
+      ez64t7OPeriodCount: (ez64t7OPeriodCount != null
+          ? ez64t7OPeriodCount.value
+          : this.ez64t7OPeriodCount),
       maxDueDay: (maxDueDay != null ? maxDueDay.value : this.maxDueDay),
-      j4n2j6ODueRate:
-          (j4n2j6ODueRate != null ? j4n2j6ODueRate.value : this.j4n2j6ODueRate),
-      periodPaidCount:
-          (periodPaidCount != null
-              ? periodPaidCount.value
-              : this.periodPaidCount),
-      z7c658OPrincipalPaidAmount:
-          (z7c658OPrincipalPaidAmount != null
-              ? z7c658OPrincipalPaidAmount.value
-              : this.z7c658OPrincipalPaidAmount),
-      reeditOServiceFeePaidAmount:
-          (reeditOServiceFeePaidAmount != null
-              ? reeditOServiceFeePaidAmount.value
-              : this.reeditOServiceFeePaidAmount),
-      guilefulOOverdueFeePaidAmount:
-          (guilefulOOverdueFeePaidAmount != null
-              ? guilefulOOverdueFeePaidAmount.value
-              : this.guilefulOOverdueFeePaidAmount),
+      j4n2j6ODueRate: (j4n2j6ODueRate != null
+          ? j4n2j6ODueRate.value
+          : this.j4n2j6ODueRate),
+      periodPaidCount: (periodPaidCount != null
+          ? periodPaidCount.value
+          : this.periodPaidCount),
+      z7c658OPrincipalPaidAmount: (z7c658OPrincipalPaidAmount != null
+          ? z7c658OPrincipalPaidAmount.value
+          : this.z7c658OPrincipalPaidAmount),
+      reeditOServiceFeePaidAmount: (reeditOServiceFeePaidAmount != null
+          ? reeditOServiceFeePaidAmount.value
+          : this.reeditOServiceFeePaidAmount),
+      guilefulOOverdueFeePaidAmount: (guilefulOOverdueFeePaidAmount != null
+          ? guilefulOOverdueFeePaidAmount.value
+          : this.guilefulOOverdueFeePaidAmount),
     );
   }
 }
@@ -24844,47 +24232,40 @@ extension $BillDetailResp$V08uw3ORepaymentChannelList$ItemExtension
     Wrapped<double?>? scrougeOMinRepaymentAmount,
   }) {
     return BillDetailResp$V08uw3ORepaymentChannelList$Item(
-      oe5u39OChannelName:
-          (oe5u39OChannelName != null
-              ? oe5u39OChannelName.value
-              : this.oe5u39OChannelName),
-      worstOChannelCode:
-          (worstOChannelCode != null
-              ? worstOChannelCode.value
-              : this.worstOChannelCode),
+      oe5u39OChannelName: (oe5u39OChannelName != null
+          ? oe5u39OChannelName.value
+          : this.oe5u39OChannelName),
+      worstOChannelCode: (worstOChannelCode != null
+          ? worstOChannelCode.value
+          : this.worstOChannelCode),
       weight: (weight != null ? weight.value : this.weight),
       status: (status != null ? status.value : this.status),
-      y28nd4OChannelType:
-          (y28nd4OChannelType != null
-              ? y28nd4OChannelType.value
-              : this.y28nd4OChannelType),
-      s377v5OBizLine:
-          (s377v5OBizLine != null ? s377v5OBizLine.value : this.s377v5OBizLine),
-      k5j6q9OChannelAccount:
-          (k5j6q9OChannelAccount != null
-              ? k5j6q9OChannelAccount.value
-              : this.k5j6q9OChannelAccount),
+      y28nd4OChannelType: (y28nd4OChannelType != null
+          ? y28nd4OChannelType.value
+          : this.y28nd4OChannelType),
+      s377v5OBizLine: (s377v5OBizLine != null
+          ? s377v5OBizLine.value
+          : this.s377v5OBizLine),
+      k5j6q9OChannelAccount: (k5j6q9OChannelAccount != null
+          ? k5j6q9OChannelAccount.value
+          : this.k5j6q9OChannelAccount),
       maxAmount: (maxAmount != null ? maxAmount.value : this.maxAmount),
       minAmount: (minAmount != null ? minAmount.value : this.minAmount),
       sort: (sort != null ? sort.value : this.sort),
       fratOMark: (fratOMark != null ? fratOMark.value : this.fratOMark),
       remark: (remark != null ? remark.value : this.remark),
-      ejv164OChannelTypeName:
-          (ejv164OChannelTypeName != null
-              ? ejv164OChannelTypeName.value
-              : this.ejv164OChannelTypeName),
-      nq7f9vOMinChannelFee:
-          (nq7f9vOMinChannelFee != null
-              ? nq7f9vOMinChannelFee.value
-              : this.nq7f9vOMinChannelFee),
-      kd94z7OChannelRate:
-          (kd94z7OChannelRate != null
-              ? kd94z7OChannelRate.value
-              : this.kd94z7OChannelRate),
-      scrougeOMinRepaymentAmount:
-          (scrougeOMinRepaymentAmount != null
-              ? scrougeOMinRepaymentAmount.value
-              : this.scrougeOMinRepaymentAmount),
+      ejv164OChannelTypeName: (ejv164OChannelTypeName != null
+          ? ejv164OChannelTypeName.value
+          : this.ejv164OChannelTypeName),
+      nq7f9vOMinChannelFee: (nq7f9vOMinChannelFee != null
+          ? nq7f9vOMinChannelFee.value
+          : this.nq7f9vOMinChannelFee),
+      kd94z7OChannelRate: (kd94z7OChannelRate != null
+          ? kd94z7OChannelRate.value
+          : this.kd94z7OChannelRate),
+      scrougeOMinRepaymentAmount: (scrougeOMinRepaymentAmount != null
+          ? scrougeOMinRepaymentAmount.value
+          : this.scrougeOMinRepaymentAmount),
     );
   }
 }
@@ -24909,8 +24290,8 @@ class BillDetailResp$GlacisORepaymentPlanList$Item {
     this.retiaryOLoanAmount,
     this.timesOBillAmount,
     this.fl92yrOBillLeftAmount,
-    required this.uqm81lOPrincipalAmount,
-    required this.v6e22nOPrincipalLeftAmount,
+    this.uqm81lOPrincipalAmount,
+    this.v6e22nOPrincipalLeftAmount,
     this.wantonlyOLoanLeftAmount,
     this.pinionOUserCouponGid,
     this.sk6s63OCouponAmount,
@@ -24955,7 +24336,7 @@ class BillDetailResp$GlacisORepaymentPlanList$Item {
   @JsonKey(name: 'r5a4x8')
   final int? r5a4x8OLoanGid;
   @JsonKey(name: 'raia')
-  final int? raiaOUserGid;
+  final String? raiaOUserGid;
   @JsonKey(name: 'ih2upq')
   final int? ih2upqOCtPeriod;
   @JsonKey(name: 'spinachy')
@@ -25460,7 +24841,7 @@ extension $BillDetailResp$GlacisORepaymentPlanList$ItemExtension
   BillDetailResp$GlacisORepaymentPlanList$Item copyWith({
     int? imprintOPlanGid,
     int? r5a4x8OLoanGid,
-    int? raiaOUserGid,
+    String? raiaOUserGid,
     int? ih2upqOCtPeriod,
     int? spinachyOLoanPeriod,
     int? ez64t7OPeriodCount,
@@ -25595,7 +24976,7 @@ extension $BillDetailResp$GlacisORepaymentPlanList$ItemExtension
   BillDetailResp$GlacisORepaymentPlanList$Item copyWithWrapped({
     Wrapped<int?>? imprintOPlanGid,
     Wrapped<int?>? r5a4x8OLoanGid,
-    Wrapped<int?>? raiaOUserGid,
+    Wrapped<String?>? raiaOUserGid,
     Wrapped<int?>? ih2upqOCtPeriod,
     Wrapped<int?>? spinachyOLoanPeriod,
     Wrapped<int?>? ez64t7OPeriodCount,
@@ -25610,8 +24991,8 @@ extension $BillDetailResp$GlacisORepaymentPlanList$ItemExtension
     Wrapped<double?>? retiaryOLoanAmount,
     Wrapped<double?>? timesOBillAmount,
     Wrapped<double?>? fl92yrOBillLeftAmount,
-    Wrapped<double>? uqm81lOPrincipalAmount,
-    Wrapped<double>? v6e22nOPrincipalLeftAmount,
+    Wrapped<double?>? uqm81lOPrincipalAmount,
+    Wrapped<double?>? v6e22nOPrincipalLeftAmount,
     Wrapped<double?>? wantonlyOLoanLeftAmount,
     Wrapped<int?>? pinionOUserCouponGid,
     Wrapped<double?>? sk6s63OCouponAmount,
@@ -25651,209 +25032,172 @@ extension $BillDetailResp$GlacisORepaymentPlanList$ItemExtension
     Wrapped<int?>? chuseOLoanProductType,
   }) {
     return BillDetailResp$GlacisORepaymentPlanList$Item(
-      imprintOPlanGid:
-          (imprintOPlanGid != null
-              ? imprintOPlanGid.value
-              : this.imprintOPlanGid),
-      r5a4x8OLoanGid:
-          (r5a4x8OLoanGid != null ? r5a4x8OLoanGid.value : this.r5a4x8OLoanGid),
-      raiaOUserGid:
-          (raiaOUserGid != null ? raiaOUserGid.value : this.raiaOUserGid),
-      ih2upqOCtPeriod:
-          (ih2upqOCtPeriod != null
-              ? ih2upqOCtPeriod.value
-              : this.ih2upqOCtPeriod),
-      spinachyOLoanPeriod:
-          (spinachyOLoanPeriod != null
-              ? spinachyOLoanPeriod.value
-              : this.spinachyOLoanPeriod),
-      ez64t7OPeriodCount:
-          (ez64t7OPeriodCount != null
-              ? ez64t7OPeriodCount.value
-              : this.ez64t7OPeriodCount),
-      foreyardOProductId:
-          (foreyardOProductId != null
-              ? foreyardOProductId.value
-              : this.foreyardOProductId),
-      n410zdOLoanTime:
-          (n410zdOLoanTime != null
-              ? n410zdOLoanTime.value
-              : this.n410zdOLoanTime),
-      u2g032OStartTime:
-          (u2g032OStartTime != null
-              ? u2g032OStartTime.value
-              : this.u2g032OStartTime),
-      r5k31qODueTime:
-          (r5k31qODueTime != null ? r5k31qODueTime.value : this.r5k31qODueTime),
-      suffOLoanStatus:
-          (suffOLoanStatus != null
-              ? suffOLoanStatus.value
-              : this.suffOLoanStatus),
-      mxs06uOApplyStatus:
-          (mxs06uOApplyStatus != null
-              ? mxs06uOApplyStatus.value
-              : this.mxs06uOApplyStatus),
-      brantailOTotalLoanAmount:
-          (brantailOTotalLoanAmount != null
-              ? brantailOTotalLoanAmount.value
-              : this.brantailOTotalLoanAmount),
-      c5ju9nOTotalLoanFee:
-          (c5ju9nOTotalLoanFee != null
-              ? c5ju9nOTotalLoanFee.value
-              : this.c5ju9nOTotalLoanFee),
-      retiaryOLoanAmount:
-          (retiaryOLoanAmount != null
-              ? retiaryOLoanAmount.value
-              : this.retiaryOLoanAmount),
-      timesOBillAmount:
-          (timesOBillAmount != null
-              ? timesOBillAmount.value
-              : this.timesOBillAmount),
-      fl92yrOBillLeftAmount:
-          (fl92yrOBillLeftAmount != null
-              ? fl92yrOBillLeftAmount.value
-              : this.fl92yrOBillLeftAmount),
-      uqm81lOPrincipalAmount:
-          (uqm81lOPrincipalAmount != null
-              ? uqm81lOPrincipalAmount.value
-              : this.uqm81lOPrincipalAmount),
-      v6e22nOPrincipalLeftAmount:
-          (v6e22nOPrincipalLeftAmount != null
-              ? v6e22nOPrincipalLeftAmount.value
-              : this.v6e22nOPrincipalLeftAmount),
-      wantonlyOLoanLeftAmount:
-          (wantonlyOLoanLeftAmount != null
-              ? wantonlyOLoanLeftAmount.value
-              : this.wantonlyOLoanLeftAmount),
-      pinionOUserCouponGid:
-          (pinionOUserCouponGid != null
-              ? pinionOUserCouponGid.value
-              : this.pinionOUserCouponGid),
-      sk6s63OCouponAmount:
-          (sk6s63OCouponAmount != null
-              ? sk6s63OCouponAmount.value
-              : this.sk6s63OCouponAmount),
-      gatemanORepaymentAmount:
-          (gatemanORepaymentAmount != null
-              ? gatemanORepaymentAmount.value
-              : this.gatemanORepaymentAmount),
-      z7c658OPrincipalPaidAmount:
-          (z7c658OPrincipalPaidAmount != null
-              ? z7c658OPrincipalPaidAmount.value
-              : this.z7c658OPrincipalPaidAmount),
-      reeditOServiceFeePaidAmount:
-          (reeditOServiceFeePaidAmount != null
-              ? reeditOServiceFeePaidAmount.value
-              : this.reeditOServiceFeePaidAmount),
-      guilefulOOverdueFeePaidAmount:
-          (guilefulOOverdueFeePaidAmount != null
-              ? guilefulOOverdueFeePaidAmount.value
-              : this.guilefulOOverdueFeePaidAmount),
-      d95091ORepaymentStatus:
-          (d95091ORepaymentStatus != null
-              ? d95091ORepaymentStatus.value
-              : this.d95091ORepaymentStatus),
-      v4nynoOFeeType:
-          (v4nynoOFeeType != null ? v4nynoOFeeType.value : this.v4nynoOFeeType),
-      q3568aOLoanPrefixRate:
-          (q3568aOLoanPrefixRate != null
-              ? q3568aOLoanPrefixRate.value
-              : this.q3568aOLoanPrefixRate),
-      bobbedOLoanPostRate:
-          (bobbedOLoanPostRate != null
-              ? bobbedOLoanPostRate.value
-              : this.bobbedOLoanPostRate),
-      j4n2j6ODueRate:
-          (j4n2j6ODueRate != null ? j4n2j6ODueRate.value : this.j4n2j6ODueRate),
-      e88wy1OLoanFee:
-          (e88wy1OLoanFee != null ? e88wy1OLoanFee.value : this.e88wy1OLoanFee),
-      muscleOPrefixFee:
-          (muscleOPrefixFee != null
-              ? muscleOPrefixFee.value
-              : this.muscleOPrefixFee),
-      piz72tOPostFee:
-          (piz72tOPostFee != null ? piz72tOPostFee.value : this.piz72tOPostFee),
-      faciendOOverdueFee:
-          (faciendOOverdueFee != null
-              ? faciendOOverdueFee.value
-              : this.faciendOOverdueFee),
-      slackOIsOverdue:
-          (slackOIsOverdue != null
-              ? slackOIsOverdue.value
-              : this.slackOIsOverdue),
-      nbk975OPlatformAmount:
-          (nbk975OPlatformAmount != null
-              ? nbk975OPlatformAmount.value
-              : this.nbk975OPlatformAmount),
-      clansmanODueDay:
-          (clansmanODueDay != null
-              ? clansmanODueDay.value
-              : this.clansmanODueDay),
-      johannesODosettleFeeTime:
-          (johannesODosettleFeeTime != null
-              ? johannesODosettleFeeTime.value
-              : this.johannesODosettleFeeTime),
-      hakodateOLastRepaymentTime:
-          (hakodateOLastRepaymentTime != null
-              ? hakodateOLastRepaymentTime.value
-              : this.hakodateOLastRepaymentTime),
-      qc5edvORepaymentChannel:
-          (qc5edvORepaymentChannel != null
-              ? qc5edvORepaymentChannel.value
-              : this.qc5edvORepaymentChannel),
-      tonelessORepaymentChannelName:
-          (tonelessORepaymentChannelName != null
-              ? tonelessORepaymentChannelName.value
-              : this.tonelessORepaymentChannelName),
-      jp689uOTimeZone:
-          (jp689uOTimeZone != null
-              ? jp689uOTimeZone.value
-              : this.jp689uOTimeZone),
-      e0a79hOIsCollectCase:
-          (e0a79hOIsCollectCase != null
-              ? e0a79hOIsCollectCase.value
-              : this.e0a79hOIsCollectCase),
-      d7x52pOBizChannel:
-          (d7x52pOBizChannel != null
-              ? d7x52pOBizChannel.value
-              : this.d7x52pOBizChannel),
-      z38e62OOrderGid:
-          (z38e62OOrderGid != null
-              ? z38e62OOrderGid.value
-              : this.z38e62OOrderGid),
-      sweenyOWorkFlowId:
-          (sweenyOWorkFlowId != null
-              ? sweenyOWorkFlowId.value
-              : this.sweenyOWorkFlowId),
+      imprintOPlanGid: (imprintOPlanGid != null
+          ? imprintOPlanGid.value
+          : this.imprintOPlanGid),
+      r5a4x8OLoanGid: (r5a4x8OLoanGid != null
+          ? r5a4x8OLoanGid.value
+          : this.r5a4x8OLoanGid),
+      raiaOUserGid: (raiaOUserGid != null
+          ? raiaOUserGid.value
+          : this.raiaOUserGid),
+      ih2upqOCtPeriod: (ih2upqOCtPeriod != null
+          ? ih2upqOCtPeriod.value
+          : this.ih2upqOCtPeriod),
+      spinachyOLoanPeriod: (spinachyOLoanPeriod != null
+          ? spinachyOLoanPeriod.value
+          : this.spinachyOLoanPeriod),
+      ez64t7OPeriodCount: (ez64t7OPeriodCount != null
+          ? ez64t7OPeriodCount.value
+          : this.ez64t7OPeriodCount),
+      foreyardOProductId: (foreyardOProductId != null
+          ? foreyardOProductId.value
+          : this.foreyardOProductId),
+      n410zdOLoanTime: (n410zdOLoanTime != null
+          ? n410zdOLoanTime.value
+          : this.n410zdOLoanTime),
+      u2g032OStartTime: (u2g032OStartTime != null
+          ? u2g032OStartTime.value
+          : this.u2g032OStartTime),
+      r5k31qODueTime: (r5k31qODueTime != null
+          ? r5k31qODueTime.value
+          : this.r5k31qODueTime),
+      suffOLoanStatus: (suffOLoanStatus != null
+          ? suffOLoanStatus.value
+          : this.suffOLoanStatus),
+      mxs06uOApplyStatus: (mxs06uOApplyStatus != null
+          ? mxs06uOApplyStatus.value
+          : this.mxs06uOApplyStatus),
+      brantailOTotalLoanAmount: (brantailOTotalLoanAmount != null
+          ? brantailOTotalLoanAmount.value
+          : this.brantailOTotalLoanAmount),
+      c5ju9nOTotalLoanFee: (c5ju9nOTotalLoanFee != null
+          ? c5ju9nOTotalLoanFee.value
+          : this.c5ju9nOTotalLoanFee),
+      retiaryOLoanAmount: (retiaryOLoanAmount != null
+          ? retiaryOLoanAmount.value
+          : this.retiaryOLoanAmount),
+      timesOBillAmount: (timesOBillAmount != null
+          ? timesOBillAmount.value
+          : this.timesOBillAmount),
+      fl92yrOBillLeftAmount: (fl92yrOBillLeftAmount != null
+          ? fl92yrOBillLeftAmount.value
+          : this.fl92yrOBillLeftAmount),
+      uqm81lOPrincipalAmount: (uqm81lOPrincipalAmount != null
+          ? uqm81lOPrincipalAmount.value
+          : this.uqm81lOPrincipalAmount),
+      v6e22nOPrincipalLeftAmount: (v6e22nOPrincipalLeftAmount != null
+          ? v6e22nOPrincipalLeftAmount.value
+          : this.v6e22nOPrincipalLeftAmount),
+      wantonlyOLoanLeftAmount: (wantonlyOLoanLeftAmount != null
+          ? wantonlyOLoanLeftAmount.value
+          : this.wantonlyOLoanLeftAmount),
+      pinionOUserCouponGid: (pinionOUserCouponGid != null
+          ? pinionOUserCouponGid.value
+          : this.pinionOUserCouponGid),
+      sk6s63OCouponAmount: (sk6s63OCouponAmount != null
+          ? sk6s63OCouponAmount.value
+          : this.sk6s63OCouponAmount),
+      gatemanORepaymentAmount: (gatemanORepaymentAmount != null
+          ? gatemanORepaymentAmount.value
+          : this.gatemanORepaymentAmount),
+      z7c658OPrincipalPaidAmount: (z7c658OPrincipalPaidAmount != null
+          ? z7c658OPrincipalPaidAmount.value
+          : this.z7c658OPrincipalPaidAmount),
+      reeditOServiceFeePaidAmount: (reeditOServiceFeePaidAmount != null
+          ? reeditOServiceFeePaidAmount.value
+          : this.reeditOServiceFeePaidAmount),
+      guilefulOOverdueFeePaidAmount: (guilefulOOverdueFeePaidAmount != null
+          ? guilefulOOverdueFeePaidAmount.value
+          : this.guilefulOOverdueFeePaidAmount),
+      d95091ORepaymentStatus: (d95091ORepaymentStatus != null
+          ? d95091ORepaymentStatus.value
+          : this.d95091ORepaymentStatus),
+      v4nynoOFeeType: (v4nynoOFeeType != null
+          ? v4nynoOFeeType.value
+          : this.v4nynoOFeeType),
+      q3568aOLoanPrefixRate: (q3568aOLoanPrefixRate != null
+          ? q3568aOLoanPrefixRate.value
+          : this.q3568aOLoanPrefixRate),
+      bobbedOLoanPostRate: (bobbedOLoanPostRate != null
+          ? bobbedOLoanPostRate.value
+          : this.bobbedOLoanPostRate),
+      j4n2j6ODueRate: (j4n2j6ODueRate != null
+          ? j4n2j6ODueRate.value
+          : this.j4n2j6ODueRate),
+      e88wy1OLoanFee: (e88wy1OLoanFee != null
+          ? e88wy1OLoanFee.value
+          : this.e88wy1OLoanFee),
+      muscleOPrefixFee: (muscleOPrefixFee != null
+          ? muscleOPrefixFee.value
+          : this.muscleOPrefixFee),
+      piz72tOPostFee: (piz72tOPostFee != null
+          ? piz72tOPostFee.value
+          : this.piz72tOPostFee),
+      faciendOOverdueFee: (faciendOOverdueFee != null
+          ? faciendOOverdueFee.value
+          : this.faciendOOverdueFee),
+      slackOIsOverdue: (slackOIsOverdue != null
+          ? slackOIsOverdue.value
+          : this.slackOIsOverdue),
+      nbk975OPlatformAmount: (nbk975OPlatformAmount != null
+          ? nbk975OPlatformAmount.value
+          : this.nbk975OPlatformAmount),
+      clansmanODueDay: (clansmanODueDay != null
+          ? clansmanODueDay.value
+          : this.clansmanODueDay),
+      johannesODosettleFeeTime: (johannesODosettleFeeTime != null
+          ? johannesODosettleFeeTime.value
+          : this.johannesODosettleFeeTime),
+      hakodateOLastRepaymentTime: (hakodateOLastRepaymentTime != null
+          ? hakodateOLastRepaymentTime.value
+          : this.hakodateOLastRepaymentTime),
+      qc5edvORepaymentChannel: (qc5edvORepaymentChannel != null
+          ? qc5edvORepaymentChannel.value
+          : this.qc5edvORepaymentChannel),
+      tonelessORepaymentChannelName: (tonelessORepaymentChannelName != null
+          ? tonelessORepaymentChannelName.value
+          : this.tonelessORepaymentChannelName),
+      jp689uOTimeZone: (jp689uOTimeZone != null
+          ? jp689uOTimeZone.value
+          : this.jp689uOTimeZone),
+      e0a79hOIsCollectCase: (e0a79hOIsCollectCase != null
+          ? e0a79hOIsCollectCase.value
+          : this.e0a79hOIsCollectCase),
+      d7x52pOBizChannel: (d7x52pOBizChannel != null
+          ? d7x52pOBizChannel.value
+          : this.d7x52pOBizChannel),
+      z38e62OOrderGid: (z38e62OOrderGid != null
+          ? z38e62OOrderGid.value
+          : this.z38e62OOrderGid),
+      sweenyOWorkFlowId: (sweenyOWorkFlowId != null
+          ? sweenyOWorkFlowId.value
+          : this.sweenyOWorkFlowId),
       remark: (remark != null ? remark.value : this.remark),
-      i2jk5fOPeriodStatus:
-          (i2jk5fOPeriodStatus != null
-              ? i2jk5fOPeriodStatus.value
-              : this.i2jk5fOPeriodStatus),
-      emceeOReduceAmount:
-          (emceeOReduceAmount != null
-              ? emceeOReduceAmount.value
-              : this.emceeOReduceAmount),
-      spriteOBusinessFee:
-          (spriteOBusinessFee != null
-              ? spriteOBusinessFee.value
-              : this.spriteOBusinessFee),
-      renewPaidAmount:
-          (renewPaidAmount != null
-              ? renewPaidAmount.value
-              : this.renewPaidAmount),
-      renewLoanFee:
-          (renewLoanFee != null ? renewLoanFee.value : this.renewLoanFee),
-      originDueTime:
-          (originDueTime != null ? originDueTime.value : this.originDueTime),
-      firstRenewLoanTime:
-          (firstRenewLoanTime != null
-              ? firstRenewLoanTime.value
-              : this.firstRenewLoanTime),
-      chuseOLoanProductType:
-          (chuseOLoanProductType != null
-              ? chuseOLoanProductType.value
-              : this.chuseOLoanProductType),
+      i2jk5fOPeriodStatus: (i2jk5fOPeriodStatus != null
+          ? i2jk5fOPeriodStatus.value
+          : this.i2jk5fOPeriodStatus),
+      emceeOReduceAmount: (emceeOReduceAmount != null
+          ? emceeOReduceAmount.value
+          : this.emceeOReduceAmount),
+      spriteOBusinessFee: (spriteOBusinessFee != null
+          ? spriteOBusinessFee.value
+          : this.spriteOBusinessFee),
+      renewPaidAmount: (renewPaidAmount != null
+          ? renewPaidAmount.value
+          : this.renewPaidAmount),
+      renewLoanFee: (renewLoanFee != null
+          ? renewLoanFee.value
+          : this.renewLoanFee),
+      originDueTime: (originDueTime != null
+          ? originDueTime.value
+          : this.originDueTime),
+      firstRenewLoanTime: (firstRenewLoanTime != null
+          ? firstRenewLoanTime.value
+          : this.firstRenewLoanTime),
+      chuseOLoanProductType: (chuseOLoanProductType != null
+          ? chuseOLoanProductType.value
+          : this.chuseOLoanProductType),
     );
   }
 }
@@ -25945,16 +25289,15 @@ extension $BillDetailResp$Bac6b3OUserInfoDetailExtension
   }) {
     return BillDetailResp$Bac6b3OUserInfoDetail(
       name: (name != null ? name.value : this.name),
-      sordidOMobile:
-          (sordidOMobile != null ? sordidOMobile.value : this.sordidOMobile),
-      x537zyORealMobile:
-          (x537zyORealMobile != null
-              ? x537zyORealMobile.value
-              : this.x537zyORealMobile),
-      ls81q4ORealName:
-          (ls81q4ORealName != null
-              ? ls81q4ORealName.value
-              : this.ls81q4ORealName),
+      sordidOMobile: (sordidOMobile != null
+          ? sordidOMobile.value
+          : this.sordidOMobile),
+      x537zyORealMobile: (x537zyORealMobile != null
+          ? x537zyORealMobile.value
+          : this.x537zyORealMobile),
+      ls81q4ORealName: (ls81q4ORealName != null
+          ? ls81q4ORealName.value
+          : this.ls81q4ORealName),
     );
   }
 }
@@ -25977,7 +25320,7 @@ class BillRepayResp$My4dd2ORepaymentList$Item {
   @JsonKey(name: 'r5a4x8')
   final int? r5a4x8OLoanGid;
   @JsonKey(name: 'raia')
-  final int? raiaOUserGid;
+  final String? raiaOUserGid;
   @JsonKey(name: 'gateman')
   final double? gatemanORepaymentAmount;
   @JsonKey(name: 'd95091')
@@ -26084,7 +25427,7 @@ extension $BillRepayResp$My4dd2ORepaymentList$ItemExtension
     on BillRepayResp$My4dd2ORepaymentList$Item {
   BillRepayResp$My4dd2ORepaymentList$Item copyWith({
     int? r5a4x8OLoanGid,
-    int? raiaOUserGid,
+    String? raiaOUserGid,
     double? gatemanORepaymentAmount,
     int? d95091ORepaymentStatus,
     int? wtpuztORepaymentTime,
@@ -26112,7 +25455,7 @@ extension $BillRepayResp$My4dd2ORepaymentList$ItemExtension
 
   BillRepayResp$My4dd2ORepaymentList$Item copyWithWrapped({
     Wrapped<int?>? r5a4x8OLoanGid,
-    Wrapped<int?>? raiaOUserGid,
+    Wrapped<String?>? raiaOUserGid,
     Wrapped<double?>? gatemanORepaymentAmount,
     Wrapped<int?>? d95091ORepaymentStatus,
     Wrapped<int?>? wtpuztORepaymentTime,
@@ -26123,39 +25466,34 @@ extension $BillRepayResp$My4dd2ORepaymentList$ItemExtension
     Wrapped<int?>? imprintOPlanGid,
   }) {
     return BillRepayResp$My4dd2ORepaymentList$Item(
-      r5a4x8OLoanGid:
-          (r5a4x8OLoanGid != null ? r5a4x8OLoanGid.value : this.r5a4x8OLoanGid),
-      raiaOUserGid:
-          (raiaOUserGid != null ? raiaOUserGid.value : this.raiaOUserGid),
-      gatemanORepaymentAmount:
-          (gatemanORepaymentAmount != null
-              ? gatemanORepaymentAmount.value
-              : this.gatemanORepaymentAmount),
-      d95091ORepaymentStatus:
-          (d95091ORepaymentStatus != null
-              ? d95091ORepaymentStatus.value
-              : this.d95091ORepaymentStatus),
-      wtpuztORepaymentTime:
-          (wtpuztORepaymentTime != null
-              ? wtpuztORepaymentTime.value
-              : this.wtpuztORepaymentTime),
+      r5a4x8OLoanGid: (r5a4x8OLoanGid != null
+          ? r5a4x8OLoanGid.value
+          : this.r5a4x8OLoanGid),
+      raiaOUserGid: (raiaOUserGid != null
+          ? raiaOUserGid.value
+          : this.raiaOUserGid),
+      gatemanORepaymentAmount: (gatemanORepaymentAmount != null
+          ? gatemanORepaymentAmount.value
+          : this.gatemanORepaymentAmount),
+      d95091ORepaymentStatus: (d95091ORepaymentStatus != null
+          ? d95091ORepaymentStatus.value
+          : this.d95091ORepaymentStatus),
+      wtpuztORepaymentTime: (wtpuztORepaymentTime != null
+          ? wtpuztORepaymentTime.value
+          : this.wtpuztORepaymentTime),
       remark: (remark != null ? remark.value : this.remark),
-      nannetteOReturnCode:
-          (nannetteOReturnCode != null
-              ? nannetteOReturnCode.value
-              : this.nannetteOReturnCode),
-      vx4165OFailReason:
-          (vx4165OFailReason != null
-              ? vx4165OFailReason.value
-              : this.vx4165OFailReason),
-      pyreneesOPayStatus:
-          (pyreneesOPayStatus != null
-              ? pyreneesOPayStatus.value
-              : this.pyreneesOPayStatus),
-      imprintOPlanGid:
-          (imprintOPlanGid != null
-              ? imprintOPlanGid.value
-              : this.imprintOPlanGid),
+      nannetteOReturnCode: (nannetteOReturnCode != null
+          ? nannetteOReturnCode.value
+          : this.nannetteOReturnCode),
+      vx4165OFailReason: (vx4165OFailReason != null
+          ? vx4165OFailReason.value
+          : this.vx4165OFailReason),
+      pyreneesOPayStatus: (pyreneesOPayStatus != null
+          ? pyreneesOPayStatus.value
+          : this.pyreneesOPayStatus),
+      imprintOPlanGid: (imprintOPlanGid != null
+          ? imprintOPlanGid.value
+          : this.imprintOPlanGid),
     );
   }
 }
@@ -26290,31 +25628,25 @@ extension $TrackReportReq$FibulaOReportBaseInfo$AcetylcoOGeolocationExtension
     Wrapped<int?>? s4q56xOLocationOpen,
   }) {
     return TrackReportReq$FibulaOReportBaseInfo$AcetylcoOGeolocation(
-      qi80b5OCoordinates:
-          (qi80b5OCoordinates != null
-              ? qi80b5OCoordinates.value
-              : this.qi80b5OCoordinates),
-      natufianOCountry:
-          (natufianOCountry != null
-              ? natufianOCountry.value
-              : this.natufianOCountry),
+      qi80b5OCoordinates: (qi80b5OCoordinates != null
+          ? qi80b5OCoordinates.value
+          : this.qi80b5OCoordinates),
+      natufianOCountry: (natufianOCountry != null
+          ? natufianOCountry.value
+          : this.natufianOCountry),
       city: (city != null ? city.value : this.city),
-      j816gnOReturnErrorCode:
-          (j816gnOReturnErrorCode != null
-              ? j816gnOReturnErrorCode.value
-              : this.j816gnOReturnErrorCode),
-      ek8u6mOCallbackErrorCode:
-          (ek8u6mOCallbackErrorCode != null
-              ? ek8u6mOCallbackErrorCode.value
-              : this.ek8u6mOCallbackErrorCode),
-      vx4165OFailReason:
-          (vx4165OFailReason != null
-              ? vx4165OFailReason.value
-              : this.vx4165OFailReason),
-      s4q56xOLocationOpen:
-          (s4q56xOLocationOpen != null
-              ? s4q56xOLocationOpen.value
-              : this.s4q56xOLocationOpen),
+      j816gnOReturnErrorCode: (j816gnOReturnErrorCode != null
+          ? j816gnOReturnErrorCode.value
+          : this.j816gnOReturnErrorCode),
+      ek8u6mOCallbackErrorCode: (ek8u6mOCallbackErrorCode != null
+          ? ek8u6mOCallbackErrorCode.value
+          : this.ek8u6mOCallbackErrorCode),
+      vx4165OFailReason: (vx4165OFailReason != null
+          ? vx4165OFailReason.value
+          : this.vx4165OFailReason),
+      s4q56xOLocationOpen: (s4q56xOLocationOpen != null
+          ? s4q56xOLocationOpen.value
+          : this.s4q56xOLocationOpen),
     );
   }
 }
@@ -26408,13 +25740,13 @@ extension $TrackReportReq$BanallyOReportDevDTO$HdcopyOBatteryExtension
   }) {
     return TrackReportReq$BanallyOReportDevDTO$HdcopyOBattery(
       yardOHealth: (yardOHealth != null ? yardOHealth.value : this.yardOHealth),
-      yr0nx3OPower:
-          (yr0nx3OPower != null ? yr0nx3OPower.value : this.yr0nx3OPower),
+      yr0nx3OPower: (yr0nx3OPower != null
+          ? yr0nx3OPower.value
+          : this.yr0nx3OPower),
       status: (status != null ? status.value : this.status),
-      k54oy6OTemperature:
-          (k54oy6OTemperature != null
-              ? k54oy6OTemperature.value
-              : this.k54oy6OTemperature),
+      k54oy6OTemperature: (k54oy6OTemperature != null
+          ? k54oy6OTemperature.value
+          : this.k54oy6OTemperature),
     );
   }
 }
@@ -26532,16 +25864,15 @@ extension $TrackReportReq$BanallyOReportDevDTO$I39296OBluetoothExtension
     return TrackReportReq$BanallyOReportDevDTO$I39296OBluetooth(
       type: (type != null ? type.value : this.type),
       address: (address != null ? address.value : this.address),
-      m3hs2zODevices:
-          (m3hs2zODevices != null ? m3hs2zODevices.value : this.m3hs2zODevices),
-      kp228zOIsEnabled:
-          (kp228zOIsEnabled != null
-              ? kp228zOIsEnabled.value
-              : this.kp228zOIsEnabled),
-      cx8ay2OPhoneName:
-          (cx8ay2OPhoneName != null
-              ? cx8ay2OPhoneName.value
-              : this.cx8ay2OPhoneName),
+      m3hs2zODevices: (m3hs2zODevices != null
+          ? m3hs2zODevices.value
+          : this.m3hs2zODevices),
+      kp228zOIsEnabled: (kp228zOIsEnabled != null
+          ? kp228zOIsEnabled.value
+          : this.kp228zOIsEnabled),
+      cx8ay2OPhoneName: (cx8ay2OPhoneName != null
+          ? cx8ay2OPhoneName.value
+          : this.cx8ay2OPhoneName),
     );
   }
 }
@@ -26703,36 +26034,32 @@ extension $TrackReportReq$BanallyOReportDevDTO$CostingOCameras$ItemExtension
     Wrapped<String?>? tobaccoOViewAngle,
   }) {
     return TrackReportReq$BanallyOReportDevDTO$CostingOCameras$Item(
-      yb5fusOAfModes:
-          (yb5fusOAfModes != null ? yb5fusOAfModes.value : this.yb5fusOAfModes),
-      i1u636OAperture:
-          (i1u636OAperture != null
-              ? i1u636OAperture.value
-              : this.i1u636OAperture),
-      jcqdnvOFacing:
-          (jcqdnvOFacing != null ? jcqdnvOFacing.value : this.jcqdnvOFacing),
+      yb5fusOAfModes: (yb5fusOAfModes != null
+          ? yb5fusOAfModes.value
+          : this.yb5fusOAfModes),
+      i1u636OAperture: (i1u636OAperture != null
+          ? i1u636OAperture.value
+          : this.i1u636OAperture),
+      jcqdnvOFacing: (jcqdnvOFacing != null
+          ? jcqdnvOFacing.value
+          : this.jcqdnvOFacing),
       flash: (flash != null ? flash.value : this.flash),
-      uveitisOFocalLength:
-          (uveitisOFocalLength != null
-              ? uveitisOFocalLength.value
-              : this.uveitisOFocalLength),
+      uveitisOFocalLength: (uveitisOFocalLength != null
+          ? uveitisOFocalLength.value
+          : this.uveitisOFocalLength),
       level: (level != null ? level.value : this.level),
-      w08yy9OPixelSize:
-          (w08yy9OPixelSize != null
-              ? w08yy9OPixelSize.value
-              : this.w08yy9OPixelSize),
-      discernOResolution:
-          (discernOResolution != null
-              ? discernOResolution.value
-              : this.discernOResolution),
-      l9t1fnOSensorSize:
-          (l9t1fnOSensorSize != null
-              ? l9t1fnOSensorSize.value
-              : this.l9t1fnOSensorSize),
-      tobaccoOViewAngle:
-          (tobaccoOViewAngle != null
-              ? tobaccoOViewAngle.value
-              : this.tobaccoOViewAngle),
+      w08yy9OPixelSize: (w08yy9OPixelSize != null
+          ? w08yy9OPixelSize.value
+          : this.w08yy9OPixelSize),
+      discernOResolution: (discernOResolution != null
+          ? discernOResolution.value
+          : this.discernOResolution),
+      l9t1fnOSensorSize: (l9t1fnOSensorSize != null
+          ? l9t1fnOSensorSize.value
+          : this.l9t1fnOSensorSize),
+      tobaccoOViewAngle: (tobaccoOViewAngle != null
+          ? tobaccoOViewAngle.value
+          : this.tobaccoOViewAngle),
     );
   }
 }
@@ -26837,20 +26164,18 @@ extension $TrackReportReq$BanallyOReportDevDTO$CpuExtension
   }) {
     return TrackReportReq$BanallyOReportDevDTO$Cpu(
       cores: (cores != null ? cores.value : this.cores),
-      zamboniOCurFreq:
-          (zamboniOCurFreq != null
-              ? zamboniOCurFreq.value
-              : this.zamboniOCurFreq),
-      r2exwnOHardware:
-          (r2exwnOHardware != null
-              ? r2exwnOHardware.value
-              : this.r2exwnOHardware),
-      fe5d62OMaxFreq:
-          (fe5d62OMaxFreq != null ? fe5d62OMaxFreq.value : this.fe5d62OMaxFreq),
-      amortiseOMinFreq:
-          (amortiseOMinFreq != null
-              ? amortiseOMinFreq.value
-              : this.amortiseOMinFreq),
+      zamboniOCurFreq: (zamboniOCurFreq != null
+          ? zamboniOCurFreq.value
+          : this.zamboniOCurFreq),
+      r2exwnOHardware: (r2exwnOHardware != null
+          ? r2exwnOHardware.value
+          : this.r2exwnOHardware),
+      fe5d62OMaxFreq: (fe5d62OMaxFreq != null
+          ? fe5d62OMaxFreq.value
+          : this.fe5d62OMaxFreq),
+      amortiseOMinFreq: (amortiseOMinFreq != null
+          ? amortiseOMinFreq.value
+          : this.amortiseOMinFreq),
     );
   }
 }
@@ -26995,30 +26320,24 @@ extension $TrackReportReq$BanallyOReportDevDTO$Slqri6OGeneralExtension
   }) {
     return TrackReportReq$BanallyOReportDevDTO$Slqri6OGeneral(
       brightness: (brightness != null ? brightness.value : this.brightness),
-      d424a6OHaveIntent:
-          (d424a6OHaveIntent != null
-              ? d424a6OHaveIntent.value
-              : this.d424a6OHaveIntent),
-      diffuseOInternalAvailableSize:
-          (diffuseOInternalAvailableSize != null
-              ? diffuseOInternalAvailableSize.value
-              : this.diffuseOInternalAvailableSize),
-      iunjmsOInternalTotalSize:
-          (iunjmsOInternalTotalSize != null
-              ? iunjmsOInternalTotalSize.value
-              : this.iunjmsOInternalTotalSize),
-      adjointOIsHotspotEnabled:
-          (adjointOIsHotspotEnabled != null
-              ? adjointOIsHotspotEnabled.value
-              : this.adjointOIsHotspotEnabled),
-      discernOResolution:
-          (discernOResolution != null
-              ? discernOResolution.value
-              : this.discernOResolution),
-      bjf1ivOWifiRouterMac:
-          (bjf1ivOWifiRouterMac != null
-              ? bjf1ivOWifiRouterMac.value
-              : this.bjf1ivOWifiRouterMac),
+      d424a6OHaveIntent: (d424a6OHaveIntent != null
+          ? d424a6OHaveIntent.value
+          : this.d424a6OHaveIntent),
+      diffuseOInternalAvailableSize: (diffuseOInternalAvailableSize != null
+          ? diffuseOInternalAvailableSize.value
+          : this.diffuseOInternalAvailableSize),
+      iunjmsOInternalTotalSize: (iunjmsOInternalTotalSize != null
+          ? iunjmsOInternalTotalSize.value
+          : this.iunjmsOInternalTotalSize),
+      adjointOIsHotspotEnabled: (adjointOIsHotspotEnabled != null
+          ? adjointOIsHotspotEnabled.value
+          : this.adjointOIsHotspotEnabled),
+      discernOResolution: (discernOResolution != null
+          ? discernOResolution.value
+          : this.discernOResolution),
+      bjf1ivOWifiRouterMac: (bjf1ivOWifiRouterMac != null
+          ? bjf1ivOWifiRouterMac.value
+          : this.bjf1ivOWifiRouterMac),
     );
   }
 }
@@ -27113,10 +26432,9 @@ extension $TrackReportReq$BanallyOReportDevDTO$R6i83kONetSignalExtension
     return TrackReportReq$BanallyOReportDevDTO$R6i83kONetSignal(
       lopeOIpv6: (lopeOIpv6 != null ? lopeOIpv6.value : this.lopeOIpv6),
       level: (level != null ? level.value : this.level),
-      s3zh03OLinkSpeed:
-          (s3zh03OLinkSpeed != null
-              ? s3zh03OLinkSpeed.value
-              : this.s3zh03OLinkSpeed),
+      s3zh03OLinkSpeed: (s3zh03OLinkSpeed != null
+          ? s3zh03OLinkSpeed.value
+          : this.s3zh03OLinkSpeed),
       oj1h5mORssi: (oj1h5mORssi != null ? oj1h5mORssi.value : this.oj1h5mORssi),
     );
   }
@@ -27256,26 +26574,26 @@ extension $TrackReportReq$BanallyOReportDevDTO$AutumnalOSensors$ItemExtension
     Wrapped<int?>? lutealOVersion,
   }) {
     return TrackReportReq$BanallyOReportDevDTO$AutumnalOSensors$Item(
-      r09lp6OMaxRange:
-          (r09lp6OMaxRange != null
-              ? r09lp6OMaxRange.value
-              : this.r09lp6OMaxRange),
-      wienerOMinDelay:
-          (wienerOMinDelay != null
-              ? wienerOMinDelay.value
-              : this.wienerOMinDelay),
+      r09lp6OMaxRange: (r09lp6OMaxRange != null
+          ? r09lp6OMaxRange.value
+          : this.r09lp6OMaxRange),
+      wienerOMinDelay: (wienerOMinDelay != null
+          ? wienerOMinDelay.value
+          : this.wienerOMinDelay),
       name: (name != null ? name.value : this.name),
-      yr0nx3OPower:
-          (yr0nx3OPower != null ? yr0nx3OPower.value : this.yr0nx3OPower),
-      discernOResolution:
-          (discernOResolution != null
-              ? discernOResolution.value
-              : this.discernOResolution),
+      yr0nx3OPower: (yr0nx3OPower != null
+          ? yr0nx3OPower.value
+          : this.yr0nx3OPower),
+      discernOResolution: (discernOResolution != null
+          ? discernOResolution.value
+          : this.discernOResolution),
       type: (type != null ? type.value : this.type),
-      g0hn09OVendor:
-          (g0hn09OVendor != null ? g0hn09OVendor.value : this.g0hn09OVendor),
-      lutealOVersion:
-          (lutealOVersion != null ? lutealOVersion.value : this.lutealOVersion),
+      g0hn09OVendor: (g0hn09OVendor != null
+          ? g0hn09OVendor.value
+          : this.g0hn09OVendor),
+      lutealOVersion: (lutealOVersion != null
+          ? lutealOVersion.value
+          : this.lutealOVersion),
     );
   }
 }
@@ -27371,22 +26689,18 @@ extension $TrackReportReq$BanallyOReportDevDTO$SystemExtension
     Wrapped<String?>? influmpODensity,
   }) {
     return TrackReportReq$BanallyOReportDevDTO$System(
-      soothOBuildTags:
-          (soothOBuildTags != null
-              ? soothOBuildTags.value
-              : this.soothOBuildTags),
-      jm63g1OBuildType:
-          (jm63g1OBuildType != null
-              ? jm63g1OBuildType.value
-              : this.jm63g1OBuildType),
-      turretedOBuilder:
-          (turretedOBuilder != null
-              ? turretedOBuilder.value
-              : this.turretedOBuilder),
-      influmpODensity:
-          (influmpODensity != null
-              ? influmpODensity.value
-              : this.influmpODensity),
+      soothOBuildTags: (soothOBuildTags != null
+          ? soothOBuildTags.value
+          : this.soothOBuildTags),
+      jm63g1OBuildType: (jm63g1OBuildType != null
+          ? jm63g1OBuildType.value
+          : this.jm63g1OBuildType),
+      turretedOBuilder: (turretedOBuilder != null
+          ? turretedOBuilder.value
+          : this.turretedOBuilder),
+      influmpODensity: (influmpODensity != null
+          ? influmpODensity.value
+          : this.influmpODensity),
     );
   }
 }
@@ -27552,28 +26866,26 @@ extension $TrackReportReq$BanallyOReportDevDTO$E3d40eOStructureExtension
     return TrackReportReq$BanallyOReportDevDTO$E3d40eOStructure(
       id: (id != null ? id.value : this.id),
       display: (display != null ? display.value : this.display),
-      is9q37OProduct:
-          (is9q37OProduct != null ? is9q37OProduct.value : this.is9q37OProduct),
-      atticaODevice:
-          (atticaODevice != null ? atticaODevice.value : this.atticaODevice),
+      is9q37OProduct: (is9q37OProduct != null
+          ? is9q37OProduct.value
+          : this.is9q37OProduct),
+      atticaODevice: (atticaODevice != null
+          ? atticaODevice.value
+          : this.atticaODevice),
       board: (board != null ? board.value : this.board),
-      everwhoOBootloader:
-          (everwhoOBootloader != null
-              ? everwhoOBootloader.value
-              : this.everwhoOBootloader),
+      everwhoOBootloader: (everwhoOBootloader != null
+          ? everwhoOBootloader.value
+          : this.everwhoOBootloader),
       radio: (radio != null ? radio.value : this.radio),
-      r2exwnOHardware:
-          (r2exwnOHardware != null
-              ? r2exwnOHardware.value
-              : this.r2exwnOHardware),
-      el986rOStructVersion:
-          (el986rOStructVersion != null
-              ? el986rOStructVersion.value
-              : this.el986rOStructVersion),
-      geegawOFingerprint:
-          (geegawOFingerprint != null
-              ? geegawOFingerprint.value
-              : this.geegawOFingerprint),
+      r2exwnOHardware: (r2exwnOHardware != null
+          ? r2exwnOHardware.value
+          : this.r2exwnOHardware),
+      el986rOStructVersion: (el986rOStructVersion != null
+          ? el986rOStructVersion.value
+          : this.el986rOStructVersion),
+      geegawOFingerprint: (geegawOFingerprint != null
+          ? geegawOFingerprint.value
+          : this.geegawOFingerprint),
     );
   }
 }
@@ -28170,112 +27482,92 @@ extension $RiskReportResp$ZdzsepOVerificationConfig$U7yl7cOItemsDisplayConfigExt
     kibeOSecondContactRelationship,
   }) {
     return RiskReportResp$ZdzsepOVerificationConfig$U7yl7cOItemsDisplayConfig(
-      lq1s05OFirstName:
-          (lq1s05OFirstName != null
-              ? lq1s05OFirstName.value
-              : this.lq1s05OFirstName),
-      darktownOLastName:
-          (darktownOLastName != null
-              ? darktownOLastName.value
-              : this.darktownOLastName),
+      lq1s05OFirstName: (lq1s05OFirstName != null
+          ? lq1s05OFirstName.value
+          : this.lq1s05OFirstName),
+      darktownOLastName: (darktownOLastName != null
+          ? darktownOLastName.value
+          : this.darktownOLastName),
       gender: (gender != null ? gender.value : this.gender),
-      merdekaOIdCard:
-          (merdekaOIdCard != null ? merdekaOIdCard.value : this.merdekaOIdCard),
-      gargetOBirthday:
-          (gargetOBirthday != null
-              ? gargetOBirthday.value
-              : this.gargetOBirthday),
-      f31u3kOEmail:
-          (f31u3kOEmail != null ? f31u3kOEmail.value : this.f31u3kOEmail),
-      x1iu04OOtherMobile:
-          (x1iu04OOtherMobile != null
-              ? x1iu04OOtherMobile.value
-              : this.x1iu04OOtherMobile),
-      coseOEducation:
-          (coseOEducation != null ? coseOEducation.value : this.coseOEducation),
-      m2wx4tOMaritalStatus:
-          (m2wx4tOMaritalStatus != null
-              ? m2wx4tOMaritalStatus.value
-              : this.m2wx4tOMaritalStatus),
-      chaffyOHouseStatus:
-          (chaffyOHouseStatus != null
-              ? chaffyOHouseStatus.value
-              : this.chaffyOHouseStatus),
-      bja8s5OElectricityBill:
-          (bja8s5OElectricityBill != null
-              ? bja8s5OElectricityBill.value
-              : this.bja8s5OElectricityBill),
-      volumenOElectricityRelated:
-          (volumenOElectricityRelated != null
-              ? volumenOElectricityRelated.value
-              : this.volumenOElectricityRelated),
-      spadicesOAddressState:
-          (spadicesOAddressState != null
-              ? spadicesOAddressState.value
-              : this.spadicesOAddressState),
-      gasconyOAddressCity:
-          (gasconyOAddressCity != null
-              ? gasconyOAddressCity.value
-              : this.gasconyOAddressCity),
-      craalOAddressDetail:
-          (craalOAddressDetail != null
-              ? craalOAddressDetail.value
-              : this.craalOAddressDetail),
-      himfjuOOtherLoans:
-          (himfjuOOtherLoans != null
-              ? himfjuOOtherLoans.value
-              : this.himfjuOOtherLoans),
-      diopsideOOccupation:
-          (diopsideOOccupation != null
-              ? diopsideOOccupation.value
-              : this.diopsideOOccupation),
-      limpidlyOIncomeLevel:
-          (limpidlyOIncomeLevel != null
-              ? limpidlyOIncomeLevel.value
-              : this.limpidlyOIncomeLevel),
-      z4s937OHouseholdMonthlyExpenses:
-          (z4s937OHouseholdMonthlyExpenses != null
-              ? z4s937OHouseholdMonthlyExpenses.value
-              : this.z4s937OHouseholdMonthlyExpenses),
+      merdekaOIdCard: (merdekaOIdCard != null
+          ? merdekaOIdCard.value
+          : this.merdekaOIdCard),
+      gargetOBirthday: (gargetOBirthday != null
+          ? gargetOBirthday.value
+          : this.gargetOBirthday),
+      f31u3kOEmail: (f31u3kOEmail != null
+          ? f31u3kOEmail.value
+          : this.f31u3kOEmail),
+      x1iu04OOtherMobile: (x1iu04OOtherMobile != null
+          ? x1iu04OOtherMobile.value
+          : this.x1iu04OOtherMobile),
+      coseOEducation: (coseOEducation != null
+          ? coseOEducation.value
+          : this.coseOEducation),
+      m2wx4tOMaritalStatus: (m2wx4tOMaritalStatus != null
+          ? m2wx4tOMaritalStatus.value
+          : this.m2wx4tOMaritalStatus),
+      chaffyOHouseStatus: (chaffyOHouseStatus != null
+          ? chaffyOHouseStatus.value
+          : this.chaffyOHouseStatus),
+      bja8s5OElectricityBill: (bja8s5OElectricityBill != null
+          ? bja8s5OElectricityBill.value
+          : this.bja8s5OElectricityBill),
+      volumenOElectricityRelated: (volumenOElectricityRelated != null
+          ? volumenOElectricityRelated.value
+          : this.volumenOElectricityRelated),
+      spadicesOAddressState: (spadicesOAddressState != null
+          ? spadicesOAddressState.value
+          : this.spadicesOAddressState),
+      gasconyOAddressCity: (gasconyOAddressCity != null
+          ? gasconyOAddressCity.value
+          : this.gasconyOAddressCity),
+      craalOAddressDetail: (craalOAddressDetail != null
+          ? craalOAddressDetail.value
+          : this.craalOAddressDetail),
+      himfjuOOtherLoans: (himfjuOOtherLoans != null
+          ? himfjuOOtherLoans.value
+          : this.himfjuOOtherLoans),
+      diopsideOOccupation: (diopsideOOccupation != null
+          ? diopsideOOccupation.value
+          : this.diopsideOOccupation),
+      limpidlyOIncomeLevel: (limpidlyOIncomeLevel != null
+          ? limpidlyOIncomeLevel.value
+          : this.limpidlyOIncomeLevel),
+      z4s937OHouseholdMonthlyExpenses: (z4s937OHouseholdMonthlyExpenses != null
+          ? z4s937OHouseholdMonthlyExpenses.value
+          : this.z4s937OHouseholdMonthlyExpenses),
       expenditure: (expenditure != null ? expenditure.value : this.expenditure),
-      alloOWorkingYears:
-          (alloOWorkingYears != null
-              ? alloOWorkingYears.value
-              : this.alloOWorkingYears),
-      b1417wOPayPeriod:
-          (b1417wOPayPeriod != null
-              ? b1417wOPayPeriod.value
-              : this.b1417wOPayPeriod),
-      r67p23OPayday:
-          (r67p23OPayday != null ? r67p23OPayday.value : this.r67p23OPayday),
-      plenishOSecondPayday:
-          (plenishOSecondPayday != null
-              ? plenishOSecondPayday.value
-              : this.plenishOSecondPayday),
-      grippleOFirstContactName:
-          (grippleOFirstContactName != null
-              ? grippleOFirstContactName.value
-              : this.grippleOFirstContactName),
-      rainOFirstContactMobile:
-          (rainOFirstContactMobile != null
-              ? rainOFirstContactMobile.value
-              : this.rainOFirstContactMobile),
-      baryeOFirstContactRelationship:
-          (baryeOFirstContactRelationship != null
-              ? baryeOFirstContactRelationship.value
-              : this.baryeOFirstContactRelationship),
-      aquarianOSecondContactName:
-          (aquarianOSecondContactName != null
-              ? aquarianOSecondContactName.value
-              : this.aquarianOSecondContactName),
-      h3d2wfOSecondContactMobile:
-          (h3d2wfOSecondContactMobile != null
-              ? h3d2wfOSecondContactMobile.value
-              : this.h3d2wfOSecondContactMobile),
-      kibeOSecondContactRelationship:
-          (kibeOSecondContactRelationship != null
-              ? kibeOSecondContactRelationship.value
-              : this.kibeOSecondContactRelationship),
+      alloOWorkingYears: (alloOWorkingYears != null
+          ? alloOWorkingYears.value
+          : this.alloOWorkingYears),
+      b1417wOPayPeriod: (b1417wOPayPeriod != null
+          ? b1417wOPayPeriod.value
+          : this.b1417wOPayPeriod),
+      r67p23OPayday: (r67p23OPayday != null
+          ? r67p23OPayday.value
+          : this.r67p23OPayday),
+      plenishOSecondPayday: (plenishOSecondPayday != null
+          ? plenishOSecondPayday.value
+          : this.plenishOSecondPayday),
+      grippleOFirstContactName: (grippleOFirstContactName != null
+          ? grippleOFirstContactName.value
+          : this.grippleOFirstContactName),
+      rainOFirstContactMobile: (rainOFirstContactMobile != null
+          ? rainOFirstContactMobile.value
+          : this.rainOFirstContactMobile),
+      baryeOFirstContactRelationship: (baryeOFirstContactRelationship != null
+          ? baryeOFirstContactRelationship.value
+          : this.baryeOFirstContactRelationship),
+      aquarianOSecondContactName: (aquarianOSecondContactName != null
+          ? aquarianOSecondContactName.value
+          : this.aquarianOSecondContactName),
+      h3d2wfOSecondContactMobile: (h3d2wfOSecondContactMobile != null
+          ? h3d2wfOSecondContactMobile.value
+          : this.h3d2wfOSecondContactMobile),
+      kibeOSecondContactRelationship: (kibeOSecondContactRelationship != null
+          ? kibeOSecondContactRelationship.value
+          : this.kibeOSecondContactRelationship),
     );
   }
 }
@@ -28346,10 +27638,9 @@ extension $RepayApplyResp$TartarlyOPins$Item$RuralOAgentes$ItemExtension
   }) {
     return RepayApplyResp$TartarlyOPins$Item$RuralOAgentes$Item(
       name: (name != null ? name.value : this.name),
-      p7x1l4OAgreementNumber:
-          (p7x1l4OAgreementNumber != null
-              ? p7x1l4OAgreementNumber.value
-              : this.p7x1l4OAgreementNumber),
+      p7x1l4OAgreementNumber: (p7x1l4OAgreementNumber != null
+          ? p7x1l4OAgreementNumber.value
+          : this.p7x1l4OAgreementNumber),
     );
   }
 }
@@ -28488,28 +27779,26 @@ extension $VersionCheckResp$Data$C1o9nqONewVersionExtension
     Wrapped<bool?>? gramdanOOnGp,
   }) {
     return VersionCheckResp$Data$C1o9nqONewVersion(
-      d7x52pOBizChannel:
-          (d7x52pOBizChannel != null
-              ? d7x52pOBizChannel.value
-              : this.d7x52pOBizChannel),
-      lutealOVersion:
-          (lutealOVersion != null ? lutealOVersion.value : this.lutealOVersion),
+      d7x52pOBizChannel: (d7x52pOBizChannel != null
+          ? d7x52pOBizChannel.value
+          : this.d7x52pOBizChannel),
+      lutealOVersion: (lutealOVersion != null
+          ? lutealOVersion.value
+          : this.lutealOVersion),
       title: (title != null ? title.value : this.title),
       desc: (desc != null ? desc.value : this.desc),
-      denounceODownloadUrl32:
-          (denounceODownloadUrl32 != null
-              ? denounceODownloadUrl32.value
-              : this.denounceODownloadUrl32),
-      verdictODownloadUrl64:
-          (verdictODownloadUrl64 != null
-              ? verdictODownloadUrl64.value
-              : this.verdictODownloadUrl64),
-      methinksOForced:
-          (methinksOForced != null
-              ? methinksOForced.value
-              : this.methinksOForced),
-      gramdanOOnGp:
-          (gramdanOOnGp != null ? gramdanOOnGp.value : this.gramdanOOnGp),
+      denounceODownloadUrl32: (denounceODownloadUrl32 != null
+          ? denounceODownloadUrl32.value
+          : this.denounceODownloadUrl32),
+      verdictODownloadUrl64: (verdictODownloadUrl64 != null
+          ? verdictODownloadUrl64.value
+          : this.verdictODownloadUrl64),
+      methinksOForced: (methinksOForced != null
+          ? methinksOForced.value
+          : this.methinksOForced),
+      gramdanOOnGp: (gramdanOOnGp != null
+          ? gramdanOOnGp.value
+          : this.gramdanOOnGp),
     );
   }
 }
@@ -28638,28 +27927,24 @@ extension $HomeInfoResp$PapuanOLastRecordLoan$OutdoOPlanSimpleList$ItemExtension
     Wrapped<int?>? ez64t7OPeriodCount,
   }) {
     return HomeInfoResp$PapuanOLastRecordLoan$OutdoOPlanSimpleList$Item(
-      i2jk5fOPeriodStatus:
-          (i2jk5fOPeriodStatus != null
-              ? i2jk5fOPeriodStatus.value
-              : this.i2jk5fOPeriodStatus),
-      r5k31qODueTime:
-          (r5k31qODueTime != null ? r5k31qODueTime.value : this.r5k31qODueTime),
-      wantonlyOLoanLeftAmount:
-          (wantonlyOLoanLeftAmount != null
-              ? wantonlyOLoanLeftAmount.value
-              : this.wantonlyOLoanLeftAmount),
-      ih2upqOCtPeriod:
-          (ih2upqOCtPeriod != null
-              ? ih2upqOCtPeriod.value
-              : this.ih2upqOCtPeriod),
-      spinachyOLoanPeriod:
-          (spinachyOLoanPeriod != null
-              ? spinachyOLoanPeriod.value
-              : this.spinachyOLoanPeriod),
-      ez64t7OPeriodCount:
-          (ez64t7OPeriodCount != null
-              ? ez64t7OPeriodCount.value
-              : this.ez64t7OPeriodCount),
+      i2jk5fOPeriodStatus: (i2jk5fOPeriodStatus != null
+          ? i2jk5fOPeriodStatus.value
+          : this.i2jk5fOPeriodStatus),
+      r5k31qODueTime: (r5k31qODueTime != null
+          ? r5k31qODueTime.value
+          : this.r5k31qODueTime),
+      wantonlyOLoanLeftAmount: (wantonlyOLoanLeftAmount != null
+          ? wantonlyOLoanLeftAmount.value
+          : this.wantonlyOLoanLeftAmount),
+      ih2upqOCtPeriod: (ih2upqOCtPeriod != null
+          ? ih2upqOCtPeriod.value
+          : this.ih2upqOCtPeriod),
+      spinachyOLoanPeriod: (spinachyOLoanPeriod != null
+          ? spinachyOLoanPeriod.value
+          : this.spinachyOLoanPeriod),
+      ez64t7OPeriodCount: (ez64t7OPeriodCount != null
+          ? ez64t7OPeriodCount.value
+          : this.ez64t7OPeriodCount),
     );
   }
 }
@@ -28790,28 +28075,24 @@ extension $HomeInfoResp$Xu551uOSpareLastRecordLoan$OutdoOPlanSimpleList$ItemExte
     Wrapped<int?>? ez64t7OPeriodCount,
   }) {
     return HomeInfoResp$Xu551uOSpareLastRecordLoan$OutdoOPlanSimpleList$Item(
-      i2jk5fOPeriodStatus:
-          (i2jk5fOPeriodStatus != null
-              ? i2jk5fOPeriodStatus.value
-              : this.i2jk5fOPeriodStatus),
-      r5k31qODueTime:
-          (r5k31qODueTime != null ? r5k31qODueTime.value : this.r5k31qODueTime),
-      wantonlyOLoanLeftAmount:
-          (wantonlyOLoanLeftAmount != null
-              ? wantonlyOLoanLeftAmount.value
-              : this.wantonlyOLoanLeftAmount),
-      ih2upqOCtPeriod:
-          (ih2upqOCtPeriod != null
-              ? ih2upqOCtPeriod.value
-              : this.ih2upqOCtPeriod),
-      spinachyOLoanPeriod:
-          (spinachyOLoanPeriod != null
-              ? spinachyOLoanPeriod.value
-              : this.spinachyOLoanPeriod),
-      ez64t7OPeriodCount:
-          (ez64t7OPeriodCount != null
-              ? ez64t7OPeriodCount.value
-              : this.ez64t7OPeriodCount),
+      i2jk5fOPeriodStatus: (i2jk5fOPeriodStatus != null
+          ? i2jk5fOPeriodStatus.value
+          : this.i2jk5fOPeriodStatus),
+      r5k31qODueTime: (r5k31qODueTime != null
+          ? r5k31qODueTime.value
+          : this.r5k31qODueTime),
+      wantonlyOLoanLeftAmount: (wantonlyOLoanLeftAmount != null
+          ? wantonlyOLoanLeftAmount.value
+          : this.wantonlyOLoanLeftAmount),
+      ih2upqOCtPeriod: (ih2upqOCtPeriod != null
+          ? ih2upqOCtPeriod.value
+          : this.ih2upqOCtPeriod),
+      spinachyOLoanPeriod: (spinachyOLoanPeriod != null
+          ? spinachyOLoanPeriod.value
+          : this.spinachyOLoanPeriod),
+      ez64t7OPeriodCount: (ez64t7OPeriodCount != null
+          ? ez64t7OPeriodCount.value
+          : this.ez64t7OPeriodCount),
     );
   }
 }
@@ -29005,52 +28286,42 @@ extension $HomeInfoResp$LysogenOSpareProductGroup$Item$List$ItemExtension
     Wrapped<String?>? i41lj0OProductTags,
   }) {
     return HomeInfoResp$LysogenOSpareProductGroup$Item$List$Item(
-      foreyardOProductId:
-          (foreyardOProductId != null
-              ? foreyardOProductId.value
-              : this.foreyardOProductId),
-      za6d92OProductName:
-          (za6d92OProductName != null
-              ? za6d92OProductName.value
-              : this.za6d92OProductName),
-      b49d07OProductPeriodId:
-          (b49d07OProductPeriodId != null
-              ? b49d07OProductPeriodId.value
-              : this.b49d07OProductPeriodId),
-      peddlerOPeriodCountId:
-          (peddlerOPeriodCountId != null
-              ? peddlerOPeriodCountId.value
-              : this.peddlerOPeriodCountId),
-      morticeOFeeTypeId:
-          (morticeOFeeTypeId != null
-              ? morticeOFeeTypeId.value
-              : this.morticeOFeeTypeId),
-      faroucheOIsLock:
-          (faroucheOIsLock != null
-              ? faroucheOIsLock.value
-              : this.faroucheOIsLock),
-      mojr11OLoanRangeMin:
-          (mojr11OLoanRangeMin != null
-              ? mojr11OLoanRangeMin.value
-              : this.mojr11OLoanRangeMin),
-      xuwh2oOLoanRangeMax:
-          (xuwh2oOLoanRangeMax != null
-              ? xuwh2oOLoanRangeMax.value
-              : this.xuwh2oOLoanRangeMax),
-      marrowOLoanRangeUnit:
-          (marrowOLoanRangeUnit != null
-              ? marrowOLoanRangeUnit.value
-              : this.marrowOLoanRangeUnit),
-      newbornOSigPeriod:
-          (newbornOSigPeriod != null
-              ? newbornOSigPeriod.value
-              : this.newbornOSigPeriod),
-      elbaOSigRate:
-          (elbaOSigRate != null ? elbaOSigRate.value : this.elbaOSigRate),
-      i41lj0OProductTags:
-          (i41lj0OProductTags != null
-              ? i41lj0OProductTags.value
-              : this.i41lj0OProductTags),
+      foreyardOProductId: (foreyardOProductId != null
+          ? foreyardOProductId.value
+          : this.foreyardOProductId),
+      za6d92OProductName: (za6d92OProductName != null
+          ? za6d92OProductName.value
+          : this.za6d92OProductName),
+      b49d07OProductPeriodId: (b49d07OProductPeriodId != null
+          ? b49d07OProductPeriodId.value
+          : this.b49d07OProductPeriodId),
+      peddlerOPeriodCountId: (peddlerOPeriodCountId != null
+          ? peddlerOPeriodCountId.value
+          : this.peddlerOPeriodCountId),
+      morticeOFeeTypeId: (morticeOFeeTypeId != null
+          ? morticeOFeeTypeId.value
+          : this.morticeOFeeTypeId),
+      faroucheOIsLock: (faroucheOIsLock != null
+          ? faroucheOIsLock.value
+          : this.faroucheOIsLock),
+      mojr11OLoanRangeMin: (mojr11OLoanRangeMin != null
+          ? mojr11OLoanRangeMin.value
+          : this.mojr11OLoanRangeMin),
+      xuwh2oOLoanRangeMax: (xuwh2oOLoanRangeMax != null
+          ? xuwh2oOLoanRangeMax.value
+          : this.xuwh2oOLoanRangeMax),
+      marrowOLoanRangeUnit: (marrowOLoanRangeUnit != null
+          ? marrowOLoanRangeUnit.value
+          : this.marrowOLoanRangeUnit),
+      newbornOSigPeriod: (newbornOSigPeriod != null
+          ? newbornOSigPeriod.value
+          : this.newbornOSigPeriod),
+      elbaOSigRate: (elbaOSigRate != null
+          ? elbaOSigRate.value
+          : this.elbaOSigRate),
+      i41lj0OProductTags: (i41lj0OProductTags != null
+          ? i41lj0OProductTags.value
+          : this.i41lj0OProductTags),
     );
   }
 }
@@ -29126,14 +28397,12 @@ extension $LoanNoticeResp$Data$CramboOLoanNoticeList$ItemExtension
     Wrapped<String?>? pmtcwpONoticeContent,
   }) {
     return LoanNoticeResp$Data$CramboOLoanNoticeList$Item(
-      gynecoidOLoanNoticeCode:
-          (gynecoidOLoanNoticeCode != null
-              ? gynecoidOLoanNoticeCode.value
-              : this.gynecoidOLoanNoticeCode),
-      pmtcwpONoticeContent:
-          (pmtcwpONoticeContent != null
-              ? pmtcwpONoticeContent.value
-              : this.pmtcwpONoticeContent),
+      gynecoidOLoanNoticeCode: (gynecoidOLoanNoticeCode != null
+          ? gynecoidOLoanNoticeCode.value
+          : this.gynecoidOLoanNoticeCode),
+      pmtcwpONoticeContent: (pmtcwpONoticeContent != null
+          ? pmtcwpONoticeContent.value
+          : this.pmtcwpONoticeContent),
     );
   }
 }
@@ -29311,28 +28580,24 @@ extension $LoanBillResp$Ouxtd3OLoanList$Item$OutdoOPlanSimpleList$ItemExtension
     Wrapped<int?>? ez64t7OPeriodCount,
   }) {
     return LoanBillResp$Ouxtd3OLoanList$Item$OutdoOPlanSimpleList$Item(
-      i2jk5fOPeriodStatus:
-          (i2jk5fOPeriodStatus != null
-              ? i2jk5fOPeriodStatus.value
-              : this.i2jk5fOPeriodStatus),
-      r5k31qODueTime:
-          (r5k31qODueTime != null ? r5k31qODueTime.value : this.r5k31qODueTime),
-      wantonlyOLoanLeftAmount:
-          (wantonlyOLoanLeftAmount != null
-              ? wantonlyOLoanLeftAmount.value
-              : this.wantonlyOLoanLeftAmount),
-      ih2upqOCtPeriod:
-          (ih2upqOCtPeriod != null
-              ? ih2upqOCtPeriod.value
-              : this.ih2upqOCtPeriod),
-      spinachyOLoanPeriod:
-          (spinachyOLoanPeriod != null
-              ? spinachyOLoanPeriod.value
-              : this.spinachyOLoanPeriod),
-      ez64t7OPeriodCount:
-          (ez64t7OPeriodCount != null
-              ? ez64t7OPeriodCount.value
-              : this.ez64t7OPeriodCount),
+      i2jk5fOPeriodStatus: (i2jk5fOPeriodStatus != null
+          ? i2jk5fOPeriodStatus.value
+          : this.i2jk5fOPeriodStatus),
+      r5k31qODueTime: (r5k31qODueTime != null
+          ? r5k31qODueTime.value
+          : this.r5k31qODueTime),
+      wantonlyOLoanLeftAmount: (wantonlyOLoanLeftAmount != null
+          ? wantonlyOLoanLeftAmount.value
+          : this.wantonlyOLoanLeftAmount),
+      ih2upqOCtPeriod: (ih2upqOCtPeriod != null
+          ? ih2upqOCtPeriod.value
+          : this.ih2upqOCtPeriod),
+      spinachyOLoanPeriod: (spinachyOLoanPeriod != null
+          ? spinachyOLoanPeriod.value
+          : this.spinachyOLoanPeriod),
+      ez64t7OPeriodCount: (ez64t7OPeriodCount != null
+          ? ez64t7OPeriodCount.value
+          : this.ez64t7OPeriodCount),
     );
   }
 }
@@ -29558,30 +28823,24 @@ extension $TrackReportReq$BanallyOReportDevDTO$E3d40eOStructure$El986rOStructVer
   }) {
     return TrackReportReq$BanallyOReportDevDTO$E3d40eOStructure$El986rOStructVersion(
       os: (os != null ? os.value : this.os),
-      bussesOCodename:
-          (bussesOCodename != null
-              ? bussesOCodename.value
-              : this.bussesOCodename),
-      q8cy5mOIncremental:
-          (q8cy5mOIncremental != null
-              ? q8cy5mOIncremental.value
-              : this.q8cy5mOIncremental),
-      dinahOPreviewSdkInt:
-          (dinahOPreviewSdkInt != null
-              ? dinahOPreviewSdkInt.value
-              : this.dinahOPreviewSdkInt),
-      iz962sOReleaseOrCodename:
-          (iz962sOReleaseOrCodename != null
-              ? iz962sOReleaseOrCodename.value
-              : this.iz962sOReleaseOrCodename),
-      rochelleOSdkInt:
-          (rochelleOSdkInt != null
-              ? rochelleOSdkInt.value
-              : this.rochelleOSdkInt),
-      qx7tskOSecurityPatch:
-          (qx7tskOSecurityPatch != null
-              ? qx7tskOSecurityPatch.value
-              : this.qx7tskOSecurityPatch),
+      bussesOCodename: (bussesOCodename != null
+          ? bussesOCodename.value
+          : this.bussesOCodename),
+      q8cy5mOIncremental: (q8cy5mOIncremental != null
+          ? q8cy5mOIncremental.value
+          : this.q8cy5mOIncremental),
+      dinahOPreviewSdkInt: (dinahOPreviewSdkInt != null
+          ? dinahOPreviewSdkInt.value
+          : this.dinahOPreviewSdkInt),
+      iz962sOReleaseOrCodename: (iz962sOReleaseOrCodename != null
+          ? iz962sOReleaseOrCodename.value
+          : this.iz962sOReleaseOrCodename),
+      rochelleOSdkInt: (rochelleOSdkInt != null
+          ? rochelleOSdkInt.value
+          : this.rochelleOSdkInt),
+      qx7tskOSecurityPatch: (qx7tskOSecurityPatch != null
+          ? qx7tskOSecurityPatch.value
+          : this.qx7tskOSecurityPatch),
     );
   }
 }
@@ -29659,12 +28918,12 @@ extension $RiskReportResp$ZdzsepOVerificationConfig$U7yl7cOItemsDisplayConfig$Lq
     Wrapped<bool?>? d392w8OIsEnforce,
   }) {
     return RiskReportResp$ZdzsepOVerificationConfig$U7yl7cOItemsDisplayConfig$Lq1s05OFirstName(
-      torlj8OIsShow:
-          (torlj8OIsShow != null ? torlj8OIsShow.value : this.torlj8OIsShow),
-      d392w8OIsEnforce:
-          (d392w8OIsEnforce != null
-              ? d392w8OIsEnforce.value
-              : this.d392w8OIsEnforce),
+      torlj8OIsShow: (torlj8OIsShow != null
+          ? torlj8OIsShow.value
+          : this.torlj8OIsShow),
+      d392w8OIsEnforce: (d392w8OIsEnforce != null
+          ? d392w8OIsEnforce.value
+          : this.d392w8OIsEnforce),
     );
   }
 }
@@ -29742,12 +29001,12 @@ extension $RiskReportResp$ZdzsepOVerificationConfig$U7yl7cOItemsDisplayConfig$Da
     Wrapped<bool?>? d392w8OIsEnforce,
   }) {
     return RiskReportResp$ZdzsepOVerificationConfig$U7yl7cOItemsDisplayConfig$DarktownOLastName(
-      torlj8OIsShow:
-          (torlj8OIsShow != null ? torlj8OIsShow.value : this.torlj8OIsShow),
-      d392w8OIsEnforce:
-          (d392w8OIsEnforce != null
-              ? d392w8OIsEnforce.value
-              : this.d392w8OIsEnforce),
+      torlj8OIsShow: (torlj8OIsShow != null
+          ? torlj8OIsShow.value
+          : this.torlj8OIsShow),
+      d392w8OIsEnforce: (d392w8OIsEnforce != null
+          ? d392w8OIsEnforce.value
+          : this.d392w8OIsEnforce),
     );
   }
 }
@@ -29824,12 +29083,12 @@ extension $RiskReportResp$ZdzsepOVerificationConfig$U7yl7cOItemsDisplayConfig$Ge
     Wrapped<bool?>? d392w8OIsEnforce,
   }) {
     return RiskReportResp$ZdzsepOVerificationConfig$U7yl7cOItemsDisplayConfig$Gender(
-      torlj8OIsShow:
-          (torlj8OIsShow != null ? torlj8OIsShow.value : this.torlj8OIsShow),
-      d392w8OIsEnforce:
-          (d392w8OIsEnforce != null
-              ? d392w8OIsEnforce.value
-              : this.d392w8OIsEnforce),
+      torlj8OIsShow: (torlj8OIsShow != null
+          ? torlj8OIsShow.value
+          : this.torlj8OIsShow),
+      d392w8OIsEnforce: (d392w8OIsEnforce != null
+          ? d392w8OIsEnforce.value
+          : this.d392w8OIsEnforce),
     );
   }
 }
@@ -29907,12 +29166,12 @@ extension $RiskReportResp$ZdzsepOVerificationConfig$U7yl7cOItemsDisplayConfig$Me
     Wrapped<bool?>? d392w8OIsEnforce,
   }) {
     return RiskReportResp$ZdzsepOVerificationConfig$U7yl7cOItemsDisplayConfig$MerdekaOIdCard(
-      torlj8OIsShow:
-          (torlj8OIsShow != null ? torlj8OIsShow.value : this.torlj8OIsShow),
-      d392w8OIsEnforce:
-          (d392w8OIsEnforce != null
-              ? d392w8OIsEnforce.value
-              : this.d392w8OIsEnforce),
+      torlj8OIsShow: (torlj8OIsShow != null
+          ? torlj8OIsShow.value
+          : this.torlj8OIsShow),
+      d392w8OIsEnforce: (d392w8OIsEnforce != null
+          ? d392w8OIsEnforce.value
+          : this.d392w8OIsEnforce),
     );
   }
 }
@@ -29990,12 +29249,12 @@ extension $RiskReportResp$ZdzsepOVerificationConfig$U7yl7cOItemsDisplayConfig$Ga
     Wrapped<bool?>? d392w8OIsEnforce,
   }) {
     return RiskReportResp$ZdzsepOVerificationConfig$U7yl7cOItemsDisplayConfig$GargetOBirthday(
-      torlj8OIsShow:
-          (torlj8OIsShow != null ? torlj8OIsShow.value : this.torlj8OIsShow),
-      d392w8OIsEnforce:
-          (d392w8OIsEnforce != null
-              ? d392w8OIsEnforce.value
-              : this.d392w8OIsEnforce),
+      torlj8OIsShow: (torlj8OIsShow != null
+          ? torlj8OIsShow.value
+          : this.torlj8OIsShow),
+      d392w8OIsEnforce: (d392w8OIsEnforce != null
+          ? d392w8OIsEnforce.value
+          : this.d392w8OIsEnforce),
     );
   }
 }
@@ -30073,12 +29332,12 @@ extension $RiskReportResp$ZdzsepOVerificationConfig$U7yl7cOItemsDisplayConfig$F3
     Wrapped<bool?>? d392w8OIsEnforce,
   }) {
     return RiskReportResp$ZdzsepOVerificationConfig$U7yl7cOItemsDisplayConfig$F31u3kOEmail(
-      torlj8OIsShow:
-          (torlj8OIsShow != null ? torlj8OIsShow.value : this.torlj8OIsShow),
-      d392w8OIsEnforce:
-          (d392w8OIsEnforce != null
-              ? d392w8OIsEnforce.value
-              : this.d392w8OIsEnforce),
+      torlj8OIsShow: (torlj8OIsShow != null
+          ? torlj8OIsShow.value
+          : this.torlj8OIsShow),
+      d392w8OIsEnforce: (d392w8OIsEnforce != null
+          ? d392w8OIsEnforce.value
+          : this.d392w8OIsEnforce),
     );
   }
 }
@@ -30156,12 +29415,12 @@ extension $RiskReportResp$ZdzsepOVerificationConfig$U7yl7cOItemsDisplayConfig$X1
     Wrapped<bool?>? d392w8OIsEnforce,
   }) {
     return RiskReportResp$ZdzsepOVerificationConfig$U7yl7cOItemsDisplayConfig$X1iu04OOtherMobile(
-      torlj8OIsShow:
-          (torlj8OIsShow != null ? torlj8OIsShow.value : this.torlj8OIsShow),
-      d392w8OIsEnforce:
-          (d392w8OIsEnforce != null
-              ? d392w8OIsEnforce.value
-              : this.d392w8OIsEnforce),
+      torlj8OIsShow: (torlj8OIsShow != null
+          ? torlj8OIsShow.value
+          : this.torlj8OIsShow),
+      d392w8OIsEnforce: (d392w8OIsEnforce != null
+          ? d392w8OIsEnforce.value
+          : this.d392w8OIsEnforce),
     );
   }
 }
@@ -30239,12 +29498,12 @@ extension $RiskReportResp$ZdzsepOVerificationConfig$U7yl7cOItemsDisplayConfig$Co
     Wrapped<bool?>? d392w8OIsEnforce,
   }) {
     return RiskReportResp$ZdzsepOVerificationConfig$U7yl7cOItemsDisplayConfig$CoseOEducation(
-      torlj8OIsShow:
-          (torlj8OIsShow != null ? torlj8OIsShow.value : this.torlj8OIsShow),
-      d392w8OIsEnforce:
-          (d392w8OIsEnforce != null
-              ? d392w8OIsEnforce.value
-              : this.d392w8OIsEnforce),
+      torlj8OIsShow: (torlj8OIsShow != null
+          ? torlj8OIsShow.value
+          : this.torlj8OIsShow),
+      d392w8OIsEnforce: (d392w8OIsEnforce != null
+          ? d392w8OIsEnforce.value
+          : this.d392w8OIsEnforce),
     );
   }
 }
@@ -30322,12 +29581,12 @@ extension $RiskReportResp$ZdzsepOVerificationConfig$U7yl7cOItemsDisplayConfig$M2
     Wrapped<bool?>? d392w8OIsEnforce,
   }) {
     return RiskReportResp$ZdzsepOVerificationConfig$U7yl7cOItemsDisplayConfig$M2wx4tOMaritalStatus(
-      torlj8OIsShow:
-          (torlj8OIsShow != null ? torlj8OIsShow.value : this.torlj8OIsShow),
-      d392w8OIsEnforce:
-          (d392w8OIsEnforce != null
-              ? d392w8OIsEnforce.value
-              : this.d392w8OIsEnforce),
+      torlj8OIsShow: (torlj8OIsShow != null
+          ? torlj8OIsShow.value
+          : this.torlj8OIsShow),
+      d392w8OIsEnforce: (d392w8OIsEnforce != null
+          ? d392w8OIsEnforce.value
+          : this.d392w8OIsEnforce),
     );
   }
 }
@@ -30405,12 +29664,12 @@ extension $RiskReportResp$ZdzsepOVerificationConfig$U7yl7cOItemsDisplayConfig$Ch
     Wrapped<bool?>? d392w8OIsEnforce,
   }) {
     return RiskReportResp$ZdzsepOVerificationConfig$U7yl7cOItemsDisplayConfig$ChaffyOHouseStatus(
-      torlj8OIsShow:
-          (torlj8OIsShow != null ? torlj8OIsShow.value : this.torlj8OIsShow),
-      d392w8OIsEnforce:
-          (d392w8OIsEnforce != null
-              ? d392w8OIsEnforce.value
-              : this.d392w8OIsEnforce),
+      torlj8OIsShow: (torlj8OIsShow != null
+          ? torlj8OIsShow.value
+          : this.torlj8OIsShow),
+      d392w8OIsEnforce: (d392w8OIsEnforce != null
+          ? d392w8OIsEnforce.value
+          : this.d392w8OIsEnforce),
     );
   }
 }
@@ -30488,12 +29747,12 @@ extension $RiskReportResp$ZdzsepOVerificationConfig$U7yl7cOItemsDisplayConfig$Bj
     Wrapped<bool?>? d392w8OIsEnforce,
   }) {
     return RiskReportResp$ZdzsepOVerificationConfig$U7yl7cOItemsDisplayConfig$Bja8s5OElectricityBill(
-      torlj8OIsShow:
-          (torlj8OIsShow != null ? torlj8OIsShow.value : this.torlj8OIsShow),
-      d392w8OIsEnforce:
-          (d392w8OIsEnforce != null
-              ? d392w8OIsEnforce.value
-              : this.d392w8OIsEnforce),
+      torlj8OIsShow: (torlj8OIsShow != null
+          ? torlj8OIsShow.value
+          : this.torlj8OIsShow),
+      d392w8OIsEnforce: (d392w8OIsEnforce != null
+          ? d392w8OIsEnforce.value
+          : this.d392w8OIsEnforce),
     );
   }
 }
@@ -30571,12 +29830,12 @@ extension $RiskReportResp$ZdzsepOVerificationConfig$U7yl7cOItemsDisplayConfig$Vo
     Wrapped<bool?>? d392w8OIsEnforce,
   }) {
     return RiskReportResp$ZdzsepOVerificationConfig$U7yl7cOItemsDisplayConfig$VolumenOElectricityRelated(
-      torlj8OIsShow:
-          (torlj8OIsShow != null ? torlj8OIsShow.value : this.torlj8OIsShow),
-      d392w8OIsEnforce:
-          (d392w8OIsEnforce != null
-              ? d392w8OIsEnforce.value
-              : this.d392w8OIsEnforce),
+      torlj8OIsShow: (torlj8OIsShow != null
+          ? torlj8OIsShow.value
+          : this.torlj8OIsShow),
+      d392w8OIsEnforce: (d392w8OIsEnforce != null
+          ? d392w8OIsEnforce.value
+          : this.d392w8OIsEnforce),
     );
   }
 }
@@ -30654,12 +29913,12 @@ extension $RiskReportResp$ZdzsepOVerificationConfig$U7yl7cOItemsDisplayConfig$Sp
     Wrapped<bool?>? d392w8OIsEnforce,
   }) {
     return RiskReportResp$ZdzsepOVerificationConfig$U7yl7cOItemsDisplayConfig$SpadicesOAddressState(
-      torlj8OIsShow:
-          (torlj8OIsShow != null ? torlj8OIsShow.value : this.torlj8OIsShow),
-      d392w8OIsEnforce:
-          (d392w8OIsEnforce != null
-              ? d392w8OIsEnforce.value
-              : this.d392w8OIsEnforce),
+      torlj8OIsShow: (torlj8OIsShow != null
+          ? torlj8OIsShow.value
+          : this.torlj8OIsShow),
+      d392w8OIsEnforce: (d392w8OIsEnforce != null
+          ? d392w8OIsEnforce.value
+          : this.d392w8OIsEnforce),
     );
   }
 }
@@ -30737,12 +29996,12 @@ extension $RiskReportResp$ZdzsepOVerificationConfig$U7yl7cOItemsDisplayConfig$Ga
     Wrapped<bool?>? d392w8OIsEnforce,
   }) {
     return RiskReportResp$ZdzsepOVerificationConfig$U7yl7cOItemsDisplayConfig$GasconyOAddressCity(
-      torlj8OIsShow:
-          (torlj8OIsShow != null ? torlj8OIsShow.value : this.torlj8OIsShow),
-      d392w8OIsEnforce:
-          (d392w8OIsEnforce != null
-              ? d392w8OIsEnforce.value
-              : this.d392w8OIsEnforce),
+      torlj8OIsShow: (torlj8OIsShow != null
+          ? torlj8OIsShow.value
+          : this.torlj8OIsShow),
+      d392w8OIsEnforce: (d392w8OIsEnforce != null
+          ? d392w8OIsEnforce.value
+          : this.d392w8OIsEnforce),
     );
   }
 }
@@ -30820,12 +30079,12 @@ extension $RiskReportResp$ZdzsepOVerificationConfig$U7yl7cOItemsDisplayConfig$Cr
     Wrapped<bool?>? d392w8OIsEnforce,
   }) {
     return RiskReportResp$ZdzsepOVerificationConfig$U7yl7cOItemsDisplayConfig$CraalOAddressDetail(
-      torlj8OIsShow:
-          (torlj8OIsShow != null ? torlj8OIsShow.value : this.torlj8OIsShow),
-      d392w8OIsEnforce:
-          (d392w8OIsEnforce != null
-              ? d392w8OIsEnforce.value
-              : this.d392w8OIsEnforce),
+      torlj8OIsShow: (torlj8OIsShow != null
+          ? torlj8OIsShow.value
+          : this.torlj8OIsShow),
+      d392w8OIsEnforce: (d392w8OIsEnforce != null
+          ? d392w8OIsEnforce.value
+          : this.d392w8OIsEnforce),
     );
   }
 }
@@ -30903,12 +30162,12 @@ extension $RiskReportResp$ZdzsepOVerificationConfig$U7yl7cOItemsDisplayConfig$Hi
     Wrapped<bool?>? d392w8OIsEnforce,
   }) {
     return RiskReportResp$ZdzsepOVerificationConfig$U7yl7cOItemsDisplayConfig$HimfjuOOtherLoans(
-      torlj8OIsShow:
-          (torlj8OIsShow != null ? torlj8OIsShow.value : this.torlj8OIsShow),
-      d392w8OIsEnforce:
-          (d392w8OIsEnforce != null
-              ? d392w8OIsEnforce.value
-              : this.d392w8OIsEnforce),
+      torlj8OIsShow: (torlj8OIsShow != null
+          ? torlj8OIsShow.value
+          : this.torlj8OIsShow),
+      d392w8OIsEnforce: (d392w8OIsEnforce != null
+          ? d392w8OIsEnforce.value
+          : this.d392w8OIsEnforce),
     );
   }
 }
@@ -30986,12 +30245,12 @@ extension $RiskReportResp$ZdzsepOVerificationConfig$U7yl7cOItemsDisplayConfig$Di
     Wrapped<bool?>? d392w8OIsEnforce,
   }) {
     return RiskReportResp$ZdzsepOVerificationConfig$U7yl7cOItemsDisplayConfig$DiopsideOOccupation(
-      torlj8OIsShow:
-          (torlj8OIsShow != null ? torlj8OIsShow.value : this.torlj8OIsShow),
-      d392w8OIsEnforce:
-          (d392w8OIsEnforce != null
-              ? d392w8OIsEnforce.value
-              : this.d392w8OIsEnforce),
+      torlj8OIsShow: (torlj8OIsShow != null
+          ? torlj8OIsShow.value
+          : this.torlj8OIsShow),
+      d392w8OIsEnforce: (d392w8OIsEnforce != null
+          ? d392w8OIsEnforce.value
+          : this.d392w8OIsEnforce),
     );
   }
 }
@@ -31069,12 +30328,12 @@ extension $RiskReportResp$ZdzsepOVerificationConfig$U7yl7cOItemsDisplayConfig$Li
     Wrapped<bool?>? d392w8OIsEnforce,
   }) {
     return RiskReportResp$ZdzsepOVerificationConfig$U7yl7cOItemsDisplayConfig$LimpidlyOIncomeLevel(
-      torlj8OIsShow:
-          (torlj8OIsShow != null ? torlj8OIsShow.value : this.torlj8OIsShow),
-      d392w8OIsEnforce:
-          (d392w8OIsEnforce != null
-              ? d392w8OIsEnforce.value
-              : this.d392w8OIsEnforce),
+      torlj8OIsShow: (torlj8OIsShow != null
+          ? torlj8OIsShow.value
+          : this.torlj8OIsShow),
+      d392w8OIsEnforce: (d392w8OIsEnforce != null
+          ? d392w8OIsEnforce.value
+          : this.d392w8OIsEnforce),
     );
   }
 }
@@ -31152,12 +30411,12 @@ extension $RiskReportResp$ZdzsepOVerificationConfig$U7yl7cOItemsDisplayConfig$Z4
     Wrapped<bool?>? d392w8OIsEnforce,
   }) {
     return RiskReportResp$ZdzsepOVerificationConfig$U7yl7cOItemsDisplayConfig$Z4s937OHouseholdMonthlyExpenses(
-      torlj8OIsShow:
-          (torlj8OIsShow != null ? torlj8OIsShow.value : this.torlj8OIsShow),
-      d392w8OIsEnforce:
-          (d392w8OIsEnforce != null
-              ? d392w8OIsEnforce.value
-              : this.d392w8OIsEnforce),
+      torlj8OIsShow: (torlj8OIsShow != null
+          ? torlj8OIsShow.value
+          : this.torlj8OIsShow),
+      d392w8OIsEnforce: (d392w8OIsEnforce != null
+          ? d392w8OIsEnforce.value
+          : this.d392w8OIsEnforce),
     );
   }
 }
@@ -31234,12 +30493,12 @@ extension $RiskReportResp$ZdzsepOVerificationConfig$U7yl7cOItemsDisplayConfig$Ex
     Wrapped<bool?>? d392w8OIsEnforce,
   }) {
     return RiskReportResp$ZdzsepOVerificationConfig$U7yl7cOItemsDisplayConfig$Expenditure(
-      torlj8OIsShow:
-          (torlj8OIsShow != null ? torlj8OIsShow.value : this.torlj8OIsShow),
-      d392w8OIsEnforce:
-          (d392w8OIsEnforce != null
-              ? d392w8OIsEnforce.value
-              : this.d392w8OIsEnforce),
+      torlj8OIsShow: (torlj8OIsShow != null
+          ? torlj8OIsShow.value
+          : this.torlj8OIsShow),
+      d392w8OIsEnforce: (d392w8OIsEnforce != null
+          ? d392w8OIsEnforce.value
+          : this.d392w8OIsEnforce),
     );
   }
 }
@@ -31317,12 +30576,12 @@ extension $RiskReportResp$ZdzsepOVerificationConfig$U7yl7cOItemsDisplayConfig$Al
     Wrapped<bool?>? d392w8OIsEnforce,
   }) {
     return RiskReportResp$ZdzsepOVerificationConfig$U7yl7cOItemsDisplayConfig$AlloOWorkingYears(
-      torlj8OIsShow:
-          (torlj8OIsShow != null ? torlj8OIsShow.value : this.torlj8OIsShow),
-      d392w8OIsEnforce:
-          (d392w8OIsEnforce != null
-              ? d392w8OIsEnforce.value
-              : this.d392w8OIsEnforce),
+      torlj8OIsShow: (torlj8OIsShow != null
+          ? torlj8OIsShow.value
+          : this.torlj8OIsShow),
+      d392w8OIsEnforce: (d392w8OIsEnforce != null
+          ? d392w8OIsEnforce.value
+          : this.d392w8OIsEnforce),
     );
   }
 }
@@ -31400,12 +30659,12 @@ extension $RiskReportResp$ZdzsepOVerificationConfig$U7yl7cOItemsDisplayConfig$B1
     Wrapped<bool?>? d392w8OIsEnforce,
   }) {
     return RiskReportResp$ZdzsepOVerificationConfig$U7yl7cOItemsDisplayConfig$B1417wOPayPeriod(
-      torlj8OIsShow:
-          (torlj8OIsShow != null ? torlj8OIsShow.value : this.torlj8OIsShow),
-      d392w8OIsEnforce:
-          (d392w8OIsEnforce != null
-              ? d392w8OIsEnforce.value
-              : this.d392w8OIsEnforce),
+      torlj8OIsShow: (torlj8OIsShow != null
+          ? torlj8OIsShow.value
+          : this.torlj8OIsShow),
+      d392w8OIsEnforce: (d392w8OIsEnforce != null
+          ? d392w8OIsEnforce.value
+          : this.d392w8OIsEnforce),
     );
   }
 }
@@ -31483,12 +30742,12 @@ extension $RiskReportResp$ZdzsepOVerificationConfig$U7yl7cOItemsDisplayConfig$R6
     Wrapped<bool?>? d392w8OIsEnforce,
   }) {
     return RiskReportResp$ZdzsepOVerificationConfig$U7yl7cOItemsDisplayConfig$R67p23OPayday(
-      torlj8OIsShow:
-          (torlj8OIsShow != null ? torlj8OIsShow.value : this.torlj8OIsShow),
-      d392w8OIsEnforce:
-          (d392w8OIsEnforce != null
-              ? d392w8OIsEnforce.value
-              : this.d392w8OIsEnforce),
+      torlj8OIsShow: (torlj8OIsShow != null
+          ? torlj8OIsShow.value
+          : this.torlj8OIsShow),
+      d392w8OIsEnforce: (d392w8OIsEnforce != null
+          ? d392w8OIsEnforce.value
+          : this.d392w8OIsEnforce),
     );
   }
 }
@@ -31566,12 +30825,12 @@ extension $RiskReportResp$ZdzsepOVerificationConfig$U7yl7cOItemsDisplayConfig$Pl
     Wrapped<bool?>? d392w8OIsEnforce,
   }) {
     return RiskReportResp$ZdzsepOVerificationConfig$U7yl7cOItemsDisplayConfig$PlenishOSecondPayday(
-      torlj8OIsShow:
-          (torlj8OIsShow != null ? torlj8OIsShow.value : this.torlj8OIsShow),
-      d392w8OIsEnforce:
-          (d392w8OIsEnforce != null
-              ? d392w8OIsEnforce.value
-              : this.d392w8OIsEnforce),
+      torlj8OIsShow: (torlj8OIsShow != null
+          ? torlj8OIsShow.value
+          : this.torlj8OIsShow),
+      d392w8OIsEnforce: (d392w8OIsEnforce != null
+          ? d392w8OIsEnforce.value
+          : this.d392w8OIsEnforce),
     );
   }
 }
@@ -31649,12 +30908,12 @@ extension $RiskReportResp$ZdzsepOVerificationConfig$U7yl7cOItemsDisplayConfig$Gr
     Wrapped<bool?>? d392w8OIsEnforce,
   }) {
     return RiskReportResp$ZdzsepOVerificationConfig$U7yl7cOItemsDisplayConfig$GrippleOFirstContactName(
-      torlj8OIsShow:
-          (torlj8OIsShow != null ? torlj8OIsShow.value : this.torlj8OIsShow),
-      d392w8OIsEnforce:
-          (d392w8OIsEnforce != null
-              ? d392w8OIsEnforce.value
-              : this.d392w8OIsEnforce),
+      torlj8OIsShow: (torlj8OIsShow != null
+          ? torlj8OIsShow.value
+          : this.torlj8OIsShow),
+      d392w8OIsEnforce: (d392w8OIsEnforce != null
+          ? d392w8OIsEnforce.value
+          : this.d392w8OIsEnforce),
     );
   }
 }
@@ -31732,12 +30991,12 @@ extension $RiskReportResp$ZdzsepOVerificationConfig$U7yl7cOItemsDisplayConfig$Ra
     Wrapped<bool?>? d392w8OIsEnforce,
   }) {
     return RiskReportResp$ZdzsepOVerificationConfig$U7yl7cOItemsDisplayConfig$RainOFirstContactMobile(
-      torlj8OIsShow:
-          (torlj8OIsShow != null ? torlj8OIsShow.value : this.torlj8OIsShow),
-      d392w8OIsEnforce:
-          (d392w8OIsEnforce != null
-              ? d392w8OIsEnforce.value
-              : this.d392w8OIsEnforce),
+      torlj8OIsShow: (torlj8OIsShow != null
+          ? torlj8OIsShow.value
+          : this.torlj8OIsShow),
+      d392w8OIsEnforce: (d392w8OIsEnforce != null
+          ? d392w8OIsEnforce.value
+          : this.d392w8OIsEnforce),
     );
   }
 }
@@ -31815,12 +31074,12 @@ extension $RiskReportResp$ZdzsepOVerificationConfig$U7yl7cOItemsDisplayConfig$Ba
     Wrapped<bool?>? d392w8OIsEnforce,
   }) {
     return RiskReportResp$ZdzsepOVerificationConfig$U7yl7cOItemsDisplayConfig$BaryeOFirstContactRelationship(
-      torlj8OIsShow:
-          (torlj8OIsShow != null ? torlj8OIsShow.value : this.torlj8OIsShow),
-      d392w8OIsEnforce:
-          (d392w8OIsEnforce != null
-              ? d392w8OIsEnforce.value
-              : this.d392w8OIsEnforce),
+      torlj8OIsShow: (torlj8OIsShow != null
+          ? torlj8OIsShow.value
+          : this.torlj8OIsShow),
+      d392w8OIsEnforce: (d392w8OIsEnforce != null
+          ? d392w8OIsEnforce.value
+          : this.d392w8OIsEnforce),
     );
   }
 }
@@ -31898,12 +31157,12 @@ extension $RiskReportResp$ZdzsepOVerificationConfig$U7yl7cOItemsDisplayConfig$Aq
     Wrapped<bool?>? d392w8OIsEnforce,
   }) {
     return RiskReportResp$ZdzsepOVerificationConfig$U7yl7cOItemsDisplayConfig$AquarianOSecondContactName(
-      torlj8OIsShow:
-          (torlj8OIsShow != null ? torlj8OIsShow.value : this.torlj8OIsShow),
-      d392w8OIsEnforce:
-          (d392w8OIsEnforce != null
-              ? d392w8OIsEnforce.value
-              : this.d392w8OIsEnforce),
+      torlj8OIsShow: (torlj8OIsShow != null
+          ? torlj8OIsShow.value
+          : this.torlj8OIsShow),
+      d392w8OIsEnforce: (d392w8OIsEnforce != null
+          ? d392w8OIsEnforce.value
+          : this.d392w8OIsEnforce),
     );
   }
 }
@@ -31981,12 +31240,12 @@ extension $RiskReportResp$ZdzsepOVerificationConfig$U7yl7cOItemsDisplayConfig$H3
     Wrapped<bool?>? d392w8OIsEnforce,
   }) {
     return RiskReportResp$ZdzsepOVerificationConfig$U7yl7cOItemsDisplayConfig$H3d2wfOSecondContactMobile(
-      torlj8OIsShow:
-          (torlj8OIsShow != null ? torlj8OIsShow.value : this.torlj8OIsShow),
-      d392w8OIsEnforce:
-          (d392w8OIsEnforce != null
-              ? d392w8OIsEnforce.value
-              : this.d392w8OIsEnforce),
+      torlj8OIsShow: (torlj8OIsShow != null
+          ? torlj8OIsShow.value
+          : this.torlj8OIsShow),
+      d392w8OIsEnforce: (d392w8OIsEnforce != null
+          ? d392w8OIsEnforce.value
+          : this.d392w8OIsEnforce),
     );
   }
 }
@@ -32064,12 +31323,12 @@ extension $RiskReportResp$ZdzsepOVerificationConfig$U7yl7cOItemsDisplayConfig$Ki
     Wrapped<bool?>? d392w8OIsEnforce,
   }) {
     return RiskReportResp$ZdzsepOVerificationConfig$U7yl7cOItemsDisplayConfig$KibeOSecondContactRelationship(
-      torlj8OIsShow:
-          (torlj8OIsShow != null ? torlj8OIsShow.value : this.torlj8OIsShow),
-      d392w8OIsEnforce:
-          (d392w8OIsEnforce != null
-              ? d392w8OIsEnforce.value
-              : this.d392w8OIsEnforce),
+      torlj8OIsShow: (torlj8OIsShow != null
+          ? torlj8OIsShow.value
+          : this.torlj8OIsShow),
+      d392w8OIsEnforce: (d392w8OIsEnforce != null
+          ? d392w8OIsEnforce.value
+          : this.d392w8OIsEnforce),
     );
   }
 }
@@ -32089,5 +31348,6 @@ String? _dateToJson(DateTime? date) {
 
 class Wrapped<T> {
   final T value;
+
   const Wrapped.value(this.value);
 }

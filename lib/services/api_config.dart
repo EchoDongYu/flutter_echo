@@ -55,7 +55,8 @@ class ApiController {
   Future<bool> postSt(String path, {Map<String, dynamic>? body}) async {
     final response = await _dio.post(path, data: body);
     final apiResponse = ApiResponse.fromJson(response.data);
-    return apiResponse.successful;
+    if (!apiResponse.successful) throw apiResponse;
+    return true;
   }
 }
 
@@ -74,7 +75,7 @@ class _ApiInterceptor extends Interceptor {
     final token = storage.token;
     final userGid = storage.userGid;
     final deviceId = storage.deviceId;
-    options.headers.addAll({
+    final Map<String, dynamic> headers = {
       'Accept-Language': AppConst.languageCode, // es西语
       'ys6955': userGid, // 用户Gid
       'kw0980': token, // 身份凭证
@@ -85,8 +86,9 @@ class _ApiInterceptor extends Interceptor {
       'jv9290': packageInfo.version, // app版本
       //'ie3728': null, // google广告id
       'hk4661': deviceId, // 安卓id
-    });
-
+    };
+    headers.removeWhere((key, value) => value == null);
+    options.headers.addAll(headers);
     if (options.method == 'POST' &&
         options.data != null &&
         options.data is Map) {
@@ -125,6 +127,7 @@ class _ApiInterceptor extends Interceptor {
       if (data.containsKey('raia')) {
         data['raia'] = userGid;
       }
+      data.removeWhere((key, value) => value == null);
     }
     super.onRequest(options, handler);
   }

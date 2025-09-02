@@ -3,9 +3,9 @@ import 'package:flutter_echo/common/app_theme.dart';
 import 'package:flutter_echo/models/common_model.dart';
 import 'package:flutter_echo/pages/app_router.dart';
 import 'package:flutter_echo/pages/login/captcha_dialog.dart';
+import 'package:flutter_echo/pages/login/retain_login_dialog.dart';
 import 'package:flutter_echo/ui/dialog_helper.dart';
 import 'package:flutter_echo/ui/dialogs/disclosure_dialog.dart';
-import 'package:flutter_echo/ui/dialogs/loading_dialog.dart';
 import 'package:flutter_echo/ui/widgets/common_button.dart';
 import 'package:flutter_echo/utils/context_ext.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -121,14 +121,6 @@ class _DemoPageState extends State<DemoPage> {
             icon: Icons.reviews_rounded,
             color: const Color(0xFF00D4FF),
             onPressed: () => _showPraiseDialog(context),
-          ),
-
-          _buildTestButton(
-            context,
-            title: '加载弹窗',
-            icon: Icons.refresh_rounded,
-            color: const Color(0xFF3288F1),
-            onPressed: () => LoadingDialog.show(context),
           ),
 
           _buildTestButton(
@@ -456,7 +448,7 @@ class _DemoPageState extends State<DemoPage> {
   }
 
   void _showCaptchaDialog(BuildContext context) async {
-    final result = await CaptchaDialog.show(context: context);
+    final result = await CaptchaDialog.show(context);
     if (context.mounted) {
       if (result != null && result.isNotEmpty) {
         context.showSuccessSnack('Success $result');
@@ -489,7 +481,7 @@ class _DemoPageState extends State<DemoPage> {
   }
 
   void _showRetainLoginDialog(BuildContext context) async {
-    final result = await DialogHelper.showRetainLoginDialog(context: context);
+    final result = await RetainLoginDialog.show(context);
     if (context.mounted) {
       if (result == true) {
         context.showSuccessSnack('Success $result');

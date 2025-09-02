@@ -6,19 +6,31 @@ import 'package:flutter_echo/models/swaggerApi.models.swagger.dart';
 import 'package:flutter_echo/pages/app_router.dart';
 import 'package:flutter_echo/services/api_service.dart';
 import 'package:flutter_echo/services/storage_service.dart';
+import 'package:fluttertoast/fluttertoast.dart';
+import 'package:go_router/go_router.dart';
 
 class LoginProvider extends BaseProvider {
   late CheckRegisterResp _checkRegister;
   late String phoneNumber;
-  late String verifyCode;
-  String? imageCode;
-  Timer? _timer;
+  String? _verifyCode;
+  String? _imageCode;
+  String? _password;
   int countdown = 0;
-  int loginStep = 0;
+  int _loginStep = 0;
+  Timer? _timer;
 
-  int get codeType => _checkRegister.qm5h5tOIsRegistered == true ? 1 : 7;
+  int get _codeType => _checkRegister.qm5h5tOIsRegistered == true ? 7 : 1;
 
   void checkRegister(String mobile) async {
+    _loginStep = 0;
+    if (countdown > 0 && phoneNumber == mobile) {
+      navigate((context) => context.push(AppRouter.loginCode));
+      return;
+    } else {
+      _timer?.cancel();
+      _timer = null;
+      countdown = 0;
+    }
     phoneNumber = mobile;
     final api = Api.isRegister(mobile: mobile);
     final apiResult = await launchRequest(() => api);
@@ -28,40 +40,38 @@ class LoginProvider extends BaseProvider {
           _checkRegister.fm50w8OLoginPwd == true &&
           _checkRegister.j1mnl2OExistLoginPwd == true) {
         // 已注册&密码登录&已设置密码
-        navigation(AppRouter.loginPassword);
+        navigate((context) => context.push(AppRouter.loginPassword));
       } else {
-        navigation(AppRouter.loginCode);
+        navigate((context) => context.push(AppRouter.loginCode));
       }
     }
   }
 
   Future<bool?> sendVerifyCode() async {
+    if (countdown > 0) return true;
     return await launchRequest(() async {
       final need = await Api.needCheckCaptcha(
         mobile: phoneNumber,
-        type: codeType,
+        type: _codeType,
       );
       if (need == true) {
         throw ApiResponse.needCaptchaError();
       } else {
-        return await _sendVerificationCode();
+        return await _sendVerifyCode();
       }
     });
   }
 
   void resendVerifyCode() async {
-    await launchRequest(() => _sendVerificationCode());
+    await launchRequest(() => _sendVerifyCode());
   }
 
-  Future<bool> _sendVerificationCode() async {
+  Future<bool> _sendVerifyCode() async {
     final apiResult = await Api.sendVerificationCode(
       mobile: phoneNumber,
-      type: codeType.toString(),
+      type: _codeType.toString(),
     );
-    if (apiResult == true) {
-      loginStep = 1;
-      _startCountdown();
-    }
+    if (apiResult == true) _startCountdown();
     return apiResult;
   }
 
@@ -84,40 +94,62 @@ class LoginProvider extends BaseProvider {
 
   Future<bool?> checkVerifyCode(String code) async {
     return await launchRequest(() async {
-      verifyCode = code;
-      return await _checkVerificationCode();
+      _verifyCode = code;
+      return await _checkVerifyCode();
     });
   }
 
-  Future<bool> _checkVerificationCode() async {
+  Future<bool> _checkVerifyCode() async {
+    _loginStep = 1;
     final apiResult = await Api.checkVerificationCode(
       mobile: phoneNumber,
-      type: codeType,
-      verifyCode: verifyCode,
-      imageCode: imageCode,
+      type: _codeType,
+      verifyCode: _verifyCode!,
+      imageCode: _imageCode,
     );
     if (apiResult == true) {
       if (_checkRegister.fm50w8OLoginPwd == true &&
           _checkRegister.j1mnl2OExistLoginPwd != true) {
         // 密码登录&未设置密码
-        navigation(AppRouter.loginPwdSetup);
-      } else if (_checkRegister.qm5h5tOIsRegistered == true) {
-        // 注册
-        final registerResult = await Api.registerUser(
-          mobile: phoneNumber,
-          verifyCode: verifyCode,
-          imageCode: imageCode,
-        );
+        navigate((ctx) => ctx.pushReplacement(AppRouter.loginPwdSetup));
       } else {
-        // 登录
-        final loginResult = await Api.loginUser(
-          mobile: phoneNumber,
-          verifyCode: verifyCode,
-          imageCode: imageCode,
-        );
+        await _registerOrLogin();
       }
     }
     return apiResult;
+  }
+
+  void userLogin(String password, {String? confirmPassword}) async {
+    if (confirmPassword != null && password != confirmPassword) {
+      Fluttertoast.showToast(
+        msg: 'password $password confirmPassword $confirmPassword',
+      );
+      return;
+    }
+    _password = password;
+    await launchRequest(() => _registerOrLogin());
+  }
+
+  Future<void> _registerOrLogin() async {
+    _loginStep = 2;
+    LoginResp loginResult;
+    if (_checkRegister.qm5h5tOIsRegistered == true) {
+      loginResult = await Api.loginUser(
+        mobile: phoneNumber,
+        verifyCode: _verifyCode,
+        imageCode: _imageCode,
+        password: _password,
+      );
+    } else {
+      loginResult = await Api.registerUser(
+        mobile: phoneNumber,
+        verifyCode: _verifyCode!,
+        imageCode: _imageCode,
+        password: _password,
+      );
+    }
+    await LocalStorage().userLogin(loginResult);
+    navigate((context) => context.go(AppRouter.main));
   }
 
   @override
@@ -125,16 +157,18 @@ class LoginProvider extends BaseProvider {
     await launchRequest(() async {
       final apiResult = await Api.checkCaptchaCode(
         mobile: phoneNumber,
-        type: codeType,
+        type: _codeType,
         mobileSn: LocalStorage().deviceId,
         imageCode: code,
       );
       if (apiResult == true) {
-        imageCode = code;
-        if (loginStep == 0) {
-          await _sendVerificationCode();
-        } else if (loginStep == 1) {
-          await _checkVerificationCode();
+        _imageCode = code;
+        if (_loginStep == 0) {
+          await _sendVerifyCode();
+        } else if (_loginStep == 1) {
+          await _checkVerifyCode();
+        } else if (_loginStep == 2) {
+          await _registerOrLogin();
         }
       }
     });

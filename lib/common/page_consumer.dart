@@ -28,21 +28,21 @@ class PageConsumer<T extends BaseProvider> extends StatelessWidget {
               if (navigator.canPop()) navigator.pop();
             }
           }
-          final location = provider.location;
-          if (location != null) {
-            provider.consumeNavigation();
-            GoRouter.of(context).push(location);
+          final navAction = provider.navAction;
+          if (navAction != null) {
+            provider.consumeNavAction();
+            navAction.call(context);
           }
         });
         WidgetsBinding.instance.addPostFrameCallback((_) async {
           final apiError = provider.apiError;
           if (apiError != null) {
             provider.consumeApiError();
-            Fluttertoast.showToast(msg: apiError.msg);
             if (apiError.needLogin) {
+              Fluttertoast.showToast(msg: apiError.msg);
               GoRouter.of(context).go(AppRouter.loginPhone);
             } else if (apiError.needCaptcha) {
-              final code = await CaptchaDialog.show(context: context);
+              final code = await CaptchaDialog.show(context);
               if (code != null) provider.onCaptchaCode(code);
             }
           }

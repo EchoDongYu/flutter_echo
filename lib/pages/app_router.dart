@@ -144,7 +144,10 @@ class AppRouter {
       GoRoute(path: aboutUs, builder: (context, state) => const AboutUsPage()),
 
       /// 用户银行卡页面
-      GoRoute(path: userBank, builder: (context, state) => const UserBankPage()),
+      GoRoute(
+        path: userBank,
+        builder: (context, state) => const UserBankPage(),
+      ),
 
       /// 测试入口
       GoRoute(path: demo, builder: (context, state) => const DemoPage()),

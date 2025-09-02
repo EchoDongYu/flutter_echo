@@ -13,7 +13,7 @@ Map<String, dynamic> _$BankDeleteReqToJson(BankDeleteReq instance) =>
     <String, dynamic>{'vnbh46': instance.vnbh46OBankCardGid};
 
 MyBankCardReq _$MyBankCardReqFromJson(Map<String, dynamic> json) =>
-    MyBankCardReq(raiaOUserGid: (json['raia'] as num?)?.toInt());
+    MyBankCardReq(raiaOUserGid: json['raia'] as String?);
 
 Map<String, dynamic> _$MyBankCardReqToJson(MyBankCardReq instance) =>
     <String, dynamic>{'raia': instance.raiaOUserGid};
@@ -26,7 +26,7 @@ Map<String, dynamic> _$BankVOReqToJson(BankVOReq instance) => <String, dynamic>{
 };
 
 BankBinReq _$BankBinReqFromJson(Map<String, dynamic> json) => BankBinReq(
-  raiaOUserGid: (json['raia'] as num?)?.toInt(),
+  raiaOUserGid: json['raia'] as String?,
   ojf007OBankAccount: json['ojf007'] as String?,
   exhedraOAccountType: (json['exhedra'] as num?)?.toInt(),
 );
@@ -40,7 +40,7 @@ Map<String, dynamic> _$BankBinReqToJson(BankBinReq instance) =>
 
 BindResultReq _$BindResultReqFromJson(Map<String, dynamic> json) =>
     BindResultReq(
-      raiaOUserGid: (json['raia'] as num?)?.toInt(),
+      raiaOUserGid: json['raia'] as String?,
       lynceanOBindcardGid: (json['lyncean'] as num?)?.toInt(),
     );
 
@@ -51,7 +51,7 @@ Map<String, dynamic> _$BindResultReqToJson(BindResultReq instance) =>
     };
 
 BindCardReq _$BindCardReqFromJson(Map<String, dynamic> json) => BindCardReq(
-  raiaOUserGid: (json['raia'] as num?)?.toInt(),
+  raiaOUserGid: json['raia'] as String?,
   exonymOBankGid: json['exonym'] as String?,
   t1h91pOBankName: json['t1h91p'] as String?,
   insolentOBankCode: json['insolent'] as String?,
@@ -78,14 +78,14 @@ Map<String, dynamic> _$BindCardReqToJson(BindCardReq instance) =>
     };
 
 BankCardReq _$BankCardReqFromJson(Map<String, dynamic> json) =>
-    BankCardReq(raiaOUserGid: (json['raia'] as num?)?.toInt());
+    BankCardReq(raiaOUserGid: json['raia'] as String?);
 
 Map<String, dynamic> _$BankCardReqToJson(BankCardReq instance) =>
     <String, dynamic>{'raia': instance.raiaOUserGid};
 
 TraderPwdCheckReq _$TraderPwdCheckReqFromJson(Map<String, dynamic> json) =>
     TraderPwdCheckReq(
-      raiaOUserGid: (json['raia'] as num?)?.toInt(),
+      raiaOUserGid: json['raia'] as String?,
       z38e62OOrderGid: json['z38e62'] as String?,
       c4s47hOTransPassword: json['c4s47h'] as String?,
       s377v5OBizLine: json['s377v5'] as String?,
@@ -101,7 +101,7 @@ Map<String, dynamic> _$TraderPwdCheckReqToJson(TraderPwdCheckReq instance) =>
 
 AccountCancelJudgeReq _$AccountCancelJudgeReqFromJson(
   Map<String, dynamic> json,
-) => AccountCancelJudgeReq(raiaOUserGid: (json['raia'] as num?)?.toInt());
+) => AccountCancelJudgeReq(raiaOUserGid: json['raia'] as String?);
 
 Map<String, dynamic> _$AccountCancelJudgeReqToJson(
   AccountCancelJudgeReq instance,
@@ -172,7 +172,7 @@ Map<String, dynamic> _$RegisterReqToJson(RegisterReq instance) =>
     };
 
 UserInfoReq _$UserInfoReqFromJson(Map<String, dynamic> json) =>
-    UserInfoReq(raiaOUserGid: (json['raia'] as num?)?.toInt());
+    UserInfoReq(raiaOUserGid: json['raia'] as String?);
 
 Map<String, dynamic> _$UserInfoReqToJson(UserInfoReq instance) =>
     <String, dynamic>{'raia': instance.raiaOUserGid};
@@ -181,7 +181,7 @@ LoginReq _$LoginReqFromJson(Map<String, dynamic> json) => LoginReq(
   sordidOMobile: json['sordid'] as String?,
   password: json['password'] as String?,
   y260zpOToken: json['y260zp'] as String?,
-  raiaOUserGid: (json['raia'] as num?)?.toInt(),
+  raiaOUserGid: json['raia'] as String?,
   ac0as4OMobileSn: json['ac0as4'] as String?,
   d7x52pOBizChannel: json['d7x52p'] as String?,
   s377v5OBizLine: json['s377v5'] as String?,
@@ -207,7 +207,7 @@ Map<String, dynamic> _$LoginReqToJson(LoginReq instance) => <String, dynamic>{
 
 AccountCancelAppReq _$AccountCancelAppReqFromJson(Map<String, dynamic> json) =>
     AccountCancelAppReq(
-      raiaOUserGid: (json['raia'] as num?)?.toInt(),
+      raiaOUserGid: json['raia'] as String?,
       sordidOMobile: json['sordid'] as String?,
       d7x52pOBizChannel: json['d7x52p'] as String?,
       s377v5OBizLine: json['s377v5'] as String?,
@@ -239,7 +239,7 @@ Map<String, dynamic> _$AccountCancelAppReqToJson(
 AccountCancelLandReq _$AccountCancelLandReqFromJson(
   Map<String, dynamic> json,
 ) => AccountCancelLandReq(
-  raiaOUserGid: (json['raia'] as num?)?.toInt(),
+  raiaOUserGid: json['raia'] as String?,
   sordidOMobile: json['sordid'] as String?,
   d7x52pOBizChannel: json['d7x52p'] as String?,
   s377v5OBizLine: json['s377v5'] as String?,
@@ -325,7 +325,7 @@ Map<String, dynamic> _$LoginPwdResetReqToJson(LoginPwdResetReq instance) =>
 CaptchaCheckReq _$CaptchaCheckReqFromJson(Map<String, dynamic> json) =>
     CaptchaCheckReq(
       sordidOMobile: json['sordid'] as String?,
-      raiaOUserGid: (json['raia'] as num?)?.toInt(),
+      raiaOUserGid: json['raia'] as String?,
       type: (json['type'] as num?)?.toInt(),
       ac0as4OMobileSn: json['ac0as4'] as String?,
       xwkarvOImageCode: json['xwkarv'] as String?,
@@ -343,7 +343,7 @@ Map<String, dynamic> _$CaptchaCheckReqToJson(CaptchaCheckReq instance) =>
 CodeVerifyReq _$CodeVerifyReqFromJson(Map<String, dynamic> json) =>
     CodeVerifyReq(
       sordidOMobile: json['sordid'] as String?,
-      raiaOUserGid: (json['raia'] as num?)?.toInt(),
+      raiaOUserGid: json['raia'] as String?,
       o4r2h6OIsBvnMobile: json['o4r2h6'] as bool?,
       type: (json['type'] as num?)?.toInt(),
       presageOVerCode: json['presage'] as String?,
@@ -372,7 +372,7 @@ CodeSendReq _$CodeSendReqFromJson(Map<String, dynamic> json) => CodeSendReq(
   j62tn1OMsgType: json['j62tn1'] as String?,
   d7x52pOBizChannel: json['d7x52p'] as String?,
   s377v5OBizLine: json['s377v5'] as String?,
-  raiaOUserGid: (json['raia'] as num?)?.toInt(),
+  raiaOUserGid: json['raia'] as String?,
   o4r2h6OIsBvnMobile: json['o4r2h6'] as bool?,
   z38e62OOrderGid: json['z38e62'] as String?,
   n66w89ODtype: (json['n66w89'] as num?)?.toInt(),
@@ -397,51 +397,45 @@ TrackReportReq _$TrackReportReqFromJson(
   raiaOUserGid: json['raia'] as String?,
   z775udOAppVersion: json['z775ud'] as String?,
   hk4762OUploadTime: (json['hk4762'] as num?)?.toInt(),
-  fibulaOReportBaseInfo:
-      json['fibula'] == null
-          ? null
-          : TrackReportReq$FibulaOReportBaseInfo.fromJson(
-            json['fibula'] as Map<String, dynamic>,
-          ),
-  adcraftOAddressBook:
-      (json['adcraft'] as List<dynamic>?)
-          ?.map(
-            (e) => TrackReportReq$AdcraftOAddressBook$Item.fromJson(
-              e as Map<String, dynamic>,
-            ),
-          )
-          .toList(),
-  jx3w61OAppList:
-      (json['jx3w61'] as List<dynamic>?)
-          ?.map(
-            (e) => TrackReportReq$Jx3w61OAppList$Item.fromJson(
-              e as Map<String, dynamic>,
-            ),
-          )
-          .toList(),
-  banallyOReportDevDTO:
-      json['banally'] == null
-          ? null
-          : TrackReportReq$BanallyOReportDevDTO.fromJson(
-            json['banally'] as Map<String, dynamic>,
-          ),
-  silaneOReportGyroDTO:
-      (json['silane'] as List<dynamic>?)
-          ?.map(
-            (e) => TrackReportReq$SilaneOReportGyroDTO$Item.fromJson(
-              e as Map<String, dynamic>,
-            ),
-          )
-          .toList(),
+  fibulaOReportBaseInfo: json['fibula'] == null
+      ? null
+      : TrackReportReq$FibulaOReportBaseInfo.fromJson(
+          json['fibula'] as Map<String, dynamic>,
+        ),
+  adcraftOAddressBook: (json['adcraft'] as List<dynamic>?)
+      ?.map(
+        (e) => TrackReportReq$AdcraftOAddressBook$Item.fromJson(
+          e as Map<String, dynamic>,
+        ),
+      )
+      .toList(),
+  jx3w61OAppList: (json['jx3w61'] as List<dynamic>?)
+      ?.map(
+        (e) => TrackReportReq$Jx3w61OAppList$Item.fromJson(
+          e as Map<String, dynamic>,
+        ),
+      )
+      .toList(),
+  banallyOReportDevDTO: json['banally'] == null
+      ? null
+      : TrackReportReq$BanallyOReportDevDTO.fromJson(
+          json['banally'] as Map<String, dynamic>,
+        ),
+  silaneOReportGyroDTO: (json['silane'] as List<dynamic>?)
+      ?.map(
+        (e) => TrackReportReq$SilaneOReportGyroDTO$Item.fromJson(
+          e as Map<String, dynamic>,
+        ),
+      )
+      .toList(),
   spankOAppsflyerId: json['spank'] as String?,
-  frcoOSmsItems:
-      (json['frco'] as List<dynamic>?)
-          ?.map(
-            (e) => TrackReportReq$FrcoOSmsItems$Item.fromJson(
-              e as Map<String, dynamic>,
-            ),
-          )
-          .toList(),
+  frcoOSmsItems: (json['frco'] as List<dynamic>?)
+      ?.map(
+        (e) => TrackReportReq$FrcoOSmsItems$Item.fromJson(
+          e as Map<String, dynamic>,
+        ),
+      )
+      .toList(),
 );
 
 Map<String, dynamic> _$TrackReportReqToJson(TrackReportReq instance) =>
@@ -461,12 +455,11 @@ Map<String, dynamic> _$TrackReportReqToJson(TrackReportReq instance) =>
 NeedReportReq _$NeedReportReqFromJson(Map<String, dynamic> json) =>
     NeedReportReq(
       manoOMapKey: json['mano'],
-      reopposeOMapValue:
-          json['reoppose'] == null
-              ? null
-              : NeedReportReq$ReopposeOMapValue.fromJson(
-                json['reoppose'] as Map<String, dynamic>,
-              ),
+      reopposeOMapValue: json['reoppose'] == null
+          ? null
+          : NeedReportReq$ReopposeOMapValue.fromJson(
+              json['reoppose'] as Map<String, dynamic>,
+            ),
     );
 
 Map<String, dynamic> _$NeedReportReqToJson(NeedReportReq instance) =>
@@ -490,13 +483,13 @@ Map<String, dynamic> _$RiskReportReqToJson(RiskReportReq instance) =>
     };
 
 VaCreateReq _$VaCreateReqFromJson(Map<String, dynamic> json) =>
-    VaCreateReq(raiaOUserGid: (json['raia'] as num?)?.toInt());
+    VaCreateReq(raiaOUserGid: json['raia'] as String?);
 
 Map<String, dynamic> _$VaCreateReqToJson(VaCreateReq instance) =>
     <String, dynamic>{'raia': instance.raiaOUserGid};
 
 VoSubmitReq _$VoSubmitReqFromJson(Map<String, dynamic> json) => VoSubmitReq(
-  raiaOUserGid: (json['raia'] as num?)?.toInt(),
+  raiaOUserGid: json['raia'] as String?,
   r5a4x8OLoanGid: (json['r5a4x8'] as num?)?.toInt(),
   krddvvOReference: json['krddvv'] as String?,
   di6pi4OTransferTime: (json['di6pi4'] as num?)?.toInt(),
@@ -513,7 +506,7 @@ Map<String, dynamic> _$VoSubmitReqToJson(VoSubmitReq instance) =>
     };
 
 VaGetReq _$VaGetReqFromJson(Map<String, dynamic> json) => VaGetReq(
-  raiaOUserGid: (json['raia'] as num?)?.toInt(),
+  raiaOUserGid: json['raia'] as String?,
   r5a4x8OLoanGid: (json['r5a4x8'] as num?)?.toInt(),
 );
 
@@ -525,7 +518,7 @@ Map<String, dynamic> _$VaGetReqToJson(VaGetReq instance) => <String, dynamic>{
 RepayApplyReq _$RepayApplyReqFromJson(Map<String, dynamic> json) =>
     RepayApplyReq(
       r5a4x8OLoanGid: (json['r5a4x8'] as num?)?.toInt(),
-      raiaOUserGid: (json['raia'] as num?)?.toInt(),
+      raiaOUserGid: json['raia'] as String?,
       o12sd0OAmount: (json['o12sd0'] as num?)?.toDouble(),
       vnbh46OBankCardGid: (json['vnbh46'] as num?)?.toInt(),
       bdvg46ORepaymentStage: (json['bdvg46'] as num?)?.toInt(),
@@ -573,7 +566,7 @@ Map<String, dynamic> _$RepayApplyReqToJson(RepayApplyReq instance) =>
 RepayRecordReq _$RepayRecordReqFromJson(Map<String, dynamic> json) =>
     RepayRecordReq(
       r5a4x8OLoanGid: (json['r5a4x8'] as num?)?.toInt(),
-      raiaOUserGid: (json['raia'] as num?)?.toInt(),
+      raiaOUserGid: json['raia'] as String?,
       mahoganyORepaymentType: (json['mahogany'] as num?)?.toInt(),
       t1h91pOBankName: json['t1h91p'] as String?,
       e77490ORequestId: json['e77490'] as String?,
@@ -591,7 +584,7 @@ Map<String, dynamic> _$RepayRecordReqToJson(RepayRecordReq instance) =>
     };
 
 MainInfoReq _$MainInfoReqFromJson(Map<String, dynamic> json) => MainInfoReq(
-  raiaOUserGid: (json['raia'] as num?)?.toInt(),
+  raiaOUserGid: json['raia'] as String?,
   zebrassOReqSubChannel: json['zebrass'] as String?,
   s37m00OReqSubChannelAf: json['s37m00'] as String?,
   spankOAppsflyerId: json['spank'] as String?,
@@ -637,7 +630,7 @@ Map<String, dynamic> _$ColoanGpReqToJson(ColoanGpReq instance) =>
     };
 
 HomeInfoReq _$HomeInfoReqFromJson(Map<String, dynamic> json) => HomeInfoReq(
-  raiaOUserGid: (json['raia'] as num?)?.toInt(),
+  raiaOUserGid: json['raia'] as String?,
   zebrassOReqSubChannel: json['zebrass'] as String?,
   s37m00OReqSubChannelAf: json['s37m00'] as String?,
   spankOAppsflyerId: json['spank'] as String?,
@@ -659,7 +652,7 @@ Map<String, dynamic> _$HomeInfoReqToJson(HomeInfoReq instance) =>
 
 LoanConfirmReq _$LoanConfirmReqFromJson(Map<String, dynamic> json) =>
     LoanConfirmReq(
-      raiaOUserGid: (json['raia'] as num?)?.toInt(),
+      raiaOUserGid: json['raia'] as String?,
       z38e62OOrderGid: json['z38e62'] as String?,
       retiaryOLoanAmount: (json['retiary'] as num?)?.toDouble(),
       foreyardOProductId: (json['foreyard'] as num?)?.toInt(),
@@ -712,7 +705,7 @@ Map<String, dynamic> _$PicUploadReqReqToJson(PicUploadReqReq instance) =>
     };
 
 CollTimeReq _$CollTimeReqFromJson(Map<String, dynamic> json) => CollTimeReq(
-  raiaOUserGid: (json['raia'] as num?)?.toInt(),
+  raiaOUserGid: json['raia'] as String?,
   e479lgOCollectTimeType: (json['e479lg'] as num?)?.toInt(),
 );
 
@@ -723,13 +716,13 @@ Map<String, dynamic> _$CollTimeReqToJson(CollTimeReq instance) =>
     };
 
 CheckFirstLoanReq _$CheckFirstLoanReqFromJson(Map<String, dynamic> json) =>
-    CheckFirstLoanReq(raiaOUserGid: (json['raia'] as num?)?.toInt());
+    CheckFirstLoanReq(raiaOUserGid: json['raia'] as String?);
 
 Map<String, dynamic> _$CheckFirstLoanReqToJson(CheckFirstLoanReq instance) =>
     <String, dynamic>{'raia': instance.raiaOUserGid};
 
 LoanOrderReq _$LoanOrderReqFromJson(Map<String, dynamic> json) => LoanOrderReq(
-  raiaOUserGid: (json['raia'] as num?)?.toInt(),
+  raiaOUserGid: json['raia'] as String?,
   z38e62OOrderGid: json['z38e62'] as String?,
 );
 
@@ -741,7 +734,7 @@ Map<String, dynamic> _$LoanOrderReqToJson(LoanOrderReq instance) =>
 
 LoanPreInfoReq _$LoanPreInfoReqFromJson(Map<String, dynamic> json) =>
     LoanPreInfoReq(
-      raiaOUserGid: (json['raia'] as num?)?.toInt(),
+      raiaOUserGid: json['raia'] as String?,
       retiaryOLoanAmount: (json['retiary'] as num?)?.toDouble(),
       foreyardOProductId: (json['foreyard'] as num?)?.toInt(),
       pinionOUserCouponGid: (json['pinion'] as num?)?.toInt(),
@@ -776,14 +769,14 @@ Map<String, dynamic> _$LoanFeeDetailReqToJson(LoanFeeDetailReq instance) =>
     };
 
 BankValidInfoReq _$BankValidInfoReqFromJson(Map<String, dynamic> json) =>
-    BankValidInfoReq(raiaOUserGid: (json['raia'] as num?)?.toInt());
+    BankValidInfoReq(raiaOUserGid: json['raia'] as String?);
 
 Map<String, dynamic> _$BankValidInfoReqToJson(BankValidInfoReq instance) =>
     <String, dynamic>{'raia': instance.raiaOUserGid};
 
 AbandonReasonReq _$AbandonReasonReqFromJson(Map<String, dynamic> json) =>
     AbandonReasonReq(
-      raiaOUserGid: (json['raia'] as num?)?.toInt(),
+      raiaOUserGid: json['raia'] as String?,
       pageId: json['pageId'] as String?,
       artificeOAbandonCode:
           (json['artifice'] as List<dynamic>?)
@@ -804,7 +797,7 @@ Map<String, dynamic> _$AbandonReasonReqToJson(AbandonReasonReq instance) =>
     };
 
 FeedbackReq _$FeedbackReqFromJson(Map<String, dynamic> json) => FeedbackReq(
-  raiaOUserGid: (json['raia'] as num?)?.toInt(),
+  raiaOUserGid: json['raia'] as String?,
   content: json['content'] as String?,
   type: json['type'] as String?,
   source: json['source'] as String?,
@@ -821,7 +814,7 @@ Map<String, dynamic> _$FeedbackReqToJson(FeedbackReq instance) =>
 NeedAbandonReasonReq _$NeedAbandonReasonReqFromJson(
   Map<String, dynamic> json,
 ) => NeedAbandonReasonReq(
-  raiaOUserGid: (json['raia'] as num?)?.toInt(),
+  raiaOUserGid: json['raia'] as String?,
   pageId: json['pageId'] as String?,
   ej04h8OReasonVersion: json['ej04h8'] as String?,
 );
@@ -851,7 +844,7 @@ Map<String, dynamic> _$LoanNoticeReqToJson(LoanNoticeReq instance) =>
     };
 
 CheckCreditReq _$CheckCreditReqFromJson(Map<String, dynamic> json) =>
-    CheckCreditReq(raiaOUserGid: (json['raia'] as num?)?.toInt());
+    CheckCreditReq(raiaOUserGid: json['raia'] as String?);
 
 Map<String, dynamic> _$CheckCreditReqToJson(CheckCreditReq instance) =>
     <String, dynamic>{'raia': instance.raiaOUserGid};
@@ -863,14 +856,13 @@ LivingDataReq _$LivingDataReqFromJson(Map<String, dynamic> json) =>
       s377v5OBizLine: json['s377v5'] as String?,
       u2g032OStartTime: (json['u2g032'] as num?)?.toInt(),
       colubridOEndTime: (json['colubrid'] as num?)?.toInt(),
-      outsungOLivingDataList:
-          (json['outsung'] as List<dynamic>?)
-              ?.map(
-                (e) => LivingDataReq$OutsungOLivingDataList$Item.fromJson(
-                  e as Map<String, dynamic>,
-                ),
-              )
-              .toList(),
+      outsungOLivingDataList: (json['outsung'] as List<dynamic>?)
+          ?.map(
+            (e) => LivingDataReq$OutsungOLivingDataList$Item.fromJson(
+              e as Map<String, dynamic>,
+            ),
+          )
+          .toList(),
     );
 
 Map<String, dynamic> _$LivingDataReqToJson(
@@ -886,7 +878,7 @@ Map<String, dynamic> _$LivingDataReqToJson(
 
 PhotoSubmitReq _$PhotoSubmitReqFromJson(Map<String, dynamic> json) =>
     PhotoSubmitReq(
-      raiaOUserGid: (json['raia'] as num?)?.toInt(),
+      raiaOUserGid: json['raia'] as String?,
       merdekaOIdCard: json['merdeka'] as String?,
       is9e52OIdCardType: (json['is9e52'] as num?)?.toInt(),
       d7x52pOBizChannel: json['d7x52p'] as String?,
@@ -908,7 +900,7 @@ Map<String, dynamic> _$PhotoSubmitReqToJson(PhotoSubmitReq instance) =>
 
 CreditRecordReq _$CreditRecordReqFromJson(Map<String, dynamic> json) =>
     CreditRecordReq(
-      raiaOUserGid: (json['raia'] as num?)?.toInt(),
+      raiaOUserGid: json['raia'] as String?,
       sordidOMobile: json['sordid'] as String?,
       gargetOBirthday: (json['garget'] as num?)?.toInt(),
       merdekaOIdCard: json['merdeka'] as String?,
@@ -998,7 +990,7 @@ Map<String, dynamic> _$CreditRecordReqToJson(CreditRecordReq instance) =>
 
 EmailCheckReq _$EmailCheckReqFromJson(Map<String, dynamic> json) =>
     EmailCheckReq(
-      raiaOUserGid: (json['raia'] as num?)?.toInt(),
+      raiaOUserGid: json['raia'] as String?,
       f31u3kOEmail: json['f31u3k'] as String?,
       merdekaOIdCard: json['merdeka'] as String?,
     );
@@ -1011,14 +1003,14 @@ Map<String, dynamic> _$EmailCheckReqToJson(EmailCheckReq instance) =>
     };
 
 HomeCouponReq _$HomeCouponReqFromJson(Map<String, dynamic> json) =>
-    HomeCouponReq(raiaOUserGid: (json['raia'] as num?)?.toInt());
+    HomeCouponReq(raiaOUserGid: json['raia'] as String?);
 
 Map<String, dynamic> _$HomeCouponReqToJson(HomeCouponReq instance) =>
     <String, dynamic>{'raia': instance.raiaOUserGid};
 
 LoanCouponReq _$LoanCouponReqFromJson(Map<String, dynamic> json) =>
     LoanCouponReq(
-      raiaOUserGid: (json['raia'] as num?)?.toInt(),
+      raiaOUserGid: json['raia'] as String?,
       retiaryOLoanAmount: (json['retiary'] as num?)?.toDouble(),
     );
 
@@ -1029,7 +1021,7 @@ Map<String, dynamic> _$LoanCouponReqToJson(LoanCouponReq instance) =>
     };
 
 MyCouponReq _$MyCouponReqFromJson(Map<String, dynamic> json) => MyCouponReq(
-  raiaOUserGid: (json['raia'] as num?)?.toInt(),
+  raiaOUserGid: json['raia'] as String?,
   type: (json['type'] as num?)?.toInt(),
 );
 
@@ -1071,7 +1063,7 @@ Map<String, dynamic> _$CouponPopReqToJson(CouponPopReq instance) =>
     };
 
 LoanBillReq _$LoanBillReqFromJson(Map<String, dynamic> json) => LoanBillReq(
-  raiaOUserGid: (json['raia'] as num?)?.toInt(),
+  raiaOUserGid: json['raia'] as String?,
   size: (json['size'] as num?)?.toInt(),
   current: (json['current'] as num?)?.toInt(),
   d95091ORepaymentStatus:
@@ -1103,7 +1095,7 @@ Map<String, dynamic> _$BillStatusReqToJson(BillStatusReq instance) =>
     };
 
 BillListReq _$BillListReqFromJson(Map<String, dynamic> json) =>
-    BillListReq(raiaOUserGid: (json['raia'] as num?)?.toInt());
+    BillListReq(raiaOUserGid: json['raia'] as String?);
 
 Map<String, dynamic> _$BillListReqToJson(BillListReq instance) =>
     <String, dynamic>{'raia': instance.raiaOUserGid};
@@ -1121,7 +1113,7 @@ Map<String, dynamic> _$BillDetailReqToJson(BillDetailReq instance) =>
     };
 
 BillRepayReq _$BillRepayReqFromJson(Map<String, dynamic> json) => BillRepayReq(
-  raiaOUserGid: (json['raia'] as num?)?.toInt(),
+  raiaOUserGid: json['raia'] as String?,
   r5a4x8OLoanGid: (json['r5a4x8'] as num?)?.toInt(),
   size: (json['size'] as num?)?.toInt(),
   current: (json['current'] as num?)?.toInt(),
@@ -1350,7 +1342,7 @@ RegisterResp _$RegisterRespFromJson(Map<String, dynamic> json) => RegisterResp(
   sordidOMobile: json['sordid'] as String?,
   y260zpOToken: json['y260zp'] as String?,
   name: json['name'] as String?,
-  raiaOUserGid: (json['raia'] as num?)?.toInt(),
+  raiaOUserGid: json['raia'] as String?,
   hik0qmORegisterTime: (json['hik0qm'] as num?)?.toInt(),
 );
 
@@ -1384,7 +1376,7 @@ LoginResp _$LoginRespFromJson(Map<String, dynamic> json) => LoginResp(
   sordidOMobile: json['sordid'] as String?,
   y260zpOToken: json['y260zp'] as String?,
   name: json['name'] as String?,
-  raiaOUserGid: (json['raia'] as num?)?.toInt(),
+  raiaOUserGid: json['raia'] as String?,
   hik0qmORegisterTime: (json['hik0qm'] as num?)?.toInt(),
 );
 
@@ -1605,12 +1597,11 @@ Map<String, dynamic> _$NeedReportRespToJson(NeedReportResp instance) =>
 
 RiskReportResp _$RiskReportRespFromJson(Map<String, dynamic> json) =>
     RiskReportResp(
-      zdzsepOVerificationConfig:
-          json['zdzsep'] == null
-              ? null
-              : RiskReportResp$ZdzsepOVerificationConfig.fromJson(
-                json['zdzsep'] as Map<String, dynamic>,
-              ),
+      zdzsepOVerificationConfig: json['zdzsep'] == null
+          ? null
+          : RiskReportResp$ZdzsepOVerificationConfig.fromJson(
+              json['zdzsep'] as Map<String, dynamic>,
+            ),
     );
 
 Map<String, dynamic> _$RiskReportRespToJson(RiskReportResp instance) =>
@@ -1677,7 +1668,7 @@ Map<String, dynamic> _$VaGetRespToJson(VaGetResp instance) => <String, dynamic>{
 RepayApplyResp _$RepayApplyRespFromJson(Map<String, dynamic> json) =>
     RepayApplyResp(
       r5a4x8OLoanGid: (json['r5a4x8'] as num?)?.toInt(),
-      raiaOUserGid: (json['raia'] as num?)?.toInt(),
+      raiaOUserGid: json['raia'] as String?,
       n410zdOLoanTime: (json['n410zd'] as num?)?.toInt(),
       r5k31qODueTime: (json['r5k31q'] as num?)?.toInt(),
       coandaODueDays: (json['coanda'] as num?)?.toInt(),
@@ -1694,14 +1685,13 @@ RepayApplyResp _$RepayApplyRespFromJson(Map<String, dynamic> json) =>
       krddvvOReference: json['krddvv'] as String?,
       w2y37vOOrderType: (json['w2y37v'] as num?)?.toInt(),
       oe5u39OChannelName: json['oe5u39'] as String?,
-      tartarlyOPins:
-          (json['tartarly'] as List<dynamic>?)
-              ?.map(
-                (e) => RepayApplyResp$TartarlyOPins$Item.fromJson(
-                  e as Map<String, dynamic>,
-                ),
-              )
-              .toList(),
+      tartarlyOPins: (json['tartarly'] as List<dynamic>?)
+          ?.map(
+            (e) => RepayApplyResp$TartarlyOPins$Item.fromJson(
+              e as Map<String, dynamic>,
+            ),
+          )
+          .toList(),
     );
 
 Map<String, dynamic> _$RepayApplyRespToJson(RepayApplyResp instance) =>
@@ -1782,12 +1772,11 @@ VersionCheckResp _$VersionCheckRespFromJson(Map<String, dynamic> json) =>
       tympanumOMsgTitle: json['tympanum'] as String?,
       directOMsgBtn01: json['direct'] as String?,
       i9145gOMsgBtn02: json['i9145g'] as String?,
-      data:
-          json['data'] == null
-              ? null
-              : VersionCheckResp$Data.fromJson(
-                json['data'] as Map<String, dynamic>,
-              ),
+      data: json['data'] == null
+          ? null
+          : VersionCheckResp$Data.fromJson(
+              json['data'] as Map<String, dynamic>,
+            ),
     );
 
 Map<String, dynamic> _$VersionCheckRespToJson(VersionCheckResp instance) =>
@@ -1803,38 +1792,35 @@ Map<String, dynamic> _$VersionCheckRespToJson(VersionCheckResp instance) =>
     };
 
 ColoanGpResp _$ColoanGpRespFromJson(Map<String, dynamic> json) => ColoanGpResp(
-  s2c1wyOAppCoLoanGpDetailPOList:
-      (json['s2c1wy'] as List<dynamic>?)
-          ?.map(
-            (e) => ColoanGpResp$S2c1wyOAppCoLoanGpDetailPOList$Item.fromJson(
-              e as Map<String, dynamic>,
-            ),
-          )
-          .toList(),
+  s2c1wyOAppCoLoanGpDetailPOList: (json['s2c1wy'] as List<dynamic>?)
+      ?.map(
+        (e) => ColoanGpResp$S2c1wyOAppCoLoanGpDetailPOList$Item.fromJson(
+          e as Map<String, dynamic>,
+        ),
+      )
+      .toList(),
 );
 
-Map<String, dynamic> _$ColoanGpRespToJson(
-  ColoanGpResp instance,
-) => <String, dynamic>{
-  's2c1wy':
-      instance.s2c1wyOAppCoLoanGpDetailPOList?.map((e) => e.toJson()).toList(),
-};
+Map<String, dynamic> _$ColoanGpRespToJson(ColoanGpResp instance) =>
+    <String, dynamic>{
+      's2c1wy': instance.s2c1wyOAppCoLoanGpDetailPOList
+          ?.map((e) => e.toJson())
+          .toList(),
+    };
 
 HomeInfoResp _$HomeInfoRespFromJson(Map<String, dynamic> json) => HomeInfoResp(
   bopomofoOCreditStatus: (json['bopomofo'] as num?)?.toInt(),
   rnpu7fOCreditLine: (json['rnpu7f'] as num?)?.toDouble(),
-  papuanOLastRecordLoan:
-      json['papuan'] == null
-          ? null
-          : HomeInfoResp$PapuanOLastRecordLoan.fromJson(
-            json['papuan'] as Map<String, dynamic>,
-          ),
-  xu551uOSpareLastRecordLoan:
-      json['xu551u'] == null
-          ? null
-          : HomeInfoResp$Xu551uOSpareLastRecordLoan.fromJson(
-            json['xu551u'] as Map<String, dynamic>,
-          ),
+  papuanOLastRecordLoan: json['papuan'] == null
+      ? null
+      : HomeInfoResp$PapuanOLastRecordLoan.fromJson(
+          json['papuan'] as Map<String, dynamic>,
+        ),
+  xu551uOSpareLastRecordLoan: json['xu551u'] == null
+      ? null
+      : HomeInfoResp$Xu551uOSpareLastRecordLoan.fromJson(
+          json['xu551u'] as Map<String, dynamic>,
+        ),
   overdidOIsLockAll: json['overdid'] as bool?,
   mojr11OLoanRangeMin: (json['mojr11'] as num?)?.toDouble(),
   xuwh2oOLoanRangeMax: (json['xuwh2o'] as num?)?.toDouble(),
@@ -1844,79 +1830,76 @@ HomeInfoResp _$HomeInfoRespFromJson(Map<String, dynamic> json) => HomeInfoResp(
   za1s1eOSpareCreditLine: (json['za1s1e'] as num?)?.toDouble(),
   u6n134OSpareCanBorrowAmount: (json['u6n134'] as num?)?.toDouble(),
   nailheadOIsSpareLockAll: json['nailhead'] as bool?,
-  lysogenOSpareProductGroup:
-      (json['lysogen'] as List<dynamic>?)
-          ?.map(
-            (e) => HomeInfoResp$LysogenOSpareProductGroup$Item.fromJson(
-              e as Map<String, dynamic>,
-            ),
-          )
-          .toList(),
+  lysogenOSpareProductGroup: (json['lysogen'] as List<dynamic>?)
+      ?.map(
+        (e) => HomeInfoResp$LysogenOSpareProductGroup$Item.fromJson(
+          e as Map<String, dynamic>,
+        ),
+      )
+      .toList(),
   spicateOSpareLoanRangeMin: (json['spicate'] as num?)?.toDouble(),
   cumarinOSpareLoanRangeMax: (json['cumarin'] as num?)?.toDouble(),
   iwibiuOSpareLoanRangeUnit: (json['iwibiu'] as num?)?.toDouble(),
-  assurOFaceList:
-      (json['assur'] as List<dynamic>?)
-          ?.map(
-            (e) => HomeInfoResp$AssurOFaceList$Item.fromJson(
-              e as Map<String, dynamic>,
-            ),
-          )
-          .toList(),
+  assurOFaceList: (json['assur'] as List<dynamic>?)
+      ?.map(
+        (e) => HomeInfoResp$AssurOFaceList$Item.fromJson(
+          e as Map<String, dynamic>,
+        ),
+      )
+      .toList(),
   v7d1moOSpareFaceType: json['v7d1mo'] as String?,
-  parryOSpareFaceList:
-      (json['parry'] as List<dynamic>?)
-          ?.map(
-            (e) => HomeInfoResp$ParryOSpareFaceList$Item.fromJson(
-              e as Map<String, dynamic>,
-            ),
-          )
-          .toList(),
-  s2c1wyOAppCoLoanGpDetailPOList:
-      (json['s2c1wy'] as List<dynamic>?)
-          ?.map(
-            (e) => HomeInfoResp$S2c1wyOAppCoLoanGpDetailPOList$Item.fromJson(
-              e as Map<String, dynamic>,
-            ),
-          )
-          .toList(),
+  parryOSpareFaceList: (json['parry'] as List<dynamic>?)
+      ?.map(
+        (e) => HomeInfoResp$ParryOSpareFaceList$Item.fromJson(
+          e as Map<String, dynamic>,
+        ),
+      )
+      .toList(),
+  s2c1wyOAppCoLoanGpDetailPOList: (json['s2c1wy'] as List<dynamic>?)
+      ?.map(
+        (e) => HomeInfoResp$S2c1wyOAppCoLoanGpDetailPOList$Item.fromJson(
+          e as Map<String, dynamic>,
+        ),
+      )
+      .toList(),
   co5i9lOForceUpdateFlag: json['co5i9l'] as bool?,
   y934teOTotalAmount: (json['y934te'] as num?)?.toDouble(),
   yawnOExpectTime: (json['yawn'] as num?)?.toInt(),
   undyedOHasLoan: json['undyed'] as bool?,
 );
 
-Map<String, dynamic> _$HomeInfoRespToJson(
-  HomeInfoResp instance,
-) => <String, dynamic>{
-  'bopomofo': instance.bopomofoOCreditStatus,
-  'rnpu7f': instance.rnpu7fOCreditLine,
-  'papuan': instance.papuanOLastRecordLoan?.toJson(),
-  'xu551u': instance.xu551uOSpareLastRecordLoan?.toJson(),
-  'overdid': instance.overdidOIsLockAll,
-  'mojr11': instance.mojr11OLoanRangeMin,
-  'xuwh2o': instance.xuwh2oOLoanRangeMax,
-  'marrow': instance.marrowOLoanRangeUnit,
-  'fx6b0y': instance.fx6b0yOIsFreeze,
-  'grafter': instance.grafterOIsWhiteUser,
-  'za1s1e': instance.za1s1eOSpareCreditLine,
-  'u6n134': instance.u6n134OSpareCanBorrowAmount,
-  'nailhead': instance.nailheadOIsSpareLockAll,
-  'lysogen':
-      instance.lysogenOSpareProductGroup?.map((e) => e.toJson()).toList(),
-  'spicate': instance.spicateOSpareLoanRangeMin,
-  'cumarin': instance.cumarinOSpareLoanRangeMax,
-  'iwibiu': instance.iwibiuOSpareLoanRangeUnit,
-  'assur': instance.assurOFaceList?.map((e) => e.toJson()).toList(),
-  'v7d1mo': instance.v7d1moOSpareFaceType,
-  'parry': instance.parryOSpareFaceList?.map((e) => e.toJson()).toList(),
-  's2c1wy':
-      instance.s2c1wyOAppCoLoanGpDetailPOList?.map((e) => e.toJson()).toList(),
-  'co5i9l': instance.co5i9lOForceUpdateFlag,
-  'y934te': instance.y934teOTotalAmount,
-  'yawn': instance.yawnOExpectTime,
-  'undyed': instance.undyedOHasLoan,
-};
+Map<String, dynamic> _$HomeInfoRespToJson(HomeInfoResp instance) =>
+    <String, dynamic>{
+      'bopomofo': instance.bopomofoOCreditStatus,
+      'rnpu7f': instance.rnpu7fOCreditLine,
+      'papuan': instance.papuanOLastRecordLoan?.toJson(),
+      'xu551u': instance.xu551uOSpareLastRecordLoan?.toJson(),
+      'overdid': instance.overdidOIsLockAll,
+      'mojr11': instance.mojr11OLoanRangeMin,
+      'xuwh2o': instance.xuwh2oOLoanRangeMax,
+      'marrow': instance.marrowOLoanRangeUnit,
+      'fx6b0y': instance.fx6b0yOIsFreeze,
+      'grafter': instance.grafterOIsWhiteUser,
+      'za1s1e': instance.za1s1eOSpareCreditLine,
+      'u6n134': instance.u6n134OSpareCanBorrowAmount,
+      'nailhead': instance.nailheadOIsSpareLockAll,
+      'lysogen': instance.lysogenOSpareProductGroup
+          ?.map((e) => e.toJson())
+          .toList(),
+      'spicate': instance.spicateOSpareLoanRangeMin,
+      'cumarin': instance.cumarinOSpareLoanRangeMax,
+      'iwibiu': instance.iwibiuOSpareLoanRangeUnit,
+      'assur': instance.assurOFaceList?.map((e) => e.toJson()).toList(),
+      'v7d1mo': instance.v7d1moOSpareFaceType,
+      'parry': instance.parryOSpareFaceList?.map((e) => e.toJson()).toList(),
+      's2c1wy': instance.s2c1wyOAppCoLoanGpDetailPOList
+          ?.map((e) => e.toJson())
+          .toList(),
+      'co5i9l': instance.co5i9lOForceUpdateFlag,
+      'y934te': instance.y934teOTotalAmount,
+      'yawn': instance.yawnOExpectTime,
+      'undyed': instance.undyedOHasLoan,
+    };
 
 LoanConfirmResp _$LoanConfirmRespFromJson(Map<String, dynamic> json) =>
     LoanConfirmResp(
@@ -1939,12 +1922,11 @@ PicUploadReqResp _$PicUploadReqRespFromJson(Map<String, dynamic> json) =>
       tympanumOMsgTitle: json['tympanum'] as String?,
       directOMsgBtn01: json['direct'] as String?,
       i9145gOMsgBtn02: json['i9145g'] as String?,
-      data:
-          json['data'] == null
-              ? null
-              : PicUploadReqResp$Data.fromJson(
-                json['data'] as Map<String, dynamic>,
-              ),
+      data: json['data'] == null
+          ? null
+          : PicUploadReqResp$Data.fromJson(
+              json['data'] as Map<String, dynamic>,
+            ),
     );
 
 Map<String, dynamic> _$PicUploadReqRespToJson(PicUploadReqResp instance) =>
@@ -1982,7 +1964,7 @@ Map<String, dynamic> _$CollTimeRespToJson(CollTimeResp instance) =>
 
 CheckFirstLoanResp _$CheckFirstLoanRespFromJson(Map<String, dynamic> json) =>
     CheckFirstLoanResp(
-      raiaOUserGid: (json['raia'] as num?)?.toInt(),
+      raiaOUserGid: json['raia'] as String?,
       candidlyOIsFirst: json['candidly'] as bool?,
       tassesOPopUpNotice: json['tasses'] as bool?,
     );
@@ -2000,7 +1982,7 @@ LoanOrderResp _$LoanOrderRespFromJson(Map<String, dynamic> json) =>
       r5a4x8OLoanGid: (json['r5a4x8'] as num?)?.toInt(),
       staticsOCreateTime: (json['statics'] as num?)?.toInt(),
       l16h95OUpdateTime: (json['l16h95'] as num?)?.toInt(),
-      raiaOUserGid: (json['raia'] as num?)?.toInt(),
+      raiaOUserGid: json['raia'] as String?,
       vkql27OReqChannel: (json['vkql27'] as num?)?.toInt(),
       zebrassOReqSubChannel: (json['zebrass'] as num?)?.toInt(),
       feminieOCardAccount: json['feminie'] as String?,
@@ -2138,7 +2120,7 @@ Map<String, dynamic> _$LoanOrderRespToJson(LoanOrderResp instance) =>
 
 LoanPreInfoResp _$LoanPreInfoRespFromJson(Map<String, dynamic> json) =>
     LoanPreInfoResp(
-      raiaOUserGid: (json['raia'] as num?)?.toInt(),
+      raiaOUserGid: json['raia'] as String?,
       r5k31qODueTime: (json['r5k31q'] as num?)?.toInt(),
       retiaryOLoanAmount: (json['retiary'] as num?)?.toDouble(),
       pluralOReceiveAmount: (json['plural'] as num?)?.toDouble(),
@@ -2172,21 +2154,19 @@ LoanPreInfoResp _$LoanPreInfoRespFromJson(Map<String, dynamic> json) =>
       woopieOOtpValidSwitch: (json['woopie'] as num?)?.toInt(),
       r86mu7OProductTag: json['r86mu7'] as String?,
       ez64t7OPeriodCount: (json['ez64t7'] as num?)?.toInt(),
-      y5695eOProductFactory:
-          json['y5695e'] == null
-              ? null
-              : LoanPreInfoResp$Y5695eOProductFactory.fromJson(
-                json['y5695e'] as Map<String, dynamic>,
-              ),
+      y5695eOProductFactory: json['y5695e'] == null
+          ? null
+          : LoanPreInfoResp$Y5695eOProductFactory.fromJson(
+              json['y5695e'] as Map<String, dynamic>,
+            ),
       foreyardOProductId: (json['foreyard'] as num?)?.toInt(),
-      glacisORepaymentPlanList:
-          (json['glacis'] as List<dynamic>?)
-              ?.map(
-                (e) => LoanPreInfoResp$GlacisORepaymentPlanList$Item.fromJson(
-                  e as Map<String, dynamic>,
-                ),
-              )
-              .toList(),
+      glacisORepaymentPlanList: (json['glacis'] as List<dynamic>?)
+          ?.map(
+            (e) => LoanPreInfoResp$GlacisORepaymentPlanList$Item.fromJson(
+              e as Map<String, dynamic>,
+            ),
+          )
+          .toList(),
       spinachyOLoanPeriod: (json['spinachy'] as num?)?.toInt(),
       t72jj1OCreditSearchFee: (json['t72jj1'] as num?)?.toDouble(),
       cdslOTransferFee: (json['cdsl'] as num?)?.toDouble(),
@@ -2254,12 +2234,11 @@ LoanFeeDetailResp _$LoanFeeDetailRespFromJson(Map<String, dynamic> json) =>
       tympanumOMsgTitle: json['tympanum'] as String?,
       directOMsgBtn01: json['direct'] as String?,
       i9145gOMsgBtn02: json['i9145g'] as String?,
-      data:
-          json['data'] == null
-              ? null
-              : LoanFeeDetailResp$Data.fromJson(
-                json['data'] as Map<String, dynamic>,
-              ),
+      data: json['data'] == null
+          ? null
+          : LoanFeeDetailResp$Data.fromJson(
+              json['data'] as Map<String, dynamic>,
+            ),
     );
 
 Map<String, dynamic> _$LoanFeeDetailRespToJson(LoanFeeDetailResp instance) =>
@@ -2347,14 +2326,13 @@ NeedAbandonReasonResp _$NeedAbandonReasonRespFromJson(
   s6bfq9OUserClass: (json['s6bfq9'] as num?)?.toInt(),
   h1rhepOIsOnLoan: json['h1rhep'] as bool?,
   q0ui28OIsNeedReport: json['q0ui28'] as bool?,
-  du00hsOAbandonReasons:
-      (json['du00hs'] as List<dynamic>?)
-          ?.map(
-            (e) => NeedAbandonReasonResp$Du00hsOAbandonReasons$Item.fromJson(
-              e as Map<String, dynamic>,
-            ),
-          )
-          .toList(),
+  du00hsOAbandonReasons: (json['du00hs'] as List<dynamic>?)
+      ?.map(
+        (e) => NeedAbandonReasonResp$Du00hsOAbandonReasons$Item.fromJson(
+          e as Map<String, dynamic>,
+        ),
+      )
+      .toList(),
 );
 
 Map<String, dynamic> _$NeedAbandonReasonRespToJson(
@@ -2375,12 +2353,9 @@ LoanNoticeResp _$LoanNoticeRespFromJson(Map<String, dynamic> json) =>
       tympanumOMsgTitle: json['tympanum'] as String?,
       directOMsgBtn01: json['direct'] as String?,
       i9145gOMsgBtn02: json['i9145g'] as String?,
-      data:
-          json['data'] == null
-              ? null
-              : LoanNoticeResp$Data.fromJson(
-                json['data'] as Map<String, dynamic>,
-              ),
+      data: json['data'] == null
+          ? null
+          : LoanNoticeResp$Data.fromJson(json['data'] as Map<String, dynamic>),
     );
 
 Map<String, dynamic> _$LoanNoticeRespToJson(LoanNoticeResp instance) =>
@@ -2397,7 +2372,7 @@ Map<String, dynamic> _$LoanNoticeRespToJson(LoanNoticeResp instance) =>
 
 CheckCreditResp _$CheckCreditRespFromJson(Map<String, dynamic> json) =>
     CheckCreditResp(
-      raiaOUserGid: (json['raia'] as num?)?.toInt(),
+      raiaOUserGid: json['raia'] as String?,
       bopomofoOCreditStatus: (json['bopomofo'] as num?)?.toInt(),
       rnpu7fOCreditLine: (json['rnpu7f'] as num?)?.toDouble(),
       nookieOCanBorrowAmount: (json['nookie'] as num?)?.toDouble(),
@@ -2505,14 +2480,13 @@ Map<String, dynamic> _$EmailCheckRespToJson(EmailCheckResp instance) =>
 
 HomeCouponResp _$HomeCouponRespFromJson(Map<String, dynamic> json) =>
     HomeCouponResp(
-      fireballOUserCouponList:
-          (json['fireball'] as List<dynamic>?)
-              ?.map(
-                (e) => HomeCouponResp$FireballOUserCouponList$Item.fromJson(
-                  e as Map<String, dynamic>,
-                ),
-              )
-              .toList(),
+      fireballOUserCouponList: (json['fireball'] as List<dynamic>?)
+          ?.map(
+            (e) => HomeCouponResp$FireballOUserCouponList$Item.fromJson(
+              e as Map<String, dynamic>,
+            ),
+          )
+          .toList(),
       gmn2dbOCouponNum: (json['gmn2db'] as num?)?.toInt(),
     );
 
@@ -2523,19 +2497,16 @@ Map<String, dynamic> _$HomeCouponRespToJson(
   'gmn2db': instance.gmn2dbOCouponNum,
 };
 
-LoanCouponResp _$LoanCouponRespFromJson(
-  Map<String, dynamic> json,
-) => LoanCouponResp(
-  t933d6OUserCouponAvailableList:
-      (json['t933d6'] as List<dynamic>?)
+LoanCouponResp _$LoanCouponRespFromJson(Map<String, dynamic> json) =>
+    LoanCouponResp(
+      t933d6OUserCouponAvailableList: (json['t933d6'] as List<dynamic>?)
           ?.map(
             (e) => LoanCouponResp$T933d6OUserCouponAvailableList$Item.fromJson(
               e as Map<String, dynamic>,
             ),
           )
           .toList(),
-  stannateOUserCouponUnavailableList:
-      (json['stannate'] as List<dynamic>?)
+      stannateOUserCouponUnavailableList: (json['stannate'] as List<dynamic>?)
           ?.map(
             (e) =>
                 LoanCouponResp$StannateOUserCouponUnavailableList$Item.fromJson(
@@ -2543,28 +2514,26 @@ LoanCouponResp _$LoanCouponRespFromJson(
                 ),
           )
           .toList(),
-);
+    );
 
-Map<String, dynamic> _$LoanCouponRespToJson(
-  LoanCouponResp instance,
-) => <String, dynamic>{
-  't933d6':
-      instance.t933d6OUserCouponAvailableList?.map((e) => e.toJson()).toList(),
-  'stannate':
-      instance.stannateOUserCouponUnavailableList
+Map<String, dynamic> _$LoanCouponRespToJson(LoanCouponResp instance) =>
+    <String, dynamic>{
+      't933d6': instance.t933d6OUserCouponAvailableList
           ?.map((e) => e.toJson())
           .toList(),
-};
+      'stannate': instance.stannateOUserCouponUnavailableList
+          ?.map((e) => e.toJson())
+          .toList(),
+    };
 
 MyCouponResp _$MyCouponRespFromJson(Map<String, dynamic> json) => MyCouponResp(
-  fireballOUserCouponList:
-      (json['fireball'] as List<dynamic>?)
-          ?.map(
-            (e) => MyCouponResp$FireballOUserCouponList$Item.fromJson(
-              e as Map<String, dynamic>,
-            ),
-          )
-          .toList(),
+  fireballOUserCouponList: (json['fireball'] as List<dynamic>?)
+      ?.map(
+        (e) => MyCouponResp$FireballOUserCouponList$Item.fromJson(
+          e as Map<String, dynamic>,
+        ),
+      )
+      .toList(),
   gmn2dbOCouponNum: (json['gmn2db'] as num?)?.toInt(),
 );
 
@@ -2599,14 +2568,13 @@ Map<String, dynamic> _$CouponGetRespToJson(CouponGetResp instance) =>
 
 LandCouponResp _$LandCouponRespFromJson(Map<String, dynamic> json) =>
     LandCouponResp(
-      fireballOUserCouponList:
-          (json['fireball'] as List<dynamic>?)
-              ?.map(
-                (e) => LandCouponResp$FireballOUserCouponList$Item.fromJson(
-                  e as Map<String, dynamic>,
-                ),
-              )
-              .toList(),
+      fireballOUserCouponList: (json['fireball'] as List<dynamic>?)
+          ?.map(
+            (e) => LandCouponResp$FireballOUserCouponList$Item.fromJson(
+              e as Map<String, dynamic>,
+            ),
+          )
+          .toList(),
       gmn2dbOCouponNum: (json['gmn2db'] as num?)?.toInt(),
     );
 
@@ -2619,12 +2587,11 @@ Map<String, dynamic> _$LandCouponRespToJson(
 
 CouponPopResp _$CouponPopRespFromJson(Map<String, dynamic> json) =>
     CouponPopResp(
-      oxmqq4OHomePopFlag:
-          json['oxmqq4'] == null
-              ? null
-              : CouponPopResp$Oxmqq4OHomePopFlag.fromJson(
-                json['oxmqq4'] as Map<String, dynamic>,
-              ),
+      oxmqq4OHomePopFlag: json['oxmqq4'] == null
+          ? null
+          : CouponPopResp$Oxmqq4OHomePopFlag.fromJson(
+              json['oxmqq4'] as Map<String, dynamic>,
+            ),
       gmn2dbOCouponNum: (json['gmn2db'] as num?)?.toInt(),
     );
 
@@ -2638,14 +2605,13 @@ LoanBillResp _$LoanBillRespFromJson(Map<String, dynamic> json) => LoanBillResp(
   y934teOTotalAmount: (json['y934te'] as num?)?.toDouble(),
   total: (json['total'] as num?)?.toInt(),
   pages: (json['pages'] as num?)?.toInt(),
-  ouxtd3OLoanList:
-      (json['ouxtd3'] as List<dynamic>?)
-          ?.map(
-            (e) => LoanBillResp$Ouxtd3OLoanList$Item.fromJson(
-              e as Map<String, dynamic>,
-            ),
-          )
-          .toList(),
+  ouxtd3OLoanList: (json['ouxtd3'] as List<dynamic>?)
+      ?.map(
+        (e) => LoanBillResp$Ouxtd3OLoanList$Item.fromJson(
+          e as Map<String, dynamic>,
+        ),
+      )
+      .toList(),
 );
 
 Map<String, dynamic> _$LoanBillRespToJson(LoanBillResp instance) =>
@@ -2664,14 +2630,13 @@ Map<String, dynamic> _$BillStatusRespToJson(BillStatusResp instance) =>
 
 BillListResp _$BillListRespFromJson(Map<String, dynamic> json) => BillListResp(
   y934teOTotalAmount: (json['y934te'] as num?)?.toDouble(),
-  soberOBillList:
-      (json['sober'] as List<dynamic>?)
-          ?.map(
-            (e) => BillListResp$SoberOBillList$Item.fromJson(
-              e as Map<String, dynamic>,
-            ),
-          )
-          .toList(),
+  soberOBillList: (json['sober'] as List<dynamic>?)
+      ?.map(
+        (e) => BillListResp$SoberOBillList$Item.fromJson(
+          e as Map<String, dynamic>,
+        ),
+      )
+      .toList(),
 );
 
 Map<String, dynamic> _$BillListRespToJson(BillListResp instance) =>
@@ -2702,14 +2667,13 @@ BillDetailResp _$BillDetailRespFromJson(Map<String, dynamic> json) =>
       foreyardOProductId: (json['foreyard'] as num?)?.toInt(),
       unciformOOriginationFee: (json['unciform'] as num?)?.toDouble(),
       centiareOServiceFee: (json['centiare'] as num?)?.toDouble(),
-      v08uw3ORepaymentChannelList:
-          (json['v08uw3'] as List<dynamic>?)
-              ?.map(
-                (e) => BillDetailResp$V08uw3ORepaymentChannelList$Item.fromJson(
-                  e as Map<String, dynamic>,
-                ),
-              )
-              .toList(),
+      v08uw3ORepaymentChannelList: (json['v08uw3'] as List<dynamic>?)
+          ?.map(
+            (e) => BillDetailResp$V08uw3ORepaymentChannelList$Item.fromJson(
+              e as Map<String, dynamic>,
+            ),
+          )
+          .toList(),
       pinionOUserCouponGid: (json['pinion'] as num?)?.toInt(),
       sk6s63OCouponAmount: (json['sk6s63'] as num?)?.toDouble(),
       mt66nzOReceiveSubAmount: (json['mt66nz'] as num?)?.toDouble(),
@@ -2717,14 +2681,13 @@ BillDetailResp _$BillDetailRespFromJson(Map<String, dynamic> json) =>
       vx4165OFailReason: json['vx4165'] as String?,
       mxs06uOApplyStatus: json['mxs06u'] as String?,
       ez64t7OPeriodCount: (json['ez64t7'] as num?)?.toInt(),
-      glacisORepaymentPlanList:
-          (json['glacis'] as List<dynamic>?)
-              ?.map(
-                (e) => BillDetailResp$GlacisORepaymentPlanList$Item.fromJson(
-                  e as Map<String, dynamic>,
-                ),
-              )
-              .toList(),
+      glacisORepaymentPlanList: (json['glacis'] as List<dynamic>?)
+          ?.map(
+            (e) => BillDetailResp$GlacisORepaymentPlanList$Item.fromJson(
+              e as Map<String, dynamic>,
+            ),
+          )
+          .toList(),
       cherubimOOrderStatus: (json['cherubim'] as num?)?.toInt(),
       encloseOOrderTime: (json['enclose'] as num?)?.toInt(),
       wa5f08OOrderDueDays: (json['wa5f08'] as num?)?.toInt(),
@@ -2734,12 +2697,11 @@ BillDetailResp _$BillDetailRespFromJson(Map<String, dynamic> json) =>
       cdslOTransferFee: (json['cdsl'] as num?)?.toDouble(),
       badnessOIgvFee: (json['badness'] as num?)?.toDouble(),
       spriteOBusinessFee: (json['sprite'] as num?)?.toDouble(),
-      bac6b3OUserInfoDetail:
-          json['bac6b3'] == null
-              ? null
-              : BillDetailResp$Bac6b3OUserInfoDetail.fromJson(
-                json['bac6b3'] as Map<String, dynamic>,
-              ),
+      bac6b3OUserInfoDetail: json['bac6b3'] == null
+          ? null
+          : BillDetailResp$Bac6b3OUserInfoDetail.fromJson(
+              json['bac6b3'] as Map<String, dynamic>,
+            ),
     );
 
 Map<String, dynamic> _$BillDetailRespToJson(
@@ -2765,8 +2727,9 @@ Map<String, dynamic> _$BillDetailRespToJson(
   'foreyard': instance.foreyardOProductId,
   'unciform': instance.unciformOOriginationFee,
   'centiare': instance.centiareOServiceFee,
-  'v08uw3':
-      instance.v08uw3ORepaymentChannelList?.map((e) => e.toJson()).toList(),
+  'v08uw3': instance.v08uw3ORepaymentChannelList
+      ?.map((e) => e.toJson())
+      .toList(),
   'pinion': instance.pinionOUserCouponGid,
   'sk6s63': instance.sk6s63OCouponAmount,
   'mt66nz': instance.mt66nzOReceiveSubAmount,
@@ -2792,14 +2755,13 @@ BillRepayResp _$BillRepayRespFromJson(Map<String, dynamic> json) =>
       total: (json['total'] as num?)?.toInt(),
       pages: (json['pages'] as num?)?.toInt(),
       endmostOTotalLoanLeftAmount: (json['endmost'] as num?)?.toDouble(),
-      my4dd2ORepaymentList:
-          (json['my4dd2'] as List<dynamic>?)
-              ?.map(
-                (e) => BillRepayResp$My4dd2ORepaymentList$Item.fromJson(
-                  e as Map<String, dynamic>,
-                ),
-              )
-              .toList(),
+      my4dd2ORepaymentList: (json['my4dd2'] as List<dynamic>?)
+          ?.map(
+            (e) => BillRepayResp$My4dd2ORepaymentList$Item.fromJson(
+              e as Map<String, dynamic>,
+            ),
+          )
+          .toList(),
     );
 
 Map<String, dynamic> _$BillRepayRespToJson(BillRepayResp instance) =>
@@ -2811,43 +2773,41 @@ Map<String, dynamic> _$BillRepayRespToJson(BillRepayResp instance) =>
     };
 
 TrackReportReq$FibulaOReportBaseInfo
-_$TrackReportReq$FibulaOReportBaseInfoFromJson(
-  Map<String, dynamic> json,
-) => TrackReportReq$FibulaOReportBaseInfo(
-  h0390bOWifiName: json['h0390b'] as String?,
-  alackOIpAddress: json['alack'] as String?,
-  qianaOMacAddress: json['qiana'] as String?,
-  trj8s6OImei: json['trj8s6'] as String?,
-  novellyOBssid: json['novelly'] as String?,
-  p4fv8oOMemory: json['p4fv8o'] as String?,
-  yr0nx3OPower: (json['yr0nx3'] as num?)?.toInt(),
-  illthOBrand: json['illth'] as String?,
-  lawfullyOSysVersion: json['lawfully'] as String?,
-  r307x2ONetType: json['r307x2'] as String?,
-  acetylcoOGeolocation:
-      json['acetylco'] == null
+_$TrackReportReq$FibulaOReportBaseInfoFromJson(Map<String, dynamic> json) =>
+    TrackReportReq$FibulaOReportBaseInfo(
+      h0390bOWifiName: json['h0390b'] as String?,
+      alackOIpAddress: json['alack'] as String?,
+      qianaOMacAddress: json['qiana'] as String?,
+      trj8s6OImei: json['trj8s6'] as String?,
+      novellyOBssid: json['novelly'] as String?,
+      p4fv8oOMemory: json['p4fv8o'] as String?,
+      yr0nx3OPower: (json['yr0nx3'] as num?)?.toInt(),
+      illthOBrand: json['illth'] as String?,
+      lawfullyOSysVersion: json['lawfully'] as String?,
+      r307x2ONetType: json['r307x2'] as String?,
+      acetylcoOGeolocation: json['acetylco'] == null
           ? null
           : TrackReportReq$FibulaOReportBaseInfo$AcetylcoOGeolocation.fromJson(
-            json['acetylco'] as Map<String, dynamic>,
-          ),
-  sodalistODeviceInfo: json['sodalist'] as String?,
-  model: json['model'] as String?,
-  root: (json['root'] as num?)?.toInt(),
-  wb8jk2OEmulator: (json['wb8jk2'] as num?)?.toInt(),
-  anilOMid: json['anil'] as String?,
-  fnwdw7OPhotoNum: (json['fnwdw7'] as num?)?.toInt(),
-  eztov7OVideoNum: (json['eztov7'] as num?)?.toInt(),
-  dai86eOMusicNum: (json['dai86e'] as num?)?.toInt(),
-  gze221OBootTime: (json['gze221'] as num?)?.toInt(),
-  hmdso0OMemUsed: (json['hmdso0'] as num?)?.toInt(),
-  so31o2OImeis: json['so31o2'],
-  inb: (json['inb'] as num?)?.toInt(),
-  z5pioqOOutb: (json['z5pioq'] as num?)?.toInt(),
-  hass: (json['hass'] as num?)?.toInt(),
-  n7e5diOMidOriginal: json['n7e5di'] as String?,
-  buid: json['buid'],
-  ja3Hash: json['ja3Hash'] as String?,
-);
+              json['acetylco'] as Map<String, dynamic>,
+            ),
+      sodalistODeviceInfo: json['sodalist'] as String?,
+      model: json['model'] as String?,
+      root: (json['root'] as num?)?.toInt(),
+      wb8jk2OEmulator: (json['wb8jk2'] as num?)?.toInt(),
+      anilOMid: json['anil'] as String?,
+      fnwdw7OPhotoNum: (json['fnwdw7'] as num?)?.toInt(),
+      eztov7OVideoNum: (json['eztov7'] as num?)?.toInt(),
+      dai86eOMusicNum: (json['dai86e'] as num?)?.toInt(),
+      gze221OBootTime: (json['gze221'] as num?)?.toInt(),
+      hmdso0OMemUsed: (json['hmdso0'] as num?)?.toInt(),
+      so31o2OImeis: json['so31o2'],
+      inb: (json['inb'] as num?)?.toInt(),
+      z5pioqOOutb: (json['z5pioq'] as num?)?.toInt(),
+      hass: (json['hass'] as num?)?.toInt(),
+      n7e5diOMidOriginal: json['n7e5di'] as String?,
+      buid: json['buid'],
+      ja3Hash: json['ja3Hash'] as String?,
+    );
 
 Map<String, dynamic> _$TrackReportReq$FibulaOReportBaseInfoToJson(
   TrackReportReq$FibulaOReportBaseInfo instance,
@@ -2945,66 +2905,57 @@ _$TrackReportReq$BanallyOReportDevDTOFromJson(
   Map<String, dynamic> json,
 ) => TrackReportReq$BanallyOReportDevDTO(
   hafizORootPlus: json['hafiz'],
-  hdcopyOBattery:
-      json['hdcopy'] == null
-          ? null
-          : TrackReportReq$BanallyOReportDevDTO$HdcopyOBattery.fromJson(
-            json['hdcopy'] as Map<String, dynamic>,
-          ),
-  i39296OBluetooth:
-      json['i39296'] == null
-          ? null
-          : TrackReportReq$BanallyOReportDevDTO$I39296OBluetooth.fromJson(
-            json['i39296'] as Map<String, dynamic>,
-          ),
-  costingOCameras:
-      (json['costing'] as List<dynamic>?)
-          ?.map(
-            (e) =>
-                TrackReportReq$BanallyOReportDevDTO$CostingOCameras$Item.fromJson(
-                  e as Map<String, dynamic>,
-                ),
-          )
-          .toList(),
-  cpu:
-      json['cpu'] == null
-          ? null
-          : TrackReportReq$BanallyOReportDevDTO$Cpu.fromJson(
-            json['cpu'] as Map<String, dynamic>,
-          ),
-  slqri6OGeneral:
-      json['slqri6'] == null
-          ? null
-          : TrackReportReq$BanallyOReportDevDTO$Slqri6OGeneral.fromJson(
-            json['slqri6'] as Map<String, dynamic>,
-          ),
-  r6i83kONetSignal:
-      json['r6i83k'] == null
-          ? null
-          : TrackReportReq$BanallyOReportDevDTO$R6i83kONetSignal.fromJson(
-            json['r6i83k'] as Map<String, dynamic>,
-          ),
-  autumnalOSensors:
-      (json['autumnal'] as List<dynamic>?)
-          ?.map(
-            (e) =>
-                TrackReportReq$BanallyOReportDevDTO$AutumnalOSensors$Item.fromJson(
-                  e as Map<String, dynamic>,
-                ),
-          )
-          .toList(),
-  system:
-      json['system'] == null
-          ? null
-          : TrackReportReq$BanallyOReportDevDTO$System.fromJson(
-            json['system'] as Map<String, dynamic>,
-          ),
-  e3d40eOStructure:
-      json['e3d40e'] == null
-          ? null
-          : TrackReportReq$BanallyOReportDevDTO$E3d40eOStructure.fromJson(
-            json['e3d40e'] as Map<String, dynamic>,
-          ),
+  hdcopyOBattery: json['hdcopy'] == null
+      ? null
+      : TrackReportReq$BanallyOReportDevDTO$HdcopyOBattery.fromJson(
+          json['hdcopy'] as Map<String, dynamic>,
+        ),
+  i39296OBluetooth: json['i39296'] == null
+      ? null
+      : TrackReportReq$BanallyOReportDevDTO$I39296OBluetooth.fromJson(
+          json['i39296'] as Map<String, dynamic>,
+        ),
+  costingOCameras: (json['costing'] as List<dynamic>?)
+      ?.map(
+        (e) =>
+            TrackReportReq$BanallyOReportDevDTO$CostingOCameras$Item.fromJson(
+              e as Map<String, dynamic>,
+            ),
+      )
+      .toList(),
+  cpu: json['cpu'] == null
+      ? null
+      : TrackReportReq$BanallyOReportDevDTO$Cpu.fromJson(
+          json['cpu'] as Map<String, dynamic>,
+        ),
+  slqri6OGeneral: json['slqri6'] == null
+      ? null
+      : TrackReportReq$BanallyOReportDevDTO$Slqri6OGeneral.fromJson(
+          json['slqri6'] as Map<String, dynamic>,
+        ),
+  r6i83kONetSignal: json['r6i83k'] == null
+      ? null
+      : TrackReportReq$BanallyOReportDevDTO$R6i83kONetSignal.fromJson(
+          json['r6i83k'] as Map<String, dynamic>,
+        ),
+  autumnalOSensors: (json['autumnal'] as List<dynamic>?)
+      ?.map(
+        (e) =>
+            TrackReportReq$BanallyOReportDevDTO$AutumnalOSensors$Item.fromJson(
+              e as Map<String, dynamic>,
+            ),
+      )
+      .toList(),
+  system: json['system'] == null
+      ? null
+      : TrackReportReq$BanallyOReportDevDTO$System.fromJson(
+          json['system'] as Map<String, dynamic>,
+        ),
+  e3d40eOStructure: json['e3d40e'] == null
+      ? null
+      : TrackReportReq$BanallyOReportDevDTO$E3d40eOStructure.fromJson(
+          json['e3d40e'] as Map<String, dynamic>,
+        ),
   h4878cOLanguage: json['h4878c'] as String?,
   jp689uOTimeZone: json['jp689u'] as String?,
 );
@@ -3087,12 +3038,11 @@ RiskReportResp$ZdzsepOVerificationConfig
 _$RiskReportResp$ZdzsepOVerificationConfigFromJson(
   Map<String, dynamic> json,
 ) => RiskReportResp$ZdzsepOVerificationConfig(
-  u7yl7cOItemsDisplayConfig:
-      json['u7yl7c'] == null
-          ? null
-          : RiskReportResp$ZdzsepOVerificationConfig$U7yl7cOItemsDisplayConfig.fromJson(
-            json['u7yl7c'] as Map<String, dynamic>,
-          ),
+  u7yl7cOItemsDisplayConfig: json['u7yl7c'] == null
+      ? null
+      : RiskReportResp$ZdzsepOVerificationConfig$U7yl7cOItemsDisplayConfig.fromJson(
+          json['u7yl7c'] as Map<String, dynamic>,
+        ),
 );
 
 Map<String, dynamic> _$RiskReportResp$ZdzsepOVerificationConfigToJson(
@@ -3103,15 +3053,13 @@ RepayApplyResp$TartarlyOPins$Item _$RepayApplyResp$TartarlyOPins$ItemFromJson(
   Map<String, dynamic> json,
 ) => RepayApplyResp$TartarlyOPins$Item(
   nakhodkaOPin: json['nakhodka'] as String?,
-  ruralOAgentes:
-      (json['rural'] as List<dynamic>?)
-          ?.map(
-            (e) =>
-                RepayApplyResp$TartarlyOPins$Item$RuralOAgentes$Item.fromJson(
-                  e as Map<String, dynamic>,
-                ),
-          )
-          .toList(),
+  ruralOAgentes: (json['rural'] as List<dynamic>?)
+      ?.map(
+        (e) => RepayApplyResp$TartarlyOPins$Item$RuralOAgentes$Item.fromJson(
+          e as Map<String, dynamic>,
+        ),
+      )
+      .toList(),
 );
 
 Map<String, dynamic> _$RepayApplyResp$TartarlyOPins$ItemToJson(
@@ -3125,12 +3073,11 @@ VersionCheckResp$Data _$VersionCheckResp$DataFromJson(
   Map<String, dynamic> json,
 ) => VersionCheckResp$Data(
   populousOHasUpdate: json['populous'] as bool?,
-  c1o9nqONewVersion:
-      json['c1o9nq'] == null
-          ? null
-          : VersionCheckResp$Data$C1o9nqONewVersion.fromJson(
-            json['c1o9nq'] as Map<String, dynamic>,
-          ),
+  c1o9nqONewVersion: json['c1o9nq'] == null
+      ? null
+      : VersionCheckResp$Data$C1o9nqONewVersion.fromJson(
+          json['c1o9nq'] as Map<String, dynamic>,
+        ),
 );
 
 Map<String, dynamic> _$VersionCheckResp$DataToJson(
@@ -3192,15 +3139,14 @@ HomeInfoResp$PapuanOLastRecordLoan _$HomeInfoResp$PapuanOLastRecordLoanFromJson(
   wa5f08OOrderDueDays: (json['wa5f08'] as num?)?.toInt(),
   iy8ujyOIsShowTime: json['iy8ujy'] as bool?,
   kinkyOOrderAmount: (json['kinky'] as num?)?.toDouble(),
-  outdoOPlanSimpleList:
-      (json['outdo'] as List<dynamic>?)
-          ?.map(
-            (e) =>
-                HomeInfoResp$PapuanOLastRecordLoan$OutdoOPlanSimpleList$Item.fromJson(
-                  e as Map<String, dynamic>,
-                ),
-          )
-          .toList(),
+  outdoOPlanSimpleList: (json['outdo'] as List<dynamic>?)
+      ?.map(
+        (e) =>
+            HomeInfoResp$PapuanOLastRecordLoan$OutdoOPlanSimpleList$Item.fromJson(
+              e as Map<String, dynamic>,
+            ),
+      )
+      .toList(),
   slackOIsOverdue: json['slack'] as bool?,
   remark: json['remark'] as String?,
   kc1347OEnableRenew: json['kc1347'] as bool?,
@@ -3259,15 +3205,14 @@ _$HomeInfoResp$Xu551uOSpareLastRecordLoanFromJson(
   wa5f08OOrderDueDays: (json['wa5f08'] as num?)?.toInt(),
   iy8ujyOIsShowTime: json['iy8ujy'] as bool?,
   kinkyOOrderAmount: (json['kinky'] as num?)?.toDouble(),
-  outdoOPlanSimpleList:
-      (json['outdo'] as List<dynamic>?)
-          ?.map(
-            (e) =>
-                HomeInfoResp$Xu551uOSpareLastRecordLoan$OutdoOPlanSimpleList$Item.fromJson(
-                  e as Map<String, dynamic>,
-                ),
-          )
-          .toList(),
+  outdoOPlanSimpleList: (json['outdo'] as List<dynamic>?)
+      ?.map(
+        (e) =>
+            HomeInfoResp$Xu551uOSpareLastRecordLoan$OutdoOPlanSimpleList$Item.fromJson(
+              e as Map<String, dynamic>,
+            ),
+      )
+      .toList(),
   slackOIsOverdue: json['slack'] as bool?,
   remark: json['remark'] as String?,
   kc1347OEnableRenew: json['kc1347'] as bool?,
@@ -3308,15 +3253,13 @@ _$HomeInfoResp$LysogenOSpareProductGroup$ItemFromJson(
 ) => HomeInfoResp$LysogenOSpareProductGroup$Item(
   b49d07OProductPeriodId: json['b49d07'] as String?,
   faroucheOIsLock: json['farouche'] as bool?,
-  list:
-      (json['list'] as List<dynamic>?)
-          ?.map(
-            (e) =>
-                HomeInfoResp$LysogenOSpareProductGroup$Item$List$Item.fromJson(
-                  e as Map<String, dynamic>,
-                ),
-          )
-          .toList(),
+  list: (json['list'] as List<dynamic>?)
+      ?.map(
+        (e) => HomeInfoResp$LysogenOSpareProductGroup$Item$List$Item.fromJson(
+          e as Map<String, dynamic>,
+        ),
+      )
+      .toList(),
 );
 
 Map<String, dynamic> _$HomeInfoResp$LysogenOSpareProductGroup$ItemToJson(
@@ -3498,7 +3441,7 @@ _$LoanPreInfoResp$GlacisORepaymentPlanList$ItemFromJson(
 ) => LoanPreInfoResp$GlacisORepaymentPlanList$Item(
   imprintOPlanGid: (json['imprint'] as num?)?.toInt(),
   r5a4x8OLoanGid: (json['r5a4x8'] as num?)?.toInt(),
-  raiaOUserGid: (json['raia'] as num?)?.toInt(),
+  raiaOUserGid: json['raia'] as String?,
   ih2upqOCtPeriod: (json['ih2upq'] as num?)?.toInt(),
   spinachyOLoanPeriod: (json['spinachy'] as num?)?.toInt(),
   ez64t7OPeriodCount: (json['ez64t7'] as num?)?.toInt(),
@@ -3594,14 +3537,13 @@ Map<String, dynamic> _$NeedAbandonReasonResp$Du00hsOAbandonReasons$ItemToJson(
 
 LoanNoticeResp$Data _$LoanNoticeResp$DataFromJson(Map<String, dynamic> json) =>
     LoanNoticeResp$Data(
-      cramboOLoanNoticeList:
-          (json['crambo'] as List<dynamic>?)
-              ?.map(
-                (e) => LoanNoticeResp$Data$CramboOLoanNoticeList$Item.fromJson(
-                  e as Map<String, dynamic>,
-                ),
-              )
-              .toList(),
+      cramboOLoanNoticeList: (json['crambo'] as List<dynamic>?)
+          ?.map(
+            (e) => LoanNoticeResp$Data$CramboOLoanNoticeList$Item.fromJson(
+              e as Map<String, dynamic>,
+            ),
+          )
+          .toList(),
       jhxzxdOMainShowFlag: json['jhxzxd'] as bool?,
       qy99sbOLoanShowFlag: json['qy99sb'] as bool?,
       diplegiaOUserType: (json['diplegia'] as num?)?.toInt(),
@@ -3623,7 +3565,7 @@ _$HomeCouponResp$FireballOUserCouponList$ItemFromJson(
   id: (json['id'] as num?)?.toInt(),
   pinionOUserCouponGid: (json['pinion'] as num?)?.toInt(),
   a17s38OActivityGid: (json['a17s38'] as num?)?.toInt(),
-  raiaOUserGid: (json['raia'] as num?)?.toInt(),
+  raiaOUserGid: json['raia'] as String?,
   tapetteOCouponGid: (json['tapette'] as num?)?.toInt(),
   zevto4OCouponName: json['zevto4'] as String?,
   type: (json['type'] as num?)?.toInt(),
@@ -3678,7 +3620,7 @@ _$LoanCouponResp$T933d6OUserCouponAvailableList$ItemFromJson(
   id: (json['id'] as num?)?.toInt(),
   pinionOUserCouponGid: (json['pinion'] as num?)?.toInt(),
   a17s38OActivityGid: (json['a17s38'] as num?)?.toInt(),
-  raiaOUserGid: (json['raia'] as num?)?.toInt(),
+  raiaOUserGid: json['raia'] as String?,
   tapetteOCouponGid: (json['tapette'] as num?)?.toInt(),
   zevto4OCouponName: json['zevto4'] as String?,
   type: (json['type'] as num?)?.toInt(),
@@ -3733,7 +3675,7 @@ _$LoanCouponResp$StannateOUserCouponUnavailableList$ItemFromJson(
   id: (json['id'] as num?)?.toInt(),
   pinionOUserCouponGid: (json['pinion'] as num?)?.toInt(),
   a17s38OActivityGid: (json['a17s38'] as num?)?.toInt(),
-  raiaOUserGid: (json['raia'] as num?)?.toInt(),
+  raiaOUserGid: json['raia'] as String?,
   tapetteOCouponGid: (json['tapette'] as num?)?.toInt(),
   zevto4OCouponName: json['zevto4'] as String?,
   type: (json['type'] as num?)?.toInt(),
@@ -3789,7 +3731,7 @@ _$MyCouponResp$FireballOUserCouponList$ItemFromJson(
   id: (json['id'] as num?)?.toInt(),
   pinionOUserCouponGid: (json['pinion'] as num?)?.toInt(),
   a17s38OActivityGid: (json['a17s38'] as num?)?.toInt(),
-  raiaOUserGid: (json['raia'] as num?)?.toInt(),
+  raiaOUserGid: json['raia'] as String?,
   tapetteOCouponGid: (json['tapette'] as num?)?.toInt(),
   zevto4OCouponName: json['zevto4'] as String?,
   type: (json['type'] as num?)?.toInt(),
@@ -3844,7 +3786,7 @@ _$LandCouponResp$FireballOUserCouponList$ItemFromJson(
   id: (json['id'] as num?)?.toInt(),
   pinionOUserCouponGid: (json['pinion'] as num?)?.toInt(),
   a17s38OActivityGid: (json['a17s38'] as num?)?.toInt(),
-  raiaOUserGid: (json['raia'] as num?)?.toInt(),
+  raiaOUserGid: json['raia'] as String?,
   tapetteOCouponGid: (json['tapette'] as num?)?.toInt(),
   zevto4OCouponName: json['zevto4'] as String?,
   type: (json['type'] as num?)?.toInt(),
@@ -3896,12 +3838,11 @@ CouponPopResp$Oxmqq4OHomePopFlag _$CouponPopResp$Oxmqq4OHomePopFlagFromJson(
   Map<String, dynamic> json,
 ) => CouponPopResp$Oxmqq4OHomePopFlag(
   manoOMapKey: json['mano'],
-  reopposeOMapValue:
-      json['reoppose'] == null
-          ? null
-          : CouponPopResp$Oxmqq4OHomePopFlag$ReopposeOMapValue.fromJson(
-            json['reoppose'] as Map<String, dynamic>,
-          ),
+  reopposeOMapValue: json['reoppose'] == null
+      ? null
+      : CouponPopResp$Oxmqq4OHomePopFlag$ReopposeOMapValue.fromJson(
+          json['reoppose'] as Map<String, dynamic>,
+        ),
 );
 
 Map<String, dynamic> _$CouponPopResp$Oxmqq4OHomePopFlagToJson(
@@ -3934,15 +3875,14 @@ LoanBillResp$Ouxtd3OLoanList$Item _$LoanBillResp$Ouxtd3OLoanList$ItemFromJson(
   wa5f08OOrderDueDays: (json['wa5f08'] as num?)?.toInt(),
   iy8ujyOIsShowTime: json['iy8ujy'] as bool?,
   kinkyOOrderAmount: (json['kinky'] as num?)?.toDouble(),
-  outdoOPlanSimpleList:
-      (json['outdo'] as List<dynamic>?)
-          ?.map(
-            (e) =>
-                LoanBillResp$Ouxtd3OLoanList$Item$OutdoOPlanSimpleList$Item.fromJson(
-                  e as Map<String, dynamic>,
-                ),
-          )
-          .toList(),
+  outdoOPlanSimpleList: (json['outdo'] as List<dynamic>?)
+      ?.map(
+        (e) =>
+            LoanBillResp$Ouxtd3OLoanList$Item$OutdoOPlanSimpleList$Item.fromJson(
+              e as Map<String, dynamic>,
+            ),
+      )
+      .toList(),
   slackOIsOverdue: json['slack'] as bool?,
   remark: json['remark'] as String?,
   kc1347OEnableRenew: json['kc1347'] as bool?,
@@ -4074,7 +4014,7 @@ _$BillDetailResp$GlacisORepaymentPlanList$ItemFromJson(
 ) => BillDetailResp$GlacisORepaymentPlanList$Item(
   imprintOPlanGid: (json['imprint'] as num?)?.toInt(),
   r5a4x8OLoanGid: (json['r5a4x8'] as num?)?.toInt(),
-  raiaOUserGid: (json['raia'] as num?)?.toInt(),
+  raiaOUserGid: json['raia'] as String?,
   ih2upqOCtPeriod: (json['ih2upq'] as num?)?.toInt(),
   spinachyOLoanPeriod: (json['spinachy'] as num?)?.toInt(),
   ez64t7OPeriodCount: (json['ez64t7'] as num?)?.toInt(),
@@ -4213,7 +4153,7 @@ BillRepayResp$My4dd2ORepaymentList$Item
 _$BillRepayResp$My4dd2ORepaymentList$ItemFromJson(Map<String, dynamic> json) =>
     BillRepayResp$My4dd2ORepaymentList$Item(
       r5a4x8OLoanGid: (json['r5a4x8'] as num?)?.toInt(),
-      raiaOUserGid: (json['raia'] as num?)?.toInt(),
+      raiaOUserGid: json['raia'] as String?,
       gatemanORepaymentAmount: (json['gateman'] as num?)?.toDouble(),
       d95091ORepaymentStatus: (json['d95091'] as num?)?.toInt(),
       wtpuztORepaymentTime: (json['wtpuzt'] as num?)?.toInt(),
@@ -4290,15 +4230,14 @@ _$TrackReportReq$BanallyOReportDevDTO$I39296OBluetoothFromJson(
 ) => TrackReportReq$BanallyOReportDevDTO$I39296OBluetooth(
   type: (json['type'] as num?)?.toInt(),
   address: json['address'] as String?,
-  m3hs2zODevices:
-      (json['m3hs2z'] as List<dynamic>?)
-          ?.map(
-            (e) =>
-                TrackReportReq$BanallyOReportDevDTO$I39296OBluetooth$M3hs2zODevices$Item.fromJson(
-                  e as Map<String, dynamic>,
-                ),
-          )
-          .toList(),
+  m3hs2zODevices: (json['m3hs2z'] as List<dynamic>?)
+      ?.map(
+        (e) =>
+            TrackReportReq$BanallyOReportDevDTO$I39296OBluetooth$M3hs2zODevices$Item.fromJson(
+              e as Map<String, dynamic>,
+            ),
+      )
+      .toList(),
   kp228zOIsEnabled: json['kp228z'] as bool?,
   cx8ay2OPhoneName: json['cx8ay2'] as String?,
 );
@@ -4470,12 +4409,11 @@ _$TrackReportReq$BanallyOReportDevDTO$E3d40eOStructureFromJson(
   everwhoOBootloader: json['everwho'] as String?,
   radio: json['radio'] as String?,
   r2exwnOHardware: json['r2exwn'] as String?,
-  el986rOStructVersion:
-      json['el986r'] == null
-          ? null
-          : TrackReportReq$BanallyOReportDevDTO$E3d40eOStructure$El986rOStructVersion.fromJson(
-            json['el986r'] as Map<String, dynamic>,
-          ),
+  el986rOStructVersion: json['el986r'] == null
+      ? null
+      : TrackReportReq$BanallyOReportDevDTO$E3d40eOStructure$El986rOStructVersion.fromJson(
+          json['el986r'] as Map<String, dynamic>,
+        ),
   geegawOFingerprint: json['geegaw'] as String?,
 );
 
@@ -4499,186 +4437,156 @@ RiskReportResp$ZdzsepOVerificationConfig$U7yl7cOItemsDisplayConfig
 _$RiskReportResp$ZdzsepOVerificationConfig$U7yl7cOItemsDisplayConfigFromJson(
   Map<String, dynamic> json,
 ) => RiskReportResp$ZdzsepOVerificationConfig$U7yl7cOItemsDisplayConfig(
-  lq1s05OFirstName:
-      json['lq1s05'] == null
-          ? null
-          : RiskReportResp$ZdzsepOVerificationConfig$U7yl7cOItemsDisplayConfig$Lq1s05OFirstName.fromJson(
-            json['lq1s05'] as Map<String, dynamic>,
-          ),
-  darktownOLastName:
-      json['darktown'] == null
-          ? null
-          : RiskReportResp$ZdzsepOVerificationConfig$U7yl7cOItemsDisplayConfig$DarktownOLastName.fromJson(
-            json['darktown'] as Map<String, dynamic>,
-          ),
-  gender:
-      json['gender'] == null
-          ? null
-          : RiskReportResp$ZdzsepOVerificationConfig$U7yl7cOItemsDisplayConfig$Gender.fromJson(
-            json['gender'] as Map<String, dynamic>,
-          ),
-  merdekaOIdCard:
-      json['merdeka'] == null
-          ? null
-          : RiskReportResp$ZdzsepOVerificationConfig$U7yl7cOItemsDisplayConfig$MerdekaOIdCard.fromJson(
-            json['merdeka'] as Map<String, dynamic>,
-          ),
-  gargetOBirthday:
-      json['garget'] == null
-          ? null
-          : RiskReportResp$ZdzsepOVerificationConfig$U7yl7cOItemsDisplayConfig$GargetOBirthday.fromJson(
-            json['garget'] as Map<String, dynamic>,
-          ),
-  f31u3kOEmail:
-      json['f31u3k'] == null
-          ? null
-          : RiskReportResp$ZdzsepOVerificationConfig$U7yl7cOItemsDisplayConfig$F31u3kOEmail.fromJson(
-            json['f31u3k'] as Map<String, dynamic>,
-          ),
-  x1iu04OOtherMobile:
-      json['x1iu04'] == null
-          ? null
-          : RiskReportResp$ZdzsepOVerificationConfig$U7yl7cOItemsDisplayConfig$X1iu04OOtherMobile.fromJson(
-            json['x1iu04'] as Map<String, dynamic>,
-          ),
-  coseOEducation:
-      json['cose'] == null
-          ? null
-          : RiskReportResp$ZdzsepOVerificationConfig$U7yl7cOItemsDisplayConfig$CoseOEducation.fromJson(
-            json['cose'] as Map<String, dynamic>,
-          ),
-  m2wx4tOMaritalStatus:
-      json['m2wx4t'] == null
-          ? null
-          : RiskReportResp$ZdzsepOVerificationConfig$U7yl7cOItemsDisplayConfig$M2wx4tOMaritalStatus.fromJson(
-            json['m2wx4t'] as Map<String, dynamic>,
-          ),
-  chaffyOHouseStatus:
-      json['chaffy'] == null
-          ? null
-          : RiskReportResp$ZdzsepOVerificationConfig$U7yl7cOItemsDisplayConfig$ChaffyOHouseStatus.fromJson(
-            json['chaffy'] as Map<String, dynamic>,
-          ),
-  bja8s5OElectricityBill:
-      json['bja8s5'] == null
-          ? null
-          : RiskReportResp$ZdzsepOVerificationConfig$U7yl7cOItemsDisplayConfig$Bja8s5OElectricityBill.fromJson(
-            json['bja8s5'] as Map<String, dynamic>,
-          ),
-  volumenOElectricityRelated:
-      json['volumen'] == null
-          ? null
-          : RiskReportResp$ZdzsepOVerificationConfig$U7yl7cOItemsDisplayConfig$VolumenOElectricityRelated.fromJson(
-            json['volumen'] as Map<String, dynamic>,
-          ),
-  spadicesOAddressState:
-      json['spadices'] == null
-          ? null
-          : RiskReportResp$ZdzsepOVerificationConfig$U7yl7cOItemsDisplayConfig$SpadicesOAddressState.fromJson(
-            json['spadices'] as Map<String, dynamic>,
-          ),
-  gasconyOAddressCity:
-      json['gascony'] == null
-          ? null
-          : RiskReportResp$ZdzsepOVerificationConfig$U7yl7cOItemsDisplayConfig$GasconyOAddressCity.fromJson(
-            json['gascony'] as Map<String, dynamic>,
-          ),
-  craalOAddressDetail:
-      json['craal'] == null
-          ? null
-          : RiskReportResp$ZdzsepOVerificationConfig$U7yl7cOItemsDisplayConfig$CraalOAddressDetail.fromJson(
-            json['craal'] as Map<String, dynamic>,
-          ),
-  himfjuOOtherLoans:
-      json['himfju'] == null
-          ? null
-          : RiskReportResp$ZdzsepOVerificationConfig$U7yl7cOItemsDisplayConfig$HimfjuOOtherLoans.fromJson(
-            json['himfju'] as Map<String, dynamic>,
-          ),
-  diopsideOOccupation:
-      json['diopside'] == null
-          ? null
-          : RiskReportResp$ZdzsepOVerificationConfig$U7yl7cOItemsDisplayConfig$DiopsideOOccupation.fromJson(
-            json['diopside'] as Map<String, dynamic>,
-          ),
-  limpidlyOIncomeLevel:
-      json['limpidly'] == null
-          ? null
-          : RiskReportResp$ZdzsepOVerificationConfig$U7yl7cOItemsDisplayConfig$LimpidlyOIncomeLevel.fromJson(
-            json['limpidly'] as Map<String, dynamic>,
-          ),
-  z4s937OHouseholdMonthlyExpenses:
-      json['z4s937'] == null
-          ? null
-          : RiskReportResp$ZdzsepOVerificationConfig$U7yl7cOItemsDisplayConfig$Z4s937OHouseholdMonthlyExpenses.fromJson(
-            json['z4s937'] as Map<String, dynamic>,
-          ),
-  expenditure:
-      json['expenditure'] == null
-          ? null
-          : RiskReportResp$ZdzsepOVerificationConfig$U7yl7cOItemsDisplayConfig$Expenditure.fromJson(
-            json['expenditure'] as Map<String, dynamic>,
-          ),
-  alloOWorkingYears:
-      json['allo'] == null
-          ? null
-          : RiskReportResp$ZdzsepOVerificationConfig$U7yl7cOItemsDisplayConfig$AlloOWorkingYears.fromJson(
-            json['allo'] as Map<String, dynamic>,
-          ),
-  b1417wOPayPeriod:
-      json['b1417w'] == null
-          ? null
-          : RiskReportResp$ZdzsepOVerificationConfig$U7yl7cOItemsDisplayConfig$B1417wOPayPeriod.fromJson(
-            json['b1417w'] as Map<String, dynamic>,
-          ),
-  r67p23OPayday:
-      json['r67p23'] == null
-          ? null
-          : RiskReportResp$ZdzsepOVerificationConfig$U7yl7cOItemsDisplayConfig$R67p23OPayday.fromJson(
-            json['r67p23'] as Map<String, dynamic>,
-          ),
-  plenishOSecondPayday:
-      json['plenish'] == null
-          ? null
-          : RiskReportResp$ZdzsepOVerificationConfig$U7yl7cOItemsDisplayConfig$PlenishOSecondPayday.fromJson(
-            json['plenish'] as Map<String, dynamic>,
-          ),
-  grippleOFirstContactName:
-      json['gripple'] == null
-          ? null
-          : RiskReportResp$ZdzsepOVerificationConfig$U7yl7cOItemsDisplayConfig$GrippleOFirstContactName.fromJson(
-            json['gripple'] as Map<String, dynamic>,
-          ),
-  rainOFirstContactMobile:
-      json['rain'] == null
-          ? null
-          : RiskReportResp$ZdzsepOVerificationConfig$U7yl7cOItemsDisplayConfig$RainOFirstContactMobile.fromJson(
-            json['rain'] as Map<String, dynamic>,
-          ),
-  baryeOFirstContactRelationship:
-      json['barye'] == null
-          ? null
-          : RiskReportResp$ZdzsepOVerificationConfig$U7yl7cOItemsDisplayConfig$BaryeOFirstContactRelationship.fromJson(
-            json['barye'] as Map<String, dynamic>,
-          ),
-  aquarianOSecondContactName:
-      json['aquarian'] == null
-          ? null
-          : RiskReportResp$ZdzsepOVerificationConfig$U7yl7cOItemsDisplayConfig$AquarianOSecondContactName.fromJson(
-            json['aquarian'] as Map<String, dynamic>,
-          ),
-  h3d2wfOSecondContactMobile:
-      json['h3d2wf'] == null
-          ? null
-          : RiskReportResp$ZdzsepOVerificationConfig$U7yl7cOItemsDisplayConfig$H3d2wfOSecondContactMobile.fromJson(
-            json['h3d2wf'] as Map<String, dynamic>,
-          ),
-  kibeOSecondContactRelationship:
-      json['kibe'] == null
-          ? null
-          : RiskReportResp$ZdzsepOVerificationConfig$U7yl7cOItemsDisplayConfig$KibeOSecondContactRelationship.fromJson(
-            json['kibe'] as Map<String, dynamic>,
-          ),
+  lq1s05OFirstName: json['lq1s05'] == null
+      ? null
+      : RiskReportResp$ZdzsepOVerificationConfig$U7yl7cOItemsDisplayConfig$Lq1s05OFirstName.fromJson(
+          json['lq1s05'] as Map<String, dynamic>,
+        ),
+  darktownOLastName: json['darktown'] == null
+      ? null
+      : RiskReportResp$ZdzsepOVerificationConfig$U7yl7cOItemsDisplayConfig$DarktownOLastName.fromJson(
+          json['darktown'] as Map<String, dynamic>,
+        ),
+  gender: json['gender'] == null
+      ? null
+      : RiskReportResp$ZdzsepOVerificationConfig$U7yl7cOItemsDisplayConfig$Gender.fromJson(
+          json['gender'] as Map<String, dynamic>,
+        ),
+  merdekaOIdCard: json['merdeka'] == null
+      ? null
+      : RiskReportResp$ZdzsepOVerificationConfig$U7yl7cOItemsDisplayConfig$MerdekaOIdCard.fromJson(
+          json['merdeka'] as Map<String, dynamic>,
+        ),
+  gargetOBirthday: json['garget'] == null
+      ? null
+      : RiskReportResp$ZdzsepOVerificationConfig$U7yl7cOItemsDisplayConfig$GargetOBirthday.fromJson(
+          json['garget'] as Map<String, dynamic>,
+        ),
+  f31u3kOEmail: json['f31u3k'] == null
+      ? null
+      : RiskReportResp$ZdzsepOVerificationConfig$U7yl7cOItemsDisplayConfig$F31u3kOEmail.fromJson(
+          json['f31u3k'] as Map<String, dynamic>,
+        ),
+  x1iu04OOtherMobile: json['x1iu04'] == null
+      ? null
+      : RiskReportResp$ZdzsepOVerificationConfig$U7yl7cOItemsDisplayConfig$X1iu04OOtherMobile.fromJson(
+          json['x1iu04'] as Map<String, dynamic>,
+        ),
+  coseOEducation: json['cose'] == null
+      ? null
+      : RiskReportResp$ZdzsepOVerificationConfig$U7yl7cOItemsDisplayConfig$CoseOEducation.fromJson(
+          json['cose'] as Map<String, dynamic>,
+        ),
+  m2wx4tOMaritalStatus: json['m2wx4t'] == null
+      ? null
+      : RiskReportResp$ZdzsepOVerificationConfig$U7yl7cOItemsDisplayConfig$M2wx4tOMaritalStatus.fromJson(
+          json['m2wx4t'] as Map<String, dynamic>,
+        ),
+  chaffyOHouseStatus: json['chaffy'] == null
+      ? null
+      : RiskReportResp$ZdzsepOVerificationConfig$U7yl7cOItemsDisplayConfig$ChaffyOHouseStatus.fromJson(
+          json['chaffy'] as Map<String, dynamic>,
+        ),
+  bja8s5OElectricityBill: json['bja8s5'] == null
+      ? null
+      : RiskReportResp$ZdzsepOVerificationConfig$U7yl7cOItemsDisplayConfig$Bja8s5OElectricityBill.fromJson(
+          json['bja8s5'] as Map<String, dynamic>,
+        ),
+  volumenOElectricityRelated: json['volumen'] == null
+      ? null
+      : RiskReportResp$ZdzsepOVerificationConfig$U7yl7cOItemsDisplayConfig$VolumenOElectricityRelated.fromJson(
+          json['volumen'] as Map<String, dynamic>,
+        ),
+  spadicesOAddressState: json['spadices'] == null
+      ? null
+      : RiskReportResp$ZdzsepOVerificationConfig$U7yl7cOItemsDisplayConfig$SpadicesOAddressState.fromJson(
+          json['spadices'] as Map<String, dynamic>,
+        ),
+  gasconyOAddressCity: json['gascony'] == null
+      ? null
+      : RiskReportResp$ZdzsepOVerificationConfig$U7yl7cOItemsDisplayConfig$GasconyOAddressCity.fromJson(
+          json['gascony'] as Map<String, dynamic>,
+        ),
+  craalOAddressDetail: json['craal'] == null
+      ? null
+      : RiskReportResp$ZdzsepOVerificationConfig$U7yl7cOItemsDisplayConfig$CraalOAddressDetail.fromJson(
+          json['craal'] as Map<String, dynamic>,
+        ),
+  himfjuOOtherLoans: json['himfju'] == null
+      ? null
+      : RiskReportResp$ZdzsepOVerificationConfig$U7yl7cOItemsDisplayConfig$HimfjuOOtherLoans.fromJson(
+          json['himfju'] as Map<String, dynamic>,
+        ),
+  diopsideOOccupation: json['diopside'] == null
+      ? null
+      : RiskReportResp$ZdzsepOVerificationConfig$U7yl7cOItemsDisplayConfig$DiopsideOOccupation.fromJson(
+          json['diopside'] as Map<String, dynamic>,
+        ),
+  limpidlyOIncomeLevel: json['limpidly'] == null
+      ? null
+      : RiskReportResp$ZdzsepOVerificationConfig$U7yl7cOItemsDisplayConfig$LimpidlyOIncomeLevel.fromJson(
+          json['limpidly'] as Map<String, dynamic>,
+        ),
+  z4s937OHouseholdMonthlyExpenses: json['z4s937'] == null
+      ? null
+      : RiskReportResp$ZdzsepOVerificationConfig$U7yl7cOItemsDisplayConfig$Z4s937OHouseholdMonthlyExpenses.fromJson(
+          json['z4s937'] as Map<String, dynamic>,
+        ),
+  expenditure: json['expenditure'] == null
+      ? null
+      : RiskReportResp$ZdzsepOVerificationConfig$U7yl7cOItemsDisplayConfig$Expenditure.fromJson(
+          json['expenditure'] as Map<String, dynamic>,
+        ),
+  alloOWorkingYears: json['allo'] == null
+      ? null
+      : RiskReportResp$ZdzsepOVerificationConfig$U7yl7cOItemsDisplayConfig$AlloOWorkingYears.fromJson(
+          json['allo'] as Map<String, dynamic>,
+        ),
+  b1417wOPayPeriod: json['b1417w'] == null
+      ? null
+      : RiskReportResp$ZdzsepOVerificationConfig$U7yl7cOItemsDisplayConfig$B1417wOPayPeriod.fromJson(
+          json['b1417w'] as Map<String, dynamic>,
+        ),
+  r67p23OPayday: json['r67p23'] == null
+      ? null
+      : RiskReportResp$ZdzsepOVerificationConfig$U7yl7cOItemsDisplayConfig$R67p23OPayday.fromJson(
+          json['r67p23'] as Map<String, dynamic>,
+        ),
+  plenishOSecondPayday: json['plenish'] == null
+      ? null
+      : RiskReportResp$ZdzsepOVerificationConfig$U7yl7cOItemsDisplayConfig$PlenishOSecondPayday.fromJson(
+          json['plenish'] as Map<String, dynamic>,
+        ),
+  grippleOFirstContactName: json['gripple'] == null
+      ? null
+      : RiskReportResp$ZdzsepOVerificationConfig$U7yl7cOItemsDisplayConfig$GrippleOFirstContactName.fromJson(
+          json['gripple'] as Map<String, dynamic>,
+        ),
+  rainOFirstContactMobile: json['rain'] == null
+      ? null
+      : RiskReportResp$ZdzsepOVerificationConfig$U7yl7cOItemsDisplayConfig$RainOFirstContactMobile.fromJson(
+          json['rain'] as Map<String, dynamic>,
+        ),
+  baryeOFirstContactRelationship: json['barye'] == null
+      ? null
+      : RiskReportResp$ZdzsepOVerificationConfig$U7yl7cOItemsDisplayConfig$BaryeOFirstContactRelationship.fromJson(
+          json['barye'] as Map<String, dynamic>,
+        ),
+  aquarianOSecondContactName: json['aquarian'] == null
+      ? null
+      : RiskReportResp$ZdzsepOVerificationConfig$U7yl7cOItemsDisplayConfig$AquarianOSecondContactName.fromJson(
+          json['aquarian'] as Map<String, dynamic>,
+        ),
+  h3d2wfOSecondContactMobile: json['h3d2wf'] == null
+      ? null
+      : RiskReportResp$ZdzsepOVerificationConfig$U7yl7cOItemsDisplayConfig$H3d2wfOSecondContactMobile.fromJson(
+          json['h3d2wf'] as Map<String, dynamic>,
+        ),
+  kibeOSecondContactRelationship: json['kibe'] == null
+      ? null
+      : RiskReportResp$ZdzsepOVerificationConfig$U7yl7cOItemsDisplayConfig$KibeOSecondContactRelationship.fromJson(
+          json['kibe'] as Map<String, dynamic>,
+        ),
 );
 
 Map<String, dynamic>

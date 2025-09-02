@@ -4,6 +4,7 @@ import 'package:flutter_echo/models/common_model.dart';
 import 'package:flutter_echo/ui/widgets/common_button.dart';
 import 'package:flutter_echo/utils/drawable_utils.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:go_router/go_router.dart';
 
 /// 退出输入手机号页面挽留弹窗
 class RetainLoginDialog extends StatelessWidget {
@@ -15,6 +16,18 @@ class RetainLoginDialog extends StatelessWidget {
     required this.onAgree,
     required this.onDisagree,
   });
+
+  /// 显示退出输入手机号页面挽留弹窗
+  static Future<bool?> show(BuildContext context) {
+    return showDialog<bool>(
+      context: context,
+      barrierDismissible: false,
+      builder: (context) => RetainLoginDialog(
+        onAgree: () => context.pop(true),
+        onDisagree: () => context.pop(false),
+      ),
+    );
+  }
 
   static const retainItems = [
     Pair(Drawable.iconRetainLogin1, 'Hasta Q 5,000 '),

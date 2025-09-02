@@ -193,14 +193,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.0.4"
-  chopper:
-    dependency: "direct main"
-    description:
-      name: chopper
-      sha256: f366529b450d0fd91931b08339c7c1d09c746d0d20e5ffb8c8641a79b6114dc2
-      url: "https://pub.dev"
-    source: hosted
-    version: "8.2.0"
   clock:
     dependency: transitive
     description:
@@ -297,14 +289,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "5.0.3"
-  equatable:
-    dependency: transitive
-    description:
-      name: equatable
-      sha256: "567c64b3cb4cf82397aac55f4f0cbd3ca20d77c6c03bedbc4ceaddc08904aef7"
-      url: "https://pub.dev"
-    source: hosted
-    version: "2.0.7"
   fake_async:
     dependency: transitive
     description:
@@ -904,14 +888,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.5.0"
-  qs_dart:
-    dependency: transitive
-    description:
-      name: qs_dart
-      sha256: "9cb27b796d5dd35f32d1ce73965379137d48467c7b511a3647ded6b894c77b9f"
-      url: "https://pub.dev"
-    source: hosted
-    version: "1.4.1"
   rxdart:
     dependency: transitive
     description:
@@ -1237,14 +1213,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.1.2"
-  weak_map:
-    dependency: transitive
-    description:
-      name: weak_map
-      sha256: "5f8e5d5ce57dc624db5fae814dd689ccae1f17f92b426e52f0a7cbe7f6f4ab97"
-      url: "https://pub.dev"
-    source: hosted
-    version: "4.0.1"
   web:
     dependency: transitive
     description:

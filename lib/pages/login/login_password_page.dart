@@ -21,6 +21,26 @@ class LoginPasswordPage extends StatefulWidget {
 class _LoginPasswordPageState extends State<LoginPasswordPage> {
   final TextEditingController _controller = TextEditingController();
   bool _obscureText = true;
+  bool _isPasswordValid = false;
+
+  @override
+  void initState() {
+    super.initState();
+    _controller.addListener(_onPasswordChanged);
+  }
+
+  @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
+  }
+
+  void _onPasswordChanged() {
+    final passwordValid = _controller.text.isNotEmpty;
+    if (_isPasswordValid != passwordValid) {
+      setState(() => _isPasswordValid = passwordValid);
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -50,6 +70,7 @@ class _LoginPasswordPageState extends State<LoginPasswordPage> {
 
   /// 构建内容卡片
   Widget _buildContentCard() {
+    final loginProvider = Provider.of<LoginProvider>(context, listen: false);
     return Container(
       margin: EdgeInsets.only(top: 12.h),
       padding: EdgeInsets.fromLTRB(16.w, 28.h, 16.w, 40.h),
@@ -129,7 +150,14 @@ class _LoginPasswordPageState extends State<LoginPasswordPage> {
             ),
           ),
           SizedBox(height: 32.h),
-          EchoPrimaryButton(text: 'Iniciar sesión', onPressed: () {}),
+          EchoPrimaryButton(
+            text: 'Iniciar sesión',
+            enable: _isPasswordValid,
+            onPressed: () {
+              FocusScope.of(context).unfocus();
+              loginProvider.userLogin(_controller.text);
+            },
+          ),
         ],
       ),
     );

@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_echo/models/common_model.dart';
 import 'package:flutter_echo/pages/login/code_mode_dialog.dart';
 import 'package:flutter_echo/pages/login/device_verify_dialog.dart';
-import 'package:flutter_echo/pages/login/retain_login_dialog.dart';
 import 'package:flutter_echo/pages/submit/confirm_step_dialog.dart';
 import 'package:flutter_echo/pages/submit/dpi_number_dialog.dart';
 import 'package:flutter_echo/pages/submit/pick_date_dialog.dart';
@@ -93,18 +92,6 @@ class DialogHelper {
       barrierDismissible: false,
       builder: (context) =>
           CodeModeDialog(onMethod: (value) => context.pop(value)),
-    );
-  }
-
-  /// 显示退出输入手机号页面挽留弹窗
-  static Future<bool?> showRetainLoginDialog({required BuildContext context}) {
-    return showDialog<bool>(
-      context: context,
-      barrierDismissible: false,
-      builder: (context) => RetainLoginDialog(
-        onAgree: () => context.pop(true),
-        onDisagree: () => context.pop(false),
-      ),
     );
   }
 

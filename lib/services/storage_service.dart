@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:flutter_echo/common/constants.dart';
+import 'package:flutter_echo/models/swaggerApi.models.swagger.dart';
 import 'package:flutter_echo/utils/common_utils.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -19,7 +20,9 @@ class LocalStorage {
     _prefs = await SharedPreferences.getInstance();
     if (_prefs.getString(AppConst.deviceIdKey) == null) {
       final deviceId = await FlutterPlatform.getDeviceId();
-      await _prefs.setString(AppConst.deviceIdKey, deviceId!);
+      if (deviceId != null) {
+        await _prefs.setString(AppConst.deviceIdKey, deviceId);
+      }
     }
   }
 
@@ -57,30 +60,29 @@ class LocalStorage {
     return await _prefs.remove(key);
   }
 
-  /// 获取设备号
-  Future<String> getDeviceId() async {
-    final cacheDeviceId = _prefs.getString(AppConst.deviceIdKey);
-    if (cacheDeviceId == null) {
-      final deviceId = await FlutterPlatform.getDeviceId();
-      await _prefs.setString(AppConst.deviceIdKey, deviceId!);
-      return deviceId;
-    } else {
-      return cacheDeviceId;
-    }
-  }
+  String? get token => _prefs.getString(AppConst.tokenKey);
+
+  String? get userGid => _prefs.getString(AppConst.userGidKey);
 
   bool get isLogin {
     String? token = _prefs.getString(AppConst.tokenKey);
     return token != null && token.isNotEmpty;
   }
 
+  /// 是否已同意披露，不再显示
   bool get showDisclosure => _prefs.getBool(AppConst.disclosureKey) != true;
 
-  String? get token => _prefs.getString(AppConst.tokenKey);
-
-  String? get userGid => _prefs.getString(AppConst.userGidKey);
-
+  /// 获取设备号
   String? get deviceId => _prefs.getString(AppConst.deviceIdKey);
+
+  Future<void> userLogin(LoginResp data) async {
+    final dToken = data.y260zpOToken;
+    if (dToken != null) await _prefs.setString(AppConst.tokenKey, dToken);
+    final dUserGid = data.raiaOUserGid?.toString();
+    if (dUserGid != null) await _prefs.setString(AppConst.userGidKey, dUserGid);
+    final account = data.sordidOMobile;
+    if (account != null) await _prefs.setString(AppConst.accountKey, account);
+  }
 
   Future<void> logout() async {
     _prefs.remove(AppConst.tokenKey);

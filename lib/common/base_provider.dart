@@ -9,8 +9,8 @@ import 'package:fluttertoast/fluttertoast.dart';
 abstract class BaseProvider extends ChangeNotifier {
   final apiService = ApiController(AppConst.baseUrl);
   bool? _loading;
-  String? _location;
   ApiResponse? _apiError;
+  Function(BuildContext)? _navAction;
 
   /// 执行网络请求，并自动管理 loading/error
   Future<R?> launchRequest<R>(
@@ -50,18 +50,18 @@ abstract class BaseProvider extends ChangeNotifier {
 
   bool? get loading => _loading;
 
-  String? get location => _location;
-
   ApiResponse? get apiError => _apiError;
+
+  Function(BuildContext)? get navAction => _navAction;
 
   void consumeLoading() => _loading = null;
 
-  void consumeNavigation() => _location = null;
-
   void consumeApiError() => _apiError = null;
 
-  void navigation(String destination) {
-    _location = destination;
+  void consumeNavAction() => _navAction = null;
+
+  void navigate(Function(BuildContext)? action) {
+    _navAction = action;
     notifyListeners();
   }
 

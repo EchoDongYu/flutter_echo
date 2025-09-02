@@ -22,9 +22,7 @@ class LoginCodePage extends StatefulWidget {
 class _LoginCodePageState extends State<LoginCodePage> {
   final TextEditingController _controller = TextEditingController();
   final FocusNode _focusNode = FocusNode();
-
-  // 验证码
-  String _inputCode = '';
+  String _inputCode = ''; // 验证码
 
   @override
   void initState() {

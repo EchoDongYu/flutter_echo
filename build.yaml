@@ -6,5 +6,5 @@ targets:
           input_folder: 'lib/swaggers'
           output_folder: 'lib/swaggers'
           #override_equals_and_hashcode: false
-          build_only_models: false
+          build_only_models: true
           separate_models: true

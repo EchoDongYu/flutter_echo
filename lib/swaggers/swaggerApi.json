@@ -1162,13 +1162,9 @@
                   "type": "boolean",
                   "description": "交易密码是否开启：true 开启， false 未开启；"
                 },
-                "orcadian(o_isDeviceChange)": {
+                "j1mnl2(o_existLoginPwd)": {
                   "type": "boolean",
-                  "description": "是否属于换设备登录"
-                },
-                "assab(o_deviceChangeMsg)": {
-                  "type": "string",
-                  "description": "换设备登录提示msg，有则提示不再继续走流程"
+                  "description": "是否有登录密码：true 已设置， false 未设置；"
                 }
               },
               "required": [

@@ -97,19 +97,17 @@ class Api {
   /// [imageCode] 图形验证码
   static Future<LoginResp> loginUser({
     required String mobile,
-    String? password,
-    int? oc,
     String? verifyCode,
     String? imageCode,
+    String? password,
   }) {
     return _apiService.post(
       ApiPath.loginUser,
       body: LoginReq(
         sordidOMobile: mobile,
-        password: password,
-        oc: oc,
         presageOVerCode: verifyCode,
         snafuOVerImageCode: imageCode,
+        password: password,
       ).toJson(),
       convert: (json) => LoginResp.fromJson(json),
     );
@@ -119,7 +117,7 @@ class Api {
   /// [verifyCode] 验证码
   /// [imageCode] 图形验证码
   /// [dType] 消息类型:0短信（默认），1whatsapp
-  static Future<RegisterResp> registerUser({
+  static Future<LoginResp> registerUser({
     required String mobile,
     required String verifyCode,
     String? imageCode,
@@ -130,13 +128,13 @@ class Api {
       ApiPath.registerUser,
       body: RegisterReq(
         sordidOMobile: mobile,
-        password: password,
         presageOVerCode: verifyCode,
         snafuOVerImageCode: imageCode,
+        password: password,
         n66w89ODtype: dType,
         vkql27OReqChannel: FlutterPlatform.reqChannel,
       ).toJson(),
-      convert: (json) => RegisterResp.fromJson(json),
+      convert: (json) => LoginResp.fromJson(json),
     );
   }
 }

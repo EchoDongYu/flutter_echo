@@ -1,12 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_echo/common/app_theme.dart';
+import 'package:flutter_echo/providers/login_provider.dart';
 import 'package:flutter_echo/ui/widget_helper.dart';
 import 'package:flutter_echo/ui/widgets/common_button.dart';
 import 'package:flutter_echo/ui/widgets/step_input_field.dart';
 import 'package:flutter_echo/ui/widgets/top_bar.dart';
 import 'package:flutter_echo/utils/drawable_utils.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:provider/provider.dart';
 
 /// 设置登录密码页面
 class LoginPwdSetupPage extends StatefulWidget {
@@ -17,11 +19,37 @@ class LoginPwdSetupPage extends StatefulWidget {
 }
 
 class _LoginPwdSetupPageState extends State<LoginPwdSetupPage> {
-  final List<TextEditingController> _controller = [
+  final List<TextEditingController> _controllers = [
     TextEditingController(),
     TextEditingController(),
   ];
   final List<bool> _obscureText = [true, true];
+  bool _isPasswordValid = false;
+
+  @override
+  void initState() {
+    super.initState();
+    for (var controller in _controllers) {
+      controller.addListener(_onPasswordChanged);
+    }
+  }
+
+  @override
+  void dispose() {
+    for (var controller in _controllers) {
+      controller.dispose();
+    }
+    super.dispose();
+  }
+
+  void _onPasswordChanged() {
+    final passwordValid = !_controllers.any(
+      (controller) => controller.text.isEmpty,
+    );
+    if (_isPasswordValid != passwordValid) {
+      setState(() => _isPasswordValid = passwordValid);
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -51,6 +79,7 @@ class _LoginPwdSetupPageState extends State<LoginPwdSetupPage> {
 
   /// 构建内容卡片
   Widget _buildContentCard() {
+    final loginProvider = Provider.of<LoginProvider>(context, listen: false);
     return Container(
       margin: EdgeInsets.only(top: 12.h),
       padding: EdgeInsets.fromLTRB(16.w, 28.h, 16.w, 40.h),
@@ -86,7 +115,17 @@ class _LoginPwdSetupPageState extends State<LoginPwdSetupPage> {
           SizedBox(height: 12.h),
           _buildPasswordField('Confirmar contraseña', 1),
           SizedBox(height: 32.h),
-          EchoPrimaryButton(text: 'Iniciar sesión', onPressed: () {}),
+          EchoPrimaryButton(
+            text: 'Iniciar sesión',
+            enable: _isPasswordValid,
+            onPressed: () {
+              FocusScope.of(context).unfocus();
+              loginProvider.userLogin(
+                _controllers[0].text,
+                confirmPassword: _controllers[1].text,
+              );
+            },
+          ),
         ],
       ),
     );
@@ -95,7 +134,7 @@ class _LoginPwdSetupPageState extends State<LoginPwdSetupPage> {
   Widget _buildPasswordField(String hintText, int index) {
     final obscureText = _obscureText[index];
     return StepInputField(
-      controller: _controller[index],
+      controller: _controllers[index],
       hintText: hintText,
       maxLength: 4,
       keyboardType: TextInputType.number,
