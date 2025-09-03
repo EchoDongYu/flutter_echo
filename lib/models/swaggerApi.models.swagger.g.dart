@@ -843,10 +843,10 @@ Map<String, dynamic> _$LoanNoticeReqToJson(LoanNoticeReq instance) =>
       's377v5': instance.s377v5OBizLine,
     };
 
-CheckCreditReq _$CheckCreditReqFromJson(Map<String, dynamic> json) =>
-    CheckCreditReq(raiaOUserGid: json['raia'] as String?);
+CheckSubmitReq _$CheckSubmitReqFromJson(Map<String, dynamic> json) =>
+    CheckSubmitReq(raiaOUserGid: json['raia'] as String?);
 
-Map<String, dynamic> _$CheckCreditReqToJson(CheckCreditReq instance) =>
+Map<String, dynamic> _$CheckSubmitReqToJson(CheckSubmitReq instance) =>
     <String, dynamic>{'raia': instance.raiaOUserGid};
 
 LivingDataReq _$LivingDataReqFromJson(Map<String, dynamic> json) =>
@@ -898,8 +898,8 @@ Map<String, dynamic> _$PhotoSubmitReqToJson(PhotoSubmitReq instance) =>
       'hognut': instance.hognutOLivingUrl,
     };
 
-CreditRecordReq _$CreditRecordReqFromJson(Map<String, dynamic> json) =>
-    CreditRecordReq(
+SubmitDataReq _$SubmitDataReqFromJson(Map<String, dynamic> json) =>
+    SubmitDataReq(
       raiaOUserGid: json['raia'] as String?,
       sordidOMobile: json['sordid'] as String?,
       gargetOBirthday: (json['garget'] as num?)?.toInt(),
@@ -943,7 +943,7 @@ CreditRecordReq _$CreditRecordReqFromJson(Map<String, dynamic> json) =>
       z4s937OHouseholdMonthlyExpenses: (json['z4s937'] as num?)?.toInt(),
     );
 
-Map<String, dynamic> _$CreditRecordReqToJson(CreditRecordReq instance) =>
+Map<String, dynamic> _$SubmitDataReqToJson(SubmitDataReq instance) =>
     <String, dynamic>{
       'raia': instance.raiaOUserGid,
       'sordid': instance.sordidOMobile,
@@ -2370,8 +2370,8 @@ Map<String, dynamic> _$LoanNoticeRespToJson(LoanNoticeResp instance) =>
       'data': instance.data?.toJson(),
     };
 
-CheckCreditResp _$CheckCreditRespFromJson(Map<String, dynamic> json) =>
-    CheckCreditResp(
+CheckSubmitResp _$CheckSubmitRespFromJson(Map<String, dynamic> json) =>
+    CheckSubmitResp(
       raiaOUserGid: json['raia'] as String?,
       bopomofoOCreditStatus: (json['bopomofo'] as num?)?.toInt(),
       rnpu7fOCreditLine: (json['rnpu7f'] as num?)?.toDouble(),
@@ -2379,7 +2379,7 @@ CheckCreditResp _$CheckCreditRespFromJson(Map<String, dynamic> json) =>
       foreyardOProductId: (json['foreyard'] as num?)?.toInt(),
     );
 
-Map<String, dynamic> _$CheckCreditRespToJson(CheckCreditResp instance) =>
+Map<String, dynamic> _$CheckSubmitRespToJson(CheckSubmitResp instance) =>
     <String, dynamic>{
       'raia': instance.raiaOUserGid,
       'bopomofo': instance.bopomofoOCreditStatus,
@@ -2432,8 +2432,8 @@ Map<String, dynamic> _$PhotoSubmitRespToJson(PhotoSubmitResp instance) =>
       'i9145g': instance.i9145gOMsgBtn02,
     };
 
-CreditRecordResp _$CreditRecordRespFromJson(Map<String, dynamic> json) =>
-    CreditRecordResp(
+SubmitDataResp _$SubmitDataRespFromJson(Map<String, dynamic> json) =>
+    SubmitDataResp(
       code: json['code'] as String?,
       msg: json['msg'] as String?,
       antiicerOMsgType: (json['antiicer'] as num?)?.toInt(),
@@ -2444,7 +2444,7 @@ CreditRecordResp _$CreditRecordRespFromJson(Map<String, dynamic> json) =>
       data: (json['data'] as num?)?.toInt(),
     );
 
-Map<String, dynamic> _$CreditRecordRespToJson(CreditRecordResp instance) =>
+Map<String, dynamic> _$SubmitDataRespToJson(SubmitDataResp instance) =>
     <String, dynamic>{
       'code': instance.code,
       'msg': instance.msg,

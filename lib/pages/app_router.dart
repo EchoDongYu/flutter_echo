@@ -19,6 +19,8 @@ import 'package:flutter_echo/pages/user/reset_trader_pwd_page.dart';
 import 'package:flutter_echo/pages/user/safety_verify_page.dart';
 import 'package:flutter_echo/pages/user/user_bank_page.dart';
 import 'package:flutter_echo/providers/login_provider.dart';
+import 'package:flutter_echo/providers/main_provider.dart';
+import 'package:flutter_echo/providers/submit_provider.dart';
 import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
 
@@ -50,13 +52,20 @@ class AppRouter {
       GoRoute(path: splash, builder: (context, state) => const SplashPage()),
 
       /// 主页面
-      GoRoute(path: main, builder: (context, state) => const MainPage()),
+      GoRoute(
+        path: main,
+        builder: (context, state) => ChangeNotifierProvider(
+          create: (_) => MainModel(),
+          builder: (_, _) => PageConsumer<MainModel>(child: const MainPage()),
+        ),
+      ),
 
+      /// 登录模块
       ShellRoute(
         builder: (context, state, child) {
           return ChangeNotifierProvider(
-            create: (context) => LoginProvider(),
-            builder: (context, _) => PageConsumer<LoginProvider>(child: child),
+            create: (_) => LoginModel(),
+            builder: (_, _) => PageConsumer<LoginModel>(child: child),
           );
         },
         routes: [
@@ -86,28 +95,39 @@ class AppRouter {
         ],
       ),
 
-      /// 授信表单页面-基本信息
-      GoRoute(
-        path: stepBasic,
-        builder: (context, state) => const StepBasicPage(),
-      ),
+      /// 授信模块
+      ShellRoute(
+        builder: (context, state, child) {
+          return ChangeNotifierProvider(
+            create: (_) => SubmitModel(),
+            builder: (_, _) => PageConsumer<SubmitModel>(child: child),
+          );
+        },
+        routes: [
+          /// 授信表单页面-基本信息
+          GoRoute(
+            path: stepBasic,
+            builder: (context, state) => const StepBasicPage(),
+          ),
 
-      /// 授信表单页面-工作信息
-      GoRoute(
-        path: stepWork,
-        builder: (context, state) => const StepWorkPage(),
-      ),
+          /// 授信表单页面-工作信息
+          GoRoute(
+            path: stepWork,
+            builder: (context, state) => const StepWorkPage(),
+          ),
 
-      /// 授信表单页面-联系人信息
-      GoRoute(
-        path: stepContact,
-        builder: (context, state) => const StepContactPage(),
-      ),
+          /// 授信表单页面-联系人信息
+          GoRoute(
+            path: stepContact,
+            builder: (context, state) => const StepContactPage(),
+          ),
 
-      /// 授信状态页面
-      GoRoute(
-        path: stepResult,
-        builder: (context, state) => const StepResultPage(),
+          /// 授信状态页面
+          GoRoute(
+            path: stepResult,
+            builder: (context, state) => const StepResultPage(),
+          ),
+        ],
       ),
 
       /// 借款确认页面

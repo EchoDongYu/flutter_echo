@@ -26,6 +26,8 @@ class _LoginPwdSetupPageState extends State<LoginPwdSetupPage> {
   final List<bool> _obscureText = [true, true];
   bool _isPasswordValid = false;
 
+  LoginModel get loginModel => Provider.of<LoginModel>(context, listen: false);
+
   @override
   void initState() {
     super.initState();
@@ -79,7 +81,6 @@ class _LoginPwdSetupPageState extends State<LoginPwdSetupPage> {
 
   /// 构建内容卡片
   Widget _buildContentCard() {
-    final loginProvider = Provider.of<LoginProvider>(context, listen: false);
     return Container(
       margin: EdgeInsets.only(top: 12.h),
       padding: EdgeInsets.fromLTRB(16.w, 28.h, 16.w, 40.h),
@@ -120,7 +121,7 @@ class _LoginPwdSetupPageState extends State<LoginPwdSetupPage> {
             enable: _isPasswordValid,
             onPressed: () {
               FocusScope.of(context).unfocus();
-              loginProvider.userLogin(
+              loginModel.userLogin(
                 _controllers[0].text,
                 confirmPassword: _controllers[1].text,
               );

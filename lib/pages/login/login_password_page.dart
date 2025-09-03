@@ -23,6 +23,8 @@ class _LoginPasswordPageState extends State<LoginPasswordPage> {
   bool _obscureText = true;
   bool _isPasswordValid = false;
 
+  LoginModel get loginModel => Provider.of<LoginModel>(context, listen: false);
+
   @override
   void initState() {
     super.initState();
@@ -70,7 +72,6 @@ class _LoginPasswordPageState extends State<LoginPasswordPage> {
 
   /// 构建内容卡片
   Widget _buildContentCard() {
-    final loginProvider = Provider.of<LoginProvider>(context, listen: false);
     return Container(
       margin: EdgeInsets.only(top: 12.h),
       padding: EdgeInsets.fromLTRB(16.w, 28.h, 16.w, 40.h),
@@ -92,7 +93,7 @@ class _LoginPasswordPageState extends State<LoginPasswordPage> {
             ),
           ),
           SizedBox(height: 12.h),
-          Consumer<LoginProvider>(
+          Consumer<LoginModel>(
             builder: (context, provider, _) {
               return RichText(
                 text: TextSpan(
@@ -155,7 +156,7 @@ class _LoginPasswordPageState extends State<LoginPasswordPage> {
             enable: _isPasswordValid,
             onPressed: () {
               FocusScope.of(context).unfocus();
-              loginProvider.userLogin(_controller.text);
+              loginModel.userLogin(_controller.text);
             },
           ),
         ],

@@ -6,7 +6,6 @@ import 'package:flutter_echo/pages/submit/confirm_step_dialog.dart';
 import 'package:flutter_echo/pages/submit/dpi_number_dialog.dart';
 import 'package:flutter_echo/pages/submit/pick_date_dialog.dart';
 import 'package:flutter_echo/pages/submit/pick_day_dialog.dart';
-import 'package:flutter_echo/pages/submit/pick_item_dialog.dart';
 import 'package:flutter_echo/pages/submit/step_bank_dialog.dart';
 import 'package:flutter_echo/pages/user/removed_dialog.dart';
 import 'package:flutter_echo/ui/dialogs/compensation_dialog.dart';
@@ -92,24 +91,6 @@ class DialogHelper {
       barrierDismissible: false,
       builder: (context) =>
           CodeModeDialog(onMethod: (value) => context.pop(value)),
-    );
-  }
-
-  /// 显示认证项选择弹窗
-  static Future<StepItem?> showPickItemDialog({
-    required BuildContext context,
-    required List<StepItem> items,
-  }) {
-    return showModalBottomSheet<StepItem>(
-      context: context,
-      enableDrag: false,
-      isDismissible: false,
-      isScrollControlled: true,
-      builder: (context) => PickItemDialog(
-        items: items,
-        onConfirm: (item) => context.pop(item),
-        onClosing: () => context.pop(),
-      ),
     );
   }
 

@@ -126,7 +126,7 @@ class _StepWorkPageState extends State<StepWorkPage> {
         spacing: 12.h,
         children: [
           StepSelectField(
-            onSelect: (value) {
+            onSelect: () {
               setState(() {
                 _selectValue = 'value';
               });
@@ -136,7 +136,7 @@ class _StepWorkPageState extends State<StepWorkPage> {
             isError: false,
           ),
           StepSelectField(
-            onSelect: (value) {
+            onSelect: () {
               setState(() {
                 _selectValue = 'value';
               });
@@ -146,7 +146,7 @@ class _StepWorkPageState extends State<StepWorkPage> {
             isError: false,
           ),
           StepSelectField(
-            onSelect: (value) {
+            onSelect: () {
               setState(() {
                 _selectValue = 'value';
               });
@@ -175,7 +175,7 @@ class _StepWorkPageState extends State<StepWorkPage> {
         spacing: 12.h,
         children: [
           StepSelectField(
-            onSelect: (value) {
+            onSelect: () {
               setState(() {
                 _selectValue = 'value';
               });
@@ -185,7 +185,7 @@ class _StepWorkPageState extends State<StepWorkPage> {
             isError: false,
           ),
           StepSelectField(
-            onSelect: (value) {
+            onSelect: () {
               setState(() {
                 _selectValue = 'value';
               });
@@ -195,7 +195,7 @@ class _StepWorkPageState extends State<StepWorkPage> {
             isError: false,
           ),
           StepSelectField(
-            onSelect: (value) {
+            onSelect: () {
               setState(() {
                 _selectValue = 'value';
               });
@@ -229,7 +229,7 @@ class _StepWorkPageState extends State<StepWorkPage> {
         spacing: 12.h,
         children: [
           StepSelectField(
-            onSelect: (value) {
+            onSelect: () {
               setState(() {
                 _selectValue = 'value';
               });
@@ -239,7 +239,7 @@ class _StepWorkPageState extends State<StepWorkPage> {
             isError: false,
           ),
           StepSelectField(
-            onSelect: (value) {
+            onSelect: () {
               setState(() {
                 _selectValue = 'value';
               });
@@ -249,7 +249,7 @@ class _StepWorkPageState extends State<StepWorkPage> {
             isError: false,
           ),
           StepSelectField(
-            onSelect: (value) {
+            onSelect: () {
               setState(() {
                 _selectValue = 'value';
               });

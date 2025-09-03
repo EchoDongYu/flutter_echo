@@ -1,12 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_echo/common/app_theme.dart';
+import 'package:flutter_echo/providers/submit_provider.dart';
 import 'package:flutter_echo/ui/widget_helper.dart';
 import 'package:flutter_echo/ui/widgets/step_check_field.dart';
 import 'package:flutter_echo/ui/widgets/step_input_field.dart';
 import 'package:flutter_echo/ui/widgets/step_select_field.dart';
 import 'package:flutter_echo/ui/widgets/top_bar.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:provider/provider.dart';
 
 /// 授信表单页面-基本信息
 class StepBasicPage extends StatefulWidget {
@@ -17,6 +19,27 @@ class StepBasicPage extends StatefulWidget {
 }
 
 class _StepBasicPageState extends State<StepBasicPage> {
+  final TextEditingController _controller = TextEditingController();
+  final FocusNode _focusNode = FocusNode();
+
+  SubmitModel get submitModel =>
+      Provider.of<SubmitModel>(context, listen: false);
+
+  @override
+  void initState() {
+    super.initState();
+    WidgetsBinding.instance.addPostFrameCallback((_) async {
+      await submitModel.getDictionary();
+    });
+  }
+
+  @override
+  void dispose() {
+    _controller.dispose();
+    _focusNode.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -103,7 +126,6 @@ class _StepBasicPageState extends State<StepBasicPage> {
     );
   }
 
-  final TextEditingController _controller = TextEditingController();
   int? _checkValue;
   String? _selectValue;
 
@@ -136,7 +158,7 @@ class _StepBasicPageState extends State<StepBasicPage> {
             isError: false,
           ),
           StepSelectField(
-            onSelect: (value) {
+            onSelect: () {
               setState(() {
                 _selectValue = 'value';
               });
@@ -182,7 +204,7 @@ class _StepBasicPageState extends State<StepBasicPage> {
             inputFormatters: [FilteringTextInputFormatter.digitsOnly],
           ),
           StepSelectField(
-            onSelect: (value) {
+            onSelect: () {
               setState(() {
                 _selectValue = 'value';
               });

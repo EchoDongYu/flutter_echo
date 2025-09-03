@@ -344,7 +344,7 @@ class MinePage extends StatelessWidget {
         cancelText: "Cancelar",
         onConfirm: () {
           context.pop();
-          context.go(AppRouter.loginPhone);
+          GoRouter.of(context).go(AppRouter.loginPhone);
         },
         onCancel: () {
           context.pop();

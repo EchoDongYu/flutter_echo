@@ -4,6 +4,8 @@ import 'package:flutter_echo/models/common_model.dart';
 import 'package:flutter_echo/pages/app_router.dart';
 import 'package:flutter_echo/pages/login/captcha_dialog.dart';
 import 'package:flutter_echo/pages/login/retain_login_dialog.dart';
+import 'package:flutter_echo/pages/submit/pick_item_dialog.dart';
+import 'package:flutter_echo/services/storage_service.dart';
 import 'package:flutter_echo/ui/dialog_helper.dart';
 import 'package:flutter_echo/ui/dialogs/disclosure_dialog.dart';
 import 'package:flutter_echo/ui/widgets/common_button.dart';
@@ -262,62 +264,19 @@ class _DemoPageState extends State<DemoPage> {
             context,
             title: '登录手机号输入页面',
             icon: Icons.phone_android_rounded,
-            color: NowColors.c0xFF3288F1,
-            onPressed: () => context.push(AppRouter.loginPhone),
+            color: NowColors.c0xFF3EB34D,
+            onPressed: () async {
+              await LocalStorage().logout();
+              if (context.mounted) {
+                GoRouter.of(context).go(AppRouter.loginPhone);
+              }
+            },
           ),
 
+          // 认证流程测试
           _buildTestButton(
             context,
-            title: '登录验证码输入页面',
-            icon: Icons.verified_rounded,
-            color: NowColors.c0xFF3288F1,
-            onPressed: () => context.push(AppRouter.loginCode),
-          ),
-
-          _buildTestButton(
-            context,
-            title: '登录密码输入页面',
-            icon: Icons.password_rounded,
-            color: NowColors.c0xFF3288F1,
-            onPressed: () => context.push(AppRouter.loginPassword),
-          ),
-
-          _buildTestButton(
-            context,
-            title: '设置登录密码页面',
-            icon: Icons.password_rounded,
-            color: NowColors.c0xFF3288F1,
-            onPressed: () => context.push(AppRouter.loginPwdSetup),
-          ),
-
-          _buildTestButton(
-            context,
-            title: '安全验证页面',
-            icon: Icons.password_rounded,
-            color: NowColors.c0xFFFF9817,
-            onPressed: () => context.push(AppRouter.safetyVerify),
-          ),
-
-          _buildTestButton(
-            context,
-            title: '重置登录密码页面',
-            icon: Icons.password_rounded,
-            color: NowColors.c0xFFFF9817,
-            onPressed: () => context.push(AppRouter.resetLoginPwd),
-          ),
-
-          _buildTestButton(
-            context,
-            title: '重置交易密码页面',
-            icon: Icons.password_rounded,
-            color: NowColors.c0xFFFF9817,
-            onPressed: () => context.push(AppRouter.resetTraderPwd),
-          ),
-
-          // 业务流程测试
-          _buildTestButton(
-            context,
-            title: '认证个人信息',
+            title: '认证基本信息页面',
             icon: Icons.person_rounded,
             color: NowColors.c0xFF4FAAFF,
             onPressed: () => context.push(AppRouter.stepBasic),
@@ -341,18 +300,50 @@ class _DemoPageState extends State<DemoPage> {
 
           _buildTestButton(
             context,
-            title: '借款页面',
-            icon: Icons.request_page_rounded,
-            color: NowColors.c0xFF4FAAFF,
+            title: '借款确认页面',
+            icon: Icons.monetization_on_rounded,
+            color: NowColors.c0xFF3EB34D,
             onPressed: () => context.push(AppRouter.applyConfirm),
           ),
 
           _buildTestButton(
             context,
-            title: '还款页面',
-            icon: Icons.request_page_rounded,
-            color: NowColors.c0xFF3EB34D,
+            title: '还款确认页面',
+            icon: Icons.request_quote_rounded,
+            color: NowColors.c0xFFFF9817,
             onPressed: () => context.push(AppRouter.repayConfirm),
+          ),
+
+          _buildTestButton(
+            context,
+            title: '设置登录密码页面',
+            icon: Icons.password_rounded,
+            color: Color(0xFF611AE5),
+            onPressed: () => context.push(AppRouter.loginPwdSetup),
+          ),
+
+          _buildTestButton(
+            context,
+            title: '安全验证页面',
+            icon: Icons.password_rounded,
+            color: Color(0xFF611AE5),
+            onPressed: () => context.push(AppRouter.safetyVerify),
+          ),
+
+          _buildTestButton(
+            context,
+            title: '重置登录密码页面',
+            icon: Icons.password_rounded,
+            color: Color(0xFF611AE5),
+            onPressed: () => context.push(AppRouter.resetLoginPwd),
+          ),
+
+          _buildTestButton(
+            context,
+            title: '重置交易密码页面',
+            icon: Icons.password_rounded,
+            color: Color(0xFF611AE5),
+            onPressed: () => context.push(AppRouter.resetTraderPwd),
           ),
         ],
       ),
@@ -527,7 +518,7 @@ class _DemoPageState extends State<DemoPage> {
   ];
 
   void _showPickItemDialog(BuildContext context) async {
-    final result = await DialogHelper.showPickItemDialog(
+    final result = await PickItemDialog.show(
       context: context,
       items: stepItems,
     );

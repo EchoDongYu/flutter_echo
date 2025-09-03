@@ -5316,24 +5316,24 @@ extension $LoanNoticeReqExtension on LoanNoticeReq {
 }
 
 @JsonSerializable(explicitToJson: true)
-class CheckCreditReq {
-  const CheckCreditReq({this.raiaOUserGid});
+class CheckSubmitReq {
+  const CheckSubmitReq({this.raiaOUserGid});
 
   @JsonKey(name: 'raia')
   final String? raiaOUserGid;
 
-  factory CheckCreditReq.fromJson(Map<String, dynamic> json) =>
-      _$CheckCreditReqFromJson(json);
+  factory CheckSubmitReq.fromJson(Map<String, dynamic> json) =>
+      _$CheckSubmitReqFromJson(json);
 
-  Map<String, dynamic> toJson() => _$CheckCreditReqToJson(this);
+  Map<String, dynamic> toJson() => _$CheckSubmitReqToJson(this);
 
-  static const fromJsonFactory = _$CheckCreditReqFromJson;
-  static const toJsonFactory = _$CheckCreditReqToJson;
+  static const fromJsonFactory = _$CheckSubmitReqFromJson;
+  static const toJsonFactory = _$CheckSubmitReqToJson;
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
-        (other is CheckCreditReq &&
+        (other is CheckSubmitReq &&
             (identical(other.raiaOUserGid, raiaOUserGid) ||
                 const DeepCollectionEquality().equals(
                   other.raiaOUserGid,
@@ -5349,13 +5349,13 @@ class CheckCreditReq {
       const DeepCollectionEquality().hash(raiaOUserGid) ^ runtimeType.hashCode;
 }
 
-extension $CheckCreditReqExtension on CheckCreditReq {
-  CheckCreditReq copyWith({String? raiaOUserGid}) {
-    return CheckCreditReq(raiaOUserGid: raiaOUserGid ?? this.raiaOUserGid);
+extension $CheckSubmitReqExtension on CheckSubmitReq {
+  CheckSubmitReq copyWith({String? raiaOUserGid}) {
+    return CheckSubmitReq(raiaOUserGid: raiaOUserGid ?? this.raiaOUserGid);
   }
 
-  CheckCreditReq copyWithWrapped({Wrapped<String?>? raiaOUserGid}) {
-    return CheckCreditReq(
+  CheckSubmitReq copyWithWrapped({Wrapped<String?>? raiaOUserGid}) {
+    return CheckSubmitReq(
       raiaOUserGid: (raiaOUserGid != null
           ? raiaOUserGid.value
           : this.raiaOUserGid),
@@ -5645,8 +5645,8 @@ extension $PhotoSubmitReqExtension on PhotoSubmitReq {
 }
 
 @JsonSerializable(explicitToJson: true)
-class CreditRecordReq {
-  const CreditRecordReq({
+class SubmitDataReq {
+  const SubmitDataReq({
     this.raiaOUserGid,
     this.sordidOMobile,
     this.gargetOBirthday,
@@ -5773,18 +5773,18 @@ class CreditRecordReq {
   @JsonKey(name: 'z4s937')
   final int? z4s937OHouseholdMonthlyExpenses;
 
-  factory CreditRecordReq.fromJson(Map<String, dynamic> json) =>
-      _$CreditRecordReqFromJson(json);
+  factory SubmitDataReq.fromJson(Map<String, dynamic> json) =>
+      _$SubmitDataReqFromJson(json);
 
-  Map<String, dynamic> toJson() => _$CreditRecordReqToJson(this);
+  Map<String, dynamic> toJson() => _$SubmitDataReqToJson(this);
 
-  static const fromJsonFactory = _$CreditRecordReqFromJson;
-  static const toJsonFactory = _$CreditRecordReqToJson;
+  static const fromJsonFactory = _$SubmitDataReqFromJson;
+  static const toJsonFactory = _$SubmitDataReqToJson;
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
-        (other is CreditRecordReq &&
+        (other is SubmitDataReq &&
             (identical(other.raiaOUserGid, raiaOUserGid) ||
                 const DeepCollectionEquality().equals(
                   other.raiaOUserGid,
@@ -6062,8 +6062,8 @@ class CreditRecordReq {
       runtimeType.hashCode;
 }
 
-extension $CreditRecordReqExtension on CreditRecordReq {
-  CreditRecordReq copyWith({
+extension $SubmitDataReqExtension on SubmitDataReq {
+  SubmitDataReq copyWith({
     String? raiaOUserGid,
     String? sordidOMobile,
     int? gargetOBirthday,
@@ -6106,7 +6106,7 @@ extension $CreditRecordReqExtension on CreditRecordReq {
     String? volumenOElectricityRelated,
     int? z4s937OHouseholdMonthlyExpenses,
   }) {
-    return CreditRecordReq(
+    return SubmitDataReq(
       raiaOUserGid: raiaOUserGid ?? this.raiaOUserGid,
       sordidOMobile: sordidOMobile ?? this.sordidOMobile,
       gargetOBirthday: gargetOBirthday ?? this.gargetOBirthday,
@@ -6165,7 +6165,7 @@ extension $CreditRecordReqExtension on CreditRecordReq {
     );
   }
 
-  CreditRecordReq copyWithWrapped({
+  SubmitDataReq copyWithWrapped({
     Wrapped<String?>? raiaOUserGid,
     Wrapped<String?>? sordidOMobile,
     Wrapped<int?>? gargetOBirthday,
@@ -6208,7 +6208,7 @@ extension $CreditRecordReqExtension on CreditRecordReq {
     Wrapped<String?>? volumenOElectricityRelated,
     Wrapped<int?>? z4s937OHouseholdMonthlyExpenses,
   }) {
-    return CreditRecordReq(
+    return SubmitDataReq(
       raiaOUserGid: (raiaOUserGid != null
           ? raiaOUserGid.value
           : this.raiaOUserGid),
@@ -14783,8 +14783,8 @@ extension $LoanNoticeRespExtension on LoanNoticeResp {
 }
 
 @JsonSerializable(explicitToJson: true)
-class CheckCreditResp {
-  const CheckCreditResp({
+class CheckSubmitResp {
+  const CheckSubmitResp({
     this.raiaOUserGid,
     this.bopomofoOCreditStatus,
     this.rnpu7fOCreditLine,
@@ -14803,18 +14803,18 @@ class CheckCreditResp {
   @JsonKey(name: 'foreyard')
   final int? foreyardOProductId;
 
-  factory CheckCreditResp.fromJson(Map<String, dynamic> json) =>
-      _$CheckCreditRespFromJson(json);
+  factory CheckSubmitResp.fromJson(Map<String, dynamic> json) =>
+      _$CheckSubmitRespFromJson(json);
 
-  Map<String, dynamic> toJson() => _$CheckCreditRespToJson(this);
+  Map<String, dynamic> toJson() => _$CheckSubmitRespToJson(this);
 
-  static const fromJsonFactory = _$CheckCreditRespFromJson;
-  static const toJsonFactory = _$CheckCreditRespToJson;
+  static const fromJsonFactory = _$CheckSubmitRespFromJson;
+  static const toJsonFactory = _$CheckSubmitRespToJson;
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
-        (other is CheckCreditResp &&
+        (other is CheckSubmitResp &&
             (identical(other.raiaOUserGid, raiaOUserGid) ||
                 const DeepCollectionEquality().equals(
                   other.raiaOUserGid,
@@ -14855,15 +14855,15 @@ class CheckCreditResp {
       runtimeType.hashCode;
 }
 
-extension $CheckCreditRespExtension on CheckCreditResp {
-  CheckCreditResp copyWith({
+extension $CheckSubmitRespExtension on CheckSubmitResp {
+  CheckSubmitResp copyWith({
     String? raiaOUserGid,
     int? bopomofoOCreditStatus,
     double? rnpu7fOCreditLine,
     double? nookieOCanBorrowAmount,
     int? foreyardOProductId,
   }) {
-    return CheckCreditResp(
+    return CheckSubmitResp(
       raiaOUserGid: raiaOUserGid ?? this.raiaOUserGid,
       bopomofoOCreditStatus:
           bopomofoOCreditStatus ?? this.bopomofoOCreditStatus,
@@ -14874,14 +14874,14 @@ extension $CheckCreditRespExtension on CheckCreditResp {
     );
   }
 
-  CheckCreditResp copyWithWrapped({
+  CheckSubmitResp copyWithWrapped({
     Wrapped<String?>? raiaOUserGid,
     Wrapped<int?>? bopomofoOCreditStatus,
     Wrapped<double?>? rnpu7fOCreditLine,
     Wrapped<double?>? nookieOCanBorrowAmount,
     Wrapped<int?>? foreyardOProductId,
   }) {
-    return CheckCreditResp(
+    return CheckSubmitResp(
       raiaOUserGid: (raiaOUserGid != null
           ? raiaOUserGid.value
           : this.raiaOUserGid),
@@ -15176,8 +15176,8 @@ extension $PhotoSubmitRespExtension on PhotoSubmitResp {
 }
 
 @JsonSerializable(explicitToJson: true)
-class CreditRecordResp {
-  const CreditRecordResp({
+class SubmitDataResp {
+  const SubmitDataResp({
     this.code,
     this.msg,
     this.antiicerOMsgType,
@@ -15205,18 +15205,18 @@ class CreditRecordResp {
   @JsonKey(name: 'data')
   final int? data;
 
-  factory CreditRecordResp.fromJson(Map<String, dynamic> json) =>
-      _$CreditRecordRespFromJson(json);
+  factory SubmitDataResp.fromJson(Map<String, dynamic> json) =>
+      _$SubmitDataRespFromJson(json);
 
-  Map<String, dynamic> toJson() => _$CreditRecordRespToJson(this);
+  Map<String, dynamic> toJson() => _$SubmitDataRespToJson(this);
 
-  static const fromJsonFactory = _$CreditRecordRespFromJson;
-  static const toJsonFactory = _$CreditRecordRespToJson;
+  static const fromJsonFactory = _$SubmitDataRespFromJson;
+  static const toJsonFactory = _$SubmitDataRespToJson;
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
-        (other is CreditRecordResp &&
+        (other is SubmitDataResp &&
             (identical(other.code, code) ||
                 const DeepCollectionEquality().equals(other.code, code)) &&
             (identical(other.msg, msg) ||
@@ -15266,8 +15266,8 @@ class CreditRecordResp {
       runtimeType.hashCode;
 }
 
-extension $CreditRecordRespExtension on CreditRecordResp {
-  CreditRecordResp copyWith({
+extension $SubmitDataRespExtension on SubmitDataResp {
+  SubmitDataResp copyWith({
     String? code,
     String? msg,
     int? antiicerOMsgType,
@@ -15277,7 +15277,7 @@ extension $CreditRecordRespExtension on CreditRecordResp {
     String? i9145gOMsgBtn02,
     int? data,
   }) {
-    return CreditRecordResp(
+    return SubmitDataResp(
       code: code ?? this.code,
       msg: msg ?? this.msg,
       antiicerOMsgType: antiicerOMsgType ?? this.antiicerOMsgType,
@@ -15289,7 +15289,7 @@ extension $CreditRecordRespExtension on CreditRecordResp {
     );
   }
 
-  CreditRecordResp copyWithWrapped({
+  SubmitDataResp copyWithWrapped({
     Wrapped<String?>? code,
     Wrapped<String?>? msg,
     Wrapped<int?>? antiicerOMsgType,
@@ -15299,7 +15299,7 @@ extension $CreditRecordRespExtension on CreditRecordResp {
     Wrapped<String?>? i9145gOMsgBtn02,
     Wrapped<int?>? data,
   }) {
-    return CreditRecordResp(
+    return SubmitDataResp(
       code: (code != null ? code.value : this.code),
       msg: (msg != null ? msg.value : this.msg),
       antiicerOMsgType: (antiicerOMsgType != null

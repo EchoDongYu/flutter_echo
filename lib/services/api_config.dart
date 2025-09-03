@@ -98,13 +98,17 @@ class _ApiInterceptor extends Interceptor {
       final data = options.data as Map;
       // 手机号加密 o_mobile
       if (data.containsKey('sordid')) {
-        String value = data['sordid'];
-        data['sordid'] = _encrypter.encrypt(value).base64;
+        String? value = data['sordid'];
+        if (value != null) {
+          data['sordid'] = _encrypter.encrypt(value).base64;
+        }
       }
       // 密码加密 password
       if (data.containsKey('password')) {
-        String value = data['password'];
-        data['password'] = _encrypter.encrypt(value).base64;
+        String? value = data['password'];
+        if (value != null) {
+          data['password'] = _encrypter.encrypt(value).base64;
+        }
       }
       // o_bizChannel 马甲渠道
       if (data.containsKey('d7x52p')) {

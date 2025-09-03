@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_echo/common/app_theme.dart';
 import 'package:flutter_echo/common/constants.dart';
+import 'package:flutter_echo/pages/app_router.dart';
 import 'package:flutter_echo/pages/login/retain_login_dialog.dart';
 import 'package:flutter_echo/providers/login_provider.dart';
 import 'package:flutter_echo/ui/widget_helper.dart';
@@ -24,6 +25,8 @@ class LoginPhonePage extends StatefulWidget {
 class _LoginPhonePageState extends State<LoginPhonePage> {
   final TextEditingController _controller = TextEditingController();
   bool _isPhoneValid = false;
+
+  LoginModel get loginModel => Provider.of<LoginModel>(context, listen: false);
 
   @override
   void initState() {
@@ -68,7 +71,13 @@ class _LoginPhonePageState extends State<LoginPhonePage> {
                   title: 'Iniciar sesión Registrarse',
                   onPopBack: () async {
                     final retain = await RetainLoginDialog.show(context);
-                    if (retain == false && context.mounted) context.pop();
+                    if (retain == false && context.mounted) {
+                      if (context.canPop()) {
+                        context.pop();
+                      } else {
+                        context.go(AppRouter.main);
+                      }
+                    }
                   },
                 ),
                 // Logo区域
@@ -104,7 +113,6 @@ class _LoginPhonePageState extends State<LoginPhonePage> {
 
   /// 构建内容卡片
   Widget _buildContentCard(BuildContext context) {
-    final loginProvider = Provider.of<LoginProvider>(context, listen: false);
     return Container(
       margin: EdgeInsets.only(top: 36.h),
       padding: EdgeInsets.fromLTRB(16.w, 28.h, 16.w, 40.h),
@@ -123,7 +131,7 @@ class _LoginPhonePageState extends State<LoginPhonePage> {
             enable: _isPhoneValid,
             onPressed: () {
               FocusScope.of(context).unfocus();
-              loginProvider.checkRegister(_controller.text);
+              loginModel.checkRegister(_controller.text);
             },
           ),
         ],

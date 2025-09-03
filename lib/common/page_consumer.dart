@@ -3,6 +3,7 @@ import 'package:flutter_echo/common/base_provider.dart';
 import 'package:flutter_echo/models/api_response.dart';
 import 'package:flutter_echo/pages/app_router.dart';
 import 'package:flutter_echo/pages/login/captcha_dialog.dart';
+import 'package:flutter_echo/services/storage_service.dart';
 import 'package:flutter_echo/ui/dialogs/loading_dialog.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:go_router/go_router.dart';
@@ -40,7 +41,10 @@ class PageConsumer<T extends BaseProvider> extends StatelessWidget {
             provider.consumeApiError();
             if (apiError.needLogin) {
               Fluttertoast.showToast(msg: apiError.msg);
-              GoRouter.of(context).go(AppRouter.loginPhone);
+              await LocalStorage().logout();
+              if (context.mounted) {
+                GoRouter.of(context).go(AppRouter.loginPhone);
+              }
             } else if (apiError.needCaptcha) {
               final code = await CaptchaDialog.show(context);
               if (code != null) provider.onCaptchaCode(code);

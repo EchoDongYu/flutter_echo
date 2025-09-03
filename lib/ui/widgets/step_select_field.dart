@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_echo/common/app_theme.dart';
+import 'package:flutter_echo/models/common_model.dart';
+import 'package:flutter_echo/pages/submit/pick_item_dialog.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class StepSelectField extends StatefulWidget {
-  final Function(String) onSelect;
+  final Function() onSelect;
   final String hintText;
   final String? value;
   final bool isError;
@@ -15,6 +17,22 @@ class StepSelectField extends StatefulWidget {
     required this.value,
     required this.isError,
   });
+
+  factory StepSelectField.pickItem({
+    required BuildContext context,
+    required List<StepItem> items,
+    required String hintText,
+    required StepItem? pickedItem,
+    required bool isError,
+  }) => StepSelectField(
+    onSelect: () async {
+      final item = await PickItemDialog.show(context: context, items: items);
+      if (item != null) pickedItem = item;
+    },
+    hintText: hintText,
+    value: pickedItem?.value,
+    isError: isError,
+  );
 
   @override
   State<StepSelectField> createState() => _StepSelectFieldState();

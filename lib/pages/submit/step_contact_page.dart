@@ -160,7 +160,7 @@ class _StepContactPageState extends State<StepContactPage> {
             inputFormatters: [FilteringTextInputFormatter.digitsOnly],
           ),
           StepSelectField(
-            onSelect: (value) {
+            onSelect: () {
               setState(() {
                 _selectValue = 'value';
               });

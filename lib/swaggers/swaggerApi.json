@@ -9280,8 +9280,8 @@
         "consumes": [
           "application/json"
         ],
-        "modelId": "CheckCredit",
-        "operationId": "refreshCredit",
+        "modelId": "CheckSubmit",
+        "operationId": "refreshSubmit",
         "parameters": [
           {
             "name": "root",
@@ -9652,7 +9652,7 @@
         "consumes": [
           "application/json"
         ],
-        "modelId": "CreditRecord",
+        "modelId": "SubmitData",
         "operationId": "submitCreditData",
         "parameters": [
           {

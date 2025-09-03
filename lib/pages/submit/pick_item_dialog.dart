@@ -4,6 +4,7 @@ import 'package:flutter_echo/models/common_model.dart';
 import 'package:flutter_echo/ui/widgets/common_button.dart';
 import 'package:flutter_echo/utils/drawable_utils.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:go_router/go_router.dart';
 
 /// 认证项选择弹窗
 class PickItemDialog extends StatefulWidget {
@@ -19,6 +20,26 @@ class PickItemDialog extends StatefulWidget {
     required this.items,
     this.pickedItem,
   });
+
+  /// 显示认证项选择弹窗
+  static Future<StepItem?> show({
+    required BuildContext context,
+    required List<StepItem> items,
+    StepItem? pickedItem,
+  }) {
+    return showModalBottomSheet<StepItem>(
+      context: context,
+      enableDrag: false,
+      isDismissible: false,
+      isScrollControlled: true,
+      builder: (context) => PickItemDialog(
+        items: items,
+        pickedItem: pickedItem,
+        onConfirm: (item) => context.pop(item),
+        onClosing: () => context.pop(),
+      ),
+    );
+  }
 
   @override
   State<PickItemDialog> createState() => _PickItemDialogState();

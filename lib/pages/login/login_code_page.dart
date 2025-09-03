@@ -1,5 +1,3 @@
-import 'dart:async';
-
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_echo/common/app_theme.dart';
@@ -24,13 +22,14 @@ class _LoginCodePageState extends State<LoginCodePage> {
   final FocusNode _focusNode = FocusNode();
   String _inputCode = ''; // 验证码
 
+  LoginModel get loginModel => Provider.of<LoginModel>(context, listen: false);
+
   @override
   void initState() {
     super.initState();
     _controller.addListener(_onCodeChanged);
     WidgetsBinding.instance.addPostFrameCallback((_) async {
-      final loginProvider = Provider.of<LoginProvider>(context, listen: false);
-      final sendOk = await loginProvider.sendVerifyCode();
+      final sendOk = await loginModel.sendVerifyCode();
       if (sendOk == true) _focusNode.requestFocus();
     });
   }
@@ -46,11 +45,10 @@ class _LoginCodePageState extends State<LoginCodePage> {
   void _onCodeChanged() async {
     final value = _controller.text;
     setState(() => _inputCode = value);
-    final loginProvider = Provider.of<LoginProvider>(context, listen: false);
     // 如果输入完整，自动验证
     if (value.length == 4) {
       FocusScope.of(context).unfocus();
-      final checkOk = await loginProvider.checkVerifyCode(value);
+      final checkOk = await loginModel.checkVerifyCode(value);
       if (checkOk != true) {
         Future.delayed(const Duration(milliseconds: 500), () {
           _controller.clear();
@@ -136,7 +134,7 @@ class _LoginCodePageState extends State<LoginCodePage> {
             ),
           ),
           SizedBox(height: 12.h),
-          Consumer<LoginProvider>(
+          Consumer<LoginModel>(
             builder: (context, provider, _) {
               return RichText(
                 text: TextSpan(
@@ -173,7 +171,7 @@ class _LoginCodePageState extends State<LoginCodePage> {
           _buildCodeField(),
           SizedBox(height: 32.h),
           // 重新发送按钮
-          Consumer<LoginProvider>(
+          Consumer<LoginModel>(
             builder: (context, provider, _) {
               return EchoPrimaryButton(
                 text: provider.countdown == 0

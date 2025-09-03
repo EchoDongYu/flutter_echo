@@ -91,9 +91,9 @@ class LocalStorage {
   }
 
   Future<void> logout() async {
-    _prefs.remove(AppConst.tokenKey);
-    _prefs.remove(AppConst.userGidKey);
-    _prefs.remove(AppConst.userInfoKey);
-    _prefs.remove(AppConst.accountKey);
+    await _prefs.remove(AppConst.tokenKey);
+    await _prefs.remove(AppConst.userGidKey);
+    await _prefs.remove(AppConst.userInfoKey);
+    await _prefs.remove(AppConst.accountKey);
   }
 }

@@ -128,7 +128,7 @@ class _StepBankDialogState extends State<StepBankDialog> {
         spacing: 12.h,
         children: [
           StepSelectField(
-            onSelect: (value) {
+            onSelect: () {
               setState(() {
                 _selectValue = 'value';
               });
@@ -138,7 +138,7 @@ class _StepBankDialogState extends State<StepBankDialog> {
             isError: false,
           ),
           StepSelectField(
-            onSelect: (value) {
+            onSelect: () {
               setState(() {
                 _selectValue = 'value';
               });
