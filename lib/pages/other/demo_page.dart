@@ -514,35 +514,16 @@ class _DemoPageState extends State<DemoPage> {
   }
 
   static final List<StepItem> stepItems = [
-    StepItem(
-      '¿Cómo obtengo un préstamo CreditYa?',
-      key: 1,
-      type: 'Item1',
-      sort: 2,
-      l16h95: 3,
-    ),
+    StepItem('¿Cómo obtengo un préstamo CreditYa?', key: 1, sort: 2, l16h95: 3),
     StepItem(
       'La información personal no está seguraLa información personal no está seguraLa información personal no está segura',
       key: 1,
-      type: 'Item1',
       sort: 2,
       l16h95: 3,
     ),
-    StepItem(
-      '¿Cómo obtengo un préstamo CreditYa?',
-      key: 1,
-      type: 'Item1',
-      sort: 2,
-      l16h95: 3,
-    ),
-    StepItem(
-      '¿Cómo obtengo un préstamo CreditYa?',
-      key: 1,
-      type: 'Item1',
-      sort: 2,
-      l16h95: 3,
-    ),
-    StepItem('XXXXXXXXXX', key: 1, type: 'Item1', sort: 2, l16h95: 3),
+    StepItem('¿Cómo obtengo un préstamo CreditYa?', key: 1, sort: 2, l16h95: 3),
+    StepItem('¿Cómo obtengo un préstamo CreditYa?', key: 1, sort: 2, l16h95: 3),
+    StepItem('XXXXXXXXXX', key: 1, sort: 2, l16h95: 3),
   ];
 
   void _showPickItemDialog(BuildContext context) async {

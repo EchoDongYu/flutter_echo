@@ -100,6 +100,9 @@ class ApiPath {
   /// 重置登录密码
   static const String resetLoginPassword = '/aitch/q2i1/vwi0/password/reset';
 
+  /// 获取字典项
+  static const String queryDictionary = '/wojz7/h4n/j36';
+
   /// 客户端上报日志分析（通用）
   static const String uploadLog = '/tools/android/log';
 

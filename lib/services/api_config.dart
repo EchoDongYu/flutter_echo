@@ -55,8 +55,11 @@ class ApiController {
   Future<bool> postSt(String path, {Map<String, dynamic>? body}) async {
     final response = await _dio.post(path, data: body);
     final apiResponse = ApiResponse.fromJson(response.data);
-    if (!apiResponse.successful) throw apiResponse;
-    return true;
+    if (apiResponse.successful) {
+      return true;
+    } else {
+      throw apiResponse;
+    }
   }
 }
 

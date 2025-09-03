@@ -142,4 +142,16 @@ class Api {
       convert: (json) => UserInfoResp.fromJson(json),
     );
   }
+
+  static Future<Map> queryDictionary(List<int> types) {
+    return _apiService.post(ApiPath.queryDictionary, body: {'types': types});
+  }
+
+  static Future<CreditRecordResp> submitCreditData(List<int> types) {
+    return _apiService.post(
+      ApiPath.submitCreditData,
+      body: CreditRecordReq().toJson(),
+      convert: (json) => CreditRecordResp.fromJson(json),
+    );
+  }
 }
