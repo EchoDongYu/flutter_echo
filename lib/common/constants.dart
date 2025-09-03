@@ -34,6 +34,7 @@ class AppConst {
   static const String deviceIdKey = 'device_id';
   static const String tokenKey = 'token';
   static const String userGidKey = 'user_id';
+  static const String userInfoKey = 'user_info';
   static const String accountKey = 'account';
   static const String disclosureKey = 'disclosure';
 }

@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter_echo/common/base_provider.dart';
+import 'package:flutter_echo/common/constants.dart';
 import 'package:flutter_echo/models/api_response.dart';
 import 'package:flutter_echo/models/swaggerApi.models.swagger.dart';
 import 'package:flutter_echo/pages/app_router.dart';
@@ -149,6 +150,10 @@ class LoginProvider extends BaseProvider {
       );
     }
     await LocalStorage().userLogin(loginResult);
+    // 获取用户信息，异步执行无需阻塞
+    Api.getUserBaseInfo().then((value) {
+      LocalStorage().set(AppConst.userInfoKey, value);
+    });
     navigate((context) => context.go(AppRouter.main));
   }
 
@@ -158,7 +163,6 @@ class LoginProvider extends BaseProvider {
       final apiResult = await Api.checkCaptchaCode(
         mobile: phoneNumber,
         type: _codeType,
-        mobileSn: LocalStorage().deviceId,
         imageCode: code,
       );
       if (apiResult == true) {

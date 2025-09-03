@@ -64,6 +64,12 @@ class LocalStorage {
 
   String? get userGid => _prefs.getString(AppConst.userGidKey);
 
+  UserInfoResp? get userInfo {
+    final userInfo = getObject(AppConst.userInfoKey);
+    if (userInfo == null) return null;
+    return UserInfoResp.fromJson(userInfo);
+  }
+
   bool get isLogin {
     String? token = _prefs.getString(AppConst.tokenKey);
     return token != null && token.isNotEmpty;
@@ -87,5 +93,7 @@ class LocalStorage {
   Future<void> logout() async {
     _prefs.remove(AppConst.tokenKey);
     _prefs.remove(AppConst.userGidKey);
+    _prefs.remove(AppConst.userInfoKey);
+    _prefs.remove(AppConst.accountKey);
   }
 }

@@ -32,12 +32,10 @@ class Api {
   }
 
   /// [type] 验证码类型：1注册验证码；2修改登录密码；3修改交易密码；4借款验证码；5登录验证码
-  /// [mobileSn] 设备号
   /// [imageCode] 图形验证码
   static Future<bool> checkCaptchaCode({
     required String mobile,
     required int type,
-    required String? mobileSn,
     required String imageCode,
   }) {
     return _apiService.postSt(
@@ -45,7 +43,6 @@ class Api {
       body: CaptchaCheckReq(
         sordidOMobile: mobile,
         type: type,
-        ac0as4OMobileSn: mobileSn,
         xwkarvOImageCode: imageCode,
       ).toJson(),
     );
@@ -135,6 +132,14 @@ class Api {
         vkql27OReqChannel: FlutterPlatform.reqChannel,
       ).toJson(),
       convert: (json) => LoginResp.fromJson(json),
+    );
+  }
+
+  static Future<UserInfoResp> getUserBaseInfo() {
+    return _apiService.post(
+      ApiPath.getUserBaseInfo,
+      body: UserInfoReq().toJson(),
+      convert: (json) => UserInfoResp.fromJson(json),
     );
   }
 }
