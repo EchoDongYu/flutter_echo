@@ -22,10 +22,7 @@ class Api {
   }
 
   /// [type] 验证码类型：1注册验证码；2修改登录密码；3修改交易密码；4 借款验证码； 5换设备验证码；6 账户注销 ; 7 登录验证码
-  static Future<bool?> needCheckCaptcha({
-    required String? mobile,
-    required int? type,
-  }) async {
+  static Future<bool?> needCheckCaptcha({required String? mobile, required int? type}) async {
     return await _apiService.post(
       ApiPath.needCheckCaptcha,
       body: NeedCaptchaReq(sordidOMobile: mobile, type: type).toJson(),
@@ -154,9 +151,7 @@ class Api {
       convert: (json) => (json as Map<String, dynamic>).map((key, value) {
         return MapEntry<String, List<StepItem>?>(
           key,
-          (value as List<dynamic>?)
-              ?.map((it) => StepItem.fromJson(it))
-              .toList(),
+          (value as List<dynamic>?)?.map((it) => StepItem.fromJson(it)).toList(),
         );
       }),
     );
@@ -169,12 +164,8 @@ class Api {
     );
   }
 
-  static Future<SubmitDataResp> submitCreditData(SubmitDataReq data) {
-    return _apiService.post(
-      ApiPath.submitCreditData,
-      body: data.toJson(),
-      convert: (json) => SubmitDataResp.fromJson(json),
-    );
+  static Future<int> submitCreditData(SubmitDataReq data) {
+    return _apiService.post(ApiPath.submitCreditData, body: data.toJson());
   }
 
   static Future<HomeInfoResp> getHomeInfo() {

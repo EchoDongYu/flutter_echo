@@ -64,6 +64,8 @@ class LocalStorage {
 
   String? get userGid => _prefs.getString(AppConst.userGidKey);
 
+  String? get account => _prefs.getString(AppConst.accountKey);
+
   UserInfoResp? get userInfo {
     final userInfo = getObject(AppConst.userInfoKey);
     if (userInfo == null) return null;

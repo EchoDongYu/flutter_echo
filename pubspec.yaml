@@ -28,6 +28,7 @@ dependencies:
   flutter:
     sdk: flutter
 
+  intl: ^0.20.2
   json_annotation: ^4.9.0
   encrypt: ^5.0.3
   pointycastle: ^3.9.1

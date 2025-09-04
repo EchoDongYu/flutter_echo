@@ -4,6 +4,7 @@ import 'package:flutter_echo/models/common_model.dart';
 import 'package:flutter_echo/pages/app_router.dart';
 import 'package:flutter_echo/pages/login/captcha_dialog.dart';
 import 'package:flutter_echo/pages/login/retain_login_dialog.dart';
+import 'package:flutter_echo/pages/submit/pick_day_dialog.dart';
 import 'package:flutter_echo/pages/submit/pick_item_dialog.dart';
 import 'package:flutter_echo/services/storage_service.dart';
 import 'package:flutter_echo/ui/dialog_helper.dart';
@@ -543,7 +544,7 @@ class _DemoPageState extends State<DemoPage> {
   }
 
   void _showPickDayDialog(BuildContext context) async {
-    final result = await DialogHelper.showPickDayDialog(context: context);
+    final result = await PickDayDialog.show(context);
     if (context.mounted) {
       if (result != null) {
         context.showSuccessSnack('Confirm $result');

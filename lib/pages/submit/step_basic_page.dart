@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_echo/common/app_theme.dart';
+import 'package:flutter_echo/common/constants.dart';
 import 'package:flutter_echo/models/common_model.dart';
 import 'package:flutter_echo/providers/submit_provider.dart';
+import 'package:flutter_echo/services/storage_service.dart';
 import 'package:flutter_echo/ui/widget_helper.dart';
 import 'package:flutter_echo/ui/widgets/step_check_field.dart';
+import 'package:flutter_echo/ui/widgets/step_email_field.dart';
 import 'package:flutter_echo/ui/widgets/step_input_field.dart';
 import 'package:flutter_echo/ui/widgets/step_select_field.dart';
 import 'package:flutter_echo/ui/widgets/top_bar.dart';
@@ -31,6 +34,9 @@ class _StepBasicPageState extends State<StepBasicPage> {
     return null;
   }, growable: false);
   DateTime? _pickedDate;
+  String? _cuiError;
+  String? _emailError;
+  String? _phoneError; // 备用手机号
 
   SubmitModel get submitModel =>
       Provider.of<SubmitModel>(context, listen: false);
@@ -38,6 +44,10 @@ class _StepBasicPageState extends State<StepBasicPage> {
   @override
   void initState() {
     super.initState();
+    _controllers[0].addListener(() => _onInputChanged(2));
+    _controllers[1].addListener(() => _onInputChanged(3));
+    _controllers[2].addListener(() => _onInputChanged(4));
+    _controllers[4].addListener(() => _onInputChanged(6));
     WidgetsBinding.instance.addPostFrameCallback((_) async {
       final dict = await submitModel.getDictionary();
       setState(() => _stepItems = [dict?['0'], dict?['6']]);
@@ -52,6 +62,53 @@ class _StepBasicPageState extends State<StepBasicPage> {
     super.dispose();
   }
 
+  /// 输入变化监听
+  void _onInputChanged(int pos) {
+    if (_isErrors[pos] != false) setState(() => _isErrors[pos] = false);
+  }
+
+  void _submitData() async {
+    setState(() {
+      _cuiError = null;
+      _emailError = null;
+      _phoneError = null;
+      _isErrors[0] = _pickedItem[0] == null;
+      _isErrors[1] = _pickedDate == null;
+      _isErrors[2] = _controllers[0].text.isEmpty;
+      _isErrors[3] = _controllers[1].text.isEmpty;
+      _isErrors[4] = _controllers[2].text.isEmpty;
+      _isErrors[5] = false;
+      _isErrors[6] = _controllers[4].text.isEmpty;
+      _isErrors[7] = _pickedItem[1] == null;
+      if (_controllers[2].text.length != 13) {
+        _cuiError = 'Formato CUI incorrecto';
+        _isErrors[4] = true;
+      }
+      if (!AppConst.emailDomains.any((it) {
+        return _controllers[4].text.endsWith(it);
+      })) {
+        _emailError = 'Formatode correo electrónico incorrecto';
+        _isErrors[6] = true;
+      }
+      if (_controllers[3].text.length != 8 && _controllers[3].text.isNotEmpty) {
+        _phoneError =
+            'El formato del número de teléfono móvil alternativo es incorrecto';
+        _isErrors[5] = true;
+      } else if (_controllers[3].text == LocalStorage().account) {
+        _phoneError =
+            'El número de teléfono móvil alternativo no puede ser el mismo que el número de teléfono móvil registrado.';
+        _isErrors[5] = true;
+      }
+    });
+    if (!_isErrors.contains(true)) {
+      submitModel.submitBasicInfo(
+        inputs: _controllers.map((it) => it.text).toList(),
+        items: _pickedItem.map((it) => it?.key).toList(),
+        birthday: _pickedDate?.millisecond,
+      );
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -63,7 +120,7 @@ class _StepBasicPageState extends State<StepBasicPage> {
           SafeArea(
             child: Column(
               children: [
-                EchoTopBar(title: 'Informação Básica'),
+                EchoTopBar(title: 'Información básica'),
                 SizedBox(height: 16.h),
                 WidgetHelper.buildStepProgress(step: 1),
                 SizedBox(height: 16.h),
@@ -133,7 +190,7 @@ class _StepBasicPageState extends State<StepBasicPage> {
       ),
       bottomNavigationBar: WidgetHelper.buildBottomButton(
         text: 'Continuar',
-        onPressed: () {},
+        onPressed: _submitData,
       ),
     );
   }
@@ -153,38 +210,46 @@ class _StepBasicPageState extends State<StepBasicPage> {
         boxShadow: NowStyles.cardShadows,
       ),
       child: Column(
-        spacing: 12.h,
+        spacing: 16.h,
         children: [
           StepCheckField.pickItem(
             context,
             items: _stepItems?[0],
             pickedItem: _pickedItem[0],
-            onValueChange: (value) => setState(() => _pickedItem[0] = value),
+            onValueChange: (value) => setState(() {
+              _isErrors[0] = false;
+              _pickedItem[0] = value;
+            }),
             hintText: 'Género',
             isError: _isErrors[0],
+            errorText: 'Por favor seleccione la Género',
           ),
           StepSelectField.pickDate(
             context,
             pickedDate: _pickedDate,
-            onValueChange: (value) => setState(() => _pickedDate = value),
+            onValueChange: (value) => setState(() {
+              _isErrors[1] = false;
+              _pickedDate = value;
+            }),
             hintText: 'Fecha de Nacimiento',
             isError: _isErrors[1],
+            errorText: 'Por favor seleccione un fecha de nacimiento',
           ),
           StepInputField(
             controller: _controllers[0],
             hintText: 'Nombre(s)',
+            maxLength: 30,
             keyboardType: TextInputType.text,
-            textInputAction: TextInputAction.next,
-            inputFormatters: [FilteringTextInputFormatter.digitsOnly],
             isError: _isErrors[2],
+            errorText: 'Por favor introduzca un nombre',
           ),
           StepInputField(
             controller: _controllers[1],
             hintText: 'Apellidos',
+            maxLength: 30,
             keyboardType: TextInputType.text,
-            textInputAction: TextInputAction.next,
-            inputFormatters: [FilteringTextInputFormatter.digitsOnly],
             isError: _isErrors[3],
+            errorText: 'Por favor introduzca un Apellidos',
           ),
           StepInputField(
             controller: _controllers[2],
@@ -192,30 +257,34 @@ class _StepBasicPageState extends State<StepBasicPage> {
             maxLength: 13,
             showCounter: true,
             keyboardType: TextInputType.number,
-            textInputAction: TextInputAction.next,
             inputFormatters: [FilteringTextInputFormatter.digitsOnly],
             isError: _isErrors[4],
+            errorText: _cuiError ?? 'Por favor introduzca su CUI',
           ),
           StepInputField(
             controller: _controllers[3],
             hintText: 'Otro número de teléfono(opcional)',
-            keyboardType: TextInputType.text,
-            textInputAction: TextInputAction.next,
+            maxLength: 8,
+            keyboardType: TextInputType.number,
             inputFormatters: [FilteringTextInputFormatter.digitsOnly],
             isError: _isErrors[5],
+            errorText: _phoneError ?? 'Por favor introduzca',
           ),
-          StepInputField(
+          StepEmailField(
             controller: _controllers[4],
             hintText: 'Correo electrónico',
-            keyboardType: TextInputType.text,
-            inputFormatters: [FilteringTextInputFormatter.digitsOnly],
             isError: _isErrors[6],
+            errorText:
+                _emailError ?? 'Por favor introduzca su correo electrónico',
           ),
           StepSelectField.pickItem(
             context,
             items: _stepItems?[1],
             pickedItem: _pickedItem[1],
-            onValueChange: (value) => setState(() => _pickedItem[1] = value),
+            onValueChange: (value) => setState(() {
+              _isErrors[7] = false;
+              _pickedItem[1] = value;
+            }),
             hintText: 'Cuenta con algunos otros prestamos vigentes?',
             isError: _isErrors[7],
           ),

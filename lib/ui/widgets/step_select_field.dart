@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_echo/common/app_theme.dart';
 import 'package:flutter_echo/models/common_model.dart';
 import 'package:flutter_echo/pages/submit/pick_date_dialog.dart';
+import 'package:flutter_echo/pages/submit/pick_day_dialog.dart';
 import 'package:flutter_echo/pages/submit/pick_item_dialog.dart';
+import 'package:flutter_echo/utils/common_utils.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class StepSelectField extends StatefulWidget {
@@ -27,7 +29,7 @@ class StepSelectField extends StatefulWidget {
     required StepItem? pickedItem,
     required Function(StepItem) onValueChange,
     required String hintText,
-    String errorText = 'errorText-pickItem',
+    String errorText = 'Por favor seleccione',
     bool isError = false,
   }) => StepSelectField(
     value: pickedItem?.value,
@@ -49,12 +51,30 @@ class StepSelectField extends StatefulWidget {
     required DateTime? pickedDate,
     required Function(DateTime) onValueChange,
     required String hintText,
-    String errorText = 'errorText-pickDate',
+    String errorText = 'Por favor seleccione',
     bool isError = false,
   }) => StepSelectField(
-    value: pickedDate?.toString(),
+    value: pickedDate?.showFormat('dd/MM/yyyy') ?? '',
     onValueChange: () async {
       final result = await PickDateDialog.show(context);
+      if (result != null) onValueChange(result);
+    },
+    hintText: hintText,
+    errorText: errorText,
+    isError: isError,
+  );
+
+  factory StepSelectField.pickDay(
+    BuildContext context, {
+    required int? pickedDay,
+    required Function(int) onValueChange,
+    required String hintText,
+    String errorText = 'Por favor seleccione',
+    bool isError = false,
+  }) => StepSelectField(
+    value: pickedDay?.toString() ?? '',
+    onValueChange: () async {
+      final result = await PickDayDialog.show(context);
       if (result != null) onValueChange(result);
     },
     hintText: hintText,
@@ -77,51 +97,69 @@ class _StepSelectFieldState extends State<StepSelectField> {
 
   @override
   Widget build(BuildContext context) {
-    return InkWell(
-      onTap: () async {
-        _onFocusChanged(true);
-        await widget.onValueChange();
-        _onFocusChanged(false);
-      },
-      borderRadius: const BorderRadius.all(Radius.circular(12)),
-      child: Container(
-        width: double.infinity,
-        constraints: BoxConstraints(minHeight: 60.h),
-        padding: EdgeInsets.only(left: 12.w, right: 4.w),
-        decoration: BoxDecoration(
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        InkWell(
+          onTap: () async {
+            _onFocusChanged(true);
+            await widget.onValueChange();
+            _onFocusChanged(false);
+          },
           borderRadius: const BorderRadius.all(Radius.circular(12)),
-          border: Border.all(
-            color: widget.isError
-                ? NowColors.c0xFFFB4F34
-                : _isChoosing
-                ? NowColors.c0xFF3288F1
-                : NowColors.c0xFFD8D8D8,
-            width: 1,
+          child: Container(
+            width: double.infinity,
+            constraints: BoxConstraints(minHeight: 60.h),
+            padding: EdgeInsets.only(left: 12.w, right: 4.w),
+            decoration: BoxDecoration(
+              borderRadius: const BorderRadius.all(Radius.circular(12)),
+              border: Border.all(
+                color: _isChoosing
+                    ? NowColors.c0xFF3288F1
+                    : widget.isError
+                    ? NowColors.c0xFFFB4F34
+                    : NowColors.c0xFFD8D8D8,
+                width: 1,
+              ),
+            ),
+            child: Row(
+              children: [
+                Expanded(
+                  child: widget.value != null
+                      ? _buildFieldValue()
+                      : Text(
+                          widget.hintText,
+                          style: TextStyle(
+                            fontSize: 16.sp,
+                            fontWeight: FontWeight.w400,
+                            color: NowColors.c0xFF77797B,
+                            height: 24 / 16,
+                          ),
+                        ),
+                ),
+                Icon(
+                  Icons.arrow_right_rounded,
+                  color: NowColors.c0xFFB0B1B2,
+                  size: 36,
+                ),
+              ],
+            ),
           ),
         ),
-        child: Row(
-          children: [
-            Expanded(
-              child: widget.value != null
-                  ? _buildFieldValue()
-                  : Text(
-                      widget.hintText,
-                      style: TextStyle(
-                        fontSize: 16.sp,
-                        fontWeight: FontWeight.w400,
-                        color: NowColors.c0xFF77797B,
-                        height: 24 / 16,
-                      ),
-                    ),
+        if (widget.isError)
+          Padding(
+            padding: EdgeInsets.symmetric(horizontal: 10.w, vertical: 6.h),
+            child: Text(
+              widget.errorText,
+              style: TextStyle(
+                fontSize: 12.sp,
+                fontWeight: FontWeight.w400,
+                color: NowColors.c0xFFFB4F34,
+                height: 16 / 12,
+              ),
             ),
-            Icon(
-              Icons.arrow_right_rounded,
-              color: NowColors.c0xFFB0B1B2,
-              size: 36,
-            ),
-          ],
-        ),
-      ),
+          ),
+      ],
     );
   }
 

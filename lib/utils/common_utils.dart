@@ -4,6 +4,7 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_echo/common/constants.dart';
+import 'package:intl/intl.dart';
 
 void debugLog(String message, {Object? error, StackTrace? stackTrace}) {
   if (!AppConst.production) {
@@ -36,4 +37,8 @@ class FlutterPlatform {
     'ios' => '1',
     _ => '-1',
   };
+}
+
+extension DateTimeFormat on DateTime {
+  String showFormat(String newPattern) => DateFormat(newPattern).format(this);
 }

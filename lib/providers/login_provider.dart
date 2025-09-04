@@ -59,10 +59,7 @@ class LoginModel extends BaseProvider {
   Future<bool?> sendVerifyCode() async {
     if (_countdown > 0) return true;
     return await launchRequest(() async {
-      final need = await Api.needCheckCaptcha(
-        mobile: _phoneNumber,
-        type: _codeType,
-      );
+      final need = await Api.needCheckCaptcha(mobile: _phoneNumber, type: _codeType);
       if (need == true) {
         throw ApiResponse.needCaptchaError();
       } else {
@@ -130,9 +127,7 @@ class LoginModel extends BaseProvider {
 
   void userLogin(String password, {String? confirmPassword}) async {
     if (confirmPassword != null && password != confirmPassword) {
-      Fluttertoast.showToast(
-        msg: 'password $password confirmPassword $confirmPassword',
-      );
+      Fluttertoast.showToast(msg: 'password $password confirmPassword $confirmPassword');
       return;
     }
     _password = password;

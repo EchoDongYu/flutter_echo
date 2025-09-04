@@ -27,8 +27,21 @@ class AppConst {
       ? 'MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCUNOcnExGUXzbT0ZYw9wNOsCSxT6dpgW0qiWD4v4bTWC9h9+RWzzZxaZNLLS6aSM4uPKWYHRy/swDsikWBondq7bQZhr/rTlX7DeICli3eKUPNcEh6xhpffyy+rksCsxDIQAzRMevXqXpRP6Y2GGGw3H8FOjQXHH6lG/Uo1ozPDwIDAQAB'
       : 'MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQC+tVyzd+zg14CgVSQ95MMjHnQB6rfgAyMNJJxM5IIOLoNgjX4VCaDUcX1MMhAQkBaZ2iupIh8i1KOcjOGyzu7chsDP+bZqDjtsbBf4LID7HdNnRZU5tXsQ+2SmkSxIaDc88/C1Zn7mV14GDqdj2ePQ+YQcfUEIB+xiWRxAJopgQwIDAQAB';
 
-  static const String apiKey =
-      '-----BEGIN PUBLIC KEY-----\n$_rsaKey\n-----END PUBLIC KEY-----';
+  static const String apiKey = '-----BEGIN PUBLIC KEY-----\n$_rsaKey\n-----END PUBLIC KEY-----';
+
+  /// 常用邮箱
+  static const List<String> emailDomains = [
+    'gmail.com',
+    'hotmail.com',
+    'outlook.com',
+    'yahoo.com',
+    'live.com.mx',
+    'yahoo.com.mx',
+    'outlook.es',
+    'live.com',
+    'hotmail.es',
+    'msn.com',
+  ];
 
   // 本地存储键名
   static const String deviceIdKey = 'device_id';

@@ -5,7 +5,6 @@ import 'package:flutter_echo/pages/login/device_verify_dialog.dart';
 import 'package:flutter_echo/pages/submit/confirm_step_dialog.dart';
 import 'package:flutter_echo/pages/submit/dpi_number_dialog.dart';
 import 'package:flutter_echo/pages/submit/pick_date_dialog.dart';
-import 'package:flutter_echo/pages/submit/pick_day_dialog.dart';
 import 'package:flutter_echo/pages/submit/step_bank_dialog.dart';
 import 'package:flutter_echo/pages/user/removed_dialog.dart';
 import 'package:flutter_echo/ui/dialogs/compensation_dialog.dart';
@@ -108,20 +107,6 @@ class DialogHelper {
         items: items,
         onConfirm: () => context.pop(true),
         onClosing: () => context.pop(false),
-      ),
-    );
-  }
-
-  /// 显示认证项选择日弹窗
-  static Future<int?> showPickDayDialog({required BuildContext context}) {
-    return showModalBottomSheet<int>(
-      context: context,
-      enableDrag: false,
-      isDismissible: false,
-      isScrollControlled: true,
-      builder: (context) => PickDayDialog(
-        onConfirm: (value) => context.pop(value),
-        onClosing: () => context.pop(),
       ),
     );
   }
