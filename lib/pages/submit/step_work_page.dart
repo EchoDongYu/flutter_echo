@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_echo/common/app_theme.dart';
+import 'package:flutter_echo/models/common_model.dart';
 import 'package:flutter_echo/ui/widget_helper.dart';
 import 'package:flutter_echo/ui/widgets/step_input_field.dart';
 import 'package:flutter_echo/ui/widgets/step_select_field.dart';
@@ -15,6 +16,17 @@ class StepWorkPage extends StatefulWidget {
 }
 
 class _StepWorkPageState extends State<StepWorkPage> {
+  final List<bool> _isErrors = List.generate(8, (index) {
+    return false;
+  }, growable: false);
+  final _controllers = List.generate(5, (index) {
+    return TextEditingController();
+  }, growable: false);
+  List<List<StepItem>?>? _stepItems;
+  final List<StepItem?> _pickedItem = List.generate(2, (index) {
+    return null;
+  }, growable: false);
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -105,9 +117,6 @@ class _StepWorkPageState extends State<StepWorkPage> {
     );
   }
 
-  final TextEditingController _controller = TextEditingController();
-  String? _selectValue;
-
   /// 构建表单区域1
   Widget _buildFormArea1() {
     return Container(
@@ -125,34 +134,28 @@ class _StepWorkPageState extends State<StepWorkPage> {
       child: Column(
         spacing: 12.h,
         children: [
-          StepSelectField(
-            onSelect: () {
-              setState(() {
-                _selectValue = 'value';
-              });
-            },
+          StepSelectField.pickItem(
+            context,
+            items: _stepItems?[0],
+            pickedItem: _pickedItem[0],
+            onValueChange: (value) => setState(() => _pickedItem[0] = value),
             hintText: 'Estado civil',
-            value: _selectValue,
-            isError: false,
+            isError: _isErrors[0],
           ),
-          StepSelectField(
-            onSelect: () {
-              setState(() {
-                _selectValue = 'value';
-              });
-            },
+          StepSelectField.pickItem(
+            context,
+            items: _stepItems?[0],
+            pickedItem: _pickedItem[0],
+            onValueChange: (value) => setState(() => _pickedItem[0] = value),
             hintText: 'Gastos por mes de tu hogar',
-            value: _selectValue,
             isError: false,
           ),
-          StepSelectField(
-            onSelect: () {
-              setState(() {
-                _selectValue = 'value';
-              });
-            },
+          StepSelectField.pickItem(
+            context,
+            items: _stepItems?[0],
+            pickedItem: _pickedItem[0],
+            onValueChange: (value) => setState(() => _pickedItem[0] = value),
             hintText: 'Estado de vivienda',
-            value: _selectValue,
             isError: false,
           ),
         ],
@@ -174,38 +177,32 @@ class _StepWorkPageState extends State<StepWorkPage> {
       child: Column(
         spacing: 12.h,
         children: [
-          StepSelectField(
-            onSelect: () {
-              setState(() {
-                _selectValue = 'value';
-              });
-            },
+          StepSelectField.pickItem(
+            context,
+            items: _stepItems?[0],
+            pickedItem: _pickedItem[0],
+            onValueChange: (value) => setState(() => _pickedItem[0] = value),
             hintText: 'Región',
-            value: _selectValue,
             isError: false,
           ),
-          StepSelectField(
-            onSelect: () {
-              setState(() {
-                _selectValue = 'value';
-              });
-            },
+          StepSelectField.pickItem(
+            context,
+            items: _stepItems?[0],
+            pickedItem: _pickedItem[0],
+            onValueChange: (value) => setState(() => _pickedItem[0] = value),
             hintText: 'Departamento',
-            value: _selectValue,
             isError: false,
           ),
-          StepSelectField(
-            onSelect: () {
-              setState(() {
-                _selectValue = 'value';
-              });
-            },
+          StepSelectField.pickItem(
+            context,
+            items: _stepItems?[0],
+            pickedItem: _pickedItem[0],
+            onValueChange: (value) => setState(() => _pickedItem[0] = value),
             hintText: 'Municipio',
-            value: _selectValue,
             isError: false,
           ),
           StepInputField(
-            controller: _controller,
+            controller: _controllers[0],
             hintText: 'Dirección',
             keyboardType: TextInputType.text,
           ),
@@ -228,34 +225,28 @@ class _StepWorkPageState extends State<StepWorkPage> {
       child: Column(
         spacing: 12.h,
         children: [
-          StepSelectField(
-            onSelect: () {
-              setState(() {
-                _selectValue = 'value';
-              });
-            },
+          StepSelectField.pickItem(
+            context,
+            items: _stepItems?[0],
+            pickedItem: _pickedItem[0],
+            onValueChange: (value) => setState(() => _pickedItem[0] = value),
             hintText: 'Nivel de estudios',
-            value: _selectValue,
             isError: false,
           ),
-          StepSelectField(
-            onSelect: () {
-              setState(() {
-                _selectValue = 'value';
-              });
-            },
+          StepSelectField.pickItem(
+            context,
+            items: _stepItems?[0],
+            pickedItem: _pickedItem[0],
+            onValueChange: (value) => setState(() => _pickedItem[0] = value),
             hintText: 'Profesión actual',
-            value: _selectValue,
             isError: false,
           ),
-          StepSelectField(
-            onSelect: () {
-              setState(() {
-                _selectValue = 'value';
-              });
-            },
+          StepSelectField.pickItem(
+            context,
+            items: _stepItems?[0],
+            pickedItem: _pickedItem[0],
+            onValueChange: (value) => setState(() => _pickedItem[0] = value),
             hintText: 'Antiguedad en tu trabajo actual',
-            value: _selectValue,
             isError: false,
           ),
         ],

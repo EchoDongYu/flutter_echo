@@ -144,6 +144,39 @@ class Api {
     );
   }
 
+  /// 字典分类(多个使用逗号分割) :0 性别 1 学历 2 收入 3 婚姻状况 4 工作状况（职业） 5 住房状态 6 其他贷款
+  /// 7 工作年限 8 发薪周期 9 城市列表 10 联系人-关系 11 电费账单 12 每月家庭支出 13 借款目的 14 意见反馈
+  /// 17 whatsapp 18 客服邮箱 21 客服热线 22 账户类型 23 公司官网 24 公司地址 25 注销挽留 26 银行直连线下还款银行字典
+  static Future<Map<String, List<StepItem>?>> getDictionary(String types) {
+    return _apiService.post(
+      ApiPath.getDictionary,
+      body: {'types': types},
+      convert: (json) => (json as Map<String, dynamic>).map((key, value) {
+        return MapEntry<String, List<StepItem>?>(
+          key,
+          (value as List<dynamic>?)
+              ?.map((it) => StepItem.fromJson(it))
+              .toList(),
+        );
+      }),
+    );
+  }
+
+  static Future<bool> checkSubmitValid({String? email, String? id}) {
+    return _apiService.postSt(
+      ApiPath.checkSubmitValid,
+      body: SubmitCheckReq(f31u3kOEmail: email, merdekaOIdCard: id).toJson(),
+    );
+  }
+
+  static Future<SubmitDataResp> submitCreditData(SubmitDataReq data) {
+    return _apiService.post(
+      ApiPath.submitCreditData,
+      body: data.toJson(),
+      convert: (json) => SubmitDataResp.fromJson(json),
+    );
+  }
+
   static Future<HomeInfoResp> getHomeInfo() {
     return _apiService.post(
       ApiPath.getHomeInfo,
@@ -152,18 +185,11 @@ class Api {
     );
   }
 
-  /// 字典分类(多个使用逗号分割) :0 性别 1 学历 2 收入 3 婚姻状况 4 工作状况（职业） 5 住房状态 6 其他贷款
-  /// 7 工作年限 8 发薪周期 9 城市列表 10 联系人-关系 11 电费账单 12 每月家庭支出 13 借款目的 14 意见反馈
-  /// 17 whatsapp 18 客服邮箱 21 客服热线 22 账户类型 23 公司官网 24 公司地址 25 注销挽留 26 银行直连线下还款银行字典
-  static Future<Map<String, List<StepItem>>> getDictionary(String types) {
-    return _apiService.post(ApiPath.queryDictionary, body: {'types': types});
-  }
-
-  static Future<SubmitDataResp> submitCreditData(SubmitDataReq data) {
+  static Future<LoanConfirmResp> confirmLoan(SubmitDataReq data) {
     return _apiService.post(
-      ApiPath.submitCreditData,
-      body: data.toJson(),
-      convert: (json) => SubmitDataResp.fromJson(json),
+      ApiPath.confirmLoan,
+      body: LoanConfirmReq().toJson(),
+      convert: (json) => LoanConfirmResp.fromJson(json),
     );
   }
 }

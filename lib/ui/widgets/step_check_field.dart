@@ -1,22 +1,45 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_echo/common/app_theme.dart';
+import 'package:flutter_echo/models/common_model.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class StepCheckField extends StatelessWidget {
-  final Function(int) onCheck;
-  final String hintText;
+  final String? value;
   final List<String> items;
-  final int? value;
+  final Function(String) onValueChange;
+  final String hintText;
+  final String errorText;
   final bool isError;
 
   const StepCheckField({
     super.key,
-    required this.onCheck,
-    required this.hintText,
-    required this.items,
     required this.value,
+    required this.items,
+    required this.onValueChange,
+    required this.hintText,
+    required this.errorText,
     required this.isError,
   });
+
+  factory StepCheckField.pickItem(
+    BuildContext context, {
+    required List<StepItem>? items,
+    required StepItem? pickedItem,
+    required Function(StepItem) onValueChange,
+    required String hintText,
+    String errorText = 'errorText-pickItem',
+    bool isError = false,
+  }) => StepCheckField(
+    value: pickedItem?.value,
+    onValueChange: (value) async {
+      final result = items?.firstWhere((it) => it.value == value);
+      if (result != null) onValueChange(result);
+    },
+    items: items?.reversed.map((it) => it.value).toList() ?? List.empty(),
+    hintText: hintText,
+    errorText: errorText,
+    isError: isError,
+  );
 
   @override
   Widget build(BuildContext context) {
@@ -52,7 +75,7 @@ class StepCheckField extends StatelessWidget {
                 reverse: true,
                 separatorBuilder: (context, index) => SizedBox(width: 12.w),
                 itemBuilder: (context, index) {
-                  final bool selected = index == value;
+                  final bool selected = items[index] == value;
                   return RawChip(
                     label: Text(
                       items[index],
@@ -64,7 +87,7 @@ class StepCheckField extends StatelessWidget {
                     ),
                     selected: selected,
                     onSelected: (value) {
-                      if (value) onCheck(index);
+                      if (value) onValueChange(items[index]);
                     },
                     showCheckmark: false,
                     backgroundColor: Colors.white,

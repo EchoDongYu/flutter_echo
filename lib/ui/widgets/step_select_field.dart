@@ -1,36 +1,64 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_echo/common/app_theme.dart';
 import 'package:flutter_echo/models/common_model.dart';
+import 'package:flutter_echo/pages/submit/pick_date_dialog.dart';
 import 'package:flutter_echo/pages/submit/pick_item_dialog.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class StepSelectField extends StatefulWidget {
-  final Function() onSelect;
-  final String hintText;
+  final Future Function() onValueChange;
   final String? value;
+  final String hintText;
+  final String errorText;
   final bool isError;
 
   const StepSelectField({
     super.key,
-    required this.onSelect,
-    required this.hintText,
+    required this.onValueChange,
     required this.value,
+    required this.hintText,
+    required this.errorText,
     required this.isError,
   });
 
-  factory StepSelectField.pickItem({
-    required BuildContext context,
-    required List<StepItem> items,
-    required String hintText,
+  factory StepSelectField.pickItem(
+    BuildContext context, {
+    required List<StepItem>? items,
     required StepItem? pickedItem,
-    required bool isError,
+    required Function(StepItem) onValueChange,
+    required String hintText,
+    String errorText = 'errorText-pickItem',
+    bool isError = false,
   }) => StepSelectField(
-    onSelect: () async {
-      final item = await PickItemDialog.show(context: context, items: items);
-      if (item != null) pickedItem = item;
+    value: pickedItem?.value,
+    onValueChange: () async {
+      final result = await PickItemDialog.show(
+        context,
+        items: items,
+        pickedItem: pickedItem,
+      );
+      if (result != null) onValueChange(result);
     },
     hintText: hintText,
-    value: pickedItem?.value,
+    errorText: errorText,
+    isError: isError,
+  );
+
+  factory StepSelectField.pickDate(
+    BuildContext context, {
+    required DateTime? pickedDate,
+    required Function(DateTime) onValueChange,
+    required String hintText,
+    String errorText = 'errorText-pickDate',
+    bool isError = false,
+  }) => StepSelectField(
+    value: pickedDate?.toString(),
+    onValueChange: () async {
+      final result = await PickDateDialog.show(context);
+      if (result != null) onValueChange(result);
+    },
+    hintText: hintText,
+    errorText: errorText,
     isError: isError,
   );
 
@@ -43,9 +71,7 @@ class _StepSelectFieldState extends State<StepSelectField> {
 
   void _onFocusChanged(bool value) {
     if (_isChoosing != value) {
-      setState(() {
-        _isChoosing = value;
-      });
+      setState(() => _isChoosing = value);
     }
   }
 
@@ -54,7 +80,7 @@ class _StepSelectFieldState extends State<StepSelectField> {
     return InkWell(
       onTap: () async {
         _onFocusChanged(true);
-        //await DialogHelper.showPickItemDialog(context: context);
+        await widget.onValueChange();
         _onFocusChanged(false);
       },
       borderRadius: const BorderRadius.all(Radius.circular(12)),

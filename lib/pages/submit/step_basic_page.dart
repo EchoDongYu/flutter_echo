@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_echo/common/app_theme.dart';
+import 'package:flutter_echo/models/common_model.dart';
 import 'package:flutter_echo/providers/submit_provider.dart';
 import 'package:flutter_echo/ui/widget_helper.dart';
 import 'package:flutter_echo/ui/widgets/step_check_field.dart';
@@ -19,8 +20,17 @@ class StepBasicPage extends StatefulWidget {
 }
 
 class _StepBasicPageState extends State<StepBasicPage> {
-  final TextEditingController _controller = TextEditingController();
-  final FocusNode _focusNode = FocusNode();
+  final List<bool> _isErrors = List.generate(8, (index) {
+    return false;
+  }, growable: false);
+  final _controllers = List.generate(5, (index) {
+    return TextEditingController();
+  }, growable: false);
+  List<List<StepItem>?>? _stepItems;
+  final List<StepItem?> _pickedItem = List.generate(2, (index) {
+    return null;
+  }, growable: false);
+  DateTime? _pickedDate;
 
   SubmitModel get submitModel =>
       Provider.of<SubmitModel>(context, listen: false);
@@ -29,14 +39,16 @@ class _StepBasicPageState extends State<StepBasicPage> {
   void initState() {
     super.initState();
     WidgetsBinding.instance.addPostFrameCallback((_) async {
-      await submitModel.getDictionary();
+      final dict = await submitModel.getDictionary();
+      setState(() => _stepItems = [dict?['0'], dict?['6']]);
     });
   }
 
   @override
   void dispose() {
-    _controller.dispose();
-    _focusNode.dispose();
+    for (var controller in _controllers) {
+      controller.dispose();
+    }
     super.dispose();
   }
 
@@ -108,7 +120,7 @@ class _StepBasicPageState extends State<StepBasicPage> {
                             ),
                           ),
                         ),
-                        _buildFormArea(),
+                        _buildFormArea(context),
                         SizedBox(height: 20.h),
                       ],
                     ),
@@ -126,11 +138,8 @@ class _StepBasicPageState extends State<StepBasicPage> {
     );
   }
 
-  int? _checkValue;
-  String? _selectValue;
-
   /// 构建表单区域
-  Widget _buildFormArea() {
+  Widget _buildFormArea(BuildContext context) {
     return Container(
       width: double.infinity,
       margin: EdgeInsets.symmetric(horizontal: 12.w),
@@ -146,72 +155,69 @@ class _StepBasicPageState extends State<StepBasicPage> {
       child: Column(
         spacing: 12.h,
         children: [
-          StepCheckField(
-            onCheck: (value) {
-              setState(() {
-                _checkValue = value;
-              });
-            },
+          StepCheckField.pickItem(
+            context,
+            items: _stepItems?[0],
+            pickedItem: _pickedItem[0],
+            onValueChange: (value) => setState(() => _pickedItem[0] = value),
             hintText: 'Género',
-            items: ['Masculino', 'Femenino'].reversed.toList(),
-            value: _checkValue,
-            isError: false,
+            isError: _isErrors[0],
           ),
-          StepSelectField(
-            onSelect: () {
-              setState(() {
-                _selectValue = 'value';
-              });
-            },
+          StepSelectField.pickDate(
+            context,
+            pickedDate: _pickedDate,
+            onValueChange: (value) => setState(() => _pickedDate = value),
             hintText: 'Fecha de Nacimiento',
-            value: _selectValue,
-            isError: false,
+            isError: _isErrors[1],
           ),
           StepInputField(
-            controller: _controller,
+            controller: _controllers[0],
             hintText: 'Nombre(s)',
             keyboardType: TextInputType.text,
             textInputAction: TextInputAction.next,
             inputFormatters: [FilteringTextInputFormatter.digitsOnly],
+            isError: _isErrors[2],
           ),
           StepInputField(
-            controller: _controller,
+            controller: _controllers[1],
             hintText: 'Apellidos',
             keyboardType: TextInputType.text,
             textInputAction: TextInputAction.next,
             inputFormatters: [FilteringTextInputFormatter.digitsOnly],
+            isError: _isErrors[3],
           ),
           StepInputField(
-            controller: _controller,
+            controller: _controllers[2],
             hintText: 'CUI',
             maxLength: 13,
             showCounter: true,
             keyboardType: TextInputType.number,
             textInputAction: TextInputAction.next,
             inputFormatters: [FilteringTextInputFormatter.digitsOnly],
+            isError: _isErrors[4],
           ),
           StepInputField(
-            controller: _controller,
+            controller: _controllers[3],
             hintText: 'Otro número de teléfono(opcional)',
             keyboardType: TextInputType.text,
             textInputAction: TextInputAction.next,
             inputFormatters: [FilteringTextInputFormatter.digitsOnly],
+            isError: _isErrors[5],
           ),
           StepInputField(
-            controller: _controller,
+            controller: _controllers[4],
             hintText: 'Correo electrónico',
             keyboardType: TextInputType.text,
             inputFormatters: [FilteringTextInputFormatter.digitsOnly],
+            isError: _isErrors[6],
           ),
-          StepSelectField(
-            onSelect: () {
-              setState(() {
-                _selectValue = 'value';
-              });
-            },
+          StepSelectField.pickItem(
+            context,
+            items: _stepItems?[1],
+            pickedItem: _pickedItem[1],
+            onValueChange: (value) => setState(() => _pickedItem[1] = value),
             hintText: 'Cuenta con algunos otros prestamos vigentes?',
-            value: _selectValue,
-            isError: false,
+            isError: _isErrors[7],
           ),
         ],
       ),

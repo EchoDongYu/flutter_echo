@@ -5316,24 +5316,24 @@ extension $LoanNoticeReqExtension on LoanNoticeReq {
 }
 
 @JsonSerializable(explicitToJson: true)
-class CheckSubmitReq {
-  const CheckSubmitReq({this.raiaOUserGid});
+class SubmitResultReq {
+  const SubmitResultReq({this.raiaOUserGid});
 
   @JsonKey(name: 'raia')
   final String? raiaOUserGid;
 
-  factory CheckSubmitReq.fromJson(Map<String, dynamic> json) =>
-      _$CheckSubmitReqFromJson(json);
+  factory SubmitResultReq.fromJson(Map<String, dynamic> json) =>
+      _$SubmitResultReqFromJson(json);
 
-  Map<String, dynamic> toJson() => _$CheckSubmitReqToJson(this);
+  Map<String, dynamic> toJson() => _$SubmitResultReqToJson(this);
 
-  static const fromJsonFactory = _$CheckSubmitReqFromJson;
-  static const toJsonFactory = _$CheckSubmitReqToJson;
+  static const fromJsonFactory = _$SubmitResultReqFromJson;
+  static const toJsonFactory = _$SubmitResultReqToJson;
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
-        (other is CheckSubmitReq &&
+        (other is SubmitResultReq &&
             (identical(other.raiaOUserGid, raiaOUserGid) ||
                 const DeepCollectionEquality().equals(
                   other.raiaOUserGid,
@@ -5349,13 +5349,13 @@ class CheckSubmitReq {
       const DeepCollectionEquality().hash(raiaOUserGid) ^ runtimeType.hashCode;
 }
 
-extension $CheckSubmitReqExtension on CheckSubmitReq {
-  CheckSubmitReq copyWith({String? raiaOUserGid}) {
-    return CheckSubmitReq(raiaOUserGid: raiaOUserGid ?? this.raiaOUserGid);
+extension $SubmitResultReqExtension on SubmitResultReq {
+  SubmitResultReq copyWith({String? raiaOUserGid}) {
+    return SubmitResultReq(raiaOUserGid: raiaOUserGid ?? this.raiaOUserGid);
   }
 
-  CheckSubmitReq copyWithWrapped({Wrapped<String?>? raiaOUserGid}) {
-    return CheckSubmitReq(
+  SubmitResultReq copyWithWrapped({Wrapped<String?>? raiaOUserGid}) {
+    return SubmitResultReq(
       raiaOUserGid: (raiaOUserGid != null
           ? raiaOUserGid.value
           : this.raiaOUserGid),
@@ -6333,8 +6333,8 @@ extension $SubmitDataReqExtension on SubmitDataReq {
 }
 
 @JsonSerializable(explicitToJson: true)
-class EmailCheckReq {
-  const EmailCheckReq({
+class SubmitCheckReq {
+  const SubmitCheckReq({
     this.raiaOUserGid,
     this.f31u3kOEmail,
     this.merdekaOIdCard,
@@ -6347,18 +6347,18 @@ class EmailCheckReq {
   @JsonKey(name: 'merdeka')
   final String? merdekaOIdCard;
 
-  factory EmailCheckReq.fromJson(Map<String, dynamic> json) =>
-      _$EmailCheckReqFromJson(json);
+  factory SubmitCheckReq.fromJson(Map<String, dynamic> json) =>
+      _$SubmitCheckReqFromJson(json);
 
-  Map<String, dynamic> toJson() => _$EmailCheckReqToJson(this);
+  Map<String, dynamic> toJson() => _$SubmitCheckReqToJson(this);
 
-  static const fromJsonFactory = _$EmailCheckReqFromJson;
-  static const toJsonFactory = _$EmailCheckReqToJson;
+  static const fromJsonFactory = _$SubmitCheckReqFromJson;
+  static const toJsonFactory = _$SubmitCheckReqToJson;
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
-        (other is EmailCheckReq &&
+        (other is SubmitCheckReq &&
             (identical(other.raiaOUserGid, raiaOUserGid) ||
                 const DeepCollectionEquality().equals(
                   other.raiaOUserGid,
@@ -6387,25 +6387,25 @@ class EmailCheckReq {
       runtimeType.hashCode;
 }
 
-extension $EmailCheckReqExtension on EmailCheckReq {
-  EmailCheckReq copyWith({
+extension $SubmitCheckReqExtension on SubmitCheckReq {
+  SubmitCheckReq copyWith({
     String? raiaOUserGid,
     String? f31u3kOEmail,
     String? merdekaOIdCard,
   }) {
-    return EmailCheckReq(
+    return SubmitCheckReq(
       raiaOUserGid: raiaOUserGid ?? this.raiaOUserGid,
       f31u3kOEmail: f31u3kOEmail ?? this.f31u3kOEmail,
       merdekaOIdCard: merdekaOIdCard ?? this.merdekaOIdCard,
     );
   }
 
-  EmailCheckReq copyWithWrapped({
+  SubmitCheckReq copyWithWrapped({
     Wrapped<String?>? raiaOUserGid,
     Wrapped<String?>? f31u3kOEmail,
     Wrapped<String?>? merdekaOIdCard,
   }) {
-    return EmailCheckReq(
+    return SubmitCheckReq(
       raiaOUserGid: (raiaOUserGid != null
           ? raiaOUserGid.value
           : this.raiaOUserGid),
@@ -14783,8 +14783,8 @@ extension $LoanNoticeRespExtension on LoanNoticeResp {
 }
 
 @JsonSerializable(explicitToJson: true)
-class CheckSubmitResp {
-  const CheckSubmitResp({
+class SubmitResultResp {
+  const SubmitResultResp({
     this.raiaOUserGid,
     this.bopomofoOCreditStatus,
     this.rnpu7fOCreditLine,
@@ -14803,18 +14803,18 @@ class CheckSubmitResp {
   @JsonKey(name: 'foreyard')
   final int? foreyardOProductId;
 
-  factory CheckSubmitResp.fromJson(Map<String, dynamic> json) =>
-      _$CheckSubmitRespFromJson(json);
+  factory SubmitResultResp.fromJson(Map<String, dynamic> json) =>
+      _$SubmitResultRespFromJson(json);
 
-  Map<String, dynamic> toJson() => _$CheckSubmitRespToJson(this);
+  Map<String, dynamic> toJson() => _$SubmitResultRespToJson(this);
 
-  static const fromJsonFactory = _$CheckSubmitRespFromJson;
-  static const toJsonFactory = _$CheckSubmitRespToJson;
+  static const fromJsonFactory = _$SubmitResultRespFromJson;
+  static const toJsonFactory = _$SubmitResultRespToJson;
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
-        (other is CheckSubmitResp &&
+        (other is SubmitResultResp &&
             (identical(other.raiaOUserGid, raiaOUserGid) ||
                 const DeepCollectionEquality().equals(
                   other.raiaOUserGid,
@@ -14855,15 +14855,15 @@ class CheckSubmitResp {
       runtimeType.hashCode;
 }
 
-extension $CheckSubmitRespExtension on CheckSubmitResp {
-  CheckSubmitResp copyWith({
+extension $SubmitResultRespExtension on SubmitResultResp {
+  SubmitResultResp copyWith({
     String? raiaOUserGid,
     int? bopomofoOCreditStatus,
     double? rnpu7fOCreditLine,
     double? nookieOCanBorrowAmount,
     int? foreyardOProductId,
   }) {
-    return CheckSubmitResp(
+    return SubmitResultResp(
       raiaOUserGid: raiaOUserGid ?? this.raiaOUserGid,
       bopomofoOCreditStatus:
           bopomofoOCreditStatus ?? this.bopomofoOCreditStatus,
@@ -14874,14 +14874,14 @@ extension $CheckSubmitRespExtension on CheckSubmitResp {
     );
   }
 
-  CheckSubmitResp copyWithWrapped({
+  SubmitResultResp copyWithWrapped({
     Wrapped<String?>? raiaOUserGid,
     Wrapped<int?>? bopomofoOCreditStatus,
     Wrapped<double?>? rnpu7fOCreditLine,
     Wrapped<double?>? nookieOCanBorrowAmount,
     Wrapped<int?>? foreyardOProductId,
   }) {
-    return CheckSubmitResp(
+    return SubmitResultResp(
       raiaOUserGid: (raiaOUserGid != null
           ? raiaOUserGid.value
           : this.raiaOUserGid),
@@ -15323,8 +15323,8 @@ extension $SubmitDataRespExtension on SubmitDataResp {
 }
 
 @JsonSerializable(explicitToJson: true)
-class EmailCheckResp {
-  const EmailCheckResp({
+class SubmitCheckResp {
+  const SubmitCheckResp({
     this.code,
     this.msg,
     this.antiicerOMsgType,
@@ -15349,18 +15349,18 @@ class EmailCheckResp {
   @JsonKey(name: 'i9145g')
   final String? i9145gOMsgBtn02;
 
-  factory EmailCheckResp.fromJson(Map<String, dynamic> json) =>
-      _$EmailCheckRespFromJson(json);
+  factory SubmitCheckResp.fromJson(Map<String, dynamic> json) =>
+      _$SubmitCheckRespFromJson(json);
 
-  Map<String, dynamic> toJson() => _$EmailCheckRespToJson(this);
+  Map<String, dynamic> toJson() => _$SubmitCheckRespToJson(this);
 
-  static const fromJsonFactory = _$EmailCheckRespFromJson;
-  static const toJsonFactory = _$EmailCheckRespToJson;
+  static const fromJsonFactory = _$SubmitCheckRespFromJson;
+  static const toJsonFactory = _$SubmitCheckRespToJson;
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
-        (other is EmailCheckResp &&
+        (other is SubmitCheckResp &&
             (identical(other.code, code) ||
                 const DeepCollectionEquality().equals(other.code, code)) &&
             (identical(other.msg, msg) ||
@@ -15407,8 +15407,8 @@ class EmailCheckResp {
       runtimeType.hashCode;
 }
 
-extension $EmailCheckRespExtension on EmailCheckResp {
-  EmailCheckResp copyWith({
+extension $SubmitCheckRespExtension on SubmitCheckResp {
+  SubmitCheckResp copyWith({
     String? code,
     String? msg,
     int? antiicerOMsgType,
@@ -15417,7 +15417,7 @@ extension $EmailCheckRespExtension on EmailCheckResp {
     String? directOMsgBtn01,
     String? i9145gOMsgBtn02,
   }) {
-    return EmailCheckResp(
+    return SubmitCheckResp(
       code: code ?? this.code,
       msg: msg ?? this.msg,
       antiicerOMsgType: antiicerOMsgType ?? this.antiicerOMsgType,
@@ -15428,7 +15428,7 @@ extension $EmailCheckRespExtension on EmailCheckResp {
     );
   }
 
-  EmailCheckResp copyWithWrapped({
+  SubmitCheckResp copyWithWrapped({
     Wrapped<String?>? code,
     Wrapped<String?>? msg,
     Wrapped<int?>? antiicerOMsgType,
@@ -15437,7 +15437,7 @@ extension $EmailCheckRespExtension on EmailCheckResp {
     Wrapped<String?>? directOMsgBtn01,
     Wrapped<String?>? i9145gOMsgBtn02,
   }) {
-    return EmailCheckResp(
+    return SubmitCheckResp(
       code: (code != null ? code.value : this.code),
       msg: (msg != null ? msg.value : this.msg),
       antiicerOMsgType: (antiicerOMsgType != null

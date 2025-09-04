@@ -843,10 +843,10 @@ Map<String, dynamic> _$LoanNoticeReqToJson(LoanNoticeReq instance) =>
       's377v5': instance.s377v5OBizLine,
     };
 
-CheckSubmitReq _$CheckSubmitReqFromJson(Map<String, dynamic> json) =>
-    CheckSubmitReq(raiaOUserGid: json['raia'] as String?);
+SubmitResultReq _$SubmitResultReqFromJson(Map<String, dynamic> json) =>
+    SubmitResultReq(raiaOUserGid: json['raia'] as String?);
 
-Map<String, dynamic> _$CheckSubmitReqToJson(CheckSubmitReq instance) =>
+Map<String, dynamic> _$SubmitResultReqToJson(SubmitResultReq instance) =>
     <String, dynamic>{'raia': instance.raiaOUserGid};
 
 LivingDataReq _$LivingDataReqFromJson(Map<String, dynamic> json) =>
@@ -988,14 +988,14 @@ Map<String, dynamic> _$SubmitDataReqToJson(SubmitDataReq instance) =>
       'z4s937': instance.z4s937OHouseholdMonthlyExpenses,
     };
 
-EmailCheckReq _$EmailCheckReqFromJson(Map<String, dynamic> json) =>
-    EmailCheckReq(
+SubmitCheckReq _$SubmitCheckReqFromJson(Map<String, dynamic> json) =>
+    SubmitCheckReq(
       raiaOUserGid: json['raia'] as String?,
       f31u3kOEmail: json['f31u3k'] as String?,
       merdekaOIdCard: json['merdeka'] as String?,
     );
 
-Map<String, dynamic> _$EmailCheckReqToJson(EmailCheckReq instance) =>
+Map<String, dynamic> _$SubmitCheckReqToJson(SubmitCheckReq instance) =>
     <String, dynamic>{
       'raia': instance.raiaOUserGid,
       'f31u3k': instance.f31u3kOEmail,
@@ -2370,8 +2370,8 @@ Map<String, dynamic> _$LoanNoticeRespToJson(LoanNoticeResp instance) =>
       'data': instance.data?.toJson(),
     };
 
-CheckSubmitResp _$CheckSubmitRespFromJson(Map<String, dynamic> json) =>
-    CheckSubmitResp(
+SubmitResultResp _$SubmitResultRespFromJson(Map<String, dynamic> json) =>
+    SubmitResultResp(
       raiaOUserGid: json['raia'] as String?,
       bopomofoOCreditStatus: (json['bopomofo'] as num?)?.toInt(),
       rnpu7fOCreditLine: (json['rnpu7f'] as num?)?.toDouble(),
@@ -2379,7 +2379,7 @@ CheckSubmitResp _$CheckSubmitRespFromJson(Map<String, dynamic> json) =>
       foreyardOProductId: (json['foreyard'] as num?)?.toInt(),
     );
 
-Map<String, dynamic> _$CheckSubmitRespToJson(CheckSubmitResp instance) =>
+Map<String, dynamic> _$SubmitResultRespToJson(SubmitResultResp instance) =>
     <String, dynamic>{
       'raia': instance.raiaOUserGid,
       'bopomofo': instance.bopomofoOCreditStatus,
@@ -2456,8 +2456,8 @@ Map<String, dynamic> _$SubmitDataRespToJson(SubmitDataResp instance) =>
       'data': instance.data,
     };
 
-EmailCheckResp _$EmailCheckRespFromJson(Map<String, dynamic> json) =>
-    EmailCheckResp(
+SubmitCheckResp _$SubmitCheckRespFromJson(Map<String, dynamic> json) =>
+    SubmitCheckResp(
       code: json['code'] as String?,
       msg: json['msg'] as String?,
       antiicerOMsgType: (json['antiicer'] as num?)?.toInt(),
@@ -2467,7 +2467,7 @@ EmailCheckResp _$EmailCheckRespFromJson(Map<String, dynamic> json) =>
       i9145gOMsgBtn02: json['i9145g'] as String?,
     );
 
-Map<String, dynamic> _$EmailCheckRespToJson(EmailCheckResp instance) =>
+Map<String, dynamic> _$SubmitCheckRespToJson(SubmitCheckResp instance) =>
     <String, dynamic>{
       'code': instance.code,
       'msg': instance.msg,

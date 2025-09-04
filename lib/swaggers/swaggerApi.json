@@ -9280,8 +9280,8 @@
         "consumes": [
           "application/json"
         ],
-        "modelId": "CheckSubmit",
-        "operationId": "refreshSubmit",
+        "modelId": "SubmitResult",
+        "operationId": "refreshSubmitResult",
         "parameters": [
           {
             "name": "root",
@@ -10034,8 +10034,8 @@
         "consumes": [
           "application/json"
         ],
-        "modelId": "EmailCheck",
-        "operationId": "checkEmailValid",
+        "modelId": "SubmitCheck",
+        "operationId": "checkSubmitValid",
         "parameters": [
           {
             "name": "root",

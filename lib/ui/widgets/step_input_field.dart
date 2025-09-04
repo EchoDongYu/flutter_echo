@@ -6,7 +6,9 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 class StepInputField extends StatefulWidget {
   final TextEditingController controller;
   final String hintText;
+  final String? errorText;
   final int? maxLength;
+  final bool isError;
   final bool showCounter;
   final bool obscureText;
   final Widget? prefix;
@@ -19,13 +21,15 @@ class StepInputField extends StatefulWidget {
     super.key,
     required this.controller,
     required this.hintText,
+    this.errorText,
     this.maxLength,
-    this.prefix,
-    this.suffix,
+    this.isError = false,
     this.showCounter = false,
     this.obscureText = false,
-    this.keyboardType = TextInputType.text,
-    this.textInputAction = TextInputAction.done,
+    this.prefix,
+    this.suffix,
+    this.keyboardType,
+    this.textInputAction,
     this.inputFormatters,
   });
 

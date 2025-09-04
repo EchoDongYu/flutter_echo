@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_echo/common/app_theme.dart';
+import 'package:flutter_echo/models/common_model.dart';
+import 'package:flutter_echo/providers/submit_provider.dart';
 import 'package:flutter_echo/ui/widget_helper.dart';
 import 'package:flutter_echo/ui/widgets/step_input_field.dart';
 import 'package:flutter_echo/ui/widgets/step_select_field.dart';
@@ -8,6 +10,7 @@ import 'package:flutter_echo/ui/widgets/top_bar.dart';
 import 'package:flutter_echo/utils/common_utils.dart';
 import 'package:flutter_echo/utils/drawable_utils.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:provider/provider.dart';
 
 /// 授信表单页面-联系人信息
 class StepContactPage extends StatefulWidget {
@@ -18,10 +21,48 @@ class StepContactPage extends StatefulWidget {
 }
 
 class _StepContactPageState extends State<StepContactPage> {
-  Future<void> _pickContact() async {
+  final List<List<bool>> _isErrors = List.generate(2, (index) {
+    return List.generate(3, (index) {
+      return false;
+    }, growable: false);
+  }, growable: false);
+  final _controllers = List.generate(2, (index) {
+    return List.generate(2, (index) {
+      return TextEditingController();
+    }, growable: false);
+  }, growable: false);
+  List<StepItem>? _stepItems;
+  final List<StepItem?> _pickedItem = List.generate(2, (index) {
+    return null;
+  }, growable: false);
+
+  SubmitModel get submitModel =>
+      Provider.of<SubmitModel>(context, listen: false);
+
+  @override
+  void initState() {
+    super.initState();
+    WidgetsBinding.instance.addPostFrameCallback((_) async {
+      final dict = await submitModel.getDictionary();
+      setState(() => _stepItems = dict?['10']);
+    });
+  }
+
+  @override
+  void dispose() {
+    for (var controller in _controllers) {
+      for (var ctrl in controller) {
+        ctrl.dispose();
+      }
+    }
+    super.dispose();
+  }
+
+  void _pickContact(int pos) async {
     final result = await FlutterPlatform.pickContact();
     if (result != null) {
-      _controller.text = '${result['name']} - ${result['phone']}';
+      _controllers[pos][0] = result['name'];
+      _controllers[pos][1] = result['phone'];
     }
   }
 
@@ -62,11 +103,11 @@ class _StepContactPageState extends State<StepContactPage> {
                     child: Column(
                       children: [
                         SizedBox(height: 12.h),
-                        _buildFormTitle(1),
-                        _buildFormArea1(),
+                        _buildFormTitle(0),
+                        _buildFormArea(0),
                         SizedBox(height: 12.h),
-                        _buildFormTitle(2),
-                        _buildFormArea1(),
+                        _buildFormTitle(1),
+                        _buildFormArea(1),
                         SizedBox(height: 20.h),
                       ],
                     ),
@@ -83,9 +124,6 @@ class _StepContactPageState extends State<StepContactPage> {
       ),
     );
   }
-
-  final TextEditingController _controller = TextEditingController();
-  String? _selectValue;
 
   Widget _buildFormTitle(int pos) {
     return Container(
@@ -118,8 +156,8 @@ class _StepContactPageState extends State<StepContactPage> {
     );
   }
 
-  /// 构建表单区域1
-  Widget _buildFormArea1() {
+  /// 构建表单区域
+  Widget _buildFormArea(int pos) {
     return Container(
       width: double.infinity,
       margin: EdgeInsets.symmetric(horizontal: 12.w),
@@ -136,7 +174,7 @@ class _StepContactPageState extends State<StepContactPage> {
         spacing: 12.h,
         children: [
           StepInputField(
-            controller: _controller,
+            controller: _controllers[pos][0],
             hintText: 'Nombre(s)',
             keyboardType: TextInputType.text,
             textInputAction: TextInputAction.next,
@@ -144,7 +182,7 @@ class _StepContactPageState extends State<StepContactPage> {
             suffix: Padding(
               padding: EdgeInsets.only(right: 12.w),
               child: InkWell(
-                onTap: () => _pickContact(),
+                onTap: () => _pickContact(pos),
                 child: Image.asset(
                   Drawable.iconContact,
                   width: 24.r,
@@ -152,22 +190,22 @@ class _StepContactPageState extends State<StepContactPage> {
                 ),
               ),
             ),
+            isError: _isErrors[pos][0],
           ),
           StepInputField(
-            controller: _controller,
+            controller: _controllers[pos][1],
             hintText: 'Número de teléfono',
             keyboardType: TextInputType.number,
             inputFormatters: [FilteringTextInputFormatter.digitsOnly],
+            isError: _isErrors[pos][1],
           ),
-          StepSelectField(
-            onSelect: () {
-              setState(() {
-                _selectValue = 'value';
-              });
-            },
+          StepSelectField.pickItem(
+            context,
+            items: _stepItems,
+            pickedItem: _pickedItem[pos],
+            onValueChange: (value) => setState(() => _pickedItem[pos] = value),
             hintText: 'Relación',
-            value: _selectValue,
-            isError: false,
+            isError: _isErrors[pos][2],
           ),
         ],
       ),

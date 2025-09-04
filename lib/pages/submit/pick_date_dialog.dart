@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_echo/common/app_theme.dart';
 import 'package:flutter_echo/ui/widgets/common_button.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:go_router/go_router.dart';
 
 /// 认证项选择日期弹窗
 class PickDateDialog extends StatefulWidget {
@@ -13,6 +14,20 @@ class PickDateDialog extends StatefulWidget {
     required this.onClosing,
     required this.onConfirm,
   });
+
+  /// 显示认证项选择日期弹窗
+  static Future<DateTime?> show(BuildContext context) {
+    return showModalBottomSheet<DateTime>(
+      context: context,
+      enableDrag: false,
+      isDismissible: false,
+      isScrollControlled: true,
+      builder: (context) => PickDateDialog(
+        onConfirm: (value) => context.pop(value),
+        onClosing: () => context.pop(),
+      ),
+    );
+  }
 
   @override
   State<PickDateDialog> createState() => _PickDateDialogState();

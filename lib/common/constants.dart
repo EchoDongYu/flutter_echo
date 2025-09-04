@@ -101,7 +101,7 @@ class ApiPath {
   static const String resetLoginPassword = '/aitch/q2i1/vwi0/password/reset';
 
   /// 获取字典项
-  static const String queryDictionary = '/wojz7/h4n/j36';
+  static const String getDictionary = '/wojz7/h4n/j36';
 
   /// 客户端上报日志分析（通用）
   static const String uploadLog = '/tools/android/log';
@@ -194,7 +194,7 @@ class ApiPath {
   static const String getLoanNotice = '/c90e/ejvju/impulse';
 
   /// 刷新授信结果
-  static const String refreshCredit = '/p2f1';
+  static const String refreshSubmitResult = '/p2f1';
 
   /// 授信-身份认证页 活体数据上传
   static const String uploadLivingData = '/zeb/angelus';
@@ -206,7 +206,7 @@ class ApiPath {
   static const String submitCreditData = '/sluit/v7n/f4u39';
 
   /// 邮箱、身份证号校验
-  static const String checkEmailValid = '/mjfe';
+  static const String checkSubmitValid = '/mjfe';
 
   /// app首页优惠券列表展示
   static const String queryHomeCouponList = '/vallate/b0743/sl1';

@@ -22,9 +22,9 @@ class PickItemDialog extends StatefulWidget {
   });
 
   /// 显示认证项选择弹窗
-  static Future<StepItem?> show({
-    required BuildContext context,
-    required List<StepItem> items,
+  static Future<StepItem?> show(
+    BuildContext context, {
+    List<StepItem>? items,
     StepItem? pickedItem,
   }) {
     return showModalBottomSheet<StepItem>(
@@ -33,9 +33,9 @@ class PickItemDialog extends StatefulWidget {
       isDismissible: false,
       isScrollControlled: true,
       builder: (context) => PickItemDialog(
-        items: items,
+        items: items ?? List.empty(),
         pickedItem: pickedItem,
-        onConfirm: (item) => context.pop(item),
+        onConfirm: (value) => context.pop(value),
         onClosing: () => context.pop(),
       ),
     );

@@ -19,10 +19,9 @@ class LoginPwdSetupPage extends StatefulWidget {
 }
 
 class _LoginPwdSetupPageState extends State<LoginPwdSetupPage> {
-  final List<TextEditingController> _controllers = [
-    TextEditingController(),
-    TextEditingController(),
-  ];
+  final List<TextEditingController> _controllers = List.generate(2, (index) {
+    return TextEditingController();
+  }, growable: false);
   final List<bool> _obscureText = [true, true];
   bool _isPasswordValid = false;
 

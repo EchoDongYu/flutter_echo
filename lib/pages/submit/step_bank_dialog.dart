@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_echo/common/app_theme.dart';
+import 'package:flutter_echo/models/common_model.dart';
 import 'package:flutter_echo/ui/widgets/common_button.dart';
 import 'package:flutter_echo/ui/widgets/step_input_field.dart';
 import 'package:flutter_echo/ui/widgets/step_select_field.dart';
@@ -111,7 +112,8 @@ class _StepBankDialogState extends State<StepBankDialog> {
   }
 
   final TextEditingController _controller = TextEditingController();
-  String? _selectValue;
+  Map<int, List<StepItem>?>? _stepItems;
+  Map<int, StepItem?>? _pickedItem;
 
   /// 构建表单区域
   Widget _buildFormArea() {
@@ -127,24 +129,20 @@ class _StepBankDialogState extends State<StepBankDialog> {
       child: Column(
         spacing: 12.h,
         children: [
-          StepSelectField(
-            onSelect: () {
-              setState(() {
-                _selectValue = 'value';
-              });
-            },
+          StepSelectField.pickItem(
+            context,
+            items: _stepItems?[0],
+            pickedItem: _pickedItem?[0],
+            onValueChange: (value) => setState(() => _pickedItem?[0] = value),
             hintText: 'Banco',
-            value: _selectValue,
             isError: false,
           ),
-          StepSelectField(
-            onSelect: () {
-              setState(() {
-                _selectValue = 'value';
-              });
-            },
+          StepSelectField.pickItem(
+            context,
+            items: _stepItems?[1],
+            pickedItem: _pickedItem?[1],
+            onValueChange: (value) => setState(() => _pickedItem?[1] = value),
             hintText: 'Elige su tipo de cuenta',
-            value: _selectValue,
             isError: false,
           ),
           StepInputField(

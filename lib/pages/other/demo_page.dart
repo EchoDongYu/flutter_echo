@@ -518,10 +518,7 @@ class _DemoPageState extends State<DemoPage> {
   ];
 
   void _showPickItemDialog(BuildContext context) async {
-    final result = await PickItemDialog.show(
-      context: context,
-      items: stepItems,
-    );
+    final result = await PickItemDialog.show(context, items: stepItems);
     if (context.mounted) {
       if (result != null) {
         context.showSuccessSnack('Pick $result');
