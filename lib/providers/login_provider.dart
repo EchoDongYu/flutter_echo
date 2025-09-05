@@ -59,7 +59,10 @@ class LoginModel extends BaseProvider {
   Future<bool?> sendVerifyCode() async {
     if (_countdown > 0) return true;
     return await launchRequest(() async {
-      final need = await Api.needCheckCaptcha(mobile: _phoneNumber, type: _codeType);
+      final need = await Api.needCheckCaptcha(
+        mobile: _phoneNumber,
+        type: _codeType,
+      );
       if (need == true) {
         throw ApiResponse.needCaptchaError();
       } else {
@@ -117,7 +120,7 @@ class LoginModel extends BaseProvider {
       if (_checkRegister?.fm50w8OLoginPwd == true &&
           _checkRegister?.j1mnl2OExistLoginPwd == false) {
         // 密码登录&未设置密码
-        navigate((ctx) => ctx.pushReplacement(AppRouter.loginPwdSetup));
+        pushReplacement(AppRouter.loginPwdSetup);
       } else {
         await _registerOrLogin();
       }
@@ -127,7 +130,7 @@ class LoginModel extends BaseProvider {
 
   void userLogin(String password, {String? confirmPassword}) async {
     if (confirmPassword != null && password != confirmPassword) {
-      Fluttertoast.showToast(msg: 'password $password confirmPassword $confirmPassword');
+      Fluttertoast.showToast(msg: '$password != $confirmPassword');
       return;
     }
     _password = password;

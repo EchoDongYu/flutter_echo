@@ -3,12 +3,13 @@ import 'package:flutter_echo/common/app_theme.dart';
 import 'package:flutter_echo/models/common_model.dart';
 import 'package:flutter_echo/ui/widgets/common_button.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:go_router/go_router.dart';
 
 /// 认证项确认弹窗
 class ConfirmStepDialog extends StatelessWidget {
   final VoidCallback onClosing;
   final VoidCallback onConfirm;
-  final List<Pair<String, String>> items;
+  final List<Pair<String, String?>> items;
 
   const ConfirmStepDialog({
     super.key,
@@ -16,6 +17,24 @@ class ConfirmStepDialog extends StatelessWidget {
     required this.onConfirm,
     required this.items,
   });
+
+  /// 显示认证项确认弹窗
+  static Future<bool?> show(
+    BuildContext context,
+    List<Pair<String, String?>> items,
+  ) {
+    return showModalBottomSheet<bool>(
+      context: context,
+      enableDrag: false,
+      isDismissible: false,
+      isScrollControlled: true,
+      builder: (context) => ConfirmStepDialog(
+        items: items,
+        onConfirm: () => context.pop(true),
+        onClosing: () => context.pop(false),
+      ),
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -120,7 +139,7 @@ class ConfirmStepDialog extends StatelessWidget {
     );
   }
 
-  Widget _buildConfirmItem(Pair<String, String> item) {
+  Widget _buildConfirmItem(Pair<String, String?> item) {
     return Container(
       width: double.infinity,
       padding: const EdgeInsets.all(16),
@@ -144,7 +163,7 @@ class ConfirmStepDialog extends StatelessWidget {
           ),
           SizedBox(height: 2.h),
           Text(
-            item.second,
+            item.second ?? '',
             textAlign: TextAlign.center,
             style: TextStyle(
               fontSize: 16.sp,

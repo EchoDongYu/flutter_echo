@@ -3,7 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_echo/common/app_theme.dart';
 import 'package:flutter_echo/models/common_model.dart';
 import 'package:flutter_echo/pages/main/home_page.dart';
-import 'package:flutter_echo/pages/main/mine_page.dart';
+import 'package:flutter_echo/pages/main/profile_page.dart';
 import 'package:flutter_echo/utils/drawable_utils.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -49,7 +49,6 @@ class _MainPageState extends State<MainPage> {
       child: Scaffold(
         backgroundColor: NowColors.c0xFFF3F3F5,
         body: Stack(
-          alignment: Alignment.bottomCenter,
           children: [
             PageView(
               controller: _controller,
@@ -58,9 +57,9 @@ class _MainPageState extends State<MainPage> {
                   setState(() => _currentPage = value);
                 }
               },
-              children: const [HomePage(), MinePage()],
+              children: const [HomePage(), ProfilePage()],
             ),
-            _buildBottomBar(),
+            Align(alignment: Alignment.bottomCenter, child: _buildBottomBar()),
           ],
         ),
       ),

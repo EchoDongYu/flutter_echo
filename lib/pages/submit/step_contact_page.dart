@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_echo/common/app_theme.dart';
+import 'package:flutter_echo/common/constants.dart';
 import 'package:flutter_echo/models/common_model.dart';
 import 'package:flutter_echo/providers/submit_provider.dart';
 import 'package:flutter_echo/ui/widget_helper.dart';
@@ -61,8 +62,25 @@ class _StepContactPageState extends State<StepContactPage> {
   void _pickContact(int pos) async {
     final result = await FlutterPlatform.pickContact();
     if (result != null) {
-      _controllers[pos][0] = result['name'];
-      _controllers[pos][1] = result['phone'];
+      _controllers[pos][0].text = result['name'];
+      final phone = result['phone'] as String?;
+      _controllers[pos][1].text = phone?.replaceAll(RegExp(r'\s+'), '') ?? '';
+    }
+  }
+
+  void _submitData() async {
+    for (int i = 0; i < 2; i++) {
+      _isErrors[i][0] = _controllers[i][0].text.isEmpty;
+      _isErrors[i][1] = _controllers[i][1].text.isEmpty;
+      _isErrors[i][2] = _pickedItem[i] == null;
+    }
+    if (!_isErrors.any((it) => it.contains(true))) {
+      submitModel.submitContactInfo(
+        inputs: _controllers
+            .map((v1) => v1.map((v2) => v2.text).toList())
+            .toList(),
+        items: _pickedItem.map((it) => it?.key).toList(),
+      );
     }
   }
 
@@ -77,7 +95,7 @@ class _StepContactPageState extends State<StepContactPage> {
           SafeArea(
             child: Column(
               children: [
-                EchoTopBar(title: 'Informação Básica'),
+                EchoTopBar(title: 'Contacto de emergencia'),
                 SizedBox(height: 16.h),
                 WidgetHelper.buildStepProgress(step: 3),
                 SizedBox(height: 16.h),
@@ -89,7 +107,7 @@ class _StepContactPageState extends State<StepContactPage> {
                     borderRadius: BorderRadius.all(Radius.circular(20)),
                   ),
                   child: Text(
-                    'Estimado usuario, CreditYa mantendra sus datos seguros y no los compartira con tercero',
+                    'Estimado usuario, CrediGo mantendra sus datos seguros y no los compartira con tercero',
                     style: TextStyle(
                       fontSize: 13.sp,
                       fontWeight: FontWeight.w400,
@@ -120,7 +138,7 @@ class _StepContactPageState extends State<StepContactPage> {
       ),
       bottomNavigationBar: WidgetHelper.buildBottomButton(
         text: 'Continuar',
-        onPressed: () {},
+        onPressed: _submitData,
       ),
     );
   }
@@ -145,7 +163,7 @@ class _StepContactPageState extends State<StepContactPage> {
         boxShadow: NowStyles.cardShadows,
       ),
       child: Text(
-        'Contacto $pos',
+        'Contacto ${pos + 1}',
         style: TextStyle(
           fontSize: 18.sp,
           fontWeight: FontWeight.w500,
@@ -178,7 +196,6 @@ class _StepContactPageState extends State<StepContactPage> {
             hintText: 'Nombre(s)',
             keyboardType: TextInputType.text,
             textInputAction: TextInputAction.next,
-            inputFormatters: [FilteringTextInputFormatter.digitsOnly],
             suffix: Padding(
               padding: EdgeInsets.only(right: 12.w),
               child: InkWell(
@@ -195,15 +212,38 @@ class _StepContactPageState extends State<StepContactPage> {
           StepInputField(
             controller: _controllers[pos][1],
             hintText: 'Número de teléfono',
+            maxLength: AppConst.phoneLength,
             keyboardType: TextInputType.number,
             inputFormatters: [FilteringTextInputFormatter.digitsOnly],
+            showCounter: true,
+            prefix: Container(
+              margin: EdgeInsets.only(right: 8.w),
+              padding: EdgeInsets.symmetric(horizontal: 6.w, vertical: 2.h),
+              decoration: BoxDecoration(
+                color: NowColors.c0xFFEFF7FF,
+                borderRadius: const BorderRadius.all(Radius.circular(10)),
+                border: Border.all(color: NowColors.c0xFF3288F1, width: 0.5),
+              ),
+              child: Text(
+                '+${AppConst.countryCode}',
+                style: TextStyle(
+                  fontSize: 12.sp,
+                  fontWeight: FontWeight.w500,
+                  color: NowColors.c0xFF3288F1,
+                  height: 14 / 12,
+                ),
+              ),
+            ),
             isError: _isErrors[pos][1],
           ),
           StepSelectField.pickItem(
             context,
             items: _stepItems,
             pickedItem: _pickedItem[pos],
-            onValueChange: (value) => setState(() => _pickedItem[pos] = value),
+            onValueChange: (value) => setState(() {
+              _pickedItem[pos] = value;
+              _isErrors[pos][2] = false;
+            }),
             hintText: 'Relación',
             isError: _isErrors[pos][2],
           ),

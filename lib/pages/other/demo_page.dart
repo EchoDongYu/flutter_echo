@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_echo/common/app_theme.dart';
-import 'package:flutter_echo/models/common_model.dart';
 import 'package:flutter_echo/pages/app_router.dart';
 import 'package:flutter_echo/pages/login/captcha_dialog.dart';
 import 'package:flutter_echo/pages/login/retain_login_dialog.dart';
+import 'package:flutter_echo/pages/submit/confirm_step_dialog.dart';
+import 'package:flutter_echo/pages/submit/pick_date_dialog.dart';
 import 'package:flutter_echo/pages/submit/pick_day_dialog.dart';
 import 'package:flutter_echo/pages/submit/pick_item_dialog.dart';
 import 'package:flutter_echo/services/storage_service.dart';
@@ -317,6 +318,31 @@ class _DemoPageState extends State<DemoPage> {
 
           _buildTestButton(
             context,
+            title: '授信完成页面',
+            icon: Icons.find_in_page_rounded,
+            color: Color(0xFFE5571A),
+            onPressed: () =>
+                context.go('${AppRouter.stepResult}?${NavKey.count}=10'),
+          ),
+
+          _buildTestButton(
+            context,
+            title: '授信处理中页面',
+            icon: Icons.manage_search_rounded,
+            color: Color(0xFFE5571A),
+            onPressed: () => context.push(AppRouter.stepProcess),
+          ),
+
+          _buildTestButton(
+            context,
+            title: '授信失败页面',
+            icon: Icons.error_outline_rounded,
+            color: Color(0xFFE5571A),
+            onPressed: () => context.push(AppRouter.stepFailed),
+          ),
+
+          _buildTestButton(
+            context,
             title: '设置登录密码页面',
             icon: Icons.password_rounded,
             color: Color(0xFF611AE5),
@@ -505,21 +531,19 @@ class _DemoPageState extends State<DemoPage> {
     }
   }
 
-  static final List<StepItem> stepItems = [
-    StepItem('¿Cómo obtengo un préstamo CreditYa?', key: 1, sort: 2, l16h95: 3),
-    StepItem(
-      'La información personal no está seguraLa información personal no está seguraLa información personal no está segura',
-      key: 1,
-      sort: 2,
-      l16h95: 3,
-    ),
-    StepItem('¿Cómo obtengo un préstamo CreditYa?', key: 1, sort: 2, l16h95: 3),
-    StepItem('¿Cómo obtengo un préstamo CreditYa?', key: 1, sort: 2, l16h95: 3),
-    StepItem('XXXXXXXXXX', key: 1, sort: 2, l16h95: 3),
-  ];
-
   void _showPickItemDialog(BuildContext context) async {
-    final result = await PickItemDialog.show(context, items: stepItems);
+    final result = await PickItemDialog.show<String>(
+      context,
+      items: [
+        '¿Cómo obtengo un préstamo CreditYa?',
+        'La información personal no está seguraLa información personal no está seguraLa información personal no está segura',
+        '¿Cómo obtengo un préstamo CreditYa?',
+        '¿Cómo obtengo un préstamo CreditYa?',
+        'XXXXXXXXXX',
+      ],
+      showItem: (value) => value,
+      title: 'This is title',
+    );
     if (context.mounted) {
       if (result != null) {
         context.showSuccessSnack('Pick $result');
@@ -530,9 +554,9 @@ class _DemoPageState extends State<DemoPage> {
   }
 
   void _showStepConfirmDialog(BuildContext context) async {
-    final result = await DialogHelper.showStepConfirmDialog(
-      context: context,
-      items: DisclosureDialog.permissionItems,
+    final result = await ConfirmStepDialog.show(
+      context,
+      DisclosureDialog.permissionItems,
     );
     if (context.mounted) {
       if (result == true) {
@@ -544,7 +568,7 @@ class _DemoPageState extends State<DemoPage> {
   }
 
   void _showPickDayDialog(BuildContext context) async {
-    final result = await PickDayDialog.show(context);
+    final result = await PickDayDialog.show(context, title: 'This is title');
     if (context.mounted) {
       if (result != null) {
         context.showSuccessSnack('Confirm $result');
@@ -555,7 +579,7 @@ class _DemoPageState extends State<DemoPage> {
   }
 
   void _showPickDateDialog(BuildContext context) async {
-    final result = await DialogHelper.showPickDateDialog(context: context);
+    final result = await PickDateDialog.show(context, title: 'This is title');
     if (context.mounted) {
       if (result != null) {
         context.showSuccessSnack('Confirm $result');

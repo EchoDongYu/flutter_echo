@@ -17,7 +17,7 @@ class CompensationDialog extends StatelessWidget {
 
   static const stepItems = [
     'Ve a la "Configuración" de tu teléfono',
-    'Haga clic en "CreditYa" para ingresar la información de la solicitud',
+    'Haga clic en "CrediGo" para ingresar la información de la solicitud',
     'haga clic en "Permisos" para ingresar a la página de permisos de la aplicación y aceptar todos los permisos.',
   ];
 

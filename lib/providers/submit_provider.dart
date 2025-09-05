@@ -41,14 +41,47 @@ class SubmitModel extends BaseProvider {
     navigate((context) => context.push(AppRouter.stepWork));
   }
 
-  void submitWorkInfo() {
-    _submitData = _submitData.copyWith();
+  void submitWorkInfo({
+    required List<String?> areas,
+    required List<int?> items,
+    required List<int?> days,
+  }) {
+    _submitData = _submitData.copyWith(
+      m2wx4tOMaritalStatus: items[0],
+      z4s937OHouseholdMonthlyExpenses: items[1],
+      chaffyOHouseStatus: items[2],
+      spadicesOAddressState: areas[0],
+      gasconyOAddressCity: areas[1],
+      enfetterOAddressDistrict: areas[2],
+      craalOAddressDetail: areas[3],
+      coseOEducation: items[3],
+      diopsideOOccupation: items[4],
+      alloOWorkingYears: items[5],
+      limpidlyOIncomeLevel: items[6],
+      b1417wOPayPeriod: items[7],
+      r67p23OPayday: days[0],
+      plenishOSecondPayday: days[1],
+    );
     navigate((context) => context.push(AppRouter.stepContact));
   }
 
-  Future<int?> submitCreditData() async {
+  void submitContactInfo({
+    required List<List<String>> inputs,
+    required List<int?> items,
+  }) {
+    _submitData = _submitData.copyWith(
+      grippleOFirstContactName: inputs[0][0],
+      rainOFirstContactMobile: inputs[0][1],
+      baryeOFirstContactRelationship: items[0],
+      aquarianOSecondContactName: inputs[1][0],
+      h3d2wfOSecondContactMobile: inputs[1][1],
+      kibeOSecondContactRelationship: items[1],
+    );
+    _submitCreditData();
+  }
+
+  Future<int?> _submitCreditData() async {
     return await launchRequest(() async {
-      _submitData = _submitData.copyWith();
       return await Api.submitCreditData(_submitData);
     });
   }

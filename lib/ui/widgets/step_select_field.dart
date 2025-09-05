@@ -34,10 +34,37 @@ class StepSelectField extends StatefulWidget {
   }) => StepSelectField(
     value: pickedItem?.value,
     onValueChange: () async {
-      final result = await PickItemDialog.show(
+      final result = await PickItemDialog.show<StepItem>(
         context,
         items: items,
         pickedItem: pickedItem,
+        showItem: (item) => item.value,
+        title: hintText,
+      );
+      if (result != null) onValueChange(result);
+    },
+    hintText: hintText,
+    errorText: errorText,
+    isError: isError,
+  );
+
+  factory StepSelectField.pickArea(
+    BuildContext context, {
+    required List<String>? items,
+    required String? pickedItem,
+    required Function(String) onValueChange,
+    required String hintText,
+    String errorText = 'Por favor seleccione',
+    bool isError = false,
+  }) => StepSelectField(
+    value: pickedItem,
+    onValueChange: () async {
+      final result = await PickItemDialog.show<String>(
+        context,
+        items: items,
+        pickedItem: pickedItem,
+        showItem: (item) => item,
+        title: hintText,
       );
       if (result != null) onValueChange(result);
     },
@@ -54,9 +81,9 @@ class StepSelectField extends StatefulWidget {
     String errorText = 'Por favor seleccione',
     bool isError = false,
   }) => StepSelectField(
-    value: pickedDate?.showFormat('dd/MM/yyyy') ?? '',
+    value: pickedDate?.showFormat('dd/MM/yyyy'),
     onValueChange: () async {
-      final result = await PickDateDialog.show(context);
+      final result = await PickDateDialog.show(context, title: hintText);
       if (result != null) onValueChange(result);
     },
     hintText: hintText,
@@ -72,9 +99,9 @@ class StepSelectField extends StatefulWidget {
     String errorText = 'Por favor seleccione',
     bool isError = false,
   }) => StepSelectField(
-    value: pickedDay?.toString() ?? '',
+    value: pickedDay?.toString(),
     onValueChange: () async {
-      final result = await PickDayDialog.show(context);
+      final result = await PickDayDialog.show(context, title: hintText);
       if (result != null) onValueChange(result);
     },
     hintText: hintText,

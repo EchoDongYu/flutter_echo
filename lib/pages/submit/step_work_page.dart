@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_echo/common/app_theme.dart';
 import 'package:flutter_echo/models/common_model.dart';
@@ -18,42 +20,58 @@ class StepWorkPage extends StatefulWidget {
 }
 
 class _StepWorkPageState extends State<StepWorkPage> {
-  final List<bool> _isErrors = List.generate(14, (index) {
+  final _isErrors = List.generate(14, (index) {
     return false;
   }, growable: false);
-  final TextEditingController _controller = TextEditingController();
+  final _controller = TextEditingController();
+  final _pickedItem = List<StepItem?>.generate(11, (index) {
+    return null;
+  }, growable: false);
+  final _pickedArea = List<String?>.generate(3, (index) {
+    return null;
+  }, growable: false);
+  final _pickedDay = List<int?>.generate(2, (index) {
+    return null;
+  }, growable: false);
   List<List<StepItem>?>? _stepItems;
-  final List<StepItem?> _pickedItem = List.generate(11, (index) {
-    return null;
-  }, growable: false);
-  final List<int?> _pickedDay = List.generate(2, (index) {
-    return null;
-  }, growable: false);
+  Map<String, dynamic>? _stepAreas;
+  String? _dayError; // 发薪日
 
   SubmitModel get submitModel =>
       Provider.of<SubmitModel>(context, listen: false);
 
+  List<String>? get areasFirst => _stepAreas?.keys.toList();
+
+  List<String>? get areasSecond {
+    if (_pickedArea[0] == null) return null;
+    return _stepAreas?[_pickedArea[0]]?.keys.toList();
+  }
+
+  List<String>? get areasThird {
+    if (_pickedArea[0] == null || _pickedArea[1] == null) return null;
+    return (_stepAreas?[_pickedArea[0]]?[_pickedArea[1]] as List<dynamic>)
+        .map((e) => e.toString())
+        .toList();
+  }
+
   @override
   void initState() {
     super.initState();
-    _controller.addListener(() => _onInputChanged());
+    _controller.addListener(_onInputChanged);
     WidgetsBinding.instance.addPostFrameCallback((_) async {
       final dict = await submitModel.getDictionary();
-      setState(
-        () => _stepItems = [
-          dict?['3'],
-          dict?['12'],
-          dict?['5'],
-          dict?['6'],
-          dict?['6'],
-          dict?['6'],
-          dict?['1'],
-          dict?['4'],
-          dict?['7'],
-          dict?['2'],
-          dict?['8'],
-        ],
-      );
+      final type = [3, 12, 5, 1, 4, 7, 2, 8];
+      String? jsonStr = dict?['9']?.firstOrNull?.value;
+      if (jsonStr != null) {
+        if (jsonStr.startsWith('"') && jsonStr.endsWith('"')) {
+          // 去掉首尾引号
+          jsonStr = jsonStr.substring(1, jsonStr.length - 1);
+        }
+      }
+      setState(() {
+        _stepItems = type.map((v) => dict?['$v']).toList();
+        if (jsonStr != null) _stepAreas = json.decode(jsonStr);
+      });
     });
   }
 
@@ -68,7 +86,54 @@ class _StepWorkPageState extends State<StepWorkPage> {
     if (_isErrors[6] != false) setState(() => _isErrors[6] = false);
   }
 
-  void _submitData() async {}
+  void _submitData() async {
+    setState(() {
+      _dayError = null;
+      _isErrors[0] = _pickedItem[0] == null;
+      _isErrors[1] = _pickedItem[1] == null;
+      _isErrors[2] = _pickedItem[2] == null;
+      _isErrors[3] = _pickedArea[0] == null;
+      _isErrors[4] = _pickedArea[1] == null;
+      _isErrors[5] = _pickedArea[2] == null;
+      _isErrors[6] = _controller.text.isEmpty;
+      _isErrors[7] = _pickedItem[3] == null;
+      _isErrors[8] = _pickedItem[4] == null;
+      if (_pickedItem[4]?.key != _stepItems?[4]?[0].key) {
+        _isErrors[9] = _pickedItem[5] == null;
+        _isErrors[10] = _pickedItem[6] == null;
+        _isErrors[11] = _pickedItem[7] == null;
+        if (_pickedItem[7]?.key == _stepItems?[7]?[1].key) {
+          if (_pickedDay[0] == _pickedDay[1]) {
+            _dayError = 'Dos fechas de pago no pueden ser iguales';
+            _isErrors[12] = true;
+            _isErrors[13] = true;
+          } else {
+            _isErrors[12] = _pickedDay[0] == null;
+            _isErrors[13] = _pickedDay[1] == null;
+          }
+        } else if (_pickedItem[7]?.key == _stepItems?[7]?[2].key) {
+          _isErrors[12] = _pickedDay[0] == null;
+          _isErrors[13] = false;
+        } else {
+          _isErrors[12] = false;
+          _isErrors[13] = false;
+        }
+      } else {
+        _isErrors[9] = false;
+        _isErrors[10] = false;
+        _isErrors[11] = false;
+        _isErrors[12] = false;
+        _isErrors[13] = false;
+      }
+    });
+    if (!_isErrors.contains(true)) {
+      submitModel.submitWorkInfo(
+        areas: List.from(_pickedArea)..add(_controller.text),
+        items: _pickedItem.map((it) => it?.key).toList(),
+        days: _pickedDay,
+      );
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -181,28 +246,37 @@ class _StepWorkPageState extends State<StepWorkPage> {
             context,
             items: _stepItems?[0],
             pickedItem: _pickedItem[0],
-            onValueChange: (value) => setState(() => _pickedItem[0] = value),
+            onValueChange: (value) => setState(() {
+              _pickedItem[0] = value;
+              _isErrors[0] = false;
+            }),
             hintText: 'Estado civil',
             isError: _isErrors[0],
-            errorText: 'Por favor seleccione la estado civil',
+            errorText: _errorHint[0],
           ),
           StepSelectField.pickItem(
             context,
             items: _stepItems?[1],
             pickedItem: _pickedItem[1],
-            onValueChange: (value) => setState(() => _pickedItem[1] = value),
+            onValueChange: (value) => setState(() {
+              _pickedItem[1] = value;
+              _isErrors[1] = false;
+            }),
             hintText: 'Gastos por mes de tu hogar',
             isError: _isErrors[1],
-            errorText: 'Por favor seleccione la Gastos por mes de tu hogar',
+            errorText: _errorHint[1],
           ),
           StepSelectField.pickItem(
             context,
             items: _stepItems?[2],
             pickedItem: _pickedItem[2],
-            onValueChange: (value) => setState(() => _pickedItem[2] = value),
+            onValueChange: (value) => setState(() {
+              _pickedItem[2] = value;
+              _isErrors[2] = false;
+            }),
             hintText: 'Estado de vivienda',
             isError: _isErrors[2],
-            errorText: 'Por favor seleccione la estado de vivienda',
+            errorText: _errorHint[2],
           ),
         ],
       ),
@@ -233,38 +307,48 @@ class _StepWorkPageState extends State<StepWorkPage> {
               height: 24 / 16,
             ),
           ),
-          StepSelectField.pickItem(
+          StepSelectField.pickArea(
             context,
-            items: _stepItems?[3],
-            pickedItem: _pickedItem[3],
-            onValueChange: (value) => setState(() => _pickedItem[3] = value),
+            items: areasFirst,
+            pickedItem: _pickedArea[0],
+            onValueChange: (value) => setState(() {
+              _pickedArea[0] = value;
+              _isErrors[3] = false;
+            }),
             hintText: 'Región',
             isError: _isErrors[3],
-            errorText: 'Por favor seleccione la Región',
+            errorText: _errorHint[3],
           ),
-          StepSelectField.pickItem(
+          StepSelectField.pickArea(
             context,
-            items: _stepItems?[4],
-            pickedItem: _pickedItem[4],
-            onValueChange: (value) => setState(() => _pickedItem[4] = value),
+            items: areasSecond,
+            pickedItem: _pickedArea[1],
+            onValueChange: (value) => setState(() {
+              _pickedArea[1] = value;
+              _isErrors[4] = false;
+            }),
             hintText: 'Departamento',
             isError: _isErrors[4],
-            errorText: 'Por favor seleccione la Departamento',
+            errorText: _errorHint[4],
           ),
-          StepSelectField.pickItem(
+          StepSelectField.pickArea(
             context,
-            items: _stepItems?[5],
-            pickedItem: _pickedItem[5],
-            onValueChange: (value) => setState(() => _pickedItem[5] = value),
+            items: areasThird,
+            pickedItem: _pickedArea[2],
+            onValueChange: (value) => setState(() {
+              _pickedArea[2] = value;
+              _isErrors[5] = false;
+            }),
             hintText: 'Municipio',
             isError: _isErrors[5],
-            errorText: 'Por favor seleccione la Municipio',
+            errorText: _errorHint[5],
           ),
           StepInputField(
             controller: _controller,
             hintText: 'Dirección',
             keyboardType: TextInputType.text,
             isError: _isErrors[6],
+            errorText: _errorHint[6],
           ),
         ],
       ),
@@ -287,23 +371,36 @@ class _StepWorkPageState extends State<StepWorkPage> {
         children: [
           StepSelectField.pickItem(
             context,
-            items: _stepItems?[6],
-            pickedItem: _pickedItem[6],
-            onValueChange: (value) => setState(() => _pickedItem[6] = value),
+            items: _stepItems?[3],
+            pickedItem: _pickedItem[3],
+            onValueChange: (value) => setState(() {
+              _pickedItem[3] = value;
+              _isErrors[7] = false;
+            }),
             hintText: 'Nivel de estudios',
             isError: _isErrors[7],
-            errorText: 'Por favor seleccione la máximo nivel de estudios',
+            errorText: _errorHint[7],
           ),
           StepSelectField.pickItem(
             context,
-            items: _stepItems?[7],
-            pickedItem: _pickedItem[7],
-            onValueChange: (value) => setState(() => _pickedItem[7] = value),
+            items: _stepItems?[4],
+            pickedItem: _pickedItem[4],
+            onValueChange: (value) => setState(() {
+              _pickedItem[4] = value;
+              _isErrors[8] = false;
+              if (value.key == _stepItems?[4]?[0].key) {
+                _pickedItem[5] = null;
+                _pickedItem[6] = null;
+                _pickedItem[7] = null;
+                _pickedDay[0] = null;
+                _pickedDay[1] = null;
+              }
+            }),
             hintText: 'Profesión actual',
             isError: _isErrors[8],
-            errorText: 'Por favor seleccione la Profesión actual',
+            errorText: _errorHint[8],
           ),
-          if (_pickedItem[7]?.key != _stepItems?[7]?[0].key) ..._buildOthers(),
+          if (_pickedItem[4]?.key != _stepItems?[4]?[0].key) ..._buildOthers(),
         ],
       ),
     );
@@ -313,40 +410,58 @@ class _StepWorkPageState extends State<StepWorkPage> {
     return [
       StepSelectField.pickItem(
         context,
-        items: _stepItems?[8],
-        pickedItem: _pickedItem[8],
-        onValueChange: (value) => setState(() => _pickedItem[8] = value),
+        items: _stepItems?[5],
+        pickedItem: _pickedItem[5],
+        onValueChange: (value) => setState(() {
+          _pickedItem[5] = value;
+          _isErrors[9] = false;
+        }),
         hintText: 'Antiguedad en tu trabajo actual',
         isError: _isErrors[9],
-        errorText: 'Por favor seleccione la años de trabajo',
+        errorText: _errorHint[9],
       ),
       StepSelectField.pickItem(
         context,
-        items: _stepItems?[9],
-        pickedItem: _pickedItem[9],
-        onValueChange: (value) => setState(() => _pickedItem[9] = value),
+        items: _stepItems?[6],
+        pickedItem: _pickedItem[6],
+        onValueChange: (value) => setState(() {
+          _pickedItem[6] = value;
+          _isErrors[10] = false;
+        }),
         hintText: 'Salario mensual',
         isError: _isErrors[10],
-        errorText: 'Por favor seleccione la salario mensual',
+        errorText: _errorHint[10],
       ),
       StepSelectField.pickItem(
         context,
-        items: _stepItems?[10],
-        pickedItem: _pickedItem[10],
-        onValueChange: (value) => setState(() => _pickedItem[10] = value),
+        items: _stepItems?[7],
+        pickedItem: _pickedItem[7],
+        onValueChange: (value) => setState(() {
+          _pickedItem[7] = value;
+          _isErrors[11] = false;
+          if (value.key != _stepItems?[7]?[1].key) {
+            _pickedDay[1] = null;
+            if (value.key != _stepItems?[7]?[2].key) {
+              _pickedDay[0] = null;
+            }
+          }
+        }),
         hintText: 'Período de nómina',
         isError: _isErrors[11],
-        errorText: 'Por favor seleccione la Período de nómina',
+        errorText: _errorHint[11],
       ),
-      if (_pickedItem[10]?.key == _stepItems?[10]?[1].key) ..._buildPickDays(),
-      if (_pickedItem[10]?.key == _stepItems?[10]?[2].key)
+      if (_pickedItem[7]?.key == _stepItems?[7]?[1].key) ..._buildPickDays(),
+      if (_pickedItem[7]?.key == _stepItems?[7]?[2].key)
         StepSelectField.pickDay(
           context,
           pickedDay: _pickedDay[0],
-          onValueChange: (value) => setState(() => _pickedDay[0] = value),
+          onValueChange: (value) => setState(() {
+            _pickedDay[0] = value;
+            _isErrors[12] = false;
+          }),
           hintText: 'Dia de pago',
           isError: _isErrors[12],
-          errorText: 'Por favor seleccione la fecha de pago de salario',
+          errorText: _errorHint[12],
         ),
     ];
   }
@@ -356,19 +471,41 @@ class _StepWorkPageState extends State<StepWorkPage> {
       StepSelectField.pickDay(
         context,
         pickedDay: _pickedDay[0],
-        onValueChange: (value) => setState(() => _pickedDay[0] = value),
+        onValueChange: (value) => setState(() {
+          _pickedDay[0] = value;
+          _isErrors[12] = false;
+        }),
         hintText: 'Dia de pago(primero)',
         isError: _isErrors[12],
-        errorText: 'Por favor seleccione la fecha de pago de salario',
+        errorText: _dayError ?? _errorHint[12],
       ),
       StepSelectField.pickDay(
         context,
         pickedDay: _pickedDay[1],
-        onValueChange: (value) => setState(() => _pickedDay[1] = value),
+        onValueChange: (value) => setState(() {
+          _pickedDay[1] = value;
+          _isErrors[13] = false;
+        }),
         hintText: 'Dia de pago(segundo)',
         isError: _isErrors[13],
-        errorText: 'Por favor seleccione la fecha de pago de salario',
+        errorText: _dayError ?? _errorHint[12],
       ),
     ];
   }
+
+  static const _errorHint = [
+    'Por favor seleccione la estado civil',
+    'Por favor seleccione la Gastos por mes de tu hogar',
+    'Por favor seleccione la estado de vivienda',
+    'Por favor seleccione la Región',
+    'Por favor seleccione la Departamento',
+    'Por favor seleccione la Municipio',
+    'Por favor introduzca',
+    'Por favor seleccione la máximo nivel de estudios',
+    'Por favor seleccione la Profesión actual',
+    'Por favor seleccione la años de trabajo',
+    'Por favor seleccione la salario mensual',
+    'Por favor seleccione la Período de nómina',
+    'Por favor seleccione la fecha de pago de salario',
+  ];
 }

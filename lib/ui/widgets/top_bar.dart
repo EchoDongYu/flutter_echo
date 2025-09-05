@@ -27,8 +27,7 @@ class EchoTopBar extends StatelessWidget {
         width: double.infinity,
         height: 55.h,
         padding: EdgeInsets.symmetric(horizontal: 6.w),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        child: Stack(
           children: [
             // 返回按钮
             if (showBack)
@@ -43,7 +42,8 @@ class EchoTopBar extends StatelessWidget {
                   }
                 },
                 borderRadius: const BorderRadius.all(Radius.circular(24)),
-                child: Padding(
+                child: Container(
+                  alignment: Alignment.centerLeft,
                   padding: const EdgeInsets.all(10),
                   child: Image.asset(
                     Drawable.iconXtleft,
@@ -51,32 +51,30 @@ class EchoTopBar extends StatelessWidget {
                     height: 24.r,
                   ),
                 ),
-              )
-            else
-              const SizedBox(),
+              ),
             // 标题
             if (title != null)
-              Expanded(
-                child: Center(
-                  child: Text(
-                    title!,
-                    style: TextStyle(
-                      fontSize: 18.sp,
-                      fontWeight: FontWeight.w600,
-                      color: Colors.white,
-                      height: 26 / 18,
-                    ),
+              Container(
+                margin: EdgeInsets.symmetric(horizontal: 45.w),
+                alignment: Alignment.center,
+                child: Text(
+                  title!,
+                  style: TextStyle(
+                    fontSize: 18.sp,
+                    fontWeight: FontWeight.w600,
+                    color: Colors.white,
+                    height: 26 / 18,
                   ),
+                  textAlign: TextAlign.center,
                 ),
-              )
-            else
-              const SizedBox(),
+              ),
             // 客服按钮
             if (showSupport)
               InkWell(
                 onTap: () => context.pop(),
                 borderRadius: const BorderRadius.all(Radius.circular(24)),
-                child: Padding(
+                child: Container(
+                  alignment: Alignment.centerRight,
                   padding: const EdgeInsets.all(10),
                   child: Image.asset(
                     Drawable.iconXtcustomer,
@@ -84,9 +82,7 @@ class EchoTopBar extends StatelessWidget {
                     height: 24.r,
                   ),
                 ),
-              )
-            else
-              const SizedBox(),
+              ),
           ],
         ),
       ),

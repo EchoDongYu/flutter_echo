@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_echo/common/app_theme.dart';
+import 'package:flutter_echo/utils/drawable_utils.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 /// 证件号码弹窗
@@ -61,6 +62,7 @@ class DpiNumberDialog extends StatelessWidget {
                     color: NowColors.c0xFFB0B1B2,
                     borderRadius: BorderRadius.all(Radius.circular(12)),
                   ),
+                  child: Image.asset(Drawable.imageDpi),
                 ),
               ],
             ),

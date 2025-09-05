@@ -9,8 +9,9 @@ import 'package:flutter_echo/utils/drawable_utils.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
 
-class MinePage extends StatelessWidget {
-  const MinePage({super.key});
+/// 主页面-用户
+class ProfilePage extends StatelessWidget {
+  const ProfilePage({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -72,7 +73,10 @@ class MinePage extends StatelessWidget {
                             style: BorderStyle.solid,
                           ),
                         ),
-                        child: Image.asset(Drawable.iconLogo),
+                        child: InkWell(
+                          onTap: () => context.push(AppRouter.demo),
+                          child: Image.asset(Drawable.iconLogo),
+                        ),
                       ),
                       SizedBox(height: 12.h),
                       Text(

@@ -5,6 +5,7 @@ import 'package:flutter_echo/models/api_response.dart';
 import 'package:flutter_echo/services/api_config.dart';
 import 'package:flutter_echo/utils/common_utils.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:go_router/go_router.dart';
 
 abstract class BaseProvider extends ChangeNotifier {
   final apiService = ApiController(AppConst.baseUrl);
@@ -64,6 +65,9 @@ abstract class BaseProvider extends ChangeNotifier {
     _navAction = action;
     notifyListeners();
   }
+
+  void pushReplacement(String location) =>
+      navigate((context) => context.pushReplacement(location));
 
   void onCaptchaCode(String code) {}
 }

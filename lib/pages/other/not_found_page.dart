@@ -8,9 +8,9 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
 
 class NotFoundPage extends StatelessWidget {
-  final GoRouterState state;
+  final Uri uri;
 
-  const NotFoundPage({super.key, required this.state});
+  const NotFoundPage({super.key, required this.uri});
 
   @override
   Widget build(BuildContext context) {
@@ -31,10 +31,7 @@ class NotFoundPage extends StatelessWidget {
                   height: 70.r,
                 ),
                 SizedBox(height: 24.h),
-                Text(
-                  state.uri.toString(),
-                  style: const TextStyle(fontSize: 16),
-                ),
+                Text(uri.toString(), style: const TextStyle(fontSize: 16)),
               ],
             ),
           ),

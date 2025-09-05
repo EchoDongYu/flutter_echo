@@ -1,6 +1,8 @@
 import 'package:flutter_echo/common/page_consumer.dart';
 import 'package:flutter_echo/pages/after/repay_confirm_page.dart';
+import 'package:flutter_echo/pages/after/repay_status_page.dart';
 import 'package:flutter_echo/pages/before/apply_confirm_page.dart';
+import 'package:flutter_echo/pages/before/apply_status_page.dart';
 import 'package:flutter_echo/pages/login/login_code_page.dart';
 import 'package:flutter_echo/pages/login/login_password_page.dart';
 import 'package:flutter_echo/pages/login/login_phone_page.dart';
@@ -12,14 +14,17 @@ import 'package:flutter_echo/pages/other/splash_page.dart';
 import 'package:flutter_echo/pages/submit/step_basic_page.dart';
 import 'package:flutter_echo/pages/submit/step_contact_page.dart';
 import 'package:flutter_echo/pages/submit/step_result_page.dart';
+import 'package:flutter_echo/pages/submit/step_status_page.dart';
 import 'package:flutter_echo/pages/submit/step_work_page.dart';
 import 'package:flutter_echo/pages/user/about_us_page.dart';
 import 'package:flutter_echo/pages/user/reset_login_pwd_page.dart';
 import 'package:flutter_echo/pages/user/reset_trader_pwd_page.dart';
 import 'package:flutter_echo/pages/user/safety_verify_page.dart';
 import 'package:flutter_echo/pages/user/user_bank_page.dart';
+import 'package:flutter_echo/providers/apply_provider.dart';
 import 'package:flutter_echo/providers/login_provider.dart';
 import 'package:flutter_echo/providers/main_provider.dart';
+import 'package:flutter_echo/providers/step_status_provider.dart';
 import 'package:flutter_echo/providers/submit_provider.dart';
 import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
@@ -36,6 +41,8 @@ class AppRouter {
   static const String stepWork = '/step_work';
   static const String stepContact = '/step_contact';
   static const String stepResult = '/step_result';
+  static const String stepFailed = '/step_failed';
+  static const String stepProcess = '/step_process';
   static const String applyConfirm = '/apply_confirm';
   static const String repayConfirm = '/repay_confirm';
   static const String safetyVerify = '/safety_verify';
@@ -121,25 +128,68 @@ class AppRouter {
             path: stepContact,
             builder: (context, state) => const StepContactPage(),
           ),
-
-          /// 授信状态页面
-          GoRoute(
-            path: stepResult,
-            builder: (context, state) => const StepResultPage(),
-          ),
         ],
+      ),
+
+      /// 授信倒计时页面
+      GoRoute(
+        path: stepResult,
+        builder: (context, state) {
+          final count = state.uri.queryParameters[NavKey.count] ?? '';
+          return StepResultPage(countdown: int.tryParse(count));
+        },
+      ),
+
+      /// 授信失败页面
+      GoRoute(
+        path: stepFailed,
+        builder: (context, state) => const StepFailedPage(),
+      ),
+
+      /// 授信处理中页面
+      GoRoute(
+        path: stepProcess,
+        builder: (context, state) => ChangeNotifierProvider(
+          create: (_) => StepStatusModel(),
+          builder: (_, _) {
+            final count = state.uri.queryParameters[NavKey.count] ?? '';
+            return PageConsumer<StepStatusModel>(
+              child: StepProcessPage(countdown: int.tryParse(count)),
+            );
+          },
+        ),
       ),
 
       /// 借款确认页面
       GoRoute(
         path: applyConfirm,
-        builder: (context, state) => const ApplyConfirmPage(),
+        builder: (context, state) => ChangeNotifierProvider(
+          create: (_) => ApplyModel(),
+          builder: (_, _) {
+            final id = state.uri.queryParameters[NavKey.id] ?? '';
+            return PageConsumer<ApplyModel>(
+              child: ApplyConfirmPage(productId: id),
+            );
+          },
+        ),
+      ),
+
+      /// 借款状态页面
+      GoRoute(
+        path: applyConfirm,
+        builder: (context, state) => const ApplyStatusPage(),
       ),
 
       /// 还款确认页面
       GoRoute(
         path: repayConfirm,
         builder: (context, state) => const RepayConfirmPage(),
+      ),
+
+      /// 还款状态页面
+      GoRoute(
+        path: applyConfirm,
+        builder: (context, state) => const RepayStatusPage(),
       ),
 
       /// 安全验证页面
@@ -174,11 +224,13 @@ class AppRouter {
     ],
 
     /// 错误页面
-    errorBuilder: (context, state) => NotFoundPage(state: state),
+    errorBuilder: (context, state) => NotFoundPage(uri: state.uri),
   );
 }
 
 /// 导航参数
 class NavKey {
-  static const String phone = "phone";
+  static const String count = "countdown";
+  static const String status = "status";
+  static const String id = "id";
 }

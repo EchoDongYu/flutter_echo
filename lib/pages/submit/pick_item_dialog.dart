@@ -1,17 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_echo/common/app_theme.dart';
-import 'package:flutter_echo/models/common_model.dart';
 import 'package:flutter_echo/ui/widgets/common_button.dart';
 import 'package:flutter_echo/utils/drawable_utils.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
 
 /// 认证项选择弹窗
-class PickItemDialog extends StatefulWidget {
+class PickItemDialog<T> extends StatefulWidget {
   final VoidCallback onClosing;
-  final Function(StepItem?) onConfirm;
-  final List<StepItem> items;
-  final StepItem? pickedItem;
+  final Function(T?) onConfirm;
+  final List<T> items;
+  final T? pickedItem;
+  final String Function(T) showItem;
+  final String title;
 
   const PickItemDialog({
     super.key,
@@ -19,34 +20,40 @@ class PickItemDialog extends StatefulWidget {
     required this.onConfirm,
     required this.items,
     this.pickedItem,
+    required this.showItem,
+    required this.title,
   });
 
   /// 显示认证项选择弹窗
-  static Future<StepItem?> show(
+  static Future<T?> show<T>(
     BuildContext context, {
-    List<StepItem>? items,
-    StepItem? pickedItem,
+    List<T>? items,
+    T? pickedItem,
+    required String Function(T) showItem,
+    required String title,
   }) {
-    return showModalBottomSheet<StepItem>(
+    return showModalBottomSheet<T>(
       context: context,
       enableDrag: false,
       isDismissible: false,
       isScrollControlled: true,
-      builder: (context) => PickItemDialog(
+      builder: (context) => PickItemDialog<T>(
+        onConfirm: (item) => context.pop(item),
+        onClosing: () => context.pop(),
         items: items ?? List.empty(),
         pickedItem: pickedItem,
-        onConfirm: (value) => context.pop(value),
-        onClosing: () => context.pop(),
+        showItem: showItem,
+        title: title,
       ),
     );
   }
 
   @override
-  State<PickItemDialog> createState() => _PickItemDialogState();
+  State<PickItemDialog> createState() => _PickItemDialogState<T>();
 }
 
-class _PickItemDialogState extends State<PickItemDialog> {
-  StepItem? _pickedItem;
+class _PickItemDialogState<T> extends State<PickItemDialog<T>> {
+  T? _pickedItem;
 
   @override
   void initState() {
@@ -81,7 +88,6 @@ class _PickItemDialogState extends State<PickItemDialog> {
         mainAxisSize: MainAxisSize.min,
         children: [
           Container(
-            height: 56.h,
             padding: EdgeInsets.symmetric(horizontal: 16.w),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -108,13 +114,19 @@ class _PickItemDialogState extends State<PickItemDialog> {
                     ),
                   ),
                 ),
-                Text(
-                  'This is title This is title',
-                  style: TextStyle(
-                    fontSize: 18.sp,
-                    fontWeight: FontWeight.w500,
-                    color: NowColors.c0xFF1C1F23,
-                    height: 24 / 18,
+                Expanded(
+                  child: Padding(
+                    padding: const EdgeInsets.all(16),
+                    child: Text(
+                      widget.title,
+                      style: TextStyle(
+                        fontSize: 18.sp,
+                        fontWeight: FontWeight.w500,
+                        color: NowColors.c0xFF1C1F23,
+                        height: 24 / 18,
+                      ),
+                      textAlign: TextAlign.center,
+                    ),
                   ),
                 ),
                 SizedBox(width: 24.r, height: 24.r),
@@ -138,7 +150,7 @@ class _PickItemDialogState extends State<PickItemDialog> {
     );
   }
 
-  Widget _buildPickItem(StepItem item) {
+  Widget _buildPickItem(T item) {
     final isSelected = item == _pickedItem;
     return InkWell(
       onTap: () => setState(() => _pickedItem = item),
@@ -161,7 +173,7 @@ class _PickItemDialogState extends State<PickItemDialog> {
             SizedBox(width: 10.w),
             Expanded(
               child: Text(
-                item.value,
+                widget.showItem(item),
                 style: TextStyle(
                   fontSize: 14.sp,
                   fontWeight: isSelected ? FontWeight.w500 : FontWeight.w400,

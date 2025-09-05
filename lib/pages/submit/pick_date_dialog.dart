@@ -8,15 +8,17 @@ import 'package:go_router/go_router.dart';
 class PickDateDialog extends StatefulWidget {
   final VoidCallback onClosing;
   final Function(DateTime?) onConfirm;
+  final String title;
 
   const PickDateDialog({
     super.key,
     required this.onClosing,
     required this.onConfirm,
+    required this.title,
   });
 
   /// 显示认证项选择日期弹窗
-  static Future<DateTime?> show(BuildContext context) {
+  static Future<DateTime?> show(BuildContext context, {required String title}) {
     return showModalBottomSheet<DateTime>(
       context: context,
       enableDrag: false,
@@ -25,6 +27,7 @@ class PickDateDialog extends StatefulWidget {
       builder: (context) => PickDateDialog(
         onConfirm: (value) => context.pop(value),
         onClosing: () => context.pop(),
+        title: title,
       ),
     );
   }
@@ -63,7 +66,6 @@ class _PickDateDialogState extends State<PickDateDialog> {
         mainAxisSize: MainAxisSize.min,
         children: [
           Container(
-            height: 56.h,
             padding: EdgeInsets.symmetric(horizontal: 16.w),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -90,13 +92,19 @@ class _PickDateDialogState extends State<PickDateDialog> {
                     ),
                   ),
                 ),
-                Text(
-                  'Dia de pago( primero)',
-                  style: TextStyle(
-                    fontSize: 18.sp,
-                    fontWeight: FontWeight.w500,
-                    color: NowColors.c0xFF1C1F23,
-                    height: 24 / 18,
+                Expanded(
+                  child: Padding(
+                    padding: const EdgeInsets.all(16),
+                    child: Text(
+                      widget.title,
+                      style: TextStyle(
+                        fontSize: 18.sp,
+                        fontWeight: FontWeight.w500,
+                        color: NowColors.c0xFF1C1F23,
+                        height: 24 / 18,
+                      ),
+                      textAlign: TextAlign.center,
+                    ),
                   ),
                 ),
                 SizedBox(width: 24.r, height: 24.r),

@@ -8,15 +8,17 @@ import 'package:go_router/go_router.dart';
 class PickDayDialog extends StatefulWidget {
   final VoidCallback onClosing;
   final Function(int?) onConfirm;
+  final String title;
 
   const PickDayDialog({
     super.key,
     required this.onClosing,
     required this.onConfirm,
+    required this.title,
   });
 
   /// 显示认证项选择日弹窗
-  static Future<int?> show(BuildContext context) {
+  static Future<int?> show(BuildContext context, {required String title}) {
     return showModalBottomSheet<int>(
       context: context,
       enableDrag: false,
@@ -25,6 +27,7 @@ class PickDayDialog extends StatefulWidget {
       builder: (context) => PickDayDialog(
         onConfirm: (value) => context.pop(value),
         onClosing: () => context.pop(),
+        title: title,
       ),
     );
   }
@@ -63,7 +66,6 @@ class _PickDayDialogState extends State<PickDayDialog> {
         mainAxisSize: MainAxisSize.min,
         children: [
           Container(
-            height: 56.h,
             padding: EdgeInsets.symmetric(horizontal: 16.w),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -90,13 +92,19 @@ class _PickDayDialogState extends State<PickDayDialog> {
                     ),
                   ),
                 ),
-                Text(
-                  'Dia de pago( primero)',
-                  style: TextStyle(
-                    fontSize: 18.sp,
-                    fontWeight: FontWeight.w500,
-                    color: NowColors.c0xFF1C1F23,
-                    height: 24 / 18,
+                Expanded(
+                  child: Padding(
+                    padding: const EdgeInsets.all(16),
+                    child: Text(
+                      widget.title,
+                      style: TextStyle(
+                        fontSize: 18.sp,
+                        fontWeight: FontWeight.w500,
+                        color: NowColors.c0xFF1C1F23,
+                        height: 24 / 18,
+                      ),
+                      textAlign: TextAlign.center,
+                    ),
                   ),
                 ),
                 SizedBox(width: 24.r, height: 24.r),
@@ -113,9 +121,10 @@ class _PickDayDialogState extends State<PickDayDialog> {
             ),
             itemCount: 31,
             itemBuilder: (context, index) {
-              final isSelected = _pickedValue == index;
+              final value = index + 1;
+              final isSelected = _pickedValue == value;
               return InkWell(
-                onTap: () => setState(() => _pickedValue = index),
+                onTap: () => setState(() => _pickedValue = value),
                 borderRadius: const BorderRadius.all(Radius.circular(12)),
                 child: Container(
                   alignment: Alignment.center,
@@ -125,7 +134,7 @@ class _PickDayDialogState extends State<PickDayDialog> {
                     boxShadow: NowStyles.cardShadows,
                   ),
                   child: Text(
-                    index + 1 < 10 ? '0${index + 1}' : '${index + 1}',
+                    value < 10 ? '0$value' : '$value',
                     style: TextStyle(
                       fontSize: 18.sp,
                       color: isSelected ? Colors.white : NowColors.c0xFF1C1F23,
