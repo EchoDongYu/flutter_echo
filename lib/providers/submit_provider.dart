@@ -19,12 +19,6 @@ class SubmitModel extends BaseProvider {
     });
   }
 
-  Future<bool?> checkSubmitValid({String? email, String? id}) async {
-    return await launchRequest(() async {
-      return await Api.checkSubmitValid(email: email, id: id);
-    });
-  }
-
   void submitBasicInfo({
     required List<String> inputs,
     required List<int?> items,
@@ -47,8 +41,14 @@ class SubmitModel extends BaseProvider {
     navigate((context) => context.push(AppRouter.stepWork));
   }
 
+  void submitWorkInfo() {
+    _submitData = _submitData.copyWith();
+    navigate((context) => context.push(AppRouter.stepContact));
+  }
+
   Future<int?> submitCreditData() async {
     return await launchRequest(() async {
+      _submitData = _submitData.copyWith();
       return await Api.submitCreditData(_submitData);
     });
   }
