@@ -3,6 +3,7 @@ import 'package:flutter_echo/common/app_theme.dart';
 import 'package:flutter_echo/common/constants.dart';
 import 'package:flutter_echo/providers/main_provider.dart';
 import 'package:flutter_echo/ui/widget_helper.dart';
+import 'package:flutter_echo/ui/widgets/arc_slider.dart';
 import 'package:flutter_echo/ui/widgets/common_button.dart';
 import 'package:flutter_echo/ui/widgets/home_step.dart';
 import 'package:flutter_echo/ui/widgets/top_bar.dart';
@@ -19,6 +20,17 @@ class HomeLoanPage extends StatefulWidget {
 
 class _HomeLoanPageState extends State<HomeLoanPage> {
   MainModel get mainModel => Provider.of<MainModel>(context, listen: false);
+  double minValue = 200;
+  double maxValue = 2000;
+  double step = 100;
+  double value = 1000;
+
+  void _setValue(double newValue) {
+    double clamped = newValue.clamp(minValue, maxValue);
+    double steps = ((clamped - minValue) / step).roundToDouble();
+    double snapped = (minValue + steps * step).clamp(minValue, maxValue);
+    setState(() => value = snapped);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -33,9 +45,31 @@ class _HomeLoanPageState extends State<HomeLoanPage> {
                 child: ListView(
                   padding: EdgeInsets.fromLTRB(12.w, 12.h, 12.w, 36.h),
                   children: [
-                    EchoPrimaryButton(
-                      onPressed: () => mainModel.launchLoan(),
-                      text: 'Solicítelo ya',
+                    Container(
+                      alignment: Alignment.centerLeft,
+                      padding: EdgeInsets.fromLTRB(16.w, 20.h, 16.w, 28.h),
+                      decoration: const BoxDecoration(
+                        color: Colors.white,
+                        borderRadius: BorderRadius.all(Radius.circular(20)),
+                        boxShadow: NowStyles.cardShadows,
+                      ),
+                      child: Column(
+                        children: [
+                          ArcSlider(
+                            min: minValue,
+                            max: maxValue,
+                            step: step,
+                            value: value,
+                            size: 300,
+                            onChanged: _setValue,
+                          ),
+                          SizedBox(height: 24.h),
+                          EchoPrimaryButton(
+                            onPressed: () => mainModel.launchLoan(),
+                            text: 'Solicítelo ya',
+                          ),
+                        ],
+                      ),
                     ),
                     SizedBox(height: 30.h),
                     Padding(

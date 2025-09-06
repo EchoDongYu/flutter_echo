@@ -51,6 +51,7 @@ class _MainPageState extends State<MainPage> {
         body: Stack(
           children: [
             PageView(
+              physics: const NeverScrollableScrollPhysics(),
               controller: _controller,
               onPageChanged: (value) {
                 if (_currentPage != value) {
