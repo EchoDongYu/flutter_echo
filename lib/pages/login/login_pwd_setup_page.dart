@@ -140,15 +140,12 @@ class _LoginPwdSetupPageState extends State<LoginPwdSetupPage> {
       keyboardType: TextInputType.number,
       inputFormatters: [FilteringTextInputFormatter.digitsOnly],
       obscureText: obscureText,
-      suffix: Padding(
-        padding: EdgeInsets.only(right: 12.w),
-        child: InkWell(
-          onTap: () => setState(() => _obscureText[index] = !obscureText),
-          child: Image.asset(
-            obscureText ? Drawable.iconEyeclose : Drawable.iconEyeopen,
-            width: 20.r,
-            height: 20.r,
-          ),
+      suffix: InkWell(
+        onTap: () => setState(() => _obscureText[index] = !obscureText),
+        child: Image.asset(
+          obscureText ? Drawable.iconEyeclose : Drawable.iconEyeopen,
+          width: 20.r,
+          height: 20.r,
         ),
       ),
     );

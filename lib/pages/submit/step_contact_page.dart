@@ -196,15 +196,12 @@ class _StepContactPageState extends State<StepContactPage> {
             hintText: 'Nombre(s)',
             keyboardType: TextInputType.text,
             textInputAction: TextInputAction.next,
-            suffix: Padding(
-              padding: EdgeInsets.only(right: 12.w),
-              child: InkWell(
-                onTap: () => _pickContact(pos),
-                child: Image.asset(
-                  Drawable.iconContact,
-                  width: 24.r,
-                  height: 24.r,
-                ),
+            suffix: InkWell(
+              onTap: () => _pickContact(pos),
+              child: Image.asset(
+                Drawable.iconContact,
+                width: 24.r,
+                height: 24.r,
               ),
             ),
             isError: _isErrors[pos][0],

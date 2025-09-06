@@ -24,9 +24,9 @@ class SubmitModel extends BaseProvider {
     required List<int?> items,
     required int? birthday,
   }) async {
-    final checkResult = await launchRequest(() async {
-      return await Api.checkSubmitValid(email: inputs[4], id: inputs[2]);
-    });
+    final checkResult = await launchRequest(
+      () => Api.checkSubmitValid(email: inputs[4], id: inputs[2]),
+    );
     if (checkResult != true) return;
     _submitData = _submitData.copyWith(
       gender: items[0],
@@ -80,9 +80,14 @@ class SubmitModel extends BaseProvider {
     _submitCreditData();
   }
 
-  Future<int?> _submitCreditData() async {
-    return await launchRequest(() async {
-      return await Api.submitCreditData(_submitData);
-    });
+  void _submitCreditData() async {
+    final apiResult = await launchRequest(
+      () => Api.submitCreditData(_submitData),
+    );
+    final uriRoute = Uri(
+      path: AppRouter.stepProcess,
+      queryParameters: {NavKey.count: apiResult?.toString()},
+    );
+    navigate((context) => context.push(uriRoute.toString()));
   }
 }

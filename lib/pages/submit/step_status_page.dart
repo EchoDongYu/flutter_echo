@@ -6,10 +6,10 @@ import 'package:flutter_echo/pages/app_router.dart';
 import 'package:flutter_echo/providers/step_status_provider.dart';
 import 'package:flutter_echo/ui/widget_helper.dart';
 import 'package:flutter_echo/ui/widgets/top_bar.dart';
+import 'package:flutter_echo/utils/common_utils.dart';
 import 'package:flutter_echo/utils/drawable_utils.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
-import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 
 /// 授信失败页面
@@ -126,8 +126,8 @@ class StepProcessPage extends StatefulWidget {
 }
 
 class _StepProcessPageState extends State<StepProcessPage> {
+  late int _countdown;
   Timer? _timer;
-  int _countdown = 0;
 
   StepStatusModel get statusModel =>
       Provider.of<StepStatusModel>(context, listen: false);
@@ -138,13 +138,14 @@ class _StepProcessPageState extends State<StepProcessPage> {
     WidgetsBinding.instance.addPostFrameCallback((_) {
       statusModel.refreshSubmitResult(5);
     });
-    final totalCount = widget.countdown ?? 5 * 60;
-    setState(() => _countdown = totalCount);
+    _countdown = widget.countdown ?? 60;
+    _startTimer();
+  }
+
+  void _startTimer() {
     _timer = Timer.periodic(Duration(seconds: 1), (timer) {
-      if (timer.tick == totalCount) {
-        setState(() => _countdown = 0);
-        _timer?.cancel();
-        _timer = null;
+      if (_countdown <= 0) {
+        timer.cancel();
         context.go(AppRouter.main);
       } else {
         setState(() => _countdown--);
@@ -186,9 +187,7 @@ class _StepProcessPageState extends State<StepProcessPage> {
                         SizedBox(height: 24.h),
                         Center(
                           child: Text(
-                            DateFormat.Hms().format(
-                              DateTime(0, 0, 0, 0, 0, _countdown),
-                            ),
+                            _countdown.showCountdown,
                             style: TextStyle(
                               fontSize: 24.sp,
                               fontWeight: FontWeight.w500,

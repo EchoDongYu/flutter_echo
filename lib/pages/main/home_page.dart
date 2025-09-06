@@ -17,15 +17,14 @@ class _HomePageState extends State<HomePage> {
 
   /// 模拟异步刷新
   Future<void> _onRefresh() async {
-    await Future.delayed(Duration(seconds: 2));
-    mainModel.changeCreditSattus();
+    await mainModel.getHomeInfo();
   }
 
   @override
   void initState() {
     super.initState();
-    WidgetsBinding.instance.addPostFrameCallback((_) async {
-      await mainModel.getHomeInfo();
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      mainModel.getHomeInfo();
     });
   }
 

@@ -4,6 +4,7 @@ import 'package:flutter_echo/common/app_theme.dart';
 import 'package:flutter_echo/common/constants.dart';
 import 'package:flutter_echo/models/common_model.dart';
 import 'package:flutter_echo/pages/submit/confirm_step_dialog.dart';
+import 'package:flutter_echo/pages/submit/dpi_number_dialog.dart';
 import 'package:flutter_echo/providers/submit_provider.dart';
 import 'package:flutter_echo/services/storage_service.dart';
 import 'package:flutter_echo/ui/widget_helper.dart';
@@ -13,6 +14,7 @@ import 'package:flutter_echo/ui/widgets/step_input_field.dart';
 import 'package:flutter_echo/ui/widgets/step_select_field.dart';
 import 'package:flutter_echo/ui/widgets/top_bar.dart';
 import 'package:flutter_echo/utils/common_utils.dart';
+import 'package:flutter_echo/utils/drawable_utils.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
 
@@ -103,7 +105,7 @@ class _StepBasicPageState extends State<StepBasicPage> {
     if (!_isErrors.contains(true)) {
       final result = await ConfirmStepDialog.show(context, [
         Pair('Género', _pickedItem[0]?.value),
-        Pair('Fecha de Nacimiento', _pickedDate?.showFormat('dd/MM/yyyy')),
+        Pair('Fecha de Nacimiento', _pickedDate?.showDate),
         Pair('Nombre(s)', _controllers[0].text),
         Pair('Apellidos', _controllers[1].text),
         Pair('CUI', _controllers[2].text),
@@ -270,6 +272,17 @@ class _StepBasicPageState extends State<StepBasicPage> {
             hintText: 'CUI',
             maxLength: 13,
             showCounter: true,
+            suffix: Padding(
+              padding: EdgeInsets.only(left: 8.w),
+              child: InkWell(
+                onTap: () => DpiNumberDialog.show(context),
+                child: Image.asset(
+                  Drawable.iconQuestion,
+                  width: 20.r,
+                  height: 20.r,
+                ),
+              ),
+            ),
             keyboardType: TextInputType.number,
             inputFormatters: [FilteringTextInputFormatter.digitsOnly],
             isError: _isErrors[4],

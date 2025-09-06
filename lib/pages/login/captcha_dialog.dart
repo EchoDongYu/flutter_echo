@@ -225,7 +225,7 @@ class _CaptchaDialogState extends State<CaptchaDialog>
       child: Container(
         width: 104.w,
         height: 44.h,
-        margin: const EdgeInsets.all(8),
+        margin: EdgeInsets.symmetric(vertical: 8.h),
         padding: EdgeInsets.symmetric(vertical: 7.h),
         decoration: BoxDecoration(
           borderRadius: const BorderRadius.all(Radius.circular(8)),

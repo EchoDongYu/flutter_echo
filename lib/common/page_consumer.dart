@@ -41,10 +41,8 @@ class PageConsumer<T extends BaseProvider> extends StatelessWidget {
             provider.consumeApiError();
             if (apiError.needLogin) {
               Fluttertoast.showToast(msg: apiError.msg);
-              await LocalStorage().logout();
-              if (context.mounted) {
-                GoRouter.of(context).go(AppRouter.loginPhone);
-              }
+              LocalStorage().logout();
+              GoRouter.of(context).go(AppRouter.loginPhone);
             } else if (apiError.needCaptcha) {
               final code = await CaptchaDialog.show(context);
               if (code != null) provider.onCaptchaCode(code);

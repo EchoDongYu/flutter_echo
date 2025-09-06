@@ -26,6 +26,7 @@ import 'package:flutter_echo/providers/login_provider.dart';
 import 'package:flutter_echo/providers/main_provider.dart';
 import 'package:flutter_echo/providers/step_status_provider.dart';
 import 'package:flutter_echo/providers/submit_provider.dart';
+import 'package:flutter_echo/utils/common_utils.dart';
 import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
 
@@ -135,8 +136,8 @@ class AppRouter {
       GoRoute(
         path: stepResult,
         builder: (context, state) {
-          final count = state.uri.queryParameters[NavKey.count] ?? '';
-          return StepResultPage(countdown: int.tryParse(count));
+          final count = state.uri.queryParameters[NavKey.count]?.tryParseInt;
+          return StepResultPage(countdown: count);
         },
       ),
 
@@ -152,9 +153,9 @@ class AppRouter {
         builder: (context, state) => ChangeNotifierProvider(
           create: (_) => StepStatusModel(),
           builder: (_, _) {
-            final count = state.uri.queryParameters[NavKey.count] ?? '';
+            final count = state.uri.queryParameters[NavKey.count]?.tryParseInt;
             return PageConsumer<StepStatusModel>(
-              child: StepProcessPage(countdown: int.tryParse(count)),
+              child: StepProcessPage(countdown: count),
             );
           },
         ),
@@ -166,9 +167,11 @@ class AppRouter {
         builder: (context, state) => ChangeNotifierProvider(
           create: (_) => ApplyModel(),
           builder: (_, _) {
-            final id = state.uri.queryParameters[NavKey.id] ?? '';
+            final params = state.uri.queryParameters;
+            final id = params[NavKey.id]?.tryParseInt;
+            final amount = params[NavKey.amount]?.tryParseDouble;
             return PageConsumer<ApplyModel>(
-              child: ApplyConfirmPage(productId: id),
+              child: ApplyConfirmPage(productId: id, amount: amount),
             );
           },
         ),
@@ -233,4 +236,5 @@ class NavKey {
   static const String count = "countdown";
   static const String status = "status";
   static const String id = "id";
+  static const String amount = "amount";
 }

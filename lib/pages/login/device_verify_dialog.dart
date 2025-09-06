@@ -252,15 +252,13 @@ class _DeviceVerifyDialogState extends State<DeviceVerifyDialog> {
         maxLength: AppConst.codeLength,
         keyboardType: TextInputType.number,
         inputFormatters: [FilteringTextInputFormatter.digitsOnly],
-        suffix: Padding(
-          padding: const EdgeInsets.all(8),
-          child: Container(
-            width: 104.w,
-            height: 44.h,
-            decoration: BoxDecoration(
-              borderRadius: const BorderRadius.all(Radius.circular(8)),
-              border: Border.all(color: NowColors.c0xFFC7C7C7, width: 1),
-            ),
+        suffix: Container(
+          width: 104.w,
+          height: 44.h,
+          margin: EdgeInsets.symmetric(vertical: 8.h),
+          decoration: BoxDecoration(
+            borderRadius: const BorderRadius.all(Radius.circular(8)),
+            border: Border.all(color: NowColors.c0xFFC7C7C7, width: 1),
           ),
         ),
       ),

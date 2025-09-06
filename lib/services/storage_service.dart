@@ -92,10 +92,10 @@ class LocalStorage {
     if (account != null) await _prefs.setString(AppConst.accountKey, account);
   }
 
-  Future<void> logout() async {
-    await _prefs.remove(AppConst.tokenKey);
-    await _prefs.remove(AppConst.userGidKey);
-    await _prefs.remove(AppConst.userInfoKey);
-    await _prefs.remove(AppConst.accountKey);
+  void logout() {
+    _prefs.remove(AppConst.tokenKey);
+    _prefs.remove(AppConst.userGidKey);
+    _prefs.remove(AppConst.userInfoKey);
+    _prefs.remove(AppConst.accountKey);
   }
 }

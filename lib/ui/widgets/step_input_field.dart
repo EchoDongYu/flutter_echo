@@ -45,7 +45,9 @@ class _StepInputFieldState extends State<StepInputField> {
   @override
   void initState() {
     super.initState();
-    widget.controller.addListener(widget.showCounter ? _onInputChanged : _onFocusChanged);
+    widget.controller.addListener(
+      widget.showCounter ? _onInputChanged : _onFocusChanged,
+    );
     _focusNode.addListener(_onFocusChanged);
   }
 
@@ -120,7 +122,11 @@ class _StepInputFieldState extends State<StepInputField> {
                         // labelText
                         if (_isExpanded)
                           Padding(
-                            padding: EdgeInsets.only(left: 12.w, top: 8.h, bottom: 4.h),
+                            padding: EdgeInsets.only(
+                              left: 12.w,
+                              top: 8.h,
+                              bottom: 4.h,
+                            ),
                             child: Text(
                               widget.hintText,
                               style: TextStyle(
@@ -157,7 +163,11 @@ class _StepInputFieldState extends State<StepInputField> {
                             disabledBorder: InputBorder.none,
                             counterText: '',
                             isCollapsed: _isExpanded,
-                            contentPadding: EdgeInsets.only(left: 12.w, right: 12.w, bottom: 8.h),
+                            contentPadding: EdgeInsets.only(
+                              left: 12.w,
+                              right: 12.w,
+                              bottom: 8.h,
+                            ),
                             prefix: widget.prefix,
                           ),
                         ),
@@ -181,7 +191,9 @@ class _StepInputFieldState extends State<StepInputField> {
                         SizedBox(width: 9.w),
                         InkWell(
                           onTap: () => widget.controller.clear(),
-                          borderRadius: const BorderRadius.all(Radius.circular(10)),
+                          borderRadius: const BorderRadius.all(
+                            Radius.circular(10),
+                          ),
                           child: Container(
                             width: 18.r,
                             height: 18.r,
@@ -190,14 +202,18 @@ class _StepInputFieldState extends State<StepInputField> {
                               color: NowColors.c0xFFB0B1B2,
                               shape: BoxShape.circle,
                             ),
-                            child: const Icon(Icons.close_rounded, color: Colors.white, size: 13),
+                            child: const Icon(
+                              Icons.close_rounded,
+                              color: Colors.white,
+                              size: 13,
+                            ),
                           ),
                         ),
-                        SizedBox(width: 13.w),
                       ],
                     ),
                   // suffixCustom
                   ?widget.suffix,
+                  SizedBox(width: 12.w),
                 ],
               ),
             ),

@@ -81,7 +81,7 @@ class StepSelectField extends StatefulWidget {
     String errorText = 'Por favor seleccione',
     bool isError = false,
   }) => StepSelectField(
-    value: pickedDate?.showFormat('dd/MM/yyyy'),
+    value: pickedDate?.showDate,
     onValueChange: () async {
       final result = await PickDateDialog.show(context, title: hintText);
       if (result != null) onValueChange(result);

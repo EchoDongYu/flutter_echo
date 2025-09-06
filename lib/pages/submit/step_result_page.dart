@@ -20,19 +20,20 @@ class StepResultPage extends StatefulWidget {
 }
 
 class _StepResultPageState extends State<StepResultPage> {
+  late int _countdown;
   Timer? _timer;
-  int _countdown = 0;
 
   @override
   void initState() {
     super.initState();
-    final totalCount = widget.countdown ?? 30;
-    setState(() => _countdown = totalCount);
+    _countdown = widget.countdown ?? 30;
+    _startTimer();
+  }
+
+  void _startTimer() {
     _timer = Timer.periodic(Duration(seconds: 1), (timer) {
-      if (timer.tick == totalCount) {
-        setState(() => _countdown = 0);
-        _timer?.cancel();
-        _timer = null;
+      if (_countdown <= 0) {
+        timer.cancel();
         context.go(AppRouter.main);
       } else {
         setState(() => _countdown--);

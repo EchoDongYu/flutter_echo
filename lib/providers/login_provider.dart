@@ -90,14 +90,12 @@ class LoginModel extends BaseProvider {
     _timer = null;
     _countdown = 60;
     _timer = Timer.periodic(Duration(seconds: 1), (timer) {
-      if (timer.tick == 60) {
-        _countdown = 0;
-        _timer?.cancel();
-        _timer = null;
+      if (_countdown <= 0) {
+        timer.cancel();
       } else {
         _countdown--;
+        notifyListeners();
       }
-      notifyListeners();
     });
   }
 

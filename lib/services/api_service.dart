@@ -167,6 +167,10 @@ class Api {
     );
   }
 
+  static Future<int> submitCreditData(SubmitDataReq data) {
+    return _apiService.post(ApiPath.submitCreditData, body: data.toJson());
+  }
+
   static Future<SubmitResultResp> refreshSubmitResult() {
     return _apiService.post(
       ApiPath.refreshSubmitResult,
@@ -175,8 +179,18 @@ class Api {
     );
   }
 
-  static Future<int> submitCreditData(SubmitDataReq data) {
-    return _apiService.post(ApiPath.submitCreditData, body: data.toJson());
+  static Future<NeedReportResp> needReport() {
+    return _apiService.post(
+      ApiPath.needReport,
+      convert: (json) => NeedReportResp.fromJson(json),
+    );
+  }
+
+  static Future<bool> uploadTrack() {
+    return _apiService.postSt(
+      ApiPath.reportTrack,
+      body: TrackReportReq().toJson(),
+    );
   }
 
   static Future<HomeInfoResp> getHomeInfo() {
@@ -187,10 +201,24 @@ class Api {
     );
   }
 
-  static Future<LoanConfirmResp> confirmLoan(SubmitDataReq data) {
+  static Future<LoanPreInfoResp> getLoanPreInfo({
+    int? productId,
+    double? amount,
+  }) {
+    return _apiService.post(
+      ApiPath.getLoanPreInfo,
+      body: LoanPreInfoReq(
+        foreyardOProductId: productId,
+        retiaryOLoanAmount: amount,
+      ).toJson(),
+      convert: (json) => LoanPreInfoResp.fromJson(json),
+    );
+  }
+
+  static Future<LoanConfirmResp> confirmLoan(LoanConfirmReq data) {
     return _apiService.post(
       ApiPath.confirmLoan,
-      body: LoanConfirmReq().toJson(),
+      body: data.toJson(),
       convert: (json) => LoanConfirmResp.fromJson(json),
     );
   }

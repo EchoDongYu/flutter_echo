@@ -15,26 +15,15 @@ class MainModel extends BaseProvider {
   Future<void> getHomeInfo() async {
     final isLogin = LocalStorage().isLogin;
     if (isLogin) {
-      _homeInfo = await launchRequest(() async {
-        return await Api.getHomeInfo();
-      });
+      _homeInfo = await launchRequest(() => Api.getHomeInfo());
+      _creditStatus = _homeInfo?.bopomofoOCreditStatus;
     } else {
       _creditStatus = null;
       notifyListeners();
-      return null;
     }
   }
 
-  void changeCreditSattus() {
-    if (_creditStatus == 2) {
-      _creditStatus = 0;
-    } else {
-      _creditStatus = 2;
-    }
-    notifyListeners();
-  }
-
-  void defaultLaunch() async {
+  void launchDefault() async {
     switch (_creditStatus) {
       case 0:
         navigate((context) => context.push(AppRouter.stepBasic));
@@ -47,7 +36,7 @@ class MainModel extends BaseProvider {
             final uriRoute = Uri(
               path: AppRouter.stepProcess,
               queryParameters: {
-                NavKey.count: _homeInfo?.yawnOExpectTime.toString(),
+                NavKey.count: _homeInfo?.yawnOExpectTime?.toString(),
               },
             );
             navigate((context) => context.push(uriRoute.toString()));
@@ -55,7 +44,8 @@ class MainModel extends BaseProvider {
             final uriRoute = Uri(
               path: AppRouter.applyConfirm,
               queryParameters: {
-                NavKey.id: apiResult?.foreyardOProductId.toString(),
+                NavKey.id: apiResult?.foreyardOProductId?.toString(),
+                NavKey.amount: apiResult?.nookieOCanBorrowAmount?.toString(),
               },
             );
             navigate((context) => context.push(uriRoute.toString()));
@@ -63,5 +53,13 @@ class MainModel extends BaseProvider {
             navigate((context) => context.push(AppRouter.stepFailed));
         }
     }
+  }
+
+  void launchLoan() async {
+    if (_creditStatus != 2) return;
+    await launchRequest(() async {
+      final need = await Api.needReport();
+      if (need.q0ui28OIsNeedReport == true) await Api.uploadTrack();
+    });
   }
 }

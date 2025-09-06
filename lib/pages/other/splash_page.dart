@@ -48,7 +48,7 @@ class _SplashPageState extends State<SplashPage> {
                 Image.asset(Drawable.iconLogo, width: 80.r, height: 80.r),
                 SizedBox(height: 30.h),
                 Text(
-                  'CrediGo',
+                  AppConst.applicationName,
                   style: TextStyle(
                     fontSize: 24.sp,
                     fontWeight: FontWeight.w500,

@@ -40,5 +40,23 @@ class FlutterPlatform {
 }
 
 extension DateTimeFormat on DateTime {
-  String showFormat(String newPattern) => DateFormat(newPattern).format(this);
+  String get showDate => DateFormat('dd/MM/yyyy').format(this);
+}
+
+extension TimestampFormat on int {
+  String get showDate => DateTime.fromMillisecondsSinceEpoch(this).showDate;
+
+  String get showCountdown =>
+      DateFormat.Hms().format(DateTime.fromMillisecondsSinceEpoch(this * 1000));
+}
+
+extension AmountFormat on num {
+  String get showAmount =>
+      NumberFormat.currency(locale: 'es-GT', symbol: 'Q').format(this);
+}
+
+extension StringParse on String? {
+  int? get tryParseInt => this != null ? int.tryParse(this!) : null;
+
+  double? get tryParseDouble => this != null ? double.tryParse(this!) : null;
 }

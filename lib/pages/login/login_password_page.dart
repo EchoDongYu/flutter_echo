@@ -172,15 +172,12 @@ class _LoginPasswordPageState extends State<LoginPasswordPage> {
       keyboardType: TextInputType.number,
       inputFormatters: [FilteringTextInputFormatter.digitsOnly],
       obscureText: _obscureText,
-      suffix: Padding(
-        padding: EdgeInsets.only(right: 12.w),
-        child: InkWell(
-          onTap: () => setState(() => _obscureText = !_obscureText),
-          child: Image.asset(
-            _obscureText ? Drawable.iconEyeclose : Drawable.iconEyeopen,
-            width: 20.r,
-            height: 20.r,
-          ),
+      suffix: InkWell(
+        onTap: () => setState(() => _obscureText = !_obscureText),
+        child: Image.asset(
+          _obscureText ? Drawable.iconEyeclose : Drawable.iconEyeopen,
+          width: 20.r,
+          height: 20.r,
         ),
       ),
     );

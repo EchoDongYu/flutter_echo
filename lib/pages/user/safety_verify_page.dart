@@ -113,7 +113,6 @@ class _SafetyVerifyPageState extends State<SafetyVerifyPage> {
             keyboardType: TextInputType.number,
             inputFormatters: [FilteringTextInputFormatter.digitsOnly],
             suffix: Container(
-              margin: EdgeInsets.symmetric(horizontal: 8.w),
               padding: EdgeInsets.symmetric(horizontal: 8.w, vertical: 7.h),
               constraints: BoxConstraints(minWidth: 72.w),
               decoration: BoxDecoration(

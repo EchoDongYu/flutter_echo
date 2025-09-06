@@ -4,6 +4,7 @@ import 'package:flutter_echo/pages/app_router.dart';
 import 'package:flutter_echo/pages/login/captcha_dialog.dart';
 import 'package:flutter_echo/pages/login/retain_login_dialog.dart';
 import 'package:flutter_echo/pages/submit/confirm_step_dialog.dart';
+import 'package:flutter_echo/pages/submit/dpi_number_dialog.dart';
 import 'package:flutter_echo/pages/submit/pick_date_dialog.dart';
 import 'package:flutter_echo/pages/submit/pick_day_dialog.dart';
 import 'package:flutter_echo/pages/submit/pick_item_dialog.dart';
@@ -267,11 +268,9 @@ class _DemoPageState extends State<DemoPage> {
             title: '登录手机号输入页面',
             icon: Icons.phone_android_rounded,
             color: NowColors.c0xFF3EB34D,
-            onPressed: () async {
-              await LocalStorage().logout();
-              if (context.mounted) {
-                GoRouter.of(context).go(AppRouter.loginPhone);
-              }
+            onPressed: () {
+              LocalStorage().logout();
+              GoRouter.of(context).go(AppRouter.loginPhone);
             },
           ),
 
@@ -590,7 +589,7 @@ class _DemoPageState extends State<DemoPage> {
   }
 
   void _showDpiNumberDialog(BuildContext context) async {
-    final result = await DialogHelper.showDpiNumberDialog(context: context);
+    final result = await DpiNumberDialog.show(context);
     if (context.mounted) {
       if (result == true) {
         context.showSuccessSnack('Confirm $result');

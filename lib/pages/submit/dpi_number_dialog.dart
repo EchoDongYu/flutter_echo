@@ -2,12 +2,21 @@ import 'package:flutter/material.dart';
 import 'package:flutter_echo/common/app_theme.dart';
 import 'package:flutter_echo/utils/drawable_utils.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:go_router/go_router.dart';
 
 /// 证件号码弹窗
 class DpiNumberDialog extends StatelessWidget {
   final VoidCallback onCancel;
 
   const DpiNumberDialog({super.key, required this.onCancel});
+
+  /// 显示证件号码弹窗
+  static Future<bool?> show(BuildContext context) {
+    return showDialog<bool>(
+      context: context,
+      builder: (context) => DpiNumberDialog(onCancel: () => context.pop(false)),
+    );
+  }
 
   @override
   Widget build(BuildContext context) {

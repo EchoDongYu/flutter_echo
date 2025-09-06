@@ -91,7 +91,6 @@ class _ResetLoginPwdPageState extends State<ResetLoginPwdPage> {
             keyboardType: TextInputType.number,
             inputFormatters: [FilteringTextInputFormatter.digitsOnly],
             suffix: Container(
-              margin: EdgeInsets.symmetric(horizontal: 8.w),
               padding: EdgeInsets.symmetric(horizontal: 8.w, vertical: 7.h),
               constraints: BoxConstraints(minWidth: 72.w),
               decoration: BoxDecoration(
@@ -130,15 +129,12 @@ class _ResetLoginPwdPageState extends State<ResetLoginPwdPage> {
       keyboardType: TextInputType.number,
       inputFormatters: [FilteringTextInputFormatter.digitsOnly],
       obscureText: obscureText,
-      suffix: Padding(
-        padding: EdgeInsets.only(right: 12.w),
-        child: InkWell(
-          onTap: () => setState(() => _obscureText[index] = !obscureText),
-          child: Image.asset(
-            obscureText ? Drawable.iconEyeclose : Drawable.iconEyeopen,
-            width: 20.r,
-            height: 20.r,
-          ),
+      suffix: InkWell(
+        onTap: () => setState(() => _obscureText[index] = !obscureText),
+        child: Image.asset(
+          obscureText ? Drawable.iconEyeclose : Drawable.iconEyeopen,
+          width: 20.r,
+          height: 20.r,
         ),
       ),
     );

@@ -1,9 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_echo/models/common_model.dart';
 import 'package:flutter_echo/pages/login/code_mode_dialog.dart';
 import 'package:flutter_echo/pages/login/device_verify_dialog.dart';
-import 'package:flutter_echo/pages/submit/confirm_step_dialog.dart';
-import 'package:flutter_echo/pages/submit/dpi_number_dialog.dart';
 import 'package:flutter_echo/pages/submit/step_bank_dialog.dart';
 import 'package:flutter_echo/pages/user/removed_dialog.dart';
 import 'package:flutter_echo/ui/dialogs/compensation_dialog.dart';
@@ -89,32 +86,6 @@ class DialogHelper {
       barrierDismissible: false,
       builder: (context) =>
           CodeModeDialog(onMethod: (value) => context.pop(value)),
-    );
-  }
-
-  /// 显示认证项确认弹窗
-  static Future<bool?> showStepConfirmDialog({
-    required BuildContext context,
-    required List<Pair<String, String>> items,
-  }) {
-    return showModalBottomSheet<bool>(
-      context: context,
-      enableDrag: false,
-      isDismissible: false,
-      isScrollControlled: true,
-      builder: (context) => ConfirmStepDialog(
-        items: items,
-        onConfirm: () => context.pop(true),
-        onClosing: () => context.pop(false),
-      ),
-    );
-  }
-
-  /// 显示证件号码弹窗
-  static Future<bool?> showDpiNumberDialog({required BuildContext context}) {
-    return showDialog<bool>(
-      context: context,
-      builder: (context) => DpiNumberDialog(onCancel: () => context.pop(false)),
     );
   }
 

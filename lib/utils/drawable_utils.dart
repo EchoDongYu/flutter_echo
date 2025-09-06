@@ -27,6 +27,7 @@ class Drawable {
   static const String iconMineV1 = 'assets/images/icon_mine_v1.png';
   static const String iconMineV2 = 'assets/images/icon_mine_v2.png';
   static const String iconMineV3 = 'assets/images/icon_mine_v3.png';
+  static const String iconQuestion = 'assets/images/icon_question.png';
   static const String iconRetainLogin1 = 'assets/images/icon_retain_login1.png';
   static const String iconRetainLogin2 = 'assets/images/icon_retain_login2.png';
   static const String iconRetainLogin3 = 'assets/images/icon_retain_login3.png';
