@@ -8,7 +8,7 @@ class ArcSlider extends StatefulWidget {
   final double max;
   final double step;
   final double value;
-  final double size; // 控件宽度
+  final double size;
   final ValueChanged<double> onChanged;
 
   const ArcSlider({
@@ -131,7 +131,7 @@ class _ArcSliderState extends State<ArcSlider> {
                 Column(
                   children: [
                     CustomPaint(
-                      size: Size(widget.size - 15, height),
+                      size: Size(widget.size, height),
                       painter: _ArcPainter(
                         thickness: thickness,
                         angle: valueToAngle(currentValue),
@@ -139,17 +139,20 @@ class _ArcSliderState extends State<ArcSlider> {
                         progressColor: NowColors.c0xFF3288F1,
                       ),
                     ),
-                    SizedBox(height: 18),
+                    SizedBox(height: 33),
                   ],
                 ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     _IncDecButton(
-                      icon: Icons.remove,
+                      icon: Icons.remove_rounded,
                       onTap: () => _setByStep(-1),
                     ),
-                    _IncDecButton(icon: Icons.add, onTap: () => _setByStep(1)),
+                    _IncDecButton(
+                      icon: Icons.add_rounded,
+                      onTap: () => _setByStep(1),
+                    ),
                   ],
                 ),
                 Column(
@@ -167,10 +170,10 @@ class _ArcSliderState extends State<ArcSlider> {
                     Text(
                       currentValue.toInt().toString(),
                       style: const TextStyle(
-                        fontSize: 44,
+                        fontSize: 45,
                         fontWeight: FontWeight.w700,
                         color: NowColors.c0xFF1C1F23,
-                        height: 44 / 44,
+                        height: 45 / 45,
                       ),
                     ),
                   ],
@@ -256,11 +259,14 @@ class _IncDecButton extends StatelessWidget {
     return Material(
       color: Colors.white,
       elevation: 2,
-      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
+      shape: RoundedRectangleBorder(
+        side: const BorderSide(color: NowColors.c0xFF1C1F23),
+        borderRadius: BorderRadius.circular(8),
+      ),
       child: InkWell(
         onTap: onTap,
         borderRadius: BorderRadius.circular(8),
-        child: SizedBox(width: 44, height: 44, child: Icon(icon, size: 22)),
+        child: SizedBox(width: 45, height: 45, child: Icon(icon, size: 23)),
       ),
     );
   }

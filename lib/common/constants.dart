@@ -10,6 +10,7 @@ class AppConst {
   static const String countryCode = '502';
   static const String isoCountryCode = 'gt';
   static const String languageCode = 'es';
+  static const String localeCode = 'es-GT';
   static const int phoneLength = 8;
   static const int codeLength = 4;
 

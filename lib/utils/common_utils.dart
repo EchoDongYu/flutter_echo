@@ -51,8 +51,12 @@ extension TimestampFormat on int {
 }
 
 extension AmountFormat on num {
-  String get showAmount =>
-      NumberFormat.currency(locale: 'es-GT', symbol: 'Q').format(this);
+  String get showAmount => NumberFormat.currency(
+    locale: AppConst.localeCode,
+    symbol: 'Q',
+  ).format(this);
+
+  String get showRound => NumberFormat('###', AppConst.localeCode).format(this);
 }
 
 extension StringParse on String? {

@@ -3,10 +3,11 @@ import 'package:flutter_echo/common/app_theme.dart';
 import 'package:flutter_echo/common/constants.dart';
 import 'package:flutter_echo/providers/main_provider.dart';
 import 'package:flutter_echo/ui/widget_helper.dart';
-import 'package:flutter_echo/ui/widgets/arc_slider.dart';
 import 'package:flutter_echo/ui/widgets/common_button.dart';
+import 'package:flutter_echo/ui/widgets/home_arc_slider.dart';
 import 'package:flutter_echo/ui/widgets/home_step.dart';
 import 'package:flutter_echo/ui/widgets/top_bar.dart';
+import 'package:flutter_echo/utils/common_utils.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
 
@@ -18,12 +19,21 @@ class HomeLoanPage extends StatefulWidget {
   State<HomeLoanPage> createState() => _HomeLoanPageState();
 }
 
-class _HomeLoanPageState extends State<HomeLoanPage> {
+class _HomeLoanPageState extends State<HomeLoanPage>
+    with SingleTickerProviderStateMixin {
+  late TabController _tabController;
+
   MainModel get mainModel => Provider.of<MainModel>(context, listen: false);
   double minValue = 200;
   double maxValue = 2000;
   double step = 100;
   double value = 1000;
+
+  @override
+  void initState() {
+    super.initState();
+    _tabController = TabController(length: 2, vsync: this);
+  }
 
   void _setValue(double newValue) {
     double clamped = newValue.clamp(minValue, maxValue);
@@ -56,6 +66,36 @@ class _HomeLoanPageState extends State<HomeLoanPage> {
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.stretch,
                         children: [
+                          Text(
+                            'Escolha o seu produto de empréstimo',
+                            style: TextStyle(
+                              fontSize: 14,
+                              fontWeight: FontWeight.w500,
+                              color: NowColors.c0xFF1C1F23,
+                              height: 20 / 14,
+                            ),
+                          ),
+                          SizedBox(height: 16.h),
+                          TabBar(
+                            controller: _tabController,
+                            labelColor: NowColors.c0xFF3288F1,
+                            unselectedLabelColor: NowColors.c0xFF1C1F23,
+                            dividerHeight: 0,
+                            tabs: [
+                              Tab(
+                                child: Align(
+                                  alignment: Alignment.center,
+                                  child: Text("MOVIES"),
+                                ),
+                              ),
+                              Tab(
+                                child: Align(
+                                  alignment: Alignment.center,
+                                  child: Text("GASMES"),
+                                ),
+                              ),
+                            ],
+                          ),
                           SizedBox(height: 22.h),
                           Text(
                             'Escolha o valor do empréstimo',
@@ -72,8 +112,40 @@ class _HomeLoanPageState extends State<HomeLoanPage> {
                             max: maxValue,
                             step: step,
                             value: value,
-                            size: 300,
+                            size: 305,
                             onChanged: _setValue,
+                          ),
+                          SizedBox(height: 7.h),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              SizedBox(
+                                width: 45.w,
+                                child: Text(
+                                  minValue.showRound,
+                                  style: TextStyle(
+                                    fontSize: 10,
+                                    fontWeight: FontWeight.w400,
+                                    color: NowColors.c0xFF77797B,
+                                    height: 14 / 10,
+                                  ),
+                                  textAlign: TextAlign.center,
+                                ),
+                              ),
+                              SizedBox(
+                                width: 45.w,
+                                child: Text(
+                                  maxValue.showRound,
+                                  style: TextStyle(
+                                    fontSize: 10,
+                                    fontWeight: FontWeight.w400,
+                                    color: NowColors.c0xFF77797B,
+                                    height: 14 / 10,
+                                  ),
+                                  textAlign: TextAlign.center,
+                                ),
+                              ),
+                            ],
                           ),
                           SizedBox(height: 24.h),
                           EchoPrimaryButton(
