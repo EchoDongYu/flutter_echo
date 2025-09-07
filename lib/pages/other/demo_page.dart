@@ -11,6 +11,7 @@ import 'package:flutter_echo/pages/submit/pick_day_dialog.dart';
 import 'package:flutter_echo/pages/submit/pick_item_dialog.dart';
 import 'package:flutter_echo/services/storage_service.dart';
 import 'package:flutter_echo/ui/dialog_helper.dart';
+import 'package:flutter_echo/ui/dialogs/compensation_dialog.dart';
 import 'package:flutter_echo/ui/dialogs/disclosure_dialog.dart';
 import 'package:flutter_echo/ui/widgets/common_button.dart';
 import 'package:flutter_echo/utils/context_ext.dart';
@@ -182,7 +183,7 @@ class _DemoPageState extends State<DemoPage> {
             title: '授权声明弹窗',
             icon: Icons.security,
             color: const Color(0xFF4CAF50),
-            onPressed: () => _showPermissionDialog(context),
+            onPressed: () => _showDisclosureDialog(context),
           ),
 
           _buildTestButton(
@@ -509,24 +510,24 @@ class _DemoPageState extends State<DemoPage> {
     }
   }
 
-  void _showPermissionDialog(BuildContext context) async {
-    final result = await DialogHelper.showPermissionDialog(context: context);
+  void _showDisclosureDialog(BuildContext context) async {
+    final result = await DisclosureDialog.show(context);
     if (context.mounted) {
       if (result == true) {
         context.showSuccessSnack('Agree $result');
       } else {
-        context.showNormalSnack('Reject $result');
+        context.showNormalSnack('Disagree $result');
       }
     }
   }
 
   void _showCompensationDialog(BuildContext context) async {
-    final result = await DialogHelper.showCompensationDialog(context: context);
+    final result = await CompensationDialog.show(context);
     if (context.mounted) {
       if (result == true) {
-        context.showSuccessSnack('Agree $result');
+        context.showSuccessSnack('Confirm $result');
       } else {
-        context.showNormalSnack('Reject $result');
+        context.showNormalSnack('Closing $result');
       }
     }
   }

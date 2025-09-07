@@ -1,8 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_echo/common/app_theme.dart';
+import 'package:flutter_echo/common/constants.dart';
 import 'package:flutter_echo/models/common_model.dart';
+import 'package:flutter_echo/services/permission_service.dart';
+import 'package:flutter_echo/services/storage_service.dart';
 import 'package:flutter_echo/ui/widgets/common_button.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:go_router/go_router.dart';
 
 /// 授权声明弹窗
 class DisclosureDialog extends StatelessWidget {
@@ -14,6 +18,27 @@ class DisclosureDialog extends StatelessWidget {
     required this.onAgree,
     required this.onDisagree,
   });
+
+  /// 显示授权声明弹窗
+  static Future<bool?> show(BuildContext context) {
+    return showModalBottomSheet<bool>(
+      context: context,
+      enableDrag: false,
+      isDismissible: false,
+      isScrollControlled: true,
+      builder: (context) => PopScope(
+        canPop: false,
+        child: DisclosureDialog(
+          onAgree: () async {
+            await LocalStorage().set(AppConst.disclosureKey, true);
+            await PermissionService().requestAllPermissions();
+            if (context.mounted) context.pop(true);
+          },
+          onDisagree: () => context.pop(false),
+        ),
+      ),
+    );
+  }
 
   static const permissionItems = [
     Pair(

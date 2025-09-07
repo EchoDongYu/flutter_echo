@@ -3,7 +3,6 @@ import 'package:flutter/services.dart';
 import 'package:flutter_echo/common/app_theme.dart';
 import 'package:flutter_echo/common/constants.dart';
 import 'package:flutter_echo/pages/app_router.dart';
-import 'package:flutter_echo/services/permission_service.dart';
 import 'package:flutter_echo/services/storage_service.dart';
 import 'package:flutter_echo/ui/dialogs/disclosure_dialog.dart';
 import 'package:flutter_echo/utils/drawable_utils.dart';
@@ -65,27 +64,10 @@ class _SplashPageState extends State<SplashPage> {
     );
   }
 
-  void _checkDisclosure(BuildContext context, Function() onFinish) {
-    if (LocalStorage().showDisclosure) {
-      showModalBottomSheet<bool>(
-        context: context,
-        enableDrag: false,
-        isDismissible: false,
-        isScrollControlled: true,
-        builder: (context) => PopScope(
-          canPop: false,
-          child: DisclosureDialog(
-            onAgree: () async {
-              context.pop();
-              await LocalStorage().set(AppConst.disclosureKey, true);
-              await PermissionService().requestAllPermissions();
-              Future.delayed(Duration(milliseconds: 500), onFinish);
-            },
-            onDisagree: () =>
-                SystemChannels.platform.invokeMethod('SystemNavigator.pop'),
-          ),
-        ),
-      );
+  void _checkDisclosure(BuildContext context, Function() onFinish) async {
+    if (LocalStorage().disclosure != true) {
+      await DisclosureDialog.show(context);
+      Future.delayed(Duration(milliseconds: 500), onFinish);
     } else {
       Future.delayed(Duration(milliseconds: 500), onFinish);
     }

@@ -78,7 +78,7 @@ class LocalStorage {
   }
 
   /// 是否已同意披露，不再显示
-  bool get showDisclosure => _prefs.getBool(AppConst.disclosureKey) != true;
+  bool? get disclosure => _prefs.getBool(AppConst.disclosureKey);
 
   /// 获取设备号
   String? get deviceId => _prefs.getString(AppConst.deviceIdKey);

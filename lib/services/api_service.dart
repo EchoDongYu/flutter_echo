@@ -4,7 +4,9 @@ import 'package:flutter_echo/common/constants.dart';
 import 'package:flutter_echo/models/common_model.dart';
 import 'package:flutter_echo/models/swaggerApi.models.swagger.dart';
 import 'package:flutter_echo/services/api_config.dart';
+import 'package:flutter_echo/services/storage_service.dart';
 import 'package:flutter_echo/utils/common_utils.dart';
+import 'package:package_info_plus/package_info_plus.dart';
 
 class Api {
   Api._();
@@ -184,18 +186,26 @@ class Api {
   static Future<NeedReportResp> needReport() {
     return _apiService.post(
       ApiPath.needReport,
+      body: HomeInfoReq().toJson(),
       convert: (json) => NeedReportResp.fromJson(json),
     );
   }
 
-  static Future<bool> uploadTrack() {
-    final req = TrackReportReq().toJson();
-    final codeUnits = json.encode(req).codeUnits;
-    final offsetData = codeUnits.map((v) => v ^ AppConst.dataOffset);
-    return _apiService.report(
-      ApiPath.reportTrack,
-      body: String.fromCharCodes(offsetData),
-    );
+  static Future<bool> uploadTrack() async {
+    final packageInfo = await PackageInfo.fromPlatform();
+    final storage = LocalStorage();
+    final userGid = storage.userGid;
+    final deviceId = storage.deviceId;
+    final reqJson = TrackReportReq(
+      raiaOUserGid: userGid,
+      z775udOAppVersion: packageInfo.version,
+      spankOAppsflyerId: deviceId,
+    ).toJson();
+    final codeUnits = json.encode(reqJson).codeUnits;
+    final offsetData = codeUnits
+        .map((v) => String.fromCharCode(v ^ AppConst.dataOffset))
+        .join();
+    return _apiService.report(ApiPath.reportTrack, body: {'data': offsetData});
   }
 
   static Future<HomeInfoResp> getHomeInfo() {

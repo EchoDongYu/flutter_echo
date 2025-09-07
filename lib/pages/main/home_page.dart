@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_echo/pages/main/home_default_page.dart';
 import 'package:flutter_echo/pages/main/home_loan_page.dart';
 import 'package:flutter_echo/providers/main_provider.dart';
+import 'package:flutter_echo/services/storage_service.dart';
+import 'package:flutter_echo/ui/dialogs/compensation_dialog.dart';
 import 'package:provider/provider.dart';
 
 /// 主页面-首页
@@ -23,7 +25,10 @@ class _HomePageState extends State<HomePage> {
   @override
   void initState() {
     super.initState();
-    WidgetsBinding.instance.addPostFrameCallback((_) {
+    WidgetsBinding.instance.addPostFrameCallback((_) async {
+      if (LocalStorage().disclosure != true) {
+        await CompensationDialog.show(context);
+      }
       mainModel.getHomeInfo();
     });
   }

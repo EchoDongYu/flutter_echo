@@ -2,8 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_echo/pages/login/code_mode_dialog.dart';
 import 'package:flutter_echo/pages/submit/step_bank_dialog.dart';
 import 'package:flutter_echo/pages/user/removed_dialog.dart';
-import 'package:flutter_echo/ui/dialogs/compensation_dialog.dart';
-import 'package:flutter_echo/ui/dialogs/disclosure_dialog.dart';
 import 'package:flutter_echo/ui/dialogs/praise_dialog.dart';
 import 'package:flutter_echo/ui/dialogs/prompt_dialog.dart';
 import 'package:flutter_echo/ui/dialogs/upgrade_dialog.dart';
@@ -27,34 +25,6 @@ class DialogHelper {
         cancelText: cancelText,
         onConfirm: () => context.pop(true),
         onCancel: () => context.pop(false),
-      ),
-    );
-  }
-
-  /// 显示授权声明弹窗
-  static Future<bool?> showPermissionDialog({required BuildContext context}) {
-    return showModalBottomSheet<bool>(
-      context: context,
-      enableDrag: false,
-      isDismissible: false,
-      isScrollControlled: true,
-      builder: (context) => DisclosureDialog(
-        onAgree: () => context.pop(true),
-        onDisagree: () => context.pop(false),
-      ),
-    );
-  }
-
-  /// 显示授权声明补偿弹窗
-  static Future<bool?> showCompensationDialog({required BuildContext context}) {
-    return showModalBottomSheet<bool>(
-      context: context,
-      enableDrag: false,
-      isDismissible: false,
-      isScrollControlled: true,
-      builder: (context) => CompensationDialog(
-        onConfirm: () => context.pop(true),
-        onClosing: () => context.pop(false),
       ),
     );
   }

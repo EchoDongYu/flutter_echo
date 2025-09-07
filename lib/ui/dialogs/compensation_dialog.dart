@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_echo/common/app_theme.dart';
+import 'package:flutter_echo/common/constants.dart';
+import 'package:flutter_echo/services/storage_service.dart';
 import 'package:flutter_echo/ui/widget_helper.dart';
 import 'package:flutter_echo/utils/drawable_utils.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:go_router/go_router.dart';
 
 /// 授权声明补偿弹窗
 class CompensationDialog extends StatelessWidget {
@@ -14,6 +17,26 @@ class CompensationDialog extends StatelessWidget {
     required this.onConfirm,
     required this.onClosing,
   });
+
+  /// 显示授权声明补偿弹窗
+  static Future<bool?> show(BuildContext context) {
+    return showModalBottomSheet<bool>(
+      context: context,
+      enableDrag: false,
+      isDismissible: false,
+      isScrollControlled: true,
+      builder: (context) => PopScope(
+        canPop: false,
+        child: CompensationDialog(
+          onConfirm: () async {
+            await LocalStorage().set(AppConst.disclosureKey, true);
+            if (context.mounted) context.pop(true);
+          },
+          onClosing: () => context.pop(false),
+        ),
+      ),
+    );
+  }
 
   static const stepItems = [
     'Ve a la "Configuración" de tu teléfono',
@@ -121,7 +144,7 @@ class CompensationDialog extends StatelessWidget {
     return Padding(
       padding: EdgeInsets.symmetric(vertical: 10.h),
       child: Row(
-        crossAxisAlignment: CrossAxisAlignment.stretch,
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           // 编号圆形图标
           Container(

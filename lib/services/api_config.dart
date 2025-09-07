@@ -95,9 +95,9 @@ class _ApiInterceptor extends Interceptor {
       'tp5366': AppConst.applicationName, // 包名
       'wr3384': AppConst.bizLine, // 业务线
       'zc8974': AppConst.isoCountryCode,
-      //'zg3739': null, // appfly Id
+      'zg3739': deviceId, // appfly Id
       'jv9290': packageInfo.version, // app版本
-      //'ie3728': null, // google广告id
+      'ie3728': deviceId, // google广告id
       'hk4661': deviceId, // 安卓id
     };
     headers.removeWhere((key, value) => value == null);
@@ -135,6 +135,10 @@ class _ApiInterceptor extends Interceptor {
       // o_mobileSn 设备号
       if (data.containsKey('ac0as4')) {
         data['ac0as4'] = deviceId;
+      }
+      // o_appsflyerId afId
+      if (data.containsKey('spank')) {
+        data['spank'] = deviceId;
       }
       // o_token
       if (data.containsKey('y260zp')) {

@@ -24,6 +24,14 @@ class MainModel extends BaseProvider {
   }
 
   void launchDefault() async {
+    final need = await Api.needReport();
+    if (need.q0ui28OIsNeedReport == true) {
+      final apiResult = await Api.uploadTrack();
+      if (apiResult) {
+      } else {
+        return;
+      }
+    }
     switch (_creditStatus) {
       case 0:
         navigate((context) => context.push(AppRouter.stepBasic));
@@ -59,7 +67,10 @@ class MainModel extends BaseProvider {
     if (_creditStatus != 2) return;
     await launchRequest(() async {
       final need = await Api.needReport();
-      if (need.q0ui28OIsNeedReport == true) await Api.uploadTrack();
+      if (need.q0ui28OIsNeedReport == true) {
+        final apiResult = await Api.uploadTrack();
+        if (apiResult) {}
+      }
     });
   }
 }
