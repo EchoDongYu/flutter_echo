@@ -89,7 +89,7 @@ class _LoginPwdSetupPageState extends State<LoginPwdSetupPage> {
         boxShadow: NowStyles.cardShadows,
       ),
       child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
           Text(
             'Establezca una contraseña de 4 dígitos',

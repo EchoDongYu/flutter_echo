@@ -125,7 +125,7 @@ class _StepSelectFieldState extends State<StepSelectField> {
   @override
   Widget build(BuildContext context) {
     return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
+      crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
         InkWell(
           onTap: () async {
@@ -192,7 +192,7 @@ class _StepSelectFieldState extends State<StepSelectField> {
 
   Widget _buildFieldValue() {
     return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
+      crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
         SizedBox(height: 9.h),
         Text(

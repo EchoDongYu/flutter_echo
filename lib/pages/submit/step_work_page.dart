@@ -295,7 +295,7 @@ class _StepWorkPageState extends State<StepWorkPage> {
         boxShadow: NowStyles.cardShadows,
       ),
       child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.stretch,
         spacing: 16.h,
         children: [
           Text(

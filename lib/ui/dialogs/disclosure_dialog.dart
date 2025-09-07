@@ -103,7 +103,7 @@ class DisclosureDialog extends StatelessWidget {
   /// 构建权限项目
   Widget _buildPermissionItem(Pair item) {
     return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
+      crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
         Stack(
           children: [

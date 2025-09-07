@@ -146,7 +146,7 @@ class _DeviceVerifyDialogState extends State<DeviceVerifyDialog> {
             boxShadow: NowStyles.cardShadows,
           ),
           child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
               RichText(
                 text: TextSpan(

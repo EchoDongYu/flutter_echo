@@ -62,7 +62,7 @@ class _ResetLoginPwdPageState extends State<ResetLoginPwdPage> {
         boxShadow: NowStyles.cardShadows,
       ),
       child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
           Text(
             'Restablecer contraseña',

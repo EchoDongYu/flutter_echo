@@ -68,7 +68,7 @@ class _StepEmailFieldState extends State<StepEmailField> {
   @override
   Widget build(BuildContext context) {
     return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
+      crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
         Stack(
           alignment: Alignment.centerLeft,
@@ -104,7 +104,7 @@ class _StepEmailFieldState extends State<StepEmailField> {
                 children: [
                   Expanded(
                     child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
+                      crossAxisAlignment: CrossAxisAlignment.stretch,
                       children: [
                         // labelText
                         if (_isExpanded)

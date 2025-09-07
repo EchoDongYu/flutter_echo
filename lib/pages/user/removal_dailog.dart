@@ -106,7 +106,7 @@ class RemovalDailog extends StatelessWidget {
   /// 构建步骤项目
   Widget _buildStepItem(int index) {
     return Row(
-      crossAxisAlignment: CrossAxisAlignment.start,
+      crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
         // 编号圆形图标
         Container(

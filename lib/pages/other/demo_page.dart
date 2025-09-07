@@ -43,7 +43,7 @@ class _DemoPageState extends State<DemoPage> {
         padding: const EdgeInsets.all(20.0),
         child: Column(
           spacing: 5.h,
-          crossAxisAlignment: CrossAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
             EchoPrimaryButton(text: "Primary", onPressed: () {}),
             EchoSecondaryButton(text: "Secondary", onPressed: () {}),

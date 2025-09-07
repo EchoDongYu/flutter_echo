@@ -81,7 +81,7 @@ class _LoginPasswordPageState extends State<LoginPasswordPage> {
         boxShadow: NowStyles.cardShadows,
       ),
       child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
           Text(
             'Ingrese la contraseña para iniciar sesión',

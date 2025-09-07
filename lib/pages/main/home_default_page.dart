@@ -111,7 +111,7 @@ class _HomeDefaultPageState extends State<HomeDefaultPage> {
             borderRadius: BorderRadius.all(Radius.circular(20)),
           ),
           child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
               Text(
                 'Bienvenido a\n${AppConst.applicationName}',

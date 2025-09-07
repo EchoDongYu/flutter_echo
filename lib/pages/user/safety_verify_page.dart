@@ -57,7 +57,7 @@ class _SafetyVerifyPageState extends State<SafetyVerifyPage> {
         boxShadow: NowStyles.cardShadows,
       ),
       child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
           Text(
             'Verificación de seguridad',

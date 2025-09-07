@@ -122,7 +122,7 @@ class _LoginCodePageState extends State<LoginCodePage> {
         boxShadow: NowStyles.cardShadows,
       ),
       child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
           Text(
             'Ingresar OTP',

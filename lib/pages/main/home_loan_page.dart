@@ -54,7 +54,19 @@ class _HomeLoanPageState extends State<HomeLoanPage> {
                         boxShadow: NowStyles.cardShadows,
                       ),
                       child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.stretch,
                         children: [
+                          SizedBox(height: 22.h),
+                          Text(
+                            'Escolha o valor do empréstimo',
+                            style: TextStyle(
+                              fontSize: 14,
+                              fontWeight: FontWeight.w500,
+                              color: NowColors.c0xFF1C1F23,
+                              height: 20 / 14,
+                            ),
+                          ),
+                          SizedBox(height: 20.h),
                           ArcSlider(
                             min: minValue,
                             max: maxValue,

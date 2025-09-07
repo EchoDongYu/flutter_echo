@@ -168,7 +168,7 @@ class _CaptchaDialogState extends State<CaptchaDialog>
             boxShadow: NowStyles.cardShadows,
           ),
           child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
               Text(
                 'Recordatorio: la imagen de arriba contiene 4 caracteres, ingrese correctamente el código de verificación.',

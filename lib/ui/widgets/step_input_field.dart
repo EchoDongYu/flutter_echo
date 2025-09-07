@@ -81,7 +81,7 @@ class _StepInputFieldState extends State<StepInputField> {
   @override
   Widget build(BuildContext context) {
     return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
+      crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
         Stack(
           alignment: Alignment.centerLeft,
@@ -117,7 +117,7 @@ class _StepInputFieldState extends State<StepInputField> {
                 children: [
                   Expanded(
                     child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
+                      crossAxisAlignment: CrossAxisAlignment.stretch,
                       children: [
                         // labelText
                         if (_isExpanded)
