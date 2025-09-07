@@ -61,6 +61,7 @@ class _ApplyConfirmPageState extends State<ApplyConfirmPage> {
                 EchoTopBar(title: 'Confirmación de préstamo'),
                 Expanded(
                   child: ListView(
+                    primary: true,
                     padding: EdgeInsets.fromLTRB(12.w, 12.h, 12.w, 36.h),
                     children: [
                       ..._buildCard1(context),
@@ -290,10 +291,10 @@ class _ApplyConfirmPageState extends State<ApplyConfirmPage> {
           final planList = provider.loanInfo?.glacisORepaymentPlanList;
           return Column(
             children: [
-              ?child,
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
+                  ?child,
                   Container(
                     padding: const EdgeInsets.symmetric(horizontal: 8),
                     decoration: BoxDecoration(
@@ -315,7 +316,7 @@ class _ApplyConfirmPageState extends State<ApplyConfirmPage> {
               SizedBox(height: 16.h),
               ListView.separated(
                 shrinkWrap: true,
-                padding: EdgeInsets.only(top: 16.h, bottom: 24.h),
+                physics: const NeverScrollableScrollPhysics(),
                 itemCount: planList?.length ?? 0,
                 separatorBuilder: (context, index) => SizedBox(height: 12.h),
                 itemBuilder: (context, index) {
@@ -350,6 +351,7 @@ class _ApplyConfirmPageState extends State<ApplyConfirmPage> {
         borderRadius: BorderRadius.all(Radius.circular(12)),
       ),
       child: Row(
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Container(
             padding: const EdgeInsets.symmetric(horizontal: 8),
@@ -370,62 +372,62 @@ class _ApplyConfirmPageState extends State<ApplyConfirmPage> {
               ),
             ),
           ),
-          Padding(
-            padding: EdgeInsets.fromLTRB(40.w, 12.h, 12.w, 12.h),
-            child: Column(
-              spacing: 6.h,
-              children: [
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  mainAxisSize: MainAxisSize.max,
-                  children: [
-                    Text(
-                      'Vencimiento',
-                      style: TextStyle(
-                        fontSize: 12.sp,
-                        fontWeight: FontWeight.w400,
-                        color: NowColors.c0xFF494C4F,
-                        height: 18 / 12,
+          Expanded(
+            child: Padding(
+              padding: EdgeInsets.fromLTRB(4.w, 12.h, 12.w, 12.h),
+              child: Column(
+                spacing: 6.h,
+                children: [
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    mainAxisSize: MainAxisSize.max,
+                    children: [
+                      Text(
+                        'Vencimiento',
+                        style: TextStyle(
+                          fontSize: 12.sp,
+                          fontWeight: FontWeight.w400,
+                          color: NowColors.c0xFF494C4F,
+                          height: 18 / 12,
+                        ),
                       ),
-                    ),
-                    SizedBox(height: 2.h),
-                    Text(
-                      first?.showDate ?? '',
-                      style: TextStyle(
-                        fontSize: 14.sp,
-                        fontWeight: FontWeight.w500,
-                        color: NowColors.c0xFF1C1F23,
-                        height: 18 / 14,
+                      Text(
+                        first?.showDate ?? '',
+                        style: TextStyle(
+                          fontSize: 14.sp,
+                          fontWeight: FontWeight.w500,
+                          color: NowColors.c0xFF1C1F23,
+                          height: 18 / 14,
+                        ),
                       ),
-                    ),
-                  ],
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  mainAxisSize: MainAxisSize.max,
-                  children: [
-                    Text(
-                      'Monto a pagar',
-                      style: TextStyle(
-                        fontSize: 12.sp,
-                        fontWeight: FontWeight.w400,
-                        color: NowColors.c0xFF494C4F,
-                        height: 18 / 12,
+                    ],
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    mainAxisSize: MainAxisSize.max,
+                    children: [
+                      Text(
+                        'Monto a pagar',
+                        style: TextStyle(
+                          fontSize: 12.sp,
+                          fontWeight: FontWeight.w400,
+                          color: NowColors.c0xFF494C4F,
+                          height: 18 / 12,
+                        ),
                       ),
-                    ),
-                    SizedBox(height: 2.h),
-                    Text(
-                      second?.showAmount ?? '',
-                      style: TextStyle(
-                        fontSize: 14.sp,
-                        fontWeight: FontWeight.w500,
-                        color: NowColors.c0xFFFF9817,
-                        height: 18 / 14,
+                      Text(
+                        second?.showAmount ?? '',
+                        style: TextStyle(
+                          fontSize: 14.sp,
+                          fontWeight: FontWeight.w500,
+                          color: NowColors.c0xFFFF9817,
+                          height: 18 / 14,
+                        ),
                       ),
-                    ),
-                  ],
-                ),
-              ],
+                    ],
+                  ),
+                ],
+              ),
             ),
           ),
         ],

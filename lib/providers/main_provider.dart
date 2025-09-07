@@ -62,6 +62,20 @@ class MainModel extends BaseProvider {
 
   void launchLoan() async {
     if (_creditStatus != 2) return;
+    final product = _homeInfo?.assurOFaceList?.firstOrNull;
+    final productId = product?.foreyardOProductId;
+    final amount = product?.xuwh2oOLoanRangeMax;
+    if (productId == null || amount == null || amount <= 0) {
+      return;
+    }
+    final uriRoute = Uri(
+      path: AppRouter.applyConfirm,
+      queryParameters: {
+        NavKey.id: productId.toString(),
+        NavKey.amount: amount.toString(),
+      },
+    );
+    navigate((context) => context.push(uriRoute.toString()));
   }
 
   Future<bool?> launchOk(BuildContext context) async {

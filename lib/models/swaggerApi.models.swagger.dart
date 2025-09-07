@@ -4173,7 +4173,7 @@ class LoanConfirmReq {
   @JsonKey(name: 'flag')
   final bool? flag;
   @JsonKey(name: 'pinion')
-  final int? pinionOUserCouponGid;
+  final String? pinionOUserCouponGid;
   @JsonKey(name: 'x2anh3')
   final int? x2anh3OStageFlag;
   @JsonKey(name: 'brant')
@@ -4296,7 +4296,7 @@ extension $LoanConfirmReqExtension on LoanConfirmReq {
     String? t1h91pOBankName,
     String? insolentOBankCode,
     bool? flag,
-    int? pinionOUserCouponGid,
+    String? pinionOUserCouponGid,
     int? x2anh3OStageFlag,
     int? brantOPurpose,
     int? rf6k6bOCheckType,
@@ -4330,7 +4330,7 @@ extension $LoanConfirmReqExtension on LoanConfirmReq {
     Wrapped<String?>? t1h91pOBankName,
     Wrapped<String?>? insolentOBankCode,
     Wrapped<bool?>? flag,
-    Wrapped<int?>? pinionOUserCouponGid,
+    Wrapped<String?>? pinionOUserCouponGid,
     Wrapped<int?>? x2anh3OStageFlag,
     Wrapped<int?>? brantOPurpose,
     Wrapped<int?>? rf6k6bOCheckType,
@@ -4667,7 +4667,7 @@ class LoanPreInfoReq {
   @JsonKey(name: 'foreyard')
   final int? foreyardOProductId;
   @JsonKey(name: 'pinion')
-  final int? pinionOUserCouponGid;
+  final String? pinionOUserCouponGid;
   @JsonKey(name: 'x2anh3')
   final int? x2anh3OStageFlag;
   @JsonKey(name: 'z38e62')
@@ -4744,7 +4744,7 @@ extension $LoanPreInfoReqExtension on LoanPreInfoReq {
     String? raiaOUserGid,
     double? retiaryOLoanAmount,
     int? foreyardOProductId,
-    int? pinionOUserCouponGid,
+    String? pinionOUserCouponGid,
     int? x2anh3OStageFlag,
     String? z38e62OOrderGid,
     int? vnbh46OBankCardGid,
@@ -4764,7 +4764,7 @@ extension $LoanPreInfoReqExtension on LoanPreInfoReq {
     Wrapped<String?>? raiaOUserGid,
     Wrapped<double?>? retiaryOLoanAmount,
     Wrapped<int?>? foreyardOProductId,
-    Wrapped<int?>? pinionOUserCouponGid,
+    Wrapped<String?>? pinionOUserCouponGid,
     Wrapped<int?>? x2anh3OStageFlag,
     Wrapped<String?>? z38e62OOrderGid,
     Wrapped<int?>? vnbh46OBankCardGid,
@@ -12326,7 +12326,7 @@ class LoanOrderResp {
   @JsonKey(name: 'd7x52p')
   final String? d7x52pOBizChannel;
   @JsonKey(name: 'pinion')
-  final int? pinionOUserCouponGid;
+  final String? pinionOUserCouponGid;
   @JsonKey(name: 'sk6s63')
   final double? sk6s63OCouponAmount;
   @JsonKey(name: 'sweeny')
@@ -12862,7 +12862,7 @@ extension $LoanOrderRespExtension on LoanOrderResp {
     bool? e0a79hOIsCollectCase,
     int? n5ioy3ORenewLoanGid,
     String? d7x52pOBizChannel,
-    int? pinionOUserCouponGid,
+    String? pinionOUserCouponGid,
     double? sk6s63OCouponAmount,
     int? sweenyOWorkFlowId,
     int? brantOPurpose,
@@ -13019,7 +13019,7 @@ extension $LoanOrderRespExtension on LoanOrderResp {
     Wrapped<bool?>? e0a79hOIsCollectCase,
     Wrapped<int?>? n5ioy3ORenewLoanGid,
     Wrapped<String?>? d7x52pOBizChannel,
-    Wrapped<int?>? pinionOUserCouponGid,
+    Wrapped<String?>? pinionOUserCouponGid,
     Wrapped<double?>? sk6s63OCouponAmount,
     Wrapped<int?>? sweenyOWorkFlowId,
     Wrapped<int?>? brantOPurpose,
@@ -13328,7 +13328,7 @@ class LoanPreInfoResp {
   @JsonKey(name: 'centiare')
   final double? centiareOServiceFee;
   @JsonKey(name: 'pinion')
-  final int? pinionOUserCouponGid;
+  final String? pinionOUserCouponGid;
   @JsonKey(name: 'sk6s63')
   final double? sk6s63OCouponAmount;
   @JsonKey(name: 'u04098')
@@ -13689,7 +13689,7 @@ extension $LoanPreInfoRespExtension on LoanPreInfoResp {
     String? z38e62OOrderGid,
     double? unciformOOriginationFee,
     double? centiareOServiceFee,
-    int? pinionOUserCouponGid,
+    String? pinionOUserCouponGid,
     double? sk6s63OCouponAmount,
     bool? u04098OIsFirstLoan,
     bool? nkf6o5OIsOtpValid,
@@ -13792,7 +13792,7 @@ extension $LoanPreInfoRespExtension on LoanPreInfoResp {
     Wrapped<String?>? z38e62OOrderGid,
     Wrapped<double?>? unciformOOriginationFee,
     Wrapped<double?>? centiareOServiceFee,
-    Wrapped<int?>? pinionOUserCouponGid,
+    Wrapped<String?>? pinionOUserCouponGid,
     Wrapped<double?>? sk6s63OCouponAmount,
     Wrapped<bool?>? u04098OIsFirstLoan,
     Wrapped<bool?>? nkf6o5OIsOtpValid,
@@ -16279,7 +16279,7 @@ class BillDetailResp {
   final List<BillDetailResp$V08uw3ORepaymentChannelList$Item>?
   v08uw3ORepaymentChannelList;
   @JsonKey(name: 'pinion')
-  final int? pinionOUserCouponGid;
+  final String? pinionOUserCouponGid;
   @JsonKey(name: 'sk6s63')
   final double? sk6s63OCouponAmount;
   @JsonKey(name: 'mt66nz')
@@ -16620,7 +16620,7 @@ extension $BillDetailRespExtension on BillDetailResp {
     double? centiareOServiceFee,
     List<BillDetailResp$V08uw3ORepaymentChannelList$Item>?
     v08uw3ORepaymentChannelList,
-    int? pinionOUserCouponGid,
+    String? pinionOUserCouponGid,
     double? sk6s63OCouponAmount,
     double? mt66nzOReceiveSubAmount,
     double? q922g5OReceiveAddAmount,
@@ -16718,7 +16718,7 @@ extension $BillDetailRespExtension on BillDetailResp {
     Wrapped<double?>? centiareOServiceFee,
     Wrapped<List<BillDetailResp$V08uw3ORepaymentChannelList$Item>?>?
     v08uw3ORepaymentChannelList,
-    Wrapped<int?>? pinionOUserCouponGid,
+    Wrapped<String?>? pinionOUserCouponGid,
     Wrapped<double?>? sk6s63OCouponAmount,
     Wrapped<double?>? mt66nzOReceiveSubAmount,
     Wrapped<double?>? q922g5OReceiveAddAmount,
@@ -18671,7 +18671,7 @@ class HomeInfoResp$PapuanOLastRecordLoan {
   @JsonKey(name: 'vx4165')
   final String? vx4165OFailReason;
   @JsonKey(name: 'pinion')
-  final int? pinionOUserCouponGid;
+  final String? pinionOUserCouponGid;
   @JsonKey(name: 'sk6s63')
   final double? sk6s63OCouponAmount;
   @JsonKey(name: 'mxs06u')
@@ -18880,7 +18880,7 @@ extension $HomeInfoResp$PapuanOLastRecordLoanExtension
     int? ah1e18OBillStatus,
     int? coandaODueDays,
     String? vx4165OFailReason,
-    int? pinionOUserCouponGid,
+    String? pinionOUserCouponGid,
     double? sk6s63OCouponAmount,
     String? mxs06uOApplyStatus,
     int? ez64t7OPeriodCount,
@@ -18937,7 +18937,7 @@ extension $HomeInfoResp$PapuanOLastRecordLoanExtension
     Wrapped<int?>? ah1e18OBillStatus,
     Wrapped<int?>? coandaODueDays,
     Wrapped<String?>? vx4165OFailReason,
-    Wrapped<int?>? pinionOUserCouponGid,
+    Wrapped<String?>? pinionOUserCouponGid,
     Wrapped<double?>? sk6s63OCouponAmount,
     Wrapped<String?>? mxs06uOApplyStatus,
     Wrapped<int?>? ez64t7OPeriodCount,
@@ -19081,7 +19081,7 @@ class HomeInfoResp$Xu551uOSpareLastRecordLoan {
   @JsonKey(name: 'vx4165')
   final String? vx4165OFailReason;
   @JsonKey(name: 'pinion')
-  final int? pinionOUserCouponGid;
+  final String? pinionOUserCouponGid;
   @JsonKey(name: 'sk6s63')
   final double? sk6s63OCouponAmount;
   @JsonKey(name: 'mxs06u')
@@ -19291,7 +19291,7 @@ extension $HomeInfoResp$Xu551uOSpareLastRecordLoanExtension
     int? ah1e18OBillStatus,
     int? coandaODueDays,
     String? vx4165OFailReason,
-    int? pinionOUserCouponGid,
+    String? pinionOUserCouponGid,
     double? sk6s63OCouponAmount,
     String? mxs06uOApplyStatus,
     int? ez64t7OPeriodCount,
@@ -19348,7 +19348,7 @@ extension $HomeInfoResp$Xu551uOSpareLastRecordLoanExtension
     Wrapped<int?>? ah1e18OBillStatus,
     Wrapped<int?>? coandaODueDays,
     Wrapped<String?>? vx4165OFailReason,
-    Wrapped<int?>? pinionOUserCouponGid,
+    Wrapped<String?>? pinionOUserCouponGid,
     Wrapped<double?>? sk6s63OCouponAmount,
     Wrapped<String?>? mxs06uOApplyStatus,
     Wrapped<int?>? ez64t7OPeriodCount,
@@ -20650,7 +20650,7 @@ class LoanPreInfoResp$GlacisORepaymentPlanList$Item {
   @JsonKey(name: 'wantonly')
   final double? wantonlyOLoanLeftAmount;
   @JsonKey(name: 'pinion')
-  final int? pinionOUserCouponGid;
+  final String? pinionOUserCouponGid;
   @JsonKey(name: 'sk6s63')
   final double? sk6s63OCouponAmount;
   @JsonKey(name: 'v4nyno')
@@ -20877,7 +20877,7 @@ extension $LoanPreInfoResp$GlacisORepaymentPlanList$ItemExtension
     double? uqm81lOPrincipalAmount,
     double? v6e22nOPrincipalLeftAmount,
     double? wantonlyOLoanLeftAmount,
-    int? pinionOUserCouponGid,
+    String? pinionOUserCouponGid,
     double? sk6s63OCouponAmount,
     int? v4nynoOFeeType,
     double? e88wy1OLoanFee,
@@ -20940,7 +20940,7 @@ extension $LoanPreInfoResp$GlacisORepaymentPlanList$ItemExtension
     Wrapped<double?>? uqm81lOPrincipalAmount,
     Wrapped<double?>? v6e22nOPrincipalLeftAmount,
     Wrapped<double?>? wantonlyOLoanLeftAmount,
-    Wrapped<int?>? pinionOUserCouponGid,
+    Wrapped<String?>? pinionOUserCouponGid,
     Wrapped<double?>? sk6s63OCouponAmount,
     Wrapped<int?>? v4nynoOFeeType,
     Wrapped<double?>? e88wy1OLoanFee,
@@ -21375,7 +21375,7 @@ class HomeCouponResp$FireballOUserCouponList$Item {
   @JsonKey(name: 'id')
   final int? id;
   @JsonKey(name: 'pinion')
-  final int? pinionOUserCouponGid;
+  final String? pinionOUserCouponGid;
   @JsonKey(name: 'a17s38')
   final int? a17s38OActivityGid;
   @JsonKey(name: 'raia')
@@ -21573,7 +21573,7 @@ extension $HomeCouponResp$FireballOUserCouponList$ItemExtension
     on HomeCouponResp$FireballOUserCouponList$Item {
   HomeCouponResp$FireballOUserCouponList$Item copyWith({
     int? id,
-    int? pinionOUserCouponGid,
+    String? pinionOUserCouponGid,
     int? a17s38OActivityGid,
     String? raiaOUserGid,
     int? tapetteOCouponGid,
@@ -21624,7 +21624,7 @@ extension $HomeCouponResp$FireballOUserCouponList$ItemExtension
 
   HomeCouponResp$FireballOUserCouponList$Item copyWithWrapped({
     Wrapped<int?>? id,
-    Wrapped<int?>? pinionOUserCouponGid,
+    Wrapped<String?>? pinionOUserCouponGid,
     Wrapped<int?>? a17s38OActivityGid,
     Wrapped<String?>? raiaOUserGid,
     Wrapped<int?>? tapetteOCouponGid,
@@ -21741,7 +21741,7 @@ class LoanCouponResp$T933d6OUserCouponAvailableList$Item {
   @JsonKey(name: 'id')
   final int? id;
   @JsonKey(name: 'pinion')
-  final int? pinionOUserCouponGid;
+  final String? pinionOUserCouponGid;
   @JsonKey(name: 'a17s38')
   final int? a17s38OActivityGid;
   @JsonKey(name: 'raia')
@@ -21939,7 +21939,7 @@ extension $LoanCouponResp$T933d6OUserCouponAvailableList$ItemExtension
     on LoanCouponResp$T933d6OUserCouponAvailableList$Item {
   LoanCouponResp$T933d6OUserCouponAvailableList$Item copyWith({
     int? id,
-    int? pinionOUserCouponGid,
+    String? pinionOUserCouponGid,
     int? a17s38OActivityGid,
     String? raiaOUserGid,
     int? tapetteOCouponGid,
@@ -21990,7 +21990,7 @@ extension $LoanCouponResp$T933d6OUserCouponAvailableList$ItemExtension
 
   LoanCouponResp$T933d6OUserCouponAvailableList$Item copyWithWrapped({
     Wrapped<int?>? id,
-    Wrapped<int?>? pinionOUserCouponGid,
+    Wrapped<String?>? pinionOUserCouponGid,
     Wrapped<int?>? a17s38OActivityGid,
     Wrapped<String?>? raiaOUserGid,
     Wrapped<int?>? tapetteOCouponGid,
@@ -22107,7 +22107,7 @@ class LoanCouponResp$StannateOUserCouponUnavailableList$Item {
   @JsonKey(name: 'id')
   final int? id;
   @JsonKey(name: 'pinion')
-  final int? pinionOUserCouponGid;
+  final String? pinionOUserCouponGid;
   @JsonKey(name: 'a17s38')
   final int? a17s38OActivityGid;
   @JsonKey(name: 'raia')
@@ -22305,7 +22305,7 @@ extension $LoanCouponResp$StannateOUserCouponUnavailableList$ItemExtension
     on LoanCouponResp$StannateOUserCouponUnavailableList$Item {
   LoanCouponResp$StannateOUserCouponUnavailableList$Item copyWith({
     int? id,
-    int? pinionOUserCouponGid,
+    String? pinionOUserCouponGid,
     int? a17s38OActivityGid,
     String? raiaOUserGid,
     int? tapetteOCouponGid,
@@ -22356,7 +22356,7 @@ extension $LoanCouponResp$StannateOUserCouponUnavailableList$ItemExtension
 
   LoanCouponResp$StannateOUserCouponUnavailableList$Item copyWithWrapped({
     Wrapped<int?>? id,
-    Wrapped<int?>? pinionOUserCouponGid,
+    Wrapped<String?>? pinionOUserCouponGid,
     Wrapped<int?>? a17s38OActivityGid,
     Wrapped<String?>? raiaOUserGid,
     Wrapped<int?>? tapetteOCouponGid,
@@ -22473,7 +22473,7 @@ class MyCouponResp$FireballOUserCouponList$Item {
   @JsonKey(name: 'id')
   final int? id;
   @JsonKey(name: 'pinion')
-  final int? pinionOUserCouponGid;
+  final String? pinionOUserCouponGid;
   @JsonKey(name: 'a17s38')
   final int? a17s38OActivityGid;
   @JsonKey(name: 'raia')
@@ -22671,7 +22671,7 @@ extension $MyCouponResp$FireballOUserCouponList$ItemExtension
     on MyCouponResp$FireballOUserCouponList$Item {
   MyCouponResp$FireballOUserCouponList$Item copyWith({
     int? id,
-    int? pinionOUserCouponGid,
+    String? pinionOUserCouponGid,
     int? a17s38OActivityGid,
     String? raiaOUserGid,
     int? tapetteOCouponGid,
@@ -22722,7 +22722,7 @@ extension $MyCouponResp$FireballOUserCouponList$ItemExtension
 
   MyCouponResp$FireballOUserCouponList$Item copyWithWrapped({
     Wrapped<int?>? id,
-    Wrapped<int?>? pinionOUserCouponGid,
+    Wrapped<String?>? pinionOUserCouponGid,
     Wrapped<int?>? a17s38OActivityGid,
     Wrapped<String?>? raiaOUserGid,
     Wrapped<int?>? tapetteOCouponGid,
@@ -22839,7 +22839,7 @@ class LandCouponResp$FireballOUserCouponList$Item {
   @JsonKey(name: 'id')
   final int? id;
   @JsonKey(name: 'pinion')
-  final int? pinionOUserCouponGid;
+  final String? pinionOUserCouponGid;
   @JsonKey(name: 'a17s38')
   final int? a17s38OActivityGid;
   @JsonKey(name: 'raia')
@@ -23037,7 +23037,7 @@ extension $LandCouponResp$FireballOUserCouponList$ItemExtension
     on LandCouponResp$FireballOUserCouponList$Item {
   LandCouponResp$FireballOUserCouponList$Item copyWith({
     int? id,
-    int? pinionOUserCouponGid,
+    String? pinionOUserCouponGid,
     int? a17s38OActivityGid,
     String? raiaOUserGid,
     int? tapetteOCouponGid,
@@ -23088,7 +23088,7 @@ extension $LandCouponResp$FireballOUserCouponList$ItemExtension
 
   LandCouponResp$FireballOUserCouponList$Item copyWithWrapped({
     Wrapped<int?>? id,
-    Wrapped<int?>? pinionOUserCouponGid,
+    Wrapped<String?>? pinionOUserCouponGid,
     Wrapped<int?>? a17s38OActivityGid,
     Wrapped<String?>? raiaOUserGid,
     Wrapped<int?>? tapetteOCouponGid,
@@ -23301,7 +23301,7 @@ class LoanBillResp$Ouxtd3OLoanList$Item {
   @JsonKey(name: 'vx4165')
   final String? vx4165OFailReason;
   @JsonKey(name: 'pinion')
-  final int? pinionOUserCouponGid;
+  final String? pinionOUserCouponGid;
   @JsonKey(name: 'sk6s63')
   final double? sk6s63OCouponAmount;
   @JsonKey(name: 'mxs06u')
@@ -23510,7 +23510,7 @@ extension $LoanBillResp$Ouxtd3OLoanList$ItemExtension
     int? ah1e18OBillStatus,
     int? coandaODueDays,
     String? vx4165OFailReason,
-    int? pinionOUserCouponGid,
+    String? pinionOUserCouponGid,
     double? sk6s63OCouponAmount,
     String? mxs06uOApplyStatus,
     int? ez64t7OPeriodCount,
@@ -23567,7 +23567,7 @@ extension $LoanBillResp$Ouxtd3OLoanList$ItemExtension
     Wrapped<int?>? ah1e18OBillStatus,
     Wrapped<int?>? coandaODueDays,
     Wrapped<String?>? vx4165OFailReason,
-    Wrapped<int?>? pinionOUserCouponGid,
+    Wrapped<String?>? pinionOUserCouponGid,
     Wrapped<double?>? sk6s63OCouponAmount,
     Wrapped<String?>? mxs06uOApplyStatus,
     Wrapped<int?>? ez64t7OPeriodCount,
@@ -23700,7 +23700,7 @@ class BillListResp$SoberOBillList$Item {
   @JsonKey(name: 'coanda')
   final int? coandaODueDays;
   @JsonKey(name: 'pinion')
-  final int? pinionOUserCouponGid;
+  final String? pinionOUserCouponGid;
   @JsonKey(name: 'sk6s63')
   final double? sk6s63OCouponAmount;
   @JsonKey(name: 'r86mu7')
@@ -23882,7 +23882,7 @@ extension $BillListResp$SoberOBillList$ItemExtension
     int? suffOLoanStatus,
     double? ux8tv0OTotalLeftAmount,
     int? coandaODueDays,
-    int? pinionOUserCouponGid,
+    String? pinionOUserCouponGid,
     double? sk6s63OCouponAmount,
     String? r86mu7OProductTag,
     int? ez64t7OPeriodCount,
@@ -23932,7 +23932,7 @@ extension $BillListResp$SoberOBillList$ItemExtension
     Wrapped<int?>? suffOLoanStatus,
     Wrapped<double?>? ux8tv0OTotalLeftAmount,
     Wrapped<int?>? coandaODueDays,
-    Wrapped<int?>? pinionOUserCouponGid,
+    Wrapped<String?>? pinionOUserCouponGid,
     Wrapped<double?>? sk6s63OCouponAmount,
     Wrapped<String?>? r86mu7OProductTag,
     Wrapped<int?>? ez64t7OPeriodCount,
@@ -24372,7 +24372,7 @@ class BillDetailResp$GlacisORepaymentPlanList$Item {
   @JsonKey(name: 'wantonly')
   final double? wantonlyOLoanLeftAmount;
   @JsonKey(name: 'pinion')
-  final int? pinionOUserCouponGid;
+  final String? pinionOUserCouponGid;
   @JsonKey(name: 'sk6s63')
   final double? sk6s63OCouponAmount;
   @JsonKey(name: 'gateman')
@@ -24859,7 +24859,7 @@ extension $BillDetailResp$GlacisORepaymentPlanList$ItemExtension
     double? uqm81lOPrincipalAmount,
     double? v6e22nOPrincipalLeftAmount,
     double? wantonlyOLoanLeftAmount,
-    int? pinionOUserCouponGid,
+    String? pinionOUserCouponGid,
     double? sk6s63OCouponAmount,
     double? gatemanORepaymentAmount,
     double? z7c658OPrincipalPaidAmount,
@@ -24994,7 +24994,7 @@ extension $BillDetailResp$GlacisORepaymentPlanList$ItemExtension
     Wrapped<double?>? uqm81lOPrincipalAmount,
     Wrapped<double?>? v6e22nOPrincipalLeftAmount,
     Wrapped<double?>? wantonlyOLoanLeftAmount,
-    Wrapped<int?>? pinionOUserCouponGid,
+    Wrapped<String?>? pinionOUserCouponGid,
     Wrapped<double?>? sk6s63OCouponAmount,
     Wrapped<double?>? gatemanORepaymentAmount,
     Wrapped<double?>? z7c658OPrincipalPaidAmount,

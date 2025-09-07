@@ -53,6 +53,7 @@ class _HomeLoanPageState extends State<HomeLoanPage>
               EchoTopBar(title: AppConst.applicationName, showBack: false),
               Expanded(
                 child: ListView(
+                  primary: true,
                   padding: EdgeInsets.fromLTRB(12.w, 12.h, 12.w, 36.h),
                   children: [
                     Container(

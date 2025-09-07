@@ -4,7 +4,7 @@ import 'package:flutter_echo/models/swaggerApi.models.swagger.dart';
 import 'package:flutter_echo/services/api_service.dart';
 
 class ApplyModel extends BaseProvider {
-  static const _types = [13, 26];
+  static const _types = [13];
   LoanPreInfoResp? _loanInfo;
   Map<String, List<StepItem>?>? _stepItems;
 

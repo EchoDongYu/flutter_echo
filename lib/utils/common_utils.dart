@@ -47,7 +47,7 @@ extension TimestampFormat on int {
   String get showDate => DateTime.fromMillisecondsSinceEpoch(this).showDate;
 
   String get showCountdown =>
-      DateFormat.Hms().format(DateTime.fromMillisecondsSinceEpoch(this * 1000));
+      DateFormat.Hms().format(DateTime(0, 0, 0, 0, 0, this));
 }
 
 extension AmountFormat on num {
