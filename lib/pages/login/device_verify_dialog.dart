@@ -1,23 +1,22 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_echo/common/app_theme.dart';
 import 'package:flutter_echo/common/constants.dart';
-import 'package:flutter_echo/services/storage_service.dart';
+import 'package:flutter_echo/common/page_consumer.dart';
+import 'package:flutter_echo/providers/verification_provider.dart';
 import 'package:flutter_echo/ui/widgets/common_button.dart';
 import 'package:flutter_echo/ui/widgets/step_input_field.dart';
+import 'package:flutter_echo/utils/drawable_utils.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
+import 'package:provider/provider.dart';
 
 /// 更换设备验证弹窗
 class DeviceVerifyDialog extends StatefulWidget {
   final VoidCallback onClosing;
-  final Function(Map) onConfirm;
 
-  const DeviceVerifyDialog({
-    super.key,
-    required this.onConfirm,
-    required this.onClosing,
-  });
+  const DeviceVerifyDialog({super.key, required this.onClosing});
 
   /// 显示更换设备验证弹窗
   static Future<Map?> show(BuildContext context) {
@@ -29,9 +28,11 @@ class DeviceVerifyDialog extends StatefulWidget {
       builder: (context) => AnimatedPadding(
         padding: MediaQuery.of(context).viewInsets,
         duration: const Duration(milliseconds: 100),
-        child: DeviceVerifyDialog(
-          onConfirm: (code) => context.pop(code),
-          onClosing: () => context.pop(),
+        child: ChangeNotifierProvider(
+          create: (_) => VerifyModel(),
+          builder: (_, _) => PageConsumer<VerifyModel>(
+            child: DeviceVerifyDialog(onClosing: () => context.pop()),
+          ),
         ),
       ),
     );
@@ -41,23 +42,36 @@ class DeviceVerifyDialog extends StatefulWidget {
   State<DeviceVerifyDialog> createState() => _DeviceVerifyDialogState();
 }
 
-class _DeviceVerifyDialogState extends State<DeviceVerifyDialog> {
+class _DeviceVerifyDialogState extends State<DeviceVerifyDialog>
+    with SingleTickerProviderStateMixin {
   final TextEditingController _verifyCtrl = TextEditingController();
   final TextEditingController _imageCtrl = TextEditingController();
+  late AnimationController _animationCtrl;
   final FocusNode _focusNode = FocusNode();
 
-  String? _phoneNumber;
+  late String _imageUrl;
   String _inputCode = ''; // 验证码
+  bool _isCodeValid = false;
+
+  VerifyModel get verifyModel =>
+      Provider.of<VerifyModel>(context, listen: false);
 
   @override
   void initState() {
     super.initState();
-    _phoneNumber = LocalStorage().account;
+    _animationCtrl = AnimationController(vsync: this)
+      ..repeat(period: const Duration(seconds: 1));
     _verifyCtrl.addListener(_onCodeChanged);
+    _imageCtrl.addListener(_onCodeChanged);
+    WidgetsBinding.instance.addPostFrameCallback((_) async {
+      final sendOk = await verifyModel.sendVerifyCode();
+      if (sendOk == true) _focusNode.requestFocus();
+    });
   }
 
   @override
   void dispose() {
+    _animationCtrl.dispose();
     _verifyCtrl.dispose();
     _imageCtrl.dispose();
     _focusNode.dispose();
@@ -69,6 +83,10 @@ class _DeviceVerifyDialogState extends State<DeviceVerifyDialog> {
     final value = _verifyCtrl.text;
     if (_inputCode != value) {
       setState(() => _inputCode = value);
+    }
+    final codeValid = value.length == 4 && _imageCtrl.text.length == 4;
+    if (_isCodeValid != codeValid) {
+      setState(() => _isCodeValid = codeValid);
     }
   }
 
@@ -163,56 +181,65 @@ class _DeviceVerifyDialogState extends State<DeviceVerifyDialog> {
             borderRadius: BorderRadius.all(Radius.circular(20)),
             boxShadow: NowStyles.cardShadows,
           ),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.stretch,
-            children: [
-              RichText(
-                text: TextSpan(
-                  style: TextStyle(fontSize: 14.sp, height: 22 / 14),
-                  children: [
-                    const TextSpan(
-                      text: 'ngresa el codigo de verifcacion enviado a ',
+          child: Consumer<VerifyModel>(
+            builder: (context, provider, _) {
+              return Column(
+                crossAxisAlignment: CrossAxisAlignment.stretch,
+                children: [
+                  RichText(
+                    text: TextSpan(
+                      style: TextStyle(fontSize: 14.sp, height: 22 / 14),
+                      children: [
+                        const TextSpan(
+                          text: 'ngresa el codigo de verifcacion enviado a ',
+                          style: TextStyle(
+                            fontWeight: FontWeight.w400,
+                            color: NowColors.c0xFF77797B,
+                          ),
+                        ),
+                        TextSpan(
+                          text: provider.phoneNumber,
+                          style: TextStyle(
+                            fontWeight: FontWeight.w500,
+                            color: NowColors.c0xFF1C1F23,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                  SizedBox(height: 20.h),
+                  // 验证码输入框
+                  _buildVerifyCodeField(),
+                  SizedBox(height: 20.h),
+                  if (provider.countdown <= 0)
+                    InkWell(
+                      onTap: () => provider.resendVerifyCode(),
+                      child: Text(
+                        'Reenviar el código',
+                        style: TextStyle(
+                          color: NowColors.c0xFF3288F1,
+                          fontWeight: FontWeight.w500,
+                          fontSize: 14.sp,
+                          height: 22 / 14,
+                          decoration: TextDecoration.underline,
+                          decorationColor: NowColors.c0xFF3288F1,
+                        ),
+                      ),
+                    )
+                  else
+                    Text(
+                      'Reenviar (${provider.countdown})',
                       style: TextStyle(
+                        fontSize: 14.sp,
                         fontWeight: FontWeight.w400,
                         color: NowColors.c0xFF77797B,
+                        height: 22 / 14,
                       ),
                     ),
-                    TextSpan(
-                      text: _phoneNumber,
-                      style: TextStyle(
-                        fontWeight: FontWeight.w500,
-                        color: NowColors.c0xFF1C1F23,
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-              SizedBox(height: 20.h),
-              // 验证码输入框
-              _buildVerifyCodeField(),
-              SizedBox(height: 20.h),
-              Text(
-                'Reenviar el código',
-                style: TextStyle(
-                  color: NowColors.c0xFF3288F1,
-                  fontWeight: FontWeight.w500,
-                  fontSize: 14.sp,
-                  height: 22 / 14,
-                  decoration: TextDecoration.underline,
-                  decorationColor: NowColors.c0xFF3288F1,
-                ),
-              ),
-              Text(
-                'Reenviar (59s)',
-                style: TextStyle(
-                  fontSize: 14.sp,
-                  fontWeight: FontWeight.w400,
-                  color: NowColors.c0xFF77797B,
-                  height: 22 / 14,
-                ),
-              ),
-              ..._buildImageCodeArea(),
-            ],
+                  if (provider.needCaptcha == true) ..._buildImageCodeArea(),
+                ],
+              );
+            },
           ),
         ),
         SizedBox(height: 36.h),
@@ -268,17 +295,8 @@ class _DeviceVerifyDialogState extends State<DeviceVerifyDialog> {
         controller: _imageCtrl,
         hintText: 'Código de verificación',
         maxLength: AppConst.codeLength,
-        keyboardType: TextInputType.number,
-        inputFormatters: [FilteringTextInputFormatter.digitsOnly],
-        suffix: Container(
-          width: 104.w,
-          height: 44.h,
-          margin: EdgeInsets.symmetric(vertical: 8.h),
-          decoration: BoxDecoration(
-            borderRadius: const BorderRadius.all(Radius.circular(8)),
-            border: Border.all(color: NowColors.c0xFFC7C7C7, width: 1),
-          ),
-        ),
+        keyboardType: TextInputType.text,
+        suffix: _buildCaptcha(),
       ),
       SizedBox(height: 16.h),
       RichText(
@@ -304,6 +322,33 @@ class _DeviceVerifyDialogState extends State<DeviceVerifyDialog> {
         ),
       ),
     ];
+  }
+
+  Widget _buildCaptcha() {
+    return InkWell(
+      onTap: () => setState(() => _imageUrl = ApiPath.captchaCode()),
+      borderRadius: const BorderRadius.all(Radius.circular(8)),
+      child: Container(
+        width: 104.w,
+        height: 44.h,
+        margin: EdgeInsets.symmetric(vertical: 8.h),
+        padding: EdgeInsets.symmetric(vertical: 7.h),
+        decoration: BoxDecoration(
+          borderRadius: const BorderRadius.all(Radius.circular(8)),
+          border: Border.all(color: NowColors.c0xFFC7C7C7, width: 1),
+        ),
+        child: CachedNetworkImage(
+          imageUrl: _imageUrl,
+          progressIndicatorBuilder: (context, _, _) {
+            return RotationTransition(
+              turns: _animationCtrl,
+              child: Image.asset(Drawable.iconCaptchaRefresh),
+            );
+          },
+          errorWidget: (_, _, _) => Image.asset(Drawable.iconCaptchaBrokea),
+        ),
+      ),
+    );
   }
 
   /// 构建单个验证码显示框
@@ -357,7 +402,10 @@ class _DeviceVerifyDialogState extends State<DeviceVerifyDialog> {
       ),
       child: EchoPrimaryButton(
         text: 'Código de verificación',
-        onPressed: () => widget.onConfirm({'first': _verifyCtrl.text}),
+        onPressed: () => verifyModel.checkVerifyCode(
+          verifyCode: _verifyCtrl.text,
+          imageCode: _imageCtrl.text,
+        ),
       ),
     );
   }

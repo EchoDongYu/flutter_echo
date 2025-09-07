@@ -2,7 +2,6 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_echo/common/app_theme.dart';
 import 'package:flutter_echo/common/constants.dart';
-import 'package:flutter_echo/services/storage_service.dart';
 import 'package:flutter_echo/ui/widgets/common_button.dart';
 import 'package:flutter_echo/ui/widgets/step_input_field.dart';
 import 'package:flutter_echo/utils/drawable_utils.dart';
@@ -46,12 +45,12 @@ class _CaptchaDialogState extends State<CaptchaDialog>
     with SingleTickerProviderStateMixin {
   late TextEditingController _codeCtrl;
   late AnimationController _animationCtrl;
-  late String imageUrl;
+  late String _imageUrl;
   bool _isCodeValid = false;
 
   @override
   void initState() {
-    imageUrl = captchaCode();
+    _imageUrl = ApiPath.captchaCode();
     _codeCtrl = TextEditingController();
     _codeCtrl.addListener(_onCodeChanged);
     _animationCtrl = AnimationController(vsync: this)
@@ -65,9 +64,6 @@ class _CaptchaDialogState extends State<CaptchaDialog>
     _animationCtrl.dispose();
     super.dispose();
   }
-
-  String captchaCode() =>
-      "${AppConst.baseUrl}/s3r/${LocalStorage().deviceId}?t=${DateTime.now().millisecondsSinceEpoch}";
 
   void _onCodeChanged() {
     final codeValid = _codeCtrl.text.length == 4;
@@ -220,7 +216,7 @@ class _CaptchaDialogState extends State<CaptchaDialog>
 
   Widget _buildCaptcha() {
     return InkWell(
-      onTap: () => setState(() => imageUrl = captchaCode()),
+      onTap: () => setState(() => _imageUrl = ApiPath.captchaCode()),
       borderRadius: const BorderRadius.all(Radius.circular(8)),
       child: Container(
         width: 104.w,
@@ -232,7 +228,7 @@ class _CaptchaDialogState extends State<CaptchaDialog>
           border: Border.all(color: NowColors.c0xFFC7C7C7, width: 1),
         ),
         child: CachedNetworkImage(
-          imageUrl: imageUrl,
+          imageUrl: _imageUrl,
           progressIndicatorBuilder: (context, _, _) {
             return RotationTransition(
               turns: _animationCtrl,

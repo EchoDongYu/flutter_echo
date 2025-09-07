@@ -3,6 +3,7 @@ import 'package:flutter_echo/common/base_provider.dart';
 import 'package:flutter_echo/models/api_response.dart';
 import 'package:flutter_echo/pages/app_router.dart';
 import 'package:flutter_echo/pages/login/captcha_dialog.dart';
+import 'package:flutter_echo/pages/login/device_verify_dialog.dart';
 import 'package:flutter_echo/services/storage_service.dart';
 import 'package:flutter_echo/ui/dialogs/loading_dialog.dart';
 import 'package:fluttertoast/fluttertoast.dart';
@@ -46,6 +47,8 @@ class PageConsumer<T extends BaseProvider> extends StatelessWidget {
             } else if (apiError.needCaptcha) {
               final code = await CaptchaDialog.show(context);
               if (code != null) provider.onCaptchaCode(code);
+            } else if (apiError.needVerify) {
+              await DeviceVerifyDialog.show(context);
             }
           }
         });

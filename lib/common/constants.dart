@@ -1,3 +1,5 @@
+import 'package:flutter_echo/services/storage_service.dart';
+
 /// 应用常量定义
 class AppConst {
   // 产品名称：CrediGo
@@ -101,8 +103,8 @@ class ApiPath {
   /// 登录
   static const String loginUser = '/aitch/q2i1/vwi0';
 
-  /// 获取图形验证码
-  static String getCaptchaCode(String mobileSn) => '/s3r/$mobileSn';
+  static String captchaCode() =>
+      '${AppConst.baseUrl}/s3r/${LocalStorage().deviceId}?t=${DateTime.now().millisecondsSinceEpoch}';
 
   /// 账户注销(APP)
   static const String accountCancelApp = '/w6y/jacky/hh7g';
