@@ -13,6 +13,7 @@ class AppConst {
   static const String localeCode = 'es-GT';
   static const int phoneLength = 8;
   static const int codeLength = 4;
+  static const int dataOffset = 310;
 
   /// 是否生产环境
   static const bool production = false;

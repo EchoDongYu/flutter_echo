@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_echo/common/app_theme.dart';
 import 'package:flutter_echo/pages/app_router.dart';
 import 'package:flutter_echo/pages/login/captcha_dialog.dart';
+import 'package:flutter_echo/pages/login/device_verify_dialog.dart';
 import 'package:flutter_echo/pages/login/retain_login_dialog.dart';
 import 'package:flutter_echo/pages/submit/confirm_step_dialog.dart';
 import 'package:flutter_echo/pages/submit/dpi_number_dialog.dart';
@@ -476,7 +477,7 @@ class _DemoPageState extends State<DemoPage> {
   }
 
   void _showDeviceVerifyDialog(BuildContext context) async {
-    final result = await DialogHelper.showDeviceVerifyDialog(context: context);
+    final result = await DeviceVerifyDialog.show(context);
     if (context.mounted) {
       if (result != null && result.isNotEmpty) {
         context.showSuccessSnack('Success $result');

@@ -20,11 +20,17 @@ class StepStatusModel extends BaseProvider {
         case 1:
           refreshSubmitResult(total);
         case 2:
+          final productId = apiResult?.foreyardOProductId;
+          final amount = apiResult?.nookieOCanBorrowAmount;
+          if (productId == null || amount == null || amount <= 0) {
+            navigate((context) => context.go(AppRouter.main));
+            return;
+          }
           final uriRoute = Uri(
             path: AppRouter.applyConfirm,
             queryParameters: {
-              NavKey.id: apiResult?.foreyardOProductId?.toString(),
-              NavKey.amount: apiResult?.nookieOCanBorrowAmount?.toString(),
+              NavKey.id: productId.toString(),
+              NavKey.amount: amount.toString(),
             },
           );
           navigate((context) => context.push(uriRoute.toString()));

@@ -36,5 +36,7 @@ extension ApiResponseExtension on ApiResponse {
 
   bool get needCaptcha => code == 'MO9942' || code == 'IS8131';
 
+  bool get needVerify => code == 'DO0413';
+
   bool get globalCode => needLogin || needCaptcha;
 }

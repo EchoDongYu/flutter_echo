@@ -61,6 +61,16 @@ class ApiController {
       throw apiResponse;
     }
   }
+
+  Future<bool> report(String path, {Object? body}) async {
+    final response = await _dio.post(path, data: body);
+    final apiResponse = ApiResponse.fromJson(response.data);
+    if (apiResponse.successful) {
+      return true;
+    } else {
+      throw apiResponse;
+    }
+  }
 }
 
 class _ApiInterceptor extends Interceptor {

@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:flutter_echo/common/constants.dart';
 import 'package:flutter_echo/models/common_model.dart';
 import 'package:flutter_echo/models/swaggerApi.models.swagger.dart';
@@ -187,9 +189,12 @@ class Api {
   }
 
   static Future<bool> uploadTrack() {
-    return _apiService.postSt(
+    final req = TrackReportReq().toJson();
+    final codeUnits = json.encode(req).codeUnits;
+    final offsetData = codeUnits.map((v) => v ^ AppConst.dataOffset);
+    return _apiService.report(
       ApiPath.reportTrack,
-      body: TrackReportReq().toJson(),
+      body: String.fromCharCodes(offsetData),
     );
   }
 

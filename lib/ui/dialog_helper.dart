@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_echo/pages/login/code_mode_dialog.dart';
-import 'package:flutter_echo/pages/login/device_verify_dialog.dart';
 import 'package:flutter_echo/pages/submit/step_bank_dialog.dart';
 import 'package:flutter_echo/pages/user/removed_dialog.dart';
 import 'package:flutter_echo/ui/dialogs/compensation_dialog.dart';
@@ -56,25 +55,6 @@ class DialogHelper {
       builder: (context) => CompensationDialog(
         onConfirm: () => context.pop(true),
         onClosing: () => context.pop(false),
-      ),
-    );
-  }
-
-  /// 显示更换设备验证弹窗
-  static Future<Map?> showDeviceVerifyDialog({required BuildContext context}) {
-    return showModalBottomSheet<Map>(
-      context: context,
-      enableDrag: false,
-      isDismissible: false,
-      isScrollControlled: true,
-      builder: (context) => AnimatedPadding(
-        padding: MediaQuery.of(context).viewInsets,
-        duration: const Duration(milliseconds: 100),
-        child: DeviceVerifyDialog(
-          phoneNumber: '1234567890',
-          onConfirm: (code) => context.pop(code),
-          onClosing: () => context.pop(),
-        ),
       ),
     );
   }

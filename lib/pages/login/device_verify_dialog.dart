@@ -2,56 +2,74 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_echo/common/app_theme.dart';
 import 'package:flutter_echo/common/constants.dart';
+import 'package:flutter_echo/services/storage_service.dart';
 import 'package:flutter_echo/ui/widgets/common_button.dart';
 import 'package:flutter_echo/ui/widgets/step_input_field.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:go_router/go_router.dart';
 
 /// 更换设备验证弹窗
 class DeviceVerifyDialog extends StatefulWidget {
-  /// 手机号码
-  final String phoneNumber;
   final VoidCallback onClosing;
   final Function(Map) onConfirm;
 
   const DeviceVerifyDialog({
     super.key,
-    required this.phoneNumber,
     required this.onConfirm,
     required this.onClosing,
   });
+
+  /// 显示更换设备验证弹窗
+  static Future<Map?> show(BuildContext context) {
+    return showModalBottomSheet<Map>(
+      context: context,
+      enableDrag: false,
+      isDismissible: false,
+      isScrollControlled: true,
+      builder: (context) => AnimatedPadding(
+        padding: MediaQuery.of(context).viewInsets,
+        duration: const Duration(milliseconds: 100),
+        child: DeviceVerifyDialog(
+          onConfirm: (code) => context.pop(code),
+          onClosing: () => context.pop(),
+        ),
+      ),
+    );
+  }
 
   @override
   State<DeviceVerifyDialog> createState() => _DeviceVerifyDialogState();
 }
 
 class _DeviceVerifyDialogState extends State<DeviceVerifyDialog> {
-  final TextEditingController _verCtrl = TextEditingController();
-  final TextEditingController _imgCtrl = TextEditingController();
+  final TextEditingController _verifyCtrl = TextEditingController();
+  final TextEditingController _imageCtrl = TextEditingController();
   final FocusNode _focusNode = FocusNode();
 
-  // 验证码
-  String _inputCode = '';
+  String? _phoneNumber;
+  String _inputCode = ''; // 验证码
 
   @override
   void initState() {
     super.initState();
-    _verCtrl.addListener(_onCodeChanged);
+    _phoneNumber = LocalStorage().account;
+    _verifyCtrl.addListener(_onCodeChanged);
   }
 
   @override
   void dispose() {
-    _verCtrl.dispose();
-    _imgCtrl.dispose();
+    _verifyCtrl.dispose();
+    _imageCtrl.dispose();
     _focusNode.dispose();
     super.dispose();
   }
 
   /// 验证码输入变化监听
   void _onCodeChanged() {
-    final value = _verCtrl.text;
-    setState(() {
-      _inputCode = value;
-    });
+    final value = _verifyCtrl.text;
+    if (_inputCode != value) {
+      setState(() => _inputCode = value);
+    }
   }
 
   @override
@@ -160,7 +178,7 @@ class _DeviceVerifyDialogState extends State<DeviceVerifyDialog> {
                       ),
                     ),
                     TextSpan(
-                      text: widget.phoneNumber,
+                      text: _phoneNumber,
                       style: TextStyle(
                         fontWeight: FontWeight.w500,
                         color: NowColors.c0xFF1C1F23,
@@ -218,7 +236,7 @@ class _DeviceVerifyDialogState extends State<DeviceVerifyDialog> {
         ),
         Positioned.fill(
           child: TextField(
-            controller: _verCtrl,
+            controller: _verifyCtrl,
             focusNode: _focusNode,
             keyboardType: TextInputType.number,
             inputFormatters: [FilteringTextInputFormatter.digitsOnly],
@@ -247,7 +265,7 @@ class _DeviceVerifyDialogState extends State<DeviceVerifyDialog> {
     return [
       SizedBox(height: 32.h),
       StepInputField(
-        controller: _imgCtrl,
+        controller: _imageCtrl,
         hintText: 'Código de verificación',
         maxLength: AppConst.codeLength,
         keyboardType: TextInputType.number,
@@ -339,7 +357,7 @@ class _DeviceVerifyDialogState extends State<DeviceVerifyDialog> {
       ),
       child: EchoPrimaryButton(
         text: 'Código de verificación',
-        onPressed: () => widget.onConfirm({'first': _verCtrl.text}),
+        onPressed: () => widget.onConfirm({'first': _verifyCtrl.text}),
       ),
     );
   }

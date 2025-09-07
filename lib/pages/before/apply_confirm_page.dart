@@ -229,7 +229,7 @@ class _ApplyConfirmPageState extends State<ApplyConfirmPage> {
                   SizedBox(height: 16.h),
                   ..._buildCard1Item(
                     'Cargo por Interés',
-                    loanInfo?.sk6s63OCouponAmount,
+                    loanInfo?.centiareOServiceFee,
                   ),
                 ],
               ),
@@ -237,7 +237,7 @@ class _ApplyConfirmPageState extends State<ApplyConfirmPage> {
             Expanded(
               child: Column(
                 children: [
-                  ..._buildCard1Item('Comisión', loanInfo?.e88wy1OLoanFee),
+                  ..._buildCard1Item('Comisión', loanInfo?.spriteOBusinessFee),
                   SizedBox(height: 16.h),
                   ..._buildCard1Item(
                     'Monto a pagar',
