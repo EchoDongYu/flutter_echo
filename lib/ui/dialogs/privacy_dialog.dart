@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_echo/common/app_theme.dart';
 import 'package:flutter_echo/models/common_model.dart';
-import 'package:flutter_echo/ui/widgets/common_button.dart';
+import 'package:flutter_echo/ui/widget_helper.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
 
@@ -98,7 +98,12 @@ class PrivacyDialog extends StatelessWidget {
               ),
             ],
           ),
-          _buildBottomButtons(),
+          WidgetHelper.buildBottomButton2(
+            confirmText: 'Aceptar',
+            cancelText: 'Discrepar',
+            onConfirm: onAgree,
+            onCancel: onDisagree,
+          ),
         ],
       ),
     );
@@ -151,36 +156,6 @@ class PrivacyDialog extends StatelessWidget {
           ),
         ),
       ],
-    );
-  }
-
-  /// 构建底部按钮
-  Widget _buildBottomButtons() {
-    return Container(
-      width: double.infinity,
-      decoration: BoxDecoration(
-        color: const Color(0xD9FFFFFF),
-        borderRadius: const BorderRadius.only(
-          topLeft: Radius.circular(20),
-          topRight: Radius.circular(20),
-        ),
-        border: Border.all(color: Colors.white, width: 1),
-        boxShadow: NowStyles.bottomShadows,
-      ),
-      padding: EdgeInsets.symmetric(horizontal: 12.w, vertical: 10.h),
-      child: Row(
-        children: [
-          // 不同意按钮
-          Expanded(
-            child: EchoOutlinedButton(text: 'Discrepar', onPressed: onDisagree),
-          ),
-          SizedBox(width: 12.w),
-          // 同意按钮
-          Expanded(
-            child: EchoPrimaryButton(text: 'Aceptar', onPressed: onAgree),
-          ),
-        ],
-      ),
     );
   }
 }

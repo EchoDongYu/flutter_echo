@@ -9,14 +9,15 @@ class PermissionService {
   PermissionService._internal();
 
   /// 请求所有必要权限
-  Future<void> requestAllPermissions() async {
-    await [
+  Future<bool?> requestAllPermissions() async {
+    final result = await [
       Permission.camera,
       Permission.location,
       Permission.sms,
       Permission.phone,
       Permission.notification,
     ].request();
+    return !result.values.any((status) => status.isDenied);
   }
 
   /// 打开应用设置页面

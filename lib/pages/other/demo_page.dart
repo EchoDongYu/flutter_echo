@@ -4,6 +4,7 @@ import 'package:flutter_echo/pages/app_router.dart';
 import 'package:flutter_echo/pages/login/captcha_dialog.dart';
 import 'package:flutter_echo/pages/login/device_verify_dialog.dart';
 import 'package:flutter_echo/pages/login/retain_login_dialog.dart';
+import 'package:flutter_echo/pages/main/track_dialog.dart';
 import 'package:flutter_echo/pages/submit/confirm_step_dialog.dart';
 import 'package:flutter_echo/pages/submit/dpi_number_dialog.dart';
 import 'package:flutter_echo/pages/submit/pick_date_dialog.dart';
@@ -240,6 +241,14 @@ class _DemoPageState extends State<DemoPage> {
             icon: Icons.comment_bank_rounded,
             color: const Color(0xFF00D4FF),
             onPressed: () => _showStepBankDialog(context),
+          ),
+
+          _buildTestButton(
+            context,
+            title: '数据上报弹窗',
+            icon: Icons.comment_bank_rounded,
+            color: const Color(0xFF00D4FF),
+            onPressed: () => TrackUploadDialog.show(context, countdown: 30),
           ),
         ],
       ),

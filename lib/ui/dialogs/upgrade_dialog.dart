@@ -38,8 +38,8 @@ class UpgradeDialog extends StatelessWidget {
                   width: double.infinity,
                   fit: BoxFit.fitWidth,
                 ),
-                Container(
-                  margin: EdgeInsets.symmetric(horizontal: 16.w),
+                Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 16.w),
                   child: Column(
                     children: [
                       SizedBox(height: 12.h),

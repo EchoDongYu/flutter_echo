@@ -7,7 +7,7 @@ class WidgetHelper {
   /// 底部按钮
   static Widget buildBottomButton({
     required String text,
-    VoidCallback? onPressed,
+    required VoidCallback? onPressed,
   }) {
     return Container(
       width: double.infinity,
@@ -22,6 +22,39 @@ class WidgetHelper {
         boxShadow: NowStyles.bottomShadows,
       ),
       child: EchoPrimaryButton(text: text, onPressed: onPressed),
+    );
+  }
+
+  /// 底部双按钮
+  static Widget buildBottomButton2({
+    required String confirmText,
+    required String cancelText,
+    required VoidCallback? onConfirm,
+    required VoidCallback? onCancel,
+  }) {
+    return Container(
+      width: double.infinity,
+      decoration: BoxDecoration(
+        color: const Color(0xD9FFFFFF),
+        borderRadius: const BorderRadius.only(
+          topLeft: Radius.circular(20),
+          topRight: Radius.circular(20),
+        ),
+        border: Border.all(color: Colors.white, width: 1),
+        boxShadow: NowStyles.bottomShadows,
+      ),
+      padding: EdgeInsets.symmetric(horizontal: 12.w, vertical: 10.h),
+      child: Row(
+        children: [
+          Expanded(
+            child: EchoOutlinedButton(text: cancelText, onPressed: onCancel),
+          ),
+          SizedBox(width: 12.w),
+          Expanded(
+            child: EchoPrimaryButton(text: confirmText, onPressed: onConfirm),
+          ),
+        ],
+      ),
     );
   }
 

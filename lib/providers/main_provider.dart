@@ -1,7 +1,10 @@
+import 'package:flutter/material.dart';
 import 'package:flutter_echo/common/base_provider.dart';
 import 'package:flutter_echo/models/swaggerApi.models.swagger.dart';
 import 'package:flutter_echo/pages/app_router.dart';
+import 'package:flutter_echo/pages/main/track_dialog.dart';
 import 'package:flutter_echo/services/api_service.dart';
+import 'package:flutter_echo/services/permission_service.dart';
 import 'package:flutter_echo/services/storage_service.dart';
 import 'package:go_router/go_router.dart';
 
@@ -13,8 +16,7 @@ class MainModel extends BaseProvider {
   int? get status => _creditStatus;
 
   Future<void> getHomeInfo() async {
-    final isLogin = LocalStorage().isLogin;
-    if (isLogin) {
+    if (LocalStorage().isLogin) {
       _homeInfo = await launchRequest(() => Api.getHomeInfo());
       _creditStatus = _homeInfo?.bopomofoOCreditStatus;
     } else {
@@ -24,21 +26,11 @@ class MainModel extends BaseProvider {
   }
 
   void launchDefault() async {
-    final need = await Api.needReport();
-    if (need.q0ui28OIsNeedReport == true) {
-      final apiResult = await Api.uploadTrack();
-      if (apiResult) {
-      } else {
-        return;
-      }
-    }
     switch (_creditStatus) {
       case 0:
         navigate((context) => context.push(AppRouter.stepBasic));
       default:
-        final apiResult = await launchRequest(() async {
-          return await Api.refreshSubmitResult();
-        });
+        final apiResult = await launchRequest(() => Api.refreshSubmitResult());
         switch (apiResult?.bopomofoOCreditStatus) {
           case 1:
             final uriRoute = Uri(
@@ -49,11 +41,16 @@ class MainModel extends BaseProvider {
             );
             navigate((context) => context.push(uriRoute.toString()));
           case 2:
+            final productId = apiResult?.foreyardOProductId;
+            final amount = apiResult?.nookieOCanBorrowAmount;
+            if (productId == null || amount == null || amount <= 0) {
+              return;
+            }
             final uriRoute = Uri(
               path: AppRouter.applyConfirm,
               queryParameters: {
-                NavKey.id: apiResult?.foreyardOProductId?.toString(),
-                NavKey.amount: apiResult?.nookieOCanBorrowAmount?.toString(),
+                NavKey.id: productId.toString(),
+                NavKey.amount: amount.toString(),
               },
             );
             navigate((context) => context.push(uriRoute.toString()));
@@ -65,12 +62,25 @@ class MainModel extends BaseProvider {
 
   void launchLoan() async {
     if (_creditStatus != 2) return;
-    await launchRequest(() async {
-      final need = await Api.needReport();
-      if (need.q0ui28OIsNeedReport == true) {
-        final apiResult = await Api.uploadTrack();
-        if (apiResult) {}
+  }
+
+  Future<bool?> launchOk(BuildContext context) async {
+    if (!LocalStorage().isLogin) {
+      navigate((context) => context.push(AppRouter.loginPhone));
+      return false;
+    }
+    final need = await launchRequest(() => Api.needReport());
+    final countdown = need?.paroxysmOReportTimeOut;
+    if (need?.q0ui28OIsNeedReport != true || countdown == null) return true;
+    if (countdown > 0 && context.mounted) {
+      final agreeOk = await TrackIntroDialog.show(context);
+      if (agreeOk == true && context.mounted) {
+        final permOk = await PermissionService().requestAllPermissions();
+        if (permOk == true && context.mounted) {
+          return await TrackUploadDialog.show(context, countdown: countdown);
+        }
       }
-    });
+    }
+    return false;
   }
 }

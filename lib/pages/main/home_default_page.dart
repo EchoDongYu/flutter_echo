@@ -135,7 +135,10 @@ class _HomeDefaultPageState extends State<HomeDefaultPage> {
               ),
               SizedBox(height: 40.h),
               EchoSecondaryButton(
-                onPressed: () => mainModel.launchDefault(),
+                onPressed: () async {
+                  final lok = await mainModel.launchOk(context);
+                  if (lok == true) mainModel.launchDefault();
+                },
                 text: 'Obtén crédito',
                 textColor: NowColors.c0xFF3288F1,
                 filledColor: Colors.white,

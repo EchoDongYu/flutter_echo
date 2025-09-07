@@ -149,7 +149,10 @@ class _HomeLoanPageState extends State<HomeLoanPage>
                           ),
                           SizedBox(height: 24.h),
                           EchoPrimaryButton(
-                            onPressed: () => mainModel.launchLoan(),
+                            onPressed: () async {
+                              final lok = await mainModel.launchOk(context);
+                              if (lok == true) mainModel.launchLoan();
+                            },
                             text: 'Solicítelo ya',
                           ),
                         ],
