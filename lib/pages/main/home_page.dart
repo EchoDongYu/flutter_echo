@@ -4,6 +4,8 @@ import 'package:flutter_echo/pages/main/home_loan_page.dart';
 import 'package:flutter_echo/providers/main_provider.dart';
 import 'package:flutter_echo/services/storage_service.dart';
 import 'package:flutter_echo/ui/dialogs/compensation_dialog.dart';
+import 'package:flutter_echo/ui/dialogs/disclosure_dialog.dart';
+import 'package:flutter_echo/ui/dialogs/privacy_dialog.dart';
 import 'package:provider/provider.dart';
 
 /// 主页面-首页
@@ -17,17 +19,12 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   MainModel get mainModel => Provider.of<MainModel>(context, listen: false);
 
-  /// 模拟异步刷新
-  Future<void> _onRefresh() async {
-    await mainModel.getHomeInfo();
-  }
-
   @override
   void initState() {
     super.initState();
     WidgetsBinding.instance.addPostFrameCallback((_) async {
       if (LocalStorage().disclosure != true) {
-        await CompensationDialog.show(context);
+        await _checkAuth(context);
       }
       mainModel.getHomeInfo();
     });
@@ -36,6 +33,25 @@ class _HomePageState extends State<HomePage> {
   @override
   void dispose() {
     super.dispose();
+  }
+
+  Future<void> _checkAuth(BuildContext context) async {
+    bool? result;
+    final compensation = await CompensationDialog.show(context);
+    if (compensation == true && context.mounted) {
+      final privacy = await PrivacyDialog.show(context);
+      if (privacy == true && context.mounted) {
+        result = await DisclosureDialog.show(context);
+      }
+    }
+    if (result != true && context.mounted) {
+      _checkAuth(context);
+    }
+  }
+
+  /// 模拟异步刷新
+  Future<void> _onRefresh() async {
+    await mainModel.getHomeInfo();
   }
 
   @override

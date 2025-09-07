@@ -5,6 +5,7 @@ import 'package:flutter_echo/common/constants.dart';
 import 'package:flutter_echo/pages/app_router.dart';
 import 'package:flutter_echo/services/storage_service.dart';
 import 'package:flutter_echo/ui/dialogs/disclosure_dialog.dart';
+import 'package:flutter_echo/ui/dialogs/privacy_dialog.dart';
 import 'package:flutter_echo/utils/drawable_utils.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
@@ -66,7 +67,10 @@ class _SplashPageState extends State<SplashPage> {
 
   void _checkDisclosure(BuildContext context, Function() onFinish) async {
     if (LocalStorage().disclosure != true) {
-      await DisclosureDialog.show(context);
+      final privacy = await PrivacyDialog.show(context);
+      if (privacy == true && context.mounted) {
+        await DisclosureDialog.show(context);
+      }
       Future.delayed(Duration(milliseconds: 500), onFinish);
     } else {
       Future.delayed(Duration(milliseconds: 500), onFinish);
