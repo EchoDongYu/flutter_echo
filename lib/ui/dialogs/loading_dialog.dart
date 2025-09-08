@@ -53,4 +53,8 @@ class LoadingDialog {
     _overlayEntry?.remove();
     _overlayEntry = null;
   }
+
+  static void dispose() {
+    if (_overlayEntry != null) hide();
+  }
 }

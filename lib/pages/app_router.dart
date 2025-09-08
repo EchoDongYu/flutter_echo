@@ -21,6 +21,7 @@ import 'package:flutter_echo/pages/user/reset_login_pwd_page.dart';
 import 'package:flutter_echo/pages/user/reset_trader_pwd_page.dart';
 import 'package:flutter_echo/pages/user/safety_verify_page.dart';
 import 'package:flutter_echo/pages/user/user_bank_page.dart';
+import 'package:flutter_echo/providers/about_us_provider.dart';
 import 'package:flutter_echo/providers/apply_provider.dart';
 import 'package:flutter_echo/providers/login_provider.dart';
 import 'package:flutter_echo/providers/main_provider.dart';
@@ -214,7 +215,15 @@ class AppRouter {
       ),
 
       /// 关于我们页面
-      GoRoute(path: aboutUs, builder: (context, state) => const AboutUsPage()),
+      GoRoute(
+        path: aboutUs,
+        builder: (context, state) => ChangeNotifierProvider(
+          create: (_) => AboutUsModel(),
+          builder: (_, _) {
+            return PageConsumer<AboutUsModel>(child: const AboutUsPage());
+          },
+        ),
+      ),
 
       /// 用户银行卡页面
       GoRoute(

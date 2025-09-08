@@ -85,9 +85,9 @@ class RetainLoginDialog extends StatelessWidget {
   Widget _buildRetainItem(Pair item) {
     return Container(
       width: double.infinity,
-      decoration: BoxDecoration(
+      decoration: const BoxDecoration(
         color: NowColors.c0xFFEFF7FF,
-        borderRadius: const BorderRadius.all(Radius.circular(16)),
+        borderRadius: BorderRadius.all(Radius.circular(16)),
       ),
       padding: EdgeInsets.symmetric(horizontal: 12.w, vertical: 10.h),
       child: Row(

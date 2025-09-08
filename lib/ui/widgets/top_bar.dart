@@ -71,7 +71,7 @@ class EchoTopBar extends StatelessWidget {
             // 客服按钮
             if (showSupport)
               InkWell(
-                onTap: () => context.pop(),
+                onTap: () => context.push(AppRouter.aboutUs),
                 borderRadius: const BorderRadius.all(Radius.circular(24)),
                 child: Container(
                   alignment: Alignment.centerRight,

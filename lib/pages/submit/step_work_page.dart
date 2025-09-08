@@ -60,7 +60,6 @@ class _StepWorkPageState extends State<StepWorkPage> {
     _controller.addListener(_onInputChanged);
     WidgetsBinding.instance.addPostFrameCallback((_) async {
       final dict = await submitModel.getDictionary();
-      final type = [3, 12, 5, 1, 4, 7, 2, 8];
       String? jsonStr = dict?['9']?.firstOrNull?.value;
       if (jsonStr != null) {
         if (jsonStr.startsWith('"') && jsonStr.endsWith('"')) {
@@ -68,6 +67,7 @@ class _StepWorkPageState extends State<StepWorkPage> {
           jsonStr = jsonStr.substring(1, jsonStr.length - 1);
         }
       }
+      final type = [3, 12, 5, 1, 4, 7, 2, 8];
       setState(() {
         _stepItems = type.map((v) => dict?['$v']).toList();
         if (jsonStr != null) _stepAreas = json.decode(jsonStr);

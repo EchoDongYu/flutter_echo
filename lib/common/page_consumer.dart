@@ -10,10 +10,21 @@ import 'package:fluttertoast/fluttertoast.dart';
 import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
 
-class PageConsumer<T extends BaseProvider> extends StatelessWidget {
+class PageConsumer<T extends BaseProvider> extends StatefulWidget {
   final Widget? _child;
 
   const PageConsumer({super.key, required Widget child}) : _child = child;
+
+  @override
+  State<PageConsumer> createState() => _PageConsumerState<T>();
+}
+
+class _PageConsumerState<T extends BaseProvider> extends State<PageConsumer> {
+  @override
+  void dispose() {
+    LoadingDialog.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -53,7 +64,7 @@ class PageConsumer<T extends BaseProvider> extends StatelessWidget {
         });
         return child!;
       },
-      child: _child,
+      child: widget._child,
     );
   }
 }

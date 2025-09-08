@@ -24,12 +24,14 @@ class Triple<F, S, T> {
 class StepItem {
   final int key;
   final String value;
-  final int sort;
-  final int l16h95; //o_updateTime
+  final String? type;
+  final int? sort;
+  final int? l16h95; //o_updateTime
 
-  const StepItem(
-    this.value, {
+  const StepItem({
     required this.key,
+    required this.value,
+    required this.type,
     required this.sort,
     required this.l16h95,
   });

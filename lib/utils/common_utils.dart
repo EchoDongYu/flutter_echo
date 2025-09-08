@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_echo/common/constants.dart';
 import 'package:intl/intl.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 void debugLog(String message, {Object? error, StackTrace? stackTrace}) {
   if (!AppConst.production) {
@@ -37,6 +38,18 @@ class FlutterPlatform {
     'ios' => '1',
     _ => '-1',
   };
+
+  static Future<void> launchWhatsApp(String? phone) async {
+    final Uri whatsappUri = Uri.parse('whatsapp://send?phone=$phone');
+    if (await canLaunchUrl(whatsappUri)) {
+      await launchUrl(whatsappUri);
+    } else {
+      final Uri waUri = Uri.parse(
+        'https://wa.me/${phone?.replaceAll('+', '')}',
+      );
+      await launchUrl(waUri);
+    }
+  }
 }
 
 extension DateTimeFormat on DateTime {
