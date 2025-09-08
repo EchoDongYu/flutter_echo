@@ -26,8 +26,7 @@ class PageConsumer<T extends BaseProvider> extends StatelessWidget {
             if (loading) {
               LoadingDialog.show(context);
             } else {
-              final navigator = Navigator.of(context, rootNavigator: true);
-              if (navigator.canPop()) navigator.pop();
+              LoadingDialog.hide();
             }
           }
           final navAction = provider.navAction;

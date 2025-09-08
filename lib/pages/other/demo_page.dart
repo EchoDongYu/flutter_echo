@@ -14,6 +14,7 @@ import 'package:flutter_echo/services/storage_service.dart';
 import 'package:flutter_echo/ui/dialog_helper.dart';
 import 'package:flutter_echo/ui/dialogs/compensation_dialog.dart';
 import 'package:flutter_echo/ui/dialogs/disclosure_dialog.dart';
+import 'package:flutter_echo/ui/dialogs/loading_dialog.dart';
 import 'package:flutter_echo/ui/widgets/common_button.dart';
 import 'package:flutter_echo/utils/context_ext.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -107,6 +108,18 @@ class _DemoPageState extends State<DemoPage> {
       },
       body: Column(
         children: [
+          _buildTestButton(
+            context,
+            title: 'Loading弹窗',
+            icon: Icons.upgrade_rounded,
+            color: const Color(0xFF00D4FF),
+            onPressed: () async {
+               LoadingDialog.show(context);
+               TrackIntroDialog.show(context);
+               Navigator.of(context, rootNavigator: false);
+            },
+          ),
+
           _buildTestButton(
             context,
             title: '删除被账号登录时提示弹窗',
