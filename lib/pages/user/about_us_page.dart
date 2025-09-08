@@ -29,11 +29,10 @@ class _AboutUsPageState extends State<AboutUsPage> {
     WidgetsBinding.instance.addPostFrameCallback((_) async {
       final aboutModel = Provider.of<AboutUsModel>(context, listen: false);
       final dict = await aboutModel.getDictionary();
-      final type = [21, 18, 17, 23, 24];
       setState(() {
-        _stepItems = type
-            .map((v) => dict?['$v'])
-            .expand((e) => e ?? List<StepItem>.empty())
+        _stepItems = AboutUsModel.types
+            .map((it) => dict?['$it'])
+            .expand((it) => it ?? List<StepItem>.empty())
             .toList();
       });
     });

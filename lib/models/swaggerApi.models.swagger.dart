@@ -7391,6 +7391,7 @@ class MyBankCardResp$Item {
   const MyBankCardResp$Item({
     this.vnbh46OBankCardGid,
     this.t1h91pOBankName,
+    this.m871v6OBankLogo,
     this.insolentOBankCode,
     this.zebrineOCardNo,
     this.tigonOCardNoReal,
@@ -7407,6 +7408,8 @@ class MyBankCardResp$Item {
   final int? vnbh46OBankCardGid;
   @JsonKey(name: 't1h91p')
   final String? t1h91pOBankName;
+  @JsonKey(name: 'm871v6')
+  final String? m871v6OBankLogo;
   @JsonKey(name: 'insolent')
   final String? insolentOBankCode;
   @JsonKey(name: 'zebrine')
@@ -7449,6 +7452,11 @@ class MyBankCardResp$Item {
                 const DeepCollectionEquality().equals(
                   other.t1h91pOBankName,
                   t1h91pOBankName,
+                )) &&
+            (identical(other.m871v6OBankLogo, m871v6OBankLogo) ||
+                const DeepCollectionEquality().equals(
+                  other.m871v6OBankLogo,
+                  m871v6OBankLogo,
                 )) &&
             (identical(other.insolentOBankCode, insolentOBankCode) ||
                 const DeepCollectionEquality().equals(
@@ -7506,6 +7514,7 @@ class MyBankCardResp$Item {
   int get hashCode =>
       const DeepCollectionEquality().hash(vnbh46OBankCardGid) ^
       const DeepCollectionEquality().hash(t1h91pOBankName) ^
+      const DeepCollectionEquality().hash(m871v6OBankLogo) ^
       const DeepCollectionEquality().hash(insolentOBankCode) ^
       const DeepCollectionEquality().hash(zebrineOCardNo) ^
       const DeepCollectionEquality().hash(tigonOCardNoReal) ^
@@ -7523,6 +7532,7 @@ extension $MyBankCardResp$ItemExtension on MyBankCardResp$Item {
   MyBankCardResp$Item copyWith({
     int? vnbh46OBankCardGid,
     String? t1h91pOBankName,
+    String? m871v6OBankLogo,
     String? insolentOBankCode,
     String? zebrineOCardNo,
     String? tigonOCardNoReal,
@@ -7537,6 +7547,7 @@ extension $MyBankCardResp$ItemExtension on MyBankCardResp$Item {
     return MyBankCardResp$Item(
       vnbh46OBankCardGid: vnbh46OBankCardGid ?? this.vnbh46OBankCardGid,
       t1h91pOBankName: t1h91pOBankName ?? this.t1h91pOBankName,
+      m871v6OBankLogo: m871v6OBankLogo ?? this.m871v6OBankLogo,
       insolentOBankCode: insolentOBankCode ?? this.insolentOBankCode,
       zebrineOCardNo: zebrineOCardNo ?? this.zebrineOCardNo,
       tigonOCardNoReal: tigonOCardNoReal ?? this.tigonOCardNoReal,
@@ -7553,6 +7564,7 @@ extension $MyBankCardResp$ItemExtension on MyBankCardResp$Item {
   MyBankCardResp$Item copyWithWrapped({
     Wrapped<int?>? vnbh46OBankCardGid,
     Wrapped<String?>? t1h91pOBankName,
+    Wrapped<String?>? m871v6OBankLogo,
     Wrapped<String?>? insolentOBankCode,
     Wrapped<String?>? zebrineOCardNo,
     Wrapped<String?>? tigonOCardNoReal,
@@ -7571,6 +7583,9 @@ extension $MyBankCardResp$ItemExtension on MyBankCardResp$Item {
       t1h91pOBankName: (t1h91pOBankName != null
           ? t1h91pOBankName.value
           : this.t1h91pOBankName),
+      m871v6OBankLogo: (m871v6OBankLogo != null
+          ? m871v6OBankLogo.value
+          : this.m871v6OBankLogo),
       insolentOBankCode: (insolentOBankCode != null
           ? insolentOBankCode.value
           : this.insolentOBankCode),
@@ -7610,6 +7625,7 @@ class BankVOResp$Item {
   const BankVOResp$Item({
     this.exonymOBankGid,
     this.t1h91pOBankName,
+    this.m871v6OBankLogo,
     this.insolentOBankCode,
     this.songODigits,
   });
@@ -7618,10 +7634,12 @@ class BankVOResp$Item {
   final String? exonymOBankGid;
   @JsonKey(name: 't1h91p')
   final String? t1h91pOBankName;
+  @JsonKey(name: 'm871v6')
+  final String? m871v6OBankLogo;
   @JsonKey(name: 'insolent')
   final String? insolentOBankCode;
   @JsonKey(name: 'song')
-  final String? songODigits;
+  final Object? songODigits;
 
   factory BankVOResp$Item.fromJson(Map<String, dynamic> json) =>
       _$BankVOResp$ItemFromJson(json);
@@ -7645,6 +7663,11 @@ class BankVOResp$Item {
                   other.t1h91pOBankName,
                   t1h91pOBankName,
                 )) &&
+            (identical(other.m871v6OBankLogo, m871v6OBankLogo) ||
+                const DeepCollectionEquality().equals(
+                  other.m871v6OBankLogo,
+                  m871v6OBankLogo,
+                )) &&
             (identical(other.insolentOBankCode, insolentOBankCode) ||
                 const DeepCollectionEquality().equals(
                   other.insolentOBankCode,
@@ -7664,6 +7687,7 @@ class BankVOResp$Item {
   int get hashCode =>
       const DeepCollectionEquality().hash(exonymOBankGid) ^
       const DeepCollectionEquality().hash(t1h91pOBankName) ^
+      const DeepCollectionEquality().hash(m871v6OBankLogo) ^
       const DeepCollectionEquality().hash(insolentOBankCode) ^
       const DeepCollectionEquality().hash(songODigits) ^
       runtimeType.hashCode;
@@ -7673,12 +7697,14 @@ extension $BankVOResp$ItemExtension on BankVOResp$Item {
   BankVOResp$Item copyWith({
     String? exonymOBankGid,
     String? t1h91pOBankName,
+    String? m871v6OBankLogo,
     String? insolentOBankCode,
-    String? songODigits,
+    Object? songODigits,
   }) {
     return BankVOResp$Item(
       exonymOBankGid: exonymOBankGid ?? this.exonymOBankGid,
       t1h91pOBankName: t1h91pOBankName ?? this.t1h91pOBankName,
+      m871v6OBankLogo: m871v6OBankLogo ?? this.m871v6OBankLogo,
       insolentOBankCode: insolentOBankCode ?? this.insolentOBankCode,
       songODigits: songODigits ?? this.songODigits,
     );
@@ -7687,8 +7713,9 @@ extension $BankVOResp$ItemExtension on BankVOResp$Item {
   BankVOResp$Item copyWithWrapped({
     Wrapped<String?>? exonymOBankGid,
     Wrapped<String?>? t1h91pOBankName,
+    Wrapped<String?>? m871v6OBankLogo,
     Wrapped<String?>? insolentOBankCode,
-    Wrapped<String?>? songODigits,
+    Wrapped<Object?>? songODigits,
   }) {
     return BankVOResp$Item(
       exonymOBankGid: (exonymOBankGid != null
@@ -7697,6 +7724,9 @@ extension $BankVOResp$ItemExtension on BankVOResp$Item {
       t1h91pOBankName: (t1h91pOBankName != null
           ? t1h91pOBankName.value
           : this.t1h91pOBankName),
+      m871v6OBankLogo: (m871v6OBankLogo != null
+          ? m871v6OBankLogo.value
+          : this.m871v6OBankLogo),
       insolentOBankCode: (insolentOBankCode != null
           ? insolentOBankCode.value
           : this.insolentOBankCode),

@@ -27,6 +27,7 @@ import 'package:flutter_echo/providers/login_provider.dart';
 import 'package:flutter_echo/providers/main_provider.dart';
 import 'package:flutter_echo/providers/step_status_provider.dart';
 import 'package:flutter_echo/providers/submit_provider.dart';
+import 'package:flutter_echo/providers/user_bank_provider.dart';
 import 'package:flutter_echo/utils/common_utils.dart';
 import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
@@ -228,7 +229,12 @@ class AppRouter {
       /// 用户银行卡页面
       GoRoute(
         path: userBank,
-        builder: (context, state) => const UserBankPage(),
+        builder: (context, state) => ChangeNotifierProvider(
+          create: (_) => UserBankModel(),
+          builder: (_, _) {
+            return PageConsumer<UserBankModel>(child: const UserBankPage());
+          },
+        ),
       ),
 
       /// 测试入口

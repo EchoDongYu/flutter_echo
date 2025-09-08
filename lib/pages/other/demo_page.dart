@@ -10,6 +10,7 @@ import 'package:flutter_echo/pages/submit/dpi_number_dialog.dart';
 import 'package:flutter_echo/pages/submit/pick_date_dialog.dart';
 import 'package:flutter_echo/pages/submit/pick_day_dialog.dart';
 import 'package:flutter_echo/pages/submit/pick_item_dialog.dart';
+import 'package:flutter_echo/pages/submit/step_bank_dialog.dart';
 import 'package:flutter_echo/services/storage_service.dart';
 import 'package:flutter_echo/ui/dialog_helper.dart';
 import 'package:flutter_echo/ui/dialogs/compensation_dialog.dart';
@@ -620,7 +621,7 @@ class _DemoPageState extends State<DemoPage> {
   }
 
   void _showStepBankDialog(BuildContext context) async {
-    final result = await DialogHelper.showStepBankDialog(context: context);
+    final result = await StepBankDialog.show(context);
     if (context.mounted) {
       if (result == true) {
         context.showSuccessSnack('Confirm $result');

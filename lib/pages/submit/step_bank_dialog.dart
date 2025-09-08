@@ -6,6 +6,7 @@ import 'package:flutter_echo/ui/widgets/common_button.dart';
 import 'package:flutter_echo/ui/widgets/step_input_field.dart';
 import 'package:flutter_echo/ui/widgets/step_select_field.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:go_router/go_router.dart';
 
 /// 添加银行卡弹窗
 class StepBankDialog extends StatefulWidget {
@@ -17,6 +18,20 @@ class StepBankDialog extends StatefulWidget {
     required this.onClosing,
     required this.onConfirm,
   });
+
+  /// 显示添加银行卡弹窗
+  static Future<bool?> show(BuildContext context) {
+    return showModalBottomSheet<bool>(
+      context: context,
+      enableDrag: false,
+      isDismissible: false,
+      isScrollControlled: true,
+      builder: (context) => StepBankDialog(
+        onConfirm: () => context.pop(true),
+        onClosing: () => context.pop(false),
+      ),
+    );
+  }
 
   @override
   State<StepBankDialog> createState() => _StepBankDialogState();

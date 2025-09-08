@@ -148,6 +148,25 @@ class Api {
     );
   }
 
+  static Future<MyBankCardResp?> queryMyBankCardList() {
+    return _apiService.post(
+      ApiPath.queryMyBankCardList,
+      body: MyBankCardReq().toJson(),
+      convert: (json) => (json as List<dynamic>?)
+          ?.map((e) => e as MyBankCardResp$Item)
+          .toList(),
+    );
+  }
+
+  static Future<BankVOResp?> queryBankList() {
+    return _apiService.post(
+      ApiPath.queryBankList,
+      body: BankVOReq().toJson(),
+      convert: (json) =>
+          (json as List<dynamic>?)?.map((e) => e as BankVOResp$Item).toList(),
+    );
+  }
+
   /// 字典分类(多个使用逗号分割) :0 性别 1 学历 2 收入 3 婚姻状况 4 工作状况（职业） 5 住房状态 6 其他贷款
   /// 7 工作年限 8 发薪周期 9 城市列表 10 联系人-关系 11 电费账单 12 每月家庭支出 13 借款目的 14 意见反馈
   /// 17 whatsapp 18 客服邮箱 21 客服热线 22 账户类型 23 公司官网 24 公司地址 25 注销挽留 26 银行直连线下还款银行字典

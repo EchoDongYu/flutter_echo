@@ -325,6 +325,13 @@
                       "mock": "@string"
                     }
                   },
+                  "m871v6(o_bankLogo)": {
+                    "type": "string",
+                    "description": "银行图标",
+                    "mock": {
+                      "mock": "@string"
+                    }
+                  },
                   "insolent(o_bankCode)": {
                     "type": "string",
                     "description": "银行编码",
@@ -468,6 +475,13 @@
                       "mock": "@string"
                     }
                   },
+                  "m871v6(o_bankLogo)": {
+                    "type": "string",
+                    "description": "银行图标",
+                    "mock": {
+                      "mock": "@string"
+                    }
+                  },
                   "insolent(o_bankCode)": {
                     "type": "string",
                     "description": "银行编码",
@@ -476,11 +490,8 @@
                     }
                   },
                   "song(o_digits)": {
-                    "type": "string",
-                    "description": "账户长度",
-                    "mock": {
-                      "mock": "@string"
-                    }
+                    "type": "map",
+                    "description": "账户长度"
                   }
                 },
                 "required": [

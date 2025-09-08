@@ -1,11 +1,20 @@
 import 'package:flutter_echo/common/base_provider.dart';
 import 'package:flutter_echo/models/common_model.dart';
+import 'package:flutter_echo/models/swaggerApi.models.swagger.dart';
 import 'package:flutter_echo/services/api_service.dart';
 
-class AboutUsModel extends BaseProvider {
-  /// 17 whatsapp 18 客服邮箱 21 客服热线 23 公司官网 24 公司地址
-  static const types = [21, 18, 17, 23, 24];
+class UserBankModel extends BaseProvider {
+  BankVOResp? _bankList;
+
+  /// 22 账户类型
+  static const types = [22];
   static Map<String, List<StepItem>?>? _stepItems;
+
+  BankVOResp? get bankList => _bankList;
+
+  Future<void> queryBankList() async {
+    _bankList = await launchRequest(() => Api.queryBankList());
+  }
 
   Future<Map<String, List<StepItem>?>?> getDictionary() async {
     if (_stepItems?.isNotEmpty == true) return _stepItems;

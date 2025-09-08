@@ -27,7 +27,7 @@ class EchoTopBar extends StatelessWidget {
         width: double.infinity,
         height: 55.h,
         padding: EdgeInsets.symmetric(horizontal: 6.w),
-        child: Stack(
+        child: Row(
           children: [
             // 返回按钮
             if (showBack)
@@ -51,12 +51,12 @@ class EchoTopBar extends StatelessWidget {
                     height: 24.r,
                   ),
                 ),
-              ),
+              )
+            else
+              SizedBox(width: 45.r, height: 45.r),
             // 标题
             if (title != null)
-              Container(
-                margin: EdgeInsets.symmetric(horizontal: 45.w),
-                alignment: Alignment.center,
+              Expanded(
                 child: Text(
                   title!,
                   style: TextStyle(
@@ -67,7 +67,9 @@ class EchoTopBar extends StatelessWidget {
                   ),
                   textAlign: TextAlign.center,
                 ),
-              ),
+              )
+            else
+              Expanded(child: SizedBox()),
             // 客服按钮
             if (showSupport)
               InkWell(
@@ -82,7 +84,9 @@ class EchoTopBar extends StatelessWidget {
                     height: 24.r,
                   ),
                 ),
-              ),
+              )
+            else
+              SizedBox(width: 45.r, height: 45.r),
           ],
         ),
       ),

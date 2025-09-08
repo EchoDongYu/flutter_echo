@@ -128,7 +128,9 @@ class LoginModel extends BaseProvider {
 
   void userLogin(String password, {String? confirmPassword}) async {
     if (confirmPassword != null && password != confirmPassword) {
-      Fluttertoast.showToast(msg: '$password != $confirmPassword');
+      Fluttertoast.showToast(
+        msg: 'La contraseña introducida dos veces no coincide',
+      );
       return;
     }
     _password = password;

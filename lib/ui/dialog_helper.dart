@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_echo/pages/login/code_mode_dialog.dart';
-import 'package:flutter_echo/pages/submit/step_bank_dialog.dart';
 import 'package:flutter_echo/pages/user/removed_dialog.dart';
 import 'package:flutter_echo/ui/dialogs/praise_dialog.dart';
 import 'package:flutter_echo/ui/dialogs/prompt_dialog.dart';
@@ -36,20 +35,6 @@ class DialogHelper {
       barrierDismissible: false,
       builder: (context) =>
           CodeModeDialog(onMethod: (value) => context.pop(value)),
-    );
-  }
-
-  /// 显示添加银行卡弹窗
-  static Future<bool?> showStepBankDialog({required BuildContext context}) {
-    return showModalBottomSheet<bool>(
-      context: context,
-      enableDrag: false,
-      isDismissible: false,
-      isScrollControlled: true,
-      builder: (context) => StepBankDialog(
-        onConfirm: () => context.pop(true),
-        onClosing: () => context.pop(false),
-      ),
     );
   }
 

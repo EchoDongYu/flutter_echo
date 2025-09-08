@@ -1165,6 +1165,7 @@ MyBankCardResp$Item _$MyBankCardResp$ItemFromJson(Map<String, dynamic> json) =>
     MyBankCardResp$Item(
       vnbh46OBankCardGid: (json['vnbh46'] as num?)?.toInt(),
       t1h91pOBankName: json['t1h91p'] as String?,
+      m871v6OBankLogo: json['m871v6'] as String?,
       insolentOBankCode: json['insolent'] as String?,
       zebrineOCardNo: json['zebrine'] as String?,
       tigonOCardNoReal: json['tigon'] as String?,
@@ -1182,6 +1183,7 @@ Map<String, dynamic> _$MyBankCardResp$ItemToJson(
 ) => <String, dynamic>{
   'vnbh46': instance.vnbh46OBankCardGid,
   't1h91p': instance.t1h91pOBankName,
+  'm871v6': instance.m871v6OBankLogo,
   'insolent': instance.insolentOBankCode,
   'zebrine': instance.zebrineOCardNo,
   'tigon': instance.tigonOCardNoReal,
@@ -1198,14 +1200,16 @@ BankVOResp$Item _$BankVOResp$ItemFromJson(Map<String, dynamic> json) =>
     BankVOResp$Item(
       exonymOBankGid: json['exonym'] as String?,
       t1h91pOBankName: json['t1h91p'] as String?,
+      m871v6OBankLogo: json['m871v6'] as String?,
       insolentOBankCode: json['insolent'] as String?,
-      songODigits: json['song'] as String?,
+      songODigits: json['song'],
     );
 
 Map<String, dynamic> _$BankVOResp$ItemToJson(BankVOResp$Item instance) =>
     <String, dynamic>{
       'exonym': instance.exonymOBankGid,
       't1h91p': instance.t1h91pOBankName,
+      'm871v6': instance.m871v6OBankLogo,
       'insolent': instance.insolentOBankCode,
       'song': instance.songODigits,
     };
