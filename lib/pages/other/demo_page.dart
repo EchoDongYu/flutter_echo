@@ -113,11 +113,7 @@ class _DemoPageState extends State<DemoPage> {
             title: 'Loading弹窗',
             icon: Icons.upgrade_rounded,
             color: const Color(0xFF00D4FF),
-            onPressed: () async {
-               LoadingDialog.show(context);
-               TrackIntroDialog.show(context);
-               Navigator.of(context, rootNavigator: false);
-            },
+            onPressed: () => LoadingDialog.show(context),
           ),
 
           _buildTestButton(
