@@ -1,13 +1,28 @@
-import 'package:flutter_echo/common/base_provider.dart';
+import 'package:flutter_echo/models/common_model.dart';
 import 'package:flutter_echo/models/swaggerApi.models.swagger.dart';
+import 'package:flutter_echo/providers/bank_dict_provider.dart';
 import 'package:flutter_echo/services/api_service.dart';
 
-class UserBankModel extends BaseProvider {
+class UserBankModel extends BankDictModel {
   BankCardResp? _bankCardList;
+  static List<StepItem>? _stepItems;
 
   BankCardResp? get bankCardList => _bankCardList;
 
-  Future<void> queryBankList() async {
-    _bankCardList = await launchRequest(() => Api.queryBankCardList());
+  List<StepItem>? get stepItems => _stepItems;
+
+  void queryBankCardList() {
+    launchRequest(() async {
+      _bankCardList = await Api.queryBankCardList();
+      final dict = await getDictionary();
+      _stepItems = dict?['${BankDictModel.dictType}'];
+    });
+  }
+
+  void deleteBank(String? id) {
+    launchRequest(() async {
+      final deleteOk = await Api.deleteBankCard(id);
+      if (deleteOk) _bankCardList = await Api.queryBankCardList();
+    });
   }
 }

@@ -30,7 +30,7 @@ class _AboutUsPageState extends State<AboutUsPage> {
       final aboutModel = Provider.of<AboutUsModel>(context, listen: false);
       final dict = await aboutModel.getDictionary();
       setState(() {
-        _stepItems = AboutUsModel.types
+        _stepItems = AboutUsModel.dictTypes
             .map((it) => dict?['$it'])
             .expand((it) => it ?? List<StepItem>.empty())
             .toList();

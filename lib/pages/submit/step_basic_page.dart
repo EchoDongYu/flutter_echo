@@ -54,7 +54,9 @@ class _StepBasicPageState extends State<StepBasicPage> {
     _controllers[4].addListener(() => _onInputChanged(6));
     WidgetsBinding.instance.addPostFrameCallback((_) async {
       final dict = await submitModel.getDictionary();
-      setState(() => _stepItems = [dict?['0'], dict?['6']]);
+      setState(() {
+        _stepItems = SubmitModel.dictBasic.map((v) => dict?['$v']).toList();
+      });
     });
   }
 
@@ -72,49 +74,49 @@ class _StepBasicPageState extends State<StepBasicPage> {
   }
 
   void _submitData(BuildContext context) async {
+    final text2 = _controllers[2].text;
+    final isError4 = text2.length != 13;
+    final cuiFormat = text2.isNotEmpty && text2.length != 13;
+    final text = _controllers[3].text;
+    final phoneFormat = text.isNotEmpty && text.length != 8;
+    final phoneRegister = text.isNotEmpty && text == LocalStorage().account;
+    final isError5 = phoneFormat || phoneRegister;
+    final text4 = _controllers[4].text;
+    final emailFormat = !AppConst.emailDomains.any((v) => text4.endsWith(v));
+    final isError6 = text4.isEmpty || emailFormat;
     setState(() {
-      _cuiError = null;
-      _emailError = null;
-      _phoneError = null;
       _isErrors[0] = _pickedItem[0] == null;
       _isErrors[1] = _pickedDate == null;
       _isErrors[2] = _controllers[0].text.isEmpty;
       _isErrors[3] = _controllers[1].text.isEmpty;
-      _isErrors[4] = _controllers[2].text.isEmpty;
-      _isErrors[5] = false;
-      _isErrors[6] = _controllers[4].text.isEmpty;
+      _isErrors[4] = isError4;
+      _isErrors[5] = isError5;
+      _isErrors[6] = isError6;
       _isErrors[7] = _pickedItem[1] == null;
-      if (_controllers[2].text.length != 13) {
-        _cuiError = _errorTip[0];
-        _isErrors[4] = true;
-      }
-      if (!AppConst.emailDomains.any((it) {
-        return _controllers[4].text.endsWith(it);
-      })) {
-        _emailError = _errorTip[1];
-        _isErrors[6] = true;
-      }
-      if (_controllers[3].text.length != 8 && _controllers[3].text.isNotEmpty) {
-        _phoneError = _errorTip[3];
-        _isErrors[5] = true;
-      } else if (_controllers[3].text == LocalStorage().account) {
-        _phoneError = _errorTip[2];
-        _isErrors[5] = true;
-      }
+      _cuiError = cuiFormat ? _errorTip[0] : null;
+      _phoneError = phoneFormat
+          ? _errorTip[3]
+          : phoneRegister
+          ? _errorTip[2]
+          : null;
+      _emailError = emailFormat ? _errorTip[1] : null;
     });
     if (!_isErrors.contains(true)) {
-      final result = await ConfirmStepDialog.show(context, [
+      final list = [
         Pair('Género', _pickedItem[0]?.value),
         Pair('Fecha de Nacimiento', _pickedDate?.showDate),
         Pair('Nombre(s)', _controllers[0].text),
         Pair('Apellidos', _controllers[1].text),
         Pair('CUI', _controllers[2].text),
+        Pair('Otro número de teléfono(opcional)', _controllers[3].text),
         Pair('Correo electrónico', _controllers[4].text),
         Pair(
           'Cuenta con algunos otros prestamos vigentes?',
           _pickedItem[1]?.value,
         ),
-      ]);
+      ];
+      list.removeWhere((v) => v.second?.isNotEmpty != true);
+      final result = await ConfirmStepDialog.show(context, list);
       if (result == true) {
         submitModel.submitBasicInfo(
           inputs: _controllers.map((it) => it.text).toList(),

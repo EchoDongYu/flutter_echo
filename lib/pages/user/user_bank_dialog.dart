@@ -1,0 +1,255 @@
+import 'package:cached_network_image/cached_network_image.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_echo/common/app_theme.dart';
+import 'package:flutter_echo/common/page_consumer.dart';
+import 'package:flutter_echo/models/common_model.dart';
+import 'package:flutter_echo/models/swaggerApi.models.swagger.dart';
+import 'package:flutter_echo/providers/user_bank_provider.dart';
+import 'package:flutter_echo/ui/widgets/common_button.dart';
+import 'package:flutter_echo/utils/drawable_utils.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:go_router/go_router.dart';
+import 'package:provider/provider.dart';
+
+/// 用户银行卡选择弹窗
+class UserBankDialog extends StatefulWidget {
+  final VoidCallback onClosing;
+  final Function(BankCardResp$Item?) onConfirm;
+
+  const UserBankDialog({
+    super.key,
+    required this.onClosing,
+    required this.onConfirm,
+  });
+
+  /// 显示添加银行卡弹窗
+  static Future<BankCardResp$Item?> show(BuildContext context) {
+    return showModalBottomSheet<BankCardResp$Item>(
+      context: context,
+      enableDrag: false,
+      isDismissible: false,
+      isScrollControlled: true,
+      builder: (context) => ChangeNotifierProvider(
+        create: (_) => UserBankModel(),
+        builder: (_, _) => PageConsumer<UserBankModel>(
+          child: UserBankDialog(
+            onConfirm: (item) => context.pop(item),
+            onClosing: () => context.pop(),
+          ),
+        ),
+      ),
+    );
+  }
+
+  @override
+  State<UserBankDialog> createState() => _UserBankDialogState();
+}
+
+class _UserBankDialogState extends State<UserBankDialog> {
+  BankCardResp$Item? _pickedItem;
+
+  UserBankModel get bankModel =>
+      Provider.of<UserBankModel>(context, listen: false);
+
+  @override
+  void initState() {
+    super.initState();
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      bankModel.queryBankCardList();
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return BottomSheet(
+      onClosing: widget.onClosing,
+      enableDrag: false,
+      backgroundColor: NowColors.c0xFFF3F3F5,
+      shape: RoundedRectangleBorder(
+        borderRadius: const BorderRadius.only(
+          topLeft: Radius.circular(20),
+          topRight: Radius.circular(20),
+        ),
+      ),
+      builder: (BuildContext context) => ListView(
+        primary: true,
+        children: [
+          Text(
+            'Seleccione una cuenta bancaria disponible',
+            style: TextStyle(
+              fontSize: 13.sp,
+              fontWeight: FontWeight.w400,
+              color: NowColors.c0xFF494C4F,
+              height: 20 / 13,
+            ),
+          ),
+          Consumer<UserBankModel>(
+            builder: (context, provider, _) {
+              final list = provider.bankCardList;
+              final stepItems = provider.stepItems;
+              return list != null && list.isNotEmpty == true
+                  ? _buildCardContent(list, stepItems)
+                  : _buildNoCardContent();
+            },
+          ),
+          EchoOutlinedButton(
+            onPressed: () => widget.onConfirm(_pickedItem),
+            text: 'Agregar cuenta bancaria',
+            textColor: NowColors.c0xFF3288F1,
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildNoCardContent() {
+    return Padding(
+      padding: EdgeInsets.fromLTRB(28.w, 64.h, 28.w, 28.h),
+      child: Column(
+        children: [
+          Image.asset(Drawable.iconStatusCard, width: 70.r, height: 70.r),
+          SizedBox(height: 24.h),
+          Text(
+            'Sin cuenta bancaria',
+            style: TextStyle(
+              fontSize: 18.sp,
+              fontWeight: FontWeight.w400,
+              color: NowColors.c0xFF1C1F23,
+              height: 26 / 18,
+            ),
+            textAlign: TextAlign.center,
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildCardContent(
+    List<BankCardResp$Item> bankCardList,
+    List<StepItem>? stepItems,
+  ) {
+    return ListView.separated(
+      primary: false,
+      shrinkWrap: true,
+      padding: EdgeInsets.fromLTRB(12.w, 12.h, 12.w, 20.h),
+      itemCount: bankCardList.length,
+      separatorBuilder: (context, index) => SizedBox(height: 12.h),
+      itemBuilder: (context, index) {
+        final item = bankCardList[index];
+        final typeValue = stepItems
+            ?.firstWhere((v) => v.key == item.exhedraOAccountType)
+            .value;
+        return InkWell(
+          onTap: () => setState(() => _pickedItem = item),
+          child: Container(
+            decoration: BoxDecoration(),
+            child: _buildCardItem(item, typeValue),
+          ),
+        );
+      },
+    );
+  }
+
+  Widget _buildCardItem(BankCardResp$Item item, String? type) {
+    final isSelected = _pickedItem == item;
+    return Column(
+      children: [
+        Container(
+          padding: const EdgeInsets.all(16),
+          decoration: BoxDecoration(
+            color: Colors.white,
+            border: BoxBorder.all(
+              color: isSelected ? NowColors.c0xFF1C1F23 : Colors.transparent,
+              width: 1.w,
+            ),
+            borderRadius: const BorderRadius.only(
+              topLeft: Radius.circular(20),
+              topRight: Radius.circular(20),
+            ),
+            boxShadow: NowStyles.cardShadows,
+          ),
+          child: Row(
+            spacing: 10.w,
+            children: [
+              CachedNetworkImage(
+                imageUrl: item.m871v6OBankLogo ?? '',
+                height: 44.h,
+                fit: BoxFit.fitHeight,
+              ),
+              Expanded(
+                child: Text(
+                  item.t1h91pOBankName ?? '',
+                  style: TextStyle(
+                    fontSize: 14.sp,
+                    fontWeight: FontWeight.w500,
+                    color: NowColors.c0xFF1C1F23,
+                    height: 22 / 14,
+                  ),
+                ),
+              ),
+              Image.asset(
+                isSelected ? Drawable.iconSelectOn : Drawable.iconSelectOff,
+                width: 22.r,
+                height: 22.r,
+              ),
+            ],
+          ),
+        ),
+        Container(
+          width: double.infinity,
+          decoration: const BoxDecoration(
+            gradient: LinearGradient(
+              begin: Alignment.centerLeft,
+              end: Alignment.centerRight,
+              colors: [NowColors.c0xFF3288F1, NowColors.c0xFF4FAAFF],
+            ),
+            borderRadius: BorderRadius.only(
+              bottomLeft: Radius.circular(20),
+              bottomRight: Radius.circular(20),
+            ),
+            boxShadow: NowStyles.cardShadows,
+          ),
+          child: Stack(
+            children: [
+              Align(
+                alignment: Alignment.bottomRight,
+                child: Image.asset(
+                  Drawable.bgLoginTop,
+                  width: 225.w,
+                  fit: BoxFit.fitWidth,
+                ),
+              ),
+              Padding(
+                padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 32.h),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.stretch,
+                  children: [
+                    Text(
+                      type ?? '',
+                      style: TextStyle(
+                        fontSize: 13.sp,
+                        fontWeight: FontWeight.w400,
+                        color: Colors.white,
+                        height: 18 / 13,
+                      ),
+                    ),
+                    SizedBox(height: 10.h),
+                    Text(
+                      item.zebrineOCardNo ?? '',
+                      style: TextStyle(
+                        fontSize: 28.sp,
+                        fontWeight: FontWeight.w700,
+                        color: Colors.white,
+                        height: 38 / 28,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ],
+          ),
+        ),
+      ],
+    );
+  }
+}

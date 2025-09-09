@@ -6,14 +6,18 @@ import 'package:flutter_echo/services/api_service.dart';
 import 'package:go_router/go_router.dart';
 
 class SubmitModel extends BaseProvider {
-  static const _types = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 12];
+  static const dictBasic = [0, 6];
+  static const dictWork = [3, 12, 5, 1, 4, 7, 2, 8];
+  static const dictArea = 9;
+  static const dictContact = 10;
+  static const _dictTypes = [...dictBasic, ...dictWork, dictArea, dictContact];
   static Map<String, List<StepItem>?>? _stepItems;
   SubmitDataReq _submitData = SubmitDataReq();
 
   Future<Map<String, List<StepItem>?>?> getDictionary() async {
     if (_stepItems?.isNotEmpty == true) return _stepItems;
     return await launchRequest(() async {
-      final apiResult = await Api.getDictionary(_types.join(','));
+      final apiResult = await Api.getDictionary(_dictTypes.join(','));
       _stepItems = apiResult;
       return apiResult;
     });

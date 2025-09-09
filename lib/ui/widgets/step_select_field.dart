@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_echo/common/app_theme.dart';
 import 'package:flutter_echo/models/common_model.dart';
+import 'package:flutter_echo/models/swaggerApi.models.swagger.dart';
+import 'package:flutter_echo/pages/submit/pick_bank_dialog.dart';
 import 'package:flutter_echo/pages/submit/pick_date_dialog.dart';
 import 'package:flutter_echo/pages/submit/pick_day_dialog.dart';
 import 'package:flutter_echo/pages/submit/pick_item_dialog.dart';
+import 'package:flutter_echo/pages/user/user_bank_dialog.dart';
 import 'package:flutter_echo/utils/common_utils.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -13,6 +16,7 @@ class StepSelectField extends StatefulWidget {
   final String hintText;
   final String errorText;
   final bool isError;
+  final Widget? prefix;
 
   const StepSelectField({
     super.key,
@@ -21,6 +25,7 @@ class StepSelectField extends StatefulWidget {
     required this.hintText,
     required this.errorText,
     required this.isError,
+    this.prefix,
   });
 
   factory StepSelectField.pickItem(
@@ -41,6 +46,50 @@ class StepSelectField extends StatefulWidget {
         showItem: (item) => item.value,
         title: hintText,
       );
+      if (result != null) onValueChange(result);
+    },
+    hintText: hintText,
+    errorText: errorText,
+    isError: isError,
+  );
+
+  factory StepSelectField.pickBank(
+    BuildContext context, {
+    required List<BankVOResp$Item>? items,
+    required BankVOResp$Item? pickedItem,
+    required Function(BankVOResp$Item) onValueChange,
+    required String hintText,
+    String errorText = 'Por favor seleccione',
+    bool isError = false,
+    Widget? prefix,
+  }) => StepSelectField(
+    value: pickedItem?.t1h91pOBankName,
+    onValueChange: () async {
+      final result = await PickBankDialog.show(
+        context,
+        items: items,
+        pickedItem: pickedItem,
+        title: hintText,
+      );
+      if (result != null) onValueChange(result);
+    },
+    hintText: hintText,
+    errorText: errorText,
+    isError: isError,
+    prefix: prefix,
+  );
+
+  factory StepSelectField.pickBankCard(
+    BuildContext context, {
+    required BankCardResp$Item? pickedItem,
+    required Function(BankCardResp$Item) onValueChange,
+    required String hintText,
+    String errorText = 'Por favor seleccione',
+    bool isError = false,
+  }) => StepSelectField(
+    value: pickedItem?.t1h91pOBankName,
+    onValueChange: () async {
+      final result = await UserBankDialog.show(context);
       if (result != null) onValueChange(result);
     },
     hintText: hintText,
@@ -151,19 +200,7 @@ class _StepSelectFieldState extends State<StepSelectField> {
             ),
             child: Row(
               children: [
-                Expanded(
-                  child: widget.value != null
-                      ? _buildFieldValue()
-                      : Text(
-                          widget.hintText,
-                          style: TextStyle(
-                            fontSize: 16.sp,
-                            fontWeight: FontWeight.w400,
-                            color: NowColors.c0xFF77797B,
-                            height: 24 / 16,
-                          ),
-                        ),
-                ),
+                Expanded(child: _buildFieldValue()),
                 Icon(
                   Icons.arrow_right_rounded,
                   color: NowColors.c0xFFB0B1B2,
@@ -191,6 +228,31 @@ class _StepSelectFieldState extends State<StepSelectField> {
   }
 
   Widget _buildFieldValue() {
+    final value = widget.value;
+    if (value == null) {
+      return Text(
+        widget.hintText,
+        style: TextStyle(
+          fontSize: 16.sp,
+          fontWeight: FontWeight.w400,
+          color: NowColors.c0xFF77797B,
+          height: 24 / 16,
+        ),
+      );
+    }
+    final prefixWidget = widget.prefix;
+    final textWidget = Text(
+      value,
+      style: TextStyle(
+        fontSize: 16.sp,
+        fontWeight: FontWeight.w500,
+        color: NowColors.c0xFF1C1F23,
+        height: 22 / 16,
+      ),
+    );
+    final valueWidget = prefixWidget != null
+        ? Row(spacing: 10.w, children: [prefixWidget, textWidget])
+        : textWidget;
     return Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
@@ -205,15 +267,7 @@ class _StepSelectFieldState extends State<StepSelectField> {
           ),
         ),
         SizedBox(height: 4.h),
-        Text(
-          widget.value!,
-          style: TextStyle(
-            fontSize: 16.sp,
-            fontWeight: FontWeight.w500,
-            color: NowColors.c0xFF1C1F23,
-            height: 22 / 16,
-          ),
-        ),
+        valueWidget,
         SizedBox(height: 9.h),
       ],
     );

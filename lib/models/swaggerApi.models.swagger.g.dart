@@ -7,7 +7,7 @@ part of 'swaggerApi.models.swagger.dart';
 // **************************************************************************
 
 BankDeleteReq _$BankDeleteReqFromJson(Map<String, dynamic> json) =>
-    BankDeleteReq(vnbh46OBankCardGid: (json['vnbh46'] as num?)?.toInt());
+    BankDeleteReq(vnbh46OBankCardGid: json['vnbh46'] as String?);
 
 Map<String, dynamic> _$BankDeleteReqToJson(BankDeleteReq instance) =>
     <String, dynamic>{'vnbh46': instance.vnbh46OBankCardGid};
@@ -41,7 +41,7 @@ Map<String, dynamic> _$BankBinReqToJson(BankBinReq instance) =>
 BindResultReq _$BindResultReqFromJson(Map<String, dynamic> json) =>
     BindResultReq(
       raiaOUserGid: json['raia'] as String?,
-      lynceanOBindcardGid: (json['lyncean'] as num?)?.toInt(),
+      lynceanOBindcardGid: json['lyncean'] as String?,
     );
 
 Map<String, dynamic> _$BindResultReqToJson(BindResultReq instance) =>
@@ -520,7 +520,7 @@ RepayApplyReq _$RepayApplyReqFromJson(Map<String, dynamic> json) =>
       r5a4x8OLoanGid: (json['r5a4x8'] as num?)?.toInt(),
       raiaOUserGid: json['raia'] as String?,
       o12sd0OAmount: (json['o12sd0'] as num?)?.toDouble(),
-      vnbh46OBankCardGid: (json['vnbh46'] as num?)?.toInt(),
+      vnbh46OBankCardGid: json['vnbh46'] as String?,
       bdvg46ORepaymentStage: (json['bdvg46'] as num?)?.toInt(),
       oe5u39OChannelName: json['oe5u39'] as String?,
       worstOChannelCode: json['worst'] as String?,
@@ -657,7 +657,7 @@ LoanConfirmReq _$LoanConfirmReqFromJson(Map<String, dynamic> json) =>
       retiaryOLoanAmount: (json['retiary'] as num?)?.toDouble(),
       foreyardOProductId: (json['foreyard'] as num?)?.toInt(),
       c4s47hOTransPassword: json['c4s47h'] as String?,
-      vnbh46OBankCardGid: (json['vnbh46'] as num?)?.toInt(),
+      vnbh46OBankCardGid: json['vnbh46'] as String?,
       zebrineOCardNo: json['zebrine'] as String?,
       t1h91pOBankName: json['t1h91p'] as String?,
       insolentOBankCode: json['insolent'] as String?,
@@ -740,7 +740,7 @@ LoanPreInfoReq _$LoanPreInfoReqFromJson(Map<String, dynamic> json) =>
       pinionOUserCouponGid: json['pinion'] as String?,
       x2anh3OStageFlag: (json['x2anh3'] as num?)?.toInt(),
       z38e62OOrderGid: json['z38e62'] as String?,
-      vnbh46OBankCardGid: (json['vnbh46'] as num?)?.toInt(),
+      vnbh46OBankCardGid: json['vnbh46'] as String?,
     );
 
 Map<String, dynamic> _$LoanPreInfoReqToJson(LoanPreInfoReq instance) =>
@@ -1163,7 +1163,7 @@ Map<String, dynamic> _$BankDeleteRespToJson(BankDeleteResp instance) =>
 
 MyBankCardResp$Item _$MyBankCardResp$ItemFromJson(Map<String, dynamic> json) =>
     MyBankCardResp$Item(
-      vnbh46OBankCardGid: (json['vnbh46'] as num?)?.toInt(),
+      vnbh46OBankCardGid: json['vnbh46'] as String?,
       t1h91pOBankName: json['t1h91p'] as String?,
       m871v6OBankLogo: json['m871v6'] as String?,
       insolentOBankCode: json['insolent'] as String?,
@@ -1242,8 +1242,8 @@ Map<String, dynamic> _$BindResultRespToJson(BindResultResp instance) =>
     };
 
 BindCardResp _$BindCardRespFromJson(Map<String, dynamic> json) => BindCardResp(
-  lynceanOBindcardGid: (json['lyncean'] as num?)?.toInt(),
-  vnbh46OBankCardGid: (json['vnbh46'] as num?)?.toInt(),
+  lynceanOBindcardGid: json['lyncean'] as String?,
+  vnbh46OBankCardGid: json['vnbh46'] as String?,
   zj1m73OIsBindSuccess: json['zj1m73'] as bool?,
 );
 
@@ -1256,8 +1256,9 @@ Map<String, dynamic> _$BindCardRespToJson(BindCardResp instance) =>
 
 BankCardResp$Item _$BankCardResp$ItemFromJson(Map<String, dynamic> json) =>
     BankCardResp$Item(
-      vnbh46OBankCardGid: (json['vnbh46'] as num?)?.toInt(),
+      vnbh46OBankCardGid: json['vnbh46'] as String?,
       t1h91pOBankName: json['t1h91p'] as String?,
+      m871v6OBankLogo: json['m871v6'] as String?,
       insolentOBankCode: json['insolent'] as String?,
       zebrineOCardNo: json['zebrine'] as String?,
       s90dw0OCciNumber: json['s90dw0'] as String?,
@@ -1273,6 +1274,7 @@ Map<String, dynamic> _$BankCardResp$ItemToJson(BankCardResp$Item instance) =>
     <String, dynamic>{
       'vnbh46': instance.vnbh46OBankCardGid,
       't1h91p': instance.t1h91pOBankName,
+      'm871v6': instance.m871v6OBankLogo,
       'insolent': instance.insolentOBankCode,
       'zebrine': instance.zebrineOCardNo,
       's90dw0': instance.s90dw0OCciNumber,
@@ -2021,7 +2023,7 @@ LoanOrderResp _$LoanOrderRespFromJson(Map<String, dynamic> json) =>
       tigereyeOInterest: (json['tigereye'] as num?)?.toDouble(),
       remark: json['remark'] as String?,
       z38e62OOrderGid: json['z38e62'] as String?,
-      vnbh46OBankCardGid: (json['vnbh46'] as num?)?.toInt(),
+      vnbh46OBankCardGid: json['vnbh46'] as String?,
       t1h91pOBankName: json['t1h91p'] as String?,
       r8fgx7OHashCardAccount: json['r8fgx7'] as String?,
       e0a79hOIsCollectCase: json['e0a79h'] as bool?,
@@ -2263,7 +2265,7 @@ BankValidInfoResp _$BankValidInfoRespFromJson(Map<String, dynamic> json) =>
       t1h91pOBankName: json['t1h91p'] as String?,
       insolentOBankCode: json['insolent'] as String?,
       songODigits: json['song'] as String?,
-      vnbh46OBankCardGid: (json['vnbh46'] as num?)?.toInt(),
+      vnbh46OBankCardGid: json['vnbh46'] as String?,
       q732r7OCardTransMessage: json['q732r7'] as String?,
       zebrineOCardNo: json['zebrine'] as String?,
       exhedraOAccountType: (json['exhedra'] as num?)?.toInt(),

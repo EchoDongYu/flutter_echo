@@ -45,7 +45,7 @@ class _StepContactPageState extends State<StepContactPage> {
     super.initState();
     WidgetsBinding.instance.addPostFrameCallback((_) async {
       final dict = await submitModel.getDictionary();
-      setState(() => _stepItems = dict?['10']);
+      setState(() => _stepItems = dict?['${SubmitModel.dictContact}']);
     });
   }
 

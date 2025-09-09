@@ -60,16 +60,15 @@ class _StepWorkPageState extends State<StepWorkPage> {
     _controller.addListener(_onInputChanged);
     WidgetsBinding.instance.addPostFrameCallback((_) async {
       final dict = await submitModel.getDictionary();
-      String? jsonStr = dict?['9']?.firstOrNull?.value;
+      String? jsonStr = dict?['${SubmitModel.dictArea}']?.firstOrNull?.value;
       if (jsonStr != null) {
         if (jsonStr.startsWith('"') && jsonStr.endsWith('"')) {
           // 去掉首尾引号
           jsonStr = jsonStr.substring(1, jsonStr.length - 1);
         }
       }
-      final type = [3, 12, 5, 1, 4, 7, 2, 8];
       setState(() {
-        _stepItems = type.map((v) => dict?['$v']).toList();
+        _stepItems = SubmitModel.dictWork.map((v) => dict?['$v']).toList();
         if (jsonStr != null) _stepAreas = json.decode(jsonStr);
       });
     });

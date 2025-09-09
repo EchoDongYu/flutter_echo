@@ -4,9 +4,10 @@ import 'package:flutter_echo/models/swaggerApi.models.swagger.dart';
 import 'package:flutter_echo/services/api_service.dart';
 
 class ApplyModel extends BaseProvider {
-  static const _types = [13];
+  /// 13 借款目的
+  static const dictType = 13;
+  static Map<String, List<StepItem>?>? _stepItems;
   LoanPreInfoResp? _loanInfo;
-  Map<String, List<StepItem>?>? _stepItems;
 
   LoanPreInfoResp? get loanInfo => _loanInfo;
 
@@ -18,7 +19,7 @@ class ApplyModel extends BaseProvider {
         productId: productId,
         amount: amount,
       );
-      _stepItems = await Api.getDictionary(_types.join(','));
+      _stepItems = await Api.getDictionary(dictType.toString());
     });
   }
 }

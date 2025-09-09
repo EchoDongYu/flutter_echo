@@ -11,7 +11,7 @@ class BankDeleteReq {
   const BankDeleteReq({this.vnbh46OBankCardGid});
 
   @JsonKey(name: 'vnbh46')
-  final int? vnbh46OBankCardGid;
+  final String? vnbh46OBankCardGid;
 
   factory BankDeleteReq.fromJson(Map<String, dynamic> json) =>
       _$BankDeleteReqFromJson(json);
@@ -42,13 +42,13 @@ class BankDeleteReq {
 }
 
 extension $BankDeleteReqExtension on BankDeleteReq {
-  BankDeleteReq copyWith({int? vnbh46OBankCardGid}) {
+  BankDeleteReq copyWith({String? vnbh46OBankCardGid}) {
     return BankDeleteReq(
       vnbh46OBankCardGid: vnbh46OBankCardGid ?? this.vnbh46OBankCardGid,
     );
   }
 
-  BankDeleteReq copyWithWrapped({Wrapped<int?>? vnbh46OBankCardGid}) {
+  BankDeleteReq copyWithWrapped({Wrapped<String?>? vnbh46OBankCardGid}) {
     return BankDeleteReq(
       vnbh46OBankCardGid: (vnbh46OBankCardGid != null
           ? vnbh46OBankCardGid.value
@@ -248,7 +248,7 @@ class BindResultReq {
   @JsonKey(name: 'raia')
   final String? raiaOUserGid;
   @JsonKey(name: 'lyncean')
-  final int? lynceanOBindcardGid;
+  final String? lynceanOBindcardGid;
 
   factory BindResultReq.fromJson(Map<String, dynamic> json) =>
       _$BindResultReqFromJson(json);
@@ -285,7 +285,7 @@ class BindResultReq {
 }
 
 extension $BindResultReqExtension on BindResultReq {
-  BindResultReq copyWith({String? raiaOUserGid, int? lynceanOBindcardGid}) {
+  BindResultReq copyWith({String? raiaOUserGid, String? lynceanOBindcardGid}) {
     return BindResultReq(
       raiaOUserGid: raiaOUserGid ?? this.raiaOUserGid,
       lynceanOBindcardGid: lynceanOBindcardGid ?? this.lynceanOBindcardGid,
@@ -294,7 +294,7 @@ extension $BindResultReqExtension on BindResultReq {
 
   BindResultReq copyWithWrapped({
     Wrapped<String?>? raiaOUserGid,
-    Wrapped<int?>? lynceanOBindcardGid,
+    Wrapped<String?>? lynceanOBindcardGid,
   }) {
     return BindResultReq(
       raiaOUserGid: (raiaOUserGid != null
@@ -3193,7 +3193,7 @@ class RepayApplyReq {
   @JsonKey(name: 'o12sd0')
   final double? o12sd0OAmount;
   @JsonKey(name: 'vnbh46')
-  final int? vnbh46OBankCardGid;
+  final String? vnbh46OBankCardGid;
   @JsonKey(name: 'bdvg46')
   final int? bdvg46ORepaymentStage;
   @JsonKey(name: 'oe5u39')
@@ -3380,7 +3380,7 @@ extension $RepayApplyReqExtension on RepayApplyReq {
     int? r5a4x8OLoanGid,
     String? raiaOUserGid,
     double? o12sd0OAmount,
-    int? vnbh46OBankCardGid,
+    String? vnbh46OBankCardGid,
     int? bdvg46ORepaymentStage,
     String? oe5u39OChannelName,
     String? worstOChannelCode,
@@ -3432,7 +3432,7 @@ extension $RepayApplyReqExtension on RepayApplyReq {
     Wrapped<int?>? r5a4x8OLoanGid,
     Wrapped<String?>? raiaOUserGid,
     Wrapped<double?>? o12sd0OAmount,
-    Wrapped<int?>? vnbh46OBankCardGid,
+    Wrapped<String?>? vnbh46OBankCardGid,
     Wrapped<int?>? bdvg46ORepaymentStage,
     Wrapped<String?>? oe5u39OChannelName,
     Wrapped<String?>? worstOChannelCode,
@@ -4163,7 +4163,7 @@ class LoanConfirmReq {
   @JsonKey(name: 'c4s47h')
   final String? c4s47hOTransPassword;
   @JsonKey(name: 'vnbh46')
-  final int? vnbh46OBankCardGid;
+  final String? vnbh46OBankCardGid;
   @JsonKey(name: 'zebrine')
   final String? zebrineOCardNo;
   @JsonKey(name: 't1h91p')
@@ -4291,7 +4291,7 @@ extension $LoanConfirmReqExtension on LoanConfirmReq {
     double? retiaryOLoanAmount,
     int? foreyardOProductId,
     String? c4s47hOTransPassword,
-    int? vnbh46OBankCardGid,
+    String? vnbh46OBankCardGid,
     String? zebrineOCardNo,
     String? t1h91pOBankName,
     String? insolentOBankCode,
@@ -4325,7 +4325,7 @@ extension $LoanConfirmReqExtension on LoanConfirmReq {
     Wrapped<double?>? retiaryOLoanAmount,
     Wrapped<int?>? foreyardOProductId,
     Wrapped<String?>? c4s47hOTransPassword,
-    Wrapped<int?>? vnbh46OBankCardGid,
+    Wrapped<String?>? vnbh46OBankCardGid,
     Wrapped<String?>? zebrineOCardNo,
     Wrapped<String?>? t1h91pOBankName,
     Wrapped<String?>? insolentOBankCode,
@@ -4673,7 +4673,7 @@ class LoanPreInfoReq {
   @JsonKey(name: 'z38e62')
   final String? z38e62OOrderGid;
   @JsonKey(name: 'vnbh46')
-  final int? vnbh46OBankCardGid;
+  final String? vnbh46OBankCardGid;
 
   factory LoanPreInfoReq.fromJson(Map<String, dynamic> json) =>
       _$LoanPreInfoReqFromJson(json);
@@ -4747,7 +4747,7 @@ extension $LoanPreInfoReqExtension on LoanPreInfoReq {
     String? pinionOUserCouponGid,
     int? x2anh3OStageFlag,
     String? z38e62OOrderGid,
-    int? vnbh46OBankCardGid,
+    String? vnbh46OBankCardGid,
   }) {
     return LoanPreInfoReq(
       raiaOUserGid: raiaOUserGid ?? this.raiaOUserGid,
@@ -4767,7 +4767,7 @@ extension $LoanPreInfoReqExtension on LoanPreInfoReq {
     Wrapped<String?>? pinionOUserCouponGid,
     Wrapped<int?>? x2anh3OStageFlag,
     Wrapped<String?>? z38e62OOrderGid,
-    Wrapped<int?>? vnbh46OBankCardGid,
+    Wrapped<String?>? vnbh46OBankCardGid,
   }) {
     return LoanPreInfoReq(
       raiaOUserGid: (raiaOUserGid != null
@@ -7405,7 +7405,7 @@ class MyBankCardResp$Item {
   });
 
   @JsonKey(name: 'vnbh46')
-  final int? vnbh46OBankCardGid;
+  final String? vnbh46OBankCardGid;
   @JsonKey(name: 't1h91p')
   final String? t1h91pOBankName;
   @JsonKey(name: 'm871v6')
@@ -7530,7 +7530,7 @@ class MyBankCardResp$Item {
 
 extension $MyBankCardResp$ItemExtension on MyBankCardResp$Item {
   MyBankCardResp$Item copyWith({
-    int? vnbh46OBankCardGid,
+    String? vnbh46OBankCardGid,
     String? t1h91pOBankName,
     String? m871v6OBankLogo,
     String? insolentOBankCode,
@@ -7562,7 +7562,7 @@ extension $MyBankCardResp$ItemExtension on MyBankCardResp$Item {
   }
 
   MyBankCardResp$Item copyWithWrapped({
-    Wrapped<int?>? vnbh46OBankCardGid,
+    Wrapped<String?>? vnbh46OBankCardGid,
     Wrapped<String?>? t1h91pOBankName,
     Wrapped<String?>? m871v6OBankLogo,
     Wrapped<String?>? insolentOBankCode,
@@ -7905,9 +7905,9 @@ class BindCardResp {
   });
 
   @JsonKey(name: 'lyncean')
-  final int? lynceanOBindcardGid;
+  final String? lynceanOBindcardGid;
   @JsonKey(name: 'vnbh46')
-  final int? vnbh46OBankCardGid;
+  final String? vnbh46OBankCardGid;
   @JsonKey(name: 'zj1m73')
   final bool? zj1m73OIsBindSuccess;
 
@@ -7953,8 +7953,8 @@ class BindCardResp {
 
 extension $BindCardRespExtension on BindCardResp {
   BindCardResp copyWith({
-    int? lynceanOBindcardGid,
-    int? vnbh46OBankCardGid,
+    String? lynceanOBindcardGid,
+    String? vnbh46OBankCardGid,
     bool? zj1m73OIsBindSuccess,
   }) {
     return BindCardResp(
@@ -7965,8 +7965,8 @@ extension $BindCardRespExtension on BindCardResp {
   }
 
   BindCardResp copyWithWrapped({
-    Wrapped<int?>? lynceanOBindcardGid,
-    Wrapped<int?>? vnbh46OBankCardGid,
+    Wrapped<String?>? lynceanOBindcardGid,
+    Wrapped<String?>? vnbh46OBankCardGid,
     Wrapped<bool?>? zj1m73OIsBindSuccess,
   }) {
     return BindCardResp(
@@ -7990,6 +7990,7 @@ class BankCardResp$Item {
   const BankCardResp$Item({
     this.vnbh46OBankCardGid,
     this.t1h91pOBankName,
+    this.m871v6OBankLogo,
     this.insolentOBankCode,
     this.zebrineOCardNo,
     this.s90dw0OCciNumber,
@@ -8002,9 +8003,11 @@ class BankCardResp$Item {
   });
 
   @JsonKey(name: 'vnbh46')
-  final int? vnbh46OBankCardGid;
+  final String? vnbh46OBankCardGid;
   @JsonKey(name: 't1h91p')
   final String? t1h91pOBankName;
+  @JsonKey(name: 'm871v6')
+  final String? m871v6OBankLogo;
   @JsonKey(name: 'insolent')
   final String? insolentOBankCode;
   @JsonKey(name: 'zebrine')
@@ -8045,6 +8048,11 @@ class BankCardResp$Item {
                 const DeepCollectionEquality().equals(
                   other.t1h91pOBankName,
                   t1h91pOBankName,
+                )) &&
+            (identical(other.m871v6OBankLogo, m871v6OBankLogo) ||
+                const DeepCollectionEquality().equals(
+                  other.m871v6OBankLogo,
+                  m871v6OBankLogo,
                 )) &&
             (identical(other.insolentOBankCode, insolentOBankCode) ||
                 const DeepCollectionEquality().equals(
@@ -8106,6 +8114,7 @@ class BankCardResp$Item {
   int get hashCode =>
       const DeepCollectionEquality().hash(vnbh46OBankCardGid) ^
       const DeepCollectionEquality().hash(t1h91pOBankName) ^
+      const DeepCollectionEquality().hash(m871v6OBankLogo) ^
       const DeepCollectionEquality().hash(insolentOBankCode) ^
       const DeepCollectionEquality().hash(zebrineOCardNo) ^
       const DeepCollectionEquality().hash(s90dw0OCciNumber) ^
@@ -8120,8 +8129,9 @@ class BankCardResp$Item {
 
 extension $BankCardResp$ItemExtension on BankCardResp$Item {
   BankCardResp$Item copyWith({
-    int? vnbh46OBankCardGid,
+    String? vnbh46OBankCardGid,
     String? t1h91pOBankName,
+    String? m871v6OBankLogo,
     String? insolentOBankCode,
     String? zebrineOCardNo,
     String? s90dw0OCciNumber,
@@ -8135,6 +8145,7 @@ extension $BankCardResp$ItemExtension on BankCardResp$Item {
     return BankCardResp$Item(
       vnbh46OBankCardGid: vnbh46OBankCardGid ?? this.vnbh46OBankCardGid,
       t1h91pOBankName: t1h91pOBankName ?? this.t1h91pOBankName,
+      m871v6OBankLogo: m871v6OBankLogo ?? this.m871v6OBankLogo,
       insolentOBankCode: insolentOBankCode ?? this.insolentOBankCode,
       zebrineOCardNo: zebrineOCardNo ?? this.zebrineOCardNo,
       s90dw0OCciNumber: s90dw0OCciNumber ?? this.s90dw0OCciNumber,
@@ -8151,8 +8162,9 @@ extension $BankCardResp$ItemExtension on BankCardResp$Item {
   }
 
   BankCardResp$Item copyWithWrapped({
-    Wrapped<int?>? vnbh46OBankCardGid,
+    Wrapped<String?>? vnbh46OBankCardGid,
     Wrapped<String?>? t1h91pOBankName,
+    Wrapped<String?>? m871v6OBankLogo,
     Wrapped<String?>? insolentOBankCode,
     Wrapped<String?>? zebrineOCardNo,
     Wrapped<String?>? s90dw0OCciNumber,
@@ -8170,6 +8182,9 @@ extension $BankCardResp$ItemExtension on BankCardResp$Item {
       t1h91pOBankName: (t1h91pOBankName != null
           ? t1h91pOBankName.value
           : this.t1h91pOBankName),
+      m871v6OBankLogo: (m871v6OBankLogo != null
+          ? m871v6OBankLogo.value
+          : this.m871v6OBankLogo),
       insolentOBankCode: (insolentOBankCode != null
           ? insolentOBankCode.value
           : this.insolentOBankCode),
@@ -12344,7 +12359,7 @@ class LoanOrderResp {
   @JsonKey(name: 'z38e62')
   final String? z38e62OOrderGid;
   @JsonKey(name: 'vnbh46')
-  final int? vnbh46OBankCardGid;
+  final String? vnbh46OBankCardGid;
   @JsonKey(name: 't1h91p')
   final String? t1h91pOBankName;
   @JsonKey(name: 'r8fgx7')
@@ -12886,7 +12901,7 @@ extension $LoanOrderRespExtension on LoanOrderResp {
     double? tigereyeOInterest,
     String? remark,
     String? z38e62OOrderGid,
-    int? vnbh46OBankCardGid,
+    String? vnbh46OBankCardGid,
     String? t1h91pOBankName,
     String? r8fgx7OHashCardAccount,
     bool? e0a79hOIsCollectCase,
@@ -13043,7 +13058,7 @@ extension $LoanOrderRespExtension on LoanOrderResp {
     Wrapped<double?>? tigereyeOInterest,
     Wrapped<String?>? remark,
     Wrapped<String?>? z38e62OOrderGid,
-    Wrapped<int?>? vnbh46OBankCardGid,
+    Wrapped<String?>? vnbh46OBankCardGid,
     Wrapped<String?>? t1h91pOBankName,
     Wrapped<String?>? r8fgx7OHashCardAccount,
     Wrapped<bool?>? e0a79hOIsCollectCase,
@@ -14143,7 +14158,7 @@ class BankValidInfoResp {
   @JsonKey(name: 'song')
   final String? songODigits;
   @JsonKey(name: 'vnbh46')
-  final int? vnbh46OBankCardGid;
+  final String? vnbh46OBankCardGid;
   @JsonKey(name: 'q732r7')
   final String? q732r7OCardTransMessage;
   @JsonKey(name: 'zebrine')
@@ -14230,7 +14245,7 @@ extension $BankValidInfoRespExtension on BankValidInfoResp {
     String? t1h91pOBankName,
     String? insolentOBankCode,
     String? songODigits,
-    int? vnbh46OBankCardGid,
+    String? vnbh46OBankCardGid,
     String? q732r7OCardTransMessage,
     String? zebrineOCardNo,
     int? exhedraOAccountType,
@@ -14253,7 +14268,7 @@ extension $BankValidInfoRespExtension on BankValidInfoResp {
     Wrapped<String?>? t1h91pOBankName,
     Wrapped<String?>? insolentOBankCode,
     Wrapped<String?>? songODigits,
-    Wrapped<int?>? vnbh46OBankCardGid,
+    Wrapped<String?>? vnbh46OBankCardGid,
     Wrapped<String?>? q732r7OCardTransMessage,
     Wrapped<String?>? zebrineOCardNo,
     Wrapped<int?>? exhedraOAccountType,

@@ -27,10 +27,9 @@ class _ApplyConfirmPageState extends State<ApplyConfirmPage> {
   final _isErrors = List.generate(2, (index) {
     return false;
   }, growable: false);
-  final _pickedItem = List<StepItem?>.generate(2, (index) {
-    return null;
-  }, growable: false);
-  List<List<StepItem>?>? _stepItems;
+  BankCardResp$Item? _pickedBank;
+  List<StepItem>? _stepItems;
+  StepItem? _pickedPurpose;
   bool _expanded = false;
 
   ApplyModel get applyModel => Provider.of<ApplyModel>(context, listen: false);
@@ -447,12 +446,11 @@ class _ApplyConfirmPageState extends State<ApplyConfirmPage> {
       child: Column(
         spacing: 16.h,
         children: [
-          StepSelectField.pickItem(
+          StepSelectField.pickBankCard(
             context,
-            items: _stepItems?[0],
-            pickedItem: _pickedItem[0],
+            pickedItem: _pickedBank,
             onValueChange: (value) => setState(() {
-              _pickedItem[0] = value;
+              _pickedBank = value;
               _isErrors[0] = false;
             }),
             hintText: 'Cuenta bancaria',
@@ -461,10 +459,10 @@ class _ApplyConfirmPageState extends State<ApplyConfirmPage> {
           ),
           StepSelectField.pickItem(
             context,
-            items: _stepItems?[1],
-            pickedItem: _pickedItem[1],
+            items: _stepItems,
+            pickedItem: _pickedPurpose,
             onValueChange: (value) => setState(() {
-              _pickedItem[1] = value;
+              _pickedPurpose = value;
               _isErrors[1] = false;
             }),
             hintText: 'Objetivo del préstamo',

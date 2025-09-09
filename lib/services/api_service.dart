@@ -140,12 +140,15 @@ class Api {
     );
   }
 
-  static Future<UserInfoResp> getUserBaseInfo() {
-    return _apiService.post(
+  /// 用户基本信息查询
+  static Future<UserInfoResp> getUserBaseInfo() async {
+    final apiResult = await _apiService.post(
       ApiPath.getUserBaseInfo,
       body: UserInfoReq().toJson(),
       convert: (json) => UserInfoResp.fromJson(json),
     );
+    LocalStorage().set(AppConst.userInfoKey, apiResult);
+    return apiResult;
   }
 
   /// 银行账户列表
@@ -153,8 +156,9 @@ class Api {
     return _apiService.post(
       ApiPath.queryBankCardList,
       body: BankCardReq().toJson(),
-      convert: (json) =>
-          (json as List<dynamic>?)?.map((e) => e as BankCardResp$Item).toList(),
+      convert: (json) => (json as List<dynamic>?)
+          ?.map((e) => BankCardResp$Item.fromJson(e))
+          .toList(),
     );
   }
 
@@ -163,8 +167,26 @@ class Api {
     return _apiService.post(
       ApiPath.queryBankList,
       body: BankVOReq().toJson(),
-      convert: (json) =>
-          (json as List<dynamic>?)?.map((e) => e as BankVOResp$Item).toList(),
+      convert: (json) => (json as List<dynamic>?)
+          ?.map((e) => BankVOResp$Item.fromJson(e))
+          .toList(),
+    );
+  }
+
+  /// 绑定银行卡
+  static Future<BindCardResp> bindBankCard(BindCardReq req) {
+    return _apiService.post(
+      ApiPath.bindBankCard,
+      body: req.toJson(),
+      convert: (json) => BindCardResp.fromJson(json),
+    );
+  }
+
+  /// 删除银行卡
+  static Future<bool> deleteBankCard(String? id) {
+    return _apiService.postSt(
+      ApiPath.deleteBankCard,
+      body: BankDeleteReq(vnbh46OBankCardGid: id).toJson(),
     );
   }
 
@@ -184,6 +206,7 @@ class Api {
     );
   }
 
+  /// 邮箱、身份证号校验
   static Future<bool> checkSubmitValid({String? email, String? id}) {
     return _apiService.postSt(
       ApiPath.checkSubmitValid,
@@ -191,10 +214,12 @@ class Api {
     );
   }
 
+  /// 提交授信数据
   static Future<int> submitCreditData(SubmitDataReq data) {
     return _apiService.post(ApiPath.submitCreditData, body: data.toJson());
   }
 
+  /// 刷新授信结果
   static Future<SubmitResultResp> refreshSubmitResult() {
     return _apiService.post(
       ApiPath.refreshSubmitResult,
@@ -203,6 +228,7 @@ class Api {
     );
   }
 
+  /// 判断是否需要上报
   static Future<NeedReportResp> needReport() {
     return _apiService.post(
       ApiPath.needReport,
@@ -211,6 +237,7 @@ class Api {
     );
   }
 
+  /// 上报新版本（含大数据短信）
   static Future<bool> uploadTrack() async {
     final packageInfo = await PackageInfo.fromPlatform();
     final storage = LocalStorage();
@@ -228,6 +255,7 @@ class Api {
     return _apiService.report(ApiPath.reportTrack, body: {'data': offsetData});
   }
 
+  /// 获取首页基本信息
   static Future<HomeInfoResp> getHomeInfo() {
     return _apiService.post(
       ApiPath.getHomeInfo,
@@ -236,6 +264,7 @@ class Api {
     );
   }
 
+  /// 获取借款信息
   static Future<LoanPreInfoResp> getLoanPreInfo({
     int? productId,
     double? amount,
@@ -250,6 +279,7 @@ class Api {
     );
   }
 
+  /// 借款
   static Future<LoanConfirmResp> confirmLoan(LoanConfirmReq data) {
     return _apiService.post(
       ApiPath.confirmLoan,
