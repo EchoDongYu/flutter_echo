@@ -1,12 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_echo/common/app_theme.dart';
+import 'package:flutter_echo/common/page_consumer.dart';
 import 'package:flutter_echo/models/common_model.dart';
+import 'package:flutter_echo/providers/bank_provider.dart';
 import 'package:flutter_echo/ui/widgets/common_button.dart';
 import 'package:flutter_echo/ui/widgets/step_input_field.dart';
 import 'package:flutter_echo/ui/widgets/step_select_field.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
+import 'package:provider/provider.dart';
 
 /// 添加银行卡弹窗
 class StepBankDialog extends StatefulWidget {
@@ -26,9 +29,14 @@ class StepBankDialog extends StatefulWidget {
       enableDrag: false,
       isDismissible: false,
       isScrollControlled: true,
-      builder: (context) => StepBankDialog(
-        onConfirm: () => context.pop(true),
-        onClosing: () => context.pop(false),
+      builder: (context) => ChangeNotifierProvider(
+        create: (_) => BankModel(),
+        builder: (_, _) => PageConsumer<BankModel>(
+          child: StepBankDialog(
+            onConfirm: () => context.pop(true),
+            onClosing: () => context.pop(false),
+          ),
+        ),
       ),
     );
   }
@@ -38,6 +46,16 @@ class StepBankDialog extends StatefulWidget {
 }
 
 class _StepBankDialogState extends State<StepBankDialog> {
+  BankModel get bankModel => Provider.of<BankModel>(context, listen: false);
+
+  @override
+  void initState() {
+    super.initState();
+    WidgetsBinding.instance.addPostFrameCallback((_) async {
+      await bankModel.queryBankList();
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return BottomSheet(

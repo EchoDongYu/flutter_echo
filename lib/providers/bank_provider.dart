@@ -3,25 +3,20 @@ import 'package:flutter_echo/models/common_model.dart';
 import 'package:flutter_echo/models/swaggerApi.models.swagger.dart';
 import 'package:flutter_echo/services/api_service.dart';
 
-class UserBankModel extends BaseProvider {
-  BankVOResp? _bankList;
-
+class BankModel extends BaseProvider {
   /// 22 账户类型
   static const types = [22];
   static Map<String, List<StepItem>?>? _stepItems;
+  BankVOResp? _bankList;
 
   BankVOResp? get bankList => _bankList;
 
   Future<void> queryBankList() async {
-    _bankList = await launchRequest(() => Api.queryBankList());
-  }
-
-  Future<Map<String, List<StepItem>?>?> getDictionary() async {
-    if (_stepItems?.isNotEmpty == true) return _stepItems;
-    return await launchRequest(() async {
-      final apiResult = await Api.getDictionary(types.join(','));
-      _stepItems = apiResult;
-      return apiResult;
+    _bankList = await launchRequest(() async {
+      _stepItems = _stepItems?.isNotEmpty != true
+          ? await Api.getDictionary(types.join(','))
+          : _stepItems;
+      return await Api.queryBankList();
     });
   }
 }

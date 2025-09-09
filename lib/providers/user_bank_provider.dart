@@ -3,11 +3,11 @@ import 'package:flutter_echo/models/swaggerApi.models.swagger.dart';
 import 'package:flutter_echo/services/api_service.dart';
 
 class UserBankModel extends BaseProvider {
-  MyBankCardResp? _myBankCardList;
+  BankCardResp? _bankCardList;
 
-  MyBankCardResp? get myBankCardList => _myBankCardList;
+  BankCardResp? get bankCardList => _bankCardList;
 
   Future<void> queryBankList() async {
-    _myBankCardList = await launchRequest(() => Api.queryMyBankCardList());
+    _bankCardList = await launchRequest(() => Api.queryBankCardList());
   }
 }

@@ -148,16 +148,17 @@ class Api {
     );
   }
 
-  static Future<MyBankCardResp?> queryMyBankCardList() {
+  /// 银行账户列表
+  static Future<BankCardResp?> queryBankCardList() {
     return _apiService.post(
-      ApiPath.queryMyBankCardList,
-      body: MyBankCardReq().toJson(),
-      convert: (json) => (json as List<dynamic>?)
-          ?.map((e) => e as MyBankCardResp$Item)
-          .toList(),
+      ApiPath.queryBankCardList,
+      body: BankCardReq().toJson(),
+      convert: (json) =>
+          (json as List<dynamic>?)?.map((e) => e as BankCardResp$Item).toList(),
     );
   }
 
+  /// 查询支持的银行列表
   static Future<BankVOResp?> queryBankList() {
     return _apiService.post(
       ApiPath.queryBankList,
