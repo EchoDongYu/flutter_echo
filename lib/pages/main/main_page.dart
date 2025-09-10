@@ -2,10 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_echo/common/app_theme.dart';
 import 'package:flutter_echo/models/common_model.dart';
+import 'package:flutter_echo/pages/app_router.dart';
 import 'package:flutter_echo/pages/main/home_page.dart';
 import 'package:flutter_echo/pages/main/profile_page.dart';
+import 'package:flutter_echo/services/storage_service.dart';
 import 'package:flutter_echo/utils/drawable_utils.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:go_router/go_router.dart';
 
 /// 主页面
 class MainPage extends StatefulWidget {
@@ -55,7 +58,11 @@ class _MainPageState extends State<MainPage> {
               controller: _controller,
               onPageChanged: (value) {
                 if (_currentPage != value) {
-                  setState(() => _currentPage = value);
+                  if (!LocalStorage().isLogin) {
+                    context.go(AppRouter.loginPhone);
+                  } else {
+                    setState(() => _currentPage = value);
+                  }
                 }
               },
               children: const [HomePage(), ProfilePage()],

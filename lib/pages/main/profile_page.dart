@@ -99,7 +99,7 @@ class _ProfilePageState extends State<ProfilePage> {
                         ),
                       ),
                       Text(
-                        '123***456',
+                        LocalStorage().account ?? '',
                         style: TextStyle(
                           fontSize: 14.sp,
                           fontWeight: FontWeight.w400,
