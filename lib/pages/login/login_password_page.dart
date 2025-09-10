@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_echo/common/app_theme.dart';
+import 'package:flutter_echo/common/constants.dart';
 import 'package:flutter_echo/providers/login_provider.dart';
 import 'package:flutter_echo/ui/widget_helper.dart';
 import 'package:flutter_echo/ui/widgets/common_button.dart';
@@ -168,7 +169,7 @@ class _LoginPasswordPageState extends State<LoginPasswordPage> {
     return StepInputField(
       controller: _controller,
       hintText: 'Contraseña de 4 dígitos',
-      maxLength: 4,
+      maxLength: AppConst.passwordLen,
       keyboardType: TextInputType.number,
       inputFormatters: [FilteringTextInputFormatter.digitsOnly],
       obscureText: _obscureText,

@@ -86,6 +86,7 @@ class StepSelectField extends StatefulWidget {
     required String hintText,
     String errorText = 'Por favor seleccione',
     bool isError = false,
+    Widget? prefix,
   }) => StepSelectField(
     value: pickedItem?.t1h91pOBankName,
     onValueChange: () async {
@@ -95,6 +96,7 @@ class StepSelectField extends StatefulWidget {
     hintText: hintText,
     errorText: errorText,
     isError: isError,
+    prefix: prefix,
   );
 
   factory StepSelectField.pickArea(

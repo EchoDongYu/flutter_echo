@@ -84,7 +84,9 @@ class _DeviceVerifyDialogState extends State<DeviceVerifyDialog>
     if (_inputCode != value) {
       setState(() => _inputCode = value);
     }
-    final codeValid = value.length == 4 && _imageCtrl.text.length == 4;
+    final codeValid =
+        value.length == AppConst.codeLen &&
+        _imageCtrl.text.length == AppConst.captchaLen;
     if (_isCodeValid != codeValid) {
       setState(() => _isCodeValid = codeValid);
     }
@@ -268,7 +270,7 @@ class _DeviceVerifyDialogState extends State<DeviceVerifyDialog>
             keyboardType: TextInputType.number,
             inputFormatters: [FilteringTextInputFormatter.digitsOnly],
             textInputAction: TextInputAction.done,
-            maxLength: 8,
+            maxLength: AppConst.codeLen,
             maxLines: 1,
             showCursor: false,
             enableInteractiveSelection: false,
@@ -294,7 +296,7 @@ class _DeviceVerifyDialogState extends State<DeviceVerifyDialog>
       StepInputField(
         controller: _imageCtrl,
         hintText: 'Código de verificación',
-        maxLength: AppConst.codeLength,
+        maxLength: AppConst.captchaLen,
         keyboardType: TextInputType.text,
         suffix: _buildCaptcha(),
       ),

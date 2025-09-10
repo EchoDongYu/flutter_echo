@@ -198,9 +198,8 @@ class _UserBankPageState extends State<UserBankPage> {
                         ),
                         SizedBox(height: 32.h),
                         InkWell(
-                          onTap: () {
-                            bankModel.deleteBank(item.vnbh46OBankCardGid);
-                          },
+                          onTap: () =>
+                              bankModel.deleteBank(item.vnbh46OBankCardGid),
                           child: Row(
                             spacing: 6.w,
                             children: [

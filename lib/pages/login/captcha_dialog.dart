@@ -2,7 +2,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_echo/common/app_theme.dart';
 import 'package:flutter_echo/common/constants.dart';
-import 'package:flutter_echo/ui/widgets/common_button.dart';
+import 'package:flutter_echo/ui/widget_helper.dart';
 import 'package:flutter_echo/ui/widgets/step_input_field.dart';
 import 'package:flutter_echo/utils/drawable_utils.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -66,7 +66,7 @@ class _CaptchaDialogState extends State<CaptchaDialog>
   }
 
   void _onCodeChanged() {
-    final codeValid = _codeCtrl.text.length == 4;
+    final codeValid = _codeCtrl.text.length == AppConst.captchaLen;
     if (_isCodeValid != codeValid) {
       setState(() => _isCodeValid = codeValid);
     }
@@ -85,7 +85,16 @@ class _CaptchaDialogState extends State<CaptchaDialog>
         ),
       ),
       builder: (BuildContext context) => SingleChildScrollView(
-        child: Column(children: [_buildContent(), _buildBottomButton()]),
+        child: Column(
+          children: [
+            _buildContent(),
+            WidgetHelper.buildBottomButton(
+              text: 'Código de verificación',
+              enable: _isCodeValid,
+              onPressed: () => widget.onConfirm(_codeCtrl.text),
+            ),
+          ],
+        ),
       ),
     );
   }
@@ -179,7 +188,7 @@ class _CaptchaDialogState extends State<CaptchaDialog>
               StepInputField(
                 controller: _codeCtrl,
                 hintText: 'Código de verificación',
-                maxLength: AppConst.codeLength,
+                maxLength: AppConst.captchaLen,
                 keyboardType: TextInputType.text,
                 suffix: _buildCaptcha(),
               ),
@@ -237,28 +246,6 @@ class _CaptchaDialogState extends State<CaptchaDialog>
           },
           errorWidget: (_, _, _) => Image.asset(Drawable.iconCaptchaBrokea),
         ),
-      ),
-    );
-  }
-
-  /// 构建底部按钮
-  Widget _buildBottomButton() {
-    return Container(
-      width: double.infinity,
-      padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 10.h),
-      decoration: BoxDecoration(
-        color: Colors.white,
-        borderRadius: const BorderRadius.only(
-          topLeft: Radius.circular(20),
-          topRight: Radius.circular(20),
-        ),
-        border: Border.all(color: const Color(0xD9FFFFFF), width: 1),
-        boxShadow: NowStyles.bottomShadows,
-      ),
-      child: EchoPrimaryButton(
-        text: 'Código de verificación',
-        enable: _isCodeValid,
-        onPressed: () => widget.onConfirm(_codeCtrl.text),
       ),
     );
   }

@@ -18,12 +18,35 @@ class ResetLoginPwdPage extends StatefulWidget {
 }
 
 class _ResetLoginPwdPageState extends State<ResetLoginPwdPage> {
+  final _isErrors = List.generate(2, (index) {
+    return false;
+  }, growable: false);
   final TextEditingController _codeCtrl = TextEditingController();
-  final List<TextEditingController> _controller = [
+  final List<TextEditingController> _controllers = [
     TextEditingController(),
     TextEditingController(),
   ];
   final List<bool> _obscureText = [true, true];
+
+  @override
+  void initState() {
+    super.initState();
+    _controllers[0].addListener(() => _onInputChanged(0));
+    _controllers[1].addListener(() => _onInputChanged(1));
+  }
+
+  @override
+  void dispose() {
+    for (var controller in _controllers) {
+      controller.dispose();
+    }
+    super.dispose();
+  }
+
+  /// 输入变化监听
+  void _onInputChanged(int pos) {
+    if (_isErrors[pos] != false) setState(() => _isErrors[pos] = false);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -87,7 +110,7 @@ class _ResetLoginPwdPageState extends State<ResetLoginPwdPage> {
           StepInputField(
             controller: _codeCtrl,
             hintText: 'Código de verificación',
-            maxLength: AppConst.codeLength,
+            maxLength: AppConst.codeLen,
             keyboardType: TextInputType.number,
             inputFormatters: [FilteringTextInputFormatter.digitsOnly],
             suffix: Container(
@@ -123,9 +146,9 @@ class _ResetLoginPwdPageState extends State<ResetLoginPwdPage> {
   Widget _buildPasswordField(String hintText, int index) {
     final obscureText = _obscureText[index];
     return StepInputField(
-      controller: _controller[index],
+      controller: _controllers[index],
       hintText: hintText,
-      maxLength: 4,
+      maxLength: AppConst.passwordLen,
       keyboardType: TextInputType.number,
       inputFormatters: [FilteringTextInputFormatter.digitsOnly],
       obscureText: obscureText,

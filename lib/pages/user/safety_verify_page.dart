@@ -82,7 +82,7 @@ class _SafetyVerifyPageState extends State<SafetyVerifyPage> {
           StepInputField(
             controller: _phoneCtrl,
             hintText: 'Número de teléfono',
-            maxLength: AppConst.phoneLength,
+            maxLength: AppConst.phoneLen,
             keyboardType: TextInputType.number,
             inputFormatters: [FilteringTextInputFormatter.digitsOnly],
             showCounter: true,
@@ -109,7 +109,7 @@ class _SafetyVerifyPageState extends State<SafetyVerifyPage> {
           StepInputField(
             controller: _codeCtrl,
             hintText: 'Código de verificación',
-            maxLength: AppConst.codeLength,
+            maxLength: AppConst.codeLen,
             keyboardType: TextInputType.number,
             inputFormatters: [FilteringTextInputFormatter.digitsOnly],
             suffix: Container(

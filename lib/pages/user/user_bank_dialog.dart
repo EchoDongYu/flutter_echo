@@ -4,7 +4,9 @@ import 'package:flutter_echo/common/app_theme.dart';
 import 'package:flutter_echo/common/page_consumer.dart';
 import 'package:flutter_echo/models/common_model.dart';
 import 'package:flutter_echo/models/swaggerApi.models.swagger.dart';
+import 'package:flutter_echo/pages/submit/step_bank_dialog.dart';
 import 'package:flutter_echo/providers/user_bank_provider.dart';
+import 'package:flutter_echo/ui/widget_helper.dart';
 import 'package:flutter_echo/ui/widgets/common_button.dart';
 import 'package:flutter_echo/utils/drawable_utils.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -71,31 +73,99 @@ class _UserBankDialogState extends State<UserBankDialog> {
           topRight: Radius.circular(20),
         ),
       ),
-      builder: (BuildContext context) => ListView(
-        primary: true,
+      builder: (BuildContext context) => Column(
+        mainAxisSize: MainAxisSize.min,
         children: [
-          Text(
-            'Seleccione una cuenta bancaria disponible',
-            style: TextStyle(
-              fontSize: 13.sp,
-              fontWeight: FontWeight.w400,
-              color: NowColors.c0xFF494C4F,
-              height: 20 / 13,
+          Padding(
+            padding: EdgeInsets.all(16.r),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                InkWell(
+                  onTap: widget.onClosing,
+                  borderRadius: const BorderRadius.all(Radius.circular(12)),
+                  child: Container(
+                    width: 24.r,
+                    height: 24.r,
+                    alignment: Alignment.center,
+                    decoration: BoxDecoration(
+                      shape: BoxShape.circle,
+                      border: BoxBorder.all(
+                        color: NowColors.c0xFF1C1F23,
+                        width: 1.6.w,
+                      ),
+                    ),
+                    child: const Icon(
+                      Icons.close_rounded,
+                      color: NowColors.c0xFF1C1F23,
+                      size: 16,
+                    ),
+                  ),
+                ),
+                Text(
+                  'Cuenta bancaria',
+                  style: TextStyle(
+                    fontSize: 18.sp,
+                    fontWeight: FontWeight.w500,
+                    color: NowColors.c0xFF1C1F23,
+                    height: 24 / 18,
+                  ),
+                  textAlign: TextAlign.center,
+                ),
+                SizedBox(width: 24.r, height: 24.r),
+              ],
             ),
           ),
-          Consumer<UserBankModel>(
-            builder: (context, provider, _) {
-              final list = provider.bankCardList;
-              final stepItems = provider.stepItems;
-              return list != null && list.isNotEmpty == true
-                  ? _buildCardContent(list, stepItems)
-                  : _buildNoCardContent();
-            },
+          ConstrainedBox(
+            constraints: BoxConstraints(maxHeight: 528.h),
+            child: ListView(
+              primary: true,
+              shrinkWrap: true,
+              padding: EdgeInsets.fromLTRB(12.w, 8.h, 12.w, 36.h),
+              children: [
+                Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 12.w),
+                  child: Text(
+                    'Seleccione una cuenta bancaria disponible',
+                    style: TextStyle(
+                      fontSize: 13.sp,
+                      fontWeight: FontWeight.w400,
+                      color: NowColors.c0xFF494C4F,
+                      height: 20 / 13,
+                    ),
+                  ),
+                ),
+                SizedBox(height: 12.h),
+                Consumer<UserBankModel>(
+                  builder: (context, provider, _) {
+                    final list = provider.bankCardList;
+                    final stepItems = provider.stepItems;
+                    return list == null
+                        ? SizedBox()
+                        : list.isNotEmpty == true
+                        ? _buildCardContent(list, stepItems)
+                        : _buildNoCardContent();
+                  },
+                ),
+                SizedBox(height: 20.h),
+                Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 4.w),
+                  child: EchoOutlinedButton(
+                    text: 'Agregar cuenta bancaria',
+                    onPressed: () async {
+                      final addOk = await StepBankDialog.show(context);
+                      if (addOk == true) bankModel.queryBankCardList();
+                    },
+                  ),
+                ),
+              ],
+            ),
           ),
-          EchoOutlinedButton(
+          WidgetHelper.buildBottomButton(
+            text: 'Confirmar elección',
+            enable: _pickedItem != null,
             onPressed: () => widget.onConfirm(_pickedItem),
-            text: 'Agregar cuenta bancaria',
-            textColor: NowColors.c0xFF3288F1,
           ),
         ],
       ),
@@ -103,24 +173,22 @@ class _UserBankDialogState extends State<UserBankDialog> {
   }
 
   Widget _buildNoCardContent() {
-    return Padding(
-      padding: EdgeInsets.fromLTRB(28.w, 64.h, 28.w, 28.h),
-      child: Column(
-        children: [
-          Image.asset(Drawable.iconStatusCard, width: 70.r, height: 70.r),
-          SizedBox(height: 24.h),
-          Text(
-            'Sin cuenta bancaria',
-            style: TextStyle(
-              fontSize: 18.sp,
-              fontWeight: FontWeight.w400,
-              color: NowColors.c0xFF1C1F23,
-              height: 26 / 18,
-            ),
-            textAlign: TextAlign.center,
+    return Column(
+      children: [
+        Image.asset(Drawable.iconStatusCard, width: 70.r, height: 70.r),
+        SizedBox(height: 24.h),
+        Text(
+          'Sin cuenta bancaria',
+          style: TextStyle(
+            fontSize: 18.sp,
+            fontWeight: FontWeight.w400,
+            color: NowColors.c0xFF1C1F23,
+            height: 26 / 18,
           ),
-        ],
-      ),
+          textAlign: TextAlign.center,
+        ),
+        SizedBox(height: 12.h),
+      ],
     );
   }
 
@@ -131,7 +199,6 @@ class _UserBankDialogState extends State<UserBankDialog> {
     return ListView.separated(
       primary: false,
       shrinkWrap: true,
-      padding: EdgeInsets.fromLTRB(12.w, 12.h, 12.w, 20.h),
       itemCount: bankCardList.length,
       separatorBuilder: (context, index) => SizedBox(height: 12.h),
       itemBuilder: (context, index) {
@@ -141,6 +208,7 @@ class _UserBankDialogState extends State<UserBankDialog> {
             .value;
         return InkWell(
           onTap: () => setState(() => _pickedItem = item),
+          borderRadius: const BorderRadius.all(Radius.circular(20)),
           child: Container(
             decoration: BoxDecoration(),
             child: _buildCardItem(item, typeValue),
@@ -159,7 +227,7 @@ class _UserBankDialogState extends State<UserBankDialog> {
           decoration: BoxDecoration(
             color: Colors.white,
             border: BoxBorder.all(
-              color: isSelected ? NowColors.c0xFF1C1F23 : Colors.transparent,
+              color: isSelected ? NowColors.c0xFF3288F1 : Colors.transparent,
               width: 1.w,
             ),
             borderRadius: const BorderRadius.only(
@@ -215,7 +283,7 @@ class _UserBankDialogState extends State<UserBankDialog> {
                 alignment: Alignment.bottomRight,
                 child: Image.asset(
                   Drawable.bgLoginTop,
-                  width: 225.w,
+                  width: 150.w,
                   fit: BoxFit.fitWidth,
                 ),
               ),

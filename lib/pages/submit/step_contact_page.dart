@@ -209,7 +209,7 @@ class _StepContactPageState extends State<StepContactPage> {
           StepInputField(
             controller: _controllers[pos][1],
             hintText: 'Número de teléfono',
-            maxLength: AppConst.phoneLength,
+            maxLength: AppConst.phoneLen,
             keyboardType: TextInputType.number,
             inputFormatters: [FilteringTextInputFormatter.digitsOnly],
             showCounter: true,

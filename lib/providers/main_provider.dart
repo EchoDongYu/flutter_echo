@@ -15,6 +15,8 @@ class MainModel extends BaseProvider {
   /// 0未授信 1授信中 2授信完成 3授信失败
   int? get status => _creditStatus;
 
+  HomeInfoResp? get homeInfo => _homeInfo;
+
   Future<void> getHomeInfo() async {
     if (LocalStorage().isLogin) {
       _homeInfo = await launchRequest(() => Api.getHomeInfo());

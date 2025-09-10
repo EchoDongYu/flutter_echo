@@ -293,7 +293,7 @@ class _StepBasicPageState extends State<StepBasicPage> {
           StepInputField(
             controller: _controllers[3],
             hintText: 'Otro número de teléfono(opcional)',
-            maxLength: 8,
+            maxLength: AppConst.phoneLen,
             keyboardType: TextInputType.number,
             inputFormatters: [FilteringTextInputFormatter.digitsOnly],
             isError: _isErrors[5],

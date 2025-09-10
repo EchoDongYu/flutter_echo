@@ -1,8 +1,9 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_echo/common/app_theme.dart';
 import 'package:flutter_echo/models/common_model.dart';
 import 'package:flutter_echo/models/swaggerApi.models.swagger.dart';
-import 'package:flutter_echo/pages/app_router.dart';
+import 'package:flutter_echo/pages/before/trader_password_dialog.dart';
 import 'package:flutter_echo/providers/apply_provider.dart';
 import 'package:flutter_echo/ui/widget_helper.dart';
 import 'package:flutter_echo/ui/widgets/countdown_widget.dart';
@@ -10,7 +11,6 @@ import 'package:flutter_echo/ui/widgets/step_select_field.dart';
 import 'package:flutter_echo/ui/widgets/top_bar.dart';
 import 'package:flutter_echo/utils/common_utils.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
 
 class ApplyConfirmPage extends StatefulWidget {
@@ -37,14 +37,36 @@ class _ApplyConfirmPageState extends State<ApplyConfirmPage> {
   @override
   void initState() {
     super.initState();
-    WidgetsBinding.instance.addPostFrameCallback((_) {
-      applyModel.getLoanPreInfo(widget.productId, widget.amount);
+    WidgetsBinding.instance.addPostFrameCallback((_) async {
+      final dict = await applyModel.getLoanPreInfo(
+        widget.productId,
+        widget.amount,
+      );
+      setState(() => _stepItems = dict?['${ApplyModel.dictType}']);
     });
   }
 
-  @override
-  void dispose() {
-    super.dispose();
+  void _confirmLoan(BuildContext context) async {
+    setState(() {
+      _isErrors[0] = _pickedBank == null;
+      _isErrors[1] = _pickedPurpose == null;
+    });
+    if (!_isErrors.contains(true)) {
+      final loanInfo = applyModel.loanInfo;
+      String? password;
+      if (loanInfo?.cressyOTraderPwd == true) {
+        password = await TraderPasswordDialog.show(
+          context,
+          hasTransPwd: loanInfo?.qn9yimOHasTransPwd == 1,
+          orderGid: loanInfo?.z38e62OOrderGid,
+        );
+      }
+      applyModel.confirmLoan(
+        bank: _pickedBank,
+        purpose: _pickedPurpose?.key,
+        password: password,
+      );
+    }
   }
 
   @override
@@ -78,7 +100,7 @@ class _ApplyConfirmPageState extends State<ApplyConfirmPage> {
       ),
       bottomNavigationBar: WidgetHelper.buildBottomButton(
         text: 'Enviar',
-        onPressed: () => context.go(AppRouter.main),
+        onPressed: () => _confirmLoan(context),
       ),
     );
   }
@@ -277,18 +299,20 @@ class _ApplyConfirmPageState extends State<ApplyConfirmPage> {
   }
 
   Widget _buildCard2() {
-    return Container(
-      width: double.infinity,
-      padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 20.h),
-      decoration: const BoxDecoration(
-        color: Colors.white,
-        borderRadius: BorderRadius.all(Radius.circular(20)),
-        boxShadow: NowStyles.cardShadows,
-      ),
-      child: Consumer<ApplyModel>(
-        builder: (context, provider, child) {
-          final planList = provider.loanInfo?.glacisORepaymentPlanList;
-          return Column(
+    return Consumer<ApplyModel>(
+      builder: (context, provider, child) {
+        final planList = provider.loanInfo?.glacisORepaymentPlanList;
+        if (planList == null) return SizedBox();
+        final length = planList.length;
+        return Container(
+          width: double.infinity,
+          padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 20.h),
+          decoration: const BoxDecoration(
+            color: Colors.white,
+            borderRadius: BorderRadius.all(Radius.circular(20)),
+            boxShadow: NowStyles.cardShadows,
+          ),
+          child: Column(
             children: [
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -301,7 +325,7 @@ class _ApplyConfirmPageState extends State<ApplyConfirmPage> {
                       borderRadius: BorderRadius.circular(20),
                     ),
                     child: Text(
-                      '${planList?.length} Cuotas',
+                      '$length Cuotas',
                       style: TextStyle(
                         fontSize: 14.sp,
                         fontWeight: FontWeight.w500,
@@ -316,27 +340,27 @@ class _ApplyConfirmPageState extends State<ApplyConfirmPage> {
               ListView.separated(
                 shrinkWrap: true,
                 physics: const NeverScrollableScrollPhysics(),
-                itemCount: planList?.length ?? 0,
+                itemCount: length,
                 separatorBuilder: (context, index) => SizedBox(height: 12.h),
                 itemBuilder: (context, index) {
                   return _buildCard2Item(
-                    '${index + 1}/${planList?.length}',
-                    planList?[index].r5k31qODueTime,
-                    planList?[index].timesOBillAmount,
+                    '${index + 1}/$length',
+                    planList[index].r5k31qODueTime,
+                    planList[index].timesOBillAmount,
                   );
                 },
               ),
             ],
-          );
-        },
-        child: Text(
-          'Plan de pago',
-          style: TextStyle(
-            fontSize: 18.sp,
-            fontWeight: FontWeight.w500,
-            color: NowColors.c0xFF1C1F23,
-            height: 24 / 18,
           ),
+        );
+      },
+      child: Text(
+        'Plan de pago',
+        style: TextStyle(
+          fontSize: 18.sp,
+          fontWeight: FontWeight.w500,
+          color: NowColors.c0xFF1C1F23,
+          height: 24 / 18,
         ),
       ),
     );
@@ -448,6 +472,7 @@ class _ApplyConfirmPageState extends State<ApplyConfirmPage> {
         children: [
           StepSelectField.pickBankCard(
             context,
+            prefix: _buildPickedLogo(),
             pickedItem: _pickedBank,
             onValueChange: (value) => setState(() {
               _pickedBank = value;
@@ -470,6 +495,27 @@ class _ApplyConfirmPageState extends State<ApplyConfirmPage> {
             errorText: _errorHint[1],
           ),
         ],
+      ),
+    );
+  }
+
+  /// 构建银行 Logo
+  Widget? _buildPickedLogo() {
+    final logo = _pickedBank?.m871v6OBankLogo;
+    if (logo == null) return null;
+    return Container(
+      padding: EdgeInsets.symmetric(horizontal: 2.w),
+      decoration: BoxDecoration(
+        border: BoxBorder.all(color: NowColors.c0xFFD8D8D8, width: 0.6.w),
+        borderRadius: BorderRadius.circular(6.r),
+      ),
+      child: ClipRRect(
+        borderRadius: BorderRadius.circular(6.r),
+        child: CachedNetworkImage(
+          imageUrl: logo,
+          height: 22.h,
+          fit: BoxFit.fitHeight,
+        ),
       ),
     );
   }

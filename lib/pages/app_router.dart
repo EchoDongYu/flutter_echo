@@ -1,8 +1,8 @@
 import 'package:flutter_echo/common/page_consumer.dart';
 import 'package:flutter_echo/pages/after/repay_confirm_page.dart';
-import 'package:flutter_echo/pages/after/repay_status_page.dart';
+import 'package:flutter_echo/pages/after/repay_result_page.dart';
 import 'package:flutter_echo/pages/before/apply_confirm_page.dart';
-import 'package:flutter_echo/pages/before/apply_status_page.dart';
+import 'package:flutter_echo/pages/before/apply_result_page.dart';
 import 'package:flutter_echo/pages/login/login_code_page.dart';
 import 'package:flutter_echo/pages/login/login_password_page.dart';
 import 'package:flutter_echo/pages/login/login_phone_page.dart';
@@ -25,6 +25,7 @@ import 'package:flutter_echo/providers/about_us_provider.dart';
 import 'package:flutter_echo/providers/apply_provider.dart';
 import 'package:flutter_echo/providers/login_provider.dart';
 import 'package:flutter_echo/providers/main_provider.dart';
+import 'package:flutter_echo/providers/password_provider.dart';
 import 'package:flutter_echo/providers/step_status_provider.dart';
 import 'package:flutter_echo/providers/submit_provider.dart';
 import 'package:flutter_echo/providers/user_bank_provider.dart';
@@ -47,7 +48,10 @@ class AppRouter {
   static const String stepFailed = '/step_failed';
   static const String stepProcess = '/step_process';
   static const String applyConfirm = '/apply_confirm';
+  static const String applyFailed = '/apply_failed';
+  static const String applyProcess = '/apply_process';
   static const String repayConfirm = '/repay_confirm';
+  static const String repayResult = '/repay_result';
   static const String safetyVerify = '/safety_verify';
   static const String resetLoginPwd = '/reset_login_pwd';
   static const String resetTraderPwd = '/reset_trader_pwd';
@@ -138,7 +142,8 @@ class AppRouter {
       GoRoute(
         path: stepResult,
         builder: (context, state) {
-          final count = state.uri.queryParameters[NavKey.count]?.tryParseInt;
+          final params = state.uri.queryParameters;
+          final count = params[NavKey.count]?.tryParseInt;
           return StepResultPage(countdown: count);
         },
       ),
@@ -155,7 +160,8 @@ class AppRouter {
         builder: (context, state) => ChangeNotifierProvider(
           create: (_) => StepStatusModel(),
           builder: (_, _) {
-            final count = state.uri.queryParameters[NavKey.count]?.tryParseInt;
+            final params = state.uri.queryParameters;
+            final count = params[NavKey.count]?.tryParseInt;
             return PageConsumer<StepStatusModel>(
               child: StepProcessPage(countdown: count),
             );
@@ -170,19 +176,25 @@ class AppRouter {
           create: (_) => ApplyModel(),
           builder: (_, _) {
             final params = state.uri.queryParameters;
-            final id = params[NavKey.id]?.tryParseInt;
+            final productId = params[NavKey.id]?.tryParseInt;
             final amount = params[NavKey.amount]?.tryParseDouble;
             return PageConsumer<ApplyModel>(
-              child: ApplyConfirmPage(productId: id, amount: amount),
+              child: ApplyConfirmPage(productId: productId, amount: amount),
             );
           },
         ),
       ),
 
-      /// 借款状态页面
+      /// 借款失败页面
       GoRoute(
-        path: applyConfirm,
-        builder: (context, state) => const ApplyStatusPage(),
+        path: applyFailed,
+        builder: (context, state) => const ApplyFailedPage(),
+      ),
+
+      /// 借款处理中页面
+      GoRoute(
+        path: applyProcess,
+        builder: (context, state) => const ApplyProcessPage(),
       ),
 
       /// 还款确认页面
@@ -193,8 +205,8 @@ class AppRouter {
 
       /// 还款状态页面
       GoRoute(
-        path: applyConfirm,
-        builder: (context, state) => const RepayStatusPage(),
+        path: repayResult,
+        builder: (context, state) => const RepayResultPage(),
       ),
 
       /// 安全验证页面
@@ -206,13 +218,27 @@ class AppRouter {
       /// 重置登录密码页面
       GoRoute(
         path: resetLoginPwd,
-        builder: (context, state) => const ResetLoginPwdPage(),
+        builder: (context, state) => ChangeNotifierProvider(
+          create: (_) => PasswordModel(),
+          builder: (_, _) {
+            return PageConsumer<PasswordModel>(
+              child: const ResetLoginPwdPage(),
+            );
+          },
+        ),
       ),
 
       /// 重置交易密码页面
       GoRoute(
         path: resetTraderPwd,
-        builder: (context, state) => const ResetTraderPwdPage(),
+        builder: (context, state) => ChangeNotifierProvider(
+          create: (_) => PasswordModel(),
+          builder: (_, _) {
+            return PageConsumer<PasswordModel>(
+              child: const ResetTraderPwdPage(),
+            );
+          },
+        ),
       ),
 
       /// 关于我们页面

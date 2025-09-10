@@ -338,7 +338,7 @@ class _DemoPageState extends State<DemoPage> {
 
           _buildTestButton(
             context,
-            title: '授信完成页面',
+            title: '授信倒计时风险评估页面',
             icon: Icons.find_in_page_rounded,
             color: Color(0xFFE5571A),
             onPressed: () =>
@@ -359,6 +359,22 @@ class _DemoPageState extends State<DemoPage> {
             icon: Icons.error_outline_rounded,
             color: Color(0xFFE5571A),
             onPressed: () => context.push(AppRouter.stepFailed),
+          ),
+
+          _buildTestButton(
+            context,
+            title: '借款处理中页面',
+            icon: Icons.monetization_on_rounded,
+            color: Color(0xFFD3E111),
+            onPressed: () => context.push(AppRouter.applyProcess),
+          ),
+
+          _buildTestButton(
+            context,
+            title: '借款失败页面',
+            icon: Icons.monetization_on_rounded,
+            color: Color(0xFFD3E111),
+            onPressed: () => context.push(AppRouter.applyFailed),
           ),
 
           _buildTestButton(

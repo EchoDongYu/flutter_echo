@@ -42,7 +42,7 @@ class _LoginPhonePageState extends State<LoginPhonePage> {
 
   /// 手机号输入变化监听
   void _onPhoneChanged() {
-    final phoneValid = _controller.text.length == 8;
+    final phoneValid = _controller.text.length == AppConst.phoneLen;
     if (_isPhoneValid != phoneValid) {
       setState(() => _isPhoneValid = phoneValid);
     }
@@ -143,7 +143,7 @@ class _LoginPhonePageState extends State<LoginPhonePage> {
     return StepInputField(
       controller: _controller,
       hintText: 'Número de teléfono',
-      maxLength: AppConst.phoneLength,
+      maxLength: AppConst.phoneLen,
       keyboardType: TextInputType.number,
       inputFormatters: [FilteringTextInputFormatter.digitsOnly],
       showCounter: true,

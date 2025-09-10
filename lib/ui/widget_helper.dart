@@ -8,6 +8,7 @@ class WidgetHelper {
   static Widget buildBottomButton({
     required String text,
     required VoidCallback? onPressed,
+    bool enable = true,
   }) {
     return Container(
       width: double.infinity,
@@ -21,7 +22,38 @@ class WidgetHelper {
         border: Border.all(color: const Color(0xD9FFFFFF), width: 1),
         boxShadow: NowStyles.bottomShadows,
       ),
-      child: EchoPrimaryButton(text: text, onPressed: onPressed),
+      child: EchoPrimaryButton(
+        text: text,
+        enable: enable,
+        onPressed: onPressed,
+      ),
+    );
+  }
+
+  /// 底部错误按钮
+  static Widget buildFailedButton({
+    required String text,
+    required VoidCallback? onPressed,
+    bool enable = true,
+  }) {
+    return Container(
+      width: double.infinity,
+      padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 10.h),
+      decoration: BoxDecoration(
+        color: Colors.white,
+        borderRadius: const BorderRadius.only(
+          topLeft: Radius.circular(20),
+          topRight: Radius.circular(20),
+        ),
+        border: Border.all(color: const Color(0xD9FFFFFF), width: 1),
+        boxShadow: NowStyles.bottomShadows,
+      ),
+      child: EchoSecondaryButton(
+        text: text,
+        enable: enable,
+        filledColor: NowColors.c0xFFFB4F34,
+        onPressed: onPressed,
+      ),
     );
   }
 

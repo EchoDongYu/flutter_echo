@@ -190,6 +190,58 @@ class Api {
     );
   }
 
+  /// 重置登录密码
+  static Future<bool> resetLoginPassword({
+    required String? password,
+    required String? verifyCode,
+    String? imageCode,
+  }) {
+    return _apiService.postSt(
+      ApiPath.resetLoginPassword,
+      body: LoginPwdResetReq(
+        sordidOMobile: LocalStorage().account,
+        password: password,
+        presageOVerCode: verifyCode,
+        snafuOVerImageCode: imageCode,
+      ).toJson(),
+    );
+  }
+
+  /// 重置交易密码
+  static Future<bool> resetTraderPassword({
+    required String? type,
+    required String? password,
+    String? verifyCode,
+    String? imageCode,
+    String? idCard,
+  }) {
+    return _apiService.postSt(
+      ApiPath.resetTraderPassword,
+      body: TraderPwdResetReq(
+        sordidOMobile: LocalStorage().account,
+        type: type,
+        password: password,
+        presageOVerCode: verifyCode,
+        snafuOVerImageCode: imageCode,
+        merdekaOIdCard: idCard,
+      ).toJson(),
+    );
+  }
+
+  /// 交易密码校验
+  static Future<bool> checkTraderPassword({
+    required String? password,
+    required String? orderId,
+  }) {
+    return _apiService.postSt(
+      ApiPath.checkTraderPassword,
+      body: TraderPwdCheckReq(
+        c4s47hOTransPassword: password,
+        z38e62OOrderGid: orderId,
+      ).toJson(),
+    );
+  }
+
   /// 字典分类(多个使用逗号分割) :0 性别 1 学历 2 收入 3 婚姻状况 4 工作状况（职业） 5 住房状态 6 其他贷款
   /// 7 工作年限 8 发薪周期 9 城市列表 10 联系人-关系 11 电费账单 12 每月家庭支出 13 借款目的 14 意见反馈
   /// 17 whatsapp 18 客服邮箱 21 客服热线 22 账户类型 23 公司官网 24 公司地址 25 注销挽留 26 银行直连线下还款银行字典

@@ -13,8 +13,10 @@ class AppConst {
   static const String isoCountryCode = 'gt';
   static const String languageCode = 'es';
   static const String localeCode = 'es-GT';
-  static const int phoneLength = 8;
-  static const int codeLength = 4;
+  static const int phoneLen = 8;
+  static const int codeLen = 4;
+  static const int passwordLen = 4;
+  static const int captchaLen = 4;
   static const int dataOffset = 310;
 
   /// 是否生产环境

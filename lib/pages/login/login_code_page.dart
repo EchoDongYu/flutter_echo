@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_echo/common/app_theme.dart';
+import 'package:flutter_echo/common/constants.dart';
 import 'package:flutter_echo/providers/login_provider.dart';
 import 'package:flutter_echo/ui/widget_helper.dart';
 import 'package:flutter_echo/ui/widgets/common_button.dart';
@@ -46,7 +47,7 @@ class _LoginCodePageState extends State<LoginCodePage> {
     final value = _controller.text;
     setState(() => _inputCode = value);
     // 如果输入完整，自动验证
-    if (value.length == 4) {
+    if (value.length == AppConst.codeLen) {
       FocusScope.of(context).unfocus();
       final checkOk = await loginModel.checkVerifyCode(value);
       if (checkOk != true) {
@@ -208,7 +209,7 @@ class _LoginCodePageState extends State<LoginCodePage> {
             keyboardType: TextInputType.number,
             inputFormatters: [FilteringTextInputFormatter.digitsOnly],
             textInputAction: TextInputAction.done,
-            maxLength: 8,
+            maxLength: AppConst.codeLen,
             maxLines: 1,
             showCursor: false,
             enableInteractiveSelection: false,
