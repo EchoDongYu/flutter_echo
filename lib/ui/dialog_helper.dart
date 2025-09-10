@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_echo/pages/login/code_mode_dialog.dart';
 import 'package:flutter_echo/pages/user/removed_dialog.dart';
 import 'package:flutter_echo/ui/dialogs/praise_dialog.dart';
-import 'package:flutter_echo/ui/dialogs/upgrade_dialog.dart';
 import 'package:go_router/go_router.dart';
 
 class DialogHelper {
@@ -13,17 +12,6 @@ class DialogHelper {
       barrierDismissible: false,
       builder: (context) =>
           CodeModeDialog(onMethod: (value) => context.pop(value)),
-    );
-  }
-
-  /// 显示版本升级弹窗
-  static Future<bool?> showUpgradeDialog({required BuildContext context}) {
-    return showDialog<bool>(
-      context: context,
-      builder: (context) => UpgradeDialog(
-        onConfirm: () => context.pop(true),
-        onCancel: () => context.pop(false),
-      ),
     );
   }
 

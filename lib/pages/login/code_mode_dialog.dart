@@ -2,12 +2,24 @@ import 'package:flutter/material.dart';
 import 'package:flutter_echo/common/app_theme.dart';
 import 'package:flutter_echo/ui/widgets/common_button.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:go_router/go_router.dart';
 
 /// 选择收取验证码方式弹窗
 class CodeModeDialog extends StatelessWidget {
   final Function(int?) onMethod;
 
   const CodeModeDialog({super.key, required this.onMethod});
+
+  /// 显示选择收取验证码方式弹窗
+  static Future<int?> show(BuildContext context) {
+    return showDialog<int>(
+      context: context,
+      barrierDismissible: false,
+      builder: (context) {
+        return CodeModeDialog(onMethod: (value) => context.pop(value));
+      },
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -36,12 +48,12 @@ class CodeModeDialog extends StatelessWidget {
             SizedBox(height: 32.h),
             EchoPrimaryButton(
               text: 'Elige cómo enviar tu código',
-              onPressed: () => onMethod(1),
+              onPressed: () => onMethod(0),
             ),
             SizedBox(height: 12.h),
             EchoPrimaryButton(
               text: 'Recibelo por WhatsApp',
-              onPressed: () => onMethod(2),
+              onPressed: () => onMethod(1),
             ),
           ],
         ),

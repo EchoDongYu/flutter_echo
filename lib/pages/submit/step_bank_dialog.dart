@@ -107,7 +107,6 @@ class _StepBankDialogState extends State<StepBankDialog> {
     final isError2 = text0.isEmpty || numberError != null;
     final isError3 = text1.isEmpty || numberError != null;
     setState(() {
-      _numberError = null;
       _isErrors[0] = _pickedBank == null;
       _isErrors[1] = _pickedType == null;
       _isErrors[2] = isError2;

@@ -96,4 +96,10 @@ class MainModel extends BaseProvider {
     }
     return false;
   }
+
+  Future<bool?> judgeAccountCancel() async {
+    return await launchRequest(() async {
+      return Api.judgeAccountCancel();
+    });
+  }
 }

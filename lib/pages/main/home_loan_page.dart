@@ -143,7 +143,7 @@ class _HomeLoanPageState extends State<HomeLoanPage> {
             children: [
               Image.asset(
                 Drawable.bgLoginTop,
-                width: 200.w,
+                width: planList.isEmpty ? 100.w : 200.w,
                 fit: BoxFit.fitWidth,
               ),
               Column(

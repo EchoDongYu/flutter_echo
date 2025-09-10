@@ -2,11 +2,17 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_echo/common/app_theme.dart';
 import 'package:flutter_echo/common/constants.dart';
+import 'package:flutter_echo/pages/app_router.dart';
+import 'package:flutter_echo/providers/account_provider.dart';
+import 'package:flutter_echo/services/storage_service.dart';
 import 'package:flutter_echo/ui/widget_helper.dart';
 import 'package:flutter_echo/ui/widgets/common_button.dart';
 import 'package:flutter_echo/ui/widgets/step_input_field.dart';
 import 'package:flutter_echo/ui/widgets/top_bar.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:fluttertoast/fluttertoast.dart';
+import 'package:go_router/go_router.dart';
+import 'package:provider/provider.dart';
 
 /// 安全验证页面
 class SafetyVerifyPage extends StatefulWidget {
@@ -17,8 +23,54 @@ class SafetyVerifyPage extends StatefulWidget {
 }
 
 class _SafetyVerifyPageState extends State<SafetyVerifyPage> {
-  final TextEditingController _phoneCtrl = TextEditingController();
-  final TextEditingController _codeCtrl = TextEditingController();
+  final _controllers = List.generate(2, (index) {
+    return TextEditingController();
+  }, growable: false);
+  bool _isPhoneValid = false;
+  bool _isCodeValid = false;
+
+  AccountModel get accountModel =>
+      Provider.of<AccountModel>(context, listen: false);
+
+  @override
+  void initState() {
+    super.initState();
+    _controllers[0].addListener(_onPhoneChanged);
+    _controllers[1].addListener(_onCodeChanged);
+  }
+
+  @override
+  void dispose() {
+    for (var controller in _controllers) {
+      controller.dispose();
+    }
+    super.dispose();
+  }
+
+  /// 手机号输入变化监听
+  void _onPhoneChanged() {
+    final phoneValid = _controllers[0].text.length == AppConst.phoneLen;
+    if (_isPhoneValid != phoneValid) {
+      setState(() => _isPhoneValid = phoneValid);
+    }
+  }
+
+  void _onCodeChanged() {
+    final codeValid = _controllers[1].text.length == AppConst.codeLen;
+    if (_isCodeValid != codeValid) {
+      setState(() => _isCodeValid = codeValid);
+    }
+  }
+
+  void _removal(BuildContext context) async {
+    final removalOk = await accountModel.accountRemoval(
+      mobile: _controllers[0].text,
+      verifyCode: _controllers[1].text,
+    );
+    if (removalOk == true && context.mounted) {
+      context.pushReplacement(AppRouter.removalSuccess);
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -35,7 +87,7 @@ class _SafetyVerifyPageState extends State<SafetyVerifyPage> {
                 Expanded(
                   child: SingleChildScrollView(
                     padding: EdgeInsets.symmetric(horizontal: 12.w),
-                    child: _buildContentCard(),
+                    child: _buildContentCard(context),
                   ),
                 ),
               ],
@@ -47,7 +99,7 @@ class _SafetyVerifyPageState extends State<SafetyVerifyPage> {
   }
 
   /// 构建内容卡片
-  Widget _buildContentCard() {
+  Widget _buildContentCard(BuildContext context) {
     return Container(
       margin: EdgeInsets.only(top: 12.h),
       padding: EdgeInsets.fromLTRB(16.w, 28.h, 16.w, 40.h),
@@ -80,7 +132,7 @@ class _SafetyVerifyPageState extends State<SafetyVerifyPage> {
           ),
           SizedBox(height: 32.h),
           StepInputField(
-            controller: _phoneCtrl,
+            controller: _controllers[0],
             hintText: 'Número de teléfono',
             maxLength: AppConst.phoneLen,
             keyboardType: TextInputType.number,
@@ -107,34 +159,63 @@ class _SafetyVerifyPageState extends State<SafetyVerifyPage> {
           ),
           SizedBox(height: 12.h),
           StepInputField(
-            controller: _codeCtrl,
+            controller: _controllers[1],
             hintText: 'Código de verificación',
             maxLength: AppConst.codeLen,
             keyboardType: TextInputType.number,
             inputFormatters: [FilteringTextInputFormatter.digitsOnly],
-            suffix: Container(
-              padding: EdgeInsets.symmetric(horizontal: 8.w, vertical: 7.h),
-              constraints: BoxConstraints(minWidth: 72.w),
-              decoration: BoxDecoration(
-                gradient: LinearGradient(
-                  colors: const [NowColors.c0xFF3288F1, NowColors.c0xFF4FAAFF],
-                ),
-                borderRadius: const BorderRadius.all(Radius.circular(50)),
-              ),
-              child: Text(
-                'Reenviar (59s)',
-                style: TextStyle(
-                  color: Colors.white,
-                  fontSize: 14.sp,
-                  fontWeight: FontWeight.w500,
-                ),
-              ),
-            ),
+            suffix: _buildSendBtn(),
           ),
           SizedBox(height: 32.h),
-          EchoPrimaryButton(text: 'Próximo passo', onPressed: () {}),
+          EchoPrimaryButton(
+            text: 'Próximo passo',
+            enable: _isPhoneValid && _isCodeValid,
+            onPressed: () => _removal(context),
+          ),
         ],
       ),
     );
   }
+
+  Widget _buildSendBtn() => Consumer<AccountModel>(
+    builder: (context, provider, _) {
+      final countdown = provider.countdown;
+      final alpha = countdown > 0 || !_isPhoneValid ? 0.5 : 1.0;
+      return Container(
+        padding: EdgeInsets.symmetric(horizontal: 8.w, vertical: 7.h),
+        constraints: BoxConstraints(minWidth: 72.w),
+        decoration: BoxDecoration(
+          gradient: LinearGradient(
+            colors: [
+              NowColors.c0xFF3288F1.withValues(alpha: alpha),
+              NowColors.c0xFF4FAAFF.withValues(alpha: alpha),
+            ],
+          ),
+          borderRadius: const BorderRadius.all(Radius.circular(50)),
+        ),
+        child: InkWell(
+          onTap: () {
+            if (countdown == 0 && _isPhoneValid) {
+              if (_controllers[0].text != LocalStorage().account) {
+                Fluttertoast.showToast(
+                  msg: 'Ingrese el número de teléfono registrado',
+                );
+              } else {
+                provider.sendVerifyCode(mobile: _controllers[0].text, type: 6);
+              }
+            }
+          },
+          child: Text(
+            countdown > 0 ? 'Reenviar (${countdown}s)' : 'Código',
+            style: TextStyle(
+              color: Colors.white,
+              fontSize: 14.sp,
+              fontWeight: FontWeight.w500,
+            ),
+            textAlign: TextAlign.center,
+          ),
+        ),
+      );
+    },
+  );
 }

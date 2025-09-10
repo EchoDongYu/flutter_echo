@@ -34,7 +34,6 @@ class WidgetHelper {
   static Widget buildFailedButton({
     required String text,
     required VoidCallback? onPressed,
-    bool enable = true,
   }) {
     return Container(
       width: double.infinity,
@@ -50,7 +49,6 @@ class WidgetHelper {
       ),
       child: EchoSecondaryButton(
         text: text,
-        enable: enable,
         filledColor: NowColors.c0xFFFB4F34,
         onPressed: onPressed,
       ),
@@ -63,6 +61,7 @@ class WidgetHelper {
     required String cancelText,
     required VoidCallback? onConfirm,
     required VoidCallback? onCancel,
+    bool enable = true,
   }) {
     return Container(
       width: double.infinity,
@@ -83,7 +82,11 @@ class WidgetHelper {
           ),
           SizedBox(width: 12.w),
           Expanded(
-            child: EchoPrimaryButton(text: confirmText, onPressed: onConfirm),
+            child: EchoPrimaryButton(
+              text: confirmText,
+              enable: enable,
+              onPressed: onConfirm,
+            ),
           ),
         ],
       ),

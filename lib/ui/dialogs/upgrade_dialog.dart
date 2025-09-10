@@ -3,17 +3,33 @@ import 'package:flutter_echo/common/app_theme.dart';
 import 'package:flutter_echo/ui/widgets/common_button.dart';
 import 'package:flutter_echo/utils/drawable_utils.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:go_router/go_router.dart';
 
 /// 版本升级弹窗
 class UpgradeDialog extends StatelessWidget {
+  final bool force;
   final VoidCallback onConfirm;
   final VoidCallback onCancel;
 
   const UpgradeDialog({
     super.key,
+    required this.force,
     required this.onConfirm,
     required this.onCancel,
   });
+
+  /// 显示版本升级弹窗
+  static Future<bool?> show(BuildContext context, bool force) {
+    return showDialog<bool>(
+      context: context,
+      barrierDismissible: false,
+      builder: (context) => UpgradeDialog(
+        force: force,
+        onConfirm: () => context.pop(true),
+        onCancel: () => context.pop(false),
+      ),
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -75,25 +91,27 @@ class UpgradeDialog extends StatelessWidget {
               ],
             ),
           ),
-          SizedBox(height: 36.h),
-          InkWell(
-            onTap: onCancel,
-            borderRadius: const BorderRadius.all(Radius.circular(16)),
-            child: Container(
-              width: 28.r,
-              height: 28.r,
-              alignment: Alignment.center,
-              decoration: BoxDecoration(
-                shape: BoxShape.circle,
-                border: BoxBorder.all(color: Colors.white, width: 1.6.w),
-              ),
-              child: const Icon(
-                Icons.close_rounded,
-                color: Colors.white,
-                size: 18,
+          if (!force) ...[
+            SizedBox(height: 36.h),
+            InkWell(
+              onTap: onCancel,
+              borderRadius: const BorderRadius.all(Radius.circular(16)),
+              child: Container(
+                width: 28.r,
+                height: 28.r,
+                alignment: Alignment.center,
+                decoration: BoxDecoration(
+                  shape: BoxShape.circle,
+                  border: BoxBorder.all(color: Colors.white, width: 1.6.w),
+                ),
+                child: const Icon(
+                  Icons.close_rounded,
+                  color: Colors.white,
+                  size: 18,
+                ),
               ),
             ),
-          ),
+          ],
         ],
       ),
     );

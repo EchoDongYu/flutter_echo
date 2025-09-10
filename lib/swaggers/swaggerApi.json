@@ -5401,7 +5401,30 @@
             "description": "successful operation",
             "schema": {
               "type": "object",
-              "description": "请完善Map<?,?>"
+              "description": "请完善Map<?,?>",
+              "properties": {
+                "cressy(o_traderPwd)": {
+                  "type": "boolean",
+                  "description": "交易密码开关\t"
+                },
+                "fm50w8(o_loginPwd)": {
+                  "type": "boolean",
+                  "description": "登录密码开关\t"
+                },
+                "caliban(o_whatsappSms)": {
+                  "type": "boolean",
+                  "description": "whatsapp开关\t"
+                },
+                "b369n2(o_upgradeVersion)": {
+                  "type": "string",
+                  "description": "升级弹窗（多版本逗号分隔）"
+                },
+                "v824td(o_forceUpdateVersion)": {
+                  "type": "string",
+                  "description": "强制升级弹窗（多版本逗号分隔）"
+                }
+              },
+              "required": []
             }
           }
         }

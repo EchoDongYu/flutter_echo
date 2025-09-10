@@ -3,11 +3,12 @@ import 'package:flutter/services.dart';
 import 'package:flutter_echo/common/app_theme.dart';
 import 'package:flutter_echo/common/constants.dart';
 import 'package:flutter_echo/common/page_consumer.dart';
-import 'package:flutter_echo/providers/password_provider.dart';
+import 'package:flutter_echo/providers/account_provider.dart';
 import 'package:flutter_echo/ui/widget_helper.dart';
 import 'package:flutter_echo/ui/widgets/step_input_field.dart';
 import 'package:flutter_echo/utils/drawable_utils.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
 
@@ -41,8 +42,8 @@ class TraderPasswordDialog extends StatefulWidget {
         padding: MediaQuery.of(context).viewInsets,
         duration: const Duration(milliseconds: 100),
         child: ChangeNotifierProvider(
-          create: (_) => PasswordModel(),
-          builder: (_, _) => PageConsumer<PasswordModel>(
+          create: (_) => AccountModel(),
+          builder: (_, _) => PageConsumer<AccountModel>(
             child: TraderPasswordDialog(
               hasTransPwd: hasTransPwd,
               orderGid: orderGid,
@@ -60,20 +61,21 @@ class TraderPasswordDialog extends StatefulWidget {
 }
 
 class _TraderPasswordDialogState extends State<TraderPasswordDialog> {
-  final _isErrors = List.generate(2, (index) {
-    return false;
+  final _controllers = List.generate(2, (index) {
+    return TextEditingController();
   }, growable: false);
-  final List<TextEditingController> _controllers = [
-    TextEditingController(),
-    TextEditingController(),
-  ];
   final List<bool> _obscureText = [true, true];
+  bool _isValid = false;
+
+  AccountModel get accountModel =>
+      Provider.of<AccountModel>(context, listen: false);
 
   @override
   void initState() {
     super.initState();
-    _controllers[0].addListener(() => _onInputChanged(0));
-    _controllers[1].addListener(() => _onInputChanged(1));
+    for (int i = 0; i < 2; i++) {
+      _controllers[i].addListener(_onInputChanged);
+    }
   }
 
   @override
@@ -85,39 +87,37 @@ class _TraderPasswordDialogState extends State<TraderPasswordDialog> {
   }
 
   /// 输入变化监听
-  void _onInputChanged(int pos) {
-    if (_isErrors[pos] != false) setState(() => _isErrors[pos] = false);
+  void _onInputChanged() {
+    final pwd0 = _controllers[0].text;
+    final bool isValid;
+    if (widget.hasTransPwd) {
+      isValid = pwd0.length == AppConst.passwordLen;
+    } else {
+      final pwd1 = _controllers[1].text;
+      isValid =
+          pwd0.length == AppConst.passwordLen &&
+          pwd1.length == AppConst.passwordLen;
+    }
+    if (_isValid != isValid) setState(() => _isValid = isValid);
   }
 
   void _submitPassword() async {
-    PasswordModel passwordModel = Provider.of<PasswordModel>(
-      context,
-      listen: false,
-    );
     final pwd0 = _controllers[0].text;
     if (widget.hasTransPwd) {
-      setState(() {
-        _isErrors[0] = pwd0.length != AppConst.passwordLen;
-      });
-      if (_isErrors[0] != true) {
-        final checkOk = await passwordModel.checkTraderPassword(
-          password: pwd0,
-          orderId: widget.orderGid,
-        );
-        if (checkOk == true) widget.onConfirm(pwd0);
-      }
+      final checkOk = await accountModel.checkTraderPassword(
+        password: pwd0,
+        orderId: widget.orderGid,
+      );
+      if (checkOk == true) widget.onConfirm(pwd0);
     } else {
-      final pwd1 = _controllers[1].text;
-      setState(() {
-        _isErrors[0] = pwd0.length != AppConst.passwordLen || pwd0 != pwd1;
-        _isErrors[1] = pwd1.length != AppConst.passwordLen || pwd0 != pwd1;
-      });
-      if (!_isErrors.contains(true)) {
-        final setOk = await passwordModel.setTraderPassword(
-          password: _controllers[0].text,
+      if (pwd0 != _controllers[1].text) {
+        Fluttertoast.showToast(
+          msg: 'La contraseña introducida dos veces no coincide',
         );
-        if (setOk == true) widget.onConfirm(pwd0);
+        return;
       }
+      final setOk = await accountModel.setTraderPassword(password: pwd0);
+      if (setOk == true) widget.onConfirm(pwd0);
     }
   }
 
@@ -142,6 +142,7 @@ class _TraderPasswordDialogState extends State<TraderPasswordDialog> {
               cancelText: 'Cancelar',
               onConfirm: _submitPassword,
               onCancel: widget.onClosing,
+              enable: _isValid,
             ),
           ],
         ),
@@ -292,7 +293,6 @@ class _TraderPasswordDialogState extends State<TraderPasswordDialog> {
           height: 20.r,
         ),
       ),
-      isError: _isErrors[index],
     );
   }
 }

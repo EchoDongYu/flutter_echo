@@ -29,6 +29,12 @@ class AppConst {
       ? 'https://insights.davaloan.com/insights'
       : 'http://159.138.164.19:8089/titans';
 
+  static const String h5Faq = 'https://www.credifacilgo.com/app/gtm/faq';
+  static const String h5Service =
+      'https://www.credifacilgo.com/app/gtm/service';
+  static const String h5Privacy =
+      'https://www.credifacilgo.com/app/gtm/privacy';
+
   static const String _rsaKey = AppConst.production
       ? 'MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCUNOcnExGUXzbT0ZYw9wNOsCSxT6dpgW0qiWD4v4bTWC9h9+RWzzZxaZNLLS6aSM4uPKWYHRy/swDsikWBondq7bQZhr/rTlX7DeICli3eKUPNcEh6xhpffyy+rksCsxDIQAzRMevXqXpRP6Y2GGGw3H8FOjQXHH6lG/Uo1ozPDwIDAQAB'
       : 'MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQC+tVyzd+zg14CgVSQ95MMjHnQB6rfgAyMNJJxM5IIOLoNgjX4VCaDUcX1MMhAQkBaZ2iupIh8i1KOcjOGyzu7chsDP+bZqDjtsbBf4LID7HdNnRZU5tXsQ+2SmkSxIaDc88/C1Zn7mV14GDqdj2ePQ+YQcfUEIB+xiWRxAJopgQwIDAQAB';

@@ -3,12 +3,14 @@ import 'package:flutter/services.dart';
 import 'package:flutter_echo/common/app_theme.dart';
 import 'package:flutter_echo/common/constants.dart';
 import 'package:flutter_echo/pages/app_router.dart';
+import 'package:flutter_echo/providers/upgrade_provider.dart';
 import 'package:flutter_echo/services/storage_service.dart';
 import 'package:flutter_echo/ui/dialogs/disclosure_dialog.dart';
 import 'package:flutter_echo/ui/dialogs/privacy_dialog.dart';
 import 'package:flutter_echo/utils/drawable_utils.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
+import 'package:provider/provider.dart';
 
 /// 闪屏页面
 class SplashPage extends StatefulWidget {
@@ -19,16 +21,19 @@ class SplashPage extends StatefulWidget {
 }
 
 class _SplashPageState extends State<SplashPage> {
-  bool _disclosureChecked = false;
+  UpgradeModel get upgradeModel =>
+      Provider.of<UpgradeModel>(context, listen: false);
+
+  @override
+  void initState() {
+    super.initState();
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      _checkDisclosure(context);
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
-    WidgetsBinding.instance.addPostFrameCallback((_) {
-      if (!_disclosureChecked) {
-        _checkDisclosure(context, () => context.go(AppRouter.main));
-        _disclosureChecked = true;
-      }
-    });
     return AnnotatedRegion(
       value: const SystemUiOverlayStyle(
         statusBarColor: Colors.transparent,
@@ -65,15 +70,17 @@ class _SplashPageState extends State<SplashPage> {
     );
   }
 
-  void _checkDisclosure(BuildContext context, Function() onFinish) async {
-    if (LocalStorage().disclosure != true) {
+  void _checkDisclosure(BuildContext context) async {
+    final baseInfo = await upgradeModel.getMainBaseInfo();
+    if (baseInfo?.b369n2OUpgradeVersion != null && context.mounted) {}
+    if (LocalStorage().disclosure != true && context.mounted) {
       final privacy = await PrivacyDialog.show(context);
       if (privacy == true && context.mounted) {
         await DisclosureDialog.show(context);
       }
-      Future.delayed(Duration(milliseconds: 500), onFinish);
-    } else {
-      Future.delayed(Duration(milliseconds: 500), onFinish);
     }
+    Future.delayed(Duration(milliseconds: 500), () {
+      if (context.mounted) context.go(AppRouter.main);
+    });
   }
 }

@@ -190,6 +190,32 @@ class Api {
     );
   }
 
+  /// 判断是否可注销（APP）
+  static Future<bool> judgeAccountCancel() {
+    return _apiService.postSt(
+      ApiPath.judgeAccountCancel,
+      body: AccountCancelJudgeReq().toJson(),
+    );
+  }
+
+  /// 账户注销(APP)
+  static Future<bool> accountCancelApp({
+    required String? mobile,
+    required String? verifyCode,
+    String? imageCode,
+  }) {
+    return _apiService.postSt(
+      ApiPath.accountCancelApp,
+      body: AccountCancelAppReq(
+        sordidOMobile: mobile,
+        presageOVerCode: verifyCode,
+        snafuOVerImageCode: imageCode,
+        source: 1,
+        pageId: '1',
+      ).toJson(),
+    );
+  }
+
   /// 重置登录密码
   static Future<bool> resetLoginPassword({
     required String? password,
@@ -337,6 +363,23 @@ class Api {
       ApiPath.confirmLoan,
       body: data.toJson(),
       convert: (json) => LoanConfirmResp.fromJson(json),
+    );
+  }
+
+  /// 提交意见反馈
+  static Future<bool> submitFeedback({String? content, required String type}) {
+    return _apiService.postSt(
+      ApiPath.submitFeedback,
+      body: FeedbackReq(content: content, type: type, source: 'home').toJson(),
+    );
+  }
+
+  /// 获取前端配置
+  static Future<MainInfoResp> getMainBaseInfo() {
+    return _apiService.post(
+      ApiPath.getMainBaseInfo,
+      body: MainInfoReq().toJson(),
+      convert: (json) => MainInfoResp.fromJson(json),
     );
   }
 }

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_echo/common/app_theme.dart';
 import 'package:flutter_echo/common/constants.dart';
+import 'package:flutter_echo/pages/login/code_mode_dialog.dart';
 import 'package:flutter_echo/providers/login_provider.dart';
 import 'package:flutter_echo/ui/widget_helper.dart';
 import 'package:flutter_echo/ui/widgets/common_button.dart';
@@ -179,7 +180,10 @@ class _LoginCodePageState extends State<LoginCodePage> {
                     ? 'Reenviar el código'
                     : 'Reenviar (${provider.countdown}s)',
                 enable: provider.countdown == 0,
-                onPressed: () => provider.resendVerifyCode(),
+                onPressed: () async {
+                  final method = await CodeModeDialog.show(context);
+                  provider.resendVerifyCode(method);
+                },
               );
             },
           ),

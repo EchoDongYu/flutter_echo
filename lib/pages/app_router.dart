@@ -17,18 +17,23 @@ import 'package:flutter_echo/pages/submit/step_result_page.dart';
 import 'package:flutter_echo/pages/submit/step_status_page.dart';
 import 'package:flutter_echo/pages/submit/step_work_page.dart';
 import 'package:flutter_echo/pages/user/about_us_page.dart';
+import 'package:flutter_echo/pages/user/feedback_page.dart';
+import 'package:flutter_echo/pages/user/removal_page.dart';
 import 'package:flutter_echo/pages/user/reset_password_page.dart';
 import 'package:flutter_echo/pages/user/reset_pwd_login_page.dart';
 import 'package:flutter_echo/pages/user/reset_pwd_trader_page.dart';
 import 'package:flutter_echo/pages/user/safety_verify_page.dart';
 import 'package:flutter_echo/pages/user/user_bank_page.dart';
+import 'package:flutter_echo/pages/user/web_page.dart';
 import 'package:flutter_echo/providers/about_us_provider.dart';
+import 'package:flutter_echo/providers/account_provider.dart';
 import 'package:flutter_echo/providers/apply_provider.dart';
+import 'package:flutter_echo/providers/feedback_provider.dart';
 import 'package:flutter_echo/providers/login_provider.dart';
 import 'package:flutter_echo/providers/main_provider.dart';
-import 'package:flutter_echo/providers/password_provider.dart';
 import 'package:flutter_echo/providers/step_status_provider.dart';
 import 'package:flutter_echo/providers/submit_provider.dart';
+import 'package:flutter_echo/providers/upgrade_provider.dart';
 import 'package:flutter_echo/providers/user_bank_provider.dart';
 import 'package:flutter_echo/utils/common_utils.dart';
 import 'package:go_router/go_router.dart';
@@ -57,15 +62,26 @@ class AppRouter {
   static const String resetPassword = '/reset_password';
   static const String resetLoginPwd = '/reset_login_pwd';
   static const String resetTraderPwd = '/reset_trader_pwd';
+  static const String removalSuccess = '/removal_success';
   static const String aboutUs = '/about_us';
   static const String userBank = '/user_bank';
+  static const String feedback = '/feedback';
+  static const String appWeb = '/app_web';
   static const String demo = '/demo';
 
   static final GoRouter router = GoRouter(
     initialLocation: splash,
     routes: [
       /// 闪屏页面
-      GoRoute(path: splash, builder: (context, state) => const SplashPage()),
+      GoRoute(
+        path: splash,
+        builder: (context, state) => ChangeNotifierProvider(
+          create: (_) => UpgradeModel(),
+          builder: (_, _) {
+            return PageConsumer<UpgradeModel>(child: const SplashPage());
+          },
+        ),
+      ),
 
       /// 主页面
       GoRoute(
@@ -214,7 +230,18 @@ class AppRouter {
       /// 安全验证页面
       GoRoute(
         path: safetyVerify,
-        builder: (context, state) => const SafetyVerifyPage(),
+        builder: (context, state) => ChangeNotifierProvider(
+          create: (_) => AccountModel(),
+          builder: (_, _) {
+            return PageConsumer<AccountModel>(child: const SafetyVerifyPage());
+          },
+        ),
+      ),
+
+      /// 账号注销成功页面
+      GoRoute(
+        path: removalSuccess,
+        builder: (context, state) => const RemovalPage(),
       ),
 
       /// 重置密码页面
@@ -227,11 +254,9 @@ class AppRouter {
       GoRoute(
         path: resetLoginPwd,
         builder: (context, state) => ChangeNotifierProvider(
-          create: (_) => PasswordModel(),
+          create: (_) => AccountModel(),
           builder: (_, _) {
-            return PageConsumer<PasswordModel>(
-              child: const ResetLoginPwdPage(),
-            );
+            return PageConsumer<AccountModel>(child: const ResetLoginPwdPage());
           },
         ),
       ),
@@ -240,9 +265,9 @@ class AppRouter {
       GoRoute(
         path: resetTraderPwd,
         builder: (context, state) => ChangeNotifierProvider(
-          create: (_) => PasswordModel(),
+          create: (_) => AccountModel(),
           builder: (_, _) {
-            return PageConsumer<PasswordModel>(
+            return PageConsumer<AccountModel>(
               child: const ResetTraderPwdPage(),
             );
           },
@@ -271,6 +296,28 @@ class AppRouter {
         ),
       ),
 
+      /// 意见反馈页面
+      GoRoute(
+        path: feedback,
+        builder: (context, state) => ChangeNotifierProvider(
+          create: (_) => FeedbackModel(),
+          builder: (_, _) {
+            return PageConsumer<FeedbackModel>(child: const FeedbackPage());
+          },
+        ),
+      ),
+
+      /// H5页面
+      GoRoute(
+        path: appWeb,
+        builder: (context, state) {
+          final params = state.uri.queryParameters;
+          final title = params[NavKey.title];
+          final url = params[NavKey.url];
+          return CommonWebPage(title: title, url: url!);
+        },
+      ),
+
       /// 测试入口
       GoRoute(path: demo, builder: (context, state) => const DemoPage()),
     ],
@@ -286,4 +333,6 @@ class NavKey {
   static const String status = "status";
   static const String id = "id";
   static const String amount = "amount";
+  static const String title = "title";
+  static const String url = "url";
 }

@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_echo/common/app_theme.dart';
 import 'package:flutter_echo/common/constants.dart';
-import 'package:flutter_echo/providers/password_provider.dart';
+import 'package:flutter_echo/providers/account_provider.dart';
 import 'package:flutter_echo/services/storage_service.dart';
 import 'package:flutter_echo/ui/dialogs/prompt_dialog.dart';
 import 'package:flutter_echo/ui/widget_helper.dart';
@@ -11,6 +11,7 @@ import 'package:flutter_echo/ui/widgets/step_input_field.dart';
 import 'package:flutter_echo/ui/widgets/top_bar.dart';
 import 'package:flutter_echo/utils/drawable_utils.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
 
@@ -23,22 +24,20 @@ class ResetLoginPwdPage extends StatefulWidget {
 }
 
 class _ResetLoginPwdPageState extends State<ResetLoginPwdPage> {
-  final _isErrors = List.generate(3, (index) {
-    return false;
-  }, growable: false);
   final _controllers = List.generate(3, (index) {
     return TextEditingController();
   }, growable: false);
   final List<bool> _obscureText = [true, true];
+  bool _isValid = false;
 
-  PasswordModel get passwordModel =>
-      Provider.of<PasswordModel>(context, listen: false);
+  AccountModel get accountModel =>
+      Provider.of<AccountModel>(context, listen: false);
 
   @override
   void initState() {
     super.initState();
     for (int i = 0; i < 3; i++) {
-      _controllers[i].addListener(() => _onInputChanged(i));
+      _controllers[i].addListener(_onInputChanged);
     }
   }
 
@@ -50,36 +49,37 @@ class _ResetLoginPwdPageState extends State<ResetLoginPwdPage> {
     super.dispose();
   }
 
-  Future<void> _resetPassword(BuildContext context) async {
-    final pwd0 = _controllers[0].text;
-    final pwd1 = _controllers[1].text;
-    final code = _controllers[2].text;
-    setState(() {
-      _isErrors[0] = pwd0.length != AppConst.passwordLen || pwd0 != pwd1;
-      _isErrors[1] = pwd1.length != AppConst.passwordLen || pwd0 != pwd1;
-      _isErrors[2] = code.length != AppConst.codeLen;
-    });
-    if (!_isErrors.contains(true)) {
-      final apiResult = await passwordModel.resetLoginPassword(
-        password: pwd0,
-        verifyCode: code,
-      );
-      if (apiResult == true && context.mounted) {
-        final result = await PromptDialog.show(
-          context: context,
-          icon: Drawable.iconStatusRight2,
-          title: "Resultados modificados",
-          content: "La contraseña de inicio de sesión ha sido cambiada con éxito, por favor utilice la nueva contraseña para iniciar sesión",
-          confirmText: "Confirmación",
-        );
-        if (result == true && context.mounted) context.pop();
-      }
-    }
+  /// 输入变化监听
+  void _onInputChanged() {
+    final isValid =
+        _controllers[0].text.length == AppConst.passwordLen &&
+        _controllers[1].text.length == AppConst.passwordLen &&
+        _controllers[2].text.length == AppConst.codeLen;
+    if (_isValid != isValid) setState(() => _isValid = isValid);
   }
 
-  /// 输入变化监听
-  void _onInputChanged(int pos) {
-    if (_isErrors[pos] != false) setState(() => _isErrors[pos] = false);
+  void _resetPassword(BuildContext context) async {
+    if (_controllers[0].text != _controllers[1].text) {
+      Fluttertoast.showToast(
+        msg: 'La contraseña introducida dos veces no coincide',
+      );
+      return;
+    }
+    final apiResult = await accountModel.resetLoginPassword(
+      password: _controllers[0].text,
+      verifyCode: _controllers[2].text,
+    );
+    if (apiResult == true && context.mounted) {
+      final result = await PromptDialog.show(
+        context: context,
+        icon: Drawable.iconStatusRight2,
+        title: 'Resultados modificados',
+        content:
+            'La contraseña de inicio de sesión ha sido cambiada con éxito, por favor utilice la nueva contraseña para iniciar sesión',
+        confirmText: 'Confirmación',
+      );
+      if (result == true && context.mounted) context.pop();
+    }
   }
 
   @override
@@ -161,7 +161,6 @@ class _ResetLoginPwdPageState extends State<ResetLoginPwdPage> {
             keyboardType: TextInputType.number,
             inputFormatters: [FilteringTextInputFormatter.digitsOnly],
             suffix: _buildSendBtn(),
-            isError: _isErrors[2],
           ),
           SizedBox(height: 12.h),
           _buildPasswordField('Contraseña de 4 dígitos', 0),
@@ -170,6 +169,7 @@ class _ResetLoginPwdPageState extends State<ResetLoginPwdPage> {
           SizedBox(height: 32.h),
           EchoPrimaryButton(
             text: 'Confirmar',
+            enable: _isValid,
             onPressed: () => _resetPassword(context),
           ),
         ],
@@ -194,11 +194,10 @@ class _ResetLoginPwdPageState extends State<ResetLoginPwdPage> {
           height: 20.r,
         ),
       ),
-      isError: _isErrors[index],
     );
   }
 
-  Widget _buildSendBtn() => Consumer<PasswordModel>(
+  Widget _buildSendBtn() => Consumer<AccountModel>(
     builder: (context, provider, _) {
       final countdown = provider.countdown;
       final alpha = countdown > 0 ? 0.5 : 1.0;
@@ -217,7 +216,7 @@ class _ResetLoginPwdPageState extends State<ResetLoginPwdPage> {
         child: InkWell(
           onTap: () {
             if (countdown == 0) {
-              provider.sendVerifyCode(2);
+              provider.sendVerifyCode(type: 2);
             }
           },
           child: Text(

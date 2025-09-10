@@ -11066,7 +11066,24 @@ class CheckReviewAccountResp {
 
 @JsonSerializable(explicitToJson: true)
 class MainInfoResp {
-  const MainInfoResp();
+  const MainInfoResp({
+    this.cressyOTraderPwd,
+    this.fm50w8OLoginPwd,
+    this.calibanOWhatsappSms,
+    this.b369n2OUpgradeVersion,
+    this.v824tdOForceUpdateVersion,
+  });
+
+  @JsonKey(name: 'cressy')
+  final bool? cressyOTraderPwd;
+  @JsonKey(name: 'fm50w8')
+  final bool? fm50w8OLoginPwd;
+  @JsonKey(name: 'caliban')
+  final bool? calibanOWhatsappSms;
+  @JsonKey(name: 'b369n2')
+  final String? b369n2OUpgradeVersion;
+  @JsonKey(name: 'v824td')
+  final String? v824tdOForceUpdateVersion;
 
   factory MainInfoResp.fromJson(Map<String, dynamic> json) =>
       _$MainInfoRespFromJson(json);
@@ -11077,10 +11094,96 @@ class MainInfoResp {
   static const toJsonFactory = _$MainInfoRespToJson;
 
   @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other is MainInfoResp &&
+            (identical(other.cressyOTraderPwd, cressyOTraderPwd) ||
+                const DeepCollectionEquality().equals(
+                  other.cressyOTraderPwd,
+                  cressyOTraderPwd,
+                )) &&
+            (identical(other.fm50w8OLoginPwd, fm50w8OLoginPwd) ||
+                const DeepCollectionEquality().equals(
+                  other.fm50w8OLoginPwd,
+                  fm50w8OLoginPwd,
+                )) &&
+            (identical(other.calibanOWhatsappSms, calibanOWhatsappSms) ||
+                const DeepCollectionEquality().equals(
+                  other.calibanOWhatsappSms,
+                  calibanOWhatsappSms,
+                )) &&
+            (identical(other.b369n2OUpgradeVersion, b369n2OUpgradeVersion) ||
+                const DeepCollectionEquality().equals(
+                  other.b369n2OUpgradeVersion,
+                  b369n2OUpgradeVersion,
+                )) &&
+            (identical(
+                  other.v824tdOForceUpdateVersion,
+                  v824tdOForceUpdateVersion,
+                ) ||
+                const DeepCollectionEquality().equals(
+                  other.v824tdOForceUpdateVersion,
+                  v824tdOForceUpdateVersion,
+                )));
+  }
+
+  @override
   String toString() => jsonEncode(this);
 
   @override
-  int get hashCode => runtimeType.hashCode;
+  int get hashCode =>
+      const DeepCollectionEquality().hash(cressyOTraderPwd) ^
+      const DeepCollectionEquality().hash(fm50w8OLoginPwd) ^
+      const DeepCollectionEquality().hash(calibanOWhatsappSms) ^
+      const DeepCollectionEquality().hash(b369n2OUpgradeVersion) ^
+      const DeepCollectionEquality().hash(v824tdOForceUpdateVersion) ^
+      runtimeType.hashCode;
+}
+
+extension $MainInfoRespExtension on MainInfoResp {
+  MainInfoResp copyWith({
+    bool? cressyOTraderPwd,
+    bool? fm50w8OLoginPwd,
+    bool? calibanOWhatsappSms,
+    String? b369n2OUpgradeVersion,
+    String? v824tdOForceUpdateVersion,
+  }) {
+    return MainInfoResp(
+      cressyOTraderPwd: cressyOTraderPwd ?? this.cressyOTraderPwd,
+      fm50w8OLoginPwd: fm50w8OLoginPwd ?? this.fm50w8OLoginPwd,
+      calibanOWhatsappSms: calibanOWhatsappSms ?? this.calibanOWhatsappSms,
+      b369n2OUpgradeVersion:
+          b369n2OUpgradeVersion ?? this.b369n2OUpgradeVersion,
+      v824tdOForceUpdateVersion:
+          v824tdOForceUpdateVersion ?? this.v824tdOForceUpdateVersion,
+    );
+  }
+
+  MainInfoResp copyWithWrapped({
+    Wrapped<bool?>? cressyOTraderPwd,
+    Wrapped<bool?>? fm50w8OLoginPwd,
+    Wrapped<bool?>? calibanOWhatsappSms,
+    Wrapped<String?>? b369n2OUpgradeVersion,
+    Wrapped<String?>? v824tdOForceUpdateVersion,
+  }) {
+    return MainInfoResp(
+      cressyOTraderPwd: (cressyOTraderPwd != null
+          ? cressyOTraderPwd.value
+          : this.cressyOTraderPwd),
+      fm50w8OLoginPwd: (fm50w8OLoginPwd != null
+          ? fm50w8OLoginPwd.value
+          : this.fm50w8OLoginPwd),
+      calibanOWhatsappSms: (calibanOWhatsappSms != null
+          ? calibanOWhatsappSms.value
+          : this.calibanOWhatsappSms),
+      b369n2OUpgradeVersion: (b369n2OUpgradeVersion != null
+          ? b369n2OUpgradeVersion.value
+          : this.b369n2OUpgradeVersion),
+      v824tdOForceUpdateVersion: (v824tdOForceUpdateVersion != null
+          ? v824tdOForceUpdateVersion.value
+          : this.v824tdOForceUpdateVersion),
+    );
+  }
 }
 
 @JsonSerializable(explicitToJson: true)

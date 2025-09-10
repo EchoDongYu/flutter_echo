@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_echo/common/app_theme.dart';
 import 'package:flutter_echo/pages/app_router.dart';
 import 'package:flutter_echo/pages/login/captcha_dialog.dart';
+import 'package:flutter_echo/pages/login/code_mode_dialog.dart';
 import 'package:flutter_echo/pages/login/device_verify_dialog.dart';
 import 'package:flutter_echo/pages/login/retain_login_dialog.dart';
 import 'package:flutter_echo/pages/main/track_dialog.dart';
@@ -17,6 +18,7 @@ import 'package:flutter_echo/ui/dialogs/compensation_dialog.dart';
 import 'package:flutter_echo/ui/dialogs/disclosure_dialog.dart';
 import 'package:flutter_echo/ui/dialogs/loading_dialog.dart';
 import 'package:flutter_echo/ui/dialogs/prompt_dialog.dart';
+import 'package:flutter_echo/ui/dialogs/upgrade_dialog.dart';
 import 'package:flutter_echo/ui/widgets/common_button.dart';
 import 'package:flutter_echo/utils/context_ext.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -525,7 +527,7 @@ class _DemoPageState extends State<DemoPage> {
   }
 
   void _showCodeModeDialog(BuildContext context) async {
-    final result = await DialogHelper.showCodeModeDialog(context: context);
+    final result = await CodeModeDialog.show(context);
     if (context.mounted) {
       if (result != null) {
         context.showSuccessSnack('Success $result');
@@ -649,7 +651,7 @@ class _DemoPageState extends State<DemoPage> {
   }
 
   void _showUpgradeDialog(BuildContext context) async {
-    final result = await DialogHelper.showUpgradeDialog(context: context);
+    final result = await UpgradeDialog.show(context, true);
     if (context.mounted) {
       if (result == true) {
         context.showSuccessSnack('Confirm $result');

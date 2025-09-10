@@ -5,6 +5,7 @@ import 'package:flutter_echo/models/common_model.dart';
 import 'package:flutter_echo/models/swaggerApi.models.swagger.dart';
 import 'package:flutter_echo/pages/submit/step_bank_dialog.dart';
 import 'package:flutter_echo/providers/user_bank_provider.dart';
+import 'package:flutter_echo/ui/dialogs/prompt_dialog.dart';
 import 'package:flutter_echo/ui/widget_helper.dart';
 import 'package:flutter_echo/ui/widgets/top_bar.dart';
 import 'package:flutter_echo/utils/drawable_utils.dart';
@@ -29,6 +30,19 @@ class _UserBankPageState extends State<UserBankPage> {
     WidgetsBinding.instance.addPostFrameCallback((_) {
       bankModel.queryBankCardList();
     });
+  }
+
+  void _deleteBank(BuildContext context, String? id) async {
+    final result = await PromptDialog.show(
+      context: context,
+      title: 'Borrar cuenta bancaria',
+      content: '¿Está seguro de que desea eliminar esta cuenta bancaria?',
+      confirmText: 'Confirmar',
+      cancelText: 'Cancelar',
+    );
+    if (result == true) {
+      bankModel.deleteBank(id);
+    }
   }
 
   @override
@@ -199,7 +213,7 @@ class _UserBankPageState extends State<UserBankPage> {
                         SizedBox(height: 32.h),
                         InkWell(
                           onTap: () =>
-                              bankModel.deleteBank(item.vnbh46OBankCardGid),
+                              _deleteBank(context, item.vnbh46OBankCardGid),
                           child: Row(
                             spacing: 6.w,
                             children: [

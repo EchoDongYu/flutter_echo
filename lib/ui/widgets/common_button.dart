@@ -102,9 +102,7 @@ class EchoSecondaryButton extends _EchoButton {
       onPressed: enable ? onPressed : null,
       style: ElevatedButton.styleFrom(
         minimumSize: Size.fromHeight(48.h),
-        backgroundColor: enable
-            ? filledColor
-            : disableColor(filledColor),
+        backgroundColor: enable ? filledColor : disableColor(filledColor),
         padding: _EchoButton.padding,
         shape: const RoundedRectangleBorder(
           borderRadius: BorderRadius.all(Radius.circular(50)),

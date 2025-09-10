@@ -15,6 +15,7 @@ class LoginModel extends BaseProvider {
   String? _verifyCode;
   String? _imageCode;
   String? _password;
+  int? _dType;
   Timer? _timer;
   int _countdown = 0;
   int _loginStep = 0;
@@ -70,7 +71,8 @@ class LoginModel extends BaseProvider {
     });
   }
 
-  void resendVerifyCode() async {
+  void resendVerifyCode(int? method) async {
+    _dType = method;
     await launchRequest(() => _sendVerifyCode());
   }
 
@@ -78,6 +80,7 @@ class LoginModel extends BaseProvider {
     final apiResult = await Api.sendVerificationCode(
       mobile: _phoneNumber,
       type: _codeType?.toString(),
+      dType: _dType,
     );
     if (apiResult == true) _startCountdown();
     return apiResult;
@@ -152,6 +155,7 @@ class LoginModel extends BaseProvider {
         verifyCode: _verifyCode,
         imageCode: _imageCode,
         password: _password,
+        dType: _dType,
       );
     }
     await LocalStorage().userLogin(loginResult);
