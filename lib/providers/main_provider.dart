@@ -62,11 +62,8 @@ class MainModel extends BaseProvider {
     }
   }
 
-  void launchLoan() async {
+  void launchLoan({int? productId, double? amount}) async {
     if (_creditStatus != 2) return;
-    final product = _homeInfo?.assurOFaceList?.firstOrNull;
-    final productId = product?.foreyardOProductId;
-    final amount = product?.xuwh2oOLoanRangeMax;
     if (productId == null || amount == null || amount <= 0) {
       return;
     }

@@ -17,8 +17,9 @@ import 'package:flutter_echo/pages/submit/step_result_page.dart';
 import 'package:flutter_echo/pages/submit/step_status_page.dart';
 import 'package:flutter_echo/pages/submit/step_work_page.dart';
 import 'package:flutter_echo/pages/user/about_us_page.dart';
-import 'package:flutter_echo/pages/user/reset_login_pwd_page.dart';
-import 'package:flutter_echo/pages/user/reset_trader_pwd_page.dart';
+import 'package:flutter_echo/pages/user/reset_password_page.dart';
+import 'package:flutter_echo/pages/user/reset_pwd_login_page.dart';
+import 'package:flutter_echo/pages/user/reset_pwd_trader_page.dart';
 import 'package:flutter_echo/pages/user/safety_verify_page.dart';
 import 'package:flutter_echo/pages/user/user_bank_page.dart';
 import 'package:flutter_echo/providers/about_us_provider.dart';
@@ -53,6 +54,7 @@ class AppRouter {
   static const String repayConfirm = '/repay_confirm';
   static const String repayResult = '/repay_result';
   static const String safetyVerify = '/safety_verify';
+  static const String resetPassword = '/reset_password';
   static const String resetLoginPwd = '/reset_login_pwd';
   static const String resetTraderPwd = '/reset_trader_pwd';
   static const String aboutUs = '/about_us';
@@ -213,6 +215,12 @@ class AppRouter {
       GoRoute(
         path: safetyVerify,
         builder: (context, state) => const SafetyVerifyPage(),
+      ),
+
+      /// 重置密码页面
+      GoRoute(
+        path: resetPassword,
+        builder: (context, state) => const ResetPasswordPage(),
       ),
 
       /// 重置登录密码页面

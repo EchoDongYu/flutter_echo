@@ -2,32 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_echo/pages/login/code_mode_dialog.dart';
 import 'package:flutter_echo/pages/user/removed_dialog.dart';
 import 'package:flutter_echo/ui/dialogs/praise_dialog.dart';
-import 'package:flutter_echo/ui/dialogs/prompt_dialog.dart';
 import 'package:flutter_echo/ui/dialogs/upgrade_dialog.dart';
 import 'package:go_router/go_router.dart';
 
 class DialogHelper {
-  /// 显示通用提示弹窗
-  static Future<bool?> showPromptDialog({
-    required BuildContext context,
-    required String title,
-    required String content,
-    required String confirmText,
-    String? cancelText,
-  }) {
-    return showDialog<bool>(
-      context: context,
-      builder: (context) => PromptDialog(
-        title: title,
-        content: content,
-        confirmText: confirmText,
-        cancelText: cancelText,
-        onConfirm: () => context.pop(true),
-        onCancel: () => context.pop(false),
-      ),
-    );
-  }
-
   /// 显示选择收取验证码方式弹窗
   static Future<int?> showCodeModeDialog({required BuildContext context}) {
     return showDialog<int>(

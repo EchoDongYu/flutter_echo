@@ -107,7 +107,7 @@ class _TraderPasswordDialogState extends State<TraderPasswordDialog> {
         if (checkOk == true) widget.onConfirm(pwd0);
       }
     } else {
-      final pwd1 = _controllers[0].text;
+      final pwd1 = _controllers[1].text;
       setState(() {
         _isErrors[0] = pwd0.length != AppConst.passwordLen || pwd0 != pwd1;
         _isErrors[1] = pwd1.length != AppConst.passwordLen || pwd0 != pwd1;

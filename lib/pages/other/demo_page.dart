@@ -16,6 +16,7 @@ import 'package:flutter_echo/ui/dialog_helper.dart';
 import 'package:flutter_echo/ui/dialogs/compensation_dialog.dart';
 import 'package:flutter_echo/ui/dialogs/disclosure_dialog.dart';
 import 'package:flutter_echo/ui/dialogs/loading_dialog.dart';
+import 'package:flutter_echo/ui/dialogs/prompt_dialog.dart';
 import 'package:flutter_echo/ui/widgets/common_button.dart';
 import 'package:flutter_echo/utils/context_ext.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -468,7 +469,7 @@ class _DemoPageState extends State<DemoPage> {
   }
 
   void _showPromptDialog1(BuildContext context) async {
-    final result = await DialogHelper.showPromptDialog(
+    final result = await PromptDialog.show(
       context: context,
       title: "This is the title This is ",
       content:
@@ -485,7 +486,7 @@ class _DemoPageState extends State<DemoPage> {
   }
 
   void _showPromptDialog2(BuildContext context) async {
-    final result = await DialogHelper.showPromptDialog(
+    final result = await PromptDialog.show(
       context: context,
       title: "Borrar cuenta bancaria",
       content: "¿Está seguro de que desea eliminar esta cuenta bancaria?",

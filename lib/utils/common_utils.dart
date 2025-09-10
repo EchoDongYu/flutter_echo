@@ -66,7 +66,7 @@ extension TimestampFormat on int {
 extension AmountFormat on num {
   String get showAmount => NumberFormat.currency(symbol: 'Q ').format(this);
 
-  String get showRound => NumberFormat('###', AppConst.localeCode).format(this);
+  String get showRound => NumberFormat('#,###').format(this);
 }
 
 extension StringParse on String? {

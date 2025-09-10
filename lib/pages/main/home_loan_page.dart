@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_echo/common/app_theme.dart';
 import 'package:flutter_echo/common/constants.dart';
+import 'package:flutter_echo/models/swaggerApi.models.swagger.dart';
+import 'package:flutter_echo/pages/app_router.dart';
 import 'package:flutter_echo/providers/main_provider.dart';
 import 'package:flutter_echo/ui/widget_helper.dart';
 import 'package:flutter_echo/ui/widgets/common_button.dart';
@@ -8,7 +10,9 @@ import 'package:flutter_echo/ui/widgets/home_arc_slider.dart';
 import 'package:flutter_echo/ui/widgets/home_step.dart';
 import 'package:flutter_echo/ui/widgets/top_bar.dart';
 import 'package:flutter_echo/utils/common_utils.dart';
+import 'package:flutter_echo/utils/drawable_utils.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
 
 /// 产品+账单首页
@@ -19,27 +23,49 @@ class HomeLoanPage extends StatefulWidget {
   State<HomeLoanPage> createState() => _HomeLoanPageState();
 }
 
-class _HomeLoanPageState extends State<HomeLoanPage>
-    with SingleTickerProviderStateMixin {
-  late TabController _tabController;
+class _HomeLoanPageState extends State<HomeLoanPage> {
+  HomeInfoResp$AssurOFaceList$Item? _pickedProduct;
+  double _minValue = 0;
+  double _maxValue = 0;
+  double _step = 0;
+  double _value = 0;
 
   MainModel get mainModel => Provider.of<MainModel>(context, listen: false);
-  double minValue = 200;
-  double maxValue = 2000;
-  double step = 100;
-  double value = 1000;
 
   @override
   void initState() {
     super.initState();
-    _tabController = TabController(length: 2, vsync: this);
+    WidgetsBinding.instance.addPostFrameCallback((_) async {
+      final homeProduct = mainModel.homeInfo;
+      final item = homeProduct?.assurOFaceList?.firstOrNull;
+      final allLock = homeProduct?.nailheadOIsSpareLockAll == true;
+      setState(() {
+        _pickedProduct = allLock ? null : item;
+        if (item == null) {
+          _maxValue = homeProduct?.xuwh2oOLoanRangeMax ?? 0;
+          _minValue = homeProduct?.mojr11OLoanRangeMin ?? 0;
+          _step = homeProduct?.marrowOLoanRangeUnit ?? 0;
+          _value = homeProduct?.xuwh2oOLoanRangeMax ?? 0;
+        } else {
+          _maxValue = item.xuwh2oOLoanRangeMax ?? 0;
+          _minValue = item.mojr11OLoanRangeMin ?? 0;
+          _step = item.marrowOLoanRangeUnit ?? 0;
+          _value = item.xuwh2oOLoanRangeMax ?? 0;
+        }
+      });
+    });
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
   }
 
   void _setValue(double newValue) {
-    double clamped = newValue.clamp(minValue, maxValue);
-    double steps = ((clamped - minValue) / step).roundToDouble();
-    double snapped = (minValue + steps * step).clamp(minValue, maxValue);
-    setState(() => value = snapped);
+    double clamped = newValue.clamp(_minValue, _maxValue);
+    double steps = ((clamped - _minValue) / _step).roundToDouble();
+    double snapped = (_minValue + steps * _step).clamp(_minValue, _maxValue);
+    setState(() => _value = snapped);
   }
 
   @override
@@ -54,114 +80,15 @@ class _HomeLoanPageState extends State<HomeLoanPage>
               Expanded(
                 child: ListView(
                   primary: true,
-                  padding: EdgeInsets.fromLTRB(12.w, 12.h, 12.w, 36.h),
+                  padding: EdgeInsets.fromLTRB(12.w, 12.h, 12.w, 90.h),
                   children: [
-                    Container(
-                      alignment: Alignment.centerLeft,
-                      padding: EdgeInsets.fromLTRB(16.w, 20.h, 16.w, 28.h),
-                      decoration: const BoxDecoration(
-                        color: Colors.white,
-                        borderRadius: BorderRadius.all(Radius.circular(20)),
-                        boxShadow: NowStyles.cardShadows,
-                      ),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.stretch,
-                        children: [
-                          Text(
-                            'Escolha o seu produto de empréstimo',
-                            style: TextStyle(
-                              fontSize: 14,
-                              fontWeight: FontWeight.w500,
-                              color: NowColors.c0xFF1C1F23,
-                              height: 20 / 14,
-                            ),
-                          ),
-                          SizedBox(height: 16.h),
-                          TabBar(
-                            controller: _tabController,
-                            labelColor: NowColors.c0xFF3288F1,
-                            unselectedLabelColor: NowColors.c0xFF1C1F23,
-                            dividerHeight: 0,
-                            tabs: [
-                              Tab(
-                                child: Align(
-                                  alignment: Alignment.center,
-                                  child: Text("MOVIES"),
-                                ),
-                              ),
-                              Tab(
-                                child: Align(
-                                  alignment: Alignment.center,
-                                  child: Text("GASMES"),
-                                ),
-                              ),
-                            ],
-                          ),
-                          SizedBox(height: 22.h),
-                          Text(
-                            'Escolha o valor do empréstimo',
-                            style: TextStyle(
-                              fontSize: 14,
-                              fontWeight: FontWeight.w500,
-                              color: NowColors.c0xFF1C1F23,
-                              height: 20 / 14,
-                            ),
-                          ),
-                          SizedBox(height: 20.h),
-                          ArcSlider(
-                            min: minValue,
-                            max: maxValue,
-                            step: step,
-                            value: value,
-                            size: 305,
-                            onChanged: _setValue,
-                          ),
-                          SizedBox(height: 7.h),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              SizedBox(
-                                width: 45.w,
-                                child: Text(
-                                  minValue.showRound,
-                                  style: TextStyle(
-                                    fontSize: 10,
-                                    fontWeight: FontWeight.w400,
-                                    color: NowColors.c0xFF77797B,
-                                    height: 14 / 10,
-                                  ),
-                                  textAlign: TextAlign.center,
-                                ),
-                              ),
-                              SizedBox(
-                                width: 45.w,
-                                child: Text(
-                                  maxValue.showRound,
-                                  style: TextStyle(
-                                    fontSize: 10,
-                                    fontWeight: FontWeight.w400,
-                                    color: NowColors.c0xFF77797B,
-                                    height: 14 / 10,
-                                  ),
-                                  textAlign: TextAlign.center,
-                                ),
-                              ),
-                            ],
-                          ),
-                          SizedBox(height: 24.h),
-                          EchoPrimaryButton(
-                            onPressed: () async {
-                              final lok = await mainModel.launchOk(context);
-                              if (lok == true) mainModel.launchLoan();
-                            },
-                            text: 'Solicítelo ya',
-                          ),
-                        ],
-                      ),
-                    ),
-                    SizedBox(height: 30.h),
+                    _buildBill(),
+                    _buildProductCard(),
                     Padding(
-                      padding: EdgeInsets.only(left: 16.w),
+                      padding: EdgeInsets.symmetric(
+                        horizontal: 16.w,
+                        vertical: 10.h,
+                      ),
                       child: Text(
                         'En solo 3 pasos',
                         style: TextStyle(
@@ -172,7 +99,6 @@ class _HomeLoanPageState extends State<HomeLoanPage>
                         ),
                       ),
                     ),
-                    SizedBox(height: 10.h),
                     HomeBottomStep(),
                   ],
                 ),
@@ -181,6 +107,438 @@ class _HomeLoanPageState extends State<HomeLoanPage>
           ),
         ),
       ],
+    );
+  }
+
+  Widget _buildBill() => Consumer<MainModel>(
+    builder: (context, provider, _) {
+      final homeInfo = provider.homeInfo;
+      final bill = homeInfo?.papuanOLastRecordLoan;
+      final planList = bill?.outdoOPlanSimpleList;
+      if (bill == null || planList == null) return SizedBox();
+      return Container(
+        margin: EdgeInsets.only(bottom: 12.h),
+        padding: EdgeInsets.symmetric(vertical: 20.h),
+        decoration: const BoxDecoration(
+          gradient: LinearGradient(
+            begin: Alignment.centerLeft,
+            end: Alignment.centerRight,
+            colors: [NowColors.c0xFF3288F1, NowColors.c0xFF4FAAFF],
+          ),
+          borderRadius: BorderRadius.all(Radius.circular(20)),
+          boxShadow: NowStyles.cardShadows,
+        ),
+        child: InkWell(
+          onTap: () {
+            switch (bill.suffOLoanStatus) {
+              case -1:
+              case 0:
+                context.push(AppRouter.applyProcess);
+              case 2:
+                context.push(AppRouter.applyFailed);
+            }
+          },
+          borderRadius: const BorderRadius.all(Radius.circular(20)),
+          child: Stack(
+            children: [
+              Image.asset(
+                Drawable.bgLoginTop,
+                width: 200.w,
+                fit: BoxFit.fitWidth,
+              ),
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.stretch,
+                children: [
+                  Padding(
+                    padding: EdgeInsets.only(left: 16.w),
+                    child: Text(
+                      bill.n410zdOLoanTime?.showDate ?? '',
+                      style: TextStyle(
+                        fontSize: 14.sp,
+                        fontWeight: FontWeight.w500,
+                        color: Colors.white,
+                        height: 18 / 14,
+                      ),
+                    ),
+                  ),
+                  SizedBox(height: 8.h),
+                  Padding(
+                    padding: EdgeInsets.only(left: 16.w),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      mainAxisSize: MainAxisSize.max,
+                      children: [
+                        Text(
+                          bill.retiaryOLoanAmount?.showAmount ?? '',
+                          style: TextStyle(
+                            fontSize: 30.sp,
+                            fontWeight: FontWeight.w700,
+                            color: Colors.white,
+                            height: 38 / 30,
+                          ),
+                        ),
+                        Container(
+                          padding: EdgeInsets.symmetric(
+                            horizontal: 16.w,
+                            vertical: 5.h,
+                          ),
+                          decoration: BoxDecoration(
+                            color: NowColors.c0xFF1C1F23.withValues(alpha: 0.5),
+                            borderRadius: BorderRadius.only(
+                              topLeft: Radius.circular(20),
+                              bottomLeft: Radius.circular(20),
+                            ),
+                            border: Border.all(
+                              width: 1.w,
+                              color: Colors.white,
+                              style: BorderStyle.solid,
+                            ),
+                          ),
+                          child: Row(
+                            children: [
+                              Text(
+                                'Pendiente',
+                                style: TextStyle(
+                                  fontSize: 14.sp,
+                                  fontWeight: FontWeight.w500,
+                                  color: Colors.white,
+                                  height: 18 / 14,
+                                ),
+                              ),
+                              const Icon(
+                                Icons.arrow_right_rounded,
+                                color: Colors.white,
+                                size: 26,
+                              ),
+                            ],
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                  SizedBox(height: 22.h),
+                  ListView.separated(
+                    shrinkWrap: true,
+                    physics: const NeverScrollableScrollPhysics(),
+                    itemCount: planList.length,
+                    separatorBuilder: (context, index) {
+                      return SizedBox(height: 12.h);
+                    },
+                    itemBuilder: (context, index) {
+                      return _buildBillItem(
+                        '${index + 1}/${planList.length}',
+                        planList[index].r5k31qODueTime,
+                        planList[index].wantonlyOLoanLeftAmount,
+                      );
+                    },
+                  ),
+                ],
+              ),
+            ],
+          ),
+        ),
+      );
+    },
+  );
+
+  Widget _buildBillItem(String index, int? first, double? second) {
+    return Container(
+      width: double.infinity,
+      decoration: const BoxDecoration(
+        color: NowColors.c0xFFF3F3F5,
+        borderRadius: BorderRadius.all(Radius.circular(12)),
+      ),
+      child: Row(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Container(
+            padding: const EdgeInsets.symmetric(horizontal: 8),
+            decoration: BoxDecoration(
+              color: NowColors.c0xFFFF9817,
+              borderRadius: BorderRadius.only(
+                topLeft: Radius.circular(12),
+                bottomRight: Radius.circular(12),
+              ),
+            ),
+            child: Text(
+              index,
+              style: TextStyle(
+                fontSize: 12.sp,
+                fontWeight: FontWeight.w500,
+                color: Colors.white,
+                height: 16 / 12,
+              ),
+            ),
+          ),
+          Expanded(
+            child: Padding(
+              padding: EdgeInsets.fromLTRB(4.w, 12.h, 12.w, 12.h),
+              child: Column(
+                spacing: 6.h,
+                children: [
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    mainAxisSize: MainAxisSize.max,
+                    children: [
+                      Text(
+                        'Vencimiento',
+                        style: TextStyle(
+                          fontSize: 12.sp,
+                          fontWeight: FontWeight.w400,
+                          color: NowColors.c0xFF494C4F,
+                          height: 18 / 12,
+                        ),
+                      ),
+                      Text(
+                        first?.showDate ?? '',
+                        style: TextStyle(
+                          fontSize: 14.sp,
+                          fontWeight: FontWeight.w500,
+                          color: NowColors.c0xFF1C1F23,
+                          height: 18 / 14,
+                        ),
+                      ),
+                    ],
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    mainAxisSize: MainAxisSize.max,
+                    children: [
+                      Text(
+                        'Monto a pagar',
+                        style: TextStyle(
+                          fontSize: 12.sp,
+                          fontWeight: FontWeight.w400,
+                          color: NowColors.c0xFF494C4F,
+                          height: 18 / 12,
+                        ),
+                      ),
+                      Text(
+                        second?.showAmount ?? '',
+                        style: TextStyle(
+                          fontSize: 14.sp,
+                          fontWeight: FontWeight.w500,
+                          color: NowColors.c0xFFFF9817,
+                          height: 18 / 14,
+                        ),
+                      ),
+                    ],
+                  ),
+                ],
+              ),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildProductCard() => Consumer<MainModel>(
+    builder: (context, provider, _) {
+      final homeInfo = provider.homeInfo;
+      final list = homeInfo?.assurOFaceList;
+      if (list == null || list.isEmpty == true) return SizedBox();
+      return Container(
+        alignment: Alignment.centerLeft,
+        margin: EdgeInsets.only(bottom: 20.h),
+        padding: EdgeInsets.fromLTRB(16.w, 20.h, 16.w, 28.h),
+        decoration: const BoxDecoration(
+          color: Colors.white,
+          borderRadius: BorderRadius.all(Radius.circular(20)),
+          boxShadow: NowStyles.cardShadows,
+        ),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: [
+            Text(
+              'Escolha o seu produto de empréstimo',
+              style: TextStyle(
+                fontSize: 14,
+                fontWeight: FontWeight.w500,
+                color: NowColors.c0xFF1C1F23,
+                height: 20 / 14,
+              ),
+            ),
+            SizedBox(height: 16.h),
+            Stack(
+              children: [
+                Container(
+                  width: double.infinity,
+                  height: 72.h,
+                  decoration: BoxDecoration(
+                    color: const Color(0xFFF4F3F2),
+                    borderRadius: BorderRadius.all(Radius.circular(12)),
+                  ),
+                ),
+                SizedBox(
+                  width: double.infinity,
+                  height: 82.h,
+                  child: ListView.builder(
+                    primary: false,
+                    shrinkWrap: true,
+                    scrollDirection: Axis.horizontal,
+                    itemCount: list.length,
+                    itemBuilder: (context, index) {
+                      return _buildTabItem(list[index]);
+                    },
+                  ),
+                ),
+              ],
+            ),
+            SizedBox(height: 22.h),
+            Text(
+              'Escolha o valor do empréstimo',
+              style: TextStyle(
+                fontSize: 14,
+                fontWeight: FontWeight.w500,
+                color: NowColors.c0xFF1C1F23,
+                height: 20 / 14,
+              ),
+            ),
+            SizedBox(height: 20.h),
+            ArcSlider(
+              min: _minValue,
+              max: _maxValue,
+              step: _step,
+              value: _value,
+              size: 305,
+              onChanged: _setValue,
+            ),
+            SizedBox(height: 7.h),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                SizedBox(
+                  width: 45.w,
+                  child: Text(
+                    _minValue.showRound,
+                    style: TextStyle(
+                      fontSize: 10,
+                      fontWeight: FontWeight.w400,
+                      color: NowColors.c0xFF77797B,
+                      height: 14 / 10,
+                    ),
+                    textAlign: TextAlign.center,
+                  ),
+                ),
+                SizedBox(
+                  width: 45.w,
+                  child: Text(
+                    _maxValue.showRound,
+                    style: TextStyle(
+                      fontSize: 10,
+                      fontWeight: FontWeight.w400,
+                      color: NowColors.c0xFF77797B,
+                      height: 14 / 10,
+                    ),
+                    textAlign: TextAlign.center,
+                  ),
+                ),
+              ],
+            ),
+            SizedBox(height: 24.h),
+            EchoPrimaryButton(
+              onPressed: () async {
+                final lok = await mainModel.launchOk(context);
+                if (lok == true) {
+                  mainModel.launchLoan(
+                    productId: _pickedProduct?.foreyardOProductId,
+                    amount: _value,
+                  );
+                }
+              },
+              enable: _pickedProduct?.faroucheOIsLock != true,
+              text: 'Solicítelo ya',
+            ),
+          ],
+        ),
+      );
+    },
+  );
+
+  Widget _buildTabItem(HomeInfoResp$AssurOFaceList$Item item) {
+    if (_pickedProduct == item) {
+      return Stack(
+        alignment: Alignment.center,
+        children: [
+          Image.asset(Drawable.bgHomeSelect, fit: BoxFit.fitHeight),
+          Container(
+            height: 72.h,
+            margin: EdgeInsets.only(bottom: 10.h),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              spacing: 4.h,
+              children: [
+                Text(
+                  '${item.b49d07OProductPeriodId} Dias',
+                  style: TextStyle(
+                    fontSize: 18.sp,
+                    fontWeight: FontWeight.w500,
+                    color: Colors.white,
+                    height: 24 / 18,
+                  ),
+                ),
+                Container(
+                  decoration: BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.all(Radius.circular(20)),
+                  ),
+                  padding: EdgeInsets.symmetric(horizontal: 8.w, vertical: 2.h),
+                  child: Text(
+                    '${item.peddlerOPeriodCountId} Parcela',
+                    style: TextStyle(
+                      fontSize: 12.sp,
+                      fontWeight: FontWeight.w500,
+                      color: NowColors.c0xFF3288F1,
+                      height: 16 / 12,
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ],
+      );
+    }
+    return InkWell(
+      onTap: () {
+        setState(() {
+          _pickedProduct = item;
+          _maxValue = item.xuwh2oOLoanRangeMax ?? 0;
+          _minValue = item.mojr11OLoanRangeMin ?? 0;
+          _step = item.marrowOLoanRangeUnit ?? 0;
+          _value = item.xuwh2oOLoanRangeMax ?? 0;
+        });
+      },
+      child: Container(
+        width: 128.w,
+        height: 72.h,
+        margin: EdgeInsets.only(bottom: 10.h),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          spacing: 4.h,
+          children: [
+            Text(
+              '${item.b49d07OProductPeriodId} Dias',
+              style: TextStyle(
+                fontSize: 18.sp,
+                fontWeight: FontWeight.w500,
+                color: NowColors.c0xFF1C1F23,
+                height: 24 / 18,
+              ),
+            ),
+            Text(
+              '${item.peddlerOPeriodCountId} Parcela',
+              style: TextStyle(
+                fontSize: 12.sp,
+                fontWeight: FontWeight.w400,
+                color: NowColors.c0xFF494C4F,
+                height: 16 / 12,
+              ),
+            ),
+          ],
+        ),
+      ),
     );
   }
 }

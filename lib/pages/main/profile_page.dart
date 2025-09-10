@@ -216,19 +216,18 @@ class ProfilePage extends StatelessWidget {
   Widget _buildCard3(BuildContext context) {
     return Container(
       width: double.infinity,
-      padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 22.h),
+      padding: EdgeInsets.symmetric(vertical: 8.h),
       decoration: const BoxDecoration(
         color: Colors.white,
         borderRadius: BorderRadius.all(Radius.circular(20)),
         boxShadow: NowStyles.cardShadows,
       ),
       child: Column(
-        spacing: 28.h,
         children: [
           _buildCard3Item(
             icon: Drawable.iconMineV1,
             text: 'Seguridad de la cuenta',
-            onTap: () {},
+            onTap: () => context.push(AppRouter.resetPassword),
           ),
           _buildCard3Item(
             icon: Drawable.iconMineV2,
@@ -252,23 +251,26 @@ class ProfilePage extends StatelessWidget {
   }) {
     return InkWell(
       onTap: onTap,
-      child: Row(
-        children: [
-          Image.asset(icon, width: 24.r, height: 24.r),
-          SizedBox(width: 12.w),
-          Expanded(
-            child: Text(
-              text,
-              style: TextStyle(
-                fontSize: 16.sp,
-                fontWeight: FontWeight.w400,
-                color: NowColors.c0xFF1C1F23,
-                height: 22 / 16,
+      child: Padding(
+        padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 14.h),
+        child: Row(
+          children: [
+            Image.asset(icon, width: 24.r, height: 24.r),
+            SizedBox(width: 12.w),
+            Expanded(
+              child: Text(
+                text,
+                style: TextStyle(
+                  fontSize: 16.sp,
+                  fontWeight: FontWeight.w400,
+                  color: NowColors.c0xFF1C1F23,
+                  height: 22 / 16,
+                ),
               ),
             ),
-          ),
-          Image.asset(Drawable.iconMineNext, width: 20.r, height: 20.r),
-        ],
+            Image.asset(Drawable.iconMineNext, width: 20.r, height: 20.r),
+          ],
+        ),
       ),
     );
   }
