@@ -29,7 +29,7 @@ class LoadingDialog {
                   children: [
                     SpinKitRing(color: Colors.white, lineWidth: 2.w),
                     Text(
-                      'loading',
+                      'Cargando...',
                       style: TextStyle(
                         fontSize: 12.sp,
                         fontWeight: FontWeight.w400,

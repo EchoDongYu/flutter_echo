@@ -9,8 +9,8 @@ import 'package:flutter_echo/ui/widget_helper.dart';
 import 'package:flutter_echo/ui/widgets/common_button.dart';
 import 'package:flutter_echo/ui/widgets/step_input_field.dart';
 import 'package:flutter_echo/ui/widgets/top_bar.dart';
+import 'package:flutter_echo/utils/common_utils.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:fluttertoast/fluttertoast.dart';
 import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
 
@@ -197,9 +197,7 @@ class _SafetyVerifyPageState extends State<SafetyVerifyPage> {
           onTap: () {
             if (countdown == 0 && _isPhoneValid) {
               if (_controllers[0].text != LocalStorage().account) {
-                Fluttertoast.showToast(
-                  msg: 'Ingrese el número de teléfono registrado',
-                );
+                toast(msg: 'Ingrese el número de teléfono registrado');
               } else {
                 provider.sendVerifyCode(mobile: _controllers[0].text, type: 6);
               }

@@ -9,9 +9,9 @@ import 'package:flutter_echo/ui/widget_helper.dart';
 import 'package:flutter_echo/ui/widgets/common_button.dart';
 import 'package:flutter_echo/ui/widgets/step_input_field.dart';
 import 'package:flutter_echo/ui/widgets/top_bar.dart';
+import 'package:flutter_echo/utils/common_utils.dart';
 import 'package:flutter_echo/utils/drawable_utils.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:fluttertoast/fluttertoast.dart';
 import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
 
@@ -61,9 +61,7 @@ class _ResetTraderPwdPageState extends State<ResetTraderPwdPage> {
 
   void _resetPassword(BuildContext context) async {
     if (_controllers[0].text != _controllers[1].text) {
-      Fluttertoast.showToast(
-        msg: 'La contraseña introducida dos veces no coincide',
-      );
+      toast(msg: 'La contraseña introducida dos veces no coincide');
       return;
     }
     final apiResult = await accountModel.resetTraderPassword(

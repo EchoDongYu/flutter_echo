@@ -8,7 +8,6 @@ import 'package:flutter_echo/ui/widgets/top_bar.dart';
 import 'package:flutter_echo/utils/common_utils.dart';
 import 'package:flutter_echo/utils/drawable_utils.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:fluttertoast/fluttertoast.dart';
 import 'package:provider/provider.dart';
 import 'package:url_launcher/url_launcher.dart';
 
@@ -140,7 +139,7 @@ class _AboutUsPageState extends State<AboutUsPage> {
                   launchUrl(Uri.parse('https:${item?.value}'));
                 default:
                   Clipboard.setData(ClipboardData(text: item?.value ?? ''));
-                  Fluttertoast.showToast(msg: 'copiar');
+                  toast(msg: 'copiar');
               }
             },
             child: Image.asset(icon, width: 40.r, height: 40.r),

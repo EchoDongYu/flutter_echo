@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_echo/common/constants.dart';
 import 'package:intl/intl.dart';
+import 'package:oktoast/oktoast.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 void debugLog(String message, {Object? error, StackTrace? stackTrace}) {
@@ -12,6 +13,8 @@ void debugLog(String message, {Object? error, StackTrace? stackTrace}) {
     log(message, error: error, stackTrace: stackTrace);
   }
 }
+
+void toast({required String msg}) => showToast(msg);
 
 final scaffoldMessengerKey = GlobalKey<ScaffoldMessengerState>();
 

@@ -33,7 +33,7 @@ class _HomeDefaultPageState extends State<HomeDefaultPage> {
       }
     }
     if (result != true && context.mounted) {
-      _checkAuth(context);
+      await _checkAuth(context);
     }
   }
 

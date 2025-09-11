@@ -6,7 +6,7 @@ import 'package:flutter_echo/pages/login/captcha_dialog.dart';
 import 'package:flutter_echo/pages/login/device_verify_dialog.dart';
 import 'package:flutter_echo/services/storage_service.dart';
 import 'package:flutter_echo/ui/dialogs/loading_dialog.dart';
-import 'package:fluttertoast/fluttertoast.dart';
+import 'package:flutter_echo/utils/common_utils.dart';
 import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
 
@@ -51,7 +51,7 @@ class _PageConsumerState<T extends BaseProvider> extends State<PageConsumer> {
           if (apiError != null) {
             provider.consumeApiError();
             if (apiError.needLogin) {
-              Fluttertoast.showToast(msg: apiError.msg);
+              toast(msg: apiError.msg);
               LocalStorage().logout();
               GoRouter.of(context).go(AppRouter.loginPhone);
             } else if (apiError.needCaptcha) {

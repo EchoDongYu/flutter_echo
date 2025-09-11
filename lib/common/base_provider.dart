@@ -4,7 +4,6 @@ import 'package:flutter_echo/common/constants.dart';
 import 'package:flutter_echo/models/api_response.dart';
 import 'package:flutter_echo/services/api_config.dart';
 import 'package:flutter_echo/utils/common_utils.dart';
-import 'package:fluttertoast/fluttertoast.dart';
 import 'package:go_router/go_router.dart';
 
 abstract class BaseProvider extends ChangeNotifier {
@@ -38,10 +37,10 @@ abstract class BaseProvider extends ChangeNotifier {
             _apiError = error;
             notifyListeners();
           } else if (toastError) {
-            Fluttertoast.showToast(msg: error.msg);
+            toast(msg: error.msg);
           }
         } else if (error is! DioException) {
-          Fluttertoast.showToast(msg: error.toString());
+          toast(msg: error.toString());
         }
         error = null;
       }

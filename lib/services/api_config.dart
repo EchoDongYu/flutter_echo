@@ -161,7 +161,7 @@ class _ApiInterceptor extends Interceptor {
 
   @override
   void onError(DioException err, ErrorInterceptorHandler handler) {
-    //Fluttertoast.showToast(msg: _handleDioError(err));
+    //showToast(msg: _handleDioError(err));
     showNormalSnack(_handleDioError(err));
     super.onError(err, handler);
   }

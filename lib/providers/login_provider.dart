@@ -6,7 +6,7 @@ import 'package:flutter_echo/models/swaggerApi.models.swagger.dart';
 import 'package:flutter_echo/pages/app_router.dart';
 import 'package:flutter_echo/services/api_service.dart';
 import 'package:flutter_echo/services/storage_service.dart';
-import 'package:fluttertoast/fluttertoast.dart';
+import 'package:flutter_echo/utils/common_utils.dart';
 import 'package:go_router/go_router.dart';
 
 class LoginModel extends BaseProvider {
@@ -130,9 +130,7 @@ class LoginModel extends BaseProvider {
 
   void userLogin(String password, {String? confirmPassword}) async {
     if (confirmPassword != null && password != confirmPassword) {
-      Fluttertoast.showToast(
-        msg: 'La contraseña introducida dos veces no coincide',
-      );
+      toast(msg: 'La contraseña introducida dos veces no coincide');
       return;
     }
     _password = password;

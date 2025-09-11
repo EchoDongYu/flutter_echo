@@ -6,9 +6,9 @@ import 'package:flutter_echo/common/page_consumer.dart';
 import 'package:flutter_echo/providers/account_provider.dart';
 import 'package:flutter_echo/ui/widget_helper.dart';
 import 'package:flutter_echo/ui/widgets/step_input_field.dart';
+import 'package:flutter_echo/utils/common_utils.dart';
 import 'package:flutter_echo/utils/drawable_utils.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:fluttertoast/fluttertoast.dart';
 import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
 
@@ -111,9 +111,7 @@ class _TraderPasswordDialogState extends State<TraderPasswordDialog> {
       if (checkOk == true) widget.onConfirm(pwd0);
     } else {
       if (pwd0 != _controllers[1].text) {
-        Fluttertoast.showToast(
-          msg: 'La contraseña introducida dos veces no coincide',
-        );
+        toast(msg: 'La contraseña introducida dos veces no coincide');
         return;
       }
       final setOk = await accountModel.setTraderPassword(password: pwd0);

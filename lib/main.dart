@@ -6,6 +6,7 @@ import 'package:flutter_echo/pages/app_router.dart';
 import 'package:flutter_echo/services/storage_service.dart';
 import 'package:flutter_echo/utils/common_utils.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:oktoast/oktoast.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -36,14 +37,21 @@ class MyApp extends StatelessWidget {
     return ScreenUtilInit(
       designSize: const Size(375, 812), // 设计稿尺寸
       builder: (context, child) {
-        return MaterialApp.router(
-          title: AppConst.applicationName,
-          routerConfig: AppRouter.router,
-          theme: AppTheme.lightTheme,
-          themeMode: ThemeMode.light,
-          locale: const Locale('es', 'GT'),
-          debugShowCheckedModeBanner: false,
-          scaffoldMessengerKey: scaffoldMessengerKey,
+        return OKToast(
+          radius: 100,
+          textPadding: const EdgeInsets.symmetric(
+            horizontal: 20.0,
+            vertical: 10.0,
+          ),
+          child: MaterialApp.router(
+            title: AppConst.applicationName,
+            routerConfig: AppRouter.router,
+            theme: AppTheme.lightTheme,
+            themeMode: ThemeMode.light,
+            locale: const Locale('es', 'GT'),
+            debugShowCheckedModeBanner: false,
+            scaffoldMessengerKey: scaffoldMessengerKey,
+          ),
         );
       },
     );
