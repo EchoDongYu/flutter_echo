@@ -1,4 +1,5 @@
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_echo/common/app_theme.dart';
@@ -312,13 +313,17 @@ class _DeviceVerifyDialogState extends State<DeviceVerifyDialog>
                 fontWeight: FontWeight.w400,
               ),
             ),
-            const TextSpan(
+            TextSpan(
               text: 'haga chic aqui',
               style: TextStyle(
                 color: NowColors.c0xFF3288F1,
                 fontWeight: FontWeight.w500,
                 decoration: TextDecoration.underline,
               ),
+              recognizer: TapGestureRecognizer()
+                ..onTap = () => setState(() {
+                  _imageUrl = ApiPath.captchaCode();
+                }),
             ),
           ],
         ),
@@ -327,28 +332,24 @@ class _DeviceVerifyDialogState extends State<DeviceVerifyDialog>
   }
 
   Widget _buildCaptcha() {
-    return InkWell(
-      onTap: () => setState(() => _imageUrl = ApiPath.captchaCode()),
-      borderRadius: const BorderRadius.all(Radius.circular(8)),
-      child: Container(
-        width: 104.w,
-        height: 44.h,
-        margin: EdgeInsets.symmetric(vertical: 8.h),
-        padding: EdgeInsets.symmetric(vertical: 7.h),
-        decoration: BoxDecoration(
-          borderRadius: const BorderRadius.all(Radius.circular(8)),
-          border: Border.all(color: NowColors.c0xFFC7C7C7, width: 1),
-        ),
-        child: CachedNetworkImage(
-          imageUrl: _imageUrl,
-          progressIndicatorBuilder: (context, _, _) {
-            return RotationTransition(
-              turns: _animationCtrl,
-              child: Image.asset(Drawable.iconCaptchaRefresh),
-            );
-          },
-          errorWidget: (_, _, _) => Image.asset(Drawable.iconCaptchaBrokea),
-        ),
+    return Container(
+      width: 104.w,
+      height: 44.h,
+      margin: EdgeInsets.symmetric(vertical: 8.h),
+      padding: EdgeInsets.symmetric(vertical: 7.h),
+      decoration: BoxDecoration(
+        borderRadius: const BorderRadius.all(Radius.circular(8)),
+        border: Border.all(color: NowColors.c0xFFC7C7C7, width: 1),
+      ),
+      child: CachedNetworkImage(
+        imageUrl: _imageUrl,
+        progressIndicatorBuilder: (context, _, _) {
+          return RotationTransition(
+            turns: _animationCtrl,
+            child: Image.asset(Drawable.iconCaptchaRefresh),
+          );
+        },
+        errorWidget: (_, _, _) => Image.asset(Drawable.iconCaptchaBrokea),
       ),
     );
   }

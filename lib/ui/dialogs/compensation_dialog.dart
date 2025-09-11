@@ -1,6 +1,8 @@
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_echo/common/app_theme.dart';
 import 'package:flutter_echo/ui/widget_helper.dart';
+import 'package:flutter_echo/utils/common_utils.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
 
@@ -74,23 +76,27 @@ class CompensationDialog extends StatelessWidget {
                         '\n\nRevise nuestras ',
                     style: TextStyle(color: NowColors.c0xFF494C4F),
                   ),
-                  const TextSpan(
+                  TextSpan(
                     text: 'Política de privacidad',
                     style: TextStyle(
                       color: NowColors.c0xFF3288F1,
                       decoration: TextDecoration.underline,
                     ),
+                    recognizer: TapGestureRecognizer()
+                      ..onTap = () => context.pushH5Privacy(),
                   ),
                   const TextSpan(
                     text: ' y el ',
                     style: TextStyle(color: NowColors.c0xFF494C4F),
                   ),
-                  const TextSpan(
+                  TextSpan(
                     text: 'Acuerdo de servicio',
                     style: TextStyle(
                       color: NowColors.c0xFF3288F1,
                       decoration: TextDecoration.underline,
                     ),
+                    recognizer: TapGestureRecognizer()
+                      ..onTap = () => context.pushH5Service(),
                   ),
                   const TextSpan(
                     text: ' obtener más información.',

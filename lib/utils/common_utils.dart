@@ -4,6 +4,8 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_echo/common/constants.dart';
+import 'package:flutter_echo/pages/app_router.dart';
+import 'package:go_router/go_router.dart';
 import 'package:intl/intl.dart';
 import 'package:oktoast/oktoast.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -52,6 +54,30 @@ class FlutterPlatform {
       );
       await launchUrl(waUri);
     }
+  }
+}
+
+extension ContextNav on BuildContext {
+  void pushH5Privacy() {
+    final uriRoute = Uri(
+      path: AppRouter.appWeb,
+      queryParameters: {
+        NavKey.title: 'Politica de privacidad',
+        NavKey.url: AppConst.h5Privacy,
+      },
+    );
+    push(uriRoute.toString());
+  }
+
+  void pushH5Service() {
+    final uriRoute = Uri(
+      path: AppRouter.appWeb,
+      queryParameters: {
+        NavKey.title: 'Acuerdo de servicio',
+        NavKey.url: AppConst.h5Service,
+      },
+    );
+    push(uriRoute.toString());
   }
 }
 

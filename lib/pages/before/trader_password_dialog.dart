@@ -1,8 +1,10 @@
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_echo/common/app_theme.dart';
 import 'package:flutter_echo/common/constants.dart';
 import 'package:flutter_echo/common/page_consumer.dart';
+import 'package:flutter_echo/pages/app_router.dart';
 import 'package:flutter_echo/providers/account_provider.dart';
 import 'package:flutter_echo/ui/widget_helper.dart';
 import 'package:flutter_echo/ui/widgets/step_input_field.dart';
@@ -254,13 +256,17 @@ class _TraderPasswordDialogState extends State<TraderPasswordDialog> {
                           fontWeight: FontWeight.w400,
                         ),
                       ),
-                      const TextSpan(
+                      TextSpan(
                         text: 'haga chic aqui',
                         style: TextStyle(
                           color: NowColors.c0xFF3288F1,
                           fontWeight: FontWeight.w500,
                           decoration: TextDecoration.underline,
                         ),
+                        recognizer: TapGestureRecognizer()
+                          ..onTap = () {
+                            context.pushReplacement(AppRouter.resetTraderPwd);
+                          },
                       ),
                     ],
                   ),

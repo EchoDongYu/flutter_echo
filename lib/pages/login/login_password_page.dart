@@ -1,7 +1,9 @@
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_echo/common/app_theme.dart';
 import 'package:flutter_echo/common/constants.dart';
+import 'package:flutter_echo/pages/app_router.dart';
 import 'package:flutter_echo/providers/login_provider.dart';
 import 'package:flutter_echo/ui/widget_helper.dart';
 import 'package:flutter_echo/ui/widgets/common_button.dart';
@@ -9,6 +11,7 @@ import 'package:flutter_echo/ui/widgets/step_input_field.dart';
 import 'package:flutter_echo/ui/widgets/top_bar.dart';
 import 'package:flutter_echo/utils/drawable_utils.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
 
 /// 登录-密码输入页面
@@ -140,13 +143,17 @@ class _LoginPasswordPageState extends State<LoginPasswordPage> {
                     fontWeight: FontWeight.w400,
                   ),
                 ),
-                const TextSpan(
+                TextSpan(
                   text: 'haga chic aqui',
                   style: TextStyle(
                     color: NowColors.c0xFF3288F1,
                     fontWeight: FontWeight.w500,
                     decoration: TextDecoration.underline,
                   ),
+                  recognizer: TapGestureRecognizer()
+                    ..onTap = () {
+                      context.pushReplacement(AppRouter.resetLoginPwd);
+                    },
                 ),
               ],
             ),

@@ -7,6 +7,7 @@ import 'package:flutter_echo/providers/main_provider.dart';
 import 'package:flutter_echo/services/storage_service.dart';
 import 'package:flutter_echo/ui/dialogs/prompt_dialog.dart';
 import 'package:flutter_echo/ui/widgets/top_bar.dart';
+import 'package:flutter_echo/utils/common_utils.dart';
 import 'package:flutter_echo/utils/drawable_utils.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
@@ -309,30 +310,12 @@ class _ProfilePageState extends State<ProfilePage> {
           _buildCard4Item(
             icon: Drawable.iconMineH1,
             text: 'Politica de\nprivacidad',
-            onTap: () {
-              final uriRoute = Uri(
-                path: AppRouter.appWeb,
-                queryParameters: {
-                  NavKey.title: 'Politica de privacidad',
-                  NavKey.url: AppConst.h5Privacy,
-                },
-              );
-              context.push(uriRoute.toString());
-            },
+            onTap: () => context.pushH5Privacy(),
           ),
           _buildCard4Item(
             icon: Drawable.iconMineH2,
             text: 'Acuerdo de\nservicio',
-            onTap: () {
-              final uriRoute = Uri(
-                path: AppRouter.appWeb,
-                queryParameters: {
-                  NavKey.title: 'Acuerdo de servicio',
-                  NavKey.url: AppConst.h5Service,
-                },
-              );
-              context.push(uriRoute.toString());
-            },
+            onTap: () => context.pushH5Service(),
           ),
           _buildCard4Item(
             icon: Drawable.iconMineH3,
