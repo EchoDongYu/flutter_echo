@@ -18,7 +18,8 @@ class LoginModel extends BaseProvider {
   int? _dType;
   Timer? _timer;
   int _countdown = 0;
-  int _loginStep = 0;
+
+  // int _loginStep = 0;
 
   int? get _codeType {
     final isRegistered = _checkRegister?.qm5h5tOIsRegistered;
@@ -31,7 +32,7 @@ class LoginModel extends BaseProvider {
   int get countdown => _countdown;
 
   void checkRegister(String mobile) async {
-    _loginStep = 0;
+    // _loginStep = 0;
     if (_countdown > 0 && _phoneNumber == mobile) {
       navigate((context) => context.push(AppRouter.loginCode));
       return;
@@ -109,7 +110,7 @@ class LoginModel extends BaseProvider {
   }
 
   Future<bool> _checkVerifyCode() async {
-    _loginStep = 1;
+    // _loginStep = 1;
     final apiResult = await Api.checkVerificationCode(
       mobile: _phoneNumber,
       type: _codeType,
@@ -138,7 +139,7 @@ class LoginModel extends BaseProvider {
   }
 
   Future<void> _registerOrLogin() async {
-    _loginStep = 2;
+    // _loginStep = 2;
     LoginResp loginResult;
     if (_checkRegister?.qm5h5tOIsRegistered == true) {
       loginResult = await Api.loginUser(
@@ -170,13 +171,13 @@ class LoginModel extends BaseProvider {
       );
       if (apiResult == true) {
         _imageCode = code;
-        if (_loginStep == 0) {
-          await _sendVerifyCode();
-        } else if (_loginStep == 1) {
-          await _checkVerifyCode();
-        } else if (_loginStep == 2) {
-          await _registerOrLogin();
-        }
+        // if (_loginStep == 0) {
+        //   await _sendVerifyCode();
+        // } else if (_loginStep == 1) {
+        //   await _checkVerifyCode();
+        // } else if (_loginStep == 2) {
+        //   await _registerOrLogin();
+        // }
       }
     });
   }

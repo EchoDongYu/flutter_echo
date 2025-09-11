@@ -8,9 +8,9 @@ class AccountModel extends BaseProvider {
   String? _imageCode;
   int? _codeType;
   String? _phoneNumber;
-  String? _verifyCode;
-  String? _password;
-  String? _cuiNumber;
+  // String? _verifyCode;
+  // String? _password;
+  // String? _cuiNumber;
   Timer? _timer;
   int _countdown = 0;
 
@@ -47,8 +47,8 @@ class AccountModel extends BaseProvider {
     required String? password,
     required String? verifyCode,
   }) async {
-    _verifyCode = verifyCode;
-    _password = password;
+    // _verifyCode = verifyCode;
+    // _password = password;
     return await launchRequest(() async {
       return Api.resetLoginPassword(
         password: password,
@@ -63,9 +63,9 @@ class AccountModel extends BaseProvider {
     required String? verifyCode,
     required String? cuiNumber,
   }) async {
-    _verifyCode = verifyCode;
-    _password = password;
-    _cuiNumber = cuiNumber;
+    // _verifyCode = verifyCode;
+    // _password = password;
+    // _cuiNumber = cuiNumber;
     return await launchRequest(() async {
       return Api.resetTraderPassword(
         type: '1',
@@ -78,7 +78,7 @@ class AccountModel extends BaseProvider {
   }
 
   Future<bool?> setTraderPassword({required String? password}) async {
-    _password = password;
+    // _password = password;
     return await launchRequest(() async {
       return Api.resetTraderPassword(
         type: '0',
@@ -116,20 +116,20 @@ class AccountModel extends BaseProvider {
       );
       if (apiResult == true) {
         _imageCode = code;
-        if (_codeType == null) {
-          await setTraderPassword(password: _password);
-        } else if (_codeType == 2) {
-          await resetLoginPassword(
-            verifyCode: _verifyCode,
-            password: _password,
-          );
-        } else if (_codeType == 3) {
-          await resetTraderPassword(
-            verifyCode: _verifyCode,
-            password: _password,
-            cuiNumber: _cuiNumber,
-          );
-        }
+        // if (_codeType == null) {
+        //   await setTraderPassword(password: _password);
+        // } else if (_codeType == 2) {
+        //   await resetLoginPassword(
+        //     verifyCode: _verifyCode,
+        //     password: _password,
+        //   );
+        // } else if (_codeType == 3) {
+        //   await resetTraderPassword(
+        //     verifyCode: _verifyCode,
+        //     password: _password,
+        //     cuiNumber: _cuiNumber,
+        //   );
+        // }
       }
     });
   }
