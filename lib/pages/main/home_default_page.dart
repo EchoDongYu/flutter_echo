@@ -2,6 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_echo/common/app_theme.dart';
 import 'package:flutter_echo/common/constants.dart';
 import 'package:flutter_echo/providers/main_provider.dart';
+import 'package:flutter_echo/services/storage_service.dart';
+import 'package:flutter_echo/ui/dialogs/compensation_dialog.dart';
+import 'package:flutter_echo/ui/dialogs/disclosure_dialog.dart';
+import 'package:flutter_echo/ui/dialogs/privacy_dialog.dart';
 import 'package:flutter_echo/ui/widgets/common_button.dart';
 import 'package:flutter_echo/ui/widgets/home_step.dart';
 import 'package:flutter_echo/utils/drawable_utils.dart';
@@ -18,6 +22,20 @@ class HomeDefaultPage extends StatefulWidget {
 
 class _HomeDefaultPageState extends State<HomeDefaultPage> {
   MainModel get mainModel => Provider.of<MainModel>(context, listen: false);
+
+  Future<void> _checkAuth(BuildContext context) async {
+    bool? result;
+    final compensation = await CompensationDialog.show(context);
+    if (compensation == true && context.mounted) {
+      final privacy = await PrivacyDialog.show(context);
+      if (privacy == true && context.mounted) {
+        result = await DisclosureDialog.show(context);
+      }
+    }
+    if (result != true && context.mounted) {
+      _checkAuth(context);
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -136,8 +154,13 @@ class _HomeDefaultPageState extends State<HomeDefaultPage> {
               SizedBox(height: 40.h),
               EchoSecondaryButton(
                 onPressed: () async {
-                  final lok = await mainModel.launchOk(context);
-                  if (lok == true) mainModel.launchDefault();
+                  if (LocalStorage().disclosure != true) {
+                    await _checkAuth(context);
+                  }
+                  if (context.mounted) {
+                    final lok = await mainModel.launchOk(context);
+                    if (lok == true) mainModel.launchDefault();
+                  }
                 },
                 text: 'Obtén crédito',
                 textColor: NowColors.c0xFF3288F1,
