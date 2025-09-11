@@ -1,8 +1,8 @@
-import 'dart:developer';
 import 'dart:io';
 
 import 'package:dio/dio.dart';
 import 'package:encrypt/encrypt.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter_echo/common/constants.dart';
 import 'package:flutter_echo/models/api_response.dart';
 import 'package:flutter_echo/services/storage_service.dart';
@@ -24,14 +24,20 @@ class ApiController {
   ApiController(String baseUrl) {
     _dio.options.baseUrl = baseUrl;
     _dio.interceptors.add(_ApiInterceptor());
-    if (!AppConst.production) {
-      _dio.interceptors.add(
-        LogInterceptor(
-          requestBody: true,
-          responseBody: true,
-          logPrint: (object) => log(object.toString()),
-        ),
-      );
+    _dio.interceptors.add(
+      LogInterceptor(
+        requestBody: true,
+        responseBody: true,
+        logPrint: (object) => logLong(object.toString()),
+      ),
+    );
+  }
+
+  void logLong(String msg) {
+    const int chunk = 800;
+    final int len = msg.length;
+    for (var i = 0; i < msg.length; i += chunk) {
+      debugPrint(msg.substring(i, i + chunk > len ? len : i + chunk));
     }
   }
 
