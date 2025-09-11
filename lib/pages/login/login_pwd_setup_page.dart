@@ -103,7 +103,7 @@ class _LoginPwdSetupPageState extends State<LoginPwdSetupPage> {
           ),
           SizedBox(height: 12.h),
           Text(
-            'Recordatorio: Te has registrado exitosamente.\nPor favor establezca una contraseña de 4 dígitos. Podrás iniciar sesión con tu contraseña más tarde.',
+            'Recordatorio: Te has registrado exitosamente. Por favor establezca una contraseña de 4 dígitos. Podrás iniciar sesión con tu contraseña más tarde.',
             style: TextStyle(
               fontSize: 14.sp,
               fontWeight: FontWeight.w400,
