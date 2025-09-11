@@ -27,6 +27,12 @@ class MainModel extends BaseProvider {
     }
   }
 
+  Future<MainInfoResp?> getMainBaseInfo() async {
+    return await launchRequest(() async {
+      return await Api.getMainBaseInfo();
+    });
+  }
+
   void launchDefault() async {
     switch (_creditStatus) {
       case 0:

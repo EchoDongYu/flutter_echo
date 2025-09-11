@@ -33,7 +33,6 @@ import 'package:flutter_echo/providers/login_provider.dart';
 import 'package:flutter_echo/providers/main_provider.dart';
 import 'package:flutter_echo/providers/step_status_provider.dart';
 import 'package:flutter_echo/providers/submit_provider.dart';
-import 'package:flutter_echo/providers/upgrade_provider.dart';
 import 'package:flutter_echo/providers/user_bank_provider.dart';
 import 'package:flutter_echo/utils/common_utils.dart';
 import 'package:go_router/go_router.dart';
@@ -73,15 +72,7 @@ class AppRouter {
     initialLocation: splash,
     routes: [
       /// 闪屏页面
-      GoRoute(
-        path: splash,
-        builder: (context, state) => ChangeNotifierProvider(
-          create: (_) => UpgradeModel(),
-          builder: (_, _) {
-            return PageConsumer<UpgradeModel>(child: const SplashPage());
-          },
-        ),
-      ),
+      GoRoute(path: splash, builder: (context, state) => const SplashPage()),
 
       /// 主页面
       GoRoute(
