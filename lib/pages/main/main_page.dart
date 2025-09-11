@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_echo/common/app_theme.dart';
@@ -83,12 +85,18 @@ class _MainPageState extends State<MainPage> {
         color: const Color(0xD9FFFFFF),
         borderRadius: const BorderRadius.all(Radius.circular(35)),
         border: Border.all(color: Colors.white, width: 1),
-        boxShadow: NowStyles.bottomShadows,
+        boxShadow: NowStyles.cardShadows,
       ),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: [_buildBottomItem(0), _buildBottomItem(1)],
+      child: ClipRRect(
+        borderRadius: const BorderRadius.all(Radius.circular(35)),
+        child: BackdropFilter(
+          filter: ImageFilter.blur(sigmaX: 10, sigmaY: 10),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [_buildBottomItem(0), _buildBottomItem(1)],
+          ),
+        ),
       ),
     );
   }

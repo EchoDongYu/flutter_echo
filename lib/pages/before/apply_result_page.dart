@@ -68,7 +68,7 @@ class ApplyFailedPage extends StatelessWidget {
           ),
         ],
       ),
-      bottomNavigationBar: WidgetHelper.buildFailedButton(
+      bottomNavigationBar: WidgetHelper.buildBottomFailedButton(
         text: 'Volver a la de inicio',
         onPressed: () => context.go(AppRouter.main),
       ),

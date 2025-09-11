@@ -276,7 +276,7 @@ class TrackIntroDialog extends StatelessWidget {
               ),
             ],
           ),
-          WidgetHelper.buildBottomButton2(
+          WidgetHelper.buildBottomBlurButton(
             confirmText: 'Aceptar',
             cancelText: 'Rechazar',
             onConfirm: onAgree,

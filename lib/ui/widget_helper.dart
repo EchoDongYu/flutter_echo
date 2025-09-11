@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_echo/common/app_theme.dart';
 import 'package:flutter_echo/ui/widgets/common_button.dart';
@@ -31,7 +33,7 @@ class WidgetHelper {
   }
 
   /// 底部错误按钮
-  static Widget buildFailedButton({
+  static Widget buildBottomFailedButton({
     required String text,
     required VoidCallback? onPressed,
   }) {
@@ -56,7 +58,7 @@ class WidgetHelper {
   }
 
   /// 底部双按钮
-  static Widget buildBottomButton2({
+  static Widget buildBottomTwoButton({
     required String confirmText,
     required String cancelText,
     required VoidCallback? onConfirm,
@@ -89,6 +91,56 @@ class WidgetHelper {
             ),
           ),
         ],
+      ),
+    );
+  }
+
+  /// 底部双按钮毛玻璃效果
+  static Widget buildBottomBlurButton({
+    required String confirmText,
+    required String cancelText,
+    required VoidCallback? onConfirm,
+    required VoidCallback? onCancel,
+    bool enable = true,
+  }) {
+    return ClipRRect(
+      borderRadius: const BorderRadius.only(
+        topLeft: Radius.circular(20),
+        topRight: Radius.circular(20),
+      ),
+      child: BackdropFilter(
+        filter: ImageFilter.blur(sigmaX: 10, sigmaY: 10),
+        child: Container(
+          width: double.infinity,
+          decoration: BoxDecoration(
+            color: const Color(0xCCFFFFFF),
+            borderRadius: const BorderRadius.only(
+              topLeft: Radius.circular(20),
+              topRight: Radius.circular(20),
+            ),
+            border: Border.all(color: Colors.white, width: 1),
+            boxShadow: NowStyles.bottomShadows,
+          ),
+          padding: EdgeInsets.symmetric(horizontal: 12.w, vertical: 10.h),
+          child: Row(
+            children: [
+              Expanded(
+                child: EchoOutlinedButton(
+                  text: cancelText,
+                  onPressed: onCancel,
+                ),
+              ),
+              SizedBox(width: 12.w),
+              Expanded(
+                child: EchoPrimaryButton(
+                  text: confirmText,
+                  enable: enable,
+                  onPressed: onConfirm,
+                ),
+              ),
+            ],
+          ),
+        ),
       ),
     );
   }

@@ -137,7 +137,7 @@ class _TraderPasswordDialogState extends State<TraderPasswordDialog> {
         child: Column(
           children: [
             _buildContent(),
-            WidgetHelper.buildBottomButton2(
+            WidgetHelper.buildBottomTwoButton(
               confirmText: 'Continuar',
               cancelText: 'Cancelar',
               onConfirm: _submitPassword,

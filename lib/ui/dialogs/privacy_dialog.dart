@@ -98,7 +98,7 @@ class PrivacyDialog extends StatelessWidget {
               ),
             ],
           ),
-          WidgetHelper.buildBottomButton2(
+          WidgetHelper.buildBottomBlurButton(
             confirmText: 'Aceptar',
             cancelText: 'Discrepar',
             onConfirm: onAgree,

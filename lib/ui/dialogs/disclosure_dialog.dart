@@ -119,7 +119,7 @@ class DisclosureDialog extends StatelessWidget {
               ),
             ],
           ),
-          WidgetHelper.buildBottomButton2(
+          WidgetHelper.buildBottomBlurButton(
             confirmText: 'Siguiente',
             cancelText: 'Discrepar',
             onConfirm: onAgree,
