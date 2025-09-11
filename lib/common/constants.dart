@@ -2,12 +2,12 @@ import 'package:flutter_echo/services/storage_service.dart';
 
 /// 应用常量定义
 class AppConst {
-  // 产品名称：CrediGo
-  // biz_channel：CrediGo
-  // 包名：com.credigo.rapidos.prestamos.app
-  static const String applicationId = 'com.credigo.rapidos.prestamos.app';
-  static const String applicationName = 'CrediGo';
-  static const String channel = 'CrediGo';
+  // 产品名称：CashiGO
+  // biz_channel：CashiGO
+  // 包名：com.cashigo.rapidos.prestamos.app
+  static const String applicationId = 'com.cashigo.rapidos.prestamos.app';
+  static const String applicationName = 'CashiGO';
+  static const String channel = 'CashiGO';
   static const String bizLine = '7';
   static const String countryCode = '502';
   static const String isoCountryCode = 'gt';

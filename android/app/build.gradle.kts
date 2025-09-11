@@ -6,7 +6,7 @@ plugins {
 }
 
 android {
-    namespace = "com.credigo.rapidos"
+    namespace = "com.cashigo.rapidos"
     compileSdk = 36
     ndkVersion = "28.2.13676358"
 
@@ -20,7 +20,7 @@ android {
     }
 
     defaultConfig {
-        applicationId = "com.credigo.rapidos.prestamos.app"
+        applicationId = "com.cashigo.rapidos.prestamos.app"
         // You can update the following values to match your application needs.
         // For more information, see: https://flutter.dev/to/review-gradle-config.
         minSdk = 24

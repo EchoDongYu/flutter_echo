@@ -70,7 +70,7 @@ class UpgradeDialog extends StatelessWidget {
                       ),
                       SizedBox(height: 16.h),
                       Text(
-                        'CrediGo ha lanzado nuevas funciones. Haga clic en [Actualizar] y luego elija cualquier navegador o Google Play. Si no recibe la pantalla en segundos, aún puede abrir manualmente Google Play y buscar CrediGo para actualizar la APLICACIÓN.',
+                        'CashiGO ha lanzado nuevas funciones. Haga clic en [Actualizar] y luego elija cualquier navegador o Google Play. Si no recibe la pantalla en segundos, aún puede abrir manualmente Google Play y buscar CashiGO para actualizar la APLICACIÓN.',
                         style: TextStyle(
                           fontSize: 14.sp,
                           fontWeight: FontWeight.w400,

@@ -1,4 +1,4 @@
-package com.credigo.rapidos
+package com.cashigo.rapidos
 
 import android.annotation.SuppressLint
 import android.content.Intent
@@ -92,7 +92,7 @@ class MainActivity : FlutterActivity() {
         }
 
     companion object {
-        private const val APPLICATION_ID = "com.credigo.rapidos.prestamos.app"
+        private const val APPLICATION_ID = "com.cashigo.rapidos.prestamos.app"
         private const val CHANNEL = "$APPLICATION_ID/channel"
         private const val PICK_CONTACT_CODE = 1001
 

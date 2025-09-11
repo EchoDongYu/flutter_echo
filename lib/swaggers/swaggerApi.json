@@ -1,7 +1,7 @@
 {
   "swagger": "2.0",
   "info": {
-    "title": "gtm-api(b7_CrediGo)",
+    "title": "gtm-api(b7_CashiGO)",
     "version": "last"
   },
   "basePath": "/",

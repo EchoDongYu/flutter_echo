@@ -150,7 +150,7 @@ class _StepBasicPageState extends State<StepBasicPage> {
                     borderRadius: BorderRadius.all(Radius.circular(20)),
                   ),
                   child: Text(
-                    'Estimado usuario, CrediGo mantendra sus datos seguros y no los compartira con tercero',
+                    'Estimado usuario, CashiGO mantendra sus datos seguros y no los compartira con tercero',
                     style: TextStyle(
                       fontSize: 13.sp,
                       fontWeight: FontWeight.w400,
