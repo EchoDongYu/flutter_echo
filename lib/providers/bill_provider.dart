@@ -5,19 +5,22 @@ import 'package:flutter_echo/services/api_service.dart';
 class BillModel extends BaseProvider {
 
   ///当前总应还金额
-  double totalAmount = 0.0;
+  double _totalAmount = 0.0;
+  double get totalAmount => _totalAmount;
 
   ///账单列表数据
-  List<BillListResp$SoberOBillList$Item>? billListData = [];
+  List<BillListResp$SoberOBillList$Item>? _billListData = [];
+  List<BillListResp$SoberOBillList$Item>? get billListData => _billListData;
 
   ///获取账单列表数据
   Future<void> fetchBillListData() async {
-    var data = await launchRequest(() async {
+    var billData = await launchRequest(() async {
       return await Api.getBillListInfo();
     });
-    billListData = data?.soberOBillList;
-    totalAmount = data?.y934teOTotalAmount ?? 0.0;
-
+    if (billData != null) {
+      _billListData = billData.soberOBillList;
+      _totalAmount = billData.y934teOTotalAmount ?? 0.0;
+    }
     notifyListeners();
   }
 }

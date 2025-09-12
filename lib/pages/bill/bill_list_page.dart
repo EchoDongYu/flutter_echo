@@ -1,9 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_echo/common/app_theme.dart';
+import 'package:flutter_echo/models/swaggerApi.models.swagger.dart';
+import 'package:flutter_echo/pages/app_router.dart';
+import 'package:flutter_echo/pages/bill/list_view/bill_list_item.dart';
+import 'package:flutter_echo/pages/bill/list_view/bill_list_no_data.dart';
 import 'package:flutter_echo/pages/bill/list_view/bill_list_top_card.dart';
+import 'package:flutter_echo/providers/bill_provider.dart';
 import 'package:flutter_echo/ui/widget_helper.dart';
 import 'package:flutter_echo/ui/widgets/top_bar.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:go_router/go_router.dart';
+import 'package:provider/provider.dart';
 
 ///账单列表
 class BillListPage extends StatelessWidget {
@@ -11,6 +18,8 @@ class BillListPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final billProvider = context.watch<BillModel>();
+    final billList = billProvider.billListData ?? [];
     return Scaffold(
       backgroundColor: NowColors.c0xFFF3F3F5,
       body: Stack(
@@ -28,8 +37,11 @@ class BillListPage extends StatelessWidget {
                       children: [
                         BillListTopCard(
                           title: 'Cantidad reciblda (Q)',
-                          value: '10000000',
+                          value: '${billProvider.totalAmount}',
                         ),
+                        billList.isNotEmpty
+                            ? BillListView(billListData :billList)
+                            : BillListNoData(),
                       ],
                     ),
                   ),
@@ -39,6 +51,44 @@ class BillListPage extends StatelessWidget {
           ),
         ],
       ),
+    );
+  }
+}
+
+class BillListView extends StatelessWidget {
+  const BillListView({super.key, required this.billListData});
+
+  final List<BillListResp$SoberOBillList$Item> billListData;
+
+  @override
+  Widget build(BuildContext context) {
+    return ListView.separated(
+      itemCount: billListData.length,
+      separatorBuilder: (context, index) => SizedBox(height: 12.h),
+      itemBuilder: (context, index) {
+        return Consumer<BillModel>(
+          builder: (_,provider,_) {
+            final itemData = provider.billListData?.elementAtOrNull(index);
+            //订单展示状态(o_orderStatus)：,0打款中,1打款失败,2打款成功且未结清未逾期,3打款成功且未结清有逾期,4全结清
+            return BillListItem(
+              amount: itemData?.guilefulOOverdueFeePaidAmount ?? 0.0,
+              vencimientoDate: "28/06/2024",
+              dueDate: "05/01/2024",
+              status: index == 0
+                  ? PaymentStatus.paid
+                  : index == 1
+                  ? PaymentStatus.overdue
+                  : PaymentStatus.pending,
+              onDetails: () {
+                context.push(AppRouter.billDetail);
+              },
+              onPay: () {
+
+              },
+            );
+          }
+        );
+      },
     );
   }
 }
