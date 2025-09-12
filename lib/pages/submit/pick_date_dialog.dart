@@ -112,9 +112,11 @@ class _PickDateDialogState extends State<PickDateDialog> {
             ),
           ),
           CalendarDatePicker(
-            initialDate: DateTime.now(),
-            firstDate: DateTime.now().copyWith(year: 1900),
-            lastDate: DateTime.now().copyWith(year: 2100),
+            initialDate: DateTime.now().subtract(
+              const Duration(days: 365 * 20),
+            ),
+            firstDate: DateTime(1900, 1, 1),
+            lastDate: DateTime.now(),
             onDateChanged: (date) => setState(() => _pickedDate = date),
           ),
         ],
