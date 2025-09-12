@@ -157,14 +157,18 @@ class _ProfilePageState extends State<ProfilePage> {
                 ),
               ),
             ),
-            Text(
-              'Q 10.000,00',
-              style: TextStyle(
-                fontSize: 30.sp,
-                fontWeight: FontWeight.w700,
-                color: Colors.white,
-                height: 38 / 30,
-              ),
+            Consumer<MainModel>(
+              builder: (_, provider, _) {
+                return Text(
+                  provider.homeInfo?.y934teOTotalAmount?.showAmount ?? '0',
+                  style: TextStyle(
+                    fontSize: 30.sp,
+                    fontWeight: FontWeight.w700,
+                    color: Colors.white,
+                    height: 38 / 30,
+                  ),
+                );
+              },
             ),
             const Icon(
               Icons.arrow_right_rounded,
