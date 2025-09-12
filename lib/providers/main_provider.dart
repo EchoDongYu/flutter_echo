@@ -40,6 +40,8 @@ class MainModel extends BaseProvider {
       default:
         final apiResult = await launchRequest(() => Api.refreshSubmitResult());
         switch (apiResult?.bopomofoOCreditStatus) {
+          case 0:
+            navigate((context) => context.push(AppRouter.stepBasic));
           case 1:
             final uriRoute = Uri(
               path: AppRouter.stepProcess,
