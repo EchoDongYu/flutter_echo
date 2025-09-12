@@ -128,41 +128,47 @@ class _ProfilePageState extends State<ProfilePage> {
   }
 
   Widget _buildCard1(BuildContext context) {
-    return Container(
-      width: double.infinity,
-      padding: EdgeInsets.fromLTRB(16.w, 16.h, 6.w, 16.h),
-      decoration: const BoxDecoration(
-        gradient: LinearGradient(
-          begin: Alignment.centerLeft,
-          end: Alignment.centerRight,
-          colors: [NowColors.c0xFF3288F1, NowColors.c0xFF4FAAFF],
+    return InkWell(
+      onTap: (){
+        //跳转账单列表
+        context.push(AppRouter.billList);
+      },
+      child: Container(
+        width: double.infinity,
+        padding: EdgeInsets.fromLTRB(16.w, 16.h, 6.w, 16.h),
+        decoration: const BoxDecoration(
+          gradient: LinearGradient(
+            begin: Alignment.centerLeft,
+            end: Alignment.centerRight,
+            colors: [NowColors.c0xFF3288F1, NowColors.c0xFF4FAAFF],
+          ),
+          borderRadius: BorderRadius.all(Radius.circular(20)),
         ),
-        borderRadius: BorderRadius.all(Radius.circular(20)),
-      ),
-      child: Row(
-        children: [
-          Expanded(
-            child: Text(
-              'Cuentas',
-              style: TextStyle(
-                fontSize: 18.sp,
-                fontWeight: FontWeight.w500,
-                color: Colors.white,
-                height: 28 / 18,
+        child: Row(
+          children: [
+            Expanded(
+              child: Text(
+                'Cuentas',
+                style: TextStyle(
+                  fontSize: 18.sp,
+                  fontWeight: FontWeight.w500,
+                  color: Colors.white,
+                  height: 28 / 18,
+                ),
               ),
             ),
-          ),
-          Text(
-            'Q 10.000,00',
-            style: TextStyle(
-              fontSize: 30.sp,
-              fontWeight: FontWeight.w700,
-              color: Colors.white,
-              height: 38 / 30,
+            Text(
+              'Q 10.000,00',
+              style: TextStyle(
+                fontSize: 30.sp,
+                fontWeight: FontWeight.w700,
+                color: Colors.white,
+                height: 38 / 30,
+              ),
             ),
-          ),
-          const Icon(Icons.arrow_right_rounded, color: Colors.white, size: 36),
-        ],
+            const Icon(Icons.arrow_right_rounded, color: Colors.white, size: 36),
+          ],
+        ),
       ),
     );
   }

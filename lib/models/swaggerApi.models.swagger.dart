@@ -2991,7 +2991,7 @@ class VoSubmitReq {
   @JsonKey(name: 'raia')
   final String? raiaOUserGid;
   @JsonKey(name: 'r5a4x8')
-  final int? r5a4x8OLoanGid;
+  final String? r5a4x8OLoanGid;
   @JsonKey(name: 'krddvv')
   final String? krddvvOReference;
   @JsonKey(name: 'di6pi4')
@@ -3054,7 +3054,7 @@ class VoSubmitReq {
 extension $VoSubmitReqExtension on VoSubmitReq {
   VoSubmitReq copyWith({
     String? raiaOUserGid,
-    int? r5a4x8OLoanGid,
+    String? r5a4x8OLoanGid,
     String? krddvvOReference,
     int? di6pi4OTransferTime,
     double? o12sd0OAmount,
@@ -3070,7 +3070,7 @@ extension $VoSubmitReqExtension on VoSubmitReq {
 
   VoSubmitReq copyWithWrapped({
     Wrapped<String?>? raiaOUserGid,
-    Wrapped<int?>? r5a4x8OLoanGid,
+    Wrapped<String?>? r5a4x8OLoanGid,
     Wrapped<String?>? krddvvOReference,
     Wrapped<int?>? di6pi4OTransferTime,
     Wrapped<double?>? o12sd0OAmount,
@@ -3102,7 +3102,7 @@ class VaGetReq {
   @JsonKey(name: 'raia')
   final String? raiaOUserGid;
   @JsonKey(name: 'r5a4x8')
-  final int? r5a4x8OLoanGid;
+  final String? r5a4x8OLoanGid;
 
   factory VaGetReq.fromJson(Map<String, dynamic> json) =>
       _$VaGetReqFromJson(json);
@@ -3139,7 +3139,7 @@ class VaGetReq {
 }
 
 extension $VaGetReqExtension on VaGetReq {
-  VaGetReq copyWith({String? raiaOUserGid, int? r5a4x8OLoanGid}) {
+  VaGetReq copyWith({String? raiaOUserGid, String? r5a4x8OLoanGid}) {
     return VaGetReq(
       raiaOUserGid: raiaOUserGid ?? this.raiaOUserGid,
       r5a4x8OLoanGid: r5a4x8OLoanGid ?? this.r5a4x8OLoanGid,
@@ -3148,7 +3148,7 @@ extension $VaGetReqExtension on VaGetReq {
 
   VaGetReq copyWithWrapped({
     Wrapped<String?>? raiaOUserGid,
-    Wrapped<int?>? r5a4x8OLoanGid,
+    Wrapped<String?>? r5a4x8OLoanGid,
   }) {
     return VaGetReq(
       raiaOUserGid: (raiaOUserGid != null
@@ -3187,7 +3187,7 @@ class RepayApplyReq {
   });
 
   @JsonKey(name: 'r5a4x8')
-  final int? r5a4x8OLoanGid;
+  final String? r5a4x8OLoanGid;
   @JsonKey(name: 'raia')
   final String? raiaOUserGid;
   @JsonKey(name: 'o12sd0')
@@ -3377,7 +3377,7 @@ class RepayApplyReq {
 
 extension $RepayApplyReqExtension on RepayApplyReq {
   RepayApplyReq copyWith({
-    int? r5a4x8OLoanGid,
+    String? r5a4x8OLoanGid,
     String? raiaOUserGid,
     double? o12sd0OAmount,
     String? vnbh46OBankCardGid,
@@ -3429,7 +3429,7 @@ extension $RepayApplyReqExtension on RepayApplyReq {
   }
 
   RepayApplyReq copyWithWrapped({
-    Wrapped<int?>? r5a4x8OLoanGid,
+    Wrapped<String?>? r5a4x8OLoanGid,
     Wrapped<String?>? raiaOUserGid,
     Wrapped<double?>? o12sd0OAmount,
     Wrapped<String?>? vnbh46OBankCardGid,
@@ -3525,7 +3525,7 @@ class RepayRecordReq {
   });
 
   @JsonKey(name: 'r5a4x8')
-  final int? r5a4x8OLoanGid;
+  final String? r5a4x8OLoanGid;
   @JsonKey(name: 'raia')
   final String? raiaOUserGid;
   @JsonKey(name: 'mahogany')
@@ -3597,7 +3597,7 @@ class RepayRecordReq {
 
 extension $RepayRecordReqExtension on RepayRecordReq {
   RepayRecordReq copyWith({
-    int? r5a4x8OLoanGid,
+    String? r5a4x8OLoanGid,
     String? raiaOUserGid,
     int? mahoganyORepaymentType,
     String? t1h91pOBankName,
@@ -3616,7 +3616,7 @@ extension $RepayRecordReqExtension on RepayRecordReq {
   }
 
   RepayRecordReq copyWithWrapped({
-    Wrapped<int?>? r5a4x8OLoanGid,
+    Wrapped<String?>? r5a4x8OLoanGid,
     Wrapped<String?>? raiaOUserGid,
     Wrapped<int?>? mahoganyORepaymentType,
     Wrapped<String?>? t1h91pOBankName,
@@ -6908,7 +6908,7 @@ class BillStatusReq {
   const BillStatusReq({this.r5a4x8OLoanGid, this.a4wq4jORenewAmountRate});
 
   @JsonKey(name: 'r5a4x8')
-  final int? r5a4x8OLoanGid;
+  final String? r5a4x8OLoanGid;
   @JsonKey(name: 'a4wq4j')
   final String? a4wq4jORenewAmountRate;
 
@@ -6948,7 +6948,7 @@ class BillStatusReq {
 
 extension $BillStatusReqExtension on BillStatusReq {
   BillStatusReq copyWith({
-    int? r5a4x8OLoanGid,
+    String? r5a4x8OLoanGid,
     String? a4wq4jORenewAmountRate,
   }) {
     return BillStatusReq(
@@ -6959,7 +6959,7 @@ extension $BillStatusReqExtension on BillStatusReq {
   }
 
   BillStatusReq copyWithWrapped({
-    Wrapped<int?>? r5a4x8OLoanGid,
+    Wrapped<String?>? r5a4x8OLoanGid,
     Wrapped<String?>? a4wq4jORenewAmountRate,
   }) {
     return BillStatusReq(
@@ -7026,7 +7026,7 @@ class BillDetailReq {
   const BillDetailReq({this.r5a4x8OLoanGid, this.a4wq4jORenewAmountRate});
 
   @JsonKey(name: 'r5a4x8')
-  final int? r5a4x8OLoanGid;
+  final String? r5a4x8OLoanGid;
   @JsonKey(name: 'a4wq4j')
   final String? a4wq4jORenewAmountRate;
 
@@ -7066,7 +7066,7 @@ class BillDetailReq {
 
 extension $BillDetailReqExtension on BillDetailReq {
   BillDetailReq copyWith({
-    int? r5a4x8OLoanGid,
+    String? r5a4x8OLoanGid,
     String? a4wq4jORenewAmountRate,
   }) {
     return BillDetailReq(
@@ -7077,7 +7077,7 @@ extension $BillDetailReqExtension on BillDetailReq {
   }
 
   BillDetailReq copyWithWrapped({
-    Wrapped<int?>? r5a4x8OLoanGid,
+    Wrapped<String?>? r5a4x8OLoanGid,
     Wrapped<String?>? a4wq4jORenewAmountRate,
   }) {
     return BillDetailReq(
@@ -7103,7 +7103,7 @@ class BillRepayReq {
   @JsonKey(name: 'raia')
   final String? raiaOUserGid;
   @JsonKey(name: 'r5a4x8')
-  final int? r5a4x8OLoanGid;
+  final String? r5a4x8OLoanGid;
   @JsonKey(name: 'size')
   final int? size;
   @JsonKey(name: 'current')
@@ -7152,7 +7152,7 @@ class BillRepayReq {
 extension $BillRepayReqExtension on BillRepayReq {
   BillRepayReq copyWith({
     String? raiaOUserGid,
-    int? r5a4x8OLoanGid,
+    String? r5a4x8OLoanGid,
     int? size,
     int? current,
   }) {
@@ -7166,7 +7166,7 @@ extension $BillRepayReqExtension on BillRepayReq {
 
   BillRepayReq copyWithWrapped({
     Wrapped<String?>? raiaOUserGid,
-    Wrapped<int?>? r5a4x8OLoanGid,
+    Wrapped<String?>? r5a4x8OLoanGid,
     Wrapped<int?>? size,
     Wrapped<int?>? current,
   }) {
@@ -10580,7 +10580,7 @@ class RepayApplyResp {
   });
 
   @JsonKey(name: 'r5a4x8')
-  final int? r5a4x8OLoanGid;
+  final String? r5a4x8OLoanGid;
   @JsonKey(name: 'raia')
   final String? raiaOUserGid;
   @JsonKey(name: 'n410zd')
@@ -10759,7 +10759,7 @@ class RepayApplyResp {
 
 extension $RepayApplyRespExtension on RepayApplyResp {
   RepayApplyResp copyWith({
-    int? r5a4x8OLoanGid,
+    String? r5a4x8OLoanGid,
     String? raiaOUserGid,
     int? n410zdOLoanTime,
     int? r5k31qODueTime,
@@ -10806,7 +10806,7 @@ extension $RepayApplyRespExtension on RepayApplyResp {
   }
 
   RepayApplyResp copyWithWrapped({
-    Wrapped<int?>? r5a4x8OLoanGid,
+    Wrapped<String?>? r5a4x8OLoanGid,
     Wrapped<String?>? raiaOUserGid,
     Wrapped<int?>? n410zdOLoanTime,
     Wrapped<int?>? r5k31qODueTime,
@@ -12386,7 +12386,7 @@ class LoanOrderResp {
   @JsonKey(name: 'id')
   final int? id;
   @JsonKey(name: 'r5a4x8')
-  final int? r5a4x8OLoanGid;
+  final String? r5a4x8OLoanGid;
   @JsonKey(name: 'statics')
   final int? staticsOCreateTime;
   @JsonKey(name: 'l16h95')
@@ -12966,7 +12966,7 @@ class LoanOrderResp {
 extension $LoanOrderRespExtension on LoanOrderResp {
   LoanOrderResp copyWith({
     int? id,
-    int? r5a4x8OLoanGid,
+    String? r5a4x8OLoanGid,
     int? staticsOCreateTime,
     int? l16h95OUpdateTime,
     String? raiaOUserGid,
@@ -13123,7 +13123,7 @@ extension $LoanOrderRespExtension on LoanOrderResp {
 
   LoanOrderResp copyWithWrapped({
     Wrapped<int?>? id,
-    Wrapped<int?>? r5a4x8OLoanGid,
+    Wrapped<String?>? r5a4x8OLoanGid,
     Wrapped<int?>? staticsOCreateTime,
     Wrapped<int?>? l16h95OUpdateTime,
     Wrapped<String?>? raiaOUserGid,
@@ -20762,7 +20762,7 @@ class LoanPreInfoResp$GlacisORepaymentPlanList$Item {
   @JsonKey(name: 'imprint')
   final int? imprintOPlanGid;
   @JsonKey(name: 'r5a4x8')
-  final int? r5a4x8OLoanGid;
+  final String? r5a4x8OLoanGid;
   @JsonKey(name: 'raia')
   final String? raiaOUserGid;
   @JsonKey(name: 'ih2upq')
@@ -21007,7 +21007,7 @@ extension $LoanPreInfoResp$GlacisORepaymentPlanList$ItemExtension
     on LoanPreInfoResp$GlacisORepaymentPlanList$Item {
   LoanPreInfoResp$GlacisORepaymentPlanList$Item copyWith({
     int? imprintOPlanGid,
-    int? r5a4x8OLoanGid,
+    String? r5a4x8OLoanGid,
     String? raiaOUserGid,
     int? ih2upqOCtPeriod,
     int? spinachyOLoanPeriod,
@@ -21070,7 +21070,7 @@ extension $LoanPreInfoResp$GlacisORepaymentPlanList$ItemExtension
 
   LoanPreInfoResp$GlacisORepaymentPlanList$Item copyWithWrapped({
     Wrapped<int?>? imprintOPlanGid,
-    Wrapped<int?>? r5a4x8OLoanGid,
+    Wrapped<String?>? r5a4x8OLoanGid,
     Wrapped<String?>? raiaOUserGid,
     Wrapped<int?>? ih2upqOCtPeriod,
     Wrapped<int?>? spinachyOLoanPeriod,
@@ -23830,7 +23830,7 @@ class BillListResp$SoberOBillList$Item {
   });
 
   @JsonKey(name: 'r5a4x8')
-  final int? r5a4x8OLoanGid;
+  final String? r5a4x8OLoanGid;
   @JsonKey(name: 'r5k31q')
   final int? r5k31qODueTime;
   @JsonKey(name: 'wantonly')
@@ -24021,7 +24021,7 @@ class BillListResp$SoberOBillList$Item {
 extension $BillListResp$SoberOBillList$ItemExtension
     on BillListResp$SoberOBillList$Item {
   BillListResp$SoberOBillList$Item copyWith({
-    int? r5a4x8OLoanGid,
+    String? r5a4x8OLoanGid,
     int? r5k31qODueTime,
     double? wantonlyOLoanLeftAmount,
     double? retiaryOLoanAmount,
@@ -24071,7 +24071,7 @@ extension $BillListResp$SoberOBillList$ItemExtension
   }
 
   BillListResp$SoberOBillList$Item copyWithWrapped({
-    Wrapped<int?>? r5a4x8OLoanGid,
+    Wrapped<String?>? r5a4x8OLoanGid,
     Wrapped<int?>? r5k31qODueTime,
     Wrapped<double?>? wantonlyOLoanLeftAmount,
     Wrapped<double?>? retiaryOLoanAmount,
@@ -24482,7 +24482,7 @@ class BillDetailResp$GlacisORepaymentPlanList$Item {
   @JsonKey(name: 'imprint')
   final int? imprintOPlanGid;
   @JsonKey(name: 'r5a4x8')
-  final int? r5a4x8OLoanGid;
+  final String? r5a4x8OLoanGid;
   @JsonKey(name: 'raia')
   final String? raiaOUserGid;
   @JsonKey(name: 'ih2upq')
@@ -24988,7 +24988,7 @@ extension $BillDetailResp$GlacisORepaymentPlanList$ItemExtension
     on BillDetailResp$GlacisORepaymentPlanList$Item {
   BillDetailResp$GlacisORepaymentPlanList$Item copyWith({
     int? imprintOPlanGid,
-    int? r5a4x8OLoanGid,
+    String? r5a4x8OLoanGid,
     String? raiaOUserGid,
     int? ih2upqOCtPeriod,
     int? spinachyOLoanPeriod,
@@ -25123,7 +25123,7 @@ extension $BillDetailResp$GlacisORepaymentPlanList$ItemExtension
 
   BillDetailResp$GlacisORepaymentPlanList$Item copyWithWrapped({
     Wrapped<int?>? imprintOPlanGid,
-    Wrapped<int?>? r5a4x8OLoanGid,
+    Wrapped<String?>? r5a4x8OLoanGid,
     Wrapped<String?>? raiaOUserGid,
     Wrapped<int?>? ih2upqOCtPeriod,
     Wrapped<int?>? spinachyOLoanPeriod,
@@ -25466,7 +25466,7 @@ class BillRepayResp$My4dd2ORepaymentList$Item {
   });
 
   @JsonKey(name: 'r5a4x8')
-  final int? r5a4x8OLoanGid;
+  final String? r5a4x8OLoanGid;
   @JsonKey(name: 'raia')
   final String? raiaOUserGid;
   @JsonKey(name: 'gateman')
@@ -25574,7 +25574,7 @@ class BillRepayResp$My4dd2ORepaymentList$Item {
 extension $BillRepayResp$My4dd2ORepaymentList$ItemExtension
     on BillRepayResp$My4dd2ORepaymentList$Item {
   BillRepayResp$My4dd2ORepaymentList$Item copyWith({
-    int? r5a4x8OLoanGid,
+    String? r5a4x8OLoanGid,
     String? raiaOUserGid,
     double? gatemanORepaymentAmount,
     int? d95091ORepaymentStatus,
@@ -25602,7 +25602,7 @@ extension $BillRepayResp$My4dd2ORepaymentList$ItemExtension
   }
 
   BillRepayResp$My4dd2ORepaymentList$Item copyWithWrapped({
-    Wrapped<int?>? r5a4x8OLoanGid,
+    Wrapped<String?>? r5a4x8OLoanGid,
     Wrapped<String?>? raiaOUserGid,
     Wrapped<double?>? gatemanORepaymentAmount,
     Wrapped<int?>? d95091ORepaymentStatus,

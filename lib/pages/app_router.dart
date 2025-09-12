@@ -3,6 +3,8 @@ import 'package:flutter_echo/pages/after/repay_confirm_page.dart';
 import 'package:flutter_echo/pages/after/repay_result_page.dart';
 import 'package:flutter_echo/pages/before/apply_confirm_page.dart';
 import 'package:flutter_echo/pages/before/apply_result_page.dart';
+import 'package:flutter_echo/pages/bill/bill_detail_page.dart';
+import 'package:flutter_echo/pages/bill/bill_list_page.dart';
 import 'package:flutter_echo/pages/login/login_code_page.dart';
 import 'package:flutter_echo/pages/login/login_password_page.dart';
 import 'package:flutter_echo/pages/login/login_phone_page.dart';
@@ -57,6 +59,8 @@ class AppRouter {
   static const String applyProcess = '/apply_process';
   static const String repayConfirm = '/repay_confirm';
   static const String repayResult = '/repay_result';
+  static const String billList = '/bill_list';
+  static const String billDetail = '/bill_detail';
   static const String safetyVerify = '/safety_verify';
   static const String resetPassword = '/reset_password';
   static const String resetLoginPwd = '/reset_login_pwd';
@@ -216,6 +220,18 @@ class AppRouter {
       GoRoute(
         path: repayResult,
         builder: (context, state) => const RepayResultPage(),
+      ),
+
+      /// 账单列表页面
+      GoRoute(
+        path: billList,
+        builder: (context, state) => const BillListPage(),
+      ),
+
+      /// 账单详情页面
+      GoRoute(
+        path: billDetail,
+        builder: (context, state) => const BillDetailPage(),
       ),
 
       /// 安全验证页面
