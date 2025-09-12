@@ -130,10 +130,13 @@ class _HomeLoanPageState extends State<HomeLoanPage> {
         ),
         child: InkWell(
           onTap: () {
+            // 1 账单详情
             switch (bill.suffOLoanStatus) {
               case -1:
               case 0:
                 context.push(AppRouter.applyProcess);
+              case 1:
+                context.push(AppRouter.billDetail);
               case 2:
                 context.push(AppRouter.applyFailed);
             }
