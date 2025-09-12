@@ -3,6 +3,7 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:flutter_echo/common/app_theme.dart';
 import 'package:flutter_echo/ui/widgets/common_button.dart';
+import 'package:flutter_echo/utils/common_utils.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class WidgetHelper {
@@ -223,6 +224,98 @@ class WidgetHelper {
               ],
             )
           : indicator,
+    );
+  }
+
+  static Widget buildPlanItem(String index, int? first, double? second) {
+    return Container(
+      width: double.infinity,
+      decoration: const BoxDecoration(
+        color: NowColors.c0xFFF3F3F5,
+        borderRadius: BorderRadius.all(Radius.circular(12)),
+      ),
+      child: Row(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Container(
+            padding: const EdgeInsets.symmetric(horizontal: 8),
+            decoration: BoxDecoration(
+              color: NowColors.c0xFFFF9817,
+              borderRadius: BorderRadius.only(
+                topLeft: Radius.circular(12),
+                bottomRight: Radius.circular(12),
+              ),
+            ),
+            child: Text(
+              index,
+              style: TextStyle(
+                fontSize: 12.sp,
+                fontWeight: FontWeight.w500,
+                color: Colors.white,
+                height: 16 / 12,
+              ),
+            ),
+          ),
+          Expanded(
+            child: Padding(
+              padding: EdgeInsets.fromLTRB(4.w, 12.h, 12.w, 12.h),
+              child: Column(
+                spacing: 6.h,
+                children: [
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    mainAxisSize: MainAxisSize.max,
+                    children: [
+                      Text(
+                        'Vencimiento',
+                        style: TextStyle(
+                          fontSize: 12.sp,
+                          fontWeight: FontWeight.w400,
+                          color: NowColors.c0xFF494C4F,
+                          height: 18 / 12,
+                        ),
+                      ),
+                      Text(
+                        first?.showDate ?? '',
+                        style: TextStyle(
+                          fontSize: 14.sp,
+                          fontWeight: FontWeight.w500,
+                          color: NowColors.c0xFF1C1F23,
+                          height: 18 / 14,
+                        ),
+                      ),
+                    ],
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    mainAxisSize: MainAxisSize.max,
+                    children: [
+                      Text(
+                        'Monto a pagar',
+                        style: TextStyle(
+                          fontSize: 12.sp,
+                          fontWeight: FontWeight.w400,
+                          color: NowColors.c0xFF494C4F,
+                          height: 18 / 12,
+                        ),
+                      ),
+                      Text(
+                        second?.showAmount ?? '',
+                        style: TextStyle(
+                          fontSize: 14.sp,
+                          fontWeight: FontWeight.w500,
+                          color: NowColors.c0xFFFF9817,
+                          height: 18 / 14,
+                        ),
+                      ),
+                    ],
+                  ),
+                ],
+              ),
+            ),
+          ),
+        ],
+      ),
     );
   }
 }
