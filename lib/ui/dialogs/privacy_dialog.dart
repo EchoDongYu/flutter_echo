@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_echo/common/app_theme.dart';
-import 'package:flutter_echo/models/common_model.dart';
+import 'package:flutter_echo/common/constants.dart';
 import 'package:flutter_echo/ui/widget_helper.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
+import 'package:webview_flutter/webview_flutter.dart';
 
 /// 隐私政策弹窗
-class PrivacyDialog extends StatelessWidget {
+class PrivacyDialog extends StatefulWidget {
   final VoidCallback onAgree;
   final VoidCallback onDisagree;
 
@@ -33,34 +34,37 @@ class PrivacyDialog extends StatelessWidget {
     );
   }
 
-  static const permissionItems = [
-    Pair(
-      'SMS',
-      'Estimado estos son los nombres de refer encias encias disponibles para poder dlarle un ej emplo y facilitar cuando completas las infommaciones del prestamo que pago.Estimado estos son los nombres de refer encias disponibles para poder dlarle un ej emplo y facilitar cuando completas las infommaciones del prestamo que pago.',
-    ),
-    Pair(
-      'Solo contacto de emergencia',
-      'Estimado estos son los nombres de refer encias encias disponibles para poder dlarle un ej emplo y facilitar cuando completas las ',
-    ),
-    Pair(
-      'Ubicaciones',
-      'Estimado estos son los nombres de refer encias encias disponibles para poder dla',
-    ),
-    Pair(
-      'Camara',
-      'Estimado estos son los nombres de refer encias encias disponibles para poder dla',
-    ),
-    Pair(
-      'Datos del dispositivo',
-      'Estimado estos son los nombres de refer encias encias disponibles para poder dlaEstimado estos son los nombres de refer encias encias disponibles para poder dlaEstimado estos son los nombres de refer encias encias disponibles para poder dla',
-    ),
-  ];
+  @override
+  State<PrivacyDialog> createState() => _PrivacyDialogState();
+}
+
+class _PrivacyDialogState extends State<PrivacyDialog> {
+  late final WebViewController _controller;
+  bool _isLoading = true;
+
+  @override
+  void initState() {
+    super.initState();
+    _controller = WebViewController()
+      ..setJavaScriptMode(JavaScriptMode.unrestricted)
+      ..setNavigationDelegate(
+        NavigationDelegate(
+          onPageStarted: (_) => setState(() => _isLoading = true),
+          onPageFinished: (_) => setState(() => _isLoading = false),
+          onNavigationRequest: (request) {
+            // 拦截逻辑（可选）
+            return NavigationDecision.navigate;
+          },
+        ),
+      )
+      ..loadRequest(Uri.parse(AppConst.h5Privacy));
+  }
 
   @override
   Widget build(BuildContext context) {
     final height = MediaQuery.of(context).size.height * 0.8;
     return BottomSheet(
-      onClosing: onDisagree,
+      onClosing: widget.onDisagree,
       enableDrag: false,
       backgroundColor: Colors.white,
       constraints: BoxConstraints(maxHeight: height),
@@ -75,87 +79,34 @@ class PrivacyDialog extends StatelessWidget {
         children: [
           Column(
             children: [
-              SizedBox(height: 16.h),
-              Text(
-                'Politicas de privacidad',
-                style: TextStyle(
-                  fontSize: 18.sp,
-                  fontWeight: FontWeight.w500,
-                  color: NowColors.c0xFF1C1F23,
-                  height: 24 / 18,
+              Padding(
+                padding: EdgeInsets.symmetric(vertical: 16.h),
+                child: Text(
+                  'Politicas de privacidad',
+                  style: TextStyle(
+                    fontSize: 18.sp,
+                    fontWeight: FontWeight.w500,
+                    color: NowColors.c0xFF1C1F23,
+                    height: 24 / 18,
+                  ),
                 ),
               ),
-              SizedBox(height: 16.h),
-              Expanded(
-                child: ListView.separated(
-                  padding: EdgeInsets.fromLTRB(14.w, 22.h, 14.w, 90.h),
-                  itemCount: permissionItems.length,
-                  separatorBuilder: (context, index) => SizedBox(height: 22.h),
-                  itemBuilder: (context, index) {
-                    return _buildPermissionItem(permissionItems[index]);
-                  },
+              Flexible(child: WebViewWidget(controller: _controller)),
+              if (_isLoading)
+                const LinearProgressIndicator(
+                  color: NowColors.c0xFF3288F1,
+                  backgroundColor: NowColors.c0xFFEFF7FF,
                 ),
-              ),
             ],
           ),
           WidgetHelper.buildBottomBlurButton(
             confirmText: 'Aceptar',
             cancelText: 'Discrepar',
-            onConfirm: onAgree,
-            onCancel: onDisagree,
+            onConfirm: widget.onAgree,
+            onCancel: widget.onDisagree,
           ),
         ],
       ),
-    );
-  }
-
-  /// 构建权限项目
-  Widget _buildPermissionItem(Pair item) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.stretch,
-      children: [
-        Stack(
-          children: [
-            Container(
-              width: 22.r,
-              height: 22.r,
-              decoration: BoxDecoration(
-                shape: BoxShape.circle,
-                gradient: const LinearGradient(
-                  begin: Alignment.topCenter,
-                  end: Alignment.bottomCenter,
-                  colors: [NowColors.c0xFF3389F2, NowColors.c0x474CA6FD],
-                ),
-              ),
-            ),
-            Padding(
-              padding: EdgeInsets.only(left: 10.w, top: 2.h),
-              child: Text(
-                item.first,
-                style: TextStyle(
-                  fontSize: 20.sp,
-                  fontWeight: FontWeight.w500,
-                  color: NowColors.c0xFF1C1F23,
-                  height: 30 / 20,
-                ),
-              ),
-            ),
-          ],
-        ),
-        SizedBox(height: 8.h),
-        Padding(
-          padding: EdgeInsets.symmetric(horizontal: 10.w),
-          child: Text(
-            item.second,
-            style: TextStyle(
-              fontSize: 13.sp,
-              fontWeight: FontWeight.w400,
-              color: NowColors.c0xFF494C4F,
-              height: 20 / 13,
-            ),
-          ),
-        ),
-      ],
     );
   }
 }
