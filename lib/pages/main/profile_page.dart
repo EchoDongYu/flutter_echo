@@ -182,22 +182,32 @@ class _ProfilePageState extends State<ProfilePage> {
   }
 
   Widget _buildCard2(BuildContext context) {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      mainAxisSize: MainAxisSize.max,
-      spacing: 12.w,
-      children: [
-        _buildCard2Item(
-          icon: Drawable.iconMineLeft,
-          text: 'Sobre nosotros',
-          onTap: () => context.push(AppRouter.aboutUs),
-        ),
-        _buildCard2Item(
-          icon: Drawable.iconMineRight,
-          text: 'Conta Bancária',
-          onTap: () => context.push(AppRouter.userBank),
-        ),
-      ],
+    return Consumer<MainModel>(
+      builder: (_, provider, child) {
+        if (provider.status == 2) {
+          return Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            mainAxisSize: MainAxisSize.max,
+            spacing: 12.w,
+            children: [
+              Expanded(child: child!),
+              Expanded(
+                child: _buildCard2Item(
+                  icon: Drawable.iconMineRight,
+                  text: 'Conta Bancária',
+                  onTap: () => context.push(AppRouter.userBank),
+                ),
+              ),
+            ],
+          );
+        }
+        return child!;
+      },
+      child: _buildCard2Item(
+        icon: Drawable.iconMineLeft,
+        text: 'Sobre nosotros',
+        onTap: () => context.push(AppRouter.aboutUs),
+      ),
     );
   }
 
@@ -206,33 +216,31 @@ class _ProfilePageState extends State<ProfilePage> {
     required String text,
     VoidCallback? onTap,
   }) {
-    return Expanded(
-      child: InkWell(
-        onTap: onTap,
-        borderRadius: const BorderRadius.all(Radius.circular(20)),
-        child: Container(
-          width: double.infinity,
-          padding: EdgeInsets.all(16),
-          decoration: const BoxDecoration(
-            color: Colors.white,
-            borderRadius: BorderRadius.all(Radius.circular(20)),
-            boxShadow: NowStyles.cardShadows,
-          ),
-          child: Column(
-            spacing: 8.h,
-            children: [
-              Image.asset(icon, width: 36.r, height: 36.r),
-              Text(
-                text,
-                style: TextStyle(
-                  fontSize: 14.sp,
-                  fontWeight: FontWeight.w400,
-                  color: NowColors.c0xFF1C1F23,
-                  height: 22 / 14,
-                ),
+    return InkWell(
+      onTap: onTap,
+      borderRadius: const BorderRadius.all(Radius.circular(20)),
+      child: Container(
+        width: double.infinity,
+        padding: EdgeInsets.all(16),
+        decoration: const BoxDecoration(
+          color: Colors.white,
+          borderRadius: BorderRadius.all(Radius.circular(20)),
+          boxShadow: NowStyles.cardShadows,
+        ),
+        child: Column(
+          spacing: 8.h,
+          children: [
+            Image.asset(icon, width: 36.r, height: 36.r),
+            Text(
+              text,
+              style: TextStyle(
+                fontSize: 14.sp,
+                fontWeight: FontWeight.w400,
+                color: NowColors.c0xFF1C1F23,
+                height: 22 / 14,
               ),
-            ],
-          ),
+            ),
+          ],
         ),
       ),
     );
