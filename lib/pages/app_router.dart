@@ -228,7 +228,7 @@ class AppRouter {
       GoRoute(
         path: billList,
         builder: (context, state) => ChangeNotifierProvider(
-          create: (_) => BillModel(),
+          create: (_) => BillModel()..fetchBillListData(),
           builder: (context, state) {
             return PageConsumer<BillModel>(child: const BillListPage());
           },

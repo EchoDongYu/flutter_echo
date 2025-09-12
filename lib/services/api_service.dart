@@ -382,4 +382,13 @@ class Api {
       convert: (json) => MainInfoResp.fromJson(json),
     );
   }
+
+  /// 获取账单列表
+  static Future<BillListResp> getBillListInfo() {
+    return _apiService.post(
+      ApiPath.queryBillList,
+      body: BillListReq().toJson(),
+      convert: (json) => BillListResp.fromJson(json),
+    );
+  }
 }
