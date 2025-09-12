@@ -29,8 +29,9 @@ class BillListPage extends StatelessWidget {
             child: Column(
               children: [
                 EchoTopBar(title: 'Cuentas'),
-                Expanded(
-                  child: SingleChildScrollView(
+                RefreshIndicator(
+                  onRefresh: ()=> context.read<BillModel>().fetchBillListData(),
+                  child: Padding(
                     padding: EdgeInsets.fromLTRB(12.w, 12.h, 12.w, 12.h),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -64,7 +65,6 @@ class BillListView extends StatelessWidget {
   Widget build(BuildContext context) {
     return ListView.separated(
       shrinkWrap: true,
-      physics: const NeverScrollableScrollPhysics(),
       itemCount: billListData.length,
       separatorBuilder: (context, index) => SizedBox(height: 12.h),
       itemBuilder: (context, index) {
