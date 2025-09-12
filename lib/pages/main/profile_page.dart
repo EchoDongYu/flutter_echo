@@ -100,7 +100,7 @@ class _ProfilePageState extends State<ProfilePage> {
                         ),
                       ),
                       Text(
-                        LocalStorage().account ?? '',
+                        maskPhoneNumber(LocalStorage().account ?? ''),
                         style: TextStyle(
                           fontSize: 14.sp,
                           fontWeight: FontWeight.w400,

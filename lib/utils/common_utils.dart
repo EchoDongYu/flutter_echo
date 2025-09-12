@@ -26,6 +26,15 @@ void showNormalSnack(String message) {
   );
 }
 
+/// 手机号脱敏展示，前2 后2
+String maskPhoneNumber(String phone) {
+  if (phone.length <= 4) return phone;
+  final start = phone.substring(0, 2);
+  final end = phone.substring(phone.length - 2);
+  final middle = '*' * (phone.length - 4);
+  return '$start$middle$end';
+}
+
 class FlutterPlatform {
   static const _method = MethodChannel('${AppConst.applicationId}/channel');
 
