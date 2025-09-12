@@ -31,7 +31,7 @@ class BillListPage extends StatelessWidget {
                 EchoTopBar(title: 'Cuentas'),
                 Expanded(
                   child: SingleChildScrollView(
-                    padding: EdgeInsets.fromLTRB(28.w, 12.h, 28.w, 28.h),
+                    padding: EdgeInsets.fromLTRB(12.w, 12.h, 12.w, 12.h),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.stretch,
                       children: [
@@ -63,30 +63,24 @@ class BillListView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListView.separated(
+      shrinkWrap: true,
+      physics: const NeverScrollableScrollPhysics(),
       itemCount: billListData.length,
       separatorBuilder: (context, index) => SizedBox(height: 12.h),
       itemBuilder: (context, index) {
-        return Consumer<BillModel>(
-          builder: (_,provider,_) {
-            final itemData = provider.billListData?.elementAtOrNull(index);
-            //订单展示状态(o_orderStatus)：,0打款中,1打款失败,2打款成功且未结清未逾期,3打款成功且未结清有逾期,4全结清
-            return BillListItem(
-              amount: itemData?.guilefulOOverdueFeePaidAmount ?? 0.0,
-              vencimientoDate: "28/06/2024",
-              dueDate: "05/01/2024",
-              status: index == 0
-                  ? PaymentStatus.paid
-                  : index == 1
-                  ? PaymentStatus.overdue
-                  : PaymentStatus.pending,
-              onDetails: () {
-                context.push(AppRouter.billDetail);
-              },
-              onPay: () {
+        final itemData = billListData.elementAtOrNull(index);
+        //订单展示状态(o_orderStatus)：,0打款中,1打款失败,2打款成功且未结清未逾期,3打款成功且未结清有逾期,4全结清
+        return BillListItem(
+          amount: 5000,
+          vencimientoDate: "28/06/2024",
+          dueDate: "05/01/2024",
+          status:PaymentStatus.pending,
+          onDetails: () {
+            context.push(AppRouter.billDetail);
+          },
+          onPay: () {
 
-              },
-            );
-          }
+          },
         );
       },
     );

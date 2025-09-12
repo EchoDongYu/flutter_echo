@@ -1,5 +1,4 @@
 
-
 import 'package:flutter/material.dart';
 import 'package:flutter_echo/common/app_theme.dart';
 
@@ -46,103 +45,95 @@ class BillListItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Card(
-      margin: const EdgeInsets.symmetric(vertical: 8, horizontal: 12),
-      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
-      child: Padding(
-        padding: const EdgeInsets.all(16),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            // 顶部日期 + 状态
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Text("Vencimiento: $vencimientoDate"),
-                Container(
-                  padding:
-                  const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
-                  decoration: BoxDecoration(
-                    color: _statusStyle["color"].withOpacity(0.1),
-                    borderRadius: BorderRadius.circular(8),
-                  ),
-                  child: Text(
-                    _statusStyle["label"],
-                    style: TextStyle(
-                      color: _statusStyle["color"],
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                )
-              ],
-            ),
-            const SizedBox(height: 8),
+    return Container(
+      margin: const EdgeInsets.symmetric(vertical: 12),
+      padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 12),
+      decoration: BoxDecoration(
+        color: NowColors.c0xFFFFFFFF,
+          borderRadius: BorderRadius.circular(12),
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          // 顶部日期 + 状态
+          Text("Vencimiento: $vencimientoDate"),
 
-            // 金额
-            Text(
-              "Q ${amount.toStringAsFixed(2)}",
-              style: const TextStyle(
-                  fontSize: 24, fontWeight: FontWeight.bold),
-            ),
+          const SizedBox(height: 12),
 
-            const SizedBox(height: 12),
-
-            // 明细区域
-            Container(
-              padding: const EdgeInsets.all(12),
-              decoration: BoxDecoration(
-                color: Colors.grey.shade100,
-                borderRadius: BorderRadius.circular(8),
+          // 金额
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Text(
+                "Q ${amount.toStringAsFixed(2)}",
+                style: const TextStyle(
+                    fontSize: 24, fontWeight: FontWeight.bold),
               ),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      const Text("Vencimiento"),
-                      const SizedBox(height: 4),
-                      const Text("Monto a pagar"),
-                    ],
-                  ),
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.end,
-                    children: [
-                      Text(dueDate),
-                      Text(
-                        "Q ${amount.toStringAsFixed(2)}",
-                        style: TextStyle(
-                          color: _statusStyle["color"],
-                          fontWeight: FontWeight.bold,
-                        ),
-                      )
-                    ],
-                  )
-                ],
-              ),
-            ),
-
-            const SizedBox(height: 12),
-
-            // 底部按钮
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                OutlinedButton(
-                  onPressed: onDetails,
-                  child: const Text("查看详情"),
+              Container(
+                padding:
+                const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+                decoration: BoxDecoration(
+                  color: _statusStyle["color"].withOpacity(0.1),
+                  borderRadius: BorderRadius.circular(8),
                 ),
-                ElevatedButton(
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: _statusStyle["color"],
+                child: Text(
+                  _statusStyle["label"],
+                  style: TextStyle(
+                    color: _statusStyle["color"],
+                    fontWeight: FontWeight.bold,
                   ),
-                  onPressed: onPay,
-                  child: const Text("Pagar"),
+                ),
+              )
+            ],
+          ),
+
+          const SizedBox(height: 24),
+
+          // 明细区域
+          Container(
+            padding: const EdgeInsets.all(12),
+            decoration: BoxDecoration(
+              color: NowColors.c0xFFF3F3F5,
+              borderRadius: BorderRadius.circular(12),
+            ),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    const Text("Vencimiento"),
+                    const SizedBox(height: 4),
+                    const Text("Monto a pagar"),
+                  ],
+                ),
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.end,
+                  children: [
+                    Text(dueDate),
+                    Text(
+                      "Q ${amount.toStringAsFixed(2)}",
+                      style: TextStyle(
+                        color: _statusStyle["color"],
+                        fontWeight: FontWeight.bold,
+                      ),
+                    )
+                  ],
                 )
               ],
-            )
-          ],
-        ),
+            ),
+          ),
+
+          const SizedBox(height: 24),
+
+          // 底部按钮
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+
+            ],
+          )
+        ],
       ),
     );
   }
