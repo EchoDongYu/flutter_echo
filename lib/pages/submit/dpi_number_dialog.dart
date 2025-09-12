@@ -14,7 +14,7 @@ class DpiNumberDialog extends StatelessWidget {
   static Future<bool?> show(BuildContext context) {
     return showDialog<bool>(
       context: context,
-      builder: (context) => DpiNumberDialog(onCancel: () => context.pop(false)),
+      builder: (_) => DpiNumberDialog(onCancel: () => context.pop(false)),
     );
   }
 

@@ -23,7 +23,7 @@ class PrivacyDialog extends StatelessWidget {
       enableDrag: false,
       isDismissible: false,
       isScrollControlled: true,
-      builder: (context) => PopScope(
+      builder: (_) => PopScope(
         canPop: false,
         child: PrivacyDialog(
           onAgree: () => context.pop(true),

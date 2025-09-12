@@ -22,7 +22,7 @@ class TrackUploadDialog extends StatefulWidget {
     return showDialog<bool>(
       context: context,
       barrierDismissible: false,
-      builder: (context) => PopScope(
+      builder: (_) => PopScope(
         canPop: false,
         child: ChangeNotifierProvider(
           create: (_) => TrackModel(),
@@ -171,7 +171,7 @@ class TrackIntroDialog extends StatelessWidget {
       enableDrag: false,
       isDismissible: false,
       isScrollControlled: true,
-      builder: (context) => PopScope(
+      builder: (_) => PopScope(
         canPop: false,
         child: TrackIntroDialog(
           onAgree: () => context.pop(true),

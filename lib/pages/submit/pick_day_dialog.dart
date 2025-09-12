@@ -24,7 +24,7 @@ class PickDayDialog extends StatefulWidget {
       enableDrag: false,
       isDismissible: false,
       isScrollControlled: true,
-      builder: (context) => PickDayDialog(
+      builder: (_) => PickDayDialog(
         onConfirm: (value) => context.pop(value),
         onClosing: () => context.pop(),
         title: title,

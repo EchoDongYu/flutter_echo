@@ -37,7 +37,7 @@ class PickItemDialog<T> extends StatefulWidget {
       enableDrag: false,
       isDismissible: false,
       isScrollControlled: true,
-      builder: (context) => PickItemDialog<T>(
+      builder: (_) => PickItemDialog<T>(
         onConfirm: (item) => context.pop(item),
         onClosing: () => context.pop(),
         items: items ?? List.empty(),

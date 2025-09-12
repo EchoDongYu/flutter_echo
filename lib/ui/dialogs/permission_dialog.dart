@@ -23,7 +23,7 @@ class PermissionDialog extends StatelessWidget {
       enableDrag: false,
       isDismissible: false,
       isScrollControlled: true,
-      builder: (context) => PopScope(
+      builder: (_) => PopScope(
         canPop: false,
         child: PermissionDialog(
           onConfirm: () => context.pop(true),

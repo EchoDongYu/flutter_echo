@@ -26,7 +26,7 @@ class DisclosureDialog extends StatelessWidget {
       enableDrag: false,
       isDismissible: false,
       isScrollControlled: true,
-      builder: (context) => PopScope(
+      builder: (_) => PopScope(
         canPop: false,
         child: DisclosureDialog(
           onAgree: () async {

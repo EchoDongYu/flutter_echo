@@ -36,7 +36,7 @@ class PickBankDialog extends StatefulWidget {
       enableDrag: false,
       isDismissible: false,
       isScrollControlled: true,
-      builder: (context) => PickBankDialog(
+      builder: (_) => PickBankDialog(
         onConfirm: (item) => context.pop(item),
         onClosing: () => context.pop(),
         items: items ?? List.empty(),

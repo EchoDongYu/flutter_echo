@@ -10,8 +10,7 @@ class DialogHelper {
     return showDialog<int>(
       context: context,
       barrierDismissible: false,
-      builder: (context) =>
-          CodeModeDialog(onMethod: (value) => context.pop(value)),
+      builder: (_) => CodeModeDialog(onMethod: (value) => context.pop(value)),
     );
   }
 
@@ -19,7 +18,7 @@ class DialogHelper {
   static Future<int?> showPraiseDialog({required BuildContext context}) {
     return showDialog<int>(
       context: context,
-      builder: (context) => PraiseDialog(
+      builder: (_) => PraiseDialog(
         onConfirm: () => context.pop(1),
         onReport: () => context.pop(2),
         onCancel: () => context.pop(),
@@ -31,7 +30,7 @@ class DialogHelper {
   static Future<bool?> showRemovedDialog({required BuildContext context}) {
     return showDialog<bool>(
       context: context,
-      builder: (context) => RemovedDialog(onConfirm: () => context.pop(true)),
+      builder: (_) => RemovedDialog(onConfirm: () => context.pop(true)),
     );
   }
 }

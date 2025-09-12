@@ -24,7 +24,7 @@ class PickDateDialog extends StatefulWidget {
       enableDrag: false,
       isDismissible: false,
       isScrollControlled: true,
-      builder: (context) => PickDateDialog(
+      builder: (_) => PickDateDialog(
         onConfirm: (value) => context.pop(value),
         onClosing: () => context.pop(),
         title: title,

@@ -129,7 +129,7 @@ class _ProfilePageState extends State<ProfilePage> {
 
   Widget _buildCard1(BuildContext context) {
     return InkWell(
-      onTap: (){
+      onTap: () {
         //跳转账单列表
         context.push(AppRouter.billList);
       },
@@ -166,7 +166,11 @@ class _ProfilePageState extends State<ProfilePage> {
                 height: 38 / 30,
               ),
             ),
-            const Icon(Icons.arrow_right_rounded, color: Colors.white, size: 36),
+            const Icon(
+              Icons.arrow_right_rounded,
+              color: Colors.white,
+              size: 36,
+            ),
           ],
         ),
       ),
@@ -369,17 +373,17 @@ class _ProfilePageState extends State<ProfilePage> {
   void _showLogoutDialog(BuildContext context) {
     showDialog<bool>(
       context: context,
-      builder: (context) => PromptDialog(
+      builder: (_) => PromptDialog(
         title: "Cerrar sesión",
         content: "¿Estás seguro de cerrar sesión?",
-        confirmText: "Confirmar",
-        cancelText: "Cancelar",
-        onConfirm: () {
+        confirmText: "Cancelar",
+        cancelText: "Confirmar",
+        onCancel: () {
           context.pop();
           LocalStorage().logout();
           context.go(AppRouter.loginPhone);
         },
-        onCancel: () => context.pop(),
+        onConfirm: () => context.pop(),
       ),
     );
   }
@@ -387,7 +391,7 @@ class _ProfilePageState extends State<ProfilePage> {
   void _showRemovalDailog(BuildContext context) {
     showDialog<bool>(
       context: context,
-      builder: (context) => RemovalDailog(
+      builder: (_) => RemovalDailog(
         onConfirm: () async {
           context.pop();
           final judgeOk = await mainModel.judgeAccountCancel();
