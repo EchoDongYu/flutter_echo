@@ -273,6 +273,7 @@ class _DeviceVerifyDialogState extends State<DeviceVerifyDialog>
             textInputAction: TextInputAction.done,
             maxLength: AppConst.codeLen,
             maxLines: 1,
+            autofocus: false,
             showCursor: false,
             enableInteractiveSelection: false,
             style: const TextStyle(color: Colors.transparent),

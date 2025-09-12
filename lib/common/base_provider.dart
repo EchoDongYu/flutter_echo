@@ -37,7 +37,7 @@ abstract class BaseProvider extends ChangeNotifier {
             _apiError = error;
             notifyListeners();
           } else if (toastError) {
-            toast(msg: error.msg);
+            error.toastErrorMsg();
           }
         } else if (error is! DioException) {
           toast(msg: error.toString());

@@ -92,7 +92,10 @@ class _CaptchaDialogState extends State<CaptchaDialog>
             WidgetHelper.buildBottomButton(
               text: 'Código de verificación',
               enable: _isCodeValid,
-              onPressed: () => widget.onConfirm(_codeCtrl.text),
+              onPressed: () {
+                FocusScope.of(context).unfocus();
+                widget.onConfirm(_codeCtrl.text);
+              },
             ),
           ],
         ),

@@ -6,7 +6,6 @@ import 'package:flutter_echo/pages/login/captcha_dialog.dart';
 import 'package:flutter_echo/pages/login/device_verify_dialog.dart';
 import 'package:flutter_echo/services/storage_service.dart';
 import 'package:flutter_echo/ui/dialogs/loading_dialog.dart';
-import 'package:flutter_echo/utils/common_utils.dart';
 import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
 
@@ -29,7 +28,7 @@ class _PageConsumerState<T extends BaseProvider> extends State<PageConsumer> {
   @override
   Widget build(BuildContext context) {
     return Consumer<T>(
-      builder: (context, provider, child) {
+      builder: (_, provider, child) {
         WidgetsBinding.instance.addPostFrameCallback((_) {
           final loading = provider.loading;
           if (loading != null) {
@@ -50,8 +49,8 @@ class _PageConsumerState<T extends BaseProvider> extends State<PageConsumer> {
           final apiError = provider.apiError;
           if (apiError != null) {
             provider.consumeApiError();
+            apiError.toastErrorMsg();
             if (apiError.needLogin) {
-              toast(msg: apiError.msg);
               LocalStorage().logout();
               GoRouter.of(context).go(AppRouter.loginPhone);
             } else if (apiError.needCaptcha) {
