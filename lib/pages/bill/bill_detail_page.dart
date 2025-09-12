@@ -18,13 +18,15 @@ class BillDetailPage extends StatelessWidget {
           SafeArea(
             child: Column(
               children: [
-                EchoTopBar(title: 'Cuentas'),
+                EchoTopBar(title: 'Detalles del préstamo'),
                 Expanded(
                   child: SingleChildScrollView(
                     padding: EdgeInsets.fromLTRB(28.w, 64.h, 28.w, 28.h),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.stretch,
-                      children: [],
+                      children: [
+
+                      ],
                     ),
                   ),
                 ),
