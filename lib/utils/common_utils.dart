@@ -95,7 +95,8 @@ extension DateTimeFormat on DateTime {
 }
 
 extension TimestampFormat on int {
-  String get showDate => DateTime.fromMillisecondsSinceEpoch(this).showDate;
+  String get showDate =>
+      DateTime.fromMillisecondsSinceEpoch(this * 1000).showDate;
 
   String get showCountdown =>
       DateFormat.Hms().format(DateTime(0, 0, 0, 0, 0, this));
