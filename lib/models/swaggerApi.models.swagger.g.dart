@@ -490,7 +490,7 @@ Map<String, dynamic> _$VaCreateReqToJson(VaCreateReq instance) =>
 
 VoSubmitReq _$VoSubmitReqFromJson(Map<String, dynamic> json) => VoSubmitReq(
   raiaOUserGid: json['raia'] as String?,
-  r5a4x8OLoanGid: (json['r5a4x8'] as num?)?.toInt(),
+  r5a4x8OLoanGid: json['r5a4x8'] as String?,
   krddvvOReference: json['krddvv'] as String?,
   di6pi4OTransferTime: (json['di6pi4'] as num?)?.toInt(),
   o12sd0OAmount: (json['o12sd0'] as num?)?.toDouble(),
@@ -507,7 +507,7 @@ Map<String, dynamic> _$VoSubmitReqToJson(VoSubmitReq instance) =>
 
 VaGetReq _$VaGetReqFromJson(Map<String, dynamic> json) => VaGetReq(
   raiaOUserGid: json['raia'] as String?,
-  r5a4x8OLoanGid: (json['r5a4x8'] as num?)?.toInt(),
+  r5a4x8OLoanGid: json['r5a4x8'] as String?,
 );
 
 Map<String, dynamic> _$VaGetReqToJson(VaGetReq instance) => <String, dynamic>{
@@ -517,7 +517,7 @@ Map<String, dynamic> _$VaGetReqToJson(VaGetReq instance) => <String, dynamic>{
 
 RepayApplyReq _$RepayApplyReqFromJson(Map<String, dynamic> json) =>
     RepayApplyReq(
-      r5a4x8OLoanGid: (json['r5a4x8'] as num?)?.toInt(),
+      r5a4x8OLoanGid: json['r5a4x8'] as String?,
       raiaOUserGid: json['raia'] as String?,
       o12sd0OAmount: (json['o12sd0'] as num?)?.toDouble(),
       vnbh46OBankCardGid: json['vnbh46'] as String?,
@@ -565,7 +565,7 @@ Map<String, dynamic> _$RepayApplyReqToJson(RepayApplyReq instance) =>
 
 RepayRecordReq _$RepayRecordReqFromJson(Map<String, dynamic> json) =>
     RepayRecordReq(
-      r5a4x8OLoanGid: (json['r5a4x8'] as num?)?.toInt(),
+      r5a4x8OLoanGid: json['r5a4x8'] as String?,
       raiaOUserGid: json['raia'] as String?,
       mahoganyORepaymentType: (json['mahogany'] as num?)?.toInt(),
       t1h91pOBankName: json['t1h91p'] as String?,
@@ -1084,7 +1084,7 @@ Map<String, dynamic> _$LoanBillReqToJson(LoanBillReq instance) =>
 
 BillStatusReq _$BillStatusReqFromJson(Map<String, dynamic> json) =>
     BillStatusReq(
-      r5a4x8OLoanGid: (json['r5a4x8'] as num?)?.toInt(),
+      r5a4x8OLoanGid: json['r5a4x8'] as String?,
       a4wq4jORenewAmountRate: json['a4wq4j'] as String?,
     );
 
@@ -1102,7 +1102,7 @@ Map<String, dynamic> _$BillListReqToJson(BillListReq instance) =>
 
 BillDetailReq _$BillDetailReqFromJson(Map<String, dynamic> json) =>
     BillDetailReq(
-      r5a4x8OLoanGid: (json['r5a4x8'] as num?)?.toInt(),
+      r5a4x8OLoanGid: json['r5a4x8'] as String?,
       a4wq4jORenewAmountRate: json['a4wq4j'] as String?,
     );
 
@@ -1114,7 +1114,7 @@ Map<String, dynamic> _$BillDetailReqToJson(BillDetailReq instance) =>
 
 BillRepayReq _$BillRepayReqFromJson(Map<String, dynamic> json) => BillRepayReq(
   raiaOUserGid: json['raia'] as String?,
-  r5a4x8OLoanGid: (json['r5a4x8'] as num?)?.toInt(),
+  r5a4x8OLoanGid: json['r5a4x8'] as String?,
   size: (json['size'] as num?)?.toInt(),
   current: (json['current'] as num?)?.toInt(),
 );
@@ -1673,7 +1673,7 @@ Map<String, dynamic> _$VaGetRespToJson(VaGetResp instance) => <String, dynamic>{
 
 RepayApplyResp _$RepayApplyRespFromJson(Map<String, dynamic> json) =>
     RepayApplyResp(
-      r5a4x8OLoanGid: (json['r5a4x8'] as num?)?.toInt(),
+      r5a4x8OLoanGid: json['r5a4x8'] as String?,
       raiaOUserGid: json['raia'] as String?,
       n410zdOLoanTime: (json['n410zd'] as num?)?.toInt(),
       r5k31qODueTime: (json['r5k31q'] as num?)?.toInt(),
@@ -1996,7 +1996,7 @@ Map<String, dynamic> _$CheckFirstLoanRespToJson(CheckFirstLoanResp instance) =>
 LoanOrderResp _$LoanOrderRespFromJson(Map<String, dynamic> json) =>
     LoanOrderResp(
       id: (json['id'] as num?)?.toInt(),
-      r5a4x8OLoanGid: (json['r5a4x8'] as num?)?.toInt(),
+      r5a4x8OLoanGid: json['r5a4x8'] as String?,
       staticsOCreateTime: (json['statics'] as num?)?.toInt(),
       l16h95OUpdateTime: (json['l16h95'] as num?)?.toInt(),
       raiaOUserGid: json['raia'] as String?,
@@ -3457,7 +3457,7 @@ _$LoanPreInfoResp$GlacisORepaymentPlanList$ItemFromJson(
   Map<String, dynamic> json,
 ) => LoanPreInfoResp$GlacisORepaymentPlanList$Item(
   imprintOPlanGid: (json['imprint'] as num?)?.toInt(),
-  r5a4x8OLoanGid: (json['r5a4x8'] as num?)?.toInt(),
+  r5a4x8OLoanGid: json['r5a4x8'] as String?,
   raiaOUserGid: json['raia'] as String?,
   ih2upqOCtPeriod: (json['ih2upq'] as num?)?.toInt(),
   spinachyOLoanPeriod: (json['spinachy'] as num?)?.toInt(),
@@ -3937,7 +3937,7 @@ Map<String, dynamic> _$LoanBillResp$Ouxtd3OLoanList$ItemToJson(
 BillListResp$SoberOBillList$Item _$BillListResp$SoberOBillList$ItemFromJson(
   Map<String, dynamic> json,
 ) => BillListResp$SoberOBillList$Item(
-  r5a4x8OLoanGid: (json['r5a4x8'] as num?)?.toInt(),
+  r5a4x8OLoanGid: json['r5a4x8'] as String?,
   r5k31qODueTime: (json['r5k31q'] as num?)?.toInt(),
   wantonlyOLoanLeftAmount: (json['wantonly'] as num?)?.toDouble(),
   retiaryOLoanAmount: (json['retiary'] as num?)?.toDouble(),
@@ -4030,7 +4030,7 @@ _$BillDetailResp$GlacisORepaymentPlanList$ItemFromJson(
   Map<String, dynamic> json,
 ) => BillDetailResp$GlacisORepaymentPlanList$Item(
   imprintOPlanGid: (json['imprint'] as num?)?.toInt(),
-  r5a4x8OLoanGid: (json['r5a4x8'] as num?)?.toInt(),
+  r5a4x8OLoanGid: json['r5a4x8'] as String?,
   raiaOUserGid: json['raia'] as String?,
   ih2upqOCtPeriod: (json['ih2upq'] as num?)?.toInt(),
   spinachyOLoanPeriod: (json['spinachy'] as num?)?.toInt(),
@@ -4169,7 +4169,7 @@ Map<String, dynamic> _$BillDetailResp$Bac6b3OUserInfoDetailToJson(
 BillRepayResp$My4dd2ORepaymentList$Item
 _$BillRepayResp$My4dd2ORepaymentList$ItemFromJson(Map<String, dynamic> json) =>
     BillRepayResp$My4dd2ORepaymentList$Item(
-      r5a4x8OLoanGid: (json['r5a4x8'] as num?)?.toInt(),
+      r5a4x8OLoanGid: json['r5a4x8'] as String?,
       raiaOUserGid: json['raia'] as String?,
       gatemanORepaymentAmount: (json['gateman'] as num?)?.toDouble(),
       d95091ORepaymentStatus: (json['d95091'] as num?)?.toInt(),

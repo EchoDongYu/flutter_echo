@@ -73,7 +73,13 @@ class _SplashPageState extends State<SplashPage> {
       }
     }
     Future.delayed(Duration(milliseconds: 500), () {
-      if (context.mounted) context.go(AppRouter.loginPhone);
+      if (context.mounted) {
+        if (LocalStorage().isLogin) {
+          context.go(AppRouter.main);
+        } else {
+          context.go(AppRouter.loginPhone);
+        }
+      }
     });
   }
 }
