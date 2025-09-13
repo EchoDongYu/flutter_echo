@@ -34,7 +34,10 @@ class DisclosureDialog extends StatelessWidget {
             await PermissionService().requestAllPermissions();
             if (context.mounted) context.pop(true);
           },
-          onDisagree: () => context.pop(false),
+          onDisagree: () async {
+            await LocalStorage().set(AppConst.disclosureKey, false);
+            if (context.mounted) context.pop(false);
+          },
         ),
       ),
     );

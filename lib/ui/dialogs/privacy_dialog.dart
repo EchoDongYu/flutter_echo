@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_echo/common/app_theme.dart';
 import 'package:flutter_echo/common/constants.dart';
+import 'package:flutter_echo/services/storage_service.dart';
 import 'package:flutter_echo/ui/widget_helper.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
@@ -28,7 +29,10 @@ class PrivacyDialog extends StatefulWidget {
         canPop: false,
         child: PrivacyDialog(
           onAgree: () => context.pop(true),
-          onDisagree: () => context.pop(false),
+          onDisagree: () async {
+            await LocalStorage().set(AppConst.disclosureKey, false);
+            if (context.mounted) context.pop(false);
+          },
         ),
       ),
     );
