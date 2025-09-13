@@ -28,19 +28,20 @@ class BillListTopCard extends StatelessWidget {
             child: Text(
               title,
               style: TextStyle(
-                fontSize: 18.sp,
+                fontSize: 14.sp,
                 fontWeight: FontWeight.w500,
-                color: Colors.white,
+                color: NowColors.c0xFFFFFFFF,
                 height: 28 / 18,
               ),
             ),
           ),
+          const SizedBox(height: 12,),
           Text(
             value,
             style: TextStyle(
-              fontSize: 30.sp,
+              fontSize: 36.sp,
               fontWeight: FontWeight.w700,
-              color: Colors.white,
+              color: NowColors.c0xFFFFFFFF,
               height: 38 / 30,
             ),
           ),
