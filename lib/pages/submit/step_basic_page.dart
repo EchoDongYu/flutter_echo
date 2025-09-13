@@ -75,31 +75,35 @@ class _StepBasicPageState extends State<StepBasicPage> {
 
   void _submitData(BuildContext context) async {
     final text2 = _controllers[2].text;
-    final isError4 = text2.length != 13;
-    final cuiFormat = text2.isNotEmpty && text2.length != 13;
-    final text = _controllers[3].text;
-    final phoneFormat = text.isNotEmpty && text.length != 8;
-    final phoneRegister = text.isNotEmpty && text == LocalStorage().account;
-    final isError5 = phoneFormat || phoneRegister;
+    final text3 = _controllers[3].text;
     final text4 = _controllers[4].text;
     final emailFormat = !AppConst.emailDomains.any((v) => text4.endsWith(v));
-    final isError6 = text4.isEmpty || emailFormat;
     setState(() {
       _isErrors[0] = _pickedItem[0] == null;
       _isErrors[1] = _pickedDate == null;
       _isErrors[2] = _controllers[0].text.isEmpty;
       _isErrors[3] = _controllers[1].text.isEmpty;
-      _isErrors[4] = isError4;
-      _isErrors[5] = isError5;
-      _isErrors[6] = isError6;
+      _isErrors[4] = text2.length != 13;
+      _isErrors[5] = text3.length != 8 || text3 == LocalStorage().account;
+      _isErrors[6] = text4.isEmpty || emailFormat;
       _isErrors[7] = _pickedItem[1] == null;
-      _cuiError = cuiFormat ? _errorTip[0] : null;
-      _phoneError = phoneFormat
-          ? _errorTip[3]
-          : phoneRegister
-          ? _errorTip[2]
-          : null;
-      _emailError = emailFormat ? _errorTip[1] : null;
+      if (text2.isEmpty) {
+        _cuiError = null;
+      } else if (text2.length != 13) {
+        _cuiError = _errorTip[0];
+      }
+      if (text3.isEmpty) {
+        _phoneError = null;
+      } else if (text3.isNotEmpty && text3.length != 8) {
+        _phoneError = _errorTip[3];
+      } else if (text3.isNotEmpty && text3 == LocalStorage().account) {
+        _phoneError = _errorTip[2];
+      }
+      if (text4.isEmpty) {
+        _emailError = null;
+      } else if (emailFormat) {
+        _emailError = _errorTip[1];
+      }
     });
     if (!_isErrors.contains(true)) {
       final list = [

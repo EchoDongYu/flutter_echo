@@ -39,7 +39,8 @@ class _StepEmailFieldState extends State<StepEmailField> {
 
   /// 焦点变化监听
   void _onFocusChanged() {
-    final expanded = widget.controller.text.isNotEmpty || _focusNode?.hasFocus == true;
+    final expanded =
+        widget.controller.text.isNotEmpty || _focusNode?.hasFocus == true;
     if (_isExpanded != expanded) {
       setState(() {
         _isExpanded = expanded;
@@ -60,7 +61,9 @@ class _StepEmailFieldState extends State<StepEmailField> {
     // 如果还没输入域前缀，就展示全部
     final source = domainPart.isEmpty
         ? AppConst.emailDomains
-        : AppConst.emailDomains.where((d) => d.startsWith(domainPart.toLowerCase()));
+        : AppConst.emailDomains.where(
+            (d) => d.startsWith(domainPart.toLowerCase()),
+          );
     // 生成完整的 email 作为候选，便于直接选中即完成
     return source.map((d) => '$local@$d');
   }
@@ -109,7 +112,11 @@ class _StepEmailFieldState extends State<StepEmailField> {
                         // labelText
                         if (_isExpanded)
                           Padding(
-                            padding: EdgeInsets.only(left: 12.w, top: 8.h, bottom: 4.h),
+                            padding: EdgeInsets.only(
+                              left: 12.w,
+                              top: 8.h,
+                              bottom: 4.h,
+                            ),
                             child: Text(
                               widget.hintText,
                               style: TextStyle(
@@ -190,7 +197,11 @@ class _StepEmailFieldState extends State<StepEmailField> {
             disabledBorder: InputBorder.none,
             counterText: '',
             isCollapsed: _isExpanded,
-            contentPadding: EdgeInsets.only(left: 12.w, right: 12.w, bottom: 8.h),
+            contentPadding: EdgeInsets.only(
+              left: 12.w,
+              right: 12.w,
+              bottom: 8.h,
+            ),
           ),
           onSubmitted: (_) => onSubmitted(),
         );
@@ -201,7 +212,9 @@ class _StepEmailFieldState extends State<StepEmailField> {
         return Card(
           surfaceTintColor: NowColors.c0xFFEFF7FF,
           elevation: 3,
-          shape: const RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(12))),
+          shape: const RoundedRectangleBorder(
+            borderRadius: BorderRadius.all(Radius.circular(12)),
+          ),
           child: ListView.separated(
             shrinkWrap: true,
             padding: EdgeInsets.zero,
@@ -212,7 +225,10 @@ class _StepEmailFieldState extends State<StepEmailField> {
               return InkWell(
                 onTap: () => onSelected(option),
                 child: Padding(
-                  padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 12),
+                  padding: const EdgeInsets.symmetric(
+                    vertical: 12,
+                    horizontal: 12,
+                  ),
                   child: Text(
                     option,
                     style: TextStyle(
