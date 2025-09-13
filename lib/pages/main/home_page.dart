@@ -13,24 +13,12 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  MainModel get mainModel => Provider.of<MainModel>(context, listen: false);
-
   @override
   void initState() {
     super.initState();
-    WidgetsBinding.instance.addPostFrameCallback((_) async {
-      mainModel.getHomeInfo();
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      context.read<MainModel>().getHomeInfo();
     });
-  }
-
-  @override
-  void dispose() {
-    super.dispose();
-  }
-
-  /// 模拟异步刷新
-  Future<void> _onRefresh() async {
-    await mainModel.getHomeInfo();
   }
 
   @override
@@ -38,7 +26,7 @@ class _HomePageState extends State<HomePage> {
     return Consumer<MainModel>(
       builder: (contex, provider, _) {
         return RefreshIndicator(
-          onRefresh: _onRefresh,
+          onRefresh: () => context.read<MainModel>().getHomeInfo(),
           child: provider.status == 2 ? HomeLoanPage() : HomeDefaultPage(),
         );
       },

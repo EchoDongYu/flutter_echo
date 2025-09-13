@@ -18,6 +18,8 @@ void debugLog(String message, {Object? error, StackTrace? stackTrace}) {
 
 void toast({required String msg}) => showToast(msg);
 
+final routeObserver = RouteObserver<ModalRoute<void>>();
+
 final scaffoldMessengerKey = GlobalKey<ScaffoldMessengerState>();
 
 void showNormalSnack(String message) {

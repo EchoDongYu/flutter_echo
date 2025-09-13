@@ -331,6 +331,7 @@ class AppRouter {
 
     /// 错误页面
     errorBuilder: (context, state) => NotFoundPage(uri: state.uri),
+    observers: [routeObserver],
   );
 }
 

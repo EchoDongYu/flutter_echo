@@ -7,10 +7,13 @@ import 'package:flutter_echo/models/common_model.dart';
 import 'package:flutter_echo/pages/app_router.dart';
 import 'package:flutter_echo/pages/main/home_page.dart';
 import 'package:flutter_echo/pages/main/profile_page.dart';
+import 'package:flutter_echo/providers/main_provider.dart';
 import 'package:flutter_echo/services/storage_service.dart';
+import 'package:flutter_echo/utils/common_utils.dart';
 import 'package:flutter_echo/utils/drawable_utils.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
+import 'package:provider/provider.dart';
 
 /// 主页面
 class MainPage extends StatefulWidget {
@@ -20,19 +23,26 @@ class MainPage extends StatefulWidget {
   State<MainPage> createState() => _MainPageState();
 }
 
-class _MainPageState extends State<MainPage> {
+class _MainPageState extends State<MainPage> with RouteAware {
   final PageController _controller = PageController();
   int _currentPage = 0;
 
   @override
-  void initState() {
-    super.initState();
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    routeObserver.subscribe(this, ModalRoute.of(context)!);
   }
 
   @override
   void dispose() {
     _controller.dispose();
+    routeObserver.unsubscribe(this);
     super.dispose();
+  }
+
+  @override
+  void didPopNext() {
+    context.read<MainModel>().getHomeInfo();
   }
 
   static const bottomItems = [
