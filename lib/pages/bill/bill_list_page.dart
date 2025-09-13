@@ -17,9 +17,9 @@ class BillListPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final billProvider = context.watch<BillModel>();
-    final billList = billProvider.billListData ?? [];
-    final totalAmount = billProvider.totalAmount;
+    final billModel = context.watch<BillModel>();
+    final billList = billModel.billListData ?? [];
+    final totalAmount = billModel.totalAmount;
     return Scaffold(
       backgroundColor: NowColors.c0xFFF3F3F5,
       appBar: const CommonAppBar(title: "Cuentas"),
@@ -52,7 +52,7 @@ class BillListView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Consumer<BillModel>(
-      builder: (_,provider,_) {
+      builder: (_, provider, _) {
         final billList = provider.billListData ?? [];
         return Expanded(
           child: ListView.separated(
@@ -83,7 +83,7 @@ class BillListView extends StatelessWidget {
             },
           ),
         );
-      }
+      },
     );
   }
 
