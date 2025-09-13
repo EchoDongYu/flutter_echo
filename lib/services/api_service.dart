@@ -393,10 +393,10 @@ class Api {
   }
 
   /// 获取详情数据
-  static Future<BillDetailResp> getBillDetailInfo() {
+  static Future<BillDetailResp> getBillDetailInfo({int? loanGid}) {
     return _apiService.post(
       ApiPath.getBillDetail,
-      body: BillDetailReq().toJson(),
+      body: BillDetailReq(r5a4x8OLoanGid: loanGid.toString()).toJson(),
       convert: (json) => BillDetailResp.fromJson(json),
     );
   }

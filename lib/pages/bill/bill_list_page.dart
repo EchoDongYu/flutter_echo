@@ -66,8 +66,14 @@ class BillListView extends StatelessWidget {
                 dueDate: itemData.r5k31qODueTime?.showDate ?? "",
                 status: updatePaymentStatus(itemData.d95091ORepaymentStatus),
                 onDetails: () {
+                  final uriRoute = Uri(
+                    path: AppRouter.billDetail,
+                    queryParameters: {
+                      NavKey.id: itemData.r5a4x8OLoanGid.toString(),
+                    },
+                  );
                   //跳转账单详情
-                  context.push(AppRouter.billDetail);
+                  context.push(uriRoute.toString());
                 },
                 onPagar: () {
                   //跳转还款详情

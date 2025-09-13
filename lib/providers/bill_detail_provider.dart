@@ -8,9 +8,9 @@ class BillDetailModel extends BaseProvider {
   BillDetailResp? get billDetailData => _billDetailData;
 
   ///获取账单详情数据
-  Future<void> fetchBillDetailData() async {
+  Future<void> fetchBillDetailData({int? loanGid}) async {
     var detailData = await launchRequest(() async {
-      return await Api.getBillDetailInfo();
+      return await Api.getBillDetailInfo(loanGid: loanGid);
     });
     if (detailData != null) {
       _billDetailData = detailData;

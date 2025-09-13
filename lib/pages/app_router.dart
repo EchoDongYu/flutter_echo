@@ -1,4 +1,3 @@
-
 import 'package:flutter_echo/common/page_consumer.dart';
 import 'package:flutter_echo/pages/after/repay_confirm_page.dart';
 import 'package:flutter_echo/pages/after/repay_result_page.dart';
@@ -31,6 +30,7 @@ import 'package:flutter_echo/pages/user/web_page.dart';
 import 'package:flutter_echo/providers/about_us_provider.dart';
 import 'package:flutter_echo/providers/account_provider.dart';
 import 'package:flutter_echo/providers/apply_provider.dart';
+import 'package:flutter_echo/providers/bill_detail_provider.dart';
 import 'package:flutter_echo/providers/bill_provider.dart';
 import 'package:flutter_echo/providers/feedback_provider.dart';
 import 'package:flutter_echo/providers/login_provider.dart';
@@ -238,7 +238,15 @@ class AppRouter {
       /// 账单详情页面
       GoRoute(
         path: billDetail,
-        builder: (context, state) => const BillDetailPage(),
+        builder: (context, state) => ChangeNotifierProvider(
+          create: (_) => BillDetailModel()
+            ..fetchBillDetailData(
+              loanGid: state.uri.queryParameters[NavKey.id]?.tryParseInt,
+            ),
+          builder: (context, state) {
+            return PageConsumer<BillDetailModel>(child: const BillDetailPage());
+          },
+        ),
       ),
 
       /// 安全验证页面
