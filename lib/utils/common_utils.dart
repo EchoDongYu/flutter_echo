@@ -103,3 +103,14 @@ extension StringParse on String? {
 
   double? get tryParseDouble => this != null ? double.tryParse(this!) : null;
 }
+
+extension ContextSizeExt on BuildContext {
+  double get screenWidth => MediaQuery.of(this).size.width;
+  double get screenHeight => MediaQuery.of(this).size.height;
+
+  /// 获取状态栏高度
+  double get statusBarHeight => MediaQuery.of(this).padding.top;
+
+  /// 获取底部安全区域高度
+  double get bottomBarHeight => MediaQuery.of(this).padding.bottom;
+}

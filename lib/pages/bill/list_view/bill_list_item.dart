@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_echo/common/app_theme.dart';
+import 'package:flutter_echo/ui/widgets/common_button.dart';
+import 'package:flutter_echo/utils/common_utils.dart';
 
 enum PaymentStatus { paid, overdue, pending }
 
@@ -8,8 +10,9 @@ class BillListItem extends StatelessWidget {
   final String vencimientoDate;
   final String dueDate;
   final PaymentStatus status;
-  final VoidCallback onPay;
+  final VoidCallback onPagar;
   final VoidCallback onDetails;
+  final bool isShowPagar;
 
   const BillListItem({
     super.key,
@@ -17,8 +20,9 @@ class BillListItem extends StatelessWidget {
     required this.vencimientoDate,
     required this.dueDate,
     required this.status,
-    required this.onPay,
+    required this.onPagar,
     required this.onDetails,
+    this.isShowPagar = true,
   });
 
   // 状态对应的颜色和文字
@@ -147,45 +151,20 @@ class BillListItem extends StatelessWidget {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              InkWell(
-                onTap: onPay,
-                child: Container(
-                  height: 48,
-                  width: 150,
-                  alignment: Alignment.center,
-                  decoration: BoxDecoration(
-                    color: NowColors.c0xFFFFFFFF,
-                    borderRadius: BorderRadius.all(Radius.circular(24)),
-                    border: BoxBorder.all(
-                      color: NowColors.c0xFFC7C7C7,
-                      width: 1,
-                    ),
-                  ),
-                  child: Text(
-                    "查看详情",
-                    style: TextStyle(
-                      fontSize: 16,
-                      color: NowColors.c0xFF1C1F23,
-                    ),
-                  ),
+              SizedBox(
+                width: context.screenWidth * 0.4,
+                child: EchoOutlinedButton(
+                  text: 'Detalles',
+                  onPressed: onDetails,
                 ),
               ),
-              InkWell(
-                onTap: onDetails,
-                child: Container(
-                  height: 48,
-                  width: 150,
-                  alignment: Alignment.center,
-                  decoration: BoxDecoration(
-                    color: _statusStyle["color"],
-                    borderRadius: BorderRadius.all(Radius.circular(24)),
-                  ),
-                  child: Text(
-                    "Pagar",
-                    style: TextStyle(
-                      fontSize: 16,
-                      color: NowColors.c0xFFFFFFFF,
-                    ),
+              Visibility(
+                visible: isShowPagar,
+                child: SizedBox(
+                  width: context.screenWidth * 0.4,
+                  child: EchoPrimaryButton(
+                    text: 'Pagar',
+                    onPressed: onPagar,
                   ),
                 ),
               ),
