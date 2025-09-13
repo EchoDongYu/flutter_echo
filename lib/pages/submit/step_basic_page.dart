@@ -48,10 +48,9 @@ class _StepBasicPageState extends State<StepBasicPage> {
   @override
   void initState() {
     super.initState();
-    _controllers[0].addListener(() => _onInputChanged(2));
-    _controllers[1].addListener(() => _onInputChanged(3));
-    _controllers[2].addListener(() => _onInputChanged(4));
-    _controllers[4].addListener(() => _onInputChanged(6));
+    for (int i = 0; i < 5; i++) {
+      _controllers[i].addListener(() => _onInputChanged(i + 2));
+    }
     WidgetsBinding.instance.addPostFrameCallback((_) async {
       final dict = await submitModel.getDictionary();
       setState(() {

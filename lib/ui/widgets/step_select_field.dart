@@ -134,7 +134,11 @@ class StepSelectField extends StatefulWidget {
   }) => StepSelectField(
     value: pickedDate?.showDate,
     onValueChange: () async {
-      final result = await PickDateDialog.show(context, title: hintText);
+      final result = await PickDateDialog.show(
+        context,
+        title: hintText,
+        pickedDate: pickedDate,
+      );
       if (result != null) onValueChange(result);
     },
     hintText: hintText,

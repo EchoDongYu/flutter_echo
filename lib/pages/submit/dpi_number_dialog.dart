@@ -38,7 +38,7 @@ class DpiNumberDialog extends StatelessWidget {
             child: Column(
               children: [
                 Text(
-                  'Numero de DPI',
+                  'Numero de CUI',
                   style: TextStyle(
                     fontSize: 18.sp,
                     fontWeight: FontWeight.w500,
@@ -64,14 +64,13 @@ class DpiNumberDialog extends StatelessWidget {
                     ),
                   ),
                 ),
-                Container(
-                  height: 169.h,
-                  margin: EdgeInsets.symmetric(horizontal: 16.w),
-                  decoration: BoxDecoration(
-                    color: NowColors.c0xFFB0B1B2,
-                    borderRadius: BorderRadius.all(Radius.circular(12)),
+                Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 16.w),
+                  child: Image.asset(
+                    Drawable.imageDpi,
+                    width: double.infinity,
+                    fit: BoxFit.fitWidth,
                   ),
-                  child: Image.asset(Drawable.imageDpi),
                 ),
               ],
             ),
