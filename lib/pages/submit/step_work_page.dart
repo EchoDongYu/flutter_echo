@@ -86,8 +86,14 @@ class _StepWorkPageState extends State<StepWorkPage> {
   }
 
   void _submitData() async {
+    final pick4Not0 = _pickedItem[4]?.key != _stepItems?[4]?[0].key;
+    final pick72 = _pickedItem[7]?.key == _stepItems?[7]?[1].key;
+    final pick71 = pick72 || _pickedItem[7]?.key == _stepItems?[7]?[2].key;
+    final sameDay = _pickedDay[0] == _pickedDay[1];
     setState(() {
-      _dayError = null;
+      _dayError = pick72 && _pickedDay[0] != null && sameDay
+          ? 'Dos fechas de pago no pueden ser iguales'
+          : null;
       _isErrors[0] = _pickedItem[0] == null;
       _isErrors[1] = _pickedItem[1] == null;
       _isErrors[2] = _pickedItem[2] == null;
@@ -97,33 +103,11 @@ class _StepWorkPageState extends State<StepWorkPage> {
       _isErrors[6] = _controller.text.isEmpty;
       _isErrors[7] = _pickedItem[3] == null;
       _isErrors[8] = _pickedItem[4] == null;
-      if (_pickedItem[4]?.key != _stepItems?[4]?[0].key) {
-        _isErrors[9] = _pickedItem[5] == null;
-        _isErrors[10] = _pickedItem[6] == null;
-        _isErrors[11] = _pickedItem[7] == null;
-        if (_pickedItem[7]?.key == _stepItems?[7]?[1].key) {
-          if (_pickedDay[0] == _pickedDay[1]) {
-            _dayError = 'Dos fechas de pago no pueden ser iguales';
-            _isErrors[12] = true;
-            _isErrors[13] = true;
-          } else {
-            _isErrors[12] = _pickedDay[0] == null;
-            _isErrors[13] = _pickedDay[1] == null;
-          }
-        } else if (_pickedItem[7]?.key == _stepItems?[7]?[2].key) {
-          _isErrors[12] = _pickedDay[0] == null;
-          _isErrors[13] = false;
-        } else {
-          _isErrors[12] = false;
-          _isErrors[13] = false;
-        }
-      } else {
-        _isErrors[9] = false;
-        _isErrors[10] = false;
-        _isErrors[11] = false;
-        _isErrors[12] = false;
-        _isErrors[13] = false;
-      }
+      _isErrors[9] = pick4Not0 && _pickedItem[5] == null;
+      _isErrors[10] = pick4Not0 && _pickedItem[6] == null;
+      _isErrors[11] = pick4Not0 && _pickedItem[7] == null;
+      _isErrors[12] = pick4Not0 && pick71 && (_pickedDay[0] == null || sameDay);
+      _isErrors[13] = pick4Not0 && pick72 && (_pickedDay[1] == null || sameDay);
     });
     if (!_isErrors.contains(true)) {
       submitModel.submitWorkInfo(
@@ -499,7 +483,7 @@ class _StepWorkPageState extends State<StepWorkPage> {
     'Por favor seleccione la Región',
     'Por favor seleccione la Departamento',
     'Por favor seleccione la Municipio',
-    'Por favor introduzca',
+    'Por favor introduzca su Dirección',
     'Por favor seleccione la máximo nivel de estudios',
     'Por favor seleccione la Profesión actual',
     'Por favor seleccione la años de trabajo',

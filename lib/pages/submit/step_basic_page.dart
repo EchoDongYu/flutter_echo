@@ -78,31 +78,31 @@ class _StepBasicPageState extends State<StepBasicPage> {
     final text4 = _controllers[4].text;
     final emailValid = RegExp(r'^[^@\s]+@[^@\s]+\.[^@\s]+$').hasMatch(text4);
     setState(() {
+      _cuiError = text2.isEmpty
+          ? _errorHint[4]
+          : text2.length != 13
+          ? _errorTip[0]
+          : null;
+      _phoneError = text3.isEmpty
+          ? null
+          : text3.length != 8
+          ? _errorTip[3]
+          : text3 == LocalStorage().account
+          ? _errorTip[2]
+          : null;
+      _emailError = text4.isEmpty
+          ? _errorHint[6]
+          : !emailValid
+          ? _errorTip[1]
+          : null;
       _isErrors[0] = _pickedItem[0] == null;
       _isErrors[1] = _pickedDate == null;
       _isErrors[2] = _controllers[0].text.isEmpty;
       _isErrors[3] = _controllers[1].text.isEmpty;
-      _isErrors[4] = text2.length != 13;
-      _isErrors[5] = text3.length != 8 || text3 == LocalStorage().account;
-      _isErrors[6] = text4.isEmpty || !emailValid;
+      _isErrors[4] = _cuiError != null;
+      _isErrors[5] = _phoneError != null;
+      _isErrors[6] = _emailError != null;
       _isErrors[7] = _pickedItem[1] == null;
-      if (text2.isEmpty) {
-        _cuiError = null;
-      } else if (text2.length != 13) {
-        _cuiError = _errorTip[0];
-      }
-      if (text3.isEmpty) {
-        _phoneError = null;
-      } else if (text3.isNotEmpty && text3.length != 8) {
-        _phoneError = _errorTip[3];
-      } else if (text3.isNotEmpty && text3 == LocalStorage().account) {
-        _phoneError = _errorTip[2];
-      }
-      if (text4.isEmpty) {
-        _emailError = null;
-      } else if (!emailValid) {
-        _emailError = _errorTip[1];
-      }
     });
     if (!_isErrors.contains(true)) {
       final list = [
