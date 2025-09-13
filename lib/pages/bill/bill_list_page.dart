@@ -19,6 +19,7 @@ class BillListPage extends StatelessWidget {
   Widget build(BuildContext context) {
     final billProvider = context.watch<BillModel>();
     final billList = billProvider.billListData ?? [];
+    final totalAmount = billProvider.totalAmount;
     return Scaffold(
       backgroundColor: NowColors.c0xFFF3F3F5,
       appBar: const CommonAppBar(title: "Cuentas"),
@@ -31,7 +32,7 @@ class BillListPage extends StatelessWidget {
             children: [
               BillListTopCard(
                 title: 'Cantidad reciblda (Q)',
-                value: '${billProvider.totalAmount}',
+                value: '$totalAmount',
               ),
               const SizedBox(height: 12),
               billList.isNotEmpty
