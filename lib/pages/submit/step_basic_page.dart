@@ -77,7 +77,7 @@ class _StepBasicPageState extends State<StepBasicPage> {
     final text2 = _controllers[2].text;
     final text3 = _controllers[3].text;
     final text4 = _controllers[4].text;
-    final emailFormat = !AppConst.emailDomains.any((v) => text4.endsWith(v));
+    final emailValid = RegExp(r'^[^@\s]+@[^@\s]+\.[^@\s]+$').hasMatch(text4);
     setState(() {
       _isErrors[0] = _pickedItem[0] == null;
       _isErrors[1] = _pickedDate == null;
@@ -85,7 +85,7 @@ class _StepBasicPageState extends State<StepBasicPage> {
       _isErrors[3] = _controllers[1].text.isEmpty;
       _isErrors[4] = text2.length != 13;
       _isErrors[5] = text3.length != 8 || text3 == LocalStorage().account;
-      _isErrors[6] = text4.isEmpty || emailFormat;
+      _isErrors[6] = text4.isEmpty || !emailValid;
       _isErrors[7] = _pickedItem[1] == null;
       if (text2.isEmpty) {
         _cuiError = null;
@@ -101,7 +101,7 @@ class _StepBasicPageState extends State<StepBasicPage> {
       }
       if (text4.isEmpty) {
         _emailError = null;
-      } else if (emailFormat) {
+      } else if (!emailValid) {
         _emailError = _errorTip[1];
       }
     });
