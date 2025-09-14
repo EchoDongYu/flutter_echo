@@ -247,6 +247,7 @@ class _ProfilePageState extends State<ProfilePage> {
   }
 
   Widget _buildCard3(BuildContext context) {
+    final mainInfo = LocalStorage().mainInfo;
     return Container(
       width: double.infinity,
       padding: EdgeInsets.symmetric(vertical: 8.h),
@@ -257,11 +258,13 @@ class _ProfilePageState extends State<ProfilePage> {
       ),
       child: Column(
         children: [
-          _buildCard3Item(
-            icon: Drawable.iconMineV1,
-            text: 'Seguridad de la cuenta',
-            onTap: () => context.push(AppRouter.resetPassword),
-          ),
+          if (mainInfo?.fm50w8OLoginPwd == true ||
+              mainInfo?.cressyOTraderPwd == true)
+            _buildCard3Item(
+              icon: Drawable.iconMineV1,
+              text: 'Seguridad de la cuenta',
+              onTap: () => context.push(AppRouter.resetPassword),
+            ),
           _buildCard3Item(
             icon: Drawable.iconMineV2,
             text: 'Preguntas frecuentes',

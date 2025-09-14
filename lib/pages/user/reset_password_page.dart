@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_echo/common/app_theme.dart';
 import 'package:flutter_echo/pages/app_router.dart';
+import 'package:flutter_echo/services/storage_service.dart';
 import 'package:flutter_echo/ui/widget_helper.dart';
 import 'package:flutter_echo/ui/widgets/top_bar.dart';
 import 'package:flutter_echo/utils/drawable_utils.dart';
@@ -17,6 +18,7 @@ class ResetPasswordPage extends StatefulWidget {
 class _ResetPasswordPageState extends State<ResetPasswordPage> {
   @override
   Widget build(BuildContext context) {
+    final mainInfo = LocalStorage().mainInfo;
     return Scaffold(
       backgroundColor: NowColors.c0xFFF3F3F5,
       resizeToAvoidBottomInset: true,
@@ -38,14 +40,16 @@ class _ResetPasswordPageState extends State<ResetPasswordPage> {
                   padding: EdgeInsets.symmetric(vertical: 8.h),
                   child: Column(
                     children: [
-                      _buildCardItem(
-                        text: 'Restablecer contraseña',
-                        onTap: () => context.push(AppRouter.resetLoginPwd),
-                      ),
-                      _buildCardItem(
-                        text: 'Restablecer NIP',
-                        onTap: () => context.push(AppRouter.resetTraderPwd),
-                      ),
+                      if (mainInfo?.fm50w8OLoginPwd == true)
+                        _buildCardItem(
+                          text: 'Restablecer contraseña',
+                          onTap: () => context.push(AppRouter.resetLoginPwd),
+                        ),
+                      if (mainInfo?.cressyOTraderPwd == true)
+                        _buildCardItem(
+                          text: 'Restablecer NIP',
+                          onTap: () => context.push(AppRouter.resetTraderPwd),
+                        ),
                     ],
                   ),
                 ),
