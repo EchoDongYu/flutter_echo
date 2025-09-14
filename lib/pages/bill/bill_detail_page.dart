@@ -3,6 +3,7 @@ import 'package:flutter_echo/common/app_theme.dart';
 import 'package:flutter_echo/pages/bill/detail_view/bill_detail_loan_info.dart';
 import 'package:flutter_echo/pages/bill/detail_view/bill_detail_loan_status.dart';
 import 'package:flutter_echo/providers/bill_detail_provider.dart';
+import 'package:flutter_echo/ui/dialogs/box_dialog.dart';
 import 'package:flutter_echo/ui/widgets/common_appbar.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
@@ -40,7 +41,7 @@ class BillDetailPage extends StatelessWidget {
               detailLoanInfoCommission: 'Q 123.33',
               detailLoanInfoCharge: 'Q 123.33',
               detailLoanInfoReceived: 'Q 123.33',
-              onCommission:(){
+              onCommission: () {
                 _showBillDetailLoanDialog(context);
               },
             ),
@@ -50,10 +51,20 @@ class BillDetailPage extends StatelessWidget {
     );
   }
 
-  void _showBillDetailLoanDialog(BuildContext context) async {
-
+  ///费用详情-弹框
+  Future<void> _showBillDetailLoanDialog(BuildContext context) async {
+    await BoxDialog.show(
+      context: context,
+      title: "Comisión",
+      btnText: "Confirmar",
+      centerLayout: Consumer<BillDetailModel>(
+        builder: (_, provider, _) {
+          return Container();
+        },
+      ),
+      onConfirm: () {},
+    );
   }
-
 }
 
 class BillDetailLoanListView extends StatelessWidget {
@@ -63,12 +74,12 @@ class BillDetailLoanListView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Consumer<BillDetailModel>(
       builder: (_, provider, _) {
-        final billDetailLoanList =
-            provider.billDetailData?.v08uw3ORepaymentChannelList ?? [];
+        // final billDetailLoanList = provider.billDetailData?.v08uw3ORepaymentChannelList ?? [];
         return ListView.separated(
           shrinkWrap: true,
           physics: NeverScrollableScrollPhysics(),
-          itemCount: billDetailLoanList.length,
+          //itemCount: billDetailLoanList.length,
+          itemCount: 3,
           separatorBuilder: (context, index) => SizedBox(height: 12.h),
           itemBuilder: (context, index) {
             // final itemData = billDetailLoanList[index];
