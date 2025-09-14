@@ -139,7 +139,7 @@ class _AboutUsPageState extends State<AboutUsPage> {
                   launchUrl(Uri.parse('https:${item?.value}'));
                 default:
                   Clipboard.setData(ClipboardData(text: item?.value ?? ''));
-                  toast(msg: 'copiar');
+                  toast('copiar');
               }
             },
             child: Image.asset(icon, width: 40.r, height: 40.r),

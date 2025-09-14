@@ -40,7 +40,7 @@ abstract class BaseProvider extends ChangeNotifier {
             error.toastErrorMsg();
           }
         } else if (error is! DioException) {
-          toast(msg: error.toString());
+          toast(error.toString());
         }
         error = null;
       }

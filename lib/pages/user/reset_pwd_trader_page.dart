@@ -61,7 +61,7 @@ class _ResetTraderPwdPageState extends State<ResetTraderPwdPage> {
 
   void _resetPassword(BuildContext context) async {
     if (_controllers[0].text != _controllers[1].text) {
-      toast(msg: 'La contraseña introducida dos veces no coincide');
+      toast('La contraseña introducida dos veces no coincide');
       return;
     }
     final apiResult = await accountModel.resetTraderPassword(

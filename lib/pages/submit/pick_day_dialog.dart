@@ -172,7 +172,7 @@ class _PickDayDialogState extends State<PickDayDialog> {
         text: 'Confirmar',
         onPressed: () {
           if (_pickedValue == null) {
-            toast(msg: 'Por favor seleccione la fecha de pago de salario');
+            toast('Por favor seleccione la fecha de pago de salario');
           } else {
             widget.onConfirm.call(_pickedValue);
           }

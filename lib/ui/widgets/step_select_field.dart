@@ -184,6 +184,7 @@ class _StepSelectFieldState extends State<StepSelectField> {
       children: [
         InkWell(
           onTap: () async {
+            FocusScope.of(context).requestFocus(FocusNode());
             _onFocusChanged(true);
             await widget.onValueChange();
             _onFocusChanged(false);

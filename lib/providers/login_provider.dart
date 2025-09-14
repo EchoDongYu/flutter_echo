@@ -131,7 +131,7 @@ class LoginModel extends BaseProvider {
 
   void userLogin(String password, {String? confirmPassword}) async {
     if (confirmPassword != null && password != confirmPassword) {
-      toast(msg: 'La contraseña introducida dos veces no coincide');
+      toast('La contraseña introducida dos veces no coincide');
       return;
     }
     _password = password;

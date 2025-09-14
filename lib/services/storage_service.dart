@@ -97,6 +97,8 @@ class LocalStorage {
     _prefs.remove(AppConst.userGidKey);
     _prefs.remove(AppConst.userInfoKey);
     _prefs.remove(AppConst.accountKey);
+    _prefs.remove(AppConst.kycStepKey);
+    _prefs.remove(AppConst.kycDataKey);
   }
 
   int? get kycStep => _prefs.getInt(AppConst.kycStepKey);

@@ -26,7 +26,7 @@ class ApiResponse {
 
   void toastErrorMsg() {
     final message = msg;
-    if (message != null) toast(msg: message);
+    if (message != null) toast(message);
   }
 }
 

@@ -278,6 +278,10 @@ class _StepBasicPageState extends State<StepBasicPage> {
             hintText: 'Nombre(s)',
             maxLength: 30,
             keyboardType: TextInputType.text,
+            inputFormatters: [
+              FilteringTextInputFormatter.deny(RegExp(r'[0-9]')),
+              FilteringTextInputFormatter.deny(emojiReg),
+            ],
             isError: _isErrors[2],
             errorText: _errorHint[2],
           ),
@@ -286,6 +290,10 @@ class _StepBasicPageState extends State<StepBasicPage> {
             hintText: 'Apellidos',
             maxLength: 30,
             keyboardType: TextInputType.text,
+            inputFormatters: [
+              FilteringTextInputFormatter.deny(RegExp(r'[0-9]')),
+              FilteringTextInputFormatter.deny(emojiReg),
+            ],
             isError: _isErrors[3],
             errorText: _errorHint[3],
           ),

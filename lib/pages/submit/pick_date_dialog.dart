@@ -25,6 +25,7 @@ class PickDateDialog extends StatefulWidget {
     required String title,
     DateTime? pickedDate,
   }) {
+    final now = DateTime.now();
     return showModalBottomSheet<DateTime>(
       context: context,
       enableDrag: false,
@@ -34,9 +35,7 @@ class PickDateDialog extends StatefulWidget {
         onConfirm: (value) => context.pop(value),
         onClosing: () => context.pop(),
         title: title,
-        pickedDate:
-            pickedDate ??
-            DateTime.now().subtract(const Duration(days: 365 * 20)),
+        pickedDate: pickedDate ?? DateTime(now.year - 20, now.month, now.day),
       ),
     );
   }

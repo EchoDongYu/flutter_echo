@@ -207,7 +207,7 @@ class _PickItemDialogState<T> extends State<PickItemDialog<T>> {
         text: 'Confirmar',
         onPressed: () {
           if (_pickedItem == null) {
-            toast(msg: 'Por favor seleccione ${widget.title}');
+            toast('Por favor seleccione ${widget.title}');
           } else {
             widget.onConfirm.call(_pickedItem);
           }

@@ -113,7 +113,7 @@ class _TraderPasswordDialogState extends State<TraderPasswordDialog> {
       if (checkOk == true) widget.onConfirm(pwd0);
     } else {
       if (pwd0 != _controllers[1].text) {
-        toast(msg: 'La contraseña introducida dos veces no coincide');
+        toast('La contraseña introducida dos veces no coincide');
         return;
       }
       final setOk = await accountModel.setTraderPassword(password: pwd0);

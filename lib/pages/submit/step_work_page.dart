@@ -328,30 +328,32 @@ class _StepWorkPageState extends State<StepWorkPage> {
             isError: _isErrors[3],
             errorText: _errorHint[3],
           ),
-          StepSelectField.pickArea(
-            context,
-            items: areasSecond,
-            pickedItem: _pickedArea[1],
-            onValueChange: (value) => setState(() {
-              _pickedArea[1] = value;
-              _isErrors[4] = false;
-            }),
-            hintText: 'Departamento',
-            isError: _isErrors[4],
-            errorText: _errorHint[4],
-          ),
-          StepSelectField.pickArea(
-            context,
-            items: areasThird,
-            pickedItem: _pickedArea[2],
-            onValueChange: (value) => setState(() {
-              _pickedArea[2] = value;
-              _isErrors[5] = false;
-            }),
-            hintText: 'Municipio',
-            isError: _isErrors[5],
-            errorText: _errorHint[5],
-          ),
+          if (_pickedArea[0] != null)
+            StepSelectField.pickArea(
+              context,
+              items: areasSecond,
+              pickedItem: _pickedArea[1],
+              onValueChange: (value) => setState(() {
+                _pickedArea[1] = value;
+                _isErrors[4] = false;
+              }),
+              hintText: 'Departamento',
+              isError: _isErrors[4],
+              errorText: _errorHint[4],
+            ),
+          if (_pickedArea[1] != null)
+            StepSelectField.pickArea(
+              context,
+              items: areasThird,
+              pickedItem: _pickedArea[2],
+              onValueChange: (value) => setState(() {
+                _pickedArea[2] = value;
+                _isErrors[5] = false;
+              }),
+              hintText: 'Municipio',
+              isError: _isErrors[5],
+              errorText: _errorHint[5],
+            ),
           StepInputField(
             controller: _controller,
             hintText: 'Dirección',
@@ -482,7 +484,7 @@ class _StepWorkPageState extends State<StepWorkPage> {
         pickedDay: _pickedDay[0],
         onValueChange: (value) => setState(() {
           if (_pickedDay[1] == value) {
-            toast(msg: 'Dos fechas de pago no pueden ser iguales');
+            toast('Dos fechas de pago no pueden ser iguales');
           } else {
             _pickedDay[0] = value;
             _isErrors[12] = false;
@@ -497,7 +499,7 @@ class _StepWorkPageState extends State<StepWorkPage> {
         pickedDay: _pickedDay[1],
         onValueChange: (value) => setState(() {
           if (_pickedDay[0] == value) {
-            toast(msg: 'Dos fechas de pago no pueden ser iguales');
+            toast('Dos fechas de pago no pueden ser iguales');
           } else {
             _pickedDay[1] = value;
             _isErrors[13] = false;
