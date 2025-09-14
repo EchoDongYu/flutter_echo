@@ -18,8 +18,8 @@ class SubmitModel extends BaseProvider {
 
   SubmitDataReq? getCachedData() {
     final json = LocalStorage().getObject(AppConst.kycDataKey);
-    if (json != null) return SubmitDataReq.fromJson(json);
-    return null;
+    if (json != null) _submitData = SubmitDataReq.fromJson(json);
+    return _submitData;
   }
 
   Future<Map<String, List<StepItem>?>?> getDictionary() async {
@@ -100,7 +100,6 @@ class SubmitModel extends BaseProvider {
     required List<int?> items,
   }) async {
     cacheContactInfo(inputs: inputs, items: items);
-    await LocalStorage().set(AppConst.kycStepKey, 3);
     _submitCreditData();
   }
 

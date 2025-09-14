@@ -22,7 +22,7 @@ class StepContactPage extends StatefulWidget {
 }
 
 class _StepContactPageState extends State<StepContactPage> {
-  final List<List<bool>> _isErrors = List.generate(2, (index) {
+  final _isErrors = List.generate(2, (index) {
     return List.generate(3, (index) {
       return false;
     }, growable: false);
@@ -33,20 +33,42 @@ class _StepContactPageState extends State<StepContactPage> {
     }, growable: false);
   }, growable: false);
   List<StepItem>? _stepItems;
-  final List<StepItem?> _pickedItem = List.generate(2, (index) {
+  final _pickedItem = List<StepItem?>.generate(2, (index) {
     return null;
   }, growable: false);
-
-  SubmitModel get submitModel =>
-      Provider.of<SubmitModel>(context, listen: false);
 
   @override
   void initState() {
     super.initState();
     WidgetsBinding.instance.addPostFrameCallback((_) async {
+      final submitModel = context.read<SubmitModel>();
       final dict = await submitModel.getDictionary();
-      setState(() => _stepItems = dict?['${SubmitModel.dictContact}']);
+      final data = submitModel.getCachedData();
+      setState(() {
+        _stepItems = dict?['${SubmitModel.dictContact}'];
+        _pickedItem[0] = _stepItems?.findKey(
+          data?.baryeOFirstContactRelationship,
+        );
+        _pickedItem[1] = _stepItems?.findKey(
+          data?.kibeOSecondContactRelationship,
+        );
+      });
+      _controllers[0][0].text = data?.grippleOFirstContactName ?? '';
+      _controllers[0][1].text = data?.rainOFirstContactMobile ?? '';
+      _controllers[1][0].text = data?.aquarianOSecondContactName ?? '';
+      _controllers[1][1].text = data?.h3d2wfOSecondContactMobile ?? '';
     });
+  }
+
+  @override
+  void deactivate() {
+    context.read<SubmitModel>().cacheContactInfo(
+      inputs: _controllers
+          .map((v1) => v1.map((v2) => v2.text).toList())
+          .toList(),
+      items: _pickedItem.map((it) => it?.key).toList(),
+    );
+    super.deactivate();
   }
 
   @override
@@ -75,7 +97,7 @@ class _StepContactPageState extends State<StepContactPage> {
       _isErrors[i][2] = _pickedItem[i] == null;
     }
     if (!_isErrors.any((it) => it.contains(true))) {
-      submitModel.submitContactInfo(
+      context.read<SubmitModel>().submitContactInfo(
         inputs: _controllers
             .map((v1) => v1.map((v2) => v2.text).toList())
             .toList(),

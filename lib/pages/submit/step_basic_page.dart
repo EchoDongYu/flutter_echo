@@ -56,7 +56,7 @@ class _StepBasicPageState extends State<StepBasicPage> {
         _stepItems = SubmitModel.dictBasic.map((v) => dict?['$v']).toList();
         _pickedItem[0] = _stepItems?[0]?.findKey(data?.gender);
         _pickedItem[1] = _stepItems?[1]?.findKey(data?.himfjuOOtherLoans);
-        _pickedDate = data?.gargetOBirthday?.dateTime;
+        _pickedDate = data?.gargetOBirthday?.fromSecondsSinceEpoch;
       });
       _controllers[0].text = data?.lq1s05OFirstName ?? '';
       _controllers[1].text = data?.darktownOLastName ?? '';
@@ -71,7 +71,7 @@ class _StepBasicPageState extends State<StepBasicPage> {
     context.read<SubmitModel>().cacheBasicInfo(
       inputs: _controllers.map((it) => it.text).toList(),
       items: _pickedItem.map((it) => it?.key).toList(),
-      birthday: _pickedDate?.second,
+      birthday: _pickedDate?.secondSinceEpoch,
     );
     super.deactivate();
   }
@@ -141,7 +141,7 @@ class _StepBasicPageState extends State<StepBasicPage> {
         context.read<SubmitModel>().submitBasicInfo(
           inputs: _controllers.map((it) => it.text).toList(),
           items: _pickedItem.map((it) => it?.key).toList(),
-          birthday: _pickedDate?.millisecond,
+          birthday: _pickedDate?.secondSinceEpoch,
         );
       }
     }

@@ -25,7 +25,7 @@ class _StepWorkPageState extends State<StepWorkPage> {
     return false;
   }, growable: false);
   final _controller = TextEditingController();
-  final _pickedItem = List<StepItem?>.generate(11, (index) {
+  final _pickedItem = List<StepItem?>.generate(8, (index) {
     return null;
   }, growable: false);
   final _pickedArea = List<String?>.generate(3, (index) {
@@ -37,9 +37,6 @@ class _StepWorkPageState extends State<StepWorkPage> {
   List<List<StepItem>?>? _stepItems;
   Map<String, dynamic>? _stepAreas;
   String? _dayError; // 发薪日
-
-  SubmitModel get submitModel =>
-      Provider.of<SubmitModel>(context, listen: false);
 
   List<String>? get areasFirst => _stepAreas?.keys.toList();
 
@@ -60,7 +57,9 @@ class _StepWorkPageState extends State<StepWorkPage> {
     super.initState();
     _controller.addListener(_onInputChanged);
     WidgetsBinding.instance.addPostFrameCallback((_) async {
+      final submitModel = context.read<SubmitModel>();
       final dict = await submitModel.getDictionary();
+      final data = submitModel.getCachedData();
       String? jsonStr = dict?['${SubmitModel.dictArea}']?.firstOrNull?.value;
       if (jsonStr != null) {
         if (jsonStr.startsWith('"') && jsonStr.endsWith('"')) {
@@ -71,8 +70,34 @@ class _StepWorkPageState extends State<StepWorkPage> {
       setState(() {
         _stepItems = SubmitModel.dictWork.map((v) => dict?['$v']).toList();
         if (jsonStr != null) _stepAreas = json.decode(jsonStr);
+        _pickedItem[0] = _stepItems?[0]?.findKey(data?.m2wx4tOMaritalStatus);
+        _pickedItem[1] = _stepItems?[1]?.findKey(
+          data?.z4s937OHouseholdMonthlyExpenses,
+        );
+        _pickedItem[2] = _stepItems?[2]?.findKey(data?.chaffyOHouseStatus);
+        _pickedItem[3] = _stepItems?[3]?.findKey(data?.coseOEducation);
+        _pickedItem[4] = _stepItems?[4]?.findKey(data?.diopsideOOccupation);
+        _pickedItem[5] = _stepItems?[5]?.findKey(data?.alloOWorkingYears);
+        _pickedItem[6] = _stepItems?[6]?.findKey(data?.limpidlyOIncomeLevel);
+        _pickedItem[7] = _stepItems?[7]?.findKey(data?.b1417wOPayPeriod);
+        _pickedArea[0] = data?.spadicesOAddressState;
+        _pickedArea[1] = data?.gasconyOAddressCity;
+        _pickedArea[2] = data?.enfetterOAddressDistrict;
+        _pickedDay[0] = data?.r67p23OPayday;
+        _pickedDay[1] = data?.plenishOSecondPayday;
       });
+      _controller.text = data?.craalOAddressDetail ?? '';
     });
+  }
+
+  @override
+  void deactivate() {
+    context.read<SubmitModel>().cacheWorkInfo(
+      areas: List.from(_pickedArea)..add(_controller.text),
+      items: _pickedItem.map((it) => it?.key).toList(),
+      days: _pickedDay,
+    );
+    super.deactivate();
   }
 
   @override
@@ -111,7 +136,7 @@ class _StepWorkPageState extends State<StepWorkPage> {
       _isErrors[13] = pick4Not0 && pick72 && (_pickedDay[1] == null || sameDay);
     });
     if (!_isErrors.contains(true)) {
-      submitModel.submitWorkInfo(
+      context.read<SubmitModel>().submitWorkInfo(
         areas: List.from(_pickedArea)..add(_controller.text),
         items: _pickedItem.map((it) => it?.key).toList(),
         days: _pickedDay,

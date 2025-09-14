@@ -95,16 +95,18 @@ extension ContextNav on BuildContext {
 
 extension DateTimeFormat on DateTime {
   String get showDate => DateFormat('dd/MM/yyyy').format(this);
+
+  int get secondSinceEpoch => (millisecondsSinceEpoch / 1000.0).toInt();
 }
 
 extension TimestampFormat on int {
-  String get showDate =>
-      DateTime.fromMillisecondsSinceEpoch(this * 1000).showDate;
-
   String get showCountdown =>
       DateFormat.Hms().format(DateTime(0, 0, 0, 0, 0, this));
 
-  DateTime get dateTime => DateTime(0, 0, 0, 0, 0, this);
+  DateTime get fromSecondsSinceEpoch =>
+      DateTime.fromMillisecondsSinceEpoch(this * 1000);
+
+  String get showDate => fromSecondsSinceEpoch.showDate;
 }
 
 extension AmountFormat on num {
