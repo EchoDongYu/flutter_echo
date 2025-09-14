@@ -42,7 +42,7 @@ class SubmitModel extends BaseProvider {
     if (checkResult != true) return;
     cacheBasicInfo(inputs: inputs, items: items, birthday: birthday);
     await LocalStorage().set(AppConst.kycStepKey, 1);
-    navigate((context) => context.push(AppRouter.stepWork));
+    navigate((context) => context.pushReplacement(AppRouter.stepWork));
   }
 
   void cacheBasicInfo({
@@ -69,7 +69,7 @@ class SubmitModel extends BaseProvider {
   }) async {
     cacheWorkInfo(areas: areas, items: items, days: days);
     await LocalStorage().set(AppConst.kycStepKey, 2);
-    navigate((context) => context.push(AppRouter.stepContact));
+    navigate((context) => context.pushReplacement(AppRouter.stepContact));
   }
 
   void cacheWorkInfo({
@@ -126,7 +126,7 @@ class SubmitModel extends BaseProvider {
       path: AppRouter.stepProcess,
       queryParameters: {NavKey.count: apiResult?.toString()},
     );
-    navigate((context) => context.push(uriRoute.toString()));
+    navigate((context) => context.pushReplacement(uriRoute.toString()));
   }
 
   @override

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_echo/common/app_theme.dart';
 import 'package:flutter_echo/ui/widgets/common_button.dart';
+import 'package:flutter_echo/utils/common_utils.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
 
@@ -169,7 +170,13 @@ class _PickDayDialogState extends State<PickDayDialog> {
       ),
       child: EchoPrimaryButton(
         text: 'Confirmar',
-        onPressed: () => widget.onConfirm.call(_pickedValue),
+        onPressed: () {
+          if (_pickedValue == null) {
+            toast(msg: 'Por favor seleccione la fecha de pago de salario');
+          } else {
+            widget.onConfirm.call(_pickedValue);
+          }
+        },
       ),
     );
   }

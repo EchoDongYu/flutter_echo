@@ -8,6 +8,7 @@ import 'package:flutter_echo/ui/widget_helper.dart';
 import 'package:flutter_echo/ui/widgets/step_input_field.dart';
 import 'package:flutter_echo/ui/widgets/step_select_field.dart';
 import 'package:flutter_echo/ui/widgets/top_bar.dart';
+import 'package:flutter_echo/utils/common_utils.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
 
@@ -455,8 +456,12 @@ class _StepWorkPageState extends State<StepWorkPage> {
         context,
         pickedDay: _pickedDay[0],
         onValueChange: (value) => setState(() {
-          _pickedDay[0] = value;
-          _isErrors[12] = false;
+          if (_pickedDay[1] == value) {
+            toast(msg: 'Dos fechas de pago no pueden ser iguales');
+          } else {
+            _pickedDay[0] = value;
+            _isErrors[12] = false;
+          }
         }),
         hintText: 'Dia de pago(primero)',
         isError: _isErrors[12],
@@ -466,8 +471,12 @@ class _StepWorkPageState extends State<StepWorkPage> {
         context,
         pickedDay: _pickedDay[1],
         onValueChange: (value) => setState(() {
-          _pickedDay[1] = value;
-          _isErrors[13] = false;
+          if (_pickedDay[0] == value) {
+            toast(msg: 'Dos fechas de pago no pueden ser iguales');
+          } else {
+            _pickedDay[1] = value;
+            _isErrors[13] = false;
+          }
         }),
         hintText: 'Dia de pago(segundo)',
         isError: _isErrors[13],
