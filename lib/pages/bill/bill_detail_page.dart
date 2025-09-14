@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_echo/common/app_theme.dart';
+import 'package:flutter_echo/pages/bill/detail_view/bill_detail_loan_enum.dart';
 import 'package:flutter_echo/pages/bill/detail_view/bill_detail_loan_info.dart';
 import 'package:flutter_echo/pages/bill/detail_view/bill_detail_loan_item.dart';
 import 'package:flutter_echo/pages/bill/detail_view/bill_detail_loan_status.dart';
@@ -15,7 +16,7 @@ class BillDetailPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final billDetailModel = context.watch<BillDetailModel>();
-    final isShowList = false;
+    final billDetailData = billDetailModel.billDetailData;
     return Scaffold(
       backgroundColor: NowColors.c0xFFF3F3F5,
       appBar: const CommonAppBar(title: "Detalles del préstamo"),
@@ -28,15 +29,8 @@ class BillDetailPage extends StatelessWidget {
             BillDetailLoanStatus(
               amount: 2000000,
               vencimientoDate: '',
-              dueDate: '',
-              status: PaymentDetailStatus.pagos,
-              loanStatusBox: !isShowList
-                  ? BillDetailLoanItem(
-                      status: PaymentDetailItemStatus.pagos,
-                      amount: 50000,
-                      dueDate: "dueDate",
-                    )
-                  : BillDetailLoanListView(),
+              status: updateBillDetailLoanStatus(1),
+              loanStatusBox: const BillDetailLoanListView(),
               onPagar: () {},
               onHistory: () {},
             ),
@@ -63,18 +57,18 @@ class BillDetailLoanListView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Consumer<BillDetailModel>(
       builder: (_, provider, _) {
-        //final billDetailLoanList = provider.billDetailData?.v08uw3ORepaymentChannelList ?? [];
+        final billDetailLoanList = provider.billDetailData?.v08uw3ORepaymentChannelList ?? [];
         return ListView.separated(
           shrinkWrap: true,
           physics: NeverScrollableScrollPhysics(),
-          itemCount: 5,
+          itemCount: 3,
           separatorBuilder: (context, index) => SizedBox(height: 12.h),
           itemBuilder: (context, index) {
             // final itemData = billDetailLoanList[index];
             return BillDetailLoanItem(
               amount: 0.0,
-              dueDate: "",
-              status: updatePaymentStatus(1),
+              dueDate: "2025",
+              status: updateBillDetailLoanStatus(1),
             );
           },
         );
@@ -82,8 +76,9 @@ class BillDetailLoanListView extends StatelessWidget {
     );
   }
 
-  //订单展示状态(o_orderStatus)：,0打款中,1打款失败,2打款成功且未结清未逾期,3打款成功且未结清有逾期,4全结清
-  PaymentDetailItemStatus updatePaymentStatus(int? d95091oRepaymentStatus) {
-    return PaymentDetailItemStatus.fracaso;
-  }
+}
+
+//订单展示状态(o_orderStatus)：,0打款中,1打款失败,2打款成功且未结清未逾期,3打款成功且未结清有逾期,4全结清
+BillDetailLoanEnum updateBillDetailLoanStatus(int? d95091oRepaymentStatus) {
+  return BillDetailLoanEnum.atrasado;
 }

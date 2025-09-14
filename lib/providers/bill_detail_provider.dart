@@ -4,7 +4,7 @@ import 'package:flutter_echo/services/api_service.dart';
 
 class BillDetailModel extends BaseProvider {
   ///账单详情数据
-  late BillDetailResp? _billDetailData;
+  BillDetailResp? _billDetailData;
   BillDetailResp? get billDetailData => _billDetailData;
 
   ///获取账单详情数据

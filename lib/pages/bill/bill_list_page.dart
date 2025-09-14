@@ -64,7 +64,7 @@ class BillListView extends StatelessWidget {
                 amount: itemData.retiaryOLoanAmount ?? 0.0,
                 vencimientoDate: itemData.r5k31qODueTime?.showDate ?? "",
                 dueDate: itemData.r5k31qODueTime?.showDate ?? "",
-                status: updatePaymentStatus(itemData.d95091ORepaymentStatus),
+                status: updateBillStatus(itemData.d95091ORepaymentStatus),
                 onDetails: () {
                   final uriRoute = Uri(
                     path: AppRouter.billDetail,
@@ -88,7 +88,7 @@ class BillListView extends StatelessWidget {
   }
 
   //订单展示状态(o_orderStatus)：,0打款中,1打款失败,2打款成功且未结清未逾期,3打款成功且未结清有逾期,4全结清
-  PaymentStatus updatePaymentStatus(int? d95091oRepaymentStatus) {
-    return PaymentStatus.fracaso;
+  BillStatus updateBillStatus(int? d95091oRepaymentStatus) {
+    return BillStatus.fracaso;
   }
 }

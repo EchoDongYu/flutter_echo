@@ -1,16 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_echo/common/app_theme.dart';
+import 'package:flutter_echo/pages/bill/detail_view/bill_detail_loan_enum.dart';
 import 'package:flutter_echo/ui/widgets/common_button.dart';
 import 'package:flutter_echo/utils/common_utils.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-enum PaymentDetailStatus { pagos, atrasado, pendiente, fracaso, pagado }
-
 class BillDetailLoanStatus extends StatelessWidget {
   final double amount;
   final String vencimientoDate;
-  final String dueDate;
-  final PaymentDetailStatus status;
+  final BillDetailLoanEnum status;
   final VoidCallback onPagar;
   final VoidCallback onHistory;
   final Widget loanStatusBox;
@@ -21,7 +19,6 @@ class BillDetailLoanStatus extends StatelessWidget {
     super.key,
     required this.amount,
     required this.vencimientoDate,
-    required this.dueDate,
     required this.status,
     required this.onPagar,
     required this.onHistory,
@@ -33,15 +30,11 @@ class BillDetailLoanStatus extends StatelessWidget {
   // 状态对应的颜色和文字
   Map<String, dynamic> get _statusStyle {
     switch (status) {
-      case PaymentDetailStatus.pagos:
+      case BillDetailLoanEnum.pagos:
         return {"label": "Pagos", "color": NowColors.c0xFF3288F1};
-      case PaymentDetailStatus.atrasado:
+      case BillDetailLoanEnum.atrasado:
         return {"label": "Atrasado", "color": NowColors.c0xFFFB4F34};
-      case PaymentDetailStatus.pendiente:
-        return {"label": "Pendiente", "color": NowColors.c0xFFFF9817};
-      case PaymentDetailStatus.fracaso:
-        return {"label": "Fracaso", "color": NowColors.c0xFFFB4F34};
-      case PaymentDetailStatus.pagado:
+      case BillDetailLoanEnum.pagado:
         return {"label": "Pagado", "color": NowColors.c0xFF3EB34D};
     }
   }

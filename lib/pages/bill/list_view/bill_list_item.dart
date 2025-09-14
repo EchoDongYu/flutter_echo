@@ -4,13 +4,13 @@ import 'package:flutter_echo/ui/widgets/common_button.dart';
 import 'package:flutter_echo/utils/common_utils.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-enum PaymentStatus { pagos, atrasado, pendiente, fracaso, pagado }
+enum BillStatus { pagos, atrasado, pendiente, fracaso, pagado }
 
 class BillListItem extends StatelessWidget {
   final double amount;
   final String vencimientoDate;
   final String dueDate;
-  final PaymentStatus status;
+  final BillStatus status;
   final VoidCallback onPagar;
   final VoidCallback onDetails;
   final bool isShowPagar;
@@ -29,15 +29,15 @@ class BillListItem extends StatelessWidget {
   // 状态对应的颜色和文字
   Map<String, dynamic> get _statusStyle {
     switch (status) {
-      case PaymentStatus.pagos:
+      case BillStatus.pagos:
         return {"label": "Pagos", "color": NowColors.c0xFF3288F1};
-      case PaymentStatus.atrasado:
+      case BillStatus.atrasado:
         return {"label": "Atrasado", "color": NowColors.c0xFFFB4F34};
-      case PaymentStatus.pendiente:
+      case BillStatus.pendiente:
         return {"label": "Pendiente", "color": NowColors.c0xFFFF9817};
-      case PaymentStatus.fracaso:
+      case BillStatus.fracaso:
         return {"label": "Fracaso", "color": NowColors.c0xFFFB4F34};
-      case PaymentStatus.pagado:
+      case BillStatus.pagado:
         return {"label": "Pagado", "color": NowColors.c0xFF3EB34D};
     }
   }
@@ -109,8 +109,7 @@ class BillListItem extends StatelessWidget {
                   left: 0,
                   top: 0,
                   child: Container(
-                    width: 36,
-                    height: 24,
+                    padding: EdgeInsets.symmetric(vertical: 3,horizontal: 6),
                     alignment: Alignment.center,
                     decoration: BoxDecoration(
                       color: _statusStyle["color"],
@@ -136,10 +135,11 @@ class BillListItem extends StatelessWidget {
                     right: 12,
                     bottom: 12,
                   ),
-                  child: Row(
+                  child: Column(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Column(
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
@@ -150,20 +150,6 @@ class BillListItem extends StatelessWidget {
                               color: NowColors.c0xFF494C4F,
                             ),
                           ),
-                          const SizedBox(height: 6),
-                          Text(
-                            "Monto a pagar",
-                            style: TextStyle(
-                              fontSize: 12.sp,
-                              fontWeight: FontWeight.w400,
-                              color: NowColors.c0xFF494C4F,
-                            ),
-                          ),
-                        ],
-                      ),
-                      Column(
-                        crossAxisAlignment: CrossAxisAlignment.end,
-                        children: [
                           Text(
                             dueDate,
                             style: TextStyle(
@@ -172,7 +158,21 @@ class BillListItem extends StatelessWidget {
                               color: NowColors.c0xFF000000,
                             ),
                           ),
-                          const SizedBox(height: 6),
+                        ],
+                      ),
+                      const SizedBox(height: 6),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        crossAxisAlignment: CrossAxisAlignment.end,
+                        children: [
+                          Text(
+                            "Monto a pagar",
+                            style: TextStyle(
+                              fontSize: 12.sp,
+                              fontWeight: FontWeight.w400,
+                              color: NowColors.c0xFF494C4F,
+                            ),
+                          ),
                           Text(
                             "Q ${amount.toStringAsFixed(2)}",
                             style: TextStyle(
