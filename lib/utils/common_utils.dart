@@ -4,6 +4,7 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_echo/common/constants.dart';
+import 'package:flutter_echo/models/common_model.dart';
 import 'package:flutter_echo/pages/app_router.dart';
 import 'package:go_router/go_router.dart';
 import 'package:intl/intl.dart';
@@ -102,6 +103,8 @@ extension TimestampFormat on int {
 
   String get showCountdown =>
       DateFormat.Hms().format(DateTime(0, 0, 0, 0, 0, this));
+
+  DateTime get dateTime => DateTime(0, 0, 0, 0, 0, this);
 }
 
 extension AmountFormat on num {
@@ -114,4 +117,13 @@ extension StringParse on String? {
   int? get tryParseInt => this != null ? int.tryParse(this!) : null;
 
   double? get tryParseDouble => this != null ? double.tryParse(this!) : null;
+}
+
+extension ListExt on List<StepItem> {
+  StepItem? findKey(int? key) {
+    for (StepItem element in this) {
+      if (key == element.key) return element;
+    }
+    return null;
+  }
 }

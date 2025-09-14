@@ -63,6 +63,8 @@ class AppConst {
   static const String userInfoKey = 'user_info';
   static const String accountKey = 'account';
   static const String disclosureKey = 'disclosure';
+  static const String kycStepKey = 'kycStep';
+  static const String kycDataKey = 'kycData';
 }
 
 class ApiPath {

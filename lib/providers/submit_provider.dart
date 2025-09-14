@@ -1,8 +1,10 @@
 import 'package:flutter_echo/common/base_provider.dart';
+import 'package:flutter_echo/common/constants.dart';
 import 'package:flutter_echo/models/common_model.dart';
 import 'package:flutter_echo/models/swaggerApi.models.swagger.dart';
 import 'package:flutter_echo/pages/app_router.dart';
 import 'package:flutter_echo/services/api_service.dart';
+import 'package:flutter_echo/services/storage_service.dart';
 import 'package:go_router/go_router.dart';
 
 class SubmitModel extends BaseProvider {
@@ -12,7 +14,13 @@ class SubmitModel extends BaseProvider {
   static const dictContact = 10;
   static const _dictTypes = [...dictBasic, ...dictWork, dictArea, dictContact];
   static Map<String, List<StepItem>?>? _stepItems;
-  SubmitDataReq _submitData = SubmitDataReq();
+  static SubmitDataReq _submitData = SubmitDataReq();
+
+  SubmitDataReq? getCachedData() {
+    final json = LocalStorage().getObject(AppConst.kycDataKey);
+    if (json != null) return SubmitDataReq.fromJson(json);
+    return null;
+  }
 
   Future<Map<String, List<StepItem>?>?> getDictionary() async {
     if (_stepItems?.isNotEmpty == true) return _stepItems;
@@ -32,6 +40,16 @@ class SubmitModel extends BaseProvider {
       () => Api.checkSubmitValid(email: inputs[4], id: inputs[2]),
     );
     if (checkResult != true) return;
+    cacheBasicInfo(inputs: inputs, items: items, birthday: birthday);
+    await LocalStorage().set(AppConst.kycStepKey, 1);
+    navigate((context) => context.push(AppRouter.stepWork));
+  }
+
+  void cacheBasicInfo({
+    required List<String> inputs,
+    required List<int?> items,
+    required int? birthday,
+  }) {
     _submitData = _submitData.copyWith(
       gender: items[0],
       gargetOBirthday: birthday,
@@ -42,10 +60,19 @@ class SubmitModel extends BaseProvider {
       f31u3kOEmail: inputs[4],
       himfjuOOtherLoans: items[1],
     );
-    navigate((context) => context.push(AppRouter.stepWork));
   }
 
   void submitWorkInfo({
+    required List<String?> areas,
+    required List<int?> items,
+    required List<int?> days,
+  }) async {
+    cacheWorkInfo(areas: areas, items: items, days: days);
+    await LocalStorage().set(AppConst.kycStepKey, 2);
+    navigate((context) => context.push(AppRouter.stepContact));
+  }
+
+  void cacheWorkInfo({
     required List<String?> areas,
     required List<int?> items,
     required List<int?> days,
@@ -66,10 +93,18 @@ class SubmitModel extends BaseProvider {
       r67p23OPayday: days[0],
       plenishOSecondPayday: days[1],
     );
-    navigate((context) => context.push(AppRouter.stepContact));
   }
 
   void submitContactInfo({
+    required List<List<String>> inputs,
+    required List<int?> items,
+  }) async {
+    cacheContactInfo(inputs: inputs, items: items);
+    await LocalStorage().set(AppConst.kycStepKey, 3);
+    _submitCreditData();
+  }
+
+  void cacheContactInfo({
     required List<List<String>> inputs,
     required List<int?> items,
   }) {
@@ -81,7 +116,6 @@ class SubmitModel extends BaseProvider {
       h3d2wfOSecondContactMobile: inputs[1][1],
       kibeOSecondContactRelationship: items[1],
     );
-    _submitCreditData();
   }
 
   void _submitCreditData() async {
@@ -93,5 +127,11 @@ class SubmitModel extends BaseProvider {
       queryParameters: {NavKey.count: apiResult?.toString()},
     );
     navigate((context) => context.push(uriRoute.toString()));
+  }
+
+  @override
+  void dispose() {
+    LocalStorage().set(AppConst.kycDataKey, _submitData);
+    super.dispose();
   }
 }

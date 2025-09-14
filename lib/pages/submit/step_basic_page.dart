@@ -42,9 +42,6 @@ class _StepBasicPageState extends State<StepBasicPage> {
   String? _phoneError; // 备用手机号
   List<List<StepItem>?>? _stepItems;
 
-  SubmitModel get submitModel =>
-      Provider.of<SubmitModel>(context, listen: false);
-
   @override
   void initState() {
     super.initState();
@@ -52,17 +49,37 @@ class _StepBasicPageState extends State<StepBasicPage> {
       _controllers[i].addListener(() => _onInputChanged(i + 2));
     }
     WidgetsBinding.instance.addPostFrameCallback((_) async {
+      final submitModel = context.read<SubmitModel>();
       final dict = await submitModel.getDictionary();
+      final data = submitModel.getCachedData();
       setState(() {
         _stepItems = SubmitModel.dictBasic.map((v) => dict?['$v']).toList();
+        _pickedItem[0] = _stepItems?[0]?.findKey(data?.gender);
+        _pickedItem[1] = _stepItems?[1]?.findKey(data?.himfjuOOtherLoans);
+        _pickedDate = data?.gargetOBirthday?.dateTime;
       });
+      _controllers[0].text = data?.lq1s05OFirstName ?? '';
+      _controllers[1].text = data?.darktownOLastName ?? '';
+      _controllers[2].text = data?.merdekaOIdCard ?? '';
+      _controllers[3].text = data?.x1iu04OOtherMobile ?? '';
+      _controllers[4].text = data?.f31u3kOEmail ?? '';
     });
   }
 
   @override
+  void deactivate() {
+    context.read<SubmitModel>().cacheBasicInfo(
+      inputs: _controllers.map((it) => it.text).toList(),
+      items: _pickedItem.map((it) => it?.key).toList(),
+      birthday: _pickedDate?.second,
+    );
+    super.deactivate();
+  }
+
+  @override
   void dispose() {
-    for (var controller in _controllers) {
-      controller.dispose();
+    for (int i = 0; i < 5; i++) {
+      _controllers[i].dispose();
     }
     super.dispose();
   }
@@ -120,8 +137,8 @@ class _StepBasicPageState extends State<StepBasicPage> {
       ];
       list.removeWhere((v) => v.second?.isNotEmpty != true);
       final result = await ConfirmStepDialog.show(context, list);
-      if (result == true) {
-        submitModel.submitBasicInfo(
+      if (result == true && context.mounted) {
+        context.read<SubmitModel>().submitBasicInfo(
           inputs: _controllers.map((it) => it.text).toList(),
           items: _pickedItem.map((it) => it?.key).toList(),
           birthday: _pickedDate?.millisecond,
