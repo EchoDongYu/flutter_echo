@@ -71,7 +71,7 @@ class CompensationDialog extends StatelessWidget {
                 children: [
                   const TextSpan(
                     text:
-                        'Por favor permita todos los permisos de acceso a datos móviles (SMS, Ubicación, etc.) para aumentar sus posibilidades de aprobación.'
+                        'Por favor permita todos los permisos de acceso a datos móviles (Ubicación, etc.) para aumentar sus posibilidades de aprobación.'
                         '\n\nNos aseguraremos de que sus datos estén protegidos según los estándares estrictos y se eliminen de nuestros servidores cuando lo solicite.'
                         '\n\nRevise nuestras ',
                     style: TextStyle(color: NowColors.c0xFF494C4F),

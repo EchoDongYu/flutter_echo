@@ -183,24 +183,12 @@ class TrackIntroDialog extends StatelessWidget {
 
   static const permissionItems = [
     Pair(
-      'SMS',
-      'Estimado estos son los nombres de refer encias encias disponibles para poder dlarle un ej emplo y facilitar cuando completas las infommaciones del prestamo que pago.Estimado estos son los nombres de refer encias disponibles para poder dlarle un ej emplo y facilitar cuando completas las infommaciones del prestamo que pago.',
+      'Ubicación',
+      'Recopilamos información aproximada de tu ubicación para asegurarnos de que tu solicitud de préstamo se realice dentro de las fronteras de Guatemala y para ayudarnos a realizar una evaluación de riesgos. Ten en cuenta que solo recopilamos datos de ubicación aproximada. La información de ubicación recopilada se subirá de manera segura a nuestros servidores en https://insights.credifacilgo.com/insights. Te garantizamos que tu información de ubicación no se asociará con ningún otro dato ni se compartirá con terceros.',
     ),
     Pair(
-      'Solo contacto de emergencia',
-      'Estimado estos son los nombres de refer encias encias disponibles para poder dlarle un ej emplo y facilitar cuando completas las ',
-    ),
-    Pair(
-      'Ubicaciones',
-      'Estimado estos son los nombres de refer encias encias disponibles para poder dla',
-    ),
-    Pair(
-      'Camara',
-      'Estimado estos son los nombres de refer encias encias disponibles para poder dla',
-    ),
-    Pair(
-      'Datos del dispositivo',
-      'Estimado estos son los nombres de refer encias encias disponibles para poder dlaEstimado estos son los nombres de refer encias encias disponibles para poder dlaEstimado estos son los nombres de refer encias encias disponibles para poder dla',
+      'Información dispositivo',
+      'Recopilamos información de tu dispositivo para detectar mejor actividades fraudulentas. Solo se recopilará información específica del dispositivo utilizado para solicitar el préstamo (como detalles del hardware, versión del sistema operativo y datos de uso de aplicaciones). Todos los datos recopilados se subirán de manera segura a nuestro servidor en https://insights.credifacilgo.com/insights Te garantizamos que la información de tu dispositivo no se asociará con ningún otro dato ni se compartirá con terceros.',
     ),
   ];
 
@@ -251,7 +239,7 @@ class TrackIntroDialog extends StatelessWidget {
                       ),
                     ),
                     Text(
-                      'Consulta de carga de datos',
+                      'Confirmación de carga de datos',
                       style: TextStyle(
                         fontSize: 18.sp,
                         fontWeight: FontWeight.w500,
@@ -267,10 +255,21 @@ class TrackIntroDialog extends StatelessWidget {
               Expanded(
                 child: ListView.separated(
                   padding: EdgeInsets.fromLTRB(24.w, 12.h, 24.w, 90.h),
-                  itemCount: permissionItems.length,
+                  itemCount: permissionItems.length + 1,
                   separatorBuilder: (context, index) => SizedBox(height: 22.h),
                   itemBuilder: (context, index) {
-                    return _buildPermissionItem(permissionItems[index]);
+                    if (index == 0) {
+                      return Text(
+                        'Para garantizar una evaluación de crédito precisa y prevenir riesgos de fraude, necesitamos tu permiso para recolectar y usar la información relevante. Tus datos se recolectarán y procesarán de manera transparente, y sin tu consentimiento, nunca compartiremos ni venderemos tu información personal a terceros. Además, implementaremos medidas de seguridad para proteger completamente tu privacidad.',
+                        style: TextStyle(
+                          fontSize: 13.sp,
+                          fontWeight: FontWeight.w400,
+                          color: NowColors.c0xFF494C4F,
+                          height: 20 / 13,
+                        ),
+                      );
+                    }
+                    return _buildPermissionItem(permissionItems[index - 1]);
                   },
                 ),
               ),

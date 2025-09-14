@@ -45,24 +45,16 @@ class DisclosureDialog extends StatelessWidget {
 
   static const permissionItems = [
     Pair(
-      'SMS',
-      'Estimado estos son los nombres de refer encias encias disponibles para poder dlarle un ej emplo y facilitar cuando completas las infommaciones del prestamo que pago.Estimado estos son los nombres de refer encias disponibles para poder dlarle un ej emplo y facilitar cuando completas las infommaciones del prestamo que pago.',
+      'Los contactos de emergencia',
+      'Solo recopilaremos la información de dos contactos de emergencia que tú elijas o ingreses, incluyendo: tu relación con el contacto, el nombre del contacto y el número de teléfono del contacto. Esta información se utilizará únicamente para verificar tu autenticidad, evaluar tu elegibilidad crediticia, analizar riesgos y prevenir fraudes. Tú puedes elegir cómo proporcionar esta información: a) Rellenarla manualmente; b) Completarla automáticamente. La autocompletación es una forma de interacción eficiente que te permite seleccionar información específica de tu lista de contactos para subirla rápidamente a nuestra aplicación, ahorrando tiempo de llenado. Es importante señalar que este método solo obtendrá la información de los contactos que tú elijas, y no accederá a toda tu agenda de contactos. Sin tu permiso, nunca compartiremos tus datos con terceros. Todos los datos se subirán y almacenarán a través de una conexión segura (https) en nuestros servidores.',
     ),
     Pair(
-      'Solo contacto de emergencia',
-      'Estimado estos son los nombres de refer encias encias disponibles para poder dlarle un ej emplo y facilitar cuando completas las ',
+      'Ubicación',
+      'Recopilamos información aproximada de tu ubicación para asegurarnos de que tu solicitud de préstamo se realice dentro de las fronteras de Guatemala y para ayudarnos a realizar una evaluación de riesgos. Ten en cuenta que solo recopilamos datos de ubicación aproximada. La información de ubicación recopilada se subirá de manera segura a nuestros servidores en https://insights.credifacilgo.com/insights. Te garantizamos que tu información de ubicación no se asociará con ningún otro dato ni se compartirá con terceros.',
     ),
     Pair(
-      'Ubicaciones',
-      'Estimado estos son los nombres de refer encias encias disponibles para poder dla',
-    ),
-    Pair(
-      'Camara',
-      'Estimado estos son los nombres de refer encias encias disponibles para poder dla',
-    ),
-    Pair(
-      'Datos del dispositivo',
-      'Estimado estos son los nombres de refer encias encias disponibles para poder dlaEstimado estos son los nombres de refer encias encias disponibles para poder dlaEstimado estos son los nombres de refer encias encias disponibles para poder dla',
+      'Información dispositivo',
+      'Recopilamos información de tu dispositivo para detectar mejor actividades fraudulentas. Solo se recopilará información específica del dispositivo utilizado para solicitar el préstamo (como detalles del hardware, versión del sistema operativo y datos de uso de aplicaciones). Todos los datos recopilados se subirán de manera segura a nuestro servidor en https://insights.credifacilgo.com/insights Te garantizamos que la información de tu dispositivo no se asociará con ningún otro dato ni se compartirá con terceros.',
     ),
   ];
 
@@ -87,7 +79,7 @@ class DisclosureDialog extends StatelessWidget {
             children: [
               SizedBox(height: 16.h),
               Text(
-                'Permiso',
+                'Solicitar permisos',
                 style: TextStyle(
                   fontSize: 18.sp,
                   fontWeight: FontWeight.w500,
@@ -101,7 +93,7 @@ class DisclosureDialog extends StatelessWidget {
                 color: NowColors.c0xFFEFF7FF,
                 padding: EdgeInsets.symmetric(horizontal: 24.w, vertical: 10.h),
                 child: Text(
-                  'Estimado estos son los nombres de refer encias disponibles para poder dlarle un ej emplo y facilitar cuando completas las infommaciones del prestamo que pago.',
+                  'Para garantizar que pueda utilizar nuestros servicios de préstamo de manera adecuada, necesitamos obtener los siguientes permisos e informaciones.',
                   style: TextStyle(
                     fontSize: 13.sp,
                     fontWeight: FontWeight.w400,
