@@ -4,8 +4,8 @@ import 'package:flutter_echo/common/app_theme.dart';
 import 'package:flutter_echo/utils/drawable_utils.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-class BillListNoData extends StatelessWidget {
-  const BillListNoData({super.key});
+class PageNoData extends StatelessWidget {
+  const PageNoData({super.key});
 
   @override
   Widget build(BuildContext context) {

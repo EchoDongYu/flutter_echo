@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_echo/common/app_theme.dart';
-import 'package:flutter_echo/pages/bill/detail_view/bill_detail_loan_enum.dart';
 import 'package:flutter_echo/pages/bill/detail_view/bill_detail_loan_info.dart';
-import 'package:flutter_echo/pages/bill/detail_view/bill_detail_loan_item.dart';
 import 'package:flutter_echo/pages/bill/detail_view/bill_detail_loan_status.dart';
 import 'package:flutter_echo/providers/bill_detail_provider.dart';
 import 'package:flutter_echo/ui/widgets/common_appbar.dart';
@@ -15,8 +13,8 @@ class BillDetailPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final billDetailModel = context.watch<BillDetailModel>();
-    final billDetailData = billDetailModel.billDetailData;
+    // final billDetailModel = context.watch<BillDetailModel>();
+    // final billDetailData = billDetailModel.billDetailData;
     return Scaffold(
       backgroundColor: NowColors.c0xFFF3F3F5,
       appBar: const CommonAppBar(title: "Detalles del préstamo"),

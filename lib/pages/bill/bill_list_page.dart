@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_echo/common/app_theme.dart';
 import 'package:flutter_echo/pages/app_router.dart';
 import 'package:flutter_echo/pages/bill/list_view/bill_list_item.dart';
-import 'package:flutter_echo/pages/bill/list_view/bill_list_no_data.dart';
 import 'package:flutter_echo/pages/bill/list_view/bill_list_top_card.dart';
 import 'package:flutter_echo/providers/bill_provider.dart';
 import 'package:flutter_echo/ui/widgets/common_appbar.dart';
+import 'package:flutter_echo/ui/widgets/page_no_data.dart';
 import 'package:flutter_echo/utils/common_utils.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
@@ -37,7 +37,7 @@ class BillListPage extends StatelessWidget {
               const SizedBox(height: 12),
               billList.isNotEmpty
                   ? const BillListView()
-                  : const BillListNoData(),
+                  : const PageNoData(),
             ],
           ),
         ),
