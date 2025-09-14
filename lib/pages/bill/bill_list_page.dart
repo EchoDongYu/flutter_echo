@@ -35,9 +35,7 @@ class BillListPage extends StatelessWidget {
                 value: '$totalAmount',
               ),
               const SizedBox(height: 12),
-              billList.isNotEmpty
-                  ? const BillListView()
-                  : const PageNoData(),
+              billList.isNotEmpty ? const BillListView() : const PageNoData(),
             ],
           ),
         ),
@@ -64,7 +62,20 @@ class BillListView extends StatelessWidget {
                 amount: itemData.retiaryOLoanAmount ?? 0.0,
                 vencimientoDate: itemData.r5k31qODueTime?.showDate ?? "",
                 status: updateBillStatus(itemData.d95091ORepaymentStatus),
-                billListItemBox: const BillListLoanListView(),
+                billListItemBox: ListView(
+                  shrinkWrap: true,
+                  physics: NeverScrollableScrollPhysics(),
+                  children: billList
+                      .map(
+                        (item) => BillListLoanItem(
+                          amount: 2000,
+                          vencimientoDate: "",
+                          status: updateBillStatus(1),
+                          dueDate: '24242424444',
+                        ),
+                      )
+                      .toList(),
+                ),
                 onDetails: () {
                   final uriRoute = Uri(
                     path: AppRouter.billDetail,
@@ -82,34 +93,6 @@ class BillListView extends StatelessWidget {
               );
             },
           ),
-        );
-      },
-    );
-  }
-}
-
-class BillListLoanListView extends StatelessWidget {
-  const BillListLoanListView({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return Consumer<BillModel>(
-      builder: (_, provider, _) {
-        final billList = provider.billListData ?? [];
-        return ListView.separated(
-          shrinkWrap: true,
-          physics: NeverScrollableScrollPhysics(),
-          itemCount: billList.length,
-          separatorBuilder: (context, index) => SizedBox(height: 12.h),
-          itemBuilder: (context, index) {
-            final itemData = billList[index];
-            return BillListLoanItem(
-              amount: itemData.retiaryOLoanAmount ?? 0.0,
-              vencimientoDate: itemData.r5k31qODueTime?.showDate ?? "",
-              status: updateBillStatus(itemData.d95091ORepaymentStatus),
-              dueDate: '24242424444',
-            );
-          },
         );
       },
     );

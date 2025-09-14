@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_echo/common/app_theme.dart';
 import 'package:flutter_echo/ui/widgets/common_button.dart';
 import 'package:flutter_echo/utils/common_utils.dart';
+import 'package:flutter_echo/utils/drawable_utils.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 enum BillStatus { pagos, atrasado, pendiente, fracaso, pagado }
@@ -13,6 +14,7 @@ class BillListItem extends StatelessWidget {
   final VoidCallback onPagar;
   final VoidCallback onDetails;
   final bool isShowPagar;
+  final bool isShowFill;
   final Widget billListItemBox;
 
   const BillListItem({
@@ -24,6 +26,7 @@ class BillListItem extends StatelessWidget {
     required this.onDetails,
     required this.billListItemBox,
     this.isShowPagar = true,
+    this.isShowFill = false,
   });
 
   // 状态对应的颜色和文字
@@ -55,13 +58,26 @@ class BillListItem extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           // 顶部日期 + 状态
-          Text(
-            "Vencimiento: $vencimientoDate",
-            style: TextStyle(
-              fontSize: 14.sp,
-              fontWeight: FontWeight.w500,
-              color: NowColors.c0xFF77797B,
-            ),
+          Row(
+            children: [
+              Text(
+                "Vencimiento: $vencimientoDate",
+                style: TextStyle(
+                  fontSize: 14.sp,
+                  fontWeight: FontWeight.w500,
+                  color: NowColors.c0xFF77797B,
+                ),
+              ),
+              const SizedBox(width: 4),
+              Visibility(
+                visible: isShowFill,
+                child: Image.asset(
+                  Drawable.iconHourglassFill,
+                  width: 16,
+                  height: 16,
+                ),
+              ),
+            ],
           ),
           const SizedBox(height: 10),
           // 金额
@@ -131,7 +147,6 @@ class BillListItem extends StatelessWidget {
 }
 
 class BillListLoanItem extends StatelessWidget {
-
   final double amount;
   final String vencimientoDate;
   final String dueDate;
@@ -144,7 +159,6 @@ class BillListLoanItem extends StatelessWidget {
     required this.dueDate,
     required this.status,
   });
-
 
   // 状态对应的颜色和文字
   Map<String, dynamic> get _statusStyle {
@@ -164,7 +178,7 @@ class BillListLoanItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return  Container(
+    return Container(
       decoration: BoxDecoration(
         color: NowColors.c0xFFF3F3F5,
         borderRadius: BorderRadius.circular(12),
@@ -175,7 +189,7 @@ class BillListLoanItem extends StatelessWidget {
             left: 0,
             top: 0,
             child: Container(
-              padding: EdgeInsets.symmetric(vertical: 3,horizontal: 6),
+              padding: EdgeInsets.symmetric(vertical: 3, horizontal: 6),
               alignment: Alignment.center,
               decoration: BoxDecoration(
                 color: _statusStyle["color"],
@@ -257,4 +271,3 @@ class BillListLoanItem extends StatelessWidget {
     );
   }
 }
-

@@ -58,5 +58,6 @@ class Drawable {
   static const String imageScreenshot2 = 'assets/images/image_screenshot2.png';
   static const String imageShildsequere = 'assets/images/image_shildsequere.png';
   static const String imageUpgrade = 'assets/images/image_upgrade.png';
+  static const String iconHourglassFill = 'assets/images/icon_hourglass_fill.png';
 
 }
