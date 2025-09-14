@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_echo/ui/widgets/common_appbar.dart';
 
 /// 还款确认页面
 class RepayConfirmPage extends StatelessWidget {
@@ -7,8 +8,12 @@ class RepayConfirmPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('还款管理')),
-      body: const Center(child: Text('还款页面 - 待实现')),
+      appBar: CommonAppBar(
+        title: "Metodo de pago",
+      ),
+      body: Column(
+        children: [],
+      ),
     );
   }
 }

@@ -1,17 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_echo/ui/widgets/common_appbar.dart';
 
-///还款状态页面
-class RepayResultPage extends StatelessWidget {
-  const RepayResultPage({super.key});
+///还款凭证页面
+class RepayCertificatePage extends StatelessWidget {
+  const RepayCertificatePage({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: CommonAppBar(
-        title: "Resultado del Pagar",
+        title: "Envía comprobante",
       ),
     );
   }
 }
-

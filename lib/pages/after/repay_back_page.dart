@@ -1,17 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_echo/ui/widgets/common_appbar.dart';
 
-///还款状态页面
-class RepayResultPage extends StatelessWidget {
-  const RepayResultPage({super.key});
+///还款银行页面
+class RepayBackPage extends StatelessWidget {
+  const RepayBackPage({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: CommonAppBar(
-        title: "Resultado del Pagar",
+        title: "Banco",
       ),
     );
   }
 }
-

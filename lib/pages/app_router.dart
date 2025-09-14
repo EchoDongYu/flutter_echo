@@ -1,4 +1,6 @@
 import 'package:flutter_echo/common/page_consumer.dart';
+import 'package:flutter_echo/pages/after/repay_back_page.dart';
+import 'package:flutter_echo/pages/after/repay_certificate_page.dart';
 import 'package:flutter_echo/pages/after/repay_confirm_page.dart';
 import 'package:flutter_echo/pages/after/repay_history_page.dart';
 import 'package:flutter_echo/pages/after/repay_result_page.dart';
@@ -225,6 +227,18 @@ class AppRouter {
       GoRoute(
         path: repayResult,
         builder: (context, state) => const RepayResultPage(),
+      ),
+
+      /// 还款银行页面
+      GoRoute(
+        path: repayResult,
+        builder: (context, state) => const RepayBackPage(),
+      ),
+
+      /// 还款凭证页面
+      GoRoute(
+        path: repayResult,
+        builder: (context, state) => const RepayCertificatePage(),
       ),
 
       /// 还款历史页面
