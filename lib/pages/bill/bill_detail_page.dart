@@ -42,12 +42,20 @@ class BillDetailPage extends StatelessWidget {
               detailLoanInfoCommission: 'Q 123.33',
               detailLoanInfoCharge: 'Q 123.33',
               detailLoanInfoReceived: 'Q 123.33',
+              onCommission:(){
+                _showBillDetailLoanDialog(context);
+              },
             ),
           ],
         ),
       ),
     );
   }
+
+  void _showBillDetailLoanDialog(BuildContext context) async {
+
+  }
+
 }
 
 class BillDetailLoanListView extends StatelessWidget {
@@ -57,11 +65,12 @@ class BillDetailLoanListView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Consumer<BillDetailModel>(
       builder: (_, provider, _) {
-        final billDetailLoanList = provider.billDetailData?.v08uw3ORepaymentChannelList ?? [];
+        final billDetailLoanList =
+            provider.billDetailData?.v08uw3ORepaymentChannelList ?? [];
         return ListView.separated(
           shrinkWrap: true,
           physics: NeverScrollableScrollPhysics(),
-          itemCount: 3,
+          itemCount: billDetailLoanList.length,
           separatorBuilder: (context, index) => SizedBox(height: 12.h),
           itemBuilder: (context, index) {
             // final itemData = billDetailLoanList[index];
@@ -75,7 +84,6 @@ class BillDetailLoanListView extends StatelessWidget {
       },
     );
   }
-
 }
 
 //订单展示状态(o_orderStatus)：,0打款中,1打款失败,2打款成功且未结清未逾期,3打款成功且未结清有逾期,4全结清

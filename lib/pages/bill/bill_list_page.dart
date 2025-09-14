@@ -63,8 +63,8 @@ class BillListView extends StatelessWidget {
               return BillListItem(
                 amount: itemData.retiaryOLoanAmount ?? 0.0,
                 vencimientoDate: itemData.r5k31qODueTime?.showDate ?? "",
-                dueDate: itemData.r5k31qODueTime?.showDate ?? "",
                 status: updateBillStatus(itemData.d95091ORepaymentStatus),
+                billListItemBox: const BillListLoanListView(),
                 onDetails: () {
                   final uriRoute = Uri(
                     path: AppRouter.billDetail,
@@ -86,9 +86,37 @@ class BillListView extends StatelessWidget {
       },
     );
   }
+}
 
-  //订单展示状态(o_orderStatus)：,0打款中,1打款失败,2打款成功且未结清未逾期,3打款成功且未结清有逾期,4全结清
-  BillStatus updateBillStatus(int? d95091oRepaymentStatus) {
-    return BillStatus.fracaso;
+class BillListLoanListView extends StatelessWidget {
+  const BillListLoanListView({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Consumer<BillModel>(
+      builder: (_, provider, _) {
+        final billList = provider.billListData ?? [];
+        return ListView.separated(
+          shrinkWrap: true,
+          physics: NeverScrollableScrollPhysics(),
+          itemCount: billList.length,
+          separatorBuilder: (context, index) => SizedBox(height: 12.h),
+          itemBuilder: (context, index) {
+            final itemData = billList[index];
+            return BillListLoanItem(
+              amount: itemData.retiaryOLoanAmount ?? 0.0,
+              vencimientoDate: itemData.r5k31qODueTime?.showDate ?? "",
+              status: updateBillStatus(itemData.d95091ORepaymentStatus),
+              dueDate: '24242424444',
+            );
+          },
+        );
+      },
+    );
   }
+}
+
+//订单展示状态(o_orderStatus)：,0打款中,1打款失败,2打款成功且未结清未逾期,3打款成功且未结清有逾期,4全结清
+BillStatus updateBillStatus(int? d95091oRepaymentStatus) {
+  return BillStatus.fracaso;
 }
