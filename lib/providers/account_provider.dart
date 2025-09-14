@@ -8,20 +8,17 @@ class AccountModel extends BaseProvider {
   String? _imageCode;
   int? _codeType;
   String? _phoneNumber;
-  // String? _verifyCode;
-  // String? _password;
-  // String? _cuiNumber;
   Timer? _timer;
   int _countdown = 0;
 
   int get countdown => _countdown;
 
-  void sendVerifyCode({String? mobile, required int type}) async {
-    _phoneNumber = mobile ?? LocalStorage().account;
+  void sendVerifyCode({required int type}) async {
+    _phoneNumber = LocalStorage().account;
     _codeType = type;
     final apiResult = await launchRequest(() {
       return Api.sendVerificationCode(
-        mobile: mobile,
+        mobile: _phoneNumber,
         type: _codeType?.toString(),
       );
     });
@@ -132,5 +129,12 @@ class AccountModel extends BaseProvider {
         // }
       }
     });
+  }
+
+  @override
+  void dispose() {
+    _timer?.cancel();
+    _timer = null;
+    super.dispose();
   }
 }

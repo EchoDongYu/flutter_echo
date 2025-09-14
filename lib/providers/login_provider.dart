@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter_echo/common/base_provider.dart';
+import 'package:flutter_echo/common/constants.dart';
 import 'package:flutter_echo/models/api_response.dart';
 import 'package:flutter_echo/models/swaggerApi.models.swagger.dart';
 import 'package:flutter_echo/pages/app_router.dart';
@@ -18,8 +19,6 @@ class LoginModel extends BaseProvider {
   int? _dType;
   Timer? _timer;
   int _countdown = 0;
-
-  // int _loginStep = 0;
 
   int? get _codeType {
     final isRegistered = _checkRegister?.qm5h5tOIsRegistered;
@@ -50,6 +49,7 @@ class LoginModel extends BaseProvider {
           _checkRegister?.fm50w8OLoginPwd == true &&
           _checkRegister?.j1mnl2OExistLoginPwd == true) {
         // 已注册&密码登录&已设置密码
+        await LocalStorage().set(AppConst.accountKey, mobile);
         navigate((context) => context.push(AppRouter.loginPassword));
       } else {
         navigate((context) => context.push(AppRouter.loginCode));

@@ -199,7 +199,7 @@ class _SafetyVerifyPageState extends State<SafetyVerifyPage> {
               if (_controllers[0].text != LocalStorage().account) {
                 toast('Ingrese el número de teléfono registrado');
               } else {
-                provider.sendVerifyCode(mobile: _controllers[0].text, type: 6);
+                provider.sendVerifyCode(type: 6);
               }
             }
           },
