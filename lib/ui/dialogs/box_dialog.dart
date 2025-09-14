@@ -64,12 +64,11 @@ class BoxDialog extends StatelessWidget {
             SizedBox(height: 16.h),
             centerLayout,
             SizedBox(height: 24.h),
-            EchoOutlinedButton(
+            EchoSecondaryButton(
               text: btnText,
               onPressed: onConfirm,
-              textColor: NowColors.c0xFF3288F1,
-              borderColor: NowColors.c0xFF3288F1,
-              filledColor: NowColors.c0xFFEFF7FF,
+              textColor: NowColors.c0xFFFFFFFF,
+              filledColor: NowColors.c0xFF3288F1,
             ),
           ],
         ),

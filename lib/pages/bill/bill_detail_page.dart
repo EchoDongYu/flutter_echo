@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_echo/common/app_theme.dart';
+import 'package:flutter_echo/pages/bill/detail_view/bill_detail_loan_detail.dart';
 import 'package:flutter_echo/pages/bill/detail_view/bill_detail_loan_info.dart';
 import 'package:flutter_echo/pages/bill/detail_view/bill_detail_loan_status.dart';
 import 'package:flutter_echo/providers/bill_detail_provider.dart';
 import 'package:flutter_echo/ui/dialogs/box_dialog.dart';
 import 'package:flutter_echo/ui/widgets/common_appbar.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
 
 ///账单详情
@@ -57,12 +59,15 @@ class BillDetailPage extends StatelessWidget {
       context: context,
       title: "Comisión",
       btnText: "Confirmar",
-      centerLayout: Consumer<BillDetailModel>(
-        builder: (_, provider, _) {
-          return Container();
-        },
+      centerLayout: BillDetailLoanDetail(
+        serviceCharge: 'Q 15',
+        creditInquiryFee: 'Q 15',
+        transferFee: 'Q 15',
+        iva: 'Q 15',
       ),
-      onConfirm: () {},
+      onConfirm: () {
+        context.pop(true);
+      },
     );
   }
 }
