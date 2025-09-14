@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_echo/common/app_theme.dart';
+import 'package:flutter_echo/pages/app_router.dart';
 import 'package:flutter_echo/pages/bill/detail_view/bill_detail_loan_detail.dart';
 import 'package:flutter_echo/pages/bill/detail_view/bill_detail_loan_info.dart';
 import 'package:flutter_echo/pages/bill/detail_view/bill_detail_loan_status.dart';
@@ -33,7 +34,9 @@ class BillDetailPage extends StatelessWidget {
               status: updateBillDetailLoanStatus(1),
               loanStatusBox: const BillDetailLoanListView(),
               onPagar: () {},
-              onHistory: () {},
+              onHistory: () {
+                context.push(AppRouter.repayHistory);
+              },
             ),
             const SizedBox(height: 12),
             //账单详情-还款信息框

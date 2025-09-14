@@ -1,5 +1,6 @@
 import 'package:flutter_echo/common/page_consumer.dart';
 import 'package:flutter_echo/pages/after/repay_confirm_page.dart';
+import 'package:flutter_echo/pages/after/repay_history_page.dart';
 import 'package:flutter_echo/pages/after/repay_result_page.dart';
 import 'package:flutter_echo/pages/before/apply_confirm_page.dart';
 import 'package:flutter_echo/pages/before/apply_result_page.dart';
@@ -35,6 +36,7 @@ import 'package:flutter_echo/providers/bill_provider.dart';
 import 'package:flutter_echo/providers/feedback_provider.dart';
 import 'package:flutter_echo/providers/login_provider.dart';
 import 'package:flutter_echo/providers/main_provider.dart';
+import 'package:flutter_echo/providers/repay_provider.dart';
 import 'package:flutter_echo/providers/step_status_provider.dart';
 import 'package:flutter_echo/providers/submit_provider.dart';
 import 'package:flutter_echo/providers/user_bank_provider.dart';
@@ -61,6 +63,7 @@ class AppRouter {
   static const String applyProcess = '/apply_process';
   static const String repayConfirm = '/repay_confirm';
   static const String repayResult = '/repay_result';
+  static const String repayHistory = '/repay_history';
   static const String billList = '/bill_list';
   static const String billDetail = '/bill_detail';
   static const String safetyVerify = '/safety_verify';
@@ -222,6 +225,17 @@ class AppRouter {
       GoRoute(
         path: repayResult,
         builder: (context, state) => const RepayResultPage(),
+      ),
+
+      /// 还款历史页面
+      GoRoute(
+        path: repayHistory,
+        builder: (context, state) => ChangeNotifierProvider(
+          create: (_) => RepayModel(),
+          builder: (context, state) {
+            return PageConsumer<RepayModel>(child: const RepayHistoryPage());
+          },
+        ),
       ),
 
       /// 账单列表页面

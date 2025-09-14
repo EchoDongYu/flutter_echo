@@ -95,7 +95,7 @@ class BillListItem extends StatelessWidget {
               Container(
                 padding: const EdgeInsets.symmetric(
                   horizontal: 10,
-                  vertical: 4,
+                  //vertical: 4,
                 ),
                 decoration: BoxDecoration(
                   color: _statusStyle["color"].withOpacity(0.1),
