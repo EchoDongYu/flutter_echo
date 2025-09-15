@@ -60,6 +60,7 @@ class _DeviceVerifyDialogState extends State<DeviceVerifyDialog>
   @override
   void initState() {
     super.initState();
+    _imageUrl = ApiPath.captchaCode();
     _animationCtrl = AnimationController(vsync: this)
       ..repeat(period: const Duration(seconds: 1));
     _verifyCtrl.addListener(_onCodeChanged);
@@ -378,10 +379,18 @@ class _DeviceVerifyDialogState extends State<DeviceVerifyDialog>
       ),
       child: EchoPrimaryButton(
         text: 'Confirmar',
-        onPressed: () => verifyModel.checkVerifyCode(
-          verifyCode: _verifyCtrl.text,
-          imageCode: _imageCtrl.text,
-        ),
+        onPressed: () async {
+          final checkOk = await verifyModel.checkVerifyCode(
+            verifyCode: _verifyCtrl.text,
+            imageCode: _imageCtrl.text,
+          );
+          if (checkOk != true) {
+            Future.delayed(const Duration(milliseconds: 500), () {
+              _verifyCtrl.clear();
+              setState(() => _inputCode = '');
+            });
+          }
+        },
       ),
     );
   }

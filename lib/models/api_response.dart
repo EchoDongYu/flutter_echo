@@ -28,6 +28,15 @@ class ApiResponse {
     final message = msg;
     if (message != null) toast(message);
   }
+
+  static const globalBlockCode = [
+    'EE7149',
+    'YL0395',
+    'MO9942',
+    'IS8131',
+    'DO0413',
+  ];
+  static const codeT1017 = 'QO3995';
 }
 
 // **成功** RF6101 (ori: 0000)
@@ -37,7 +46,7 @@ class ApiResponse {
 // 4、MO9942 (ori: T1013)、IS8131 (ori: T1019) 需弹图形验证码 （背景：短信验证码校验失败超过次数场景）
 // ##### **QO3995 (ori: JL8240 (ori: T1017))** 您所输入的手机号码已被注销，请输入其他可用手机号
 extension ApiResponseExtension on ApiResponse {
-  bool get successful => code == "RF6101";
+  bool get successful => code == 'RF6101';
 
   bool get needLogin => code == 'EE7149' || code == 'YL0395';
 
@@ -46,6 +55,4 @@ extension ApiResponseExtension on ApiResponse {
   bool get needVerify => code == 'DO0413';
 
   bool get removal => code == 'QO3995';
-
-  bool get globalCode => needLogin || needCaptcha || needVerify || removal;
 }

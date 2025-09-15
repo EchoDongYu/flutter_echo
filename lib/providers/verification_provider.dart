@@ -7,6 +7,7 @@ import 'package:go_router/go_router.dart';
 
 class VerifyModel extends BaseProvider {
   String? _phoneNumber;
+  String? _imageCode;
   Timer? _timer;
   bool? _needCaptcha;
   int _countdown = 0;
@@ -58,19 +59,31 @@ class VerifyModel extends BaseProvider {
     });
   }
 
-  void checkVerifyCode({required String? verifyCode, String? imageCode}) async {
-    await launchRequest(() async {
-      final imgCode = needCaptcha == true ? imageCode : null;
-      final apiResult = await Api.checkVerificationCode(
+  Future<bool?> checkVerifyCode({
+    required String? verifyCode,
+    String? imageCode,
+  }) async {
+    final apiResult = await launchRequest(() async {
+      final imgCode = needCaptcha == true ? imageCode : _imageCode;
+      return await Api.checkVerificationCode(
         mobile: _phoneNumber,
         type: _codeType,
         verifyCode: verifyCode,
         imageCode: imgCode,
       );
-      if (apiResult == true) {
-        navigate((context) => context.pop());
-      }
     });
+    if (apiResult == true) {
+      navigate((context) => context.pop());
+    }
+    return apiResult;
+  }
+
+  @override
+  void onCaptcha(
+    Future<String?> Function({required String? mobile, required int? type})
+    showCaptchaDialog,
+  ) async {
+    _imageCode = await showCaptchaDialog(mobile: _phoneNumber, type: _codeType);
   }
 
   @override

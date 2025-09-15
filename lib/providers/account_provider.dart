@@ -104,31 +104,11 @@ class AccountModel extends BaseProvider {
   }
 
   @override
-  void onCaptchaCode(String code) async {
-    await launchRequest(() async {
-      final apiResult = await Api.checkCaptchaCode(
-        mobile: _phoneNumber,
-        type: _codeType,
-        imageCode: code,
-      );
-      if (apiResult == true) {
-        _imageCode = code;
-        // if (_codeType == null) {
-        //   await setTraderPassword(password: _password);
-        // } else if (_codeType == 2) {
-        //   await resetLoginPassword(
-        //     verifyCode: _verifyCode,
-        //     password: _password,
-        //   );
-        // } else if (_codeType == 3) {
-        //   await resetTraderPassword(
-        //     verifyCode: _verifyCode,
-        //     password: _password,
-        //     cuiNumber: _cuiNumber,
-        //   );
-        // }
-      }
-    });
+  void onCaptcha(
+    Future<String?> Function({required String? mobile, required int? type})
+    showCaptchaDialog,
+  ) async {
+    _imageCode = await showCaptchaDialog(mobile: _phoneNumber, type: _codeType);
   }
 
   @override

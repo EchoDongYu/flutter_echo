@@ -501,7 +501,7 @@ class _DemoPageState extends State<DemoPage> {
   }
 
   void _showCaptchaDialog(BuildContext context) async {
-    final result = await CaptchaDialog.show(context);
+    final result = await CaptchaDialog.show(context, mobile: null, type: null);
     if (context.mounted) {
       if (result != null && result.isNotEmpty) {
         context.showSuccessSnack('Success $result');

@@ -41,8 +41,10 @@ class LoginModel extends BaseProvider {
       _countdown = 0;
     }
     _phoneNumber = mobile;
-    final api = Api.isRegister(mobile: mobile);
-    final apiResult = await launchRequest(() => api);
+    final apiResult = await launchRequest(
+      () => Api.isRegister(mobile: mobile),
+      blockCodes: [...ApiResponse.globalBlockCode, ApiResponse.codeT1017],
+    );
     if (apiResult != null) {
       _checkRegister = apiResult;
       if (_checkRegister?.qm5h5tOIsRegistered == true &&
@@ -162,24 +164,11 @@ class LoginModel extends BaseProvider {
   }
 
   @override
-  void onCaptchaCode(String code) async {
-    await launchRequest(() async {
-      final apiResult = await Api.checkCaptchaCode(
-        mobile: _phoneNumber,
-        type: _codeType,
-        imageCode: code,
-      );
-      if (apiResult == true) {
-        _imageCode = code;
-        // if (_loginStep == 0) {
-        //   await _sendVerifyCode();
-        // } else if (_loginStep == 1) {
-        //   await _checkVerifyCode();
-        // } else if (_loginStep == 2) {
-        //   await _registerOrLogin();
-        // }
-      }
-    });
+  void onCaptcha(
+    Future<String?> Function({required String? mobile, required int? type})
+    showCaptchaDialog,
+  ) async {
+    _imageCode = await showCaptchaDialog(mobile: _phoneNumber, type: _codeType);
   }
 
   @override
