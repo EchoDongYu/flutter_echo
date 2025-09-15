@@ -12,7 +12,6 @@ import 'package:flutter_echo/pages/submit/pick_date_dialog.dart';
 import 'package:flutter_echo/pages/submit/pick_day_dialog.dart';
 import 'package:flutter_echo/pages/submit/pick_item_dialog.dart';
 import 'package:flutter_echo/pages/submit/step_bank_dialog.dart';
-import 'package:flutter_echo/services/storage_service.dart';
 import 'package:flutter_echo/ui/dialog_helper.dart';
 import 'package:flutter_echo/ui/dialogs/compensation_dialog.dart';
 import 'package:flutter_echo/ui/dialogs/disclosure_dialog.dart';
@@ -292,10 +291,7 @@ class _DemoPageState extends State<DemoPage> {
             title: '登录手机号输入页面',
             icon: Icons.phone_android_rounded,
             color: NowColors.c0xFF3EB34D,
-            onPressed: () {
-              LocalStorage().logout();
-              GoRouter.of(context).go(AppRouter.loginPhone);
-            },
+            onPressed: () => context.go(AppRouter.loginPhone),
           ),
 
           // 认证流程测试
