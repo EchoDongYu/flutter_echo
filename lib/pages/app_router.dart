@@ -1,5 +1,8 @@
 import 'package:flutter_echo/common/page_consumer.dart';
+import 'package:flutter_echo/pages/after/repay_back_page.dart';
+import 'package:flutter_echo/pages/after/repay_certificate_page.dart';
 import 'package:flutter_echo/pages/after/repay_confirm_page.dart';
+import 'package:flutter_echo/pages/after/repay_history_page.dart';
 import 'package:flutter_echo/pages/after/repay_result_page.dart';
 import 'package:flutter_echo/pages/before/apply_confirm_page.dart';
 import 'package:flutter_echo/pages/before/apply_result_page.dart';
@@ -30,9 +33,12 @@ import 'package:flutter_echo/pages/user/web_page.dart';
 import 'package:flutter_echo/providers/about_us_provider.dart';
 import 'package:flutter_echo/providers/account_provider.dart';
 import 'package:flutter_echo/providers/apply_provider.dart';
+import 'package:flutter_echo/providers/bill_detail_provider.dart';
+import 'package:flutter_echo/providers/bill_provider.dart';
 import 'package:flutter_echo/providers/feedback_provider.dart';
 import 'package:flutter_echo/providers/login_provider.dart';
 import 'package:flutter_echo/providers/main_provider.dart';
+import 'package:flutter_echo/providers/repay_provider.dart';
 import 'package:flutter_echo/providers/step_status_provider.dart';
 import 'package:flutter_echo/providers/submit_provider.dart';
 import 'package:flutter_echo/providers/user_bank_provider.dart';
@@ -58,7 +64,11 @@ class AppRouter {
   static const String applyFailed = '/apply_failed';
   static const String applyProcess = '/apply_process';
   static const String repayConfirm = '/repay_confirm';
-  static const String repayResult = '/repay_result';
+  static const String repayFailed = '/repay_failed';
+  static const String repayProcess = '/repay_process';
+  static const String repayBack = '/repay_back';
+  static const String repayCertificate = '/repay_certificate';
+  static const String repayHistory = '/repay_history';
   static const String billList = '/bill_list';
   static const String billDetail = '/bill_detail';
   static const String safetyVerify = '/safety_verify';
@@ -216,22 +226,64 @@ class AppRouter {
         builder: (context, state) => const RepayConfirmPage(),
       ),
 
-      /// 还款状态页面
+      /// 还款失败页面
       GoRoute(
-        path: repayResult,
-        builder: (context, state) => const RepayResultPage(),
+        path: repayFailed,
+        builder: (context, state) => const RepayFailedPage(),
+      ),
+
+      /// 还款处理中页面
+      GoRoute(
+        path: repayProcess,
+        builder: (context, state) => const RepayProcessPage(),
+      ),
+
+      /// 还款银行页面
+      GoRoute(
+        path: repayBack,
+        builder: (context, state) => const RepayBackPage(),
+      ),
+
+      /// 还款凭证页面
+      GoRoute(
+        path: repayCertificate,
+        builder: (context, state) => const RepayCertificatePage(),
+      ),
+
+      /// 还款历史页面
+      GoRoute(
+        path: repayHistory,
+        builder: (context, state) => ChangeNotifierProvider(
+          create: (_) => RepayModel(),
+          builder: (context, state) {
+            return PageConsumer<RepayModel>(child: const RepayHistoryPage());
+          },
+        ),
       ),
 
       /// 账单列表页面
       GoRoute(
         path: billList,
-        builder: (context, state) => const BillListPage(),
+        builder: (context, state) => ChangeNotifierProvider(
+          create: (_) => BillModel()..fetchBillListData(),
+          builder: (context, state) {
+            return PageConsumer<BillModel>(child: const BillListPage());
+          },
+        ),
       ),
 
       /// 账单详情页面
       GoRoute(
         path: billDetail,
-        builder: (context, state) => const BillDetailPage(),
+        builder: (context, state) => ChangeNotifierProvider(
+          create: (_) => BillDetailModel()
+            ..fetchBillDetailData(
+              loanGid: state.uri.queryParameters[NavKey.id]?.tryParseInt,
+            ),
+          builder: (context, state) {
+            return PageConsumer<BillDetailModel>(child: const BillDetailPage());
+          },
+        ),
       ),
 
       /// 安全验证页面

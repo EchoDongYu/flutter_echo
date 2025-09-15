@@ -139,3 +139,8 @@ extension ListExt on List<StepItem> {
     return null;
   }
 }
+
+extension ContextSizeExtensions on BuildContext {
+  double get screenWidth => MediaQuery.of(this).size.width;
+  double get screenHeight => MediaQuery.of(this).size.height;
+}

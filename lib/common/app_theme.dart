@@ -14,6 +14,9 @@ class NowColors {
   static const Color c0xFF4FAAFF = Color(0xFF4FAAFF);
   static const Color c0xFF3389F2 = Color(0xFF3389F2);
   static const Color c0x474CA6FD = Color(0x474CA6FD);
+  static const Color c0xFFFFFFFF = Color(0xFFFFFFFF);
+  static const Color c0xFF000000 = Color(0xFF000000);
+  static const Color c0x00000000 = Color(0x00000000);
 
   //文字颜色
   static const Color c0xFF1C1F23 = Color(0xFF1C1F23);
