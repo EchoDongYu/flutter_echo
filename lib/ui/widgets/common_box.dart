@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_echo/common/app_theme.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class CommonBox extends StatelessWidget {
   const CommonBox({
@@ -40,18 +41,12 @@ class CommonBox extends StatelessWidget {
         width: width,
         height: height,
         margin: margin,
-        padding: padding ?? const EdgeInsets.only(
-          left: 12,
-          right: 12,
-          top: 16,
-          bottom: 16,
-        ),
+        padding:
+            padding ?? EdgeInsets.symmetric(vertical: 16.h, horizontal: 20.w),
         alignment: alignment,
         decoration: BoxDecoration(
-          color: color,
-          borderRadius: BorderRadius.circular(
-            borderRadius ?? 12,
-          ),
+          color: color ?? NowColors.c0xFFFFFFFF,
+          borderRadius: BorderRadius.circular(borderRadius ?? 12),
           border: Border.all(
             color: borderColor ?? NowColors.c0x00000000,
             width: borderWidth ?? 0,
