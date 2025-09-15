@@ -29,7 +29,7 @@ class MainModel extends BaseProvider {
 
   Future<MainInfoResp?> getMainBaseInfo() async {
     if (LocalStorage().isLogin) {
-      return await launchRequest(() => Api.getMainBaseInfo());
+      return Api.getMainBaseInfo();
     }
     return null;
   }

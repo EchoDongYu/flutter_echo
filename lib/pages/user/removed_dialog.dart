@@ -3,12 +3,21 @@ import 'package:flutter_echo/common/app_theme.dart';
 import 'package:flutter_echo/ui/widgets/common_button.dart';
 import 'package:flutter_echo/utils/drawable_utils.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:go_router/go_router.dart';
 
 /// 删除被账号登录时提示弹窗
 class RemovedDialog extends StatelessWidget {
   final VoidCallback onConfirm;
 
   const RemovedDialog({super.key, required this.onConfirm});
+
+  /// 显示删除被账号登录时提示弹窗
+  static Future<bool?> show(BuildContext context) {
+    return showDialog<bool>(
+      context: context,
+      builder: (_) => RemovedDialog(onConfirm: () => context.pop(true)),
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
