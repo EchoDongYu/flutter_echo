@@ -23,7 +23,7 @@ class CommonBox extends StatelessWidget {
 
   final double? width;
   final double? height;
-  final double? borderRadius;
+  final BorderRadiusGeometry? borderRadius;
   final double? borderWidth;
   final Color? color;
   final Color? borderColor;
@@ -50,7 +50,7 @@ class CommonBox extends StatelessWidget {
         decoration: BoxDecoration(
           gradient: gradient,
           color: color ?? NowColors.c0xFFFFFFFF,
-          borderRadius: BorderRadius.circular(borderRadius ?? 12),
+          borderRadius: borderRadius ?? BorderRadius.circular(12),
           border: Border.all(
             color: borderColor ?? NowColors.c0x00000000,
             width: borderWidth ?? 0,
