@@ -56,7 +56,7 @@ class RepayConfirmPage extends StatelessWidget {
           );
           if (result == true && context.mounted){
             //跳转还款状态页面
-            context.push(AppRouter.repayFailed);
+            context.push(AppRouter.repayProcess);
           }
         },
       ),

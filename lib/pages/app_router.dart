@@ -1,5 +1,8 @@
 import 'package:flutter_echo/common/page_consumer.dart';
-import 'package:flutter_echo/pages/after/repay_back_page.dart';
+import 'package:flutter_echo/pages/after/repay_bank_bac_page.dart';
+import 'package:flutter_echo/pages/after/repay_bank_bi_page.dart';
+import 'package:flutter_echo/pages/after/repay_bank_gt_page.dart';
+import 'package:flutter_echo/pages/after/repay_bank_page.dart';
 import 'package:flutter_echo/pages/after/repay_certificate_page.dart';
 import 'package:flutter_echo/pages/after/repay_confirm_page.dart';
 import 'package:flutter_echo/pages/after/repay_history_page.dart';
@@ -66,7 +69,10 @@ class AppRouter {
   static const String repayConfirm = '/repay_confirm';
   static const String repayFailed = '/repay_failed';
   static const String repayProcess = '/repay_process';
-  static const String repayBack = '/repay_back';
+  static const String repayBankBI = '/repay_bank_bi';
+  static const String repayBankBAC = '/repay_bank_bac';
+  static const String repayBankGT = '/repay_bank_gt';
+  static const String repayBank = '/repay_bank';
   static const String repayCertificate = '/repay_certificate';
   static const String repayHistory = '/repay_history';
   static const String billList = '/bill_list';
@@ -240,8 +246,26 @@ class AppRouter {
 
       /// 还款银行页面
       GoRoute(
-        path: repayBack,
-        builder: (context, state) => const RepayBackPage(),
+        path: repayBank,
+        builder: (context, state) => const RepayBankPage(),
+      ),
+
+      /// 还款银行页面-GT
+      GoRoute(
+        path: repayBankGT,
+        builder: (context, state) => const RepayBankGtPage(),
+      ),
+
+      /// 还款银行页面-BAC
+      GoRoute(
+        path: repayBankBAC,
+        builder: (context, state) => const RepayBankBacPage(),
+      ),
+
+      /// 还款银行页面-BI
+      GoRoute(
+        path: repayBankBI,
+        builder: (context, state) => const RepayBankBiPage(),
       ),
 
       /// 还款凭证页面
