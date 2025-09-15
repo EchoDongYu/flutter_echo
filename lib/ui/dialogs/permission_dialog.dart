@@ -4,6 +4,7 @@ import 'package:flutter_echo/ui/widget_helper.dart';
 import 'package:flutter_echo/utils/drawable_utils.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
+import 'package:permission_handler/permission_handler.dart';
 
 /// 强制授权弹窗
 class PermissionDialog extends StatelessWidget {
@@ -27,7 +28,10 @@ class PermissionDialog extends StatelessWidget {
       builder: (_) => PopScope(
         canPop: false,
         child: PermissionDialog(
-          onConfirm: () => context.pop(true),
+          onConfirm: () {
+            context.pop(true);
+            openAppSettings();
+          },
           onClosing: () => context.pop(false),
         ),
       ),
