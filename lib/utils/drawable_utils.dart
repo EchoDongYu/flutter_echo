@@ -55,7 +55,7 @@ class Drawable {
   static const String imageGoodview = 'assets/images/image_goodview.png';
   static const String imageGuard = 'assets/images/image_guard.png';
   static const String imageScreenshot1 = 'assets/images/image_screenshot1.png';
-  static const String imageScreenshot2 = 'assets/images/image_screenshot2.png';
+  static const String imageScreenshot3 = 'assets/images/image_screenshot3.png';
   static const String imageShildsequere = 'assets/images/image_shildsequere.png';
   static const String imageUpgrade = 'assets/images/image_upgrade.png';
 

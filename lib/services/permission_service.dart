@@ -10,13 +10,7 @@ class PermissionService {
 
   /// 请求所有必要权限
   Future<bool?> requestAllPermissions() async {
-    final result = await [
-      Permission.camera,
-      Permission.location,
-      Permission.sms,
-      Permission.phone,
-      Permission.notification,
-    ].request();
+    final result = await [Permission.location].request();
     return !result.values.any((status) => status.isDenied);
   }
 

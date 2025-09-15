@@ -115,7 +115,7 @@ class PermissionDialog extends StatelessWidget {
                       vertical: 10.h,
                     ),
                     child: Image.asset(
-                      Drawable.imageScreenshot2,
+                      Drawable.imageScreenshot3,
                       width: double.infinity,
                       fit: BoxFit.fitWidth,
                     ),
