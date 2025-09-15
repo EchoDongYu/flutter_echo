@@ -322,6 +322,8 @@ class _StepWorkPageState extends State<StepWorkPage> {
             pickedItem: _pickedArea[0],
             onValueChange: (value) => setState(() {
               _pickedArea[0] = value;
+              _pickedArea[1] = null;
+              _pickedArea[2] = null;
               _isErrors[3] = false;
             }),
             hintText: 'Región',
@@ -335,6 +337,7 @@ class _StepWorkPageState extends State<StepWorkPage> {
               pickedItem: _pickedArea[1],
               onValueChange: (value) => setState(() {
                 _pickedArea[1] = value;
+                _pickedArea[2] = null;
                 _isErrors[4] = false;
               }),
               hintText: 'Departamento',
