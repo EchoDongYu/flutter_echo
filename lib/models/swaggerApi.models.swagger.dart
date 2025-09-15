@@ -12478,7 +12478,7 @@ class LoanOrderResp {
   @JsonKey(name: 'sk6s63')
   final double? sk6s63OCouponAmount;
   @JsonKey(name: 'sweeny')
-  final int? sweenyOWorkFlowId;
+  final String? sweenyOWorkFlowId;
   @JsonKey(name: 'brant')
   final int? brantOPurpose;
   @JsonKey(name: 'mxs06u')
@@ -13012,7 +13012,7 @@ extension $LoanOrderRespExtension on LoanOrderResp {
     String? d7x52pOBizChannel,
     String? pinionOUserCouponGid,
     double? sk6s63OCouponAmount,
-    int? sweenyOWorkFlowId,
+    String? sweenyOWorkFlowId,
     int? brantOPurpose,
     String? mxs06uOApplyStatus,
     String? r86mu7OProductTag,
@@ -13169,7 +13169,7 @@ extension $LoanOrderRespExtension on LoanOrderResp {
     Wrapped<String?>? d7x52pOBizChannel,
     Wrapped<String?>? pinionOUserCouponGid,
     Wrapped<double?>? sk6s63OCouponAmount,
-    Wrapped<int?>? sweenyOWorkFlowId,
+    Wrapped<String?>? sweenyOWorkFlowId,
     Wrapped<int?>? brantOPurpose,
     Wrapped<String?>? mxs06uOApplyStatus,
     Wrapped<String?>? r86mu7OProductTag,
@@ -20760,7 +20760,7 @@ class LoanPreInfoResp$GlacisORepaymentPlanList$Item {
   });
 
   @JsonKey(name: 'imprint')
-  final int? imprintOPlanGid;
+  final String? imprintOPlanGid;
   @JsonKey(name: 'r5a4x8')
   final String? r5a4x8OLoanGid;
   @JsonKey(name: 'raia')
@@ -21006,7 +21006,7 @@ class LoanPreInfoResp$GlacisORepaymentPlanList$Item {
 extension $LoanPreInfoResp$GlacisORepaymentPlanList$ItemExtension
     on LoanPreInfoResp$GlacisORepaymentPlanList$Item {
   LoanPreInfoResp$GlacisORepaymentPlanList$Item copyWith({
-    int? imprintOPlanGid,
+    String? imprintOPlanGid,
     String? r5a4x8OLoanGid,
     String? raiaOUserGid,
     int? ih2upqOCtPeriod,
@@ -21069,7 +21069,7 @@ extension $LoanPreInfoResp$GlacisORepaymentPlanList$ItemExtension
   }
 
   LoanPreInfoResp$GlacisORepaymentPlanList$Item copyWithWrapped({
-    Wrapped<int?>? imprintOPlanGid,
+    Wrapped<String?>? imprintOPlanGid,
     Wrapped<String?>? r5a4x8OLoanGid,
     Wrapped<String?>? raiaOUserGid,
     Wrapped<int?>? ih2upqOCtPeriod,
@@ -24480,7 +24480,7 @@ class BillDetailResp$GlacisORepaymentPlanList$Item {
   });
 
   @JsonKey(name: 'imprint')
-  final int? imprintOPlanGid;
+  final String? imprintOPlanGid;
   @JsonKey(name: 'r5a4x8')
   final String? r5a4x8OLoanGid;
   @JsonKey(name: 'raia')
@@ -24572,7 +24572,7 @@ class BillDetailResp$GlacisORepaymentPlanList$Item {
   @JsonKey(name: 'z38e62')
   final String? z38e62OOrderGid;
   @JsonKey(name: 'sweeny')
-  final int? sweenyOWorkFlowId;
+  final String? sweenyOWorkFlowId;
   @JsonKey(name: 'remark')
   final String? remark;
   @JsonKey(name: 'i2jk5f')
@@ -24987,7 +24987,7 @@ class BillDetailResp$GlacisORepaymentPlanList$Item {
 extension $BillDetailResp$GlacisORepaymentPlanList$ItemExtension
     on BillDetailResp$GlacisORepaymentPlanList$Item {
   BillDetailResp$GlacisORepaymentPlanList$Item copyWith({
-    int? imprintOPlanGid,
+    String? imprintOPlanGid,
     String? r5a4x8OLoanGid,
     String? raiaOUserGid,
     int? ih2upqOCtPeriod,
@@ -25033,7 +25033,7 @@ extension $BillDetailResp$GlacisORepaymentPlanList$ItemExtension
     bool? e0a79hOIsCollectCase,
     String? d7x52pOBizChannel,
     String? z38e62OOrderGid,
-    int? sweenyOWorkFlowId,
+    String? sweenyOWorkFlowId,
     String? remark,
     int? i2jk5fOPeriodStatus,
     double? emceeOReduceAmount,
@@ -25122,7 +25122,7 @@ extension $BillDetailResp$GlacisORepaymentPlanList$ItemExtension
   }
 
   BillDetailResp$GlacisORepaymentPlanList$Item copyWithWrapped({
-    Wrapped<int?>? imprintOPlanGid,
+    Wrapped<String?>? imprintOPlanGid,
     Wrapped<String?>? r5a4x8OLoanGid,
     Wrapped<String?>? raiaOUserGid,
     Wrapped<int?>? ih2upqOCtPeriod,
@@ -25168,7 +25168,7 @@ extension $BillDetailResp$GlacisORepaymentPlanList$ItemExtension
     Wrapped<bool?>? e0a79hOIsCollectCase,
     Wrapped<String?>? d7x52pOBizChannel,
     Wrapped<String?>? z38e62OOrderGid,
-    Wrapped<int?>? sweenyOWorkFlowId,
+    Wrapped<String?>? sweenyOWorkFlowId,
     Wrapped<String?>? remark,
     Wrapped<int?>? i2jk5fOPeriodStatus,
     Wrapped<double?>? emceeOReduceAmount,
@@ -25484,7 +25484,7 @@ class BillRepayResp$My4dd2ORepaymentList$Item {
   @JsonKey(name: 'pyrenees')
   final int? pyreneesOPayStatus;
   @JsonKey(name: 'imprint')
-  final int? imprintOPlanGid;
+  final String? imprintOPlanGid;
 
   factory BillRepayResp$My4dd2ORepaymentList$Item.fromJson(
     Map<String, dynamic> json,
@@ -25583,7 +25583,7 @@ extension $BillRepayResp$My4dd2ORepaymentList$ItemExtension
     String? nannetteOReturnCode,
     String? vx4165OFailReason,
     int? pyreneesOPayStatus,
-    int? imprintOPlanGid,
+    String? imprintOPlanGid,
   }) {
     return BillRepayResp$My4dd2ORepaymentList$Item(
       r5a4x8OLoanGid: r5a4x8OLoanGid ?? this.r5a4x8OLoanGid,
@@ -25611,7 +25611,7 @@ extension $BillRepayResp$My4dd2ORepaymentList$ItemExtension
     Wrapped<String?>? nannetteOReturnCode,
     Wrapped<String?>? vx4165OFailReason,
     Wrapped<int?>? pyreneesOPayStatus,
-    Wrapped<int?>? imprintOPlanGid,
+    Wrapped<String?>? imprintOPlanGid,
   }) {
     return BillRepayResp$My4dd2ORepaymentList$Item(
       r5a4x8OLoanGid: (r5a4x8OLoanGid != null
