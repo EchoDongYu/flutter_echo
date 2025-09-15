@@ -136,14 +136,16 @@ class _HomeLoanPageState extends State<HomeLoanPage> {
               case 0:
                 context.push(AppRouter.applyProcess);
               case 1:
-                final uriRoute = Uri(
-                  path: AppRouter.billDetail,
-                  queryParameters: {
-                    NavKey.id: bill.r5a4x8OLoanGid.toString(),
-                  },
-                );
-                //跳转账单详情
-                context.push(uriRoute.toString());
+                // final uriRoute = Uri(
+                //   path: AppRouter.billDetail,
+                //   queryParameters: {
+                //     NavKey.id: bill.r5a4x8OLoanGid.toString(),
+                //   },
+                // );
+                // //跳转账单详情
+                // context.push(uriRoute.toString());
+
+                context.push(AppRouter.repayConfirm);
               case 2:
                 context.push(AppRouter.applyFailed);
             }
