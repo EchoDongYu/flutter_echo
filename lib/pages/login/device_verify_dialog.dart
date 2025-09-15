@@ -23,7 +23,6 @@ class DeviceVerifyDialog extends StatefulWidget {
   static Future<Map?> show(BuildContext context) {
     return showModalBottomSheet<Map>(
       context: context,
-      useSafeArea: true,
       enableDrag: false,
       isDismissible: false,
       isScrollControlled: true,
@@ -119,43 +118,15 @@ class _DeviceVerifyDialogState extends State<DeviceVerifyDialog>
       children: [
         Padding(
           padding: EdgeInsets.all(16.r),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              InkWell(
-                onTap: widget.onClosing,
-                borderRadius: const BorderRadius.all(Radius.circular(12)),
-                child: Container(
-                  width: 24.r,
-                  height: 24.r,
-                  alignment: Alignment.center,
-                  decoration: BoxDecoration(
-                    shape: BoxShape.circle,
-                    border: BoxBorder.all(
-                      color: NowColors.c0xFF1C1F23,
-                      width: 1.6.w,
-                    ),
-                  ),
-                  child: const Icon(
-                    Icons.close_rounded,
-                    color: NowColors.c0xFF1C1F23,
-                    size: 16,
-                  ),
-                ),
-              ),
-              Text(
-                'Autenticacion de inicio de sesion',
-                style: TextStyle(
-                  fontSize: 18.sp,
-                  fontWeight: FontWeight.w500,
-                  color: NowColors.c0xFF1C1F23,
-                  height: 24 / 18,
-                ),
-                textAlign: TextAlign.center,
-              ),
-              SizedBox(width: 24.r, height: 24.r),
-            ],
+          child: Text(
+            'Autenticacion de inicio de sesion',
+            style: TextStyle(
+              fontSize: 18.sp,
+              fontWeight: FontWeight.w500,
+              color: NowColors.c0xFF1C1F23,
+              height: 24 / 18,
+            ),
+            textAlign: TextAlign.center,
           ),
         ),
         Container(
@@ -406,7 +377,7 @@ class _DeviceVerifyDialogState extends State<DeviceVerifyDialog>
         boxShadow: NowStyles.bottomShadows,
       ),
       child: EchoPrimaryButton(
-        text: 'Código de verificación',
+        text: 'Confirmar',
         onPressed: () => verifyModel.checkVerifyCode(
           verifyCode: _verifyCtrl.text,
           imageCode: _imageCtrl.text,

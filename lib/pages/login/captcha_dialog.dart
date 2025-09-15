@@ -24,7 +24,6 @@ class CaptchaDialog extends StatefulWidget {
   static Future<String?> show(BuildContext context) {
     return showModalBottomSheet<String>(
       context: context,
-      useSafeArea: true,
       enableDrag: false,
       isDismissible: false,
       isScrollControlled: true,
