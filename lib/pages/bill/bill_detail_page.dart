@@ -33,8 +33,12 @@ class BillDetailPage extends StatelessWidget {
               vencimientoDate: '',
               status: updateBillDetailLoanStatus(1),
               loanStatusBox: const BillDetailLoanListView(),
-              onPagar: () {},
+              onPagar: () {
+                //跳转还款页面
+                context.push(AppRouter.repayConfirm);
+              },
               onHistory: () {
+                //跳转还款历史列表
                 context.push(AppRouter.repayHistory);
               },
             ),

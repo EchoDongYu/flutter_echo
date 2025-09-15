@@ -4,6 +4,7 @@ import 'package:flutter_echo/pages/after/confirm_view/repay_confirm_channel.dart
 import 'package:flutter_echo/pages/after/confirm_view/repay_confirm_payment_amount.dart';
 import 'package:flutter_echo/pages/after/confirm_view/repay_confirm_tips.dart';
 import 'package:flutter_echo/pages/app_router.dart';
+import 'package:flutter_echo/ui/dialogs/prompt_dialog.dart';
 import 'package:flutter_echo/ui/widget_helper.dart';
 import 'package:flutter_echo/ui/widgets/common_appbar.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -16,9 +17,7 @@ class RepayConfirmPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: CommonAppBar(
-        title: "Metodo de pago",
-      ),
+      appBar: CommonAppBar(title: "Metodo de pago"),
       body: SingleChildScrollView(
         padding: EdgeInsets.fromLTRB(12.w, 12.h, 12.w, 12.h),
         child: Column(
@@ -34,11 +33,7 @@ class RepayConfirmPage extends StatelessWidget {
             ),
             SizedBox(height: 12.h),
             //付款金额
-            RepayConfirmPaymentAmount(
-              onChanged: (v){
-
-              },
-            ),
+            RepayConfirmPaymentAmount(onChanged: (v) {}),
             SizedBox(height: 12.h),
             //主要/备用渠道
             RepayConfirmChannel(
@@ -51,7 +46,19 @@ class RepayConfirmPage extends StatelessWidget {
       ),
       bottomNavigationBar: WidgetHelper.buildBottomButton(
         text: 'Pagar inmediatamente',
-        onPressed: () => context.push(AppRouter.repayResult),
+        onPressed: () async{
+          final result = await PromptDialog.show(
+            context: context,
+            title: 'Consejos',
+            content:"¿Estas seguro de modificarla cantidad?",
+            confirmText: 'Confirmación',
+            cancelText: "Cancelar",
+          );
+          if (result == true && context.mounted){
+            //跳转还款状态页面
+            context.push(AppRouter.repayFailed);
+          }
+        },
       ),
     );
   }

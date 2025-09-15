@@ -87,8 +87,8 @@ class BillListView extends StatelessWidget {
                   context.push(uriRoute.toString());
                 },
                 onPagar: () {
-                  //跳转还款详情
-                  //context.push(AppRouter.);
+                  //跳转还款页面
+                  context.push(AppRouter.repayConfirm);
                 },
               );
             },

@@ -64,7 +64,10 @@ class AppRouter {
   static const String applyFailed = '/apply_failed';
   static const String applyProcess = '/apply_process';
   static const String repayConfirm = '/repay_confirm';
-  static const String repayResult = '/repay_result';
+  static const String repayFailed = '/repay_failed';
+  static const String repayProcess = '/repay_process';
+  static const String repayBack = '/repay_back';
+  static const String repayCertificate = '/repay_certificate';
   static const String repayHistory = '/repay_history';
   static const String billList = '/bill_list';
   static const String billDetail = '/bill_detail';
@@ -223,21 +226,27 @@ class AppRouter {
         builder: (context, state) => const RepayConfirmPage(),
       ),
 
-      /// 还款状态页面
+      /// 还款失败页面
       GoRoute(
-        path: repayResult,
-        builder: (context, state) => const RepayResultPage(),
+        path: repayFailed,
+        builder: (context, state) => const RepayFailedPage(),
+      ),
+
+      /// 还款处理中页面
+      GoRoute(
+        path: repayProcess,
+        builder: (context, state) => const RepayProcessPage(),
       ),
 
       /// 还款银行页面
       GoRoute(
-        path: repayResult,
+        path: repayBack,
         builder: (context, state) => const RepayBackPage(),
       ),
 
       /// 还款凭证页面
       GoRoute(
-        path: repayResult,
+        path: repayCertificate,
         builder: (context, state) => const RepayCertificatePage(),
       ),
 
