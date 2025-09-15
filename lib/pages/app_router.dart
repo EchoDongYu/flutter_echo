@@ -154,13 +154,16 @@ class AppRouter {
       /// 授信倒计时页面
       GoRoute(
         path: stepProcess,
-        builder: (context, state) {
-          final params = state.uri.queryParameters;
-          final count = params[NavKey.count]?.tryParseInt;
-          return PageConsumer<StepStatusModel>(
-            child: StepResultPage(countdown: count),
-          );
-        },
+        builder: (context, state) => ChangeNotifierProvider(
+          create: (_) => StepStatusModel(),
+          builder: (_, _) {
+            final params = state.uri.queryParameters;
+            final count = params[NavKey.count]?.tryParseInt;
+            return PageConsumer<StepStatusModel>(
+              child: StepResultPage(countdown: count),
+            );
+          },
+        ),
       ),
 
       /// 授信失败页面
