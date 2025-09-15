@@ -27,7 +27,7 @@ class CaptchaDialog extends StatefulWidget {
       enableDrag: false,
       isDismissible: false,
       isScrollControlled: true,
-      builder: (context) => AnimatedPadding(
+      builder: (_) => AnimatedPadding(
         padding: MediaQuery.of(context).viewInsets,
         duration: const Duration(milliseconds: 100),
         child: CaptchaDialog(
@@ -92,7 +92,10 @@ class _CaptchaDialogState extends State<CaptchaDialog>
             WidgetHelper.buildBottomButton(
               text: 'Código de verificación',
               enable: _isCodeValid,
-              onPressed: () => widget.onConfirm(_codeCtrl.text),
+              onPressed: () {
+                FocusScope.of(context).unfocus();
+                widget.onConfirm(_codeCtrl.text);
+              },
             ),
           ],
         ),

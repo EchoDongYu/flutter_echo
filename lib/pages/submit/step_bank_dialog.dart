@@ -27,7 +27,7 @@ class StepBankDialog extends StatefulWidget {
       enableDrag: false,
       isDismissible: false,
       isScrollControlled: true,
-      builder: (context) => AnimatedPadding(
+      builder: (_) => AnimatedPadding(
         padding: MediaQuery.of(context).viewInsets,
         duration: const Duration(milliseconds: 100),
         child: ChangeNotifierProvider(

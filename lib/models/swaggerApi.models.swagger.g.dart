@@ -3456,7 +3456,7 @@ LoanPreInfoResp$GlacisORepaymentPlanList$Item
 _$LoanPreInfoResp$GlacisORepaymentPlanList$ItemFromJson(
   Map<String, dynamic> json,
 ) => LoanPreInfoResp$GlacisORepaymentPlanList$Item(
-  imprintOPlanGid: (json['imprint'] as num?)?.toInt(),
+  imprintOPlanGid: json['imprint'] as String?,
   r5a4x8OLoanGid: json['r5a4x8'] as String?,
   raiaOUserGid: json['raia'] as String?,
   ih2upqOCtPeriod: (json['ih2upq'] as num?)?.toInt(),
@@ -4029,7 +4029,7 @@ BillDetailResp$GlacisORepaymentPlanList$Item
 _$BillDetailResp$GlacisORepaymentPlanList$ItemFromJson(
   Map<String, dynamic> json,
 ) => BillDetailResp$GlacisORepaymentPlanList$Item(
-  imprintOPlanGid: (json['imprint'] as num?)?.toInt(),
+  imprintOPlanGid: json['imprint'] as String?,
   r5a4x8OLoanGid: json['r5a4x8'] as String?,
   raiaOUserGid: json['raia'] as String?,
   ih2upqOCtPeriod: (json['ih2upq'] as num?)?.toInt(),
@@ -4178,7 +4178,7 @@ _$BillRepayResp$My4dd2ORepaymentList$ItemFromJson(Map<String, dynamic> json) =>
       nannetteOReturnCode: json['nannette'] as String?,
       vx4165OFailReason: json['vx4165'] as String?,
       pyreneesOPayStatus: (json['pyrenees'] as num?)?.toInt(),
-      imprintOPlanGid: (json['imprint'] as num?)?.toInt(),
+      imprintOPlanGid: json['imprint'] as String?,
     );
 
 Map<String, dynamic> _$BillRepayResp$My4dd2ORepaymentList$ItemToJson(

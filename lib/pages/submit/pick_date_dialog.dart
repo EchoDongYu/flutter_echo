@@ -9,25 +9,33 @@ class PickDateDialog extends StatefulWidget {
   final VoidCallback onClosing;
   final Function(DateTime?) onConfirm;
   final String title;
+  final DateTime pickedDate;
 
   const PickDateDialog({
     super.key,
     required this.onClosing,
     required this.onConfirm,
     required this.title,
+    required this.pickedDate,
   });
 
   /// 显示认证项选择日期弹窗
-  static Future<DateTime?> show(BuildContext context, {required String title}) {
+  static Future<DateTime?> show(
+    BuildContext context, {
+    required String title,
+    DateTime? pickedDate,
+  }) {
+    final now = DateTime.now();
     return showModalBottomSheet<DateTime>(
       context: context,
       enableDrag: false,
       isDismissible: false,
       isScrollControlled: true,
-      builder: (context) => PickDateDialog(
+      builder: (_) => PickDateDialog(
         onConfirm: (value) => context.pop(value),
         onClosing: () => context.pop(),
         title: title,
+        pickedDate: pickedDate ?? DateTime(now.year - 20, now.month, now.day),
       ),
     );
   }
@@ -37,7 +45,13 @@ class PickDateDialog extends StatefulWidget {
 }
 
 class _PickDateDialogState extends State<PickDateDialog> {
-  DateTime? _pickedDate;
+  late DateTime _pickedDate;
+
+  @override
+  void initState() {
+    super.initState();
+    _pickedDate = widget.pickedDate;
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -112,9 +126,10 @@ class _PickDateDialogState extends State<PickDateDialog> {
             ),
           ),
           CalendarDatePicker(
-            initialDate: DateTime.now(),
-            firstDate: DateTime.now().copyWith(year: 1900),
-            lastDate: DateTime.now().copyWith(year: 2100),
+            initialDate: _pickedDate,
+            currentDate: _pickedDate,
+            firstDate: DateTime(1900, 1, 1),
+            lastDate: DateTime.now(),
             onDateChanged: (date) => setState(() => _pickedDate = date),
           ),
         ],

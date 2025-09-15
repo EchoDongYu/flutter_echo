@@ -7,7 +7,8 @@ import 'package:flutter_echo/pages/login/retain_login_dialog.dart';
 import 'package:flutter_echo/providers/login_provider.dart';
 import 'package:flutter_echo/ui/widget_helper.dart';
 import 'package:flutter_echo/ui/widgets/common_button.dart';
-import 'package:flutter_echo/ui/widgets/step_input_field.dart';
+import 'package:flutter_echo/ui/widgets/phone_formatter.dart';
+import 'package:flutter_echo/ui/widgets/phone_input_field.dart';
 import 'package:flutter_echo/ui/widgets/top_bar.dart';
 import 'package:flutter_echo/utils/drawable_utils.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -42,7 +43,8 @@ class _LoginPhonePageState extends State<LoginPhonePage> {
 
   /// 手机号输入变化监听
   void _onPhoneChanged() {
-    final phoneValid = _controller.text.length == AppConst.phoneLen;
+    final length = _controller.text.replaceAll(' ', '').length;
+    final phoneValid = length == AppConst.phoneLen;
     if (_isPhoneValid != phoneValid) {
       setState(() => _isPhoneValid = phoneValid);
     }
@@ -131,7 +133,7 @@ class _LoginPhonePageState extends State<LoginPhonePage> {
             enable: _isPhoneValid,
             onPressed: () {
               FocusScope.of(context).unfocus();
-              loginModel.checkRegister(_controller.text);
+              loginModel.checkRegister(_controller.text.replaceAll(' ', ''));
             },
           ),
         ],
@@ -140,12 +142,15 @@ class _LoginPhonePageState extends State<LoginPhonePage> {
   }
 
   Widget _buildPhoneField() {
-    return StepInputField(
+    return PhoneInputField(
       controller: _controller,
       hintText: 'Número de teléfono',
-      maxLength: AppConst.phoneLen,
       keyboardType: TextInputType.number,
-      inputFormatters: [FilteringTextInputFormatter.digitsOnly],
+      inputFormatters: [
+        FilteringTextInputFormatter.digitsOnly,
+        LengthLimitingTextInputFormatter(AppConst.phoneLen),
+        PhoneNumberFormatter(),
+      ],
       showCounter: true,
       prefix: Container(
         margin: EdgeInsets.only(right: 8.w),

@@ -197,9 +197,9 @@ class _SafetyVerifyPageState extends State<SafetyVerifyPage> {
           onTap: () {
             if (countdown == 0 && _isPhoneValid) {
               if (_controllers[0].text != LocalStorage().account) {
-                toast(msg: 'Ingrese el número de teléfono registrado');
+                toast('Ingrese el número de teléfono registrado');
               } else {
-                provider.sendVerifyCode(mobile: _controllers[0].text, type: 6);
+                provider.sendVerifyCode(type: 6);
               }
             }
           },

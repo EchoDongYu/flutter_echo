@@ -49,14 +49,12 @@ class _LoginCodePageState extends State<LoginCodePage> {
     setState(() => _inputCode = value);
     // 如果输入完整，自动验证
     if (value.length == AppConst.codeLen) {
-      FocusScope.of(context).unfocus();
+      _focusNode.unfocus();
       final checkOk = await loginModel.checkVerifyCode(value);
       if (checkOk != true) {
         Future.delayed(const Duration(milliseconds: 500), () {
           _controller.clear();
           setState(() => _inputCode = '');
-          // 清空后自动聚焦
-          _focusNode.requestFocus();
         });
       }
     }
@@ -215,6 +213,7 @@ class _LoginCodePageState extends State<LoginCodePage> {
             textInputAction: TextInputAction.done,
             maxLength: AppConst.codeLen,
             maxLines: 1,
+            autofocus: false,
             showCursor: false,
             enableInteractiveSelection: false,
             style: const TextStyle(color: Colors.transparent),

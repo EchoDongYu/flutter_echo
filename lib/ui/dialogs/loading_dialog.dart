@@ -8,7 +8,7 @@ class LoadingDialog {
   static void show(BuildContext context) {
     if (_overlayEntry != null) hide();
     final overlayEntry = OverlayEntry(
-      builder: (context) => PopScope(
+      builder: (_) => PopScope(
         canPop: false,
         child: Stack(
           children: [

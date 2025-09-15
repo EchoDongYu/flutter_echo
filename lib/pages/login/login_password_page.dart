@@ -152,7 +152,7 @@ class _LoginPasswordPageState extends State<LoginPasswordPage> {
                   ),
                   recognizer: TapGestureRecognizer()
                     ..onTap = () {
-                      context.pushReplacement(AppRouter.resetLoginPwd);
+                      context.push(AppRouter.resetLoginPwd);
                     },
                 ),
               ],

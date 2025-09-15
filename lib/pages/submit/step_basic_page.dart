@@ -42,28 +42,44 @@ class _StepBasicPageState extends State<StepBasicPage> {
   String? _phoneError; // 备用手机号
   List<List<StepItem>?>? _stepItems;
 
-  SubmitModel get submitModel =>
-      Provider.of<SubmitModel>(context, listen: false);
-
   @override
   void initState() {
     super.initState();
-    _controllers[0].addListener(() => _onInputChanged(2));
-    _controllers[1].addListener(() => _onInputChanged(3));
-    _controllers[2].addListener(() => _onInputChanged(4));
-    _controllers[4].addListener(() => _onInputChanged(6));
+    for (int i = 0; i < 5; i++) {
+      _controllers[i].addListener(() => _onInputChanged(i + 2));
+    }
     WidgetsBinding.instance.addPostFrameCallback((_) async {
+      final submitModel = context.read<SubmitModel>();
       final dict = await submitModel.getDictionary();
+      final data = submitModel.getCachedData();
       setState(() {
         _stepItems = SubmitModel.dictBasic.map((v) => dict?['$v']).toList();
+        _pickedItem[0] = _stepItems?[0]?.findKey(data?.gender);
+        _pickedItem[1] = _stepItems?[1]?.findKey(data?.himfjuOOtherLoans);
+        _pickedDate = data?.gargetOBirthday?.fromSecondsSinceEpoch;
       });
+      _controllers[0].text = data?.lq1s05OFirstName ?? '';
+      _controllers[1].text = data?.darktownOLastName ?? '';
+      _controllers[2].text = data?.merdekaOIdCard ?? '';
+      _controllers[3].text = data?.x1iu04OOtherMobile ?? '';
+      _controllers[4].text = data?.f31u3kOEmail ?? '';
     });
   }
 
   @override
+  void deactivate() {
+    context.read<SubmitModel>().cacheBasicInfo(
+      inputs: _controllers.map((it) => it.text).toList(),
+      items: _pickedItem.map((it) => it?.key).toList(),
+      birthday: _pickedDate?.secondSinceEpoch,
+    );
+    super.deactivate();
+  }
+
+  @override
   void dispose() {
-    for (var controller in _controllers) {
-      controller.dispose();
+    for (int i = 0; i < 5; i++) {
+      _controllers[i].dispose();
     }
     super.dispose();
   }
@@ -75,31 +91,35 @@ class _StepBasicPageState extends State<StepBasicPage> {
 
   void _submitData(BuildContext context) async {
     final text2 = _controllers[2].text;
-    final isError4 = text2.length != 13;
-    final cuiFormat = text2.isNotEmpty && text2.length != 13;
-    final text = _controllers[3].text;
-    final phoneFormat = text.isNotEmpty && text.length != 8;
-    final phoneRegister = text.isNotEmpty && text == LocalStorage().account;
-    final isError5 = phoneFormat || phoneRegister;
+    final text3 = _controllers[3].text;
     final text4 = _controllers[4].text;
-    final emailFormat = !AppConst.emailDomains.any((v) => text4.endsWith(v));
-    final isError6 = text4.isEmpty || emailFormat;
+    final emailValid = RegExp(r'^[^@\s]+@[^@\s]+\.[^@\s]+$').hasMatch(text4);
     setState(() {
+      _cuiError = text2.isEmpty
+          ? _errorHint[4]
+          : text2.length != 13
+          ? _errorTip[0]
+          : null;
+      _phoneError = text3.isEmpty
+          ? null
+          : text3.length != 8
+          ? _errorTip[3]
+          : text3 == LocalStorage().account
+          ? _errorTip[2]
+          : null;
+      _emailError = text4.isEmpty
+          ? _errorHint[6]
+          : !emailValid
+          ? _errorTip[1]
+          : null;
       _isErrors[0] = _pickedItem[0] == null;
       _isErrors[1] = _pickedDate == null;
       _isErrors[2] = _controllers[0].text.isEmpty;
       _isErrors[3] = _controllers[1].text.isEmpty;
-      _isErrors[4] = isError4;
-      _isErrors[5] = isError5;
-      _isErrors[6] = isError6;
+      _isErrors[4] = _cuiError != null;
+      _isErrors[5] = _phoneError != null;
+      _isErrors[6] = _emailError != null;
       _isErrors[7] = _pickedItem[1] == null;
-      _cuiError = cuiFormat ? _errorTip[0] : null;
-      _phoneError = phoneFormat
-          ? _errorTip[3]
-          : phoneRegister
-          ? _errorTip[2]
-          : null;
-      _emailError = emailFormat ? _errorTip[1] : null;
     });
     if (!_isErrors.contains(true)) {
       final list = [
@@ -117,11 +137,11 @@ class _StepBasicPageState extends State<StepBasicPage> {
       ];
       list.removeWhere((v) => v.second?.isNotEmpty != true);
       final result = await ConfirmStepDialog.show(context, list);
-      if (result == true) {
-        submitModel.submitBasicInfo(
+      if (result == true && context.mounted) {
+        context.read<SubmitModel>().submitBasicInfo(
           inputs: _controllers.map((it) => it.text).toList(),
           items: _pickedItem.map((it) => it?.key).toList(),
-          birthday: _pickedDate?.millisecond,
+          birthday: _pickedDate?.secondSinceEpoch,
         );
       }
     }
@@ -258,6 +278,10 @@ class _StepBasicPageState extends State<StepBasicPage> {
             hintText: 'Nombre(s)',
             maxLength: 30,
             keyboardType: TextInputType.text,
+            inputFormatters: [
+              FilteringTextInputFormatter.deny(RegExp(r'[0-9]')),
+              FilteringTextInputFormatter.deny(emojiReg),
+            ],
             isError: _isErrors[2],
             errorText: _errorHint[2],
           ),
@@ -266,6 +290,10 @@ class _StepBasicPageState extends State<StepBasicPage> {
             hintText: 'Apellidos',
             maxLength: 30,
             keyboardType: TextInputType.text,
+            inputFormatters: [
+              FilteringTextInputFormatter.deny(RegExp(r'[0-9]')),
+              FilteringTextInputFormatter.deny(emojiReg),
+            ],
             isError: _isErrors[3],
             errorText: _errorHint[3],
           ),

@@ -28,7 +28,7 @@ class ConfirmStepDialog extends StatelessWidget {
       enableDrag: false,
       isDismissible: false,
       isScrollControlled: true,
-      builder: (context) => ConfirmStepDialog(
+      builder: (_) => ConfirmStepDialog(
         items: items,
         onConfirm: () => context.pop(true),
         onClosing: () => context.pop(false),

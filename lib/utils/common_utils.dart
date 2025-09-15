@@ -4,6 +4,7 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_echo/common/constants.dart';
+import 'package:flutter_echo/models/common_model.dart';
 import 'package:flutter_echo/pages/app_router.dart';
 import 'package:go_router/go_router.dart';
 import 'package:intl/intl.dart';
@@ -16,7 +17,9 @@ void debugLog(String message, {Object? error, StackTrace? stackTrace}) {
   }
 }
 
-void toast({required String msg}) => showToast(msg);
+void toast(String msg) => showToast(msg);
+
+final routeObserver = RouteObserver<ModalRoute<void>>();
 
 final scaffoldMessengerKey = GlobalKey<ScaffoldMessengerState>();
 
@@ -25,6 +28,25 @@ void showNormalSnack(String message) {
     SnackBar(content: Text(message), duration: const Duration(seconds: 2)),
   );
 }
+
+/// 手机号脱敏展示，前2 后2
+String maskPhoneNumber(String phone) {
+  if (phone.length <= 4) return phone;
+  final start = phone.substring(0, 2);
+  final end = phone.substring(phone.length - 2);
+  final middle = '*' * (phone.length - 4);
+  return '$start$middle$end';
+}
+
+// 匹配 emoji 的常见 Unicode 区间
+final emojiReg = RegExp(
+  r'[\u{1F600}-\u{1F64F}]|' // 表情符号
+  r'[\u{1F300}-\u{1F5FF}]|' // 符号 & 图形
+  r'[\u{1F680}-\u{1F6FF}]|' // 交通 & 地图
+  r'[\u{2600}-\u{26FF}]|' // 杂项符号
+  r'[\u{2700}-\u{27BF}]', // 符号
+  unicode: true,
+);
 
 class FlutterPlatform {
   static const _method = MethodChannel('${AppConst.applicationId}/channel');
@@ -83,13 +105,18 @@ extension ContextNav on BuildContext {
 
 extension DateTimeFormat on DateTime {
   String get showDate => DateFormat('dd/MM/yyyy').format(this);
+
+  int get secondSinceEpoch => (millisecondsSinceEpoch / 1000.0).toInt();
 }
 
 extension TimestampFormat on int {
-  String get showDate => DateTime.fromMillisecondsSinceEpoch(this).showDate;
-
   String get showCountdown =>
       DateFormat.Hms().format(DateTime(0, 0, 0, 0, 0, this));
+
+  DateTime get fromSecondsSinceEpoch =>
+      DateTime.fromMillisecondsSinceEpoch(this * 1000);
+
+  String get showDate => fromSecondsSinceEpoch.showDate;
 }
 
 extension AmountFormat on num {
@@ -104,13 +131,16 @@ extension StringParse on String? {
   double? get tryParseDouble => this != null ? double.tryParse(this!) : null;
 }
 
-extension ContextSizeExt on BuildContext {
+extension ListExt on List<StepItem> {
+  StepItem? findKey(int? key) {
+    for (StepItem element in this) {
+      if (key == element.key) return element;
+    }
+    return null;
+  }
+}
+
+extension ContextSizeExtensions on BuildContext {
   double get screenWidth => MediaQuery.of(this).size.width;
   double get screenHeight => MediaQuery.of(this).size.height;
-
-  /// 获取状态栏高度
-  double get statusBarHeight => MediaQuery.of(this).padding.top;
-
-  /// 获取底部安全区域高度
-  double get bottomBarHeight => MediaQuery.of(this).padding.bottom;
 }

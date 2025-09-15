@@ -36,7 +36,7 @@ class PromptDialog extends StatelessWidget {
   }) {
     return showDialog<bool>(
       context: context,
-      builder: (context) => PromptDialog(
+      builder: (_) => PromptDialog(
         icon: icon,
         title: title,
         content: content,

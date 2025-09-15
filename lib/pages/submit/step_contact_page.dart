@@ -4,6 +4,7 @@ import 'package:flutter_echo/common/app_theme.dart';
 import 'package:flutter_echo/common/constants.dart';
 import 'package:flutter_echo/models/common_model.dart';
 import 'package:flutter_echo/providers/submit_provider.dart';
+import 'package:flutter_echo/services/storage_service.dart';
 import 'package:flutter_echo/ui/widget_helper.dart';
 import 'package:flutter_echo/ui/widgets/step_input_field.dart';
 import 'package:flutter_echo/ui/widgets/step_select_field.dart';
@@ -22,7 +23,7 @@ class StepContactPage extends StatefulWidget {
 }
 
 class _StepContactPageState extends State<StepContactPage> {
-  final List<List<bool>> _isErrors = List.generate(2, (index) {
+  final _isErrors = List.generate(2, (index) {
     return List.generate(3, (index) {
       return false;
     }, growable: false);
@@ -33,20 +34,52 @@ class _StepContactPageState extends State<StepContactPage> {
     }, growable: false);
   }, growable: false);
   List<StepItem>? _stepItems;
-  final List<StepItem?> _pickedItem = List.generate(2, (index) {
+  final _stepItemsLimit = List<List<StepItem>?>.generate(2, (index) {
     return null;
   }, growable: false);
-
-  SubmitModel get submitModel =>
-      Provider.of<SubmitModel>(context, listen: false);
+  final _pickedItem = List<StepItem?>.generate(2, (index) {
+    return null;
+  }, growable: false);
 
   @override
   void initState() {
     super.initState();
+    for (int i = 0; i < 2; i++) {
+      for (int j = 0; j < 2; j++) {
+        _controllers[i][j].addListener(() => _onInputChanged(i, j));
+      }
+    }
     WidgetsBinding.instance.addPostFrameCallback((_) async {
+      final submitModel = context.read<SubmitModel>();
       final dict = await submitModel.getDictionary();
-      setState(() => _stepItems = dict?['${SubmitModel.dictContact}']);
+      final data = submitModel.getCachedData();
+      setState(() {
+        _stepItems = dict?['${SubmitModel.dictContact}'];
+        _stepItemsLimit[0] = _stepItems;
+        _stepItemsLimit[1] = _stepItems;
+        _pickedItem[0] = _stepItems?.findKey(
+          data?.baryeOFirstContactRelationship,
+        );
+        _pickedItem[1] = _stepItems?.findKey(
+          data?.kibeOSecondContactRelationship,
+        );
+      });
+      _controllers[0][0].text = data?.grippleOFirstContactName ?? '';
+      _controllers[0][1].text = data?.rainOFirstContactMobile ?? '';
+      _controllers[1][0].text = data?.aquarianOSecondContactName ?? '';
+      _controllers[1][1].text = data?.h3d2wfOSecondContactMobile ?? '';
     });
+  }
+
+  @override
+  void deactivate() {
+    context.read<SubmitModel>().cacheContactInfo(
+      inputs: _controllers
+          .map((v1) => v1.map((v2) => v2.text).toList())
+          .toList(),
+      items: _pickedItem.map((it) => it?.key).toList(),
+    );
+    super.deactivate();
   }
 
   @override
@@ -59,23 +92,47 @@ class _StepContactPageState extends State<StepContactPage> {
     super.dispose();
   }
 
+  /// 输入变化监听
+  void _onInputChanged(int i, int j) {
+    if (_isErrors[i][j] != false) setState(() => _isErrors[i][j] = false);
+  }
+
   void _pickContact(int pos) async {
     final result = await FlutterPlatform.pickContact();
     if (result != null) {
-      _controllers[pos][0].text = result['name'];
-      final phone = result['phone'] as String?;
-      _controllers[pos][1].text = phone?.replaceAll(RegExp(r'\s+'), '') ?? '';
+      final resultPhone = result['phone'] as String?;
+      final resultName = result['name'] as String?;
+      final phone = resultPhone?.replaceAll(RegExp(r'\s+'), '') ?? '';
+      final name = resultName?.replaceAll(emojiReg, '') ?? '';
+      if (phone.length > 8) {
+        toast(
+          'El formato del número de teléfono de contacto es incorrecto. Selecciona un nuevo contacto.',
+        );
+      } else {
+        _controllers[pos][0].text = name;
+        _controllers[pos][1].text = phone;
+      }
     }
   }
 
   void _submitData() async {
-    for (int i = 0; i < 2; i++) {
-      _isErrors[i][0] = _controllers[i][0].text.isEmpty;
-      _isErrors[i][1] = _controllers[i][1].text.isEmpty;
-      _isErrors[i][2] = _pickedItem[i] == null;
-    }
-    if (!_isErrors.any((it) => it.contains(true))) {
-      submitModel.submitContactInfo(
+    setState(() {
+      for (int i = 0; i < 2; i++) {
+        _isErrors[i][0] = _controllers[i][0].text.isEmpty;
+        _isErrors[i][1] = _controllers[i][1].text.isEmpty;
+        _isErrors[i][2] = _pickedItem[i] == null;
+      }
+    });
+    final list = [_controllers[0][1].text, _controllers[1][1].text];
+    final account = LocalStorage().account;
+    if (list.toSet().length < list.length) {
+      toast('Los dos contactos no pueden ser el mismo número de teléfono');
+    } else if (list.any((v) => v == account)) {
+      toast(
+        'El número de teléfono contacto no se puede el mismo numero de registro',
+      );
+    } else if (!_isErrors.any((it) => it.contains(true))) {
+      context.read<SubmitModel>().submitContactInfo(
         inputs: _controllers
             .map((v1) => v1.map((v2) => v2.text).toList())
             .toList(),
@@ -196,6 +253,10 @@ class _StepContactPageState extends State<StepContactPage> {
             hintText: 'Nombre(s)',
             keyboardType: TextInputType.text,
             textInputAction: TextInputAction.next,
+            inputFormatters: [
+              FilteringTextInputFormatter.deny(RegExp(r'[0-9]')),
+              FilteringTextInputFormatter.deny(emojiReg),
+            ],
             suffix: InkWell(
               onTap: () => _pickContact(pos),
               child: Image.asset(
@@ -205,6 +266,8 @@ class _StepContactPageState extends State<StepContactPage> {
               ),
             ),
             isError: _isErrors[pos][0],
+            errorText:
+                'El nombre del contacto no puede está vacío. Selecciona un nuevo contacto.',
           ),
           StepInputField(
             controller: _controllers[pos][1],
@@ -232,17 +295,32 @@ class _StepContactPageState extends State<StepContactPage> {
               ),
             ),
             isError: _isErrors[pos][1],
+            errorText:
+                'El número del contacto no puede está vacío. Selecciona un nuevo contacto.',
           ),
           StepSelectField.pickItem(
             context,
-            items: _stepItems,
+            items: _stepItemsLimit[pos],
             pickedItem: _pickedItem[pos],
             onValueChange: (value) => setState(() {
               _pickedItem[pos] = value;
               _isErrors[pos][2] = false;
+              final zx = [1, 2, 3, 4, 5];
+              if (value.key == 2) {
+                _stepItemsLimit[1 - pos] = _stepItems
+                    ?.where((v) => v.key != 2)
+                    .toList();
+              } else if (!zx.contains(value.key)) {
+                _stepItemsLimit[1 - pos] = _stepItems
+                    ?.where((v) => zx.contains(v.key))
+                    .toList();
+              } else {
+                _stepItemsLimit[1 - pos] = _stepItems;
+              }
             }),
             hintText: 'Relación',
             isError: _isErrors[pos][2],
+            errorText: 'Por favor seleccione la relación',
           ),
         ],
       ),

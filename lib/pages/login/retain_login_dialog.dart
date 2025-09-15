@@ -22,7 +22,7 @@ class RetainLoginDialog extends StatelessWidget {
     return showDialog<bool>(
       context: context,
       barrierDismissible: false,
-      builder: (context) => RetainLoginDialog(
+      builder: (_) => RetainLoginDialog(
         onAgree: () => context.pop(true),
         onDisagree: () => context.pop(false),
       ),

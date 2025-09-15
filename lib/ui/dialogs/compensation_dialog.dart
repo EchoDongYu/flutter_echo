@@ -23,7 +23,7 @@ class CompensationDialog extends StatelessWidget {
       context: context,
       enableDrag: false,
       isDismissible: false,
-      builder: (context) => PopScope(
+      builder: (_) => PopScope(
         canPop: false,
         child: CompensationDialog(
           onConfirm: () => context.pop(true),

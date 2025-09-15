@@ -67,9 +67,9 @@ class LocalStorage {
   String? get account => _prefs.getString(AppConst.accountKey);
 
   UserInfoResp? get userInfo {
-    final userInfo = getObject(AppConst.userInfoKey);
-    if (userInfo == null) return null;
-    return UserInfoResp.fromJson(userInfo);
+    final json = getObject(AppConst.userInfoKey);
+    if (json == null) return null;
+    return UserInfoResp.fromJson(json);
   }
 
   bool get isLogin {
@@ -82,6 +82,15 @@ class LocalStorage {
 
   /// 获取设备号
   String? get deviceId => _prefs.getString(AppConst.deviceIdKey);
+
+  /// kyc步骤
+  int? get kycStep => _prefs.getInt(AppConst.kycStepKey);
+
+  MainInfoResp? get mainInfo {
+    final json = getObject(AppConst.mainInfoKey);
+    if (json == null) return null;
+    return MainInfoResp.fromJson(json);
+  }
 
   Future<void> userLogin(LoginResp data) async {
     final dToken = data.y260zpOToken;
@@ -97,5 +106,7 @@ class LocalStorage {
     _prefs.remove(AppConst.userGidKey);
     _prefs.remove(AppConst.userInfoKey);
     _prefs.remove(AppConst.accountKey);
+    _prefs.remove(AppConst.kycStepKey);
+    _prefs.remove(AppConst.kycDataKey);
   }
 }

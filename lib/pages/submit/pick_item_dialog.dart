@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_echo/common/app_theme.dart';
 import 'package:flutter_echo/ui/widgets/common_button.dart';
+import 'package:flutter_echo/utils/common_utils.dart';
 import 'package:flutter_echo/utils/drawable_utils.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
@@ -19,7 +20,7 @@ class PickItemDialog<T> extends StatefulWidget {
     required this.onClosing,
     required this.onConfirm,
     required this.items,
-    this.pickedItem,
+    required this.pickedItem,
     required this.showItem,
     required this.title,
   });
@@ -37,7 +38,7 @@ class PickItemDialog<T> extends StatefulWidget {
       enableDrag: false,
       isDismissible: false,
       isScrollControlled: true,
-      builder: (context) => PickItemDialog<T>(
+      builder: (_) => PickItemDialog<T>(
         onConfirm: (item) => context.pop(item),
         onClosing: () => context.pop(),
         items: items ?? List.empty(),
@@ -204,7 +205,13 @@ class _PickItemDialogState<T> extends State<PickItemDialog<T>> {
       ),
       child: EchoPrimaryButton(
         text: 'Confirmar',
-        onPressed: () => widget.onConfirm.call(_pickedItem),
+        onPressed: () {
+          if (_pickedItem == null) {
+            toast('Por favor seleccione ${widget.title}');
+          } else {
+            widget.onConfirm.call(_pickedItem);
+          }
+        },
       ),
     );
   }

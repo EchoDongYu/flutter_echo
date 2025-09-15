@@ -1,3 +1,4 @@
+import 'package:flutter_echo/utils/common_utils.dart';
 import 'package:json_annotation/json_annotation.dart';
 
 part 'api_response.g.dart';
@@ -8,7 +9,7 @@ class ApiResponse {
   final String code;
 
   /// **消息**前端/客户端直接展示不再进行转义；**
-  final String msg;
+  final String? msg;
 
   /// 业务数据
   final dynamic data;
@@ -21,7 +22,12 @@ class ApiResponse {
   Map<String, dynamic> toJson() => _$ApiResponseToJson(this);
 
   factory ApiResponse.needCaptchaError() =>
-      ApiResponse(code: 'MO9942', msg: '', data: null);
+      ApiResponse(code: 'MO9942', msg: null, data: null);
+
+  void toastErrorMsg() {
+    final message = msg;
+    if (message != null) toast(message);
+  }
 }
 
 // **成功** RF6101 (ori: 0000)

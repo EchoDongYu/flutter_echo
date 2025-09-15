@@ -63,6 +63,9 @@ class AppConst {
   static const String userInfoKey = 'user_info';
   static const String accountKey = 'account';
   static const String disclosureKey = 'disclosure';
+  static const String kycStepKey = 'kycStep';
+  static const String kycDataKey = 'kycData';
+  static const String mainInfoKey = 'mainInfo';
 }
 
 class ApiPath {
@@ -124,7 +127,7 @@ class ApiPath {
   static const String resetTraderPassword = '/htves/opossum';
 
   /// 重置登录密码
-  static const String resetLoginPassword = '/aitch/q2i1/vwi0';
+  static const String resetLoginPassword = '/l876';
 
   /// 获取字典项
   static const String getDictionary = '/wojz7/h4n/j36';

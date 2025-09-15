@@ -40,7 +40,7 @@ class TraderPasswordDialog extends StatefulWidget {
       enableDrag: false,
       isDismissible: false,
       isScrollControlled: true,
-      builder: (context) => AnimatedPadding(
+      builder: (_) => AnimatedPadding(
         padding: MediaQuery.of(context).viewInsets,
         duration: const Duration(milliseconds: 100),
         child: ChangeNotifierProvider(
@@ -113,7 +113,7 @@ class _TraderPasswordDialogState extends State<TraderPasswordDialog> {
       if (checkOk == true) widget.onConfirm(pwd0);
     } else {
       if (pwd0 != _controllers[1].text) {
-        toast(msg: 'La contraseña introducida dos veces no coincide');
+        toast('La contraseña introducida dos veces no coincide');
         return;
       }
       final setOk = await accountModel.setTraderPassword(password: pwd0);
@@ -265,7 +265,7 @@ class _TraderPasswordDialogState extends State<TraderPasswordDialog> {
                         ),
                         recognizer: TapGestureRecognizer()
                           ..onTap = () {
-                            context.pushReplacement(AppRouter.resetTraderPwd);
+                            context.push(AppRouter.resetTraderPwd);
                           },
                       ),
                     ],

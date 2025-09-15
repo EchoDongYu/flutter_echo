@@ -23,7 +23,7 @@ class _CommonWebPageState extends State<CommonWebPage> {
   void initState() {
     super.initState();
     _controller = WebViewController()
-      ..setJavaScriptMode(JavaScriptMode.unrestricted) // 允许JS
+      ..setJavaScriptMode(JavaScriptMode.unrestricted)
       ..setNavigationDelegate(
         NavigationDelegate(
           onPageStarted: (_) => setState(() => _isLoading = true),
@@ -41,7 +41,7 @@ class _CommonWebPageState extends State<CommonWebPage> {
   Widget build(BuildContext context) {
     final title = widget.title;
     return Scaffold(
-      backgroundColor: NowColors.c0xFFF3F3F5,
+      backgroundColor: Colors.white,
       body: Stack(
         children: [
           WidgetHelper.buildTopGradient(context: context, height: 55.h),
@@ -49,7 +49,15 @@ class _CommonWebPageState extends State<CommonWebPage> {
             child: Column(
               children: [
                 if (title != null) EchoTopBar(title: title),
-                if (_isLoading) const LinearProgressIndicator(),
+                if (_isLoading)
+                  Padding(
+                    padding: EdgeInsetsGeometry.symmetric(horizontal: 16.w),
+                    child: const LinearProgressIndicator(
+                      color: NowColors.c0xFF3288F1,
+                      backgroundColor: NowColors.c0xFFEFF7FF,
+                      borderRadius: BorderRadius.all(Radius.circular(20)),
+                    ),
+                  ),
                 Expanded(child: WebViewWidget(controller: _controller)),
               ],
             ),

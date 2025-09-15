@@ -5,6 +5,7 @@ import 'package:flutter_echo/common/constants.dart';
 import 'package:flutter_echo/pages/app_router.dart';
 import 'package:flutter_echo/services/storage_service.dart';
 import 'package:flutter_echo/utils/common_utils.dart';
+import 'package:flutter_echo/utils/custom_localizations.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:oktoast/oktoast.dart';
 
@@ -51,6 +52,7 @@ class MyApp extends StatelessWidget {
             locale: const Locale('es', 'GT'),
             debugShowCheckedModeBanner: false,
             scaffoldMessengerKey: scaffoldMessengerKey,
+            localizationsDelegates: const [NumericLocalizationDelegate()],
           ),
         );
       },

@@ -8,6 +8,7 @@ import 'package:flutter_echo/ui/widget_helper.dart';
 import 'package:flutter_echo/ui/widgets/step_input_field.dart';
 import 'package:flutter_echo/ui/widgets/step_select_field.dart';
 import 'package:flutter_echo/ui/widgets/top_bar.dart';
+import 'package:flutter_echo/utils/common_utils.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
 
@@ -24,7 +25,7 @@ class _StepWorkPageState extends State<StepWorkPage> {
     return false;
   }, growable: false);
   final _controller = TextEditingController();
-  final _pickedItem = List<StepItem?>.generate(11, (index) {
+  final _pickedItem = List<StepItem?>.generate(8, (index) {
     return null;
   }, growable: false);
   final _pickedArea = List<String?>.generate(3, (index) {
@@ -36,9 +37,6 @@ class _StepWorkPageState extends State<StepWorkPage> {
   List<List<StepItem>?>? _stepItems;
   Map<String, dynamic>? _stepAreas;
   String? _dayError; // 发薪日
-
-  SubmitModel get submitModel =>
-      Provider.of<SubmitModel>(context, listen: false);
 
   List<String>? get areasFirst => _stepAreas?.keys.toList();
 
@@ -59,7 +57,9 @@ class _StepWorkPageState extends State<StepWorkPage> {
     super.initState();
     _controller.addListener(_onInputChanged);
     WidgetsBinding.instance.addPostFrameCallback((_) async {
+      final submitModel = context.read<SubmitModel>();
       final dict = await submitModel.getDictionary();
+      final data = submitModel.getCachedData();
       String? jsonStr = dict?['${SubmitModel.dictArea}']?.firstOrNull?.value;
       if (jsonStr != null) {
         if (jsonStr.startsWith('"') && jsonStr.endsWith('"')) {
@@ -70,8 +70,34 @@ class _StepWorkPageState extends State<StepWorkPage> {
       setState(() {
         _stepItems = SubmitModel.dictWork.map((v) => dict?['$v']).toList();
         if (jsonStr != null) _stepAreas = json.decode(jsonStr);
+        _pickedItem[0] = _stepItems?[0]?.findKey(data?.m2wx4tOMaritalStatus);
+        _pickedItem[1] = _stepItems?[1]?.findKey(
+          data?.z4s937OHouseholdMonthlyExpenses,
+        );
+        _pickedItem[2] = _stepItems?[2]?.findKey(data?.chaffyOHouseStatus);
+        _pickedItem[3] = _stepItems?[3]?.findKey(data?.coseOEducation);
+        _pickedItem[4] = _stepItems?[4]?.findKey(data?.diopsideOOccupation);
+        _pickedItem[5] = _stepItems?[5]?.findKey(data?.alloOWorkingYears);
+        _pickedItem[6] = _stepItems?[6]?.findKey(data?.limpidlyOIncomeLevel);
+        _pickedItem[7] = _stepItems?[7]?.findKey(data?.b1417wOPayPeriod);
+        _pickedArea[0] = data?.spadicesOAddressState;
+        _pickedArea[1] = data?.gasconyOAddressCity;
+        _pickedArea[2] = data?.enfetterOAddressDistrict;
+        _pickedDay[0] = data?.r67p23OPayday;
+        _pickedDay[1] = data?.plenishOSecondPayday;
       });
+      _controller.text = data?.craalOAddressDetail ?? '';
     });
+  }
+
+  @override
+  void deactivate() {
+    context.read<SubmitModel>().cacheWorkInfo(
+      areas: List.from(_pickedArea)..add(_controller.text),
+      items: _pickedItem.map((it) => it?.key).toList(),
+      days: _pickedDay,
+    );
+    super.deactivate();
   }
 
   @override
@@ -86,8 +112,14 @@ class _StepWorkPageState extends State<StepWorkPage> {
   }
 
   void _submitData() async {
+    final pick4Not0 = _pickedItem[4]?.key != _stepItems?[4]?[0].key;
+    final pick72 = _pickedItem[7]?.key == _stepItems?[7]?[1].key;
+    final pick71 = pick72 || _pickedItem[7]?.key == _stepItems?[7]?[2].key;
+    final sameDay = _pickedDay[0] == _pickedDay[1];
     setState(() {
-      _dayError = null;
+      _dayError = pick72 && _pickedDay[0] != null && sameDay
+          ? 'Dos fechas de pago no pueden ser iguales'
+          : null;
       _isErrors[0] = _pickedItem[0] == null;
       _isErrors[1] = _pickedItem[1] == null;
       _isErrors[2] = _pickedItem[2] == null;
@@ -97,36 +129,14 @@ class _StepWorkPageState extends State<StepWorkPage> {
       _isErrors[6] = _controller.text.isEmpty;
       _isErrors[7] = _pickedItem[3] == null;
       _isErrors[8] = _pickedItem[4] == null;
-      if (_pickedItem[4]?.key != _stepItems?[4]?[0].key) {
-        _isErrors[9] = _pickedItem[5] == null;
-        _isErrors[10] = _pickedItem[6] == null;
-        _isErrors[11] = _pickedItem[7] == null;
-        if (_pickedItem[7]?.key == _stepItems?[7]?[1].key) {
-          if (_pickedDay[0] == _pickedDay[1]) {
-            _dayError = 'Dos fechas de pago no pueden ser iguales';
-            _isErrors[12] = true;
-            _isErrors[13] = true;
-          } else {
-            _isErrors[12] = _pickedDay[0] == null;
-            _isErrors[13] = _pickedDay[1] == null;
-          }
-        } else if (_pickedItem[7]?.key == _stepItems?[7]?[2].key) {
-          _isErrors[12] = _pickedDay[0] == null;
-          _isErrors[13] = false;
-        } else {
-          _isErrors[12] = false;
-          _isErrors[13] = false;
-        }
-      } else {
-        _isErrors[9] = false;
-        _isErrors[10] = false;
-        _isErrors[11] = false;
-        _isErrors[12] = false;
-        _isErrors[13] = false;
-      }
+      _isErrors[9] = pick4Not0 && _pickedItem[5] == null;
+      _isErrors[10] = pick4Not0 && _pickedItem[6] == null;
+      _isErrors[11] = pick4Not0 && _pickedItem[7] == null;
+      _isErrors[12] = pick4Not0 && pick71 && (_pickedDay[0] == null || sameDay);
+      _isErrors[13] = pick4Not0 && pick72 && (_pickedDay[1] == null || sameDay);
     });
     if (!_isErrors.contains(true)) {
-      submitModel.submitWorkInfo(
+      context.read<SubmitModel>().submitWorkInfo(
         areas: List.from(_pickedArea)..add(_controller.text),
         items: _pickedItem.map((it) => it?.key).toList(),
         days: _pickedDay,
@@ -318,30 +328,32 @@ class _StepWorkPageState extends State<StepWorkPage> {
             isError: _isErrors[3],
             errorText: _errorHint[3],
           ),
-          StepSelectField.pickArea(
-            context,
-            items: areasSecond,
-            pickedItem: _pickedArea[1],
-            onValueChange: (value) => setState(() {
-              _pickedArea[1] = value;
-              _isErrors[4] = false;
-            }),
-            hintText: 'Departamento',
-            isError: _isErrors[4],
-            errorText: _errorHint[4],
-          ),
-          StepSelectField.pickArea(
-            context,
-            items: areasThird,
-            pickedItem: _pickedArea[2],
-            onValueChange: (value) => setState(() {
-              _pickedArea[2] = value;
-              _isErrors[5] = false;
-            }),
-            hintText: 'Municipio',
-            isError: _isErrors[5],
-            errorText: _errorHint[5],
-          ),
+          if (_pickedArea[0] != null)
+            StepSelectField.pickArea(
+              context,
+              items: areasSecond,
+              pickedItem: _pickedArea[1],
+              onValueChange: (value) => setState(() {
+                _pickedArea[1] = value;
+                _isErrors[4] = false;
+              }),
+              hintText: 'Departamento',
+              isError: _isErrors[4],
+              errorText: _errorHint[4],
+            ),
+          if (_pickedArea[1] != null)
+            StepSelectField.pickArea(
+              context,
+              items: areasThird,
+              pickedItem: _pickedArea[2],
+              onValueChange: (value) => setState(() {
+                _pickedArea[2] = value;
+                _isErrors[5] = false;
+              }),
+              hintText: 'Municipio',
+              isError: _isErrors[5],
+              errorText: _errorHint[5],
+            ),
           StepInputField(
             controller: _controller,
             hintText: 'Dirección',
@@ -471,8 +483,12 @@ class _StepWorkPageState extends State<StepWorkPage> {
         context,
         pickedDay: _pickedDay[0],
         onValueChange: (value) => setState(() {
-          _pickedDay[0] = value;
-          _isErrors[12] = false;
+          if (_pickedDay[1] == value) {
+            toast('Dos fechas de pago no pueden ser iguales');
+          } else {
+            _pickedDay[0] = value;
+            _isErrors[12] = false;
+          }
         }),
         hintText: 'Dia de pago(primero)',
         isError: _isErrors[12],
@@ -482,8 +498,12 @@ class _StepWorkPageState extends State<StepWorkPage> {
         context,
         pickedDay: _pickedDay[1],
         onValueChange: (value) => setState(() {
-          _pickedDay[1] = value;
-          _isErrors[13] = false;
+          if (_pickedDay[0] == value) {
+            toast('Dos fechas de pago no pueden ser iguales');
+          } else {
+            _pickedDay[1] = value;
+            _isErrors[13] = false;
+          }
         }),
         hintText: 'Dia de pago(segundo)',
         isError: _isErrors[13],
@@ -499,7 +519,7 @@ class _StepWorkPageState extends State<StepWorkPage> {
     'Por favor seleccione la Región',
     'Por favor seleccione la Departamento',
     'Por favor seleccione la Municipio',
-    'Por favor introduzca',
+    'Por favor introduzca su Dirección',
     'Por favor seleccione la máximo nivel de estudios',
     'Por favor seleccione la Profesión actual',
     'Por favor seleccione la años de trabajo',

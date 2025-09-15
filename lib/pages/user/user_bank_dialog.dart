@@ -31,7 +31,7 @@ class UserBankDialog extends StatefulWidget {
       enableDrag: false,
       isDismissible: false,
       isScrollControlled: true,
-      builder: (context) => ChangeNotifierProvider(
+      builder: (_) => ChangeNotifierProvider(
         create: (_) => UserBankModel(),
         builder: (_, _) => PageConsumer<UserBankModel>(
           child: UserBankDialog(

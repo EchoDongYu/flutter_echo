@@ -23,7 +23,7 @@ class UpgradeDialog extends StatelessWidget {
     return showDialog<bool>(
       context: context,
       barrierDismissible: false,
-      builder: (context) => UpgradeDialog(
+      builder: (_) => UpgradeDialog(
         force: force,
         onConfirm: () => context.pop(true),
         onCancel: () => context.pop(false),

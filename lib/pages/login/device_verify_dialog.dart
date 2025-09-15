@@ -26,7 +26,7 @@ class DeviceVerifyDialog extends StatefulWidget {
       enableDrag: false,
       isDismissible: false,
       isScrollControlled: true,
-      builder: (context) => AnimatedPadding(
+      builder: (_) => AnimatedPadding(
         padding: MediaQuery.of(context).viewInsets,
         duration: const Duration(milliseconds: 100),
         child: ChangeNotifierProvider(
@@ -273,6 +273,7 @@ class _DeviceVerifyDialogState extends State<DeviceVerifyDialog>
             textInputAction: TextInputAction.done,
             maxLength: AppConst.codeLen,
             maxLines: 1,
+            autofocus: false,
             showCursor: false,
             enableInteractiveSelection: false,
             style: const TextStyle(color: Colors.transparent),

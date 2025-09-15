@@ -134,7 +134,11 @@ class StepSelectField extends StatefulWidget {
   }) => StepSelectField(
     value: pickedDate?.showDate,
     onValueChange: () async {
-      final result = await PickDateDialog.show(context, title: hintText);
+      final result = await PickDateDialog.show(
+        context,
+        title: hintText,
+        pickedDate: pickedDate,
+      );
       if (result != null) onValueChange(result);
     },
     hintText: hintText,
@@ -180,6 +184,7 @@ class _StepSelectFieldState extends State<StepSelectField> {
       children: [
         InkWell(
           onTap: () async {
+            FocusScope.of(context).requestFocus(FocusNode());
             _onFocusChanged(true);
             await widget.onValueChange();
             _onFocusChanged(false);

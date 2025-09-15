@@ -100,7 +100,7 @@ class _ProfilePageState extends State<ProfilePage> {
                         ),
                       ),
                       Text(
-                        LocalStorage().account ?? '',
+                        maskPhoneNumber(LocalStorage().account ?? ''),
                         style: TextStyle(
                           fontSize: 14.sp,
                           fontWeight: FontWeight.w400,
@@ -129,7 +129,7 @@ class _ProfilePageState extends State<ProfilePage> {
 
   Widget _buildCard1(BuildContext context) {
     return InkWell(
-      onTap: (){
+      onTap: () {
         //跳转账单列表
         context.push(AppRouter.billList);
       },
@@ -157,16 +157,24 @@ class _ProfilePageState extends State<ProfilePage> {
                 ),
               ),
             ),
-            Text(
-              'Q 10.000,00',
-              style: TextStyle(
-                fontSize: 30.sp,
-                fontWeight: FontWeight.w700,
-                color: Colors.white,
-                height: 38 / 30,
-              ),
+            Consumer<MainModel>(
+              builder: (_, provider, _) {
+                return Text(
+                  provider.homeInfo?.y934teOTotalAmount?.showAmount ?? '0',
+                  style: TextStyle(
+                    fontSize: 30.sp,
+                    fontWeight: FontWeight.w700,
+                    color: Colors.white,
+                    height: 38 / 30,
+                  ),
+                );
+              },
             ),
-            const Icon(Icons.arrow_right_rounded, color: Colors.white, size: 36),
+            const Icon(
+              Icons.arrow_right_rounded,
+              color: Colors.white,
+              size: 36,
+            ),
           ],
         ),
       ),
@@ -174,22 +182,32 @@ class _ProfilePageState extends State<ProfilePage> {
   }
 
   Widget _buildCard2(BuildContext context) {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      mainAxisSize: MainAxisSize.max,
-      spacing: 12.w,
-      children: [
-        _buildCard2Item(
-          icon: Drawable.iconMineLeft,
-          text: 'Sobre nosotros',
-          onTap: () => context.push(AppRouter.aboutUs),
-        ),
-        _buildCard2Item(
-          icon: Drawable.iconMineRight,
-          text: 'Conta Bancária',
-          onTap: () => context.push(AppRouter.userBank),
-        ),
-      ],
+    return Consumer<MainModel>(
+      builder: (_, provider, child) {
+        if (provider.status == 2) {
+          return Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            mainAxisSize: MainAxisSize.max,
+            spacing: 12.w,
+            children: [
+              Expanded(child: child!),
+              Expanded(
+                child: _buildCard2Item(
+                  icon: Drawable.iconMineRight,
+                  text: 'Conta Bancária',
+                  onTap: () => context.push(AppRouter.userBank),
+                ),
+              ),
+            ],
+          );
+        }
+        return child!;
+      },
+      child: _buildCard2Item(
+        icon: Drawable.iconMineLeft,
+        text: 'Sobre nosotros',
+        onTap: () => context.push(AppRouter.aboutUs),
+      ),
     );
   }
 
@@ -198,39 +216,38 @@ class _ProfilePageState extends State<ProfilePage> {
     required String text,
     VoidCallback? onTap,
   }) {
-    return Expanded(
-      child: InkWell(
-        onTap: onTap,
-        borderRadius: const BorderRadius.all(Radius.circular(20)),
-        child: Container(
-          width: double.infinity,
-          padding: EdgeInsets.all(16),
-          decoration: const BoxDecoration(
-            color: Colors.white,
-            borderRadius: BorderRadius.all(Radius.circular(20)),
-            boxShadow: NowStyles.cardShadows,
-          ),
-          child: Column(
-            spacing: 8.h,
-            children: [
-              Image.asset(icon, width: 36.r, height: 36.r),
-              Text(
-                text,
-                style: TextStyle(
-                  fontSize: 14.sp,
-                  fontWeight: FontWeight.w400,
-                  color: NowColors.c0xFF1C1F23,
-                  height: 22 / 14,
-                ),
+    return InkWell(
+      onTap: onTap,
+      borderRadius: const BorderRadius.all(Radius.circular(20)),
+      child: Container(
+        width: double.infinity,
+        padding: EdgeInsets.all(16),
+        decoration: const BoxDecoration(
+          color: Colors.white,
+          borderRadius: BorderRadius.all(Radius.circular(20)),
+          boxShadow: NowStyles.cardShadows,
+        ),
+        child: Column(
+          spacing: 8.h,
+          children: [
+            Image.asset(icon, width: 36.r, height: 36.r),
+            Text(
+              text,
+              style: TextStyle(
+                fontSize: 14.sp,
+                fontWeight: FontWeight.w400,
+                color: NowColors.c0xFF1C1F23,
+                height: 22 / 14,
               ),
-            ],
-          ),
+            ),
+          ],
         ),
       ),
     );
   }
 
   Widget _buildCard3(BuildContext context) {
+    final mainInfo = LocalStorage().mainInfo;
     return Container(
       width: double.infinity,
       padding: EdgeInsets.symmetric(vertical: 8.h),
@@ -241,11 +258,13 @@ class _ProfilePageState extends State<ProfilePage> {
       ),
       child: Column(
         children: [
-          _buildCard3Item(
-            icon: Drawable.iconMineV1,
-            text: 'Seguridad de la cuenta',
-            onTap: () => context.push(AppRouter.resetPassword),
-          ),
+          if (mainInfo?.fm50w8OLoginPwd == true ||
+              mainInfo?.cressyOTraderPwd == true)
+            _buildCard3Item(
+              icon: Drawable.iconMineV1,
+              text: 'Seguridad de la cuenta',
+              onTap: () => context.push(AppRouter.resetPassword),
+            ),
           _buildCard3Item(
             icon: Drawable.iconMineV2,
             text: 'Preguntas frecuentes',
@@ -369,17 +388,17 @@ class _ProfilePageState extends State<ProfilePage> {
   void _showLogoutDialog(BuildContext context) {
     showDialog<bool>(
       context: context,
-      builder: (context) => PromptDialog(
+      builder: (_) => PromptDialog(
         title: "Cerrar sesión",
         content: "¿Estás seguro de cerrar sesión?",
-        confirmText: "Confirmar",
-        cancelText: "Cancelar",
-        onConfirm: () {
+        confirmText: "Cancelar",
+        cancelText: "Confirmar",
+        onCancel: () {
           context.pop();
           LocalStorage().logout();
           context.go(AppRouter.loginPhone);
         },
-        onCancel: () => context.pop(),
+        onConfirm: () => context.pop(),
       ),
     );
   }
@@ -387,7 +406,7 @@ class _ProfilePageState extends State<ProfilePage> {
   void _showRemovalDailog(BuildContext context) {
     showDialog<bool>(
       context: context,
-      builder: (context) => RemovalDailog(
+      builder: (_) => RemovalDailog(
         onConfirm: () async {
           context.pop();
           final judgeOk = await mainModel.judgeAccountCancel();

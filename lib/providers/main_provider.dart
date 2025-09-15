@@ -28,20 +28,21 @@ class MainModel extends BaseProvider {
   }
 
   Future<MainInfoResp?> getMainBaseInfo() async {
-    return await launchRequest(() async {
-      return await Api.getMainBaseInfo();
-    });
+    if (LocalStorage().isLogin) {
+      return await launchRequest(() => Api.getMainBaseInfo());
+    }
+    return null;
   }
 
   void launchDefault() async {
     switch (_creditStatus) {
       case 0:
-        navigate((context) => context.push(AppRouter.stepBasic));
+        _launchKycStep();
       default:
         final apiResult = await launchRequest(() => Api.refreshSubmitResult());
         switch (apiResult?.bopomofoOCreditStatus) {
           case 0:
-            navigate((context) => context.push(AppRouter.stepBasic));
+            _launchKycStep();
           case 1:
             final uriRoute = Uri(
               path: AppRouter.stepProcess,
@@ -67,6 +68,19 @@ class MainModel extends BaseProvider {
           case 3:
             navigate((context) => context.push(AppRouter.stepFailed));
         }
+    }
+  }
+
+  void _launchKycStep() {
+    switch (LocalStorage().kycStep) {
+      case null:
+        navigate((context) => context.push(AppRouter.stepBasic));
+      case 1:
+        navigate((context) => context.push(AppRouter.stepWork));
+      case 2:
+        navigate((context) => context.push(AppRouter.stepContact));
+      default:
+        navigate((context) => context.push(AppRouter.stepBasic));
     }
   }
 

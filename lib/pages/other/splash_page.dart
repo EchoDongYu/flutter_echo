@@ -66,7 +66,7 @@ class _SplashPageState extends State<SplashPage> {
   }
 
   void _checkDisclosure(BuildContext context) async {
-    if (LocalStorage().disclosure != true) {
+    if (LocalStorage().disclosure == null) {
       final privacy = await PrivacyDialog.show(context);
       if (privacy == true && context.mounted) {
         await DisclosureDialog.show(context);
