@@ -12478,7 +12478,7 @@ class LoanOrderResp {
   @JsonKey(name: 'sk6s63')
   final double? sk6s63OCouponAmount;
   @JsonKey(name: 'sweeny')
-  final int? sweenyOWorkFlowId;
+  final String? sweenyOWorkFlowId;
   @JsonKey(name: 'brant')
   final int? brantOPurpose;
   @JsonKey(name: 'mxs06u')
@@ -13012,7 +13012,7 @@ extension $LoanOrderRespExtension on LoanOrderResp {
     String? d7x52pOBizChannel,
     String? pinionOUserCouponGid,
     double? sk6s63OCouponAmount,
-    int? sweenyOWorkFlowId,
+    String? sweenyOWorkFlowId,
     int? brantOPurpose,
     String? mxs06uOApplyStatus,
     String? r86mu7OProductTag,
@@ -13169,7 +13169,7 @@ extension $LoanOrderRespExtension on LoanOrderResp {
     Wrapped<String?>? d7x52pOBizChannel,
     Wrapped<String?>? pinionOUserCouponGid,
     Wrapped<double?>? sk6s63OCouponAmount,
-    Wrapped<int?>? sweenyOWorkFlowId,
+    Wrapped<String?>? sweenyOWorkFlowId,
     Wrapped<int?>? brantOPurpose,
     Wrapped<String?>? mxs06uOApplyStatus,
     Wrapped<String?>? r86mu7OProductTag,
@@ -24572,7 +24572,7 @@ class BillDetailResp$GlacisORepaymentPlanList$Item {
   @JsonKey(name: 'z38e62')
   final String? z38e62OOrderGid;
   @JsonKey(name: 'sweeny')
-  final int? sweenyOWorkFlowId;
+  final String? sweenyOWorkFlowId;
   @JsonKey(name: 'remark')
   final String? remark;
   @JsonKey(name: 'i2jk5f')
@@ -25033,7 +25033,7 @@ extension $BillDetailResp$GlacisORepaymentPlanList$ItemExtension
     bool? e0a79hOIsCollectCase,
     String? d7x52pOBizChannel,
     String? z38e62OOrderGid,
-    int? sweenyOWorkFlowId,
+    String? sweenyOWorkFlowId,
     String? remark,
     int? i2jk5fOPeriodStatus,
     double? emceeOReduceAmount,
@@ -25168,7 +25168,7 @@ extension $BillDetailResp$GlacisORepaymentPlanList$ItemExtension
     Wrapped<bool?>? e0a79hOIsCollectCase,
     Wrapped<String?>? d7x52pOBizChannel,
     Wrapped<String?>? z38e62OOrderGid,
-    Wrapped<int?>? sweenyOWorkFlowId,
+    Wrapped<String?>? sweenyOWorkFlowId,
     Wrapped<String?>? remark,
     Wrapped<int?>? i2jk5fOPeriodStatus,
     Wrapped<double?>? emceeOReduceAmount,
