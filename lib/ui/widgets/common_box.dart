@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_echo/common/app_theme.dart';
+import 'package:flutter_echo/utils/common_utils.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class CommonBox extends StatelessWidget {
@@ -36,11 +37,11 @@ class CommonBox extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
+    return InkWell(
       onTap: onTap,
       onLongPress: onLongPress,
       child: Container(
-        width: width,
+        width: width ?? context.screenWidth,
         height: height,
         margin: margin,
         padding:

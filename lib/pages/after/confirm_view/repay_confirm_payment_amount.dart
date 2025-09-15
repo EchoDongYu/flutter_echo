@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_echo/common/app_theme.dart';
 import 'package:flutter_echo/ui/widgets/common_box.dart';
-import 'package:flutter_echo/utils/common_utils.dart';
 import 'package:flutter_echo/utils/drawable_utils.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -13,7 +12,6 @@ class RepayConfirmPaymentAmount extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return CommonBox(
-      width: context.screenWidth,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [

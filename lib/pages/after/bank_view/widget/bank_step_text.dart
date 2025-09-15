@@ -2,8 +2,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter_echo/common/app_theme.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-class CommonStepText extends StatelessWidget {
-  const CommonStepText({
+class BankStepText extends StatelessWidget {
+  const BankStepText({
     super.key,
     required this.stepNumber,
     required this.stepText,
@@ -15,6 +15,7 @@ class CommonStepText extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Row(
+      crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Container(
           width: 22.r,
@@ -37,14 +38,16 @@ class CommonStepText extends StatelessWidget {
             ),
           ),
         ),
-        Padding(
-          padding: EdgeInsets.only(left: 10.w),
-          child: Text(
-            stepText,
-            style: TextStyle(
-              fontSize: 12.sp,
-              fontWeight: FontWeight.w400,
-              color: NowColors.c0xFF494C4F,
+        Expanded(
+          child: Padding(
+            padding: EdgeInsets.only(left: 10.w),
+            child: Text(
+              stepText,
+              style: TextStyle(
+                fontSize: 12.sp,
+                fontWeight: FontWeight.w400,
+                color: NowColors.c0xFF494C4F,
+              ),
             ),
           ),
         ),

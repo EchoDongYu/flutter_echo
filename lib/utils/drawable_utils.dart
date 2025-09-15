@@ -60,5 +60,8 @@ class Drawable {
   static const String imageUpgrade = 'assets/images/image_upgrade.png';
   static const String iconHourglassFill = 'assets/images/icon_hourglass_fill.png';
   static const String iconClear = 'assets/images/icon_clear.png';
+  static const String iconBankGT = 'assets/images/icon_bank_gt.png';
+  static const String iconBankBAC = 'assets/images/icon_bank_bi.png';
+  static const String iconBankBI = 'assets/images/icon_bank_bac.png';
 
 }

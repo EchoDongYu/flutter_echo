@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_echo/common/app_theme.dart';
 import 'package:flutter_echo/ui/widgets/common_box.dart';
-import 'package:flutter_echo/utils/common_utils.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class RepayConfirmAmountPay extends StatelessWidget {
@@ -19,7 +18,6 @@ class RepayConfirmAmountPay extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return CommonBox(
-      width: context.screenWidth,
       gradient: LinearGradient(
         colors: [NowColors.c0xFF3288F1, NowColors.c0xFF4FAAFF],
       ),

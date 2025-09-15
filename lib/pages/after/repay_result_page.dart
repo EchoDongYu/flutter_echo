@@ -57,8 +57,7 @@ class RepayFailedPage extends StatelessWidget {
       ),
       bottomNavigationBar: WidgetHelper.buildBottomFailedButton(
         text: 'Volver a la de inicio',
-        //onPressed: () => context.go(AppRouter.main),
-        onPressed: () => context.push(AppRouter.repayBank),
+        onPressed: () => context.go(AppRouter.main),
       ),
     );
   }
@@ -136,7 +135,8 @@ class RepayProcessPage extends StatelessWidget {
       ),
       bottomNavigationBar: WidgetHelper.buildBottomButton(
         text: 'Volver al inicio',
-        onPressed: () => context.go(AppRouter.main),
+        // onPressed: () => context.go(AppRouter.main),
+        onPressed: () => context.push(AppRouter.repayBank),
       ),
     );
   }
