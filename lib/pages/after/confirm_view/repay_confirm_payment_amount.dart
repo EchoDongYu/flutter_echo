@@ -6,7 +6,9 @@ import 'package:flutter_echo/utils/drawable_utils.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class RepayConfirmPaymentAmount extends StatelessWidget {
-  const RepayConfirmPaymentAmount({super.key});
+  const RepayConfirmPaymentAmount({super.key, this.onChanged});
+
+  final ValueChanged<String>? onChanged;
 
   @override
   Widget build(BuildContext context) {
@@ -24,7 +26,7 @@ class RepayConfirmPaymentAmount extends StatelessWidget {
             ),
           ),
           SizedBox(height: 12.h),
-          QInput(),
+          QInput(onChanged: onChanged),
           SizedBox(height: 8.h),
           Divider(color: NowColors.c0xFFC7C7C7, height: 1),
         ],

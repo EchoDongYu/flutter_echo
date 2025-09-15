@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_echo/pages/after/confirm_view/repay_confirm_amount_pay.dart';
+import 'package:flutter_echo/pages/after/confirm_view/repay_confirm_channel.dart';
 import 'package:flutter_echo/pages/after/confirm_view/repay_confirm_payment_amount.dart';
 import 'package:flutter_echo/pages/after/confirm_view/repay_confirm_tips.dart';
 import 'package:flutter_echo/pages/app_router.dart';
@@ -33,9 +34,18 @@ class RepayConfirmPage extends StatelessWidget {
             ),
             SizedBox(height: 12.h),
             //付款金额
-            RepayConfirmPaymentAmount(),
+            RepayConfirmPaymentAmount(
+              onChanged: (v){
+
+              },
+            ),
             SizedBox(height: 12.h),
             //主要/备用渠道
+            RepayConfirmChannel(
+              selectedBankRefund: true,
+              selectedCashPayment: true,
+              selectedInternetBanking: false,
+            ),
           ],
         ),
       ),
