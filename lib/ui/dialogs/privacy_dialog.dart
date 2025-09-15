@@ -22,6 +22,7 @@ class PrivacyDialog extends StatefulWidget {
   static Future<bool?> show(BuildContext context) {
     return showModalBottomSheet<bool>(
       context: context,
+      useSafeArea: true,
       enableDrag: false,
       isDismissible: false,
       isScrollControlled: true,

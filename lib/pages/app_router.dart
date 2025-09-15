@@ -153,11 +153,13 @@ class AppRouter {
 
       /// 授信倒计时页面
       GoRoute(
-        path: stepResult,
+        path: stepProcess,
         builder: (context, state) {
           final params = state.uri.queryParameters;
           final count = params[NavKey.count]?.tryParseInt;
-          return StepResultPage(countdown: count);
+          return PageConsumer<StepStatusModel>(
+            child: StepResultPage(countdown: count),
+          );
         },
       ),
 
@@ -169,7 +171,7 @@ class AppRouter {
 
       /// 授信处理中页面
       GoRoute(
-        path: stepProcess,
+        path: stepResult,
         builder: (context, state) => ChangeNotifierProvider(
           create: (_) => StepStatusModel(),
           builder: (_, _) {

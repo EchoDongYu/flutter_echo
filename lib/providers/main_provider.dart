@@ -6,6 +6,7 @@ import 'package:flutter_echo/pages/main/track_dialog.dart';
 import 'package:flutter_echo/services/api_service.dart';
 import 'package:flutter_echo/services/permission_service.dart';
 import 'package:flutter_echo/services/storage_service.dart';
+import 'package:flutter_echo/ui/dialogs/permission_dialog.dart';
 import 'package:go_router/go_router.dart';
 
 class MainModel extends BaseProvider {
@@ -29,7 +30,7 @@ class MainModel extends BaseProvider {
 
   Future<MainInfoResp?> getMainBaseInfo() async {
     if (LocalStorage().isLogin) {
-      return await launchRequest(() => Api.getMainBaseInfo());
+      return Api.getMainBaseInfo();
     }
     return null;
   }
@@ -111,8 +112,12 @@ class MainModel extends BaseProvider {
       final agreeOk = await TrackIntroDialog.show(context);
       if (agreeOk == true && context.mounted) {
         final permOk = await PermissionService().requestAllPermissions();
-        if (permOk == true && context.mounted) {
-          return await TrackUploadDialog.show(context, countdown: countdown);
+        if (context.mounted) {
+          if (permOk == true) {
+            return await TrackUploadDialog.show(context, countdown: countdown);
+          } else {
+            await PermissionDialog.show(context);
+          }
         }
       }
     }

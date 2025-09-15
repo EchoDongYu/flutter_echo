@@ -3,11 +3,13 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter_echo/common/app_theme.dart';
 import 'package:flutter_echo/pages/app_router.dart';
+import 'package:flutter_echo/providers/step_status_provider.dart';
 import 'package:flutter_echo/ui/widget_helper.dart';
 import 'package:flutter_echo/ui/widgets/top_bar.dart';
 import 'package:flutter_echo/utils/drawable_utils.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
+import 'package:provider/provider.dart';
 
 /// 授信倒计时风险评估页面
 class StepResultPage extends StatefulWidget {
@@ -23,9 +25,15 @@ class _StepResultPageState extends State<StepResultPage> {
   late int _countdown;
   Timer? _timer;
 
+  StepStatusModel get statusModel =>
+      Provider.of<StepStatusModel>(context, listen: false);
+
   @override
   void initState() {
     super.initState();
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      statusModel.refreshSubmitResult(5);
+    });
     _countdown = widget.countdown ?? 30;
     _startTimer();
   }

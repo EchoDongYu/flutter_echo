@@ -13,9 +13,4 @@ class PermissionService {
     final result = await [Permission.location].request();
     return !result.values.any((status) => status.isDenied);
   }
-
-  /// 打开应用设置页面
-  Future<bool> openAppSettings() async {
-    return await openAppSettings();
-  }
 }

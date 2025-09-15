@@ -35,6 +35,7 @@ class PickItemDialog<T> extends StatefulWidget {
   }) {
     return showModalBottomSheet<T>(
       context: context,
+      useSafeArea: true,
       enableDrag: false,
       isDismissible: false,
       isScrollControlled: true,

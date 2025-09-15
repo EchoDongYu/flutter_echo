@@ -23,6 +23,7 @@ class DeviceVerifyDialog extends StatefulWidget {
   static Future<Map?> show(BuildContext context) {
     return showModalBottomSheet<Map>(
       context: context,
+      useSafeArea: true,
       enableDrag: false,
       isDismissible: false,
       isScrollControlled: true,

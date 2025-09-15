@@ -28,6 +28,7 @@ class UserBankDialog extends StatefulWidget {
   static Future<BankCardResp$Item?> show(BuildContext context) {
     return showModalBottomSheet<BankCardResp$Item>(
       context: context,
+      useSafeArea: true,
       enableDrag: false,
       isDismissible: false,
       isScrollControlled: true,
