@@ -17,7 +17,6 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
 import 'package:package_info_plus/package_info_plus.dart';
 import 'package:provider/provider.dart';
-import 'package:url_launcher/url_launcher.dart';
 
 /// 主页面
 class MainPage extends StatefulWidget {
@@ -41,15 +40,12 @@ class _MainPageState extends State<MainPage> with RouteAware {
       final version = packageInfo.version;
       final upgrade = mainInfo?.b369n2OUpgradeVersion?.contains(version);
       final force = mainInfo?.v824tdOForceUpdateVersion?.contains(version);
-      if (upgrade == true && context.mounted) {
-        _showUpgrade(force);
-      }
+      if (upgrade == true) _showUpgrade(force);
     });
   }
 
   Future<void> _showUpgrade(bool? force) async {
-    final result = await UpgradeDialog.show(context, force == true);
-    if (result == true) launchUrl(Uri());
+    await UpgradeDialog.show(context, force == true);
   }
 
   @override

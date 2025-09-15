@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_echo/common/app_theme.dart';
+import 'package:flutter_echo/common/constants.dart';
 import 'package:flutter_echo/ui/widgets/common_button.dart';
 import 'package:flutter_echo/utils/drawable_utils.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 /// 版本升级弹窗
 class UpgradeDialog extends StatelessWidget {
@@ -25,7 +27,14 @@ class UpgradeDialog extends StatelessWidget {
       barrierDismissible: false,
       builder: (_) => UpgradeDialog(
         force: force,
-        onConfirm: () => context.pop(true),
+        onConfirm: () {
+          if (!force) context.pop(true);
+          launchUrl(
+            Uri.parse(
+              'https://play.google.com/store/apps/details?id=${AppConst.applicationId}',
+            ),
+          );
+        },
         onCancel: () => context.pop(false),
       ),
     );
