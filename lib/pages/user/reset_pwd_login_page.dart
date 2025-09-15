@@ -200,8 +200,9 @@ class _ResetLoginPwdPageState extends State<ResetLoginPwdPage> {
       final countdown = provider.countdown;
       final alpha = countdown > 0 ? 0.5 : 1.0;
       return Container(
+        alignment: Alignment.center,
         padding: EdgeInsets.symmetric(horizontal: 8.w, vertical: 7.h),
-        constraints: BoxConstraints(minWidth: 72.w),
+        constraints: BoxConstraints(minWidth: 100.w, minHeight: 36.h),
         decoration: BoxDecoration(
           gradient: LinearGradient(
             colors: [
@@ -221,7 +222,7 @@ class _ResetLoginPwdPageState extends State<ResetLoginPwdPage> {
             countdown > 0 ? 'Reenviar (${countdown}s)' : 'Código',
             style: TextStyle(
               color: Colors.white,
-              fontSize: 14.sp,
+              fontSize: countdown > 0 ? 11.sp : 14.sp,
               fontWeight: FontWeight.w500,
             ),
             textAlign: TextAlign.center,

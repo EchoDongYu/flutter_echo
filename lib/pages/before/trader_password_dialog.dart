@@ -37,7 +37,6 @@ class TraderPasswordDialog extends StatefulWidget {
   }) {
     return showModalBottomSheet<String>(
       context: context,
-      useSafeArea: true,
       enableDrag: false,
       isDismissible: false,
       isScrollControlled: true,

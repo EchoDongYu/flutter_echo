@@ -117,7 +117,7 @@ class _LoginPwdSetupPageState extends State<LoginPwdSetupPage> {
           _buildPasswordField('Confirmar contraseña', 1),
           SizedBox(height: 32.h),
           EchoPrimaryButton(
-            text: 'Iniciar sesión',
+            text: 'Confirmar',
             enable: _isPasswordValid,
             onPressed: () {
               FocusScope.of(context).unfocus();

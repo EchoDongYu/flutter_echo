@@ -56,8 +56,16 @@ class _PageConsumerState<T extends BaseProvider> extends State<PageConsumer> {
               GoRouter.of(context).go(AppRouter.loginPhone);
             } else if (apiError.needCaptcha) {
               apiError.toastErrorMsg();
-              final code = await CaptchaDialog.show(context);
-              if (code != null) provider.onCaptchaCode(code);
+              provider.onCaptcha(({
+                required String? mobile,
+                required int? type,
+              }) async {
+                return await CaptchaDialog.show(
+                  context,
+                  mobile: mobile,
+                  type: type,
+                );
+              });
             } else if (apiError.needVerify) {
               await DeviceVerifyDialog.show(context);
             } else if (apiError.removal) {
