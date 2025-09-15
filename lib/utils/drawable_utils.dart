@@ -59,5 +59,6 @@ class Drawable {
   static const String imageShildsequere = 'assets/images/image_shildsequere.png';
   static const String imageUpgrade = 'assets/images/image_upgrade.png';
   static const String iconHourglassFill = 'assets/images/icon_hourglass_fill.png';
+  static const String iconClear = 'assets/images/icon_clear.png';
 
 }

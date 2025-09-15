@@ -34,7 +34,7 @@ class BillListPage extends StatelessWidget {
                 title: 'Cantidad reciblda (Q)',
                 value: '$totalAmount',
               ),
-              const SizedBox(height: 12),
+              SizedBox(height: 12.h),
               billList.isNotEmpty ? const BillListView() : const PageNoData(),
             ],
           ),

@@ -68,7 +68,7 @@ class BillListItem extends StatelessWidget {
                   color: NowColors.c0xFF77797B,
                 ),
               ),
-              const SizedBox(width: 4),
+              SizedBox(width: 4.w),
               Visibility(
                 visible: isShowFill,
                 child: Image.asset(
@@ -79,7 +79,7 @@ class BillListItem extends StatelessWidget {
               ),
             ],
           ),
-          const SizedBox(height: 10),
+          SizedBox(height: 10.h),
           // 金额
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -112,10 +112,10 @@ class BillListItem extends StatelessWidget {
               ),
             ],
           ),
-          const SizedBox(height: 12),
+          SizedBox(height: 12.h),
           // 明细区域
           billListItemBox,
-          const SizedBox(height: 20),
+          SizedBox(height: 12.h),
           // 底部按钮
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -240,7 +240,7 @@ class BillListLoanItem extends StatelessWidget {
                     ),
                   ],
                 ),
-                const SizedBox(height: 6),
+                SizedBox(height: 6.h),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   crossAxisAlignment: CrossAxisAlignment.end,

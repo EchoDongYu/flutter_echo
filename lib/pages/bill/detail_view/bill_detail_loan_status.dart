@@ -81,7 +81,7 @@ class BillDetailLoanStatus extends StatelessWidget {
                     ),
                   ),
                 ),
-          const SizedBox(height: 10),
+          SizedBox(height: 10.h),
           // 金额
           Text(
             "Q ${amount.toStringAsFixed(2)}",
@@ -91,10 +91,10 @@ class BillDetailLoanStatus extends StatelessWidget {
               color: NowColors.c0xFF1C1F23,
             ),
           ),
-          const SizedBox(height: 12),
+          SizedBox(height: 12.h),
           // 明细区域
           loanStatusBox,
-          const SizedBox(height: 20),
+          SizedBox(height: 12.h),
           // 底部按钮
           Visibility(
             visible: isShowPagar,
@@ -108,7 +108,7 @@ class BillDetailLoanStatus extends StatelessWidget {
               ),
             ),
           ),
-          const SizedBox(height: 10),
+          SizedBox(height: 10.h),
           SizedBox(
             height: 56,
             width: context.screenWidth,
@@ -248,7 +248,7 @@ class BillDetailLoanItem extends StatelessWidget {
                             ),
                           ],
                         ),
-                        const SizedBox(height: 6),
+                        SizedBox(height: 6.h),
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           crossAxisAlignment: CrossAxisAlignment.end,
@@ -271,7 +271,7 @@ class BillDetailLoanItem extends StatelessWidget {
                             ),
                           ],
                         ),
-                        const SizedBox(height: 6),
+                        SizedBox(height: 6.h),
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           crossAxisAlignment: CrossAxisAlignment.end,
@@ -298,7 +298,7 @@ class BillDetailLoanItem extends StatelessWidget {
                           visible: isShowOther,
                           child: Column(
                             children: [
-                              const SizedBox(height: 6),
+                              SizedBox(height: 6.h),
                               Row(
                                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                 crossAxisAlignment: CrossAxisAlignment.end,
@@ -321,7 +321,7 @@ class BillDetailLoanItem extends StatelessWidget {
                                   ),
                                 ],
                               ),
-                              const SizedBox(height: 6),
+                              SizedBox(height: 6.h),
                               Row(
                                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                 crossAxisAlignment: CrossAxisAlignment.end,

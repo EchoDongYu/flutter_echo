@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_echo/pages/after/confirm_view/repay_confirm_amount_pay.dart';
+import 'package:flutter_echo/pages/after/confirm_view/repay_confirm_payment_amount.dart';
 import 'package:flutter_echo/pages/after/confirm_view/repay_confirm_tips.dart';
 import 'package:flutter_echo/pages/app_router.dart';
 import 'package:flutter_echo/ui/widget_helper.dart';
@@ -16,11 +18,24 @@ class RepayConfirmPage extends StatelessWidget {
       appBar: CommonAppBar(
         title: "Metodo de pago",
       ),
-      body: Padding(
+      body: SingleChildScrollView(
         padding: EdgeInsets.fromLTRB(12.w, 12.h, 12.w, 12.h),
         child: Column(
           children: [
+            //顶部提示
             RepayConfirmTips(),
+            SizedBox(height: 12.h),
+            //应付金额
+            RepayConfirmAmountPay(
+              amountPay: '1000000',
+              amountPayVen: '2002',
+              amountPayCom: 'Q 202210',
+            ),
+            SizedBox(height: 12.h),
+            //付款金额
+            RepayConfirmPaymentAmount(),
+            SizedBox(height: 12.h),
+            //主要/备用渠道
           ],
         ),
       ),

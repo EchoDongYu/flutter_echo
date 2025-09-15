@@ -35,7 +35,7 @@ class BillListTopCard extends StatelessWidget {
               ),
             ),
           ),
-          const SizedBox(height: 12,),
+          SizedBox(height: 12.h),
           Text(
             value,
             style: TextStyle(

@@ -38,7 +38,7 @@ class BillDetailPage extends StatelessWidget {
                 context.push(AppRouter.repayHistory);
               },
             ),
-            const SizedBox(height: 12),
+            SizedBox(height: 12.h),
             //账单详情-还款信息框
             BillDetailLoanInfo(
               detailLoanInfoDate: "2025/01/01",

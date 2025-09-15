@@ -63,7 +63,7 @@ class BillDetailLoanInfo extends StatelessWidget {
               ),
             ],
           ),
-          const SizedBox(height: 16),
+          SizedBox(height: 16.h),
           Row(
             children: [
               Flexible(
@@ -84,7 +84,7 @@ class BillDetailLoanInfo extends StatelessWidget {
               ),
             ],
           ),
-          const SizedBox(height: 20),
+          SizedBox(height: 20.h),
           Row(
             children: [
               Flexible(
@@ -145,7 +145,7 @@ class LoanInfoBox extends StatelessWidget {
                 child: Padding(
                   padding: const EdgeInsets.only(left: 4),
                   child: Image.asset(
-                    Drawable.iconContact,
+                    Drawable.iconQuestion,
                     width: 12.r,
                     height: 12.r,
                   ),
@@ -154,7 +154,7 @@ class LoanInfoBox extends StatelessWidget {
             ),
           ],
         ),
-        const SizedBox(height: 8),
+        SizedBox(height: 8.h),
         Text(
           text,
           style: TextStyle(

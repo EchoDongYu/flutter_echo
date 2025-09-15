@@ -17,6 +17,7 @@ class CommonBox extends StatelessWidget {
     this.child,
     this.onTap,
     this.onLongPress,
+    this.gradient,
   });
 
   final double? width;
@@ -30,6 +31,7 @@ class CommonBox extends StatelessWidget {
   final AlignmentGeometry? alignment;
   final VoidCallback? onTap;
   final VoidCallback? onLongPress;
+  final Gradient? gradient;
   final Widget? child;
 
   @override
@@ -45,6 +47,7 @@ class CommonBox extends StatelessWidget {
             padding ?? EdgeInsets.symmetric(vertical: 16.h, horizontal: 20.w),
         alignment: alignment,
         decoration: BoxDecoration(
+          gradient: gradient,
           color: color ?? NowColors.c0xFFFFFFFF,
           borderRadius: BorderRadius.circular(borderRadius ?? 12),
           border: Border.all(
