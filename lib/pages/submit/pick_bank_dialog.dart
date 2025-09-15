@@ -33,6 +33,7 @@ class PickBankDialog extends StatefulWidget {
   }) {
     return showModalBottomSheet(
       context: context,
+      useSafeArea: true,
       enableDrag: false,
       isDismissible: false,
       isScrollControlled: true,

@@ -20,6 +20,7 @@ class PermissionDialog extends StatelessWidget {
   static Future<bool?> show(BuildContext context) {
     return showModalBottomSheet<bool>(
       context: context,
+      useSafeArea: true,
       enableDrag: false,
       isDismissible: false,
       isScrollControlled: true,

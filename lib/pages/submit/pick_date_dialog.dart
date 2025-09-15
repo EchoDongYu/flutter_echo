@@ -28,6 +28,7 @@ class PickDateDialog extends StatefulWidget {
     final now = DateTime.now();
     return showModalBottomSheet<DateTime>(
       context: context,
+      useSafeArea: true,
       enableDrag: false,
       isDismissible: false,
       isScrollControlled: true,

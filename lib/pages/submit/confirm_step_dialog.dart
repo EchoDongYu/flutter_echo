@@ -25,6 +25,7 @@ class ConfirmStepDialog extends StatelessWidget {
   ) {
     return showModalBottomSheet<bool>(
       context: context,
+      useSafeArea: true,
       enableDrag: false,
       isDismissible: false,
       isScrollControlled: true,

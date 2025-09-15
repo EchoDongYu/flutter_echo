@@ -26,7 +26,7 @@ abstract class _EchoButton extends StatelessWidget {
     vertical: 12.h,
   );
 
-  Color disableColor(Color color) => color.withValues(alpha: 0.67);
+  Color disableColor(Color color) => color.withValues(alpha: 0.5);
 }
 
 /// 主题渐变色按钮组件
