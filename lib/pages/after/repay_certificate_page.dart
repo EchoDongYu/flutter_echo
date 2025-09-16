@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_echo/pages/after/centificate_view/repay_certificate_info.dart';
+import 'package:flutter_echo/pages/after/centificate_view/repay_certificate_payment.dart';
 import 'package:flutter_echo/pages/after/centificate_view/repay_certificate_photo.dart';
+import 'package:flutter_echo/pages/after/centificate_view/repay_certificate_support.dart';
 import 'package:flutter_echo/pages/app_router.dart';
 import 'package:flutter_echo/ui/dialogs/prompt_dialog.dart';
 import 'package:flutter_echo/ui/widget_helper.dart';
@@ -45,9 +47,9 @@ class RepayCertificatePage extends StatelessWidget {
               },
             ),
             SizedBox(height: 12.h),
-            // RepayCertificatePayment(),
+            RepayCertificatePayment(),
             SizedBox(height: 32.h),
-            // RepayCertificateSupport(),
+            RepayCertificateSupport(),
           ],
         ),
       ),
