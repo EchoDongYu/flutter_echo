@@ -120,7 +120,7 @@ class _LoginPwdSetupPageState extends State<LoginPwdSetupPage> {
             text: 'Confirmar',
             enable: _isPasswordValid,
             onPressed: () {
-              FocusScope.of(context).unfocus();
+              FocusScope.of(context).requestFocus(FocusNode());
               loginModel.userLogin(
                 _controllers[0].text,
                 confirmPassword: _controllers[1].text,

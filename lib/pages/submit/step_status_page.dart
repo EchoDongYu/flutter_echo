@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_echo/common/app_theme.dart';
 import 'package:flutter_echo/pages/app_router.dart';
 import 'package:flutter_echo/providers/step_status_provider.dart';
+import 'package:flutter_echo/providers/whatsapp_provider.dart';
 import 'package:flutter_echo/ui/widget_helper.dart';
 import 'package:flutter_echo/ui/widgets/top_bar.dart';
 import 'package:flutter_echo/utils/common_utils.dart';
@@ -31,7 +32,7 @@ class StepFailedPage extends StatelessWidget {
                   child: SingleChildScrollView(
                     padding: EdgeInsets.fromLTRB(28.w, 64.h, 28.w, 28.h),
                     child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.stretch,
+                      crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Center(
                           child: Image.asset(
@@ -87,15 +88,23 @@ class StepFailedPage extends StatelessWidget {
                           ),
                         ),
                         SizedBox(height: 12.h),
-                        Text(
-                          'Suporte via WhatsApp',
-                          style: TextStyle(
-                            color: NowColors.c0xFF3288F1,
-                            fontWeight: FontWeight.w500,
-                            fontSize: 14.sp,
-                            height: 20 / 14,
-                            decoration: TextDecoration.underline,
-                            decorationColor: NowColors.c0xFF3288F1,
+                        InkWell(
+                          onTap: () async {
+                            final phone = await context
+                                .read<WhatsappModel>()
+                                .getDictionary();
+                            FlutterPlatform.launchWhatsApp(phone);
+                          },
+                          child: Text(
+                            'Suporte via WhatsApp',
+                            style: TextStyle(
+                              color: NowColors.c0xFF3288F1,
+                              fontWeight: FontWeight.w500,
+                              fontSize: 14.sp,
+                              height: 20 / 14,
+                              decoration: TextDecoration.underline,
+                              decorationColor: NowColors.c0xFF3288F1,
+                            ),
                           ),
                         ),
                       ],

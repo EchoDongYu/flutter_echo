@@ -25,8 +25,8 @@ class HomeDefaultPage extends StatefulWidget {
 class _HomeDefaultPageState extends State<HomeDefaultPage> {
   MainModel get mainModel => Provider.of<MainModel>(context, listen: false);
 
-  Future<void> _checkAuth(BuildContext context) async {
-    bool? result;
+  Future<bool?> _checkAuth(BuildContext context) async {
+    bool? result = false;
     final compensation = await CompensationDialog.show(context);
     if (compensation == true && context.mounted) {
       final privacy = await PrivacyDialog.show(context);
@@ -34,9 +34,7 @@ class _HomeDefaultPageState extends State<HomeDefaultPage> {
         result = await DisclosureDialog.show(context);
       }
     }
-    if (result != true && context.mounted) {
-      await _checkAuth(context);
-    }
+    return result;
   }
 
   @override
@@ -157,7 +155,8 @@ class _HomeDefaultPageState extends State<HomeDefaultPage> {
               EchoSecondaryButton(
                 onPressed: () async {
                   if (LocalStorage().disclosure != true) {
-                    await _checkAuth(context);
+                    final auth = await _checkAuth(context);
+                    if (auth != true) return;
                   }
                   if (context.mounted) {
                     final lok = await mainModel.launchOk(context);

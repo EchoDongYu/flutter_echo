@@ -123,15 +123,23 @@ class _StepContactPageState extends State<StepContactPage> {
         _isErrors[i][2] = _pickedItem[i] == null;
       }
     });
-    final list = [_controllers[0][1].text, _controllers[1][1].text];
-    final account = LocalStorage().account;
-    if (list.toSet().length < list.length) {
-      toast('Los dos contactos no pueden ser el mismo número de teléfono');
-    } else if (list.any((v) => v == account)) {
-      toast(
-        'El número de teléfono contacto no se puede el mismo numero de registro',
-      );
-    } else if (!_isErrors.any((it) => it.contains(true))) {
+    if (!_isErrors.any((it) => it.contains(true))) {
+      final list = [_controllers[0][1].text, _controllers[1][1].text];
+      final account = LocalStorage().account;
+      if (list.any((v) => v.length != AppConst.phoneLen)) {
+        toast('El número de teléfono que ingresaste no es válido');
+        return;
+      }
+      if (list.toSet().length < list.length) {
+        toast('Los dos contactos no pueden ser el mismo número de teléfono');
+        return;
+      }
+      if (list.any((v) => v == account)) {
+        toast(
+          'El número de teléfono contacto no se puede el mismo numero de registro',
+        );
+        return;
+      }
       context.read<SubmitModel>().submitContactInfo(
         inputs: _controllers
             .map((v1) => v1.map((v2) => v2.text).toList())
@@ -251,6 +259,7 @@ class _StepContactPageState extends State<StepContactPage> {
           StepInputField(
             controller: _controllers[pos][0],
             hintText: 'Nombre(s)',
+            maxLength: 60,
             keyboardType: TextInputType.text,
             textInputAction: TextInputAction.next,
             inputFormatters: [

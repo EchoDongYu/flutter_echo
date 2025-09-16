@@ -9,7 +9,9 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
 
 class ResetPasswordPage extends StatefulWidget {
-  const ResetPasswordPage({super.key});
+  final int? status;
+
+  const ResetPasswordPage({super.key, this.status});
 
   @override
   State<ResetPasswordPage> createState() => _ResetPasswordPageState();
@@ -40,7 +42,8 @@ class _ResetPasswordPageState extends State<ResetPasswordPage> {
                   padding: EdgeInsets.symmetric(vertical: 8.h),
                   child: Column(
                     children: [
-                      if (mainInfo?.fm50w8OLoginPwd == true)
+                      if (mainInfo?.fm50w8OLoginPwd == true &&
+                          widget.status == 2)
                         _buildCardItem(
                           text: 'Restablecer contraseña',
                           onTap: () => context.push(AppRouter.resetLoginPwd),

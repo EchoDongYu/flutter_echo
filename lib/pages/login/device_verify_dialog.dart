@@ -24,16 +24,13 @@ class DeviceVerifyDialog extends StatefulWidget {
     return showModalBottomSheet<Map>(
       context: context,
       enableDrag: false,
+      requestFocus: false,
       isDismissible: false,
       isScrollControlled: true,
-      builder: (_) => AnimatedPadding(
-        padding: MediaQuery.of(context).viewInsets,
-        duration: const Duration(milliseconds: 100),
-        child: ChangeNotifierProvider(
-          create: (_) => VerifyModel(),
-          builder: (_, _) => PageConsumer<VerifyModel>(
-            child: DeviceVerifyDialog(onClosing: () => context.pop()),
-          ),
+      builder: (_) => ChangeNotifierProvider(
+        create: (_) => VerifyModel(),
+        builder: (_, _) => PageConsumer<VerifyModel>(
+          child: DeviceVerifyDialog(onClosing: () => context.pop()),
         ),
       ),
     );
@@ -107,7 +104,17 @@ class _DeviceVerifyDialogState extends State<DeviceVerifyDialog>
         ),
       ),
       builder: (BuildContext context) => SingleChildScrollView(
-        child: Column(children: [_buildContent(), _buildBottomButton()]),
+        child: Container(
+          padding: EdgeInsets.only(
+            bottom: MediaQuery.of(context).viewInsets.bottom,
+          ),
+          child: Consumer<VerifyModel>(
+            builder: (_, provider, _) {
+              if (provider.showCaptcha) return SizedBox();
+              return Column(children: [_buildContent(), _buildBottomButton()]);
+            },
+          ),
+        ),
       ),
     );
   }
@@ -380,6 +387,7 @@ class _DeviceVerifyDialogState extends State<DeviceVerifyDialog>
       child: EchoPrimaryButton(
         text: 'Confirmar',
         onPressed: () async {
+          FocusScope.of(context).requestFocus(FocusNode());
           final checkOk = await verifyModel.checkVerifyCode(
             verifyCode: _verifyCtrl.text,
             imageCode: _imageCtrl.text,

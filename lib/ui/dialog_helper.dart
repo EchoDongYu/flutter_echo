@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_echo/pages/login/code_mode_dialog.dart';
-import 'package:flutter_echo/pages/user/removed_dialog.dart';
 import 'package:flutter_echo/ui/dialogs/praise_dialog.dart';
 import 'package:go_router/go_router.dart';
 
@@ -23,14 +22,6 @@ class DialogHelper {
         onReport: () => context.pop(2),
         onCancel: () => context.pop(),
       ),
-    );
-  }
-
-  /// 显示删除被账号登录时提示弹窗
-  static Future<bool?> showRemovedDialog({required BuildContext context}) {
-    return showDialog<bool>(
-      context: context,
-      builder: (_) => RemovedDialog(onConfirm: () => context.pop(true)),
     );
   }
 }

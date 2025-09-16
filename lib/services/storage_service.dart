@@ -50,7 +50,7 @@ class LocalStorage {
   Map<String, dynamic>? getObject(String key) {
     String? jsonString = _prefs.getString(key);
     if (jsonString != null) {
-      return jsonDecode(jsonString) as Map<String, dynamic>;
+      return jsonDecode(jsonString) as Map<String, dynamic>?;
     }
     return null;
   }

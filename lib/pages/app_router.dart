@@ -36,6 +36,7 @@ import 'package:flutter_echo/providers/main_provider.dart';
 import 'package:flutter_echo/providers/step_status_provider.dart';
 import 'package:flutter_echo/providers/submit_provider.dart';
 import 'package:flutter_echo/providers/user_bank_provider.dart';
+import 'package:flutter_echo/providers/whatsapp_provider.dart';
 import 'package:flutter_echo/utils/common_utils.dart';
 import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
@@ -169,7 +170,12 @@ class AppRouter {
       /// 授信失败页面
       GoRoute(
         path: stepFailed,
-        builder: (context, state) => const StepFailedPage(),
+        builder: (context, state) => ChangeNotifierProvider(
+          create: (_) => WhatsappModel(),
+          builder: (_, _) {
+            return PageConsumer<WhatsappModel>(child: const StepFailedPage());
+          },
+        ),
       ),
 
       /// 授信处理中页面
@@ -259,7 +265,11 @@ class AppRouter {
       /// 重置密码页面
       GoRoute(
         path: resetPassword,
-        builder: (context, state) => const ResetPasswordPage(),
+        builder: (context, state) {
+          final params = state.uri.queryParameters;
+          final status = params[NavKey.status]?.tryParseInt;
+          return ResetPasswordPage(status: status);
+        },
       ),
 
       /// 重置登录密码页面
