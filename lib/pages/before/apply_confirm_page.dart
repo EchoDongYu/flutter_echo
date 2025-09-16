@@ -4,6 +4,7 @@ import 'package:flutter_echo/common/app_theme.dart';
 import 'package:flutter_echo/models/common_model.dart';
 import 'package:flutter_echo/models/swaggerApi.models.swagger.dart';
 import 'package:flutter_echo/pages/before/trader_password_dialog.dart';
+import 'package:flutter_echo/pages/user/user_bank_dialog.dart';
 import 'package:flutter_echo/providers/apply_provider.dart';
 import 'package:flutter_echo/ui/widget_helper.dart';
 import 'package:flutter_echo/ui/widgets/countdown_widget.dart';
@@ -31,6 +32,7 @@ class _ApplyConfirmPageState extends State<ApplyConfirmPage> {
   List<StepItem>? _stepItems;
   StepItem? _pickedPurpose;
   bool _expanded = false;
+  bool _showBankDialog = false;
 
   ApplyModel get applyModel => Provider.of<ApplyModel>(context, listen: false);
 
@@ -378,30 +380,39 @@ class _ApplyConfirmPageState extends State<ApplyConfirmPage> {
       child: Column(
         spacing: 16.h,
         children: [
-          StepSelectField.pickBankCard(
-            context,
-            prefix: _buildPickedLogo(),
-            pickedItem: _pickedBank,
-            onValueChange: (value) => setState(() {
-              _pickedBank = value;
-              _isErrors[0] = false;
-            }),
-            hintText: 'Cuenta bancaria',
-            isError: _isErrors[0],
-            errorText: _errorHint[0],
-          ),
-          StepSelectField.pickItem(
-            context,
-            items: _stepItems,
-            pickedItem: _pickedPurpose,
-            onValueChange: (value) => setState(() {
-              _pickedPurpose = value;
-              _isErrors[1] = false;
-            }),
-            hintText: 'Objetivo del préstamo',
-            isError: _isErrors[1],
-            errorText: _errorHint[1],
-          ),
+          if (!_showBankDialog) ...[
+            StepSelectField.pickBankCard(
+              context,
+              prefix: _buildPickedLogo(),
+              pickedItem: _pickedBank,
+              onValueChange: () async {
+                setState(() => _showBankDialog = true);
+                final result = await UserBankDialog.show(context);
+                setState(() => _showBankDialog = false);
+                if (result != null) {
+                  setState(() {
+                    _pickedBank = result;
+                    _isErrors[0] = false;
+                  });
+                }
+              },
+              hintText: 'Cuenta bancaria',
+              isError: _isErrors[0],
+              errorText: _errorHint[0],
+            ),
+            StepSelectField.pickItem(
+              context,
+              items: _stepItems,
+              pickedItem: _pickedPurpose,
+              onValueChange: (value) => setState(() {
+                _pickedPurpose = value;
+                _isErrors[1] = false;
+              }),
+              hintText: 'Objetivo del préstamo',
+              isError: _isErrors[1],
+              errorText: _errorHint[1],
+            ),
+          ],
         ],
       ),
     );

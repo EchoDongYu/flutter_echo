@@ -66,7 +66,6 @@ class _UserBankDialogState extends State<UserBankDialog> {
   Widget build(BuildContext context) {
     return BottomSheet(
       onClosing: widget.onClosing,
-      enableDrag: false,
       backgroundColor: NowColors.c0xFFF3F3F5,
       shape: RoundedRectangleBorder(
         borderRadius: const BorderRadius.only(
