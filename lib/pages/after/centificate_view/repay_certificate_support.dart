@@ -4,7 +4,9 @@ import 'package:flutter_echo/common/app_theme.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class RepayCertificateSupport extends StatelessWidget {
-  const RepayCertificateSupport({super.key});
+  const RepayCertificateSupport({super.key, this.onUploaded});
+
+  final VoidCallback? onUploaded;
 
   @override
   Widget build(BuildContext context) {
@@ -13,15 +15,18 @@ class RepayCertificateSupport extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text(
-            "Historial de pagos subidos",
-            style: TextStyle(
-              fontSize: 14.sp,
-              decoration: TextDecoration.underline,
-              decorationColor: NowColors.c0xFF3288F1,
-              decorationThickness: 2,
-              color: NowColors.c0xFF3288F1,
-              fontWeight: FontWeight.w500,
+          GestureDetector(
+            onTap: onUploaded,
+            child: Text(
+              "Historial de pagos subidos",
+              style: TextStyle(
+                fontSize: 14.sp,
+                decoration: TextDecoration.underline,
+                decorationColor: NowColors.c0xFF3288F1,
+                decorationThickness: 2,
+                color: NowColors.c0xFF3288F1,
+                fontWeight: FontWeight.w500,
+              ),
             ),
           ),
           SizedBox(height: 32.h),

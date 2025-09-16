@@ -7,6 +7,7 @@ import 'package:flutter_echo/pages/after/repay_certificate_page.dart';
 import 'package:flutter_echo/pages/after/repay_confirm_page.dart';
 import 'package:flutter_echo/pages/after/repay_history_page.dart';
 import 'package:flutter_echo/pages/after/repay_result_page.dart';
+import 'package:flutter_echo/pages/after/repay_uploaded_page.dart';
 import 'package:flutter_echo/pages/before/apply_confirm_page.dart';
 import 'package:flutter_echo/pages/before/apply_result_page.dart';
 import 'package:flutter_echo/pages/bill/bill_detail_page.dart';
@@ -75,6 +76,7 @@ class AppRouter {
   static const String repayBankGT = '/repay_bank_gt';
   static const String repayBank = '/repay_bank';
   static const String repayCertificate = '/repay_certificate';
+  static const String repayUploaded = '/repay_uploaded';
   static const String repayHistory = '/repay_history';
   static const String billList = '/bill_list';
   static const String billDetail = '/bill_detail';
@@ -274,6 +276,17 @@ class AppRouter {
       GoRoute(
         path: repayCertificate,
         builder: (context, state) => const RepayCertificatePage(),
+      ),
+
+      /// 还款已上传付款记录页面
+      GoRoute(
+        path: repayUploaded,
+        builder: (context, state) => ChangeNotifierProvider(
+          create: (_) => RepayModel(),
+          builder: (context, state) {
+            return PageConsumer<RepayModel>(child: const RepayUploadedPage());
+          },
+        ),
       ),
 
       /// 还款历史页面

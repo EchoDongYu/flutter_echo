@@ -44,14 +44,19 @@ class RepayCertificatePage extends StatelessWidget {
             SizedBox(height: 16.h),
             RepayCertificateInfo(
               onPhotoTap: () {
-                //图片预览
+                //跳转图片预览
                 context.push("${AppRouter.photoView}?url=${Drawable.iconLogo}",);
               },
             ),
             SizedBox(height: 12.h),
             RepayCertificatePayment(),
             SizedBox(height: 32.h),
-            RepayCertificateSupport(),
+            RepayCertificateSupport(
+              onUploaded: (){
+                //跳转还款已上传付款记录
+                context.push(AppRouter.repayUploaded);
+              },
+            ),
           ],
         ),
       ),

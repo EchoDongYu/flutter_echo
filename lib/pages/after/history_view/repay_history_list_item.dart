@@ -68,7 +68,7 @@ class RepayHistoryListItem extends StatelessWidget {
               ),
             ],
           ),
-          const SizedBox(height: 12),
+          SizedBox(height: 12.h),
           Text(
             "Q 4,800.00",
             style: TextStyle(
