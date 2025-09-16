@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_echo/pages/after/centificate_view/repay_certificate_diagram.dart';
 import 'package:flutter_echo/pages/after/centificate_view/repay_certificate_info.dart';
 import 'package:flutter_echo/pages/after/centificate_view/repay_certificate_payment.dart';
 import 'package:flutter_echo/pages/after/centificate_view/repay_certificate_photo.dart';
 import 'package:flutter_echo/pages/after/centificate_view/repay_certificate_support.dart';
 import 'package:flutter_echo/pages/app_router.dart';
+import 'package:flutter_echo/ui/dialogs/box_dialog.dart';
 import 'package:flutter_echo/ui/dialogs/prompt_dialog.dart';
 import 'package:flutter_echo/ui/widget_helper.dart';
 import 'package:flutter_echo/ui/widgets/common_appbar.dart';
@@ -71,7 +73,15 @@ class RepayCertificatePage extends StatelessWidget {
               //context.push(AppRouter.repayProcess);
             }
           }else{
-
+            await BoxDialog.show(
+              context: context,
+              title: "Diagrama de ejemplo de vale",
+              btnText: "Confirmar",
+              centerLayout: RepayCertificateDiagram(),
+              onConfirm: () {
+                context.pop(true);
+              },
+            );
           }
         },
       ),

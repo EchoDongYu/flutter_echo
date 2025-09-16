@@ -172,28 +172,25 @@ class WidgetHelper {
   }
 
   /// 认证进度
-  static Widget buildStepProgress({required int step}) {
+  static Widget buildStepProgress({required int step, required int maxStep}) {
+    List<Widget> list = List.generate(
+      maxStep,
+      (index) => _buildProgressItem(step, index + 1, maxStep),
+    );
     return Padding(
       padding: EdgeInsets.symmetric(horizontal: 12.w),
-      child: Row(
-        children: [
-          _buildProgressItem(step, 1),
-          SizedBox(width: 8.w),
-          _buildProgressItem(step, 2),
-          SizedBox(width: 8.w),
-          _buildProgressItem(step, 3),
-        ],
-      ),
+      child: Row(children: list),
     );
   }
 
-  static Widget _buildProgressItem(int step, int index) {
+  static Widget _buildProgressItem(int step, int index, int max) {
     final Widget indicator = Container(
       height: 10.h,
       decoration: BoxDecoration(
         color: step >= index ? NowColors.c0xFF3288F1 : NowColors.c0xFFD8D8D8,
         borderRadius: const BorderRadius.all(Radius.circular(5)),
       ),
+      margin: EdgeInsets.only(right: index != max ? 8.w : 0),
     );
     return Expanded(
       child: step == index
@@ -212,7 +209,7 @@ class WidgetHelper {
                   ),
                   child: Center(
                     child: Text(
-                      '$step/3',
+                      '$step/$max',
                       style: TextStyle(
                         fontSize: 16.sp,
                         fontWeight: FontWeight.w600,
