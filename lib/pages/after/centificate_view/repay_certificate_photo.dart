@@ -9,11 +9,12 @@ class RepayCertificatePhoto extends StatelessWidget {
   const RepayCertificatePhoto({
     super.key,
     this.onTakePressed,
-    this.onPhotoPressed,
+    this.onPhotoPressed, this.onPhotoTap,
   });
 
   final VoidCallback? onTakePressed;
   final VoidCallback? onPhotoPressed;
+  final VoidCallback? onPhotoTap;
 
   @override
   Widget build(BuildContext context) {
@@ -33,6 +34,7 @@ class RepayCertificatePhoto extends StatelessWidget {
           ),
           SizedBox(height: 20.h),
           CommonBox(
+            onTap: onPhotoTap,
             padding: EdgeInsets.zero,
             child: Image.asset(
               Drawable.iconLogo,

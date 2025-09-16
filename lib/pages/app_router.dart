@@ -18,6 +18,7 @@ import 'package:flutter_echo/pages/login/login_pwd_setup_page.dart';
 import 'package:flutter_echo/pages/main/main_page.dart';
 import 'package:flutter_echo/pages/other/demo_page.dart';
 import 'package:flutter_echo/pages/other/not_found_page.dart';
+import 'package:flutter_echo/pages/other/photo_view_page.dart';
 import 'package:flutter_echo/pages/other/splash_page.dart';
 import 'package:flutter_echo/pages/submit/step_basic_page.dart';
 import 'package:flutter_echo/pages/submit/step_contact_page.dart';
@@ -87,6 +88,7 @@ class AppRouter {
   static const String feedback = '/feedback';
   static const String appWeb = '/app_web';
   static const String demo = '/demo';
+  static const String photoView = '/photo_view';
 
   static final GoRouter router = GoRouter(
     initialLocation: splash,
@@ -403,6 +405,13 @@ class AppRouter {
 
       /// 测试入口
       GoRoute(path: demo, builder: (context, state) => const DemoPage()),
+
+      /// 图片预览
+      GoRoute(path: photoView,  builder: (context, state) {
+        final url = state.uri.queryParameters['url'];
+        return PhotoViewPage(url: url);
+      },),
+
     ],
 
     /// 错误页面
