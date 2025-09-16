@@ -160,7 +160,7 @@ class _StepBasicPageState extends State<StepBasicPage> {
               children: [
                 EchoTopBar(title: 'Información básica'),
                 SizedBox(height: 16.h),
-                WidgetHelper.buildStepProgress(step: 1),
+                WidgetHelper.buildStepProgress(step: 1,maxStep: 3),
                 SizedBox(height: 16.h),
                 Container(
                   margin: EdgeInsets.symmetric(horizontal: 12.w),

@@ -157,7 +157,7 @@ class _StepWorkPageState extends State<StepWorkPage> {
               children: [
                 EchoTopBar(title: 'Información laboral'),
                 SizedBox(height: 16.h),
-                WidgetHelper.buildStepProgress(step: 2),
+                WidgetHelper.buildStepProgress(step: 2,maxStep: 3),
                 SizedBox(height: 16.h),
                 Container(
                   margin: EdgeInsets.symmetric(horizontal: 12.w),
