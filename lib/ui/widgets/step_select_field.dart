@@ -256,9 +256,16 @@ class _StepSelectFieldState extends State<StepSelectField> {
         color: NowColors.c0xFF1C1F23,
         height: 22 / 16,
       ),
+      softWrap: true,
     );
     final valueWidget = prefixWidget != null
-        ? Row(spacing: 10.w, children: [prefixWidget, textWidget])
+        ? Row(
+            spacing: 10.w,
+            children: [
+              prefixWidget,
+              Expanded(child: textWidget),
+            ],
+          )
         : textWidget;
     return Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,

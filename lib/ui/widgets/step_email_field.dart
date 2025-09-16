@@ -249,7 +249,7 @@ class _StepEmailFieldState extends State<StepEmailField> {
         widget.controller.selection = TextSelection.collapsed(
           offset: widget.controller.text.length,
         );
-        FocusScope.of(context).unfocus();
+        FocusScope.of(context).requestFocus(FocusNode());
       },
     );
   }

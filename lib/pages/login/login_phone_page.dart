@@ -132,7 +132,7 @@ class _LoginPhonePageState extends State<LoginPhonePage> {
             text: 'Siguiente',
             enable: _isPhoneValid,
             onPressed: () {
-              FocusScope.of(context).unfocus();
+              FocusScope.of(context).requestFocus(FocusNode());
               loginModel.checkRegister(_controller.text.replaceAll(' ', ''));
             },
           ),

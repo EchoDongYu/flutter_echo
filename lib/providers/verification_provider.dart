@@ -11,6 +11,7 @@ class VerifyModel extends BaseProvider {
   Timer? _timer;
   bool? _needCaptcha;
   int _countdown = 0;
+  bool showCaptcha = false;
 
   final int _codeType = 5;
 
@@ -83,7 +84,11 @@ class VerifyModel extends BaseProvider {
     Future<String?> Function({required String? mobile, required int? type})
     showCaptchaDialog,
   ) async {
+    showCaptcha = true;
+    notifyListeners();
     _imageCode = await showCaptchaDialog(mobile: _phoneNumber, type: _codeType);
+    showCaptcha = false;
+    notifyListeners();
   }
 
   @override

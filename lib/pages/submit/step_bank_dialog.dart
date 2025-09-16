@@ -27,14 +27,10 @@ class StepBankDialog extends StatefulWidget {
       enableDrag: false,
       isDismissible: false,
       isScrollControlled: true,
-      builder: (_) => AnimatedPadding(
-        padding: MediaQuery.of(context).viewInsets,
-        duration: const Duration(milliseconds: 100),
-        child: ChangeNotifierProvider(
-          create: (_) => BankModel(),
-          builder: (_, _) => PageConsumer<BankModel>(
-            child: StepBankDialog(onClosing: () => context.pop(false)),
-          ),
+      builder: (_) => ChangeNotifierProvider(
+        create: (_) => BankModel(),
+        builder: (_, _) => PageConsumer<BankModel>(
+          child: StepBankDialog(onClosing: () => context.pop(false)),
         ),
       ),
     );
@@ -138,7 +134,14 @@ class _StepBankDialogState extends State<StepBankDialog> {
         ),
       ),
       builder: (BuildContext context) => SingleChildScrollView(
-        child: Column(children: [_buildContent(), _buildBottomButton(context)]),
+        child: Container(
+          padding: EdgeInsets.only(
+            bottom: MediaQuery.of(context).viewInsets.bottom,
+          ),
+          child: Column(
+            children: [_buildContent(), _buildBottomButton(context)],
+          ),
+        ),
       ),
     );
   }

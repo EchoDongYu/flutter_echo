@@ -4,6 +4,7 @@ import 'package:flutter_echo/models/common_model.dart';
 import 'package:flutter_echo/providers/feedback_provider.dart';
 import 'package:flutter_echo/ui/widget_helper.dart';
 import 'package:flutter_echo/ui/widgets/top_bar.dart';
+import 'package:flutter_echo/utils/common_utils.dart';
 import 'package:flutter_echo/utils/drawable_utils.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
@@ -56,6 +57,16 @@ class _FeedbackPageState extends State<FeedbackPage> {
         if (_selected?[i] == true) types.add(items[i].key);
       }
     }
+    if (types.isEmpty && !_selectedOther) {
+      toast(
+        'Por favor, seleccione sus sugerencias y quejas. Nos pondremos en contacto con usted lo antes posible',
+      );
+      return;
+    }
+    if (_selectedOther && _controller.text.isEmpty) {
+      toast('Por favor ingrese otro motivo');
+      return;
+    }
     final result = await feedbackModel.submitFeedback(
       type: types.join(','),
       content: _selectedOther == true ? _controller.text : null,
@@ -77,34 +88,33 @@ class _FeedbackPageState extends State<FeedbackPage> {
             child: Column(
               children: [
                 EchoTopBar(title: 'Comentarios'),
-                SizedBox(height: 14.h),
                 Expanded(
-                  child: Container(
-                    width: double.infinity,
-                    margin: EdgeInsets.symmetric(horizontal: 12.w),
-                    child: ListView.separated(
-                      shrinkWrap: true,
-                      itemCount: stepLength,
-                      separatorBuilder: (context, _) => SizedBox(height: 12.h),
-                      itemBuilder: (context, index) {
-                        if (index == 0) {
-                          return Padding(
-                            padding: EdgeInsets.symmetric(horizontal: 12.w),
-                            child: Text(
-                              'Por favor, seleccione sus sugerencias y quejas. Nos pondremos en contacto con usted lo antes posible',
-                              style: TextStyle(
-                                fontSize: 13.sp,
-                                fontWeight: FontWeight.w400,
-                                color: NowColors.c0xFF494C4F,
-                                height: 20 / 13,
-                              ),
-                            ),
-                          );
-                        }
-                        if (index >= stepLength - 1) return _buildOtherItem();
-                        return _buildPickItem(index - 1);
-                      },
+                  child: ListView.separated(
+                    shrinkWrap: true,
+                    itemCount: stepLength,
+                    padding: EdgeInsets.symmetric(
+                      horizontal: 12.w,
+                      vertical: 14.h,
                     ),
+                    separatorBuilder: (context, _) => SizedBox(height: 12.h),
+                    itemBuilder: (context, index) {
+                      if (index == 0) {
+                        return Padding(
+                          padding: EdgeInsets.symmetric(horizontal: 12.w),
+                          child: Text(
+                            'Por favor, seleccione sus sugerencias y quejas. Nos pondremos en contacto con usted lo antes posible',
+                            style: TextStyle(
+                              fontSize: 13.sp,
+                              fontWeight: FontWeight.w400,
+                              color: NowColors.c0xFF494C4F,
+                              height: 20 / 13,
+                            ),
+                          ),
+                        );
+                      }
+                      if (index >= stepLength - 1) return _buildOtherItem();
+                      return _buildPickItem(index - 1);
+                    },
                   ),
                 ),
               ],
