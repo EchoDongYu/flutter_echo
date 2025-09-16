@@ -6,7 +6,14 @@ import 'package:flutter_echo/utils/drawable_utils.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class RepayCertificatePhoto extends StatelessWidget {
-  const RepayCertificatePhoto({super.key});
+  const RepayCertificatePhoto({
+    super.key,
+    this.onTakePressed,
+    this.onPhotoPressed,
+  });
+
+  final VoidCallback? onTakePressed;
+  final VoidCallback? onPhotoPressed;
 
   @override
   Widget build(BuildContext context) {
@@ -33,7 +40,62 @@ class RepayCertificatePhoto extends StatelessWidget {
               height: 300.h,
             ),
           ),
-          SizedBox(height: 20.h),
+          SizedBox(height: 28.h),
+          ElevatedButton(
+            onPressed: onTakePressed,
+            style: ElevatedButton.styleFrom(
+              minimumSize: Size.fromHeight(48.h),
+              backgroundColor: NowColors.c0xFF3288F1,
+              padding: EdgeInsets.symmetric(vertical: 12.h, horizontal: 12.w),
+              shape: const RoundedRectangleBorder(
+                borderRadius: BorderRadius.all(Radius.circular(50)),
+              ),
+            ),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Image.asset(Drawable.iconTake, width: 20, height: 20),
+                SizedBox(width: 10.w),
+                Text(
+                  "Tomar fotografia",
+                  style: TextStyle(
+                    color: NowColors.c0xFFFFFFFF,
+                    fontSize: 16.sp,
+                    fontWeight: FontWeight.w500,
+                  ),
+                ),
+              ],
+            ),
+          ),
+          SizedBox(height: 10.h),
+          OutlinedButton(
+            onPressed: onPhotoPressed,
+            style: ElevatedButton.styleFrom(
+              minimumSize: Size.fromHeight(48.h),
+              backgroundColor: NowColors.c0xFFFFFFFF,
+              padding: EdgeInsets.symmetric(vertical: 12.h, horizontal: 12.w),
+              side: BorderSide(color: NowColors.c0xFFB0B1B2, width: 1),
+              shape: const RoundedRectangleBorder(
+                borderRadius: BorderRadius.all(Radius.circular(50)),
+              ),
+            ),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Image.asset(Drawable.iconPhoto, width: 20, height: 20),
+                SizedBox(width: 10.w),
+                Text(
+                  "Seleccionar imagen",
+                  style: TextStyle(
+                    color: NowColors.c0xFF1C1F23,
+                    fontSize: 16.sp,
+                    fontWeight: FontWeight.w500,
+                  ),
+                ),
+              ],
+            ),
+          ),
+          // EchoOutlinedButton(text: "Volver a subir", onPressed: () {}),
         ],
       ),
     );

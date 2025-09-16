@@ -38,6 +38,7 @@ class RepayBankBiPage extends StatelessWidget {
       ),
       bottomNavigationBar: WidgetHelper.buildBottomButton(
         text: 'Pagar inmediatamente',
+        //todo ?? 跳转那里？
         onPressed: () => context.push(AppRouter.repayCertificate),
       ),
     );

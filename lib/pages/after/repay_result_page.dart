@@ -135,7 +135,7 @@ class RepayProcessPage extends StatelessWidget {
       ),
       bottomNavigationBar: WidgetHelper.buildBottomButton(
         text: 'Volver al inicio',
-        // onPressed: () => context.go(AppRouter.main),
+        //todo ?? 跳转那里？
         onPressed: () => context.push(AppRouter.repayBank),
       ),
     );
