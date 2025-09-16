@@ -6,7 +6,6 @@ import 'package:flutter_echo/pages/submit/pick_bank_dialog.dart';
 import 'package:flutter_echo/pages/submit/pick_date_dialog.dart';
 import 'package:flutter_echo/pages/submit/pick_day_dialog.dart';
 import 'package:flutter_echo/pages/submit/pick_item_dialog.dart';
-import 'package:flutter_echo/pages/user/user_bank_dialog.dart';
 import 'package:flutter_echo/utils/common_utils.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -82,17 +81,14 @@ class StepSelectField extends StatefulWidget {
   factory StepSelectField.pickBankCard(
     BuildContext context, {
     required BankCardResp$Item? pickedItem,
-    required Function(BankCardResp$Item) onValueChange,
+    required Future Function() onValueChange,
     required String hintText,
     String errorText = 'Por favor seleccione',
     bool isError = false,
     Widget? prefix,
   }) => StepSelectField(
     value: pickedItem?.t1h91pOBankName,
-    onValueChange: () async {
-      final result = await UserBankDialog.show(context);
-      if (result != null) onValueChange(result);
-    },
+    onValueChange: onValueChange,
     hintText: hintText,
     errorText: errorText,
     isError: isError,
