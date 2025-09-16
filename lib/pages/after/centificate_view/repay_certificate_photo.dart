@@ -9,7 +9,8 @@ class RepayCertificatePhoto extends StatelessWidget {
   const RepayCertificatePhoto({
     super.key,
     this.onTakePressed,
-    this.onPhotoPressed, this.onPhotoTap,
+    this.onPhotoPressed,
+    this.onPhotoTap,
   });
 
   final VoidCallback? onTakePressed;

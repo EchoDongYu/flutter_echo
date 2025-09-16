@@ -65,5 +65,6 @@ class Drawable {
   static const String iconBankBI = 'assets/images/icon_bank_bac.png';
   static const String iconPhoto = 'assets/images/icon_photo.png';
   static const String iconTake = 'assets/images/icon_take.png';
+  static const String iconClose = 'assets/images/icon_close.png';
 
 }
