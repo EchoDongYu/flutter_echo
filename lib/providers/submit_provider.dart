@@ -22,6 +22,10 @@ class SubmitModel extends BaseProvider {
     return _submitData;
   }
 
+  static void clearCachedData() {
+    _submitData = SubmitDataReq();
+  }
+
   Future<Map<String, List<StepItem>?>?> getDictionary() async {
     if (_stepItems?.isNotEmpty == true) return _stepItems;
     return await launchRequest(() async {
