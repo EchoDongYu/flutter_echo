@@ -4384,16 +4384,31 @@ extension $LoanConfirmReqExtension on LoanConfirmReq {
 class PicUploadReqReq {
   const PicUploadReqReq({
     this.raiaOUserGid,
+    this.d7x52pOBizChannel,
+    this.s377v5OBizLine,
     this.ha3xp9OPicType,
     this.x01y7qOBase64String,
+    this.provenanceOPicResource,
+    this.borrowFeeSumOWithoutCard,
+    this.waSmsOFaceCheck,
   });
 
   @JsonKey(name: 'raia')
   final String? raiaOUserGid;
+  @JsonKey(name: 'd7x52p')
+  final String? d7x52pOBizChannel;
+  @JsonKey(name: 's377v5')
+  final String? s377v5OBizLine;
   @JsonKey(name: 'ha3xp9')
   final int? ha3xp9OPicType;
   @JsonKey(name: 'x01y7q', defaultValue: <String>[])
   final List<String>? x01y7qOBase64String;
+  @JsonKey(name: 'provenance')
+  final int? provenanceOPicResource;
+  @JsonKey(name: 'borrowFeeSum')
+  final int? borrowFeeSumOWithoutCard;
+  @JsonKey(name: 'waSms')
+  final int? waSmsOFaceCheck;
 
   factory PicUploadReqReq.fromJson(Map<String, dynamic> json) =>
       _$PicUploadReqReqFromJson(json);
@@ -4412,6 +4427,16 @@ class PicUploadReqReq {
                   other.raiaOUserGid,
                   raiaOUserGid,
                 )) &&
+            (identical(other.d7x52pOBizChannel, d7x52pOBizChannel) ||
+                const DeepCollectionEquality().equals(
+                  other.d7x52pOBizChannel,
+                  d7x52pOBizChannel,
+                )) &&
+            (identical(other.s377v5OBizLine, s377v5OBizLine) ||
+                const DeepCollectionEquality().equals(
+                  other.s377v5OBizLine,
+                  s377v5OBizLine,
+                )) &&
             (identical(other.ha3xp9OPicType, ha3xp9OPicType) ||
                 const DeepCollectionEquality().equals(
                   other.ha3xp9OPicType,
@@ -4421,6 +4446,24 @@ class PicUploadReqReq {
                 const DeepCollectionEquality().equals(
                   other.x01y7qOBase64String,
                   x01y7qOBase64String,
+                )) &&
+            (identical(other.provenanceOPicResource, provenanceOPicResource) ||
+                const DeepCollectionEquality().equals(
+                  other.provenanceOPicResource,
+                  provenanceOPicResource,
+                )) &&
+            (identical(
+                  other.borrowFeeSumOWithoutCard,
+                  borrowFeeSumOWithoutCard,
+                ) ||
+                const DeepCollectionEquality().equals(
+                  other.borrowFeeSumOWithoutCard,
+                  borrowFeeSumOWithoutCard,
+                )) &&
+            (identical(other.waSmsOFaceCheck, waSmsOFaceCheck) ||
+                const DeepCollectionEquality().equals(
+                  other.waSmsOFaceCheck,
+                  waSmsOFaceCheck,
                 )));
   }
 
@@ -4430,39 +4473,212 @@ class PicUploadReqReq {
   @override
   int get hashCode =>
       const DeepCollectionEquality().hash(raiaOUserGid) ^
+      const DeepCollectionEquality().hash(d7x52pOBizChannel) ^
+      const DeepCollectionEquality().hash(s377v5OBizLine) ^
       const DeepCollectionEquality().hash(ha3xp9OPicType) ^
       const DeepCollectionEquality().hash(x01y7qOBase64String) ^
+      const DeepCollectionEquality().hash(provenanceOPicResource) ^
+      const DeepCollectionEquality().hash(borrowFeeSumOWithoutCard) ^
+      const DeepCollectionEquality().hash(waSmsOFaceCheck) ^
       runtimeType.hashCode;
 }
 
 extension $PicUploadReqReqExtension on PicUploadReqReq {
   PicUploadReqReq copyWith({
     String? raiaOUserGid,
+    String? d7x52pOBizChannel,
+    String? s377v5OBizLine,
     int? ha3xp9OPicType,
     List<String>? x01y7qOBase64String,
+    int? provenanceOPicResource,
+    int? borrowFeeSumOWithoutCard,
+    int? waSmsOFaceCheck,
   }) {
     return PicUploadReqReq(
       raiaOUserGid: raiaOUserGid ?? this.raiaOUserGid,
+      d7x52pOBizChannel: d7x52pOBizChannel ?? this.d7x52pOBizChannel,
+      s377v5OBizLine: s377v5OBizLine ?? this.s377v5OBizLine,
       ha3xp9OPicType: ha3xp9OPicType ?? this.ha3xp9OPicType,
       x01y7qOBase64String: x01y7qOBase64String ?? this.x01y7qOBase64String,
+      provenanceOPicResource:
+          provenanceOPicResource ?? this.provenanceOPicResource,
+      borrowFeeSumOWithoutCard:
+          borrowFeeSumOWithoutCard ?? this.borrowFeeSumOWithoutCard,
+      waSmsOFaceCheck: waSmsOFaceCheck ?? this.waSmsOFaceCheck,
     );
   }
 
   PicUploadReqReq copyWithWrapped({
     Wrapped<String?>? raiaOUserGid,
+    Wrapped<String?>? d7x52pOBizChannel,
+    Wrapped<String?>? s377v5OBizLine,
     Wrapped<int?>? ha3xp9OPicType,
     Wrapped<List<String>?>? x01y7qOBase64String,
+    Wrapped<int?>? provenanceOPicResource,
+    Wrapped<int?>? borrowFeeSumOWithoutCard,
+    Wrapped<int?>? waSmsOFaceCheck,
   }) {
     return PicUploadReqReq(
       raiaOUserGid: (raiaOUserGid != null
           ? raiaOUserGid.value
           : this.raiaOUserGid),
+      d7x52pOBizChannel: (d7x52pOBizChannel != null
+          ? d7x52pOBizChannel.value
+          : this.d7x52pOBizChannel),
+      s377v5OBizLine: (s377v5OBizLine != null
+          ? s377v5OBizLine.value
+          : this.s377v5OBizLine),
       ha3xp9OPicType: (ha3xp9OPicType != null
           ? ha3xp9OPicType.value
           : this.ha3xp9OPicType),
       x01y7qOBase64String: (x01y7qOBase64String != null
           ? x01y7qOBase64String.value
           : this.x01y7qOBase64String),
+      provenanceOPicResource: (provenanceOPicResource != null
+          ? provenanceOPicResource.value
+          : this.provenanceOPicResource),
+      borrowFeeSumOWithoutCard: (borrowFeeSumOWithoutCard != null
+          ? borrowFeeSumOWithoutCard.value
+          : this.borrowFeeSumOWithoutCard),
+      waSmsOFaceCheck: (waSmsOFaceCheck != null
+          ? waSmsOFaceCheck.value
+          : this.waSmsOFaceCheck),
+    );
+  }
+}
+
+@JsonSerializable(explicitToJson: true)
+class OcrReqReq {
+  const OcrReqReq({
+    this.oj603uOApplyId,
+    this.raiaOUserGid,
+    this.su31n2OIdFrontUrl,
+    this.plutusOIdBackUrl,
+    this.is9e52OIdCardType,
+    this.attributionSubOIdCardNum,
+  });
+
+  @JsonKey(name: 'oj603u')
+  final String? oj603uOApplyId;
+  @JsonKey(name: 'raia')
+  final String? raiaOUserGid;
+  @JsonKey(name: 'su31n2')
+  final String? su31n2OIdFrontUrl;
+  @JsonKey(name: 'plutus')
+  final String? plutusOIdBackUrl;
+  @JsonKey(name: 'is9e52')
+  final int? is9e52OIdCardType;
+  @JsonKey(name: 'attributionSub')
+  final String? attributionSubOIdCardNum;
+
+  factory OcrReqReq.fromJson(Map<String, dynamic> json) =>
+      _$OcrReqReqFromJson(json);
+
+  Map<String, dynamic> toJson() => _$OcrReqReqToJson(this);
+
+  static const fromJsonFactory = _$OcrReqReqFromJson;
+  static const toJsonFactory = _$OcrReqReqToJson;
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other is OcrReqReq &&
+            (identical(other.oj603uOApplyId, oj603uOApplyId) ||
+                const DeepCollectionEquality().equals(
+                  other.oj603uOApplyId,
+                  oj603uOApplyId,
+                )) &&
+            (identical(other.raiaOUserGid, raiaOUserGid) ||
+                const DeepCollectionEquality().equals(
+                  other.raiaOUserGid,
+                  raiaOUserGid,
+                )) &&
+            (identical(other.su31n2OIdFrontUrl, su31n2OIdFrontUrl) ||
+                const DeepCollectionEquality().equals(
+                  other.su31n2OIdFrontUrl,
+                  su31n2OIdFrontUrl,
+                )) &&
+            (identical(other.plutusOIdBackUrl, plutusOIdBackUrl) ||
+                const DeepCollectionEquality().equals(
+                  other.plutusOIdBackUrl,
+                  plutusOIdBackUrl,
+                )) &&
+            (identical(other.is9e52OIdCardType, is9e52OIdCardType) ||
+                const DeepCollectionEquality().equals(
+                  other.is9e52OIdCardType,
+                  is9e52OIdCardType,
+                )) &&
+            (identical(
+                  other.attributionSubOIdCardNum,
+                  attributionSubOIdCardNum,
+                ) ||
+                const DeepCollectionEquality().equals(
+                  other.attributionSubOIdCardNum,
+                  attributionSubOIdCardNum,
+                )));
+  }
+
+  @override
+  String toString() => jsonEncode(this);
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(oj603uOApplyId) ^
+      const DeepCollectionEquality().hash(raiaOUserGid) ^
+      const DeepCollectionEquality().hash(su31n2OIdFrontUrl) ^
+      const DeepCollectionEquality().hash(plutusOIdBackUrl) ^
+      const DeepCollectionEquality().hash(is9e52OIdCardType) ^
+      const DeepCollectionEquality().hash(attributionSubOIdCardNum) ^
+      runtimeType.hashCode;
+}
+
+extension $OcrReqReqExtension on OcrReqReq {
+  OcrReqReq copyWith({
+    String? oj603uOApplyId,
+    String? raiaOUserGid,
+    String? su31n2OIdFrontUrl,
+    String? plutusOIdBackUrl,
+    int? is9e52OIdCardType,
+    String? attributionSubOIdCardNum,
+  }) {
+    return OcrReqReq(
+      oj603uOApplyId: oj603uOApplyId ?? this.oj603uOApplyId,
+      raiaOUserGid: raiaOUserGid ?? this.raiaOUserGid,
+      su31n2OIdFrontUrl: su31n2OIdFrontUrl ?? this.su31n2OIdFrontUrl,
+      plutusOIdBackUrl: plutusOIdBackUrl ?? this.plutusOIdBackUrl,
+      is9e52OIdCardType: is9e52OIdCardType ?? this.is9e52OIdCardType,
+      attributionSubOIdCardNum:
+          attributionSubOIdCardNum ?? this.attributionSubOIdCardNum,
+    );
+  }
+
+  OcrReqReq copyWithWrapped({
+    Wrapped<String?>? oj603uOApplyId,
+    Wrapped<String?>? raiaOUserGid,
+    Wrapped<String?>? su31n2OIdFrontUrl,
+    Wrapped<String?>? plutusOIdBackUrl,
+    Wrapped<int?>? is9e52OIdCardType,
+    Wrapped<String?>? attributionSubOIdCardNum,
+  }) {
+    return OcrReqReq(
+      oj603uOApplyId: (oj603uOApplyId != null
+          ? oj603uOApplyId.value
+          : this.oj603uOApplyId),
+      raiaOUserGid: (raiaOUserGid != null
+          ? raiaOUserGid.value
+          : this.raiaOUserGid),
+      su31n2OIdFrontUrl: (su31n2OIdFrontUrl != null
+          ? su31n2OIdFrontUrl.value
+          : this.su31n2OIdFrontUrl),
+      plutusOIdBackUrl: (plutusOIdBackUrl != null
+          ? plutusOIdBackUrl.value
+          : this.plutusOIdBackUrl),
+      is9e52OIdCardType: (is9e52OIdCardType != null
+          ? is9e52OIdCardType.value
+          : this.is9e52OIdCardType),
+      attributionSubOIdCardNum: (attributionSubOIdCardNum != null
+          ? attributionSubOIdCardNum.value
+          : this.attributionSubOIdCardNum),
     );
   }
 }
@@ -5500,29 +5716,56 @@ extension $LivingDataReqExtension on LivingDataReq {
 @JsonSerializable(explicitToJson: true)
 class PhotoSubmitReq {
   const PhotoSubmitReq({
+    this.oj603uOApplyId,
     this.raiaOUserGid,
-    this.merdekaOIdCard,
-    this.is9e52OIdCardType,
     this.d7x52pOBizChannel,
+    this.s377v5OBizLine,
+    this.is9e52OIdCardType,
+    this.attributionSubOIdCardNum,
     this.su31n2OIdFrontUrl,
     this.plutusOIdBackUrl,
-    this.hognutOLivingUrl,
+    this.dripOSelfieUrl,
+    this.deviceImeiOSelfieUrl2,
+    this.partialCollectionOSelfieUrl3,
+    this.name,
+    this.loanParam001OGender,
+    this.gargetOBirthday,
+    this.borrowFeeSumOWithoutCard,
+    this.waSmsOFaceCheck,
   });
 
+  @JsonKey(name: 'oj603u')
+  final String? oj603uOApplyId;
   @JsonKey(name: 'raia')
   final String? raiaOUserGid;
-  @JsonKey(name: 'merdeka')
-  final String? merdekaOIdCard;
-  @JsonKey(name: 'is9e52')
-  final int? is9e52OIdCardType;
   @JsonKey(name: 'd7x52p')
   final String? d7x52pOBizChannel;
+  @JsonKey(name: 's377v5')
+  final String? s377v5OBizLine;
+  @JsonKey(name: 'is9e52')
+  final int? is9e52OIdCardType;
+  @JsonKey(name: 'attributionSub')
+  final String? attributionSubOIdCardNum;
   @JsonKey(name: 'su31n2')
   final String? su31n2OIdFrontUrl;
   @JsonKey(name: 'plutus')
   final String? plutusOIdBackUrl;
-  @JsonKey(name: 'hognut')
-  final String? hognutOLivingUrl;
+  @JsonKey(name: 'drip')
+  final String? dripOSelfieUrl;
+  @JsonKey(name: 'deviceImei')
+  final String? deviceImeiOSelfieUrl2;
+  @JsonKey(name: 'partialCollection')
+  final String? partialCollectionOSelfieUrl3;
+  @JsonKey(name: 'name')
+  final String? name;
+  @JsonKey(name: 'loanParam001')
+  final int? loanParam001OGender;
+  @JsonKey(name: 'garget')
+  final int? gargetOBirthday;
+  @JsonKey(name: 'borrowFeeSum')
+  final int? borrowFeeSumOWithoutCard;
+  @JsonKey(name: 'waSms')
+  final int? waSmsOFaceCheck;
 
   factory PhotoSubmitReq.fromJson(Map<String, dynamic> json) =>
       _$PhotoSubmitReqFromJson(json);
@@ -5536,25 +5779,38 @@ class PhotoSubmitReq {
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other is PhotoSubmitReq &&
+            (identical(other.oj603uOApplyId, oj603uOApplyId) ||
+                const DeepCollectionEquality().equals(
+                  other.oj603uOApplyId,
+                  oj603uOApplyId,
+                )) &&
             (identical(other.raiaOUserGid, raiaOUserGid) ||
                 const DeepCollectionEquality().equals(
                   other.raiaOUserGid,
                   raiaOUserGid,
                 )) &&
-            (identical(other.merdekaOIdCard, merdekaOIdCard) ||
+            (identical(other.d7x52pOBizChannel, d7x52pOBizChannel) ||
                 const DeepCollectionEquality().equals(
-                  other.merdekaOIdCard,
-                  merdekaOIdCard,
+                  other.d7x52pOBizChannel,
+                  d7x52pOBizChannel,
+                )) &&
+            (identical(other.s377v5OBizLine, s377v5OBizLine) ||
+                const DeepCollectionEquality().equals(
+                  other.s377v5OBizLine,
+                  s377v5OBizLine,
                 )) &&
             (identical(other.is9e52OIdCardType, is9e52OIdCardType) ||
                 const DeepCollectionEquality().equals(
                   other.is9e52OIdCardType,
                   is9e52OIdCardType,
                 )) &&
-            (identical(other.d7x52pOBizChannel, d7x52pOBizChannel) ||
+            (identical(
+                  other.attributionSubOIdCardNum,
+                  attributionSubOIdCardNum,
+                ) ||
                 const DeepCollectionEquality().equals(
-                  other.d7x52pOBizChannel,
-                  d7x52pOBizChannel,
+                  other.attributionSubOIdCardNum,
+                  attributionSubOIdCardNum,
                 )) &&
             (identical(other.su31n2OIdFrontUrl, su31n2OIdFrontUrl) ||
                 const DeepCollectionEquality().equals(
@@ -5566,10 +5822,48 @@ class PhotoSubmitReq {
                   other.plutusOIdBackUrl,
                   plutusOIdBackUrl,
                 )) &&
-            (identical(other.hognutOLivingUrl, hognutOLivingUrl) ||
+            (identical(other.dripOSelfieUrl, dripOSelfieUrl) ||
                 const DeepCollectionEquality().equals(
-                  other.hognutOLivingUrl,
-                  hognutOLivingUrl,
+                  other.dripOSelfieUrl,
+                  dripOSelfieUrl,
+                )) &&
+            (identical(other.deviceImeiOSelfieUrl2, deviceImeiOSelfieUrl2) ||
+                const DeepCollectionEquality().equals(
+                  other.deviceImeiOSelfieUrl2,
+                  deviceImeiOSelfieUrl2,
+                )) &&
+            (identical(
+                  other.partialCollectionOSelfieUrl3,
+                  partialCollectionOSelfieUrl3,
+                ) ||
+                const DeepCollectionEquality().equals(
+                  other.partialCollectionOSelfieUrl3,
+                  partialCollectionOSelfieUrl3,
+                )) &&
+            (identical(other.name, name) ||
+                const DeepCollectionEquality().equals(other.name, name)) &&
+            (identical(other.loanParam001OGender, loanParam001OGender) ||
+                const DeepCollectionEquality().equals(
+                  other.loanParam001OGender,
+                  loanParam001OGender,
+                )) &&
+            (identical(other.gargetOBirthday, gargetOBirthday) ||
+                const DeepCollectionEquality().equals(
+                  other.gargetOBirthday,
+                  gargetOBirthday,
+                )) &&
+            (identical(
+                  other.borrowFeeSumOWithoutCard,
+                  borrowFeeSumOWithoutCard,
+                ) ||
+                const DeepCollectionEquality().equals(
+                  other.borrowFeeSumOWithoutCard,
+                  borrowFeeSumOWithoutCard,
+                )) &&
+            (identical(other.waSmsOFaceCheck, waSmsOFaceCheck) ||
+                const DeepCollectionEquality().equals(
+                  other.waSmsOFaceCheck,
+                  waSmsOFaceCheck,
                 )));
   }
 
@@ -5578,68 +5872,133 @@ class PhotoSubmitReq {
 
   @override
   int get hashCode =>
+      const DeepCollectionEquality().hash(oj603uOApplyId) ^
       const DeepCollectionEquality().hash(raiaOUserGid) ^
-      const DeepCollectionEquality().hash(merdekaOIdCard) ^
-      const DeepCollectionEquality().hash(is9e52OIdCardType) ^
       const DeepCollectionEquality().hash(d7x52pOBizChannel) ^
+      const DeepCollectionEquality().hash(s377v5OBizLine) ^
+      const DeepCollectionEquality().hash(is9e52OIdCardType) ^
+      const DeepCollectionEquality().hash(attributionSubOIdCardNum) ^
       const DeepCollectionEquality().hash(su31n2OIdFrontUrl) ^
       const DeepCollectionEquality().hash(plutusOIdBackUrl) ^
-      const DeepCollectionEquality().hash(hognutOLivingUrl) ^
+      const DeepCollectionEquality().hash(dripOSelfieUrl) ^
+      const DeepCollectionEquality().hash(deviceImeiOSelfieUrl2) ^
+      const DeepCollectionEquality().hash(partialCollectionOSelfieUrl3) ^
+      const DeepCollectionEquality().hash(name) ^
+      const DeepCollectionEquality().hash(loanParam001OGender) ^
+      const DeepCollectionEquality().hash(gargetOBirthday) ^
+      const DeepCollectionEquality().hash(borrowFeeSumOWithoutCard) ^
+      const DeepCollectionEquality().hash(waSmsOFaceCheck) ^
       runtimeType.hashCode;
 }
 
 extension $PhotoSubmitReqExtension on PhotoSubmitReq {
   PhotoSubmitReq copyWith({
+    String? oj603uOApplyId,
     String? raiaOUserGid,
-    String? merdekaOIdCard,
-    int? is9e52OIdCardType,
     String? d7x52pOBizChannel,
+    String? s377v5OBizLine,
+    int? is9e52OIdCardType,
+    String? attributionSubOIdCardNum,
     String? su31n2OIdFrontUrl,
     String? plutusOIdBackUrl,
-    String? hognutOLivingUrl,
+    String? dripOSelfieUrl,
+    String? deviceImeiOSelfieUrl2,
+    String? partialCollectionOSelfieUrl3,
+    String? name,
+    int? loanParam001OGender,
+    int? gargetOBirthday,
+    int? borrowFeeSumOWithoutCard,
+    int? waSmsOFaceCheck,
   }) {
     return PhotoSubmitReq(
+      oj603uOApplyId: oj603uOApplyId ?? this.oj603uOApplyId,
       raiaOUserGid: raiaOUserGid ?? this.raiaOUserGid,
-      merdekaOIdCard: merdekaOIdCard ?? this.merdekaOIdCard,
-      is9e52OIdCardType: is9e52OIdCardType ?? this.is9e52OIdCardType,
       d7x52pOBizChannel: d7x52pOBizChannel ?? this.d7x52pOBizChannel,
+      s377v5OBizLine: s377v5OBizLine ?? this.s377v5OBizLine,
+      is9e52OIdCardType: is9e52OIdCardType ?? this.is9e52OIdCardType,
+      attributionSubOIdCardNum:
+          attributionSubOIdCardNum ?? this.attributionSubOIdCardNum,
       su31n2OIdFrontUrl: su31n2OIdFrontUrl ?? this.su31n2OIdFrontUrl,
       plutusOIdBackUrl: plutusOIdBackUrl ?? this.plutusOIdBackUrl,
-      hognutOLivingUrl: hognutOLivingUrl ?? this.hognutOLivingUrl,
+      dripOSelfieUrl: dripOSelfieUrl ?? this.dripOSelfieUrl,
+      deviceImeiOSelfieUrl2:
+          deviceImeiOSelfieUrl2 ?? this.deviceImeiOSelfieUrl2,
+      partialCollectionOSelfieUrl3:
+          partialCollectionOSelfieUrl3 ?? this.partialCollectionOSelfieUrl3,
+      name: name ?? this.name,
+      loanParam001OGender: loanParam001OGender ?? this.loanParam001OGender,
+      gargetOBirthday: gargetOBirthday ?? this.gargetOBirthday,
+      borrowFeeSumOWithoutCard:
+          borrowFeeSumOWithoutCard ?? this.borrowFeeSumOWithoutCard,
+      waSmsOFaceCheck: waSmsOFaceCheck ?? this.waSmsOFaceCheck,
     );
   }
 
   PhotoSubmitReq copyWithWrapped({
+    Wrapped<String?>? oj603uOApplyId,
     Wrapped<String?>? raiaOUserGid,
-    Wrapped<String?>? merdekaOIdCard,
-    Wrapped<int?>? is9e52OIdCardType,
     Wrapped<String?>? d7x52pOBizChannel,
+    Wrapped<String?>? s377v5OBizLine,
+    Wrapped<int?>? is9e52OIdCardType,
+    Wrapped<String?>? attributionSubOIdCardNum,
     Wrapped<String?>? su31n2OIdFrontUrl,
     Wrapped<String?>? plutusOIdBackUrl,
-    Wrapped<String?>? hognutOLivingUrl,
+    Wrapped<String?>? dripOSelfieUrl,
+    Wrapped<String?>? deviceImeiOSelfieUrl2,
+    Wrapped<String?>? partialCollectionOSelfieUrl3,
+    Wrapped<String?>? name,
+    Wrapped<int?>? loanParam001OGender,
+    Wrapped<int?>? gargetOBirthday,
+    Wrapped<int?>? borrowFeeSumOWithoutCard,
+    Wrapped<int?>? waSmsOFaceCheck,
   }) {
     return PhotoSubmitReq(
+      oj603uOApplyId: (oj603uOApplyId != null
+          ? oj603uOApplyId.value
+          : this.oj603uOApplyId),
       raiaOUserGid: (raiaOUserGid != null
           ? raiaOUserGid.value
           : this.raiaOUserGid),
-      merdekaOIdCard: (merdekaOIdCard != null
-          ? merdekaOIdCard.value
-          : this.merdekaOIdCard),
-      is9e52OIdCardType: (is9e52OIdCardType != null
-          ? is9e52OIdCardType.value
-          : this.is9e52OIdCardType),
       d7x52pOBizChannel: (d7x52pOBizChannel != null
           ? d7x52pOBizChannel.value
           : this.d7x52pOBizChannel),
+      s377v5OBizLine: (s377v5OBizLine != null
+          ? s377v5OBizLine.value
+          : this.s377v5OBizLine),
+      is9e52OIdCardType: (is9e52OIdCardType != null
+          ? is9e52OIdCardType.value
+          : this.is9e52OIdCardType),
+      attributionSubOIdCardNum: (attributionSubOIdCardNum != null
+          ? attributionSubOIdCardNum.value
+          : this.attributionSubOIdCardNum),
       su31n2OIdFrontUrl: (su31n2OIdFrontUrl != null
           ? su31n2OIdFrontUrl.value
           : this.su31n2OIdFrontUrl),
       plutusOIdBackUrl: (plutusOIdBackUrl != null
           ? plutusOIdBackUrl.value
           : this.plutusOIdBackUrl),
-      hognutOLivingUrl: (hognutOLivingUrl != null
-          ? hognutOLivingUrl.value
-          : this.hognutOLivingUrl),
+      dripOSelfieUrl: (dripOSelfieUrl != null
+          ? dripOSelfieUrl.value
+          : this.dripOSelfieUrl),
+      deviceImeiOSelfieUrl2: (deviceImeiOSelfieUrl2 != null
+          ? deviceImeiOSelfieUrl2.value
+          : this.deviceImeiOSelfieUrl2),
+      partialCollectionOSelfieUrl3: (partialCollectionOSelfieUrl3 != null
+          ? partialCollectionOSelfieUrl3.value
+          : this.partialCollectionOSelfieUrl3),
+      name: (name != null ? name.value : this.name),
+      loanParam001OGender: (loanParam001OGender != null
+          ? loanParam001OGender.value
+          : this.loanParam001OGender),
+      gargetOBirthday: (gargetOBirthday != null
+          ? gargetOBirthday.value
+          : this.gargetOBirthday),
+      borrowFeeSumOWithoutCard: (borrowFeeSumOWithoutCard != null
+          ? borrowFeeSumOWithoutCard.value
+          : this.borrowFeeSumOWithoutCard),
+      waSmsOFaceCheck: (waSmsOFaceCheck != null
+          ? waSmsOFaceCheck.value
+          : this.waSmsOFaceCheck),
     );
   }
 }
@@ -11442,6 +11801,8 @@ class HomeInfoResp {
     this.y934teOTotalAmount,
     this.yawnOExpectTime,
     this.undyedOHasLoan,
+    this.firstCreditReportOFirstCreditSuccessReport,
+    this.deepmostOHasOnLoan,
   });
 
   @JsonKey(name: 'bopomofo')
@@ -11496,6 +11857,10 @@ class HomeInfoResp {
   final int? yawnOExpectTime;
   @JsonKey(name: 'undyed')
   final bool? undyedOHasLoan;
+  @JsonKey(name: 'firstCreditReport')
+  final bool? firstCreditReportOFirstCreditSuccessReport;
+  @JsonKey(name: 'deepmost')
+  final bool? deepmostOHasOnLoan;
 
   factory HomeInfoResp.fromJson(Map<String, dynamic> json) =>
       _$HomeInfoRespFromJson(json);
@@ -11657,6 +12022,19 @@ class HomeInfoResp {
                 const DeepCollectionEquality().equals(
                   other.undyedOHasLoan,
                   undyedOHasLoan,
+                )) &&
+            (identical(
+                  other.firstCreditReportOFirstCreditSuccessReport,
+                  firstCreditReportOFirstCreditSuccessReport,
+                ) ||
+                const DeepCollectionEquality().equals(
+                  other.firstCreditReportOFirstCreditSuccessReport,
+                  firstCreditReportOFirstCreditSuccessReport,
+                )) &&
+            (identical(other.deepmostOHasOnLoan, deepmostOHasOnLoan) ||
+                const DeepCollectionEquality().equals(
+                  other.deepmostOHasOnLoan,
+                  deepmostOHasOnLoan,
                 )));
   }
 
@@ -11690,6 +12068,10 @@ class HomeInfoResp {
       const DeepCollectionEquality().hash(y934teOTotalAmount) ^
       const DeepCollectionEquality().hash(yawnOExpectTime) ^
       const DeepCollectionEquality().hash(undyedOHasLoan) ^
+      const DeepCollectionEquality().hash(
+        firstCreditReportOFirstCreditSuccessReport,
+      ) ^
+      const DeepCollectionEquality().hash(deepmostOHasOnLoan) ^
       runtimeType.hashCode;
 }
 
@@ -11722,6 +12104,8 @@ extension $HomeInfoRespExtension on HomeInfoResp {
     double? y934teOTotalAmount,
     int? yawnOExpectTime,
     bool? undyedOHasLoan,
+    bool? firstCreditReportOFirstCreditSuccessReport,
+    bool? deepmostOHasOnLoan,
   }) {
     return HomeInfoResp(
       bopomofoOCreditStatus:
@@ -11761,6 +12145,10 @@ extension $HomeInfoRespExtension on HomeInfoResp {
       y934teOTotalAmount: y934teOTotalAmount ?? this.y934teOTotalAmount,
       yawnOExpectTime: yawnOExpectTime ?? this.yawnOExpectTime,
       undyedOHasLoan: undyedOHasLoan ?? this.undyedOHasLoan,
+      firstCreditReportOFirstCreditSuccessReport:
+          firstCreditReportOFirstCreditSuccessReport ??
+          this.firstCreditReportOFirstCreditSuccessReport,
+      deepmostOHasOnLoan: deepmostOHasOnLoan ?? this.deepmostOHasOnLoan,
     );
   }
 
@@ -11793,6 +12181,8 @@ extension $HomeInfoRespExtension on HomeInfoResp {
     Wrapped<double?>? y934teOTotalAmount,
     Wrapped<int?>? yawnOExpectTime,
     Wrapped<bool?>? undyedOHasLoan,
+    Wrapped<bool?>? firstCreditReportOFirstCreditSuccessReport,
+    Wrapped<bool?>? deepmostOHasOnLoan,
   }) {
     return HomeInfoResp(
       bopomofoOCreditStatus: (bopomofoOCreditStatus != null
@@ -11870,6 +12260,13 @@ extension $HomeInfoRespExtension on HomeInfoResp {
       undyedOHasLoan: (undyedOHasLoan != null
           ? undyedOHasLoan.value
           : this.undyedOHasLoan),
+      firstCreditReportOFirstCreditSuccessReport:
+          (firstCreditReportOFirstCreditSuccessReport != null
+          ? firstCreditReportOFirstCreditSuccessReport.value
+          : this.firstCreditReportOFirstCreditSuccessReport),
+      deepmostOHasOnLoan: (deepmostOHasOnLoan != null
+          ? deepmostOHasOnLoan.value
+          : this.deepmostOHasOnLoan),
     );
   }
 }
@@ -12065,6 +12462,153 @@ extension $PicUploadReqRespExtension on PicUploadReqResp {
     Wrapped<PicUploadReqResp$Data?>? data,
   }) {
     return PicUploadReqResp(
+      code: (code != null ? code.value : this.code),
+      msg: (msg != null ? msg.value : this.msg),
+      antiicerOMsgType: (antiicerOMsgType != null
+          ? antiicerOMsgType.value
+          : this.antiicerOMsgType),
+      rumfordOMsgDisplay: (rumfordOMsgDisplay != null
+          ? rumfordOMsgDisplay.value
+          : this.rumfordOMsgDisplay),
+      tympanumOMsgTitle: (tympanumOMsgTitle != null
+          ? tympanumOMsgTitle.value
+          : this.tympanumOMsgTitle),
+      directOMsgBtn01: (directOMsgBtn01 != null
+          ? directOMsgBtn01.value
+          : this.directOMsgBtn01),
+      i9145gOMsgBtn02: (i9145gOMsgBtn02 != null
+          ? i9145gOMsgBtn02.value
+          : this.i9145gOMsgBtn02),
+      data: (data != null ? data.value : this.data),
+    );
+  }
+}
+
+@JsonSerializable(explicitToJson: true)
+class OcrReqResp {
+  const OcrReqResp({
+    this.code,
+    this.msg,
+    this.antiicerOMsgType,
+    this.rumfordOMsgDisplay,
+    this.tympanumOMsgTitle,
+    this.directOMsgBtn01,
+    this.i9145gOMsgBtn02,
+    this.data,
+  });
+
+  @JsonKey(name: 'code')
+  final String? code;
+  @JsonKey(name: 'msg')
+  final String? msg;
+  @JsonKey(name: 'antiicer')
+  final int? antiicerOMsgType;
+  @JsonKey(name: 'rumford')
+  final int? rumfordOMsgDisplay;
+  @JsonKey(name: 'tympanum')
+  final String? tympanumOMsgTitle;
+  @JsonKey(name: 'direct')
+  final String? directOMsgBtn01;
+  @JsonKey(name: 'i9145g')
+  final String? i9145gOMsgBtn02;
+  @JsonKey(name: 'data')
+  final OcrReqResp$Data? data;
+
+  factory OcrReqResp.fromJson(Map<String, dynamic> json) =>
+      _$OcrReqRespFromJson(json);
+
+  Map<String, dynamic> toJson() => _$OcrReqRespToJson(this);
+
+  static const fromJsonFactory = _$OcrReqRespFromJson;
+  static const toJsonFactory = _$OcrReqRespToJson;
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other is OcrReqResp &&
+            (identical(other.code, code) ||
+                const DeepCollectionEquality().equals(other.code, code)) &&
+            (identical(other.msg, msg) ||
+                const DeepCollectionEquality().equals(other.msg, msg)) &&
+            (identical(other.antiicerOMsgType, antiicerOMsgType) ||
+                const DeepCollectionEquality().equals(
+                  other.antiicerOMsgType,
+                  antiicerOMsgType,
+                )) &&
+            (identical(other.rumfordOMsgDisplay, rumfordOMsgDisplay) ||
+                const DeepCollectionEquality().equals(
+                  other.rumfordOMsgDisplay,
+                  rumfordOMsgDisplay,
+                )) &&
+            (identical(other.tympanumOMsgTitle, tympanumOMsgTitle) ||
+                const DeepCollectionEquality().equals(
+                  other.tympanumOMsgTitle,
+                  tympanumOMsgTitle,
+                )) &&
+            (identical(other.directOMsgBtn01, directOMsgBtn01) ||
+                const DeepCollectionEquality().equals(
+                  other.directOMsgBtn01,
+                  directOMsgBtn01,
+                )) &&
+            (identical(other.i9145gOMsgBtn02, i9145gOMsgBtn02) ||
+                const DeepCollectionEquality().equals(
+                  other.i9145gOMsgBtn02,
+                  i9145gOMsgBtn02,
+                )) &&
+            (identical(other.data, data) ||
+                const DeepCollectionEquality().equals(other.data, data)));
+  }
+
+  @override
+  String toString() => jsonEncode(this);
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(code) ^
+      const DeepCollectionEquality().hash(msg) ^
+      const DeepCollectionEquality().hash(antiicerOMsgType) ^
+      const DeepCollectionEquality().hash(rumfordOMsgDisplay) ^
+      const DeepCollectionEquality().hash(tympanumOMsgTitle) ^
+      const DeepCollectionEquality().hash(directOMsgBtn01) ^
+      const DeepCollectionEquality().hash(i9145gOMsgBtn02) ^
+      const DeepCollectionEquality().hash(data) ^
+      runtimeType.hashCode;
+}
+
+extension $OcrReqRespExtension on OcrReqResp {
+  OcrReqResp copyWith({
+    String? code,
+    String? msg,
+    int? antiicerOMsgType,
+    int? rumfordOMsgDisplay,
+    String? tympanumOMsgTitle,
+    String? directOMsgBtn01,
+    String? i9145gOMsgBtn02,
+    OcrReqResp$Data? data,
+  }) {
+    return OcrReqResp(
+      code: code ?? this.code,
+      msg: msg ?? this.msg,
+      antiicerOMsgType: antiicerOMsgType ?? this.antiicerOMsgType,
+      rumfordOMsgDisplay: rumfordOMsgDisplay ?? this.rumfordOMsgDisplay,
+      tympanumOMsgTitle: tympanumOMsgTitle ?? this.tympanumOMsgTitle,
+      directOMsgBtn01: directOMsgBtn01 ?? this.directOMsgBtn01,
+      i9145gOMsgBtn02: i9145gOMsgBtn02 ?? this.i9145gOMsgBtn02,
+      data: data ?? this.data,
+    );
+  }
+
+  OcrReqResp copyWithWrapped({
+    Wrapped<String?>? code,
+    Wrapped<String?>? msg,
+    Wrapped<int?>? antiicerOMsgType,
+    Wrapped<int?>? rumfordOMsgDisplay,
+    Wrapped<String?>? tympanumOMsgTitle,
+    Wrapped<String?>? directOMsgBtn01,
+    Wrapped<String?>? i9145gOMsgBtn02,
+    Wrapped<OcrReqResp$Data?>? data,
+  }) {
+    return OcrReqResp(
       code: (code != null ? code.value : this.code),
       msg: (msg != null ? msg.value : this.msg),
       antiicerOMsgType: (antiicerOMsgType != null
@@ -12478,7 +13022,7 @@ class LoanOrderResp {
   @JsonKey(name: 'sk6s63')
   final double? sk6s63OCouponAmount;
   @JsonKey(name: 'sweeny')
-  final int? sweenyOWorkFlowId;
+  final String? sweenyOWorkFlowId;
   @JsonKey(name: 'brant')
   final int? brantOPurpose;
   @JsonKey(name: 'mxs06u')
@@ -13012,7 +13556,7 @@ extension $LoanOrderRespExtension on LoanOrderResp {
     String? d7x52pOBizChannel,
     String? pinionOUserCouponGid,
     double? sk6s63OCouponAmount,
-    int? sweenyOWorkFlowId,
+    String? sweenyOWorkFlowId,
     int? brantOPurpose,
     String? mxs06uOApplyStatus,
     String? r86mu7OProductTag,
@@ -13169,7 +13713,7 @@ extension $LoanOrderRespExtension on LoanOrderResp {
     Wrapped<String?>? d7x52pOBizChannel,
     Wrapped<String?>? pinionOUserCouponGid,
     Wrapped<double?>? sk6s63OCouponAmount,
-    Wrapped<int?>? sweenyOWorkFlowId,
+    Wrapped<String?>? sweenyOWorkFlowId,
     Wrapped<int?>? brantOPurpose,
     Wrapped<String?>? mxs06uOApplyStatus,
     Wrapped<String?>? r86mu7OProductTag,
@@ -20313,16 +20857,19 @@ extension $HomeInfoResp$S2c1wyOAppCoLoanGpDetailPOList$ItemExtension
 class PicUploadReqResp$Data {
   const PicUploadReqResp$Data({
     this.raiaOUserGid,
-    this.gx0f5kOPictureUrl,
+    this.submissionTimeOPictureUrlList,
     this.nvooyfOObjectKey,
+    this.oj603uOApplyId,
   });
 
   @JsonKey(name: 'raia')
   final String? raiaOUserGid;
-  @JsonKey(name: 'gx0f5k')
-  final String? gx0f5kOPictureUrl;
+  @JsonKey(name: 'submissionTime', defaultValue: <String>[])
+  final List<String>? submissionTimeOPictureUrlList;
   @JsonKey(name: 'nvooyf')
   final String? nvooyfOObjectKey;
+  @JsonKey(name: 'oj603u')
+  final String? oj603uOApplyId;
 
   factory PicUploadReqResp$Data.fromJson(Map<String, dynamic> json) =>
       _$PicUploadReqResp$DataFromJson(json);
@@ -20341,15 +20888,23 @@ class PicUploadReqResp$Data {
                   other.raiaOUserGid,
                   raiaOUserGid,
                 )) &&
-            (identical(other.gx0f5kOPictureUrl, gx0f5kOPictureUrl) ||
+            (identical(
+                  other.submissionTimeOPictureUrlList,
+                  submissionTimeOPictureUrlList,
+                ) ||
                 const DeepCollectionEquality().equals(
-                  other.gx0f5kOPictureUrl,
-                  gx0f5kOPictureUrl,
+                  other.submissionTimeOPictureUrlList,
+                  submissionTimeOPictureUrlList,
                 )) &&
             (identical(other.nvooyfOObjectKey, nvooyfOObjectKey) ||
                 const DeepCollectionEquality().equals(
                   other.nvooyfOObjectKey,
                   nvooyfOObjectKey,
+                )) &&
+            (identical(other.oj603uOApplyId, oj603uOApplyId) ||
+                const DeepCollectionEquality().equals(
+                  other.oj603uOApplyId,
+                  oj603uOApplyId,
                 )));
   }
 
@@ -20359,39 +20914,287 @@ class PicUploadReqResp$Data {
   @override
   int get hashCode =>
       const DeepCollectionEquality().hash(raiaOUserGid) ^
-      const DeepCollectionEquality().hash(gx0f5kOPictureUrl) ^
+      const DeepCollectionEquality().hash(submissionTimeOPictureUrlList) ^
       const DeepCollectionEquality().hash(nvooyfOObjectKey) ^
+      const DeepCollectionEquality().hash(oj603uOApplyId) ^
       runtimeType.hashCode;
 }
 
 extension $PicUploadReqResp$DataExtension on PicUploadReqResp$Data {
   PicUploadReqResp$Data copyWith({
     String? raiaOUserGid,
-    String? gx0f5kOPictureUrl,
+    List<String>? submissionTimeOPictureUrlList,
     String? nvooyfOObjectKey,
+    String? oj603uOApplyId,
   }) {
     return PicUploadReqResp$Data(
       raiaOUserGid: raiaOUserGid ?? this.raiaOUserGid,
-      gx0f5kOPictureUrl: gx0f5kOPictureUrl ?? this.gx0f5kOPictureUrl,
+      submissionTimeOPictureUrlList:
+          submissionTimeOPictureUrlList ?? this.submissionTimeOPictureUrlList,
       nvooyfOObjectKey: nvooyfOObjectKey ?? this.nvooyfOObjectKey,
+      oj603uOApplyId: oj603uOApplyId ?? this.oj603uOApplyId,
     );
   }
 
   PicUploadReqResp$Data copyWithWrapped({
     Wrapped<String?>? raiaOUserGid,
-    Wrapped<String?>? gx0f5kOPictureUrl,
+    Wrapped<List<String>?>? submissionTimeOPictureUrlList,
     Wrapped<String?>? nvooyfOObjectKey,
+    Wrapped<String?>? oj603uOApplyId,
   }) {
     return PicUploadReqResp$Data(
       raiaOUserGid: (raiaOUserGid != null
           ? raiaOUserGid.value
           : this.raiaOUserGid),
-      gx0f5kOPictureUrl: (gx0f5kOPictureUrl != null
-          ? gx0f5kOPictureUrl.value
-          : this.gx0f5kOPictureUrl),
+      submissionTimeOPictureUrlList: (submissionTimeOPictureUrlList != null
+          ? submissionTimeOPictureUrlList.value
+          : this.submissionTimeOPictureUrlList),
       nvooyfOObjectKey: (nvooyfOObjectKey != null
           ? nvooyfOObjectKey.value
           : this.nvooyfOObjectKey),
+      oj603uOApplyId: (oj603uOApplyId != null
+          ? oj603uOApplyId.value
+          : this.oj603uOApplyId),
+    );
+  }
+}
+
+@JsonSerializable(explicitToJson: true)
+class OcrReqResp$Data {
+  const OcrReqResp$Data({
+    this.attributionSubOIdCardNum,
+    this.name,
+    this.collectionHashOResidence,
+    this.financeChargeOPlaceOfBirth,
+    this.borrowInterestOProvince,
+    this.gargetOBirthday,
+    this.loanParam001OGender,
+    this.high,
+    this.messageHeadingOCivilStatus,
+    this.extensionPeriodOIssueDate,
+    this.holisticOValidDate,
+    this.demotionOIsOcrRequestRender,
+  });
+
+  @JsonKey(name: 'attributionSub')
+  final String? attributionSubOIdCardNum;
+  @JsonKey(name: 'name')
+  final String? name;
+  @JsonKey(name: 'collectionHash')
+  final String? collectionHashOResidence;
+  @JsonKey(name: 'financeCharge')
+  final String? financeChargeOPlaceOfBirth;
+  @JsonKey(name: 'borrowInterest')
+  final String? borrowInterestOProvince;
+  @JsonKey(name: 'garget')
+  final int? gargetOBirthday;
+  @JsonKey(name: 'loanParam001')
+  final int? loanParam001OGender;
+  @JsonKey(name: 'high')
+  final String? high;
+  @JsonKey(name: 'messageHeading')
+  final String? messageHeadingOCivilStatus;
+  @JsonKey(name: 'extensionPeriod')
+  final int? extensionPeriodOIssueDate;
+  @JsonKey(name: 'holistic')
+  final int? holisticOValidDate;
+  @JsonKey(name: 'demotion')
+  final int? demotionOIsOcrRequestRender;
+
+  factory OcrReqResp$Data.fromJson(Map<String, dynamic> json) =>
+      _$OcrReqResp$DataFromJson(json);
+
+  Map<String, dynamic> toJson() => _$OcrReqResp$DataToJson(this);
+
+  static const fromJsonFactory = _$OcrReqResp$DataFromJson;
+  static const toJsonFactory = _$OcrReqResp$DataToJson;
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other is OcrReqResp$Data &&
+            (identical(
+                  other.attributionSubOIdCardNum,
+                  attributionSubOIdCardNum,
+                ) ||
+                const DeepCollectionEquality().equals(
+                  other.attributionSubOIdCardNum,
+                  attributionSubOIdCardNum,
+                )) &&
+            (identical(other.name, name) ||
+                const DeepCollectionEquality().equals(other.name, name)) &&
+            (identical(
+                  other.collectionHashOResidence,
+                  collectionHashOResidence,
+                ) ||
+                const DeepCollectionEquality().equals(
+                  other.collectionHashOResidence,
+                  collectionHashOResidence,
+                )) &&
+            (identical(
+                  other.financeChargeOPlaceOfBirth,
+                  financeChargeOPlaceOfBirth,
+                ) ||
+                const DeepCollectionEquality().equals(
+                  other.financeChargeOPlaceOfBirth,
+                  financeChargeOPlaceOfBirth,
+                )) &&
+            (identical(
+                  other.borrowInterestOProvince,
+                  borrowInterestOProvince,
+                ) ||
+                const DeepCollectionEquality().equals(
+                  other.borrowInterestOProvince,
+                  borrowInterestOProvince,
+                )) &&
+            (identical(other.gargetOBirthday, gargetOBirthday) ||
+                const DeepCollectionEquality().equals(
+                  other.gargetOBirthday,
+                  gargetOBirthday,
+                )) &&
+            (identical(other.loanParam001OGender, loanParam001OGender) ||
+                const DeepCollectionEquality().equals(
+                  other.loanParam001OGender,
+                  loanParam001OGender,
+                )) &&
+            (identical(other.high, high) ||
+                const DeepCollectionEquality().equals(other.high, high)) &&
+            (identical(
+                  other.messageHeadingOCivilStatus,
+                  messageHeadingOCivilStatus,
+                ) ||
+                const DeepCollectionEquality().equals(
+                  other.messageHeadingOCivilStatus,
+                  messageHeadingOCivilStatus,
+                )) &&
+            (identical(
+                  other.extensionPeriodOIssueDate,
+                  extensionPeriodOIssueDate,
+                ) ||
+                const DeepCollectionEquality().equals(
+                  other.extensionPeriodOIssueDate,
+                  extensionPeriodOIssueDate,
+                )) &&
+            (identical(other.holisticOValidDate, holisticOValidDate) ||
+                const DeepCollectionEquality().equals(
+                  other.holisticOValidDate,
+                  holisticOValidDate,
+                )) &&
+            (identical(
+                  other.demotionOIsOcrRequestRender,
+                  demotionOIsOcrRequestRender,
+                ) ||
+                const DeepCollectionEquality().equals(
+                  other.demotionOIsOcrRequestRender,
+                  demotionOIsOcrRequestRender,
+                )));
+  }
+
+  @override
+  String toString() => jsonEncode(this);
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(attributionSubOIdCardNum) ^
+      const DeepCollectionEquality().hash(name) ^
+      const DeepCollectionEquality().hash(collectionHashOResidence) ^
+      const DeepCollectionEquality().hash(financeChargeOPlaceOfBirth) ^
+      const DeepCollectionEquality().hash(borrowInterestOProvince) ^
+      const DeepCollectionEquality().hash(gargetOBirthday) ^
+      const DeepCollectionEquality().hash(loanParam001OGender) ^
+      const DeepCollectionEquality().hash(high) ^
+      const DeepCollectionEquality().hash(messageHeadingOCivilStatus) ^
+      const DeepCollectionEquality().hash(extensionPeriodOIssueDate) ^
+      const DeepCollectionEquality().hash(holisticOValidDate) ^
+      const DeepCollectionEquality().hash(demotionOIsOcrRequestRender) ^
+      runtimeType.hashCode;
+}
+
+extension $OcrReqResp$DataExtension on OcrReqResp$Data {
+  OcrReqResp$Data copyWith({
+    String? attributionSubOIdCardNum,
+    String? name,
+    String? collectionHashOResidence,
+    String? financeChargeOPlaceOfBirth,
+    String? borrowInterestOProvince,
+    int? gargetOBirthday,
+    int? loanParam001OGender,
+    String? high,
+    String? messageHeadingOCivilStatus,
+    int? extensionPeriodOIssueDate,
+    int? holisticOValidDate,
+    int? demotionOIsOcrRequestRender,
+  }) {
+    return OcrReqResp$Data(
+      attributionSubOIdCardNum:
+          attributionSubOIdCardNum ?? this.attributionSubOIdCardNum,
+      name: name ?? this.name,
+      collectionHashOResidence:
+          collectionHashOResidence ?? this.collectionHashOResidence,
+      financeChargeOPlaceOfBirth:
+          financeChargeOPlaceOfBirth ?? this.financeChargeOPlaceOfBirth,
+      borrowInterestOProvince:
+          borrowInterestOProvince ?? this.borrowInterestOProvince,
+      gargetOBirthday: gargetOBirthday ?? this.gargetOBirthday,
+      loanParam001OGender: loanParam001OGender ?? this.loanParam001OGender,
+      high: high ?? this.high,
+      messageHeadingOCivilStatus:
+          messageHeadingOCivilStatus ?? this.messageHeadingOCivilStatus,
+      extensionPeriodOIssueDate:
+          extensionPeriodOIssueDate ?? this.extensionPeriodOIssueDate,
+      holisticOValidDate: holisticOValidDate ?? this.holisticOValidDate,
+      demotionOIsOcrRequestRender:
+          demotionOIsOcrRequestRender ?? this.demotionOIsOcrRequestRender,
+    );
+  }
+
+  OcrReqResp$Data copyWithWrapped({
+    Wrapped<String?>? attributionSubOIdCardNum,
+    Wrapped<String?>? name,
+    Wrapped<String?>? collectionHashOResidence,
+    Wrapped<String?>? financeChargeOPlaceOfBirth,
+    Wrapped<String?>? borrowInterestOProvince,
+    Wrapped<int?>? gargetOBirthday,
+    Wrapped<int?>? loanParam001OGender,
+    Wrapped<String?>? high,
+    Wrapped<String?>? messageHeadingOCivilStatus,
+    Wrapped<int?>? extensionPeriodOIssueDate,
+    Wrapped<int?>? holisticOValidDate,
+    Wrapped<int?>? demotionOIsOcrRequestRender,
+  }) {
+    return OcrReqResp$Data(
+      attributionSubOIdCardNum: (attributionSubOIdCardNum != null
+          ? attributionSubOIdCardNum.value
+          : this.attributionSubOIdCardNum),
+      name: (name != null ? name.value : this.name),
+      collectionHashOResidence: (collectionHashOResidence != null
+          ? collectionHashOResidence.value
+          : this.collectionHashOResidence),
+      financeChargeOPlaceOfBirth: (financeChargeOPlaceOfBirth != null
+          ? financeChargeOPlaceOfBirth.value
+          : this.financeChargeOPlaceOfBirth),
+      borrowInterestOProvince: (borrowInterestOProvince != null
+          ? borrowInterestOProvince.value
+          : this.borrowInterestOProvince),
+      gargetOBirthday: (gargetOBirthday != null
+          ? gargetOBirthday.value
+          : this.gargetOBirthday),
+      loanParam001OGender: (loanParam001OGender != null
+          ? loanParam001OGender.value
+          : this.loanParam001OGender),
+      high: (high != null ? high.value : this.high),
+      messageHeadingOCivilStatus: (messageHeadingOCivilStatus != null
+          ? messageHeadingOCivilStatus.value
+          : this.messageHeadingOCivilStatus),
+      extensionPeriodOIssueDate: (extensionPeriodOIssueDate != null
+          ? extensionPeriodOIssueDate.value
+          : this.extensionPeriodOIssueDate),
+      holisticOValidDate: (holisticOValidDate != null
+          ? holisticOValidDate.value
+          : this.holisticOValidDate),
+      demotionOIsOcrRequestRender: (demotionOIsOcrRequestRender != null
+          ? demotionOIsOcrRequestRender.value
+          : this.demotionOIsOcrRequestRender),
     );
   }
 }
@@ -24572,7 +25375,7 @@ class BillDetailResp$GlacisORepaymentPlanList$Item {
   @JsonKey(name: 'z38e62')
   final String? z38e62OOrderGid;
   @JsonKey(name: 'sweeny')
-  final int? sweenyOWorkFlowId;
+  final String? sweenyOWorkFlowId;
   @JsonKey(name: 'remark')
   final String? remark;
   @JsonKey(name: 'i2jk5f')
@@ -25033,7 +25836,7 @@ extension $BillDetailResp$GlacisORepaymentPlanList$ItemExtension
     bool? e0a79hOIsCollectCase,
     String? d7x52pOBizChannel,
     String? z38e62OOrderGid,
-    int? sweenyOWorkFlowId,
+    String? sweenyOWorkFlowId,
     String? remark,
     int? i2jk5fOPeriodStatus,
     double? emceeOReduceAmount,
@@ -25168,7 +25971,7 @@ extension $BillDetailResp$GlacisORepaymentPlanList$ItemExtension
     Wrapped<bool?>? e0a79hOIsCollectCase,
     Wrapped<String?>? d7x52pOBizChannel,
     Wrapped<String?>? z38e62OOrderGid,
-    Wrapped<int?>? sweenyOWorkFlowId,
+    Wrapped<String?>? sweenyOWorkFlowId,
     Wrapped<String?>? remark,
     Wrapped<int?>? i2jk5fOPeriodStatus,
     Wrapped<double?>? emceeOReduceAmount,
