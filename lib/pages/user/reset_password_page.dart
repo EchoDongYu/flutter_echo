@@ -42,13 +42,13 @@ class _ResetPasswordPageState extends State<ResetPasswordPage> {
                   padding: EdgeInsets.symmetric(vertical: 8.h),
                   child: Column(
                     children: [
-                      if (mainInfo?.fm50w8OLoginPwd == true &&
-                          widget.status == 2)
+                      if (mainInfo?.fm50w8OLoginPwd == true)
                         _buildCardItem(
                           text: 'Restablecer contraseña',
                           onTap: () => context.push(AppRouter.resetLoginPwd),
                         ),
-                      if (mainInfo?.cressyOTraderPwd == true)
+                      if (mainInfo?.cressyOTraderPwd == true &&
+                          widget.status == 2)
                         _buildCardItem(
                           text: 'Restablecer NIP',
                           onTap: () => context.push(AppRouter.resetTraderPwd),
