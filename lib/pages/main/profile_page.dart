@@ -396,10 +396,12 @@ class _ProfilePageState extends State<ProfilePage> {
         content: "¿Estás seguro de cerrar sesión?",
         confirmText: "Cancelar",
         cancelText: "Confirmar",
-        onCancel: () {
+        onCancel: () async {
           context.pop();
-          LocalStorage().logout();
-          context.go(AppRouter.loginPhone);
+          await LocalStorage().logout();
+          if (context.mounted) {
+            context.go(AppRouter.loginPhone);
+          }
         },
         onConfirm: () => context.pop(),
       ),
