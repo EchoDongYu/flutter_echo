@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:flutter_echo/common/constants.dart';
 import 'package:flutter_echo/models/swaggerApi.models.swagger.dart';
+import 'package:flutter_echo/providers/submit_provider.dart';
 import 'package:flutter_echo/utils/common_utils.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -102,6 +103,7 @@ class LocalStorage {
   }
 
   Future<void> logout() async {
+    SubmitModel.clearCachedData();
     await _prefs.remove(AppConst.tokenKey);
     await _prefs.remove(AppConst.userGidKey);
     await _prefs.remove(AppConst.userInfoKey);
