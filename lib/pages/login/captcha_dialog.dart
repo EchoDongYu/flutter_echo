@@ -3,11 +3,14 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_echo/common/app_theme.dart';
 import 'package:flutter_echo/common/constants.dart';
+import 'package:flutter_echo/common/page_consumer.dart';
+import 'package:flutter_echo/providers/captcha_provider.dart';
 import 'package:flutter_echo/ui/widget_helper.dart';
 import 'package:flutter_echo/ui/widgets/step_input_field.dart';
 import 'package:flutter_echo/utils/drawable_utils.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
+import 'package:provider/provider.dart';
 
 /// 图形验证码弹窗
 class CaptchaDialog extends StatefulWidget {
@@ -21,18 +24,31 @@ class CaptchaDialog extends StatefulWidget {
   });
 
   /// 显示图形验证码弹窗
-  static Future<String?> show(BuildContext context) {
+  static Future<String?> show(
+    BuildContext context, {
+    required String? mobile,
+    required int? type,
+  }) {
     return showModalBottomSheet<String>(
       context: context,
       enableDrag: false,
+      requestFocus: false,
       isDismissible: false,
       isScrollControlled: true,
-      builder: (_) => AnimatedPadding(
-        padding: MediaQuery.of(context).viewInsets,
-        duration: const Duration(milliseconds: 100),
-        child: CaptchaDialog(
-          onConfirm: (code) => context.pop(code),
-          onClosing: () => context.pop(),
+      builder: (_) => ChangeNotifierProvider(
+        create: (_) => CaptchaModel(),
+        builder: (ctx, _) => PageConsumer<CaptchaModel>(
+          child: CaptchaDialog(
+            onConfirm: (code) async {
+              final result = await ctx.read<CaptchaModel>().checkCaptchaCode(
+                mobile: mobile,
+                type: type,
+                imageCode: code,
+              );
+              if (result == true && context.mounted) context.pop(code);
+            },
+            onClosing: () => context.pop(),
+          ),
         ),
       ),
     );
@@ -51,12 +67,12 @@ class _CaptchaDialogState extends State<CaptchaDialog>
 
   @override
   void initState() {
+    super.initState();
     _imageUrl = ApiPath.captchaCode();
     _codeCtrl = TextEditingController();
     _codeCtrl.addListener(_onCodeChanged);
     _animationCtrl = AnimationController(vsync: this)
       ..repeat(period: const Duration(seconds: 1));
-    super.initState();
   }
 
   @override
@@ -86,18 +102,23 @@ class _CaptchaDialogState extends State<CaptchaDialog>
         ),
       ),
       builder: (BuildContext context) => SingleChildScrollView(
-        child: Column(
-          children: [
-            _buildContent(),
-            WidgetHelper.buildBottomButton(
-              text: 'Código de verificación',
-              enable: _isCodeValid,
-              onPressed: () {
-                FocusScope.of(context).unfocus();
-                widget.onConfirm(_codeCtrl.text);
-              },
-            ),
-          ],
+        child: Container(
+          padding: EdgeInsets.only(
+            bottom: MediaQuery.of(context).viewInsets.bottom,
+          ),
+          child: Column(
+            children: [
+              _buildContent(),
+              WidgetHelper.buildBottomButton(
+                text: 'Código de verificación',
+                enable: _isCodeValid,
+                onPressed: () {
+                  FocusScope.of(context).requestFocus(FocusNode());
+                  widget.onConfirm(_codeCtrl.text);
+                },
+              ),
+            ],
+          ),
         ),
       ),
     );

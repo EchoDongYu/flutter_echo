@@ -1,14 +1,32 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_echo/common/app_theme.dart';
+import 'package:flutter_echo/common/page_consumer.dart';
+import 'package:flutter_echo/providers/whatsapp_provider.dart';
 import 'package:flutter_echo/ui/widgets/common_button.dart';
+import 'package:flutter_echo/utils/common_utils.dart';
 import 'package:flutter_echo/utils/drawable_utils.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:go_router/go_router.dart';
+import 'package:provider/provider.dart';
 
 /// 删除被账号登录时提示弹窗
 class RemovedDialog extends StatelessWidget {
   final VoidCallback onConfirm;
 
   const RemovedDialog({super.key, required this.onConfirm});
+
+  /// 显示删除被账号登录时提示弹窗
+  static Future<bool?> show(BuildContext context) {
+    return showDialog<bool>(
+      context: context,
+      builder: (_) => ChangeNotifierProvider(
+        create: (_) => WhatsappModel(),
+        builder: (_, _) => PageConsumer<WhatsappModel>(
+          child: RemovedDialog(onConfirm: () => context.pop(true)),
+        ),
+      ),
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -67,15 +85,23 @@ class RemovedDialog extends StatelessWidget {
               ),
             ),
             SizedBox(height: 12.h),
-            Text(
-              'Suporte via WhatsApp',
-              style: TextStyle(
-                color: NowColors.c0xFF3288F1,
-                fontWeight: FontWeight.w500,
-                fontSize: 14.sp,
-                height: 22 / 14,
-                decoration: TextDecoration.underline,
-                decorationColor: NowColors.c0xFF3288F1,
+            InkWell(
+              onTap: () async {
+                final phone = await context
+                    .read<WhatsappModel>()
+                    .getDictionary();
+                FlutterPlatform.launchWhatsApp(phone);
+              },
+              child: Text(
+                'Suporte via WhatsApp',
+                style: TextStyle(
+                  color: NowColors.c0xFF3288F1,
+                  fontWeight: FontWeight.w500,
+                  fontSize: 14.sp,
+                  height: 22 / 14,
+                  decoration: TextDecoration.underline,
+                  decorationColor: NowColors.c0xFF3288F1,
+                ),
               ),
             ),
             SizedBox(height: 24.h),

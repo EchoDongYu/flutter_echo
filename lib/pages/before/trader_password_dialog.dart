@@ -40,18 +40,14 @@ class TraderPasswordDialog extends StatefulWidget {
       enableDrag: false,
       isDismissible: false,
       isScrollControlled: true,
-      builder: (_) => AnimatedPadding(
-        padding: MediaQuery.of(context).viewInsets,
-        duration: const Duration(milliseconds: 100),
-        child: ChangeNotifierProvider(
-          create: (_) => AccountModel(),
-          builder: (_, _) => PageConsumer<AccountModel>(
-            child: TraderPasswordDialog(
-              hasTransPwd: hasTransPwd,
-              orderGid: orderGid,
-              onConfirm: (value) => context.pop(value),
-              onClosing: () => context.pop(),
-            ),
+      builder: (_) => ChangeNotifierProvider(
+        create: (_) => AccountModel(),
+        builder: (_, _) => PageConsumer<AccountModel>(
+          child: TraderPasswordDialog(
+            hasTransPwd: hasTransPwd,
+            orderGid: orderGid,
+            onConfirm: (value) => context.pop(value),
+            onClosing: () => context.pop(),
           ),
         ),
       ),
@@ -134,17 +130,22 @@ class _TraderPasswordDialogState extends State<TraderPasswordDialog> {
         ),
       ),
       builder: (BuildContext context) => SingleChildScrollView(
-        child: Column(
-          children: [
-            _buildContent(),
-            WidgetHelper.buildBottomTwoButton(
-              confirmText: 'Continuar',
-              cancelText: 'Cancelar',
-              onConfirm: _submitPassword,
-              onCancel: widget.onClosing,
-              enable: _isValid,
-            ),
-          ],
+        child: Container(
+          padding: EdgeInsets.only(
+            bottom: MediaQuery.of(context).viewInsets.bottom,
+          ),
+          child: Column(
+            children: [
+              _buildContent(),
+              WidgetHelper.buildBottomTwoButton(
+                confirmText: 'Continuar',
+                cancelText: 'Cancelar',
+                onConfirm: _submitPassword,
+                onCancel: widget.onClosing,
+                enable: _isValid,
+              ),
+            ],
+          ),
         ),
       ),
     );

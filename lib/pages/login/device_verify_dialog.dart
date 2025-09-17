@@ -24,16 +24,13 @@ class DeviceVerifyDialog extends StatefulWidget {
     return showModalBottomSheet<Map>(
       context: context,
       enableDrag: false,
+      requestFocus: false,
       isDismissible: false,
       isScrollControlled: true,
-      builder: (_) => AnimatedPadding(
-        padding: MediaQuery.of(context).viewInsets,
-        duration: const Duration(milliseconds: 100),
-        child: ChangeNotifierProvider(
-          create: (_) => VerifyModel(),
-          builder: (_, _) => PageConsumer<VerifyModel>(
-            child: DeviceVerifyDialog(onClosing: () => context.pop()),
-          ),
+      builder: (_) => ChangeNotifierProvider(
+        create: (_) => VerifyModel(),
+        builder: (_, _) => PageConsumer<VerifyModel>(
+          child: DeviceVerifyDialog(onClosing: () => context.pop()),
         ),
       ),
     );
@@ -60,6 +57,7 @@ class _DeviceVerifyDialogState extends State<DeviceVerifyDialog>
   @override
   void initState() {
     super.initState();
+    _imageUrl = ApiPath.captchaCode();
     _animationCtrl = AnimationController(vsync: this)
       ..repeat(period: const Duration(seconds: 1));
     _verifyCtrl.addListener(_onCodeChanged);
@@ -106,7 +104,17 @@ class _DeviceVerifyDialogState extends State<DeviceVerifyDialog>
         ),
       ),
       builder: (BuildContext context) => SingleChildScrollView(
-        child: Column(children: [_buildContent(), _buildBottomButton()]),
+        child: Container(
+          padding: EdgeInsets.only(
+            bottom: MediaQuery.of(context).viewInsets.bottom,
+          ),
+          child: Consumer<VerifyModel>(
+            builder: (_, provider, _) {
+              if (provider.showCaptcha) return SizedBox();
+              return Column(children: [_buildContent(), _buildBottomButton()]);
+            },
+          ),
+        ),
       ),
     );
   }
@@ -118,43 +126,15 @@ class _DeviceVerifyDialogState extends State<DeviceVerifyDialog>
       children: [
         Padding(
           padding: EdgeInsets.all(16.r),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              InkWell(
-                onTap: widget.onClosing,
-                borderRadius: const BorderRadius.all(Radius.circular(12)),
-                child: Container(
-                  width: 24.r,
-                  height: 24.r,
-                  alignment: Alignment.center,
-                  decoration: BoxDecoration(
-                    shape: BoxShape.circle,
-                    border: BoxBorder.all(
-                      color: NowColors.c0xFF1C1F23,
-                      width: 1.6.w,
-                    ),
-                  ),
-                  child: const Icon(
-                    Icons.close_rounded,
-                    color: NowColors.c0xFF1C1F23,
-                    size: 16,
-                  ),
-                ),
-              ),
-              Text(
-                'Autenticacion de inicio de sesion',
-                style: TextStyle(
-                  fontSize: 18.sp,
-                  fontWeight: FontWeight.w500,
-                  color: NowColors.c0xFF1C1F23,
-                  height: 24 / 18,
-                ),
-                textAlign: TextAlign.center,
-              ),
-              SizedBox(width: 24.r, height: 24.r),
-            ],
+          child: Text(
+            'Autenticacion de inicio de sesion',
+            style: TextStyle(
+              fontSize: 18.sp,
+              fontWeight: FontWeight.w500,
+              color: NowColors.c0xFF1C1F23,
+              height: 24 / 18,
+            ),
+            textAlign: TextAlign.center,
           ),
         ),
         Container(
@@ -405,11 +385,20 @@ class _DeviceVerifyDialogState extends State<DeviceVerifyDialog>
         boxShadow: NowStyles.bottomShadows,
       ),
       child: EchoPrimaryButton(
-        text: 'Código de verificación',
-        onPressed: () => verifyModel.checkVerifyCode(
-          verifyCode: _verifyCtrl.text,
-          imageCode: _imageCtrl.text,
-        ),
+        text: 'Confirmar',
+        onPressed: () async {
+          FocusScope.of(context).requestFocus(FocusNode());
+          final checkOk = await verifyModel.checkVerifyCode(
+            verifyCode: _verifyCtrl.text,
+            imageCode: _imageCtrl.text,
+          );
+          if (checkOk != true) {
+            Future.delayed(const Duration(milliseconds: 500), () {
+              _verifyCtrl.clear();
+              setState(() => _inputCode = '');
+            });
+          }
+        },
       ),
     );
   }

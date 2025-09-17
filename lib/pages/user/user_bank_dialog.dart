@@ -24,10 +24,11 @@ class UserBankDialog extends StatefulWidget {
     required this.onConfirm,
   });
 
-  /// 显示添加银行卡弹窗
+  /// 显示用户银行卡选择弹窗
   static Future<BankCardResp$Item?> show(BuildContext context) {
     return showModalBottomSheet<BankCardResp$Item>(
       context: context,
+      useSafeArea: true,
       enableDrag: false,
       isDismissible: false,
       isScrollControlled: true,
@@ -65,7 +66,6 @@ class _UserBankDialogState extends State<UserBankDialog> {
   Widget build(BuildContext context) {
     return BottomSheet(
       onClosing: widget.onClosing,
-      enableDrag: false,
       backgroundColor: NowColors.c0xFFF3F3F5,
       shape: RoundedRectangleBorder(
         borderRadius: const BorderRadius.only(

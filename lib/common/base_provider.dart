@@ -17,6 +17,7 @@ abstract class BaseProvider extends ChangeNotifier {
     Future<R?> Function() action, {
     bool showLoading = true,
     bool toastError = true,
+    List<String> blockCodes = ApiResponse.globalBlockCode,
   }) async {
     R? result;
     dynamic error;
@@ -33,7 +34,7 @@ abstract class BaseProvider extends ChangeNotifier {
       notifyListeners();
       if (error != null) {
         if (error is ApiResponse) {
-          if (error.globalCode) {
+          if (blockCodes.contains(error.code)) {
             _apiError = error;
             notifyListeners();
           } else if (toastError) {
@@ -68,5 +69,8 @@ abstract class BaseProvider extends ChangeNotifier {
   void pushReplacement(String location) =>
       navigate((context) => context.pushReplacement(location));
 
-  void onCaptchaCode(String code) {}
+  void onCaptcha(
+    Future<String?> Function({required String? mobile, required int? type})
+    showCaptchaDialog,
+  ) {}
 }

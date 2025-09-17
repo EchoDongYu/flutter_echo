@@ -11,6 +11,7 @@ class StepInputField extends StatefulWidget {
   final bool isError;
   final bool showCounter;
   final bool obscureText;
+  final bool readOnly;
   final Widget? prefix;
   final Widget? suffix;
   final TextInputType? keyboardType;
@@ -26,6 +27,7 @@ class StepInputField extends StatefulWidget {
     this.isError = false,
     this.showCounter = false,
     this.obscureText = false,
+    this.readOnly = false,
     this.prefix,
     this.suffix,
     this.keyboardType,
@@ -146,6 +148,7 @@ class _StepInputFieldState extends State<StepInputField> {
                           inputFormatters: widget.inputFormatters,
                           maxLength: widget.maxLength,
                           obscureText: widget.obscureText,
+                          readOnly: widget.readOnly,
                           obscuringCharacter: '*',
                           maxLines: 1,
                           style: TextStyle(

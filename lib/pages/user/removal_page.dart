@@ -69,7 +69,7 @@ class RemovalPage extends StatelessWidget {
       ),
       bottomNavigationBar: WidgetHelper.buildBottomButton(
         text: 'Entiendo',
-        onPressed: () => context.go(AppRouter.main),
+        onPressed: () => context.go(AppRouter.loginPhone),
       ),
     );
   }

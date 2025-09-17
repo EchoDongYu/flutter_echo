@@ -163,7 +163,7 @@ class _LoginPasswordPageState extends State<LoginPasswordPage> {
             text: 'Iniciar sesión',
             enable: _isPasswordValid,
             onPressed: () {
-              FocusScope.of(context).unfocus();
+              FocusScope.of(context).requestFocus(FocusNode());
               loginModel.userLogin(_controller.text);
             },
           ),

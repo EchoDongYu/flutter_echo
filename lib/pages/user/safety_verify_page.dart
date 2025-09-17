@@ -9,7 +9,6 @@ import 'package:flutter_echo/ui/widget_helper.dart';
 import 'package:flutter_echo/ui/widgets/common_button.dart';
 import 'package:flutter_echo/ui/widgets/step_input_field.dart';
 import 'package:flutter_echo/ui/widgets/top_bar.dart';
-import 'package:flutter_echo/utils/common_utils.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
@@ -26,7 +25,6 @@ class _SafetyVerifyPageState extends State<SafetyVerifyPage> {
   final _controllers = List.generate(2, (index) {
     return TextEditingController();
   }, growable: false);
-  bool _isPhoneValid = false;
   bool _isCodeValid = false;
 
   AccountModel get accountModel =>
@@ -35,8 +33,13 @@ class _SafetyVerifyPageState extends State<SafetyVerifyPage> {
   @override
   void initState() {
     super.initState();
-    _controllers[0].addListener(_onPhoneChanged);
     _controllers[1].addListener(_onCodeChanged);
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      final account = LocalStorage().account;
+      if (account != null) {
+        _controllers[0].text = account;
+      }
+    });
   }
 
   @override
@@ -45,14 +48,6 @@ class _SafetyVerifyPageState extends State<SafetyVerifyPage> {
       controller.dispose();
     }
     super.dispose();
-  }
-
-  /// 手机号输入变化监听
-  void _onPhoneChanged() {
-    final phoneValid = _controllers[0].text.length == AppConst.phoneLen;
-    if (_isPhoneValid != phoneValid) {
-      setState(() => _isPhoneValid = phoneValid);
-    }
   }
 
   void _onCodeChanged() {
@@ -67,8 +62,11 @@ class _SafetyVerifyPageState extends State<SafetyVerifyPage> {
       mobile: _controllers[0].text,
       verifyCode: _controllers[1].text,
     );
-    if (removalOk == true && context.mounted) {
-      context.pushReplacement(AppRouter.removalSuccess);
+    if (removalOk == true) {
+      await LocalStorage().logout();
+      if (context.mounted) {
+        context.pushReplacement(AppRouter.removalSuccess);
+      }
     }
   }
 
@@ -137,7 +135,7 @@ class _SafetyVerifyPageState extends State<SafetyVerifyPage> {
             maxLength: AppConst.phoneLen,
             keyboardType: TextInputType.number,
             inputFormatters: [FilteringTextInputFormatter.digitsOnly],
-            showCounter: true,
+            readOnly: true,
             prefix: Container(
               margin: EdgeInsets.only(right: 8.w),
               padding: EdgeInsets.symmetric(horizontal: 6.w, vertical: 2.h),
@@ -169,7 +167,7 @@ class _SafetyVerifyPageState extends State<SafetyVerifyPage> {
           SizedBox(height: 32.h),
           EchoPrimaryButton(
             text: 'Próximo passo',
-            enable: _isPhoneValid && _isCodeValid,
+            enable: _isCodeValid,
             onPressed: () => _removal(context),
           ),
         ],
@@ -180,10 +178,11 @@ class _SafetyVerifyPageState extends State<SafetyVerifyPage> {
   Widget _buildSendBtn() => Consumer<AccountModel>(
     builder: (context, provider, _) {
       final countdown = provider.countdown;
-      final alpha = countdown > 0 || !_isPhoneValid ? 0.5 : 1.0;
+      final alpha = countdown > 0 ? 0.5 : 1.0;
       return Container(
+        alignment: Alignment.center,
         padding: EdgeInsets.symmetric(horizontal: 8.w, vertical: 7.h),
-        constraints: BoxConstraints(minWidth: 72.w),
+        constraints: BoxConstraints(minWidth: 100.w, minHeight: 36.h),
         decoration: BoxDecoration(
           gradient: LinearGradient(
             colors: [
@@ -195,19 +194,15 @@ class _SafetyVerifyPageState extends State<SafetyVerifyPage> {
         ),
         child: InkWell(
           onTap: () {
-            if (countdown == 0 && _isPhoneValid) {
-              if (_controllers[0].text != LocalStorage().account) {
-                toast('Ingrese el número de teléfono registrado');
-              } else {
-                provider.sendVerifyCode(type: 6);
-              }
+            if (countdown == 0) {
+              provider.sendVerifyCode(type: 6);
             }
           },
           child: Text(
             countdown > 0 ? 'Reenviar (${countdown}s)' : 'Código',
             style: TextStyle(
               color: Colors.white,
-              fontSize: 14.sp,
+              fontSize: countdown > 0 ? 11.sp : 14.sp,
               fontWeight: FontWeight.w500,
             ),
             textAlign: TextAlign.center,

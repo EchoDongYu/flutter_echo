@@ -50,7 +50,7 @@ class LocalStorage {
   Map<String, dynamic>? getObject(String key) {
     String? jsonString = _prefs.getString(key);
     if (jsonString != null) {
-      return jsonDecode(jsonString) as Map<String, dynamic>;
+      return jsonDecode(jsonString) as Map<String, dynamic>?;
     }
     return null;
   }
@@ -101,12 +101,12 @@ class LocalStorage {
     if (account != null) await _prefs.setString(AppConst.accountKey, account);
   }
 
-  void logout() {
-    _prefs.remove(AppConst.tokenKey);
-    _prefs.remove(AppConst.userGidKey);
-    _prefs.remove(AppConst.userInfoKey);
-    _prefs.remove(AppConst.accountKey);
-    _prefs.remove(AppConst.kycStepKey);
-    _prefs.remove(AppConst.kycDataKey);
+  Future<void> logout() async {
+    await _prefs.remove(AppConst.tokenKey);
+    await _prefs.remove(AppConst.userGidKey);
+    await _prefs.remove(AppConst.userInfoKey);
+    await _prefs.remove(AppConst.accountKey);
+    await _prefs.remove(AppConst.kycStepKey);
+    await _prefs.remove(AppConst.kycDataKey);
   }
 }

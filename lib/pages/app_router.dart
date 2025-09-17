@@ -49,6 +49,7 @@ import 'package:flutter_echo/providers/repay_provider.dart';
 import 'package:flutter_echo/providers/step_status_provider.dart';
 import 'package:flutter_echo/providers/submit_provider.dart';
 import 'package:flutter_echo/providers/user_bank_provider.dart';
+import 'package:flutter_echo/providers/whatsapp_provider.dart';
 import 'package:flutter_echo/utils/common_utils.dart';
 import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
@@ -177,12 +178,17 @@ class AppRouter {
 
       /// 授信倒计时页面
       GoRoute(
-        path: stepResult,
-        builder: (context, state) {
-          final params = state.uri.queryParameters;
-          final count = params[NavKey.count]?.tryParseInt;
-          return StepResultPage(countdown: count);
-        },
+        path: stepProcess,
+        builder: (context, state) => ChangeNotifierProvider(
+          create: (_) => StepStatusModel(),
+          builder: (_, _) {
+            final params = state.uri.queryParameters;
+            final count = params[NavKey.count]?.tryParseInt;
+            return PageConsumer<StepStatusModel>(
+              child: StepResultPage(countdown: count),
+            );
+          },
+        ),
       ),
 
       /// 授信拍照页面
@@ -200,12 +206,17 @@ class AppRouter {
       /// 授信失败页面
       GoRoute(
         path: stepFailed,
-        builder: (context, state) => const StepFailedPage(),
+        builder: (context, state) => ChangeNotifierProvider(
+          create: (_) => WhatsappModel(),
+          builder: (_, _) {
+            return PageConsumer<WhatsappModel>(child: const StepFailedPage());
+          },
+        ),
       ),
 
       /// 授信处理中页面
       GoRoute(
-        path: stepProcess,
+        path: stepResult,
         builder: (context, state) => ChangeNotifierProvider(
           create: (_) => StepStatusModel(),
           builder: (_, _) {
@@ -361,7 +372,11 @@ class AppRouter {
       /// 重置密码页面
       GoRoute(
         path: resetPassword,
-        builder: (context, state) => const ResetPasswordPage(),
+        builder: (context, state) {
+          final params = state.uri.queryParameters;
+          final status = params[NavKey.status]?.tryParseInt;
+          return ResetPasswordPage(status: status);
+        },
       ),
 
       /// 重置登录密码页面

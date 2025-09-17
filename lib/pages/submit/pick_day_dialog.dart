@@ -22,6 +22,7 @@ class PickDayDialog extends StatefulWidget {
   static Future<int?> show(BuildContext context, {required String title}) {
     return showModalBottomSheet<int>(
       context: context,
+      useSafeArea: true,
       enableDrag: false,
       isDismissible: false,
       isScrollControlled: true,

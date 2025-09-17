@@ -84,10 +84,7 @@ class _ProfilePageState extends State<ProfilePage> {
                             style: BorderStyle.solid,
                           ),
                         ),
-                        child: InkWell(
-                          onTap: () => context.push(AppRouter.demo),
-                          child: Image.asset(Drawable.iconLogo),
-                        ),
+                        child: Image.asset(Drawable.iconLogo),
                       ),
                       SizedBox(height: 12.h),
                       Text(
@@ -263,7 +260,13 @@ class _ProfilePageState extends State<ProfilePage> {
             _buildCard3Item(
               icon: Drawable.iconMineV1,
               text: 'Seguridad de la cuenta',
-              onTap: () => context.push(AppRouter.resetPassword),
+              onTap: () {
+                final uriRoute = Uri(
+                  path: AppRouter.resetPassword,
+                  queryParameters: {NavKey.status: mainModel.status.toString()},
+                );
+                context.push(uriRoute.toString());
+              },
             ),
           _buildCard3Item(
             icon: Drawable.iconMineV2,
@@ -393,10 +396,12 @@ class _ProfilePageState extends State<ProfilePage> {
         content: "¿Estás seguro de cerrar sesión?",
         confirmText: "Cancelar",
         cancelText: "Confirmar",
-        onCancel: () {
+        onCancel: () async {
           context.pop();
-          LocalStorage().logout();
-          context.go(AppRouter.loginPhone);
+          await LocalStorage().logout();
+          if (context.mounted) {
+            context.go(AppRouter.loginPhone);
+          }
         },
         onConfirm: () => context.pop(),
       ),
