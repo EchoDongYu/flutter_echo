@@ -7,6 +7,7 @@ import 'package:flutter_echo/services/api_service.dart';
 import 'package:flutter_echo/services/permission_service.dart';
 import 'package:flutter_echo/services/storage_service.dart';
 import 'package:flutter_echo/ui/dialogs/permission_dialog.dart';
+import 'package:flutter_echo/utils/common_utils.dart';
 import 'package:go_router/go_router.dart';
 
 class MainModel extends BaseProvider {
@@ -15,6 +16,8 @@ class MainModel extends BaseProvider {
 
   /// 0未授信 1授信中 2授信完成 3授信失败
   int? get status => _creditStatus;
+
+  bool get isLock => (_homeInfo?.u6n134OSpareCanBorrowAmount ?? 0) > 0;
 
   HomeInfoResp? get homeInfo => _homeInfo;
 
@@ -86,6 +89,12 @@ class MainModel extends BaseProvider {
   }
 
   void launchLoan({int? productId, double? amount}) async {
+    if (_homeInfo?.deepmostOHasOnLoan == true) {
+      toast(
+        'Usted tiene un préstamo en curso o en proceso. Por favor, espere a que se complete el desembolso antes de solicitar un nuevo préstamo.',
+      );
+      return;
+    }
     if (_creditStatus != 2) return;
     if (productId == null || amount == null || amount <= 0) {
       return;

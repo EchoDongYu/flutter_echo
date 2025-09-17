@@ -359,7 +359,8 @@ class _HomeLoanPageState extends State<HomeLoanPage> {
                   );
                 }
               },
-              enable: _pickedProduct?.faroucheOIsLock != true,
+              enable:
+                  provider.isLock || _pickedProduct?.faroucheOIsLock != true,
               text: 'Solicítelo ya',
             ),
           ],
