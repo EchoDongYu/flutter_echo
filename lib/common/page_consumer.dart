@@ -52,8 +52,10 @@ class _PageConsumerState<T extends BaseProvider> extends State<PageConsumer> {
             provider.consumeApiError();
             if (apiError.needLogin) {
               apiError.toastErrorMsg();
-              LocalStorage().logout();
-              GoRouter.of(context).go(AppRouter.loginPhone);
+              await LocalStorage().logout();
+              if (context.mounted) {
+                context.go(AppRouter.loginPhone);
+              }
             } else if (apiError.needCaptcha) {
               apiError.toastErrorMsg();
               provider.onCaptcha(({

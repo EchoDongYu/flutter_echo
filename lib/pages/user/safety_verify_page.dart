@@ -62,9 +62,11 @@ class _SafetyVerifyPageState extends State<SafetyVerifyPage> {
       mobile: _controllers[0].text,
       verifyCode: _controllers[1].text,
     );
-    if (removalOk == true && context.mounted) {
-      LocalStorage().logout();
-      context.pushReplacement(AppRouter.removalSuccess);
+    if (removalOk == true) {
+      await LocalStorage().logout();
+      if (context.mounted) {
+        context.pushReplacement(AppRouter.removalSuccess);
+      }
     }
   }
 

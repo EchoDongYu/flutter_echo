@@ -11,7 +11,6 @@ import 'package:flutter_echo/pages/main/profile_page.dart';
 import 'package:flutter_echo/providers/main_provider.dart';
 import 'package:flutter_echo/services/storage_service.dart';
 import 'package:flutter_echo/ui/dialogs/upgrade_dialog.dart';
-import 'package:flutter_echo/utils/common_utils.dart';
 import 'package:flutter_echo/utils/drawable_utils.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
@@ -26,7 +25,7 @@ class MainPage extends StatefulWidget {
   State<MainPage> createState() => _MainPageState();
 }
 
-class _MainPageState extends State<MainPage> with RouteAware {
+class _MainPageState extends State<MainPage> {
   final PageController _controller = PageController();
   int _currentPage = 0;
 
@@ -34,7 +33,8 @@ class _MainPageState extends State<MainPage> with RouteAware {
   void initState() {
     super.initState();
     WidgetsBinding.instance.addPostFrameCallback((_) async {
-      final mainInfo = await context.read<MainModel>().getMainBaseInfo();
+      final model = context.read<MainModel>();
+      final mainInfo = await model.getMainBaseInfo();
       await LocalStorage().set(AppConst.mainInfoKey, mainInfo);
       final packageInfo = await PackageInfo.fromPlatform();
       final version = packageInfo.version;
@@ -49,21 +49,9 @@ class _MainPageState extends State<MainPage> with RouteAware {
   }
 
   @override
-  void didChangeDependencies() {
-    super.didChangeDependencies();
-    routeObserver.subscribe(this, ModalRoute.of(context)!);
-  }
-
-  @override
   void dispose() {
     _controller.dispose();
-    routeObserver.unsubscribe(this);
     super.dispose();
-  }
-
-  @override
-  void didPopNext() {
-    context.read<MainModel>().getHomeInfo();
   }
 
   static const bottomItems = [

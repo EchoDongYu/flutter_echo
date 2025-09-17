@@ -689,20 +689,48 @@ Map<String, dynamic> _$LoanConfirmReqToJson(LoanConfirmReq instance) =>
 PicUploadReqReq _$PicUploadReqReqFromJson(Map<String, dynamic> json) =>
     PicUploadReqReq(
       raiaOUserGid: json['raia'] as String?,
+      d7x52pOBizChannel: json['d7x52p'] as String?,
+      s377v5OBizLine: json['s377v5'] as String?,
       ha3xp9OPicType: (json['ha3xp9'] as num?)?.toInt(),
       x01y7qOBase64String:
           (json['x01y7q'] as List<dynamic>?)
               ?.map((e) => e as String)
               .toList() ??
           [],
+      provenanceOPicResource: (json['provenance'] as num?)?.toInt(),
+      borrowFeeSumOWithoutCard: (json['borrowFeeSum'] as num?)?.toInt(),
+      waSmsOFaceCheck: (json['waSms'] as num?)?.toInt(),
     );
 
 Map<String, dynamic> _$PicUploadReqReqToJson(PicUploadReqReq instance) =>
     <String, dynamic>{
       'raia': instance.raiaOUserGid,
+      'd7x52p': instance.d7x52pOBizChannel,
+      's377v5': instance.s377v5OBizLine,
       'ha3xp9': instance.ha3xp9OPicType,
       'x01y7q': instance.x01y7qOBase64String,
+      'provenance': instance.provenanceOPicResource,
+      'borrowFeeSum': instance.borrowFeeSumOWithoutCard,
+      'waSms': instance.waSmsOFaceCheck,
     };
+
+OcrReqReq _$OcrReqReqFromJson(Map<String, dynamic> json) => OcrReqReq(
+  oj603uOApplyId: json['oj603u'] as String?,
+  raiaOUserGid: json['raia'] as String?,
+  su31n2OIdFrontUrl: json['su31n2'] as String?,
+  plutusOIdBackUrl: json['plutus'] as String?,
+  is9e52OIdCardType: (json['is9e52'] as num?)?.toInt(),
+  attributionSubOIdCardNum: json['attributionSub'] as String?,
+);
+
+Map<String, dynamic> _$OcrReqReqToJson(OcrReqReq instance) => <String, dynamic>{
+  'oj603u': instance.oj603uOApplyId,
+  'raia': instance.raiaOUserGid,
+  'su31n2': instance.su31n2OIdFrontUrl,
+  'plutus': instance.plutusOIdBackUrl,
+  'is9e52': instance.is9e52OIdCardType,
+  'attributionSub': instance.attributionSubOIdCardNum,
+};
 
 CollTimeReq _$CollTimeReqFromJson(Map<String, dynamic> json) => CollTimeReq(
   raiaOUserGid: json['raia'] as String?,
@@ -878,24 +906,42 @@ Map<String, dynamic> _$LivingDataReqToJson(
 
 PhotoSubmitReq _$PhotoSubmitReqFromJson(Map<String, dynamic> json) =>
     PhotoSubmitReq(
+      oj603uOApplyId: json['oj603u'] as String?,
       raiaOUserGid: json['raia'] as String?,
-      merdekaOIdCard: json['merdeka'] as String?,
-      is9e52OIdCardType: (json['is9e52'] as num?)?.toInt(),
       d7x52pOBizChannel: json['d7x52p'] as String?,
+      s377v5OBizLine: json['s377v5'] as String?,
+      is9e52OIdCardType: (json['is9e52'] as num?)?.toInt(),
+      attributionSubOIdCardNum: json['attributionSub'] as String?,
       su31n2OIdFrontUrl: json['su31n2'] as String?,
       plutusOIdBackUrl: json['plutus'] as String?,
-      hognutOLivingUrl: json['hognut'] as String?,
+      dripOSelfieUrl: json['drip'] as String?,
+      deviceImeiOSelfieUrl2: json['deviceImei'] as String?,
+      partialCollectionOSelfieUrl3: json['partialCollection'] as String?,
+      name: json['name'] as String?,
+      loanParam001OGender: (json['loanParam001'] as num?)?.toInt(),
+      gargetOBirthday: (json['garget'] as num?)?.toInt(),
+      borrowFeeSumOWithoutCard: (json['borrowFeeSum'] as num?)?.toInt(),
+      waSmsOFaceCheck: (json['waSms'] as num?)?.toInt(),
     );
 
 Map<String, dynamic> _$PhotoSubmitReqToJson(PhotoSubmitReq instance) =>
     <String, dynamic>{
+      'oj603u': instance.oj603uOApplyId,
       'raia': instance.raiaOUserGid,
-      'merdeka': instance.merdekaOIdCard,
-      'is9e52': instance.is9e52OIdCardType,
       'd7x52p': instance.d7x52pOBizChannel,
+      's377v5': instance.s377v5OBizLine,
+      'is9e52': instance.is9e52OIdCardType,
+      'attributionSub': instance.attributionSubOIdCardNum,
       'su31n2': instance.su31n2OIdFrontUrl,
       'plutus': instance.plutusOIdBackUrl,
-      'hognut': instance.hognutOLivingUrl,
+      'drip': instance.dripOSelfieUrl,
+      'deviceImei': instance.deviceImeiOSelfieUrl2,
+      'partialCollection': instance.partialCollectionOSelfieUrl3,
+      'name': instance.name,
+      'loanParam001': instance.loanParam001OGender,
+      'garget': instance.gargetOBirthday,
+      'borrowFeeSum': instance.borrowFeeSumOWithoutCard,
+      'waSms': instance.waSmsOFaceCheck,
     };
 
 SubmitDataReq _$SubmitDataReqFromJson(Map<String, dynamic> json) =>
@@ -1883,6 +1929,9 @@ HomeInfoResp _$HomeInfoRespFromJson(Map<String, dynamic> json) => HomeInfoResp(
   y934teOTotalAmount: (json['y934te'] as num?)?.toDouble(),
   yawnOExpectTime: (json['yawn'] as num?)?.toInt(),
   undyedOHasLoan: json['undyed'] as bool?,
+  firstCreditReportOFirstCreditSuccessReport:
+      json['firstCreditReport'] as bool?,
+  deepmostOHasOnLoan: json['deepmost'] as bool?,
 );
 
 Map<String, dynamic> _$HomeInfoRespToJson(HomeInfoResp instance) =>
@@ -1916,6 +1965,8 @@ Map<String, dynamic> _$HomeInfoRespToJson(HomeInfoResp instance) =>
       'y934te': instance.y934teOTotalAmount,
       'yawn': instance.yawnOExpectTime,
       'undyed': instance.undyedOHasLoan,
+      'firstCreditReport': instance.firstCreditReportOFirstCreditSuccessReport,
+      'deepmost': instance.deepmostOHasOnLoan,
     };
 
 LoanConfirmResp _$LoanConfirmRespFromJson(Map<String, dynamic> json) =>
@@ -1947,6 +1998,31 @@ PicUploadReqResp _$PicUploadReqRespFromJson(Map<String, dynamic> json) =>
     );
 
 Map<String, dynamic> _$PicUploadReqRespToJson(PicUploadReqResp instance) =>
+    <String, dynamic>{
+      'code': instance.code,
+      'msg': instance.msg,
+      'antiicer': instance.antiicerOMsgType,
+      'rumford': instance.rumfordOMsgDisplay,
+      'tympanum': instance.tympanumOMsgTitle,
+      'direct': instance.directOMsgBtn01,
+      'i9145g': instance.i9145gOMsgBtn02,
+      'data': instance.data?.toJson(),
+    };
+
+OcrReqResp _$OcrReqRespFromJson(Map<String, dynamic> json) => OcrReqResp(
+  code: json['code'] as String?,
+  msg: json['msg'] as String?,
+  antiicerOMsgType: (json['antiicer'] as num?)?.toInt(),
+  rumfordOMsgDisplay: (json['rumford'] as num?)?.toInt(),
+  tympanumOMsgTitle: json['tympanum'] as String?,
+  directOMsgBtn01: json['direct'] as String?,
+  i9145gOMsgBtn02: json['i9145g'] as String?,
+  data: json['data'] == null
+      ? null
+      : OcrReqResp$Data.fromJson(json['data'] as Map<String, dynamic>),
+);
+
+Map<String, dynamic> _$OcrReqRespToJson(OcrReqResp instance) =>
     <String, dynamic>{
       'code': instance.code,
       'msg': instance.msg,
@@ -2042,7 +2118,7 @@ LoanOrderResp _$LoanOrderRespFromJson(Map<String, dynamic> json) =>
       d7x52pOBizChannel: json['d7x52p'] as String?,
       pinionOUserCouponGid: json['pinion'] as String?,
       sk6s63OCouponAmount: (json['sk6s63'] as num?)?.toDouble(),
-      sweenyOWorkFlowId: (json['sweeny'] as num?)?.toInt(),
+      sweenyOWorkFlowId: json['sweeny'] as String?,
       brantOPurpose: (json['brant'] as num?)?.toInt(),
       mxs06uOApplyStatus: json['mxs06u'] as String?,
       r86mu7OProductTag: json['r86mu7'] as String?,
@@ -3388,17 +3464,55 @@ PicUploadReqResp$Data _$PicUploadReqResp$DataFromJson(
   Map<String, dynamic> json,
 ) => PicUploadReqResp$Data(
   raiaOUserGid: json['raia'] as String?,
-  gx0f5kOPictureUrl: json['gx0f5k'] as String?,
+  submissionTimeOPictureUrlList:
+      (json['submissionTime'] as List<dynamic>?)
+          ?.map((e) => e as String)
+          .toList() ??
+      [],
   nvooyfOObjectKey: json['nvooyf'] as String?,
+  oj603uOApplyId: json['oj603u'] as String?,
 );
 
 Map<String, dynamic> _$PicUploadReqResp$DataToJson(
   PicUploadReqResp$Data instance,
 ) => <String, dynamic>{
   'raia': instance.raiaOUserGid,
-  'gx0f5k': instance.gx0f5kOPictureUrl,
+  'submissionTime': instance.submissionTimeOPictureUrlList,
   'nvooyf': instance.nvooyfOObjectKey,
+  'oj603u': instance.oj603uOApplyId,
 };
+
+OcrReqResp$Data _$OcrReqResp$DataFromJson(Map<String, dynamic> json) =>
+    OcrReqResp$Data(
+      attributionSubOIdCardNum: json['attributionSub'] as String?,
+      name: json['name'] as String?,
+      collectionHashOResidence: json['collectionHash'] as String?,
+      financeChargeOPlaceOfBirth: json['financeCharge'] as String?,
+      borrowInterestOProvince: json['borrowInterest'] as String?,
+      gargetOBirthday: (json['garget'] as num?)?.toInt(),
+      loanParam001OGender: (json['loanParam001'] as num?)?.toInt(),
+      high: json['high'] as String?,
+      messageHeadingOCivilStatus: json['messageHeading'] as String?,
+      extensionPeriodOIssueDate: (json['extensionPeriod'] as num?)?.toInt(),
+      holisticOValidDate: (json['holistic'] as num?)?.toInt(),
+      demotionOIsOcrRequestRender: (json['demotion'] as num?)?.toInt(),
+    );
+
+Map<String, dynamic> _$OcrReqResp$DataToJson(OcrReqResp$Data instance) =>
+    <String, dynamic>{
+      'attributionSub': instance.attributionSubOIdCardNum,
+      'name': instance.name,
+      'collectionHash': instance.collectionHashOResidence,
+      'financeCharge': instance.financeChargeOPlaceOfBirth,
+      'borrowInterest': instance.borrowInterestOProvince,
+      'garget': instance.gargetOBirthday,
+      'loanParam001': instance.loanParam001OGender,
+      'high': instance.high,
+      'messageHeading': instance.messageHeadingOCivilStatus,
+      'extensionPeriod': instance.extensionPeriodOIssueDate,
+      'holistic': instance.holisticOValidDate,
+      'demotion': instance.demotionOIsOcrRequestRender,
+    };
 
 LoanPreInfoResp$Y5695eOProductFactory
 _$LoanPreInfoResp$Y5695eOProductFactoryFromJson(Map<String, dynamic> json) =>
@@ -4075,7 +4189,7 @@ _$BillDetailResp$GlacisORepaymentPlanList$ItemFromJson(
   e0a79hOIsCollectCase: json['e0a79h'] as bool?,
   d7x52pOBizChannel: json['d7x52p'] as String?,
   z38e62OOrderGid: json['z38e62'] as String?,
-  sweenyOWorkFlowId: (json['sweeny'] as num?)?.toInt(),
+  sweenyOWorkFlowId: json['sweeny'] as String?,
   remark: json['remark'] as String?,
   i2jk5fOPeriodStatus: (json['i2jk5f'] as num?)?.toInt(),
   emceeOReduceAmount: (json['emcee'] as num?)?.toDouble(),

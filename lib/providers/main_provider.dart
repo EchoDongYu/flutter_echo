@@ -7,21 +7,63 @@ import 'package:flutter_echo/services/api_service.dart';
 import 'package:flutter_echo/services/permission_service.dart';
 import 'package:flutter_echo/services/storage_service.dart';
 import 'package:flutter_echo/ui/dialogs/permission_dialog.dart';
+import 'package:flutter_echo/utils/common_utils.dart';
 import 'package:go_router/go_router.dart';
 
 class MainModel extends BaseProvider {
   int? _creditStatus;
+
+  HomeInfoResp? get homeInfo => _homeInfo;
   HomeInfoResp? _homeInfo;
 
   /// 0未授信 1授信中 2授信完成 3授信失败
   int? get status => _creditStatus;
 
-  HomeInfoResp? get homeInfo => _homeInfo;
+  HomeInfoResp$AssurOFaceList$Item? get pickedProduct => _pickedProduct;
+  HomeInfoResp$AssurOFaceList$Item? _pickedProduct;
+
+  double get minValue => _minValue;
+  double _minValue = 0;
+
+  double get maxValue => _maxValue;
+  double _maxValue = 0;
+
+  double get step => _step;
+  double _step = 0;
+
+  double get value => _value;
+  double _value = 0;
+
+  bool get isLock =>
+      (_homeInfo?.u6n134OSpareCanBorrowAmount ?? 0) <= 0 ||
+      _pickedProduct?.faroucheOIsLock == true;
+
+  void updateValue(double newValue) {
+    double clamped = newValue.clamp(_minValue, _maxValue);
+    double steps = ((clamped - _minValue) / _step).roundToDouble();
+    double snapped = (_minValue + steps * _step).clamp(_minValue, _maxValue);
+    _value = snapped;
+    notifyListeners();
+  }
+
+  void changeProduct(HomeInfoResp$AssurOFaceList$Item item) {
+    _pickedProduct = item;
+    _maxValue = item.xuwh2oOLoanRangeMax ?? 0;
+    _minValue = item.mojr11OLoanRangeMin ?? 0;
+    _step = item.marrowOLoanRangeUnit ?? 0;
+    _value = item.xuwh2oOLoanRangeMax ?? 0;
+    notifyListeners();
+  }
 
   Future<void> getHomeInfo() async {
     if (LocalStorage().isLogin) {
       _homeInfo = await launchRequest(() => Api.getHomeInfo());
       _creditStatus = _homeInfo?.bopomofoOCreditStatus;
+      _pickedProduct = _homeInfo?.assurOFaceList?.firstOrNull;
+      _maxValue = _pickedProduct?.xuwh2oOLoanRangeMax ?? 0;
+      _minValue = _pickedProduct?.mojr11OLoanRangeMin ?? 0;
+      _step = _pickedProduct?.marrowOLoanRangeUnit ?? 0;
+      _value = _pickedProduct?.xuwh2oOLoanRangeMax ?? 0;
     } else {
       _creditStatus = null;
       notifyListeners();
@@ -85,9 +127,17 @@ class MainModel extends BaseProvider {
     }
   }
 
-  void launchLoan({int? productId, double? amount}) async {
+  void launchLoan() async {
+    if (_homeInfo?.deepmostOHasOnLoan == true) {
+      toast(
+        'Usted tiene un préstamo en curso o en proceso. Por favor, espere a que se complete el desembolso antes de solicitar un nuevo préstamo.',
+      );
+      return;
+    }
     if (_creditStatus != 2) return;
-    if (productId == null || amount == null || amount <= 0) {
+    final amount = _value;
+    final productId = _pickedProduct?.foreyardOProductId;
+    if (productId == null || amount <= 0) {
       return;
     }
     final uriRoute = Uri(

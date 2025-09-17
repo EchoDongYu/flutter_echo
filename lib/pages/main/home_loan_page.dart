@@ -24,50 +24,6 @@ class HomeLoanPage extends StatefulWidget {
 }
 
 class _HomeLoanPageState extends State<HomeLoanPage> {
-  HomeInfoResp$AssurOFaceList$Item? _pickedProduct;
-  double _minValue = 0;
-  double _maxValue = 0;
-  double _step = 0;
-  double _value = 0;
-
-  MainModel get mainModel => Provider.of<MainModel>(context, listen: false);
-
-  @override
-  void initState() {
-    super.initState();
-    WidgetsBinding.instance.addPostFrameCallback((_) async {
-      final homeProduct = mainModel.homeInfo;
-      final item = homeProduct?.assurOFaceList?.firstOrNull;
-      final allLock = homeProduct?.nailheadOIsSpareLockAll == true;
-      setState(() {
-        _pickedProduct = allLock ? null : item;
-        if (item == null) {
-          _maxValue = homeProduct?.xuwh2oOLoanRangeMax ?? 0;
-          _minValue = homeProduct?.mojr11OLoanRangeMin ?? 0;
-          _step = homeProduct?.marrowOLoanRangeUnit ?? 0;
-          _value = homeProduct?.xuwh2oOLoanRangeMax ?? 0;
-        } else {
-          _maxValue = item.xuwh2oOLoanRangeMax ?? 0;
-          _minValue = item.mojr11OLoanRangeMin ?? 0;
-          _step = item.marrowOLoanRangeUnit ?? 0;
-          _value = item.xuwh2oOLoanRangeMax ?? 0;
-        }
-      });
-    });
-  }
-
-  @override
-  void dispose() {
-    super.dispose();
-  }
-
-  void _setValue(double newValue) {
-    double clamped = newValue.clamp(_minValue, _maxValue);
-    double steps = ((clamped - _minValue) / _step).roundToDouble();
-    double snapped = (_minValue + steps * _step).clamp(_minValue, _maxValue);
-    setState(() => _value = snapped);
-  }
-
   @override
   Widget build(BuildContext context) {
     return Stack(
@@ -291,7 +247,7 @@ class _HomeLoanPageState extends State<HomeLoanPage> {
                     scrollDirection: Axis.horizontal,
                     itemCount: list.length,
                     itemBuilder: (context, index) {
-                      return _buildTabItem(list[index]);
+                      return _buildTabItem(list[index], provider.pickedProduct);
                     },
                   ),
                 ),
@@ -309,12 +265,12 @@ class _HomeLoanPageState extends State<HomeLoanPage> {
             ),
             SizedBox(height: 20.h),
             ArcSlider(
-              min: _minValue,
-              max: _maxValue,
-              step: _step,
-              value: _value,
+              min: provider.minValue,
+              max: provider.maxValue,
+              step: provider.step,
+              value: provider.value,
               size: 305,
-              onChanged: _setValue,
+              onChanged: provider.updateValue,
             ),
             SizedBox(height: 7.h),
             Row(
@@ -323,7 +279,7 @@ class _HomeLoanPageState extends State<HomeLoanPage> {
                 SizedBox(
                   width: 45.w,
                   child: Text(
-                    _minValue.showRound,
+                    provider.minValue.showRound,
                     style: TextStyle(
                       fontSize: 10,
                       fontWeight: FontWeight.w400,
@@ -336,7 +292,7 @@ class _HomeLoanPageState extends State<HomeLoanPage> {
                 SizedBox(
                   width: 45.w,
                   child: Text(
-                    _maxValue.showRound,
+                    provider.maxValue.showRound,
                     style: TextStyle(
                       fontSize: 10,
                       fontWeight: FontWeight.w400,
@@ -351,15 +307,11 @@ class _HomeLoanPageState extends State<HomeLoanPage> {
             SizedBox(height: 24.h),
             EchoPrimaryButton(
               onPressed: () async {
+                final mainModel = context.read<MainModel>();
                 final lok = await mainModel.launchOk(context);
-                if (lok == true) {
-                  mainModel.launchLoan(
-                    productId: _pickedProduct?.foreyardOProductId,
-                    amount: _value,
-                  );
-                }
+                if (lok == true) mainModel.launchLoan();
               },
-              enable: _pickedProduct?.faroucheOIsLock != true,
+              enable: !provider.isLock,
               text: 'Solicítelo ya',
             ),
           ],
@@ -368,8 +320,11 @@ class _HomeLoanPageState extends State<HomeLoanPage> {
     },
   );
 
-  Widget _buildTabItem(HomeInfoResp$AssurOFaceList$Item item) {
-    if (_pickedProduct == item) {
+  Widget _buildTabItem(
+    HomeInfoResp$AssurOFaceList$Item item,
+    HomeInfoResp$AssurOFaceList$Item? pickedProduct,
+  ) {
+    if (pickedProduct == item) {
       return Stack(
         alignment: Alignment.center,
         children: [
@@ -413,15 +368,7 @@ class _HomeLoanPageState extends State<HomeLoanPage> {
       );
     }
     return InkWell(
-      onTap: () {
-        setState(() {
-          _pickedProduct = item;
-          _maxValue = item.xuwh2oOLoanRangeMax ?? 0;
-          _minValue = item.mojr11OLoanRangeMin ?? 0;
-          _step = item.marrowOLoanRangeUnit ?? 0;
-          _value = item.xuwh2oOLoanRangeMax ?? 0;
-        });
-      },
+      onTap: () => context.read<MainModel>().changeProduct(item),
       child: Container(
         width: 128.w,
         height: 72.h,

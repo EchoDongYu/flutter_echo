@@ -5858,7 +5858,9 @@
                 "za1s1e(o_spareCreditLine)",
                 "u6n134(o_spareCanBorrowAmount)",
                 "yawn(o_expectTime)",
-                "undyed(o_hasLoan)"
+                "undyed(o_hasLoan)",
+                "firstCreditReport(o_firstCreditSuccessReport)",
+                "deepmost(o_hasOnLoan)"
               ],
               "title": "MainBaseInfoRespVO",
               "description": "MainBaseInfoRespVO :MainBaseInfoRespVO",
@@ -6821,6 +6823,20 @@
                   "mock": {
                     "mock": "@boolean"
                   }
+                },
+                "firstCreditReport(o_firstCreditSuccessReport)": {
+                  "type": "boolean",
+                  "description": "是否首次授信成功上报",
+                  "mock": {
+                    "mock": "@boolean"
+                  }
+                },
+                "deepmost(o_hasOnLoan)": {
+                  "type": "boolean",
+                  "description": "是否有在贷订单",
+                  "mock": {
+                    "mock": "@boolean"
+                  }
                 }
               }
             }
@@ -6992,7 +7008,7 @@
         "tags": [
           "业务-借款"
         ],
-        "summary": "图片上传(H5)",
+        "summary": "图片上传（包含上传/滤波分检查/人脸检测）",
         "consumes": [
           "application/json"
         ],
@@ -7007,22 +7023,41 @@
               "type": "object",
               "required": [
                 "raia(o_userGid)",
+                "d7x52p(o_bizChannel)",
+                "s377v5(o_bizLine)",
                 "ha3xp9(o_picType)",
-                "x01y7q(o_base64String)"
+                "x01y7q(o_base64String)",
+                "provenance(o_picResource)",
+                "borrowFeeSum(o_withoutCard)",
+                "waSms(o_faceCheck)"
               ],
               "title": "PicSubmitReqDTO",
               "description": "PicSubmitReqDTO :PicSubmitReqDTO",
               "properties": {
                 "raia(o_userGid)": {
                   "type": "string",
-                  "description": "raia(o_userGid)",
+                  "description": "用户GID",
+                  "mock": {
+                    "mock": "@string"
+                  }
+                },
+                "d7x52p(o_bizChannel)": {
+                  "type": "string",
+                  "description": "包名",
+                  "mock": {
+                    "mock": "@string"
+                  }
+                },
+                "s377v5(o_bizLine)": {
+                  "type": "string",
+                  "description": "业务线：0(KzCash)、1(KzCash1)、2(KzCash2)",
                   "mock": {
                     "mock": "@string"
                   }
                 },
                 "ha3xp9(o_picType)": {
                   "type": "k30z72(o_number)",
-                  "description": "图片base64格式照片类型",
+                  "description": "图片类型：1、正面照;2、反面照;3、活体照片;",
                   "mock": {
                     "mock": "@Long"
                   }
@@ -7033,6 +7068,27 @@
                   "items": {
                     "type": "string",
                     "description": "图片base64格式"
+                  }
+                },
+                "provenance(o_picResource)": {
+                  "type": "k30z72(o_number)",
+                  "description": "图片来源：1、拍照；2、本地图库；[证件照必传参数]",
+                  "mock": {
+                    "mock": "@Long"
+                  }
+                },
+                "borrowFeeSum(o_withoutCard)": {
+                  "type": "k30z72(o_number)",
+                  "description": "当前是否无卡：0、实体卡授信、1、无卡授信；",
+                  "mock": {
+                    "mock": "@Long"
+                  }
+                },
+                "waSms(o_faceCheck)": {
+                  "type": "k30z72(o_number)",
+                  "description": "人脸校验模式：0、活体校验（默认）；1、自拍照校验；2、无人脸；",
+                  "mock": {
+                    "mock": "@Long"
                   }
                 }
               }
@@ -7045,7 +7101,15 @@
             "schema": {
               "type": "object",
               "title": "Response<PicSubmitRespDTO>",
-              "required": [],
+              "required": [
+                "code",
+                "msg",
+                "antiicer(o_msg_type)",
+                "tympanum(o_msg_title)",
+                "rumford(o_msg_display)",
+                "direct(o_msg_btn_01)",
+                "i9145g(o_msg_btn_02)"
+              ],
               "description": "Response<PicSubmitRespDTO> :Response",
               "properties": {
                 "code": {
@@ -7100,16 +7164,24 @@
                         "mock": "@string"
                       }
                     },
-                    "gx0f5k(o_pictureUrl)": {
-                      "type": "string",
-                      "description": "图片地址",
-                      "mock": {
-                        "mock": "@string"
+                    "submissionTime(o_pictureUrlList)": {
+                      "type": "array",
+                      "description": "图片地址列表 (图片https 全路径)",
+                      "items": {
+                        "type": "string",
+                        "description": "图片地址列表"
                       }
                     },
                     "nvooyf(o_objectKey)": {
                       "type": "string",
-                      "description": "obsobjectKey",
+                      "description": "obsobjectKey (图片唯一标识key)",
+                      "mock": {
+                        "mock": "@string"
+                      }
+                    },
+                    "oj603u(o_applyId)": {
+                      "type": "string",
+                      "description": "KYC申请ID",
                       "mock": {
                         "mock": "@string"
                       }
@@ -7117,9 +7189,241 @@
                   },
                   "required": [
                     "raia(o_userGid)",
-                    "gx0f5k(o_pictureUrl)",
-                    "nvooyf(o_objectKey)"
+                    "submissionTime(o_pictureUrlList)",
+                    "nvooyf(o_objectKey)",
+                    "oj603u(o_applyId)"
                   ]
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/b272/obergr": {
+      "post": {
+        "tags": [
+          "业务-授信"
+        ],
+        "summary": "证件照 OCR",
+        "consumes": [
+          "application/json"
+        ],
+        "modelId": "OcrReq",
+        "operationId": "ocrVerification",
+        "parameters": [
+          {
+            "name": "root",
+            "in": "body",
+            "description": "IdCardOrcReqVO :IdCardOrcReqVO",
+            "schema": {
+              "type": "object",
+              "required": [
+                "oj603u(o_applyId)",
+                "raia(o_userGid)",
+                "su31n2(o_idFrontUrl)",
+                "plutus(o_idBackUrl)",
+                "is9e52(o_idCardType)",
+                "attributionSub(o_idCardNum)"
+              ],
+              "title": "IdCardOrcReqVO",
+              "description": "IdCardOrcReqVO :IdCardOrcReqVO",
+              "properties": {
+                "oj603u(o_applyId)": {
+                  "type": "string",
+                  "description": "KYC申请ID",
+                  "mock": {
+                    "mock": "@string"
+                  }
+                },
+                "raia(o_userGid)": {
+                  "type": "string",
+                  "description": "用户id",
+                  "mock": {
+                    "mock": "@string"
+                  }
+                },
+                "su31n2(o_idFrontUrl)": {
+                  "type": "string",
+                  "description": "证件照正面url",
+                  "mock": {
+                    "mock": "@string"
+                  }
+                },
+                "plutus(o_idBackUrl)": {
+                  "type": "string",
+                  "description": "证件照反面url",
+                  "mock": {
+                    "mock": "@string"
+                  }
+                },
+                "is9e52(o_idCardType)": {
+                  "type": "k30z72(o_number)",
+                  "description": "证件类型：2、身份证",
+                  "mock": {
+                    "mock": "@Long"
+                  }
+                },
+                "attributionSub(o_idCardNum)": {
+                  "type": "string",
+                  "description": "证件号码",
+                  "mock": {
+                    "mock": "@string"
+                  }
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "type": "object",
+              "title": "Response<AwsTextractInfoVO>",
+              "required": [
+                "code",
+                "msg",
+                "antiicer(o_msg_type)",
+                "rumford(o_msg_display)",
+                "tympanum(o_msg_title)",
+                "direct(o_msg_btn_01)",
+                "i9145g(o_msg_btn_02)"
+              ],
+              "description": "Response<AwsTextractInfoVO> :Response",
+              "properties": {
+                "code": {
+                  "type": "string",
+                  "mock": {
+                    "mock": "@string"
+                  }
+                },
+                "msg": {
+                  "type": "string",
+                  "mock": {
+                    "mock": "@string"
+                  }
+                },
+                "antiicer(o_msg_type)": {
+                  "type": "k30z72(o_number)",
+                  "mock": {
+                    "mock": "@Long"
+                  }
+                },
+                "rumford(o_msg_display)": {
+                  "type": "k30z72(o_number)",
+                  "mock": {
+                    "mock": "@Long"
+                  }
+                },
+                "tympanum(o_msg_title)": {
+                  "type": "string",
+                  "mock": {
+                    "mock": "@string"
+                  }
+                },
+                "direct(o_msg_btn_01)": {
+                  "type": "string",
+                  "mock": {
+                    "mock": "@string"
+                  }
+                },
+                "i9145g(o_msg_btn_02)": {
+                  "type": "string",
+                  "mock": {
+                    "mock": "@string"
+                  }
+                },
+                "data": {
+                  "type": "object",
+                  "description": "AwsTextractInfoVO",
+                  "properties": {
+                    "attributionSub(o_idCardNum)": {
+                      "type": "string",
+                      "description": "证件号码",
+                      "mock": {
+                        "mock": "@string"
+                      }
+                    },
+                    "name": {
+                      "type": "string",
+                      "description": "全名",
+                      "mock": {
+                        "mock": "@string"
+                      }
+                    },
+                    "collectionHash(o_residence)": {
+                      "type": "string",
+                      "description": "居住地",
+                      "mock": {
+                        "mock": "@string"
+                      }
+                    },
+                    "financeCharge(o_placeOfBirth)": {
+                      "type": "string",
+                      "description": "出生地",
+                      "mock": {
+                        "mock": "@string"
+                      }
+                    },
+                    "borrowInterest(o_province)": {
+                      "type": "string",
+                      "description": "省份",
+                      "mock": {
+                        "mock": "@string"
+                      }
+                    },
+                    "garget(o_birthday)": {
+                      "type": "k30z72(o_number)",
+                      "description": "出生日期",
+                      "mock": {
+                        "mock": "@Long"
+                      }
+                    },
+                    "loanParam001(o_gender)": {
+                      "type": "k30z72(o_number)",
+                      "description": "性别：MASCULINO男=1；FEMEA女=2；",
+                      "mock": {
+                        "mock": "@Long"
+                      }
+                    },
+                    "high": {
+                      "type": "string",
+                      "description": "身高",
+                      "mock": {
+                        "mock": "@string"
+                      }
+                    },
+                    "messageHeading(o_civilStatus)": {
+                      "type": "string",
+                      "description": "公民身份",
+                      "mock": {
+                        "mock": "@string"
+                      }
+                    },
+                    "extensionPeriod(o_issueDate)": {
+                      "type": "k30z72(o_number)",
+                      "description": "签发日期",
+                      "mock": {
+                        "mock": "@Long"
+                      }
+                    },
+                    "holistic(o_validDate)": {
+                      "type": "k30z72(o_number)",
+                      "description": "有效日期",
+                      "mock": {
+                        "mock": "@Long"
+                      }
+                    },
+                    "demotion(o_isOcrRequestRender)": {
+                      "type": "k30z72(o_number)",
+                      "description": "OCR后端是否请求渲染：默认为-1;当满足后端请求条件时取值为1;不满足请求条件时取值为0;",
+                      "mock": {
+                        "mock": "@Long"
+                      }
+                    }
+                  },
+                  "required": []
                 }
               }
             }
@@ -9557,7 +9861,7 @@
         "tags": [
           "业务-授信"
         ],
-        "summary": "提交授信影像(H5)",
+        "summary": "提交授信影像",
         "consumes": [
           "application/json"
         ],
@@ -9567,60 +9871,140 @@
           {
             "name": "root",
             "in": "body",
-            "description": "PhotoSubmitReqDTO :PhotoSubmitReqDTO",
+            "description": "PhotoSubmitReqParamVO :PhotoSubmitReqParamVO",
             "schema": {
               "type": "object",
-              "required": [],
-              "title": "PhotoSubmitReqDTO",
-              "description": "PhotoSubmitReqDTO :PhotoSubmitReqDTO",
+              "required": [
+                "oj603u(o_applyId)",
+                "raia(o_userGid)",
+                "d7x52p(o_bizChannel)",
+                "s377v5(o_bizLine)",
+                "is9e52(o_idCardType)",
+                "attributionSub(o_idCardNum)",
+                "su31n2(o_idFrontUrl)",
+                "plutus(o_idBackUrl)",
+                "drip(o_selfieUrl)",
+                "deviceImei(o_selfieUrl2)",
+                "partialCollection(o_selfieUrl3)",
+                "name",
+                "loanParam001(o_gender)",
+                "garget(o_birthday)",
+                "borrowFeeSum(o_withoutCard)",
+                "waSms(o_faceCheck)"
+              ],
+              "title": "PhotoSubmitReqParamVO",
+              "description": "PhotoSubmitReqParamVO :PhotoSubmitReqParamVO",
               "properties": {
-                "raia(o_userGid)": {
-                  "type": "k30z72(o_number)",
-                  "description": "用户id",
+                "oj603u(o_applyId)": {
+                  "type": "string",
+                  "description": "KYC申请ID",
                   "mock": {
-                    "mock": "@Long"
+                    "mock": "@string"
                   }
                 },
-                "merdeka(o_idCard)": {
+                "raia(o_userGid)": {
                   "type": "string",
-                  "description": "证件号码",
+                  "description": "用户GID",
+                  "mock": {
+                    "mock": "@string"
+                  }
+                },
+                "d7x52p(o_bizChannel)": {
+                  "type": "string",
+                  "description": "马甲渠道，默认KzCash",
+                  "mock": {
+                    "mock": "@string"
+                  }
+                },
+                "s377v5(o_bizLine)": {
+                  "type": "string",
+                  "description": "业务线，业务线值相同则为马甲，不同则为共贷",
                   "mock": {
                     "mock": "@string"
                   }
                 },
                 "is9e52(o_idCardType)": {
                   "type": "k30z72(o_number)",
-                  "description": "证件类型（0=身份证）",
+                  "description": "证件类型：2、身份证；",
                   "mock": {
                     "mock": "@Long"
                   }
                 },
-                "d7x52p(o_bizChannel)": {
+                "attributionSub(o_idCardNum)": {
                   "type": "string",
-                  "description": "马甲渠道",
+                  "description": "证件号码",
                   "mock": {
                     "mock": "@string"
                   }
                 },
                 "su31n2(o_idFrontUrl)": {
                   "type": "string",
-                  "description": "证件照正面url",
+                  "description": "证件正面照地址",
                   "mock": {
                     "mock": "@string"
                   }
                 },
                 "plutus(o_idBackUrl)": {
                   "type": "string",
-                  "description": "证件反面照",
+                  "description": "证件背面照地址",
                   "mock": {
                     "mock": "@string"
                   }
                 },
-                "hognut(o_livingUrl)": {
+                "drip(o_selfieUrl)": {
                   "type": "string",
-                  "description": "活体照url",
+                  "description": "自拍照地址1：用户开始活体时正脸照",
                   "mock": {
                     "mock": "@string"
+                  }
+                },
+                "deviceImei(o_selfieUrl2)": {
+                  "type": "string",
+                  "description": "自拍照地址2：用户在进行活体采集中的一张照片",
+                  "mock": {
+                    "mock": "@string"
+                  }
+                },
+                "partialCollection(o_selfieUrl3)": {
+                  "type": "string",
+                  "description": "自拍照地址3：用户在完成活体采集时正对屏幕的照片",
+                  "mock": {
+                    "mock": "@string"
+                  }
+                },
+                "name": {
+                  "type": "string",
+                  "description": "姓名",
+                  "mock": {
+                    "mock": "@string"
+                  }
+                },
+                "loanParam001(o_gender)": {
+                  "type": "k30z72(o_number)",
+                  "description": "性别：1、男；2女",
+                  "mock": {
+                    "mock": "@Long"
+                  }
+                },
+                "garget(o_birthday)": {
+                  "type": "k30z72(o_number)",
+                  "description": "生日",
+                  "mock": {
+                    "mock": "@Long"
+                  }
+                },
+                "borrowFeeSum(o_withoutCard)": {
+                  "type": "k30z72(o_number)",
+                  "description": "当前是否无卡：0、实体卡授信（默认）、1、无卡授信；",
+                  "mock": {
+                    "mock": "@Long"
+                  }
+                },
+                "waSms(o_faceCheck)": {
+                  "type": "k30z72(o_number)",
+                  "description": "人脸校验模式：0、活体校验(默认)；1、自拍照校验（关闭SDK）；2、无人脸（关闭自拍照上传）；",
+                  "mock": {
+                    "mock": "@Long"
                   }
                 }
               }
@@ -9632,7 +10016,15 @@
             "description": "successful operation",
             "schema": {
               "type": "object",
-              "required": [],
+              "required": [
+                "code",
+                "msg",
+                "antiicer(o_msg_type)",
+                "rumford(o_msg_display)",
+                "tympanum(o_msg_title)",
+                "direct(o_msg_btn_01)",
+                "i9145g(o_msg_btn_02)"
+              ],
               "title": "Response",
               "description": "Response :Response",
               "properties": {

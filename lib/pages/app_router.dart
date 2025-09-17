@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter_echo/common/page_consumer.dart';
 import 'package:flutter_echo/pages/after/repay_confirm_page.dart';
 import 'package:flutter_echo/pages/after/repay_result_page.dart';
@@ -86,7 +87,9 @@ class AppRouter {
         path: main,
         builder: (context, state) => ChangeNotifierProvider(
           create: (_) => MainModel(),
-          builder: (_, _) => PageConsumer<MainModel>(child: const MainPage()),
+          builder: (_, _) {
+            return PageConsumer<MainModel>(child: MainPage(key: UniqueKey()));
+          },
         ),
       ),
 

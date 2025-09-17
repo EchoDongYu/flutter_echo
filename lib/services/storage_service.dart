@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:flutter_echo/common/constants.dart';
 import 'package:flutter_echo/models/swaggerApi.models.swagger.dart';
+import 'package:flutter_echo/providers/submit_provider.dart';
 import 'package:flutter_echo/utils/common_utils.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -101,12 +102,13 @@ class LocalStorage {
     if (account != null) await _prefs.setString(AppConst.accountKey, account);
   }
 
-  void logout() {
-    _prefs.remove(AppConst.tokenKey);
-    _prefs.remove(AppConst.userGidKey);
-    _prefs.remove(AppConst.userInfoKey);
-    _prefs.remove(AppConst.accountKey);
-    _prefs.remove(AppConst.kycStepKey);
-    _prefs.remove(AppConst.kycDataKey);
+  Future<void> logout() async {
+    SubmitModel.clearCachedData();
+    await _prefs.remove(AppConst.tokenKey);
+    await _prefs.remove(AppConst.userGidKey);
+    await _prefs.remove(AppConst.userInfoKey);
+    await _prefs.remove(AppConst.accountKey);
+    await _prefs.remove(AppConst.kycStepKey);
+    await _prefs.remove(AppConst.kycDataKey);
   }
 }
