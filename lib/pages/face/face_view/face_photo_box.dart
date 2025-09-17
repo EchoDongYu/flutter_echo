@@ -16,10 +16,12 @@ class FacePhotoBox extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return CommonBox(
+      margin: EdgeInsets.symmetric(horizontal: 12.w),
+      padding: EdgeInsets.symmetric(vertical: 24.h,horizontal: 16.w),
       child: Column(
         children: [
           Image.asset(facePhotoUrl, width: context.screenWidth, height: 160.h),
-          SizedBox(width: 36.h),
+          SizedBox(height: 36.h),
           Image.asset(faceTipsUrl, width: context.screenWidth, height: 86.h),
         ],
       ),

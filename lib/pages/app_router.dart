@@ -12,6 +12,8 @@ import 'package:flutter_echo/pages/before/apply_confirm_page.dart';
 import 'package:flutter_echo/pages/before/apply_result_page.dart';
 import 'package:flutter_echo/pages/bill/bill_detail_page.dart';
 import 'package:flutter_echo/pages/bill/bill_list_page.dart';
+import 'package:flutter_echo/pages/face/face_camera_page.dart';
+import 'package:flutter_echo/pages/face/face_identification_page.dart';
 import 'package:flutter_echo/pages/login/login_code_page.dart';
 import 'package:flutter_echo/pages/login/login_password_page.dart';
 import 'package:flutter_echo/pages/login/login_phone_page.dart';
@@ -65,6 +67,8 @@ class AppRouter {
   static const String stepResult = '/step_result';
   static const String stepFailed = '/step_failed';
   static const String stepProcess = '/step_process';
+  static const String faceCamera = '/face_camera';
+  static const String faceIdentification = '/face_identification';
   static const String applyConfirm = '/apply_confirm';
   static const String applyFailed = '/apply_failed';
   static const String applyProcess = '/apply_process';
@@ -179,6 +183,18 @@ class AppRouter {
           final count = params[NavKey.count]?.tryParseInt;
           return StepResultPage(countdown: count);
         },
+      ),
+
+      /// 授信拍照页面
+      GoRoute(
+        path: faceCamera,
+        builder: (context, state) => const FaceCameraPage(),
+      ),
+
+      /// 授信认证页面
+      GoRoute(
+        path: faceIdentification,
+        builder: (context, state) => const FaceIdentificationPage(),
       ),
 
       /// 授信失败页面

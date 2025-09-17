@@ -129,7 +129,7 @@ class _HomeLoanPageState extends State<HomeLoanPage> {
           boxShadow: NowStyles.cardShadows,
         ),
         child: InkWell(
-          onTap: () {
+          onTap: () async{
             // 0-借款处理中 1-账单详情 2-借款失败
             switch (bill.suffOLoanStatus) {
               case -1:
