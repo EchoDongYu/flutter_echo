@@ -2620,8 +2620,8 @@ Map<String, dynamic> _$CouponPopRespToJson(CouponPopResp instance) =>
 
 LoanBillResp _$LoanBillRespFromJson(Map<String, dynamic> json) => LoanBillResp(
   y934teOTotalAmount: (json['y934te'] as num?)?.toDouble(),
-  total: (json['total'] as num?)?.toInt(),
-  pages: (json['pages'] as num?)?.toInt(),
+  total: json['total'] as String?,
+  pages: json['pages'] as String?,
   ouxtd3OLoanList: (json['ouxtd3'] as List<dynamic>?)
       ?.map(
         (e) => LoanBillResp$Ouxtd3OLoanList$Item.fromJson(

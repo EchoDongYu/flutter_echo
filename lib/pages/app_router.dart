@@ -235,18 +235,6 @@ class AppRouter {
         builder: (context, state) => const RepayResultPage(),
       ),
 
-      /// 账单列表页面
-      GoRoute(
-        path: billList,
-        builder: (context, state) => const BillListPage(),
-      ),
-
-      /// 账单详情页面
-      GoRoute(
-        path: billDetail,
-        builder: (context, state) => const BillDetailPage(),
-      ),
-
       /// 安全验证页面
       GoRoute(
         path: safetyVerify,

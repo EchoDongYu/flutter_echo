@@ -37,6 +37,7 @@ class Drawable {
   static const String iconSelectOff = 'assets/images/icon_select_off.png';
   static const String iconSelectOn = 'assets/images/icon_select_on.png';
   static const String iconStatusCard = 'assets/images/icon_status_card.png';
+  static const String iconStatusHis = 'assets/images/icon_status_his.png';
   static const String iconStatusLoad1 = 'assets/images/icon_status_load1.png';
   static const String iconStatusLoad2 = 'assets/images/icon_status_load2.png';
   static const String iconStatusLoad3 = 'assets/images/icon_status_load3.png';

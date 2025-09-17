@@ -16138,9 +16138,9 @@ class LoanBillResp {
   @JsonKey(name: 'y934te')
   final double? y934teOTotalAmount;
   @JsonKey(name: 'total')
-  final int? total;
+  final String? total;
   @JsonKey(name: 'pages')
-  final int? pages;
+  final String? pages;
   @JsonKey(name: 'ouxtd3')
   final List<LoanBillResp$Ouxtd3OLoanList$Item>? ouxtd3OLoanList;
 
@@ -16187,8 +16187,8 @@ class LoanBillResp {
 extension $LoanBillRespExtension on LoanBillResp {
   LoanBillResp copyWith({
     double? y934teOTotalAmount,
-    int? total,
-    int? pages,
+    String? total,
+    String? pages,
     List<LoanBillResp$Ouxtd3OLoanList$Item>? ouxtd3OLoanList,
   }) {
     return LoanBillResp(
@@ -16201,8 +16201,8 @@ extension $LoanBillRespExtension on LoanBillResp {
 
   LoanBillResp copyWithWrapped({
     Wrapped<double?>? y934teOTotalAmount,
-    Wrapped<int?>? total,
-    Wrapped<int?>? pages,
+    Wrapped<String?>? total,
+    Wrapped<String?>? pages,
     Wrapped<List<LoanBillResp$Ouxtd3OLoanList$Item>?>? ouxtd3OLoanList,
   }) {
     return LoanBillResp(

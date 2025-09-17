@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_echo/common/app_theme.dart';
 import 'package:flutter_echo/ui/widgets/common_button.dart';
-import 'package:flutter_echo/utils/common_utils.dart';
 import 'package:flutter_echo/utils/drawable_utils.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -25,8 +24,8 @@ class BillListItem extends StatelessWidget {
     required this.onPagar,
     required this.onDetails,
     required this.billListItemBox,
-    this.isShowPagar = true,
-    this.isShowFill = false,
+    this.isShowPagar = false,
+    this.isShowFill = true,
   });
 
   // 状态对应的颜色和文字
@@ -117,29 +116,7 @@ class BillListItem extends StatelessWidget {
           billListItemBox,
           SizedBox(height: 12.h),
           // 底部按钮
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              SizedBox(
-                width: context.screenWidth * 0.4,
-                child: EchoOutlinedButton(
-                  text: 'Detalles',
-                  onPressed: onDetails,
-                ),
-              ),
-              Visibility(
-                visible: isShowPagar,
-                child: SizedBox(
-                  width: context.screenWidth * 0.4,
-                  child: EchoSecondaryButton(
-                    filledColor: _statusStyle["color"],
-                    text: 'Pagar',
-                    onPressed: onPagar,
-                  ),
-                ),
-              ),
-            ],
-          ),
+          EchoOutlinedButton(text: 'Detalles', onPressed: onDetails),
         ],
       ),
     );
