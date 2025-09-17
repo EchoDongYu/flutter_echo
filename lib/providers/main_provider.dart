@@ -15,6 +15,7 @@ class MainModel extends BaseProvider {
 
   HomeInfoResp? get homeInfo => _homeInfo;
   HomeInfoResp? _homeInfo;
+  static MainInfoResp? _mainInfo;
 
   /// 0未授信 1授信中 2授信完成 3授信失败
   int? get status => _creditStatus;
@@ -22,14 +23,11 @@ class MainModel extends BaseProvider {
   HomeInfoResp$AssurOFaceList$Item? get pickedProduct => _pickedProduct;
   HomeInfoResp$AssurOFaceList$Item? _pickedProduct;
 
-  double get minValue => _minValue;
-  double _minValue = 0;
+  double get minValue => _pickedProduct?.mojr11OLoanRangeMin ?? 0;
 
-  double get maxValue => _maxValue;
-  double _maxValue = 0;
+  double get maxValue => _pickedProduct?.xuwh2oOLoanRangeMax ?? 0;
 
-  double get step => _step;
-  double _step = 0;
+  double get step => _pickedProduct?.marrowOLoanRangeUnit ?? 0;
 
   double get value => _value;
   double _value = 0;
@@ -39,18 +37,15 @@ class MainModel extends BaseProvider {
       _pickedProduct?.faroucheOIsLock == true;
 
   void updateValue(double newValue) {
-    double clamped = newValue.clamp(_minValue, _maxValue);
-    double steps = ((clamped - _minValue) / _step).roundToDouble();
-    double snapped = (_minValue + steps * _step).clamp(_minValue, _maxValue);
+    double clamped = newValue.clamp(minValue, maxValue);
+    double steps = ((clamped - minValue) / step).roundToDouble();
+    double snapped = (minValue + steps * step).clamp(minValue, maxValue);
     _value = snapped;
     notifyListeners();
   }
 
   void changeProduct(HomeInfoResp$AssurOFaceList$Item item) {
     _pickedProduct = item;
-    _maxValue = item.xuwh2oOLoanRangeMax ?? 0;
-    _minValue = item.mojr11OLoanRangeMin ?? 0;
-    _step = item.marrowOLoanRangeUnit ?? 0;
     _value = item.xuwh2oOLoanRangeMax ?? 0;
     notifyListeners();
   }
@@ -60,9 +55,6 @@ class MainModel extends BaseProvider {
       _homeInfo = await launchRequest(() => Api.getHomeInfo());
       _creditStatus = _homeInfo?.bopomofoOCreditStatus;
       _pickedProduct = _homeInfo?.assurOFaceList?.firstOrNull;
-      _maxValue = _pickedProduct?.xuwh2oOLoanRangeMax ?? 0;
-      _minValue = _pickedProduct?.mojr11OLoanRangeMin ?? 0;
-      _step = _pickedProduct?.marrowOLoanRangeUnit ?? 0;
       _value = _pickedProduct?.xuwh2oOLoanRangeMax ?? 0;
     } else {
       _creditStatus = null;
@@ -71,8 +63,9 @@ class MainModel extends BaseProvider {
   }
 
   Future<MainInfoResp?> getMainBaseInfo() async {
-    if (LocalStorage().isLogin) {
-      return Api.getMainBaseInfo();
+    if (LocalStorage().isLogin && _mainInfo == null) {
+      _mainInfo = await Api.getMainBaseInfo();
+      return _mainInfo;
     }
     return null;
   }
