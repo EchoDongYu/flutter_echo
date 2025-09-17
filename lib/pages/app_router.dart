@@ -30,6 +30,8 @@ import 'package:flutter_echo/pages/user/web_page.dart';
 import 'package:flutter_echo/providers/about_us_provider.dart';
 import 'package:flutter_echo/providers/account_provider.dart';
 import 'package:flutter_echo/providers/apply_provider.dart';
+import 'package:flutter_echo/providers/bill_detail_provider.dart';
+import 'package:flutter_echo/providers/bill_provider.dart';
 import 'package:flutter_echo/providers/feedback_provider.dart';
 import 'package:flutter_echo/providers/login_provider.dart';
 import 'package:flutter_echo/providers/main_provider.dart';
@@ -338,6 +340,31 @@ class AppRouter {
           final url = params[NavKey.url];
           return CommonWebPage(title: title, url: url!);
         },
+      ),
+
+      /// 账单列表页面
+      GoRoute(
+        path: billList,
+        builder: (context, state) => ChangeNotifierProvider(
+          create: (_) => BillModel()..fetchBillListData(),
+          builder: (context, state) {
+            return PageConsumer<BillModel>(child: const BillListPage());
+          },
+        ),
+      ),
+
+      /// 账单详情页面
+      GoRoute(
+        path: billDetail,
+        builder: (context, state) => ChangeNotifierProvider(
+          create: (_) => BillDetailModel()
+            ..fetchBillDetailData(
+              loanGid: state.uri.queryParameters[NavKey.id]?.tryParseInt,
+            ),
+          builder: (context, state) {
+            return PageConsumer<BillDetailModel>(child: const BillDetailPage());
+          },
+        ),
       ),
 
       /// 测试入口
