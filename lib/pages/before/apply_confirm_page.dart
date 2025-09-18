@@ -62,6 +62,7 @@ class _ApplyConfirmPageState extends State<ApplyConfirmPage> {
           hasTransPwd: loanInfo?.qn9yimOHasTransPwd == 1,
           orderGid: loanInfo?.z38e62OOrderGid,
         );
+        if (password == null) return;
       }
       applyModel.confirmLoan(
         bank: _pickedBank,
