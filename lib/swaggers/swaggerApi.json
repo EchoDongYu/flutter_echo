@@ -6837,6 +6837,13 @@
                   "mock": {
                     "mock": "@boolean"
                   }
+                },
+                "nookie(o_canBorrowAmount)": {
+                  "type": "k30z72(o_number)",
+                  "description": "可用额度",
+                  "mock": {
+                    "mock": "@float"
+                  }
                 }
               }
             }
