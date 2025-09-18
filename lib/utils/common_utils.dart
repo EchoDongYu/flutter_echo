@@ -85,27 +85,37 @@ class FlutterPlatform {
   }
 }
 
+final uriH5Privacy = Uri(
+  path: AppRouter.appWeb,
+  queryParameters: {
+    NavKey.title: 'Politica de privacidad',
+    NavKey.url: AppConst.h5Privacy,
+  },
+);
+
+final uriH5Service = Uri(
+  path: AppRouter.appWeb,
+  queryParameters: {
+    NavKey.title: 'Acuerdo de servicio',
+    NavKey.url: AppConst.h5Service,
+  },
+);
+
 extension ContextNav on BuildContext {
   void pushH5Privacy() {
-    final uriRoute = Uri(
-      path: AppRouter.appWeb,
-      queryParameters: {
-        NavKey.title: 'Politica de privacidad',
-        NavKey.url: AppConst.h5Privacy,
-      },
-    );
-    push(uriRoute.toString());
+    push(uriH5Privacy.toString());
   }
 
   void pushH5Service() {
-    final uriRoute = Uri(
-      path: AppRouter.appWeb,
-      queryParameters: {
-        NavKey.title: 'Acuerdo de servicio',
-        NavKey.url: AppConst.h5Service,
-      },
-    );
-    push(uriRoute.toString());
+    push(uriH5Service.toString());
+  }
+
+  void pushReplacementH5Privacy() {
+    pushReplacement(uriH5Privacy.toString());
+  }
+
+  void pushReplacementH5Service() {
+    pushReplacement(uriH5Service.toString());
   }
 }
 
