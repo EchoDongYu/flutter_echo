@@ -102,6 +102,7 @@ class PermissionDialog extends StatelessWidget {
                   ),
                   SizedBox(height: 10.h),
                   _buildStepItem(0),
+                  _buildStepItem(1),
                   Padding(
                     padding: EdgeInsets.symmetric(
                       horizontal: 60.w,
@@ -113,7 +114,7 @@ class PermissionDialog extends StatelessWidget {
                       fit: BoxFit.fitWidth,
                     ),
                   ),
-                  _buildStepItem(1),
+                  _buildStepItem(2),
                   Padding(
                     padding: EdgeInsets.symmetric(
                       horizontal: 60.w,
@@ -125,7 +126,6 @@ class PermissionDialog extends StatelessWidget {
                       fit: BoxFit.fitWidth,
                     ),
                   ),
-                  _buildStepItem(2),
                 ],
               ),
             ),
