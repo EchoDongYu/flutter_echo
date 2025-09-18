@@ -11803,6 +11803,7 @@ class HomeInfoResp {
     this.undyedOHasLoan,
     this.firstCreditReportOFirstCreditSuccessReport,
     this.deepmostOHasOnLoan,
+    this.nookieOCanBorrowAmount,
   });
 
   @JsonKey(name: 'bopomofo')
@@ -11861,6 +11862,8 @@ class HomeInfoResp {
   final bool? firstCreditReportOFirstCreditSuccessReport;
   @JsonKey(name: 'deepmost')
   final bool? deepmostOHasOnLoan;
+  @JsonKey(name: 'nookie')
+  final double? nookieOCanBorrowAmount;
 
   factory HomeInfoResp.fromJson(Map<String, dynamic> json) =>
       _$HomeInfoRespFromJson(json);
@@ -12035,6 +12038,11 @@ class HomeInfoResp {
                 const DeepCollectionEquality().equals(
                   other.deepmostOHasOnLoan,
                   deepmostOHasOnLoan,
+                )) &&
+            (identical(other.nookieOCanBorrowAmount, nookieOCanBorrowAmount) ||
+                const DeepCollectionEquality().equals(
+                  other.nookieOCanBorrowAmount,
+                  nookieOCanBorrowAmount,
                 )));
   }
 
@@ -12072,6 +12080,7 @@ class HomeInfoResp {
         firstCreditReportOFirstCreditSuccessReport,
       ) ^
       const DeepCollectionEquality().hash(deepmostOHasOnLoan) ^
+      const DeepCollectionEquality().hash(nookieOCanBorrowAmount) ^
       runtimeType.hashCode;
 }
 
@@ -12106,6 +12115,7 @@ extension $HomeInfoRespExtension on HomeInfoResp {
     bool? undyedOHasLoan,
     bool? firstCreditReportOFirstCreditSuccessReport,
     bool? deepmostOHasOnLoan,
+    double? nookieOCanBorrowAmount,
   }) {
     return HomeInfoResp(
       bopomofoOCreditStatus:
@@ -12149,6 +12159,8 @@ extension $HomeInfoRespExtension on HomeInfoResp {
           firstCreditReportOFirstCreditSuccessReport ??
           this.firstCreditReportOFirstCreditSuccessReport,
       deepmostOHasOnLoan: deepmostOHasOnLoan ?? this.deepmostOHasOnLoan,
+      nookieOCanBorrowAmount:
+          nookieOCanBorrowAmount ?? this.nookieOCanBorrowAmount,
     );
   }
 
@@ -12183,6 +12195,7 @@ extension $HomeInfoRespExtension on HomeInfoResp {
     Wrapped<bool?>? undyedOHasLoan,
     Wrapped<bool?>? firstCreditReportOFirstCreditSuccessReport,
     Wrapped<bool?>? deepmostOHasOnLoan,
+    Wrapped<double?>? nookieOCanBorrowAmount,
   }) {
     return HomeInfoResp(
       bopomofoOCreditStatus: (bopomofoOCreditStatus != null
@@ -12267,6 +12280,9 @@ extension $HomeInfoRespExtension on HomeInfoResp {
       deepmostOHasOnLoan: (deepmostOHasOnLoan != null
           ? deepmostOHasOnLoan.value
           : this.deepmostOHasOnLoan),
+      nookieOCanBorrowAmount: (nookieOCanBorrowAmount != null
+          ? nookieOCanBorrowAmount.value
+          : this.nookieOCanBorrowAmount),
     );
   }
 }

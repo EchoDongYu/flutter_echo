@@ -33,7 +33,7 @@ class MainModel extends BaseProvider {
   double _value = 0;
 
   bool get isLock =>
-      (_homeInfo?.u6n134OSpareCanBorrowAmount ?? 0) <= 0 ||
+      (_homeInfo?.nookieOCanBorrowAmount ?? 0) <= 0 ||
       _pickedProduct?.faroucheOIsLock == true;
 
   void updateValue(double newValue) {

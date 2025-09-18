@@ -139,19 +139,19 @@ class _ArcSliderState extends State<ArcSlider> {
                         progressColor: NowColors.c0xFF3288F1,
                       ),
                     ),
-                    SizedBox(height: 33),
-                  ],
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    _IncDecButton(
-                      icon: Icons.remove_rounded,
-                      onTap: () => _setByStep(-1),
-                    ),
-                    _IncDecButton(
-                      icon: Icons.add_rounded,
-                      onTap: () => _setByStep(1),
+                    SizedBox(height: 20),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        _IncDecButton(
+                          icon: Icons.remove_rounded,
+                          onTap: () => _setByStep(-1),
+                        ),
+                        _IncDecButton(
+                          icon: Icons.add_rounded,
+                          onTap: () => _setByStep(1),
+                        ),
+                      ],
                     ),
                   ],
                 ),
