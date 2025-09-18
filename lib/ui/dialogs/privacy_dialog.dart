@@ -5,6 +5,7 @@ import 'package:flutter_echo/services/storage_service.dart';
 import 'package:flutter_echo/ui/widget_helper.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
+import 'package:url_launcher/url_launcher.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 
 /// 隐私政策弹窗
@@ -56,8 +57,15 @@ class _PrivacyDialogState extends State<PrivacyDialog> {
         NavigationDelegate(
           onPageStarted: (_) => setState(() => _isLoading = true),
           onPageFinished: (_) => setState(() => _isLoading = false),
-          onNavigationRequest: (request) {
+          onNavigationRequest: (request) async {
             // 拦截逻辑（可选）
+            if (!request.url.startsWith('http')) {
+              final Uri url = Uri.parse(request.url);
+              if (await canLaunchUrl(url)) {
+                launchUrl(url, mode: LaunchMode.externalApplication);
+              }
+              return NavigationDecision.prevent;
+            }
             return NavigationDecision.navigate;
           },
         ),
