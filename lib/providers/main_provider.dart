@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_echo/common/base_provider.dart';
+import 'package:flutter_echo/common/constants.dart';
 import 'package:flutter_echo/models/swaggerApi.models.swagger.dart';
 import 'package:flutter_echo/pages/app_router.dart';
 import 'package:flutter_echo/pages/main/track_dialog.dart';
@@ -15,7 +16,12 @@ class MainModel extends BaseProvider {
 
   HomeInfoResp? get homeInfo => _homeInfo;
   HomeInfoResp? _homeInfo;
-  static MainInfoResp? _mainInfo;
+
+  MainInfoResp? get mainInfo => _mainInfo;
+  MainInfoResp? _mainInfo;
+
+  bool get hasPasswordEntry =>
+      mainInfo?.fm50w8OLoginPwd == true || (mainInfo?.cressyOTraderPwd == true && _creditStatus ==2);
 
   /// 0未授信 1授信中 2授信完成 3授信失败
   int? get status => _creditStatus;
@@ -65,9 +71,9 @@ class MainModel extends BaseProvider {
   Future<MainInfoResp?> getMainBaseInfo() async {
     if (LocalStorage().isLogin && _mainInfo == null) {
       _mainInfo = await Api.getMainBaseInfo();
-      return _mainInfo;
+      await LocalStorage().set(AppConst.mainInfoKey, _mainInfo);
     }
-    return null;
+    return _mainInfo;
   }
 
   void launchDefault() async {

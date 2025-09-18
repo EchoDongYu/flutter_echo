@@ -3,7 +3,6 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_echo/common/app_theme.dart';
-import 'package:flutter_echo/common/constants.dart';
 import 'package:flutter_echo/models/common_model.dart';
 import 'package:flutter_echo/pages/app_router.dart';
 import 'package:flutter_echo/pages/main/home_page.dart';
@@ -35,7 +34,6 @@ class _MainPageState extends State<MainPage> {
     WidgetsBinding.instance.addPostFrameCallback((_) async {
       final model = context.read<MainModel>();
       final mainInfo = await model.getMainBaseInfo();
-      await LocalStorage().set(AppConst.mainInfoKey, mainInfo);
       final packageInfo = await PackageInfo.fromPlatform();
       final version = packageInfo.version;
       final upgrade = mainInfo?.b369n2OUpgradeVersion?.contains(version);

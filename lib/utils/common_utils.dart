@@ -9,7 +9,7 @@ import 'package:flutter_echo/pages/app_router.dart';
 import 'package:go_router/go_router.dart';
 import 'package:intl/intl.dart';
 import 'package:oktoast/oktoast.dart';
-import 'package:timezone/browser.dart' as tz;
+import 'package:timezone/timezone.dart' as tz;
 import 'package:url_launcher/url_launcher.dart';
 
 void debugLog(String message, {Object? error, StackTrace? stackTrace}) {
