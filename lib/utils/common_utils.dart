@@ -68,14 +68,19 @@ class FlutterPlatform {
   };
 
   static Future<void> launchWhatsApp(String? phone) async {
-    final Uri whatsappUri = Uri.parse('whatsapp://send?phone=$phone');
-    if (await canLaunchUrl(whatsappUri)) {
-      await launchUrl(whatsappUri);
+    if (phone?.startsWith('http') == true) {
+      await launchUrl(Uri.parse(phone!));
     } else {
-      final Uri waUri = Uri.parse(
-        'https://wa.me/${phone?.replaceAll('+', '')}',
-      );
-      await launchUrl(waUri);
+      final mobile = phone?.replaceAll('+', '');
+      final Uri whatsappUri = Uri.parse('whatsapp://send?phone=$mobile');
+      if (await canLaunchUrl(whatsappUri)) {
+        await launchUrl(whatsappUri);
+      } else {
+        final Uri waUri = Uri.parse(
+          'https://api.whatsapp.com/send?phone=$mobile',
+        );
+        await launchUrl(waUri);
+      }
     }
   }
 }

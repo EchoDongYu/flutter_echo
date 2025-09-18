@@ -101,7 +101,9 @@ class _PrivacyDialogState extends State<PrivacyDialog> {
                 const LinearProgressIndicator(
                   color: NowColors.c0xFF3288F1,
                   backgroundColor: NowColors.c0xFFEFF7FF,
-                ),
+                )
+              else
+                SizedBox(height: 70.h),
             ],
           ),
           WidgetHelper.buildBottomBlurButton(
