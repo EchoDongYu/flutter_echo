@@ -58,6 +58,13 @@ class _PrivacyDialogState extends State<PrivacyDialog> {
           onPageFinished: (_) => setState(() => _isLoading = false),
           onNavigationRequest: (request) {
             // 拦截逻辑（可选）
+            // if (!request.url.startsWith('http')) {
+            //   final Uri url = Uri.parse(request.url);
+            //   if (await canLaunchUrl(url)) {
+            //     launchUrl(url, mode: LaunchMode.externalApplication);
+            //   }
+            //   return NavigationDecision.prevent;
+            // }
             return NavigationDecision.navigate;
           },
         ),
