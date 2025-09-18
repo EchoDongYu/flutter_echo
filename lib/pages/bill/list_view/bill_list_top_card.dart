@@ -23,15 +23,13 @@ class BillListTopCard extends StatelessWidget {
       ),
       child: Column(
         children: [
-          Expanded(
-            child: Text(
-              title,
-              style: TextStyle(
-                fontSize: 14.sp,
-                fontWeight: FontWeight.w500,
-                color: NowColors.c0xFFFFFFFF,
-                height: 28 / 18,
-              ),
+          Text(
+            title,
+            style: TextStyle(
+              fontSize: 14.sp,
+              fontWeight: FontWeight.w500,
+              color: NowColors.c0xFFFFFFFF,
+              height: 28 / 18,
             ),
           ),
           SizedBox(height: 12.h),
