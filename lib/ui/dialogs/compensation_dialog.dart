@@ -84,7 +84,7 @@ class CompensationDialog extends StatelessWidget {
                       decoration: TextDecoration.underline,
                     ),
                     recognizer: TapGestureRecognizer()
-                      ..onTap = () => context.pushH5Privacy(),
+                      ..onTap = () => context.pushReplacementH5Privacy(),
                   ),
                   const TextSpan(
                     text: ' y el ',
@@ -97,7 +97,7 @@ class CompensationDialog extends StatelessWidget {
                       decoration: TextDecoration.underline,
                     ),
                     recognizer: TapGestureRecognizer()
-                      ..onTap = () => context.pushH5Service(),
+                      ..onTap = () => context.pushReplacementH5Service(),
                   ),
                   const TextSpan(
                     text: ' obtener más información.',
