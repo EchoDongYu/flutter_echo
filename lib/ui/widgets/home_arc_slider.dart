@@ -131,7 +131,7 @@ class _ArcSliderState extends State<ArcSlider> {
                 Column(
                   children: [
                     CustomPaint(
-                      size: Size(widget.size, height),
+                      size: Size(widget.size * 0.96, height),
                       painter: _ArcPainter(
                         thickness: thickness,
                         angle: valueToAngle(currentValue),
