@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_echo/common/base_provider.dart';
+import 'package:flutter_echo/common/constants.dart';
 import 'package:flutter_echo/models/swaggerApi.models.swagger.dart';
 import 'package:flutter_echo/pages/app_router.dart';
 import 'package:flutter_echo/pages/main/track_dialog.dart';
@@ -7,21 +8,60 @@ import 'package:flutter_echo/services/api_service.dart';
 import 'package:flutter_echo/services/permission_service.dart';
 import 'package:flutter_echo/services/storage_service.dart';
 import 'package:flutter_echo/ui/dialogs/permission_dialog.dart';
+import 'package:flutter_echo/utils/common_utils.dart';
 import 'package:go_router/go_router.dart';
 
 class MainModel extends BaseProvider {
   int? _creditStatus;
+
+  HomeInfoResp? get homeInfo => _homeInfo;
   HomeInfoResp? _homeInfo;
+
+  MainInfoResp? get mainInfo => _mainInfo;
+  MainInfoResp? _mainInfo;
+
+  bool get hasPasswordEntry =>
+      mainInfo?.fm50w8OLoginPwd == true || (mainInfo?.cressyOTraderPwd == true && _creditStatus ==2);
 
   /// 0未授信 1授信中 2授信完成 3授信失败
   int? get status => _creditStatus;
 
-  HomeInfoResp? get homeInfo => _homeInfo;
+  HomeInfoResp$AssurOFaceList$Item? get pickedProduct => _pickedProduct;
+  HomeInfoResp$AssurOFaceList$Item? _pickedProduct;
+
+  double get minValue => _pickedProduct?.mojr11OLoanRangeMin ?? 0;
+
+  double get maxValue => _pickedProduct?.xuwh2oOLoanRangeMax ?? 0;
+
+  double get step => _pickedProduct?.marrowOLoanRangeUnit ?? 0;
+
+  double get value => _value;
+  double _value = 0;
+
+  bool get isLock =>
+      (_homeInfo?.nookieOCanBorrowAmount ?? 0) <= 0 ||
+      _pickedProduct?.faroucheOIsLock == true;
+
+  void updateValue(double newValue) {
+    double clamped = newValue.clamp(minValue, maxValue);
+    double steps = ((clamped - minValue) / step).roundToDouble();
+    double snapped = (minValue + steps * step).clamp(minValue, maxValue);
+    _value = snapped;
+    notifyListeners();
+  }
+
+  void changeProduct(HomeInfoResp$AssurOFaceList$Item item) {
+    _pickedProduct = item;
+    _value = item.xuwh2oOLoanRangeMax ?? 0;
+    notifyListeners();
+  }
 
   Future<void> getHomeInfo() async {
     if (LocalStorage().isLogin) {
       _homeInfo = await launchRequest(() => Api.getHomeInfo());
       _creditStatus = _homeInfo?.bopomofoOCreditStatus;
+      _pickedProduct = _homeInfo?.assurOFaceList?.firstOrNull;
+      _value = _pickedProduct?.xuwh2oOLoanRangeMax ?? 0;
     } else {
       _creditStatus = null;
       notifyListeners();
@@ -29,10 +69,11 @@ class MainModel extends BaseProvider {
   }
 
   Future<MainInfoResp?> getMainBaseInfo() async {
-    if (LocalStorage().isLogin) {
-      return Api.getMainBaseInfo();
+    if (LocalStorage().isLogin && _mainInfo == null) {
+      _mainInfo = await Api.getMainBaseInfo();
+      await LocalStorage().set(AppConst.mainInfoKey, _mainInfo);
     }
-    return null;
+    return _mainInfo;
   }
 
   void launchDefault() async {
@@ -85,9 +126,17 @@ class MainModel extends BaseProvider {
     }
   }
 
-  void launchLoan({int? productId, double? amount}) async {
+  void launchLoan() async {
+    if (_homeInfo?.deepmostOHasOnLoan == true) {
+      toast(
+        'Usted tiene un préstamo en curso o en proceso. Por favor, espere a que se complete el desembolso antes de solicitar un nuevo préstamo.',
+      );
+      return;
+    }
     if (_creditStatus != 2) return;
-    if (productId == null || amount == null || amount <= 0) {
+    final amount = _value;
+    final productId = _pickedProduct?.foreyardOProductId;
+    if (productId == null || amount <= 0) {
       return;
     }
     final uriRoute = Uri(

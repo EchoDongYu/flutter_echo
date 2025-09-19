@@ -26,7 +26,7 @@ class AppConst {
   /// 2.业务侧上报域名/生产域名（除SMS以外数据上报）：https://insights.davaloan.com/insights
   /// 3.测试域名：test-credifacilgo.com/insights
   static const String baseUrl = AppConst.production
-      ? 'https://insights.davaloan.com/insights'
+      ? 'https://cashigo.credifacilgo.com/csg'
       : 'http://159.138.164.19:8089/titans';
 
   static const String h5Faq = AppConst.production

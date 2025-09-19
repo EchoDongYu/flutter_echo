@@ -9,6 +9,7 @@ import 'package:flutter_echo/pages/app_router.dart';
 import 'package:go_router/go_router.dart';
 import 'package:intl/intl.dart';
 import 'package:oktoast/oktoast.dart';
+import 'package:timezone/timezone.dart' as tz;
 import 'package:url_launcher/url_launcher.dart';
 
 void debugLog(String message, {Object? error, StackTrace? stackTrace}) {
@@ -67,39 +68,54 @@ class FlutterPlatform {
   };
 
   static Future<void> launchWhatsApp(String? phone) async {
-    final Uri whatsappUri = Uri.parse('whatsapp://send?phone=$phone');
-    if (await canLaunchUrl(whatsappUri)) {
-      await launchUrl(whatsappUri);
+    if (phone?.startsWith('http') == true) {
+      await launchUrl(Uri.parse(phone!));
     } else {
-      final Uri waUri = Uri.parse(
-        'https://wa.me/${phone?.replaceAll('+', '')}',
-      );
-      await launchUrl(waUri);
+      final mobile = phone?.replaceAll('+', '');
+      final Uri whatsappUri = Uri.parse('whatsapp://send?phone=$mobile');
+      if (await canLaunchUrl(whatsappUri)) {
+        await launchUrl(whatsappUri);
+      } else {
+        final Uri waUri = Uri.parse(
+          'https://api.whatsapp.com/send?phone=$mobile',
+        );
+        await launchUrl(waUri);
+      }
     }
   }
 }
 
+final uriH5Privacy = Uri(
+  path: AppRouter.appWeb,
+  queryParameters: {
+    NavKey.title: 'Politica de privacidad',
+    NavKey.url: AppConst.h5Privacy,
+  },
+);
+
+final uriH5Service = Uri(
+  path: AppRouter.appWeb,
+  queryParameters: {
+    NavKey.title: 'Acuerdo de servicio',
+    NavKey.url: AppConst.h5Service,
+  },
+);
+
 extension ContextNav on BuildContext {
   void pushH5Privacy() {
-    final uriRoute = Uri(
-      path: AppRouter.appWeb,
-      queryParameters: {
-        NavKey.title: 'Politica de privacidad',
-        NavKey.url: AppConst.h5Privacy,
-      },
-    );
-    push(uriRoute.toString());
+    push(uriH5Privacy.toString());
   }
 
   void pushH5Service() {
-    final uriRoute = Uri(
-      path: AppRouter.appWeb,
-      queryParameters: {
-        NavKey.title: 'Acuerdo de servicio',
-        NavKey.url: AppConst.h5Service,
-      },
-    );
-    push(uriRoute.toString());
+    push(uriH5Service.toString());
+  }
+
+  void pushReplacementH5Privacy() {
+    pushReplacement(uriH5Privacy.toString());
+  }
+
+  void pushReplacementH5Service() {
+    pushReplacement(uriH5Service.toString());
   }
 }
 
@@ -116,7 +132,10 @@ extension TimestampFormat on int {
   DateTime get fromSecondsSinceEpoch =>
       DateTime.fromMillisecondsSinceEpoch(this * 1000);
 
-  String get showDate => fromSecondsSinceEpoch.showDate;
+  String get showDate => tz.TZDateTime.fromMillisecondsSinceEpoch(
+    tz.getLocation('America/Guatemala'),
+    this * 1000,
+  ).showDate;
 }
 
 extension AmountFormat on num {

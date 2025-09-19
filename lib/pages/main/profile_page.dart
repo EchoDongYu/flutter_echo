@@ -244,7 +244,6 @@ class _ProfilePageState extends State<ProfilePage> {
   }
 
   Widget _buildCard3(BuildContext context) {
-    final mainInfo = LocalStorage().mainInfo;
     return Container(
       width: double.infinity,
       padding: EdgeInsets.symmetric(vertical: 8.h),
@@ -253,41 +252,46 @@ class _ProfilePageState extends State<ProfilePage> {
         borderRadius: BorderRadius.all(Radius.circular(20)),
         boxShadow: NowStyles.cardShadows,
       ),
-      child: Column(
-        children: [
-          if (mainInfo?.fm50w8OLoginPwd == true ||
-              mainInfo?.cressyOTraderPwd == true)
-            _buildCard3Item(
-              icon: Drawable.iconMineV1,
-              text: 'Seguridad de la cuenta',
-              onTap: () {
-                final uriRoute = Uri(
-                  path: AppRouter.resetPassword,
-                  queryParameters: {NavKey.status: mainModel.status.toString()},
-                );
-                context.push(uriRoute.toString());
-              },
-            ),
-          _buildCard3Item(
-            icon: Drawable.iconMineV2,
-            text: 'Preguntas frecuentes',
-            onTap: () {
-              final uriRoute = Uri(
-                path: AppRouter.appWeb,
-                queryParameters: {
-                  NavKey.title: 'Preguntas frecuentes',
-                  NavKey.url: AppConst.h5Faq,
+      child: Consumer<MainModel>(
+        builder: (_, provider, _) {
+          return Column(
+            children: [
+              if (provider.hasPasswordEntry)
+                _buildCard3Item(
+                  icon: Drawable.iconMineV1,
+                  text: 'Seguridad de la cuenta',
+                  onTap: () {
+                    final uriRoute = Uri(
+                      path: AppRouter.resetPassword,
+                      queryParameters: {
+                        NavKey.status: mainModel.status.toString(),
+                      },
+                    );
+                    context.push(uriRoute.toString());
+                  },
+                ),
+              _buildCard3Item(
+                icon: Drawable.iconMineV2,
+                text: 'Preguntas frecuentes',
+                onTap: () {
+                  final uriRoute = Uri(
+                    path: AppRouter.appWeb,
+                    queryParameters: {
+                      NavKey.title: 'Preguntas frecuentes',
+                      NavKey.url: AppConst.h5Faq,
+                    },
+                  );
+                  context.push(uriRoute.toString());
                 },
-              );
-              context.push(uriRoute.toString());
-            },
-          ),
-          _buildCard3Item(
-            icon: Drawable.iconMineV3,
-            text: 'Comentarios',
-            onTap: () => context.push(AppRouter.feedback),
-          ),
-        ],
+              ),
+              _buildCard3Item(
+                icon: Drawable.iconMineV3,
+                text: 'Comentarios',
+                onTap: () => context.push(AppRouter.feedback),
+              ),
+            ],
+          );
+        },
       ),
     );
   }

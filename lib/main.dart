@@ -8,6 +8,7 @@ import 'package:flutter_echo/utils/common_utils.dart';
 import 'package:flutter_echo/utils/custom_localizations.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:oktoast/oktoast.dart';
+import 'package:timezone/data/latest.dart' as tz;
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -26,6 +27,7 @@ void main() async {
 
   // 初始化缓存服务
   await LocalStorage().init();
+  tz.initializeTimeZones();
 
   runApp(const MyApp());
 }
