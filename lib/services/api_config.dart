@@ -24,13 +24,15 @@ class ApiController {
   ApiController(String baseUrl) {
     _dio.options.baseUrl = baseUrl;
     _dio.interceptors.add(_ApiInterceptor());
-    _dio.interceptors.add(
-      LogInterceptor(
-        requestBody: true,
-        responseBody: true,
-        logPrint: (object) => logLong(object.toString()),
-      ),
-    );
+    if (!AppConst.production) {
+      _dio.interceptors.add(
+        LogInterceptor(
+          requestBody: true,
+          responseBody: true,
+          logPrint: (object) => logLong(object.toString()),
+        ),
+      );
+    }
   }
 
   void logLong(String msg) {

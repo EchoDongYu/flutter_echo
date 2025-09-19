@@ -4,6 +4,7 @@ import 'package:flutter_echo/pages/app_router.dart';
 import 'package:flutter_echo/pages/bill/list_view/bill_list_item.dart';
 import 'package:flutter_echo/pages/bill/list_view/bill_list_top_card.dart';
 import 'package:flutter_echo/providers/bill_provider.dart';
+import 'package:flutter_echo/ui/widget_helper.dart';
 import 'package:flutter_echo/ui/widgets/common_appbar.dart';
 import 'package:flutter_echo/ui/widgets/page_no_data.dart';
 import 'package:flutter_echo/utils/common_utils.dart';
@@ -58,23 +59,25 @@ class BillListView extends StatelessWidget {
             separatorBuilder: (context, index) => SizedBox(height: 12.h),
             itemBuilder: (context, index) {
               final itemData = billList[index];
+              final planList = itemData.outdoOPlanSimpleList;
+              if (planList == null) return SizedBox();
+              final length = planList.length;
               return BillListItem(
                 amount: itemData.retiaryOLoanAmount ?? 0.0,
                 vencimientoDate: itemData.r5k31qODueTime?.showDate ?? "",
-                status: updateBillStatus(itemData.d95091ORepaymentStatus),
-                billListItemBox: ListView(
+                status: updateBillStatus(itemData.suffOLoanStatus),
+                billListItemBox: ListView.separated(
                   shrinkWrap: true,
-                  physics: NeverScrollableScrollPhysics(),
-                  children: billList
-                      .map(
-                        (item) => BillListLoanItem(
-                          amount: 2000,
-                          vencimientoDate: "",
-                          status: updateBillStatus(1),
-                          dueDate: '24242424444',
-                        ),
-                      )
-                      .toList(),
+                  physics: const NeverScrollableScrollPhysics(),
+                  itemCount: length,
+                  separatorBuilder: (context, index) => SizedBox(height: 12.h),
+                  itemBuilder: (context, index) {
+                    return WidgetHelper.buildPlanItem(
+                      '${index + 1}/$length',
+                      planList[index].r5k31qODueTime,
+                      planList[index].wantonlyOLoanLeftAmount,
+                    );
+                  },
                 ),
                 onDetails: () {
                   final uriRoute = Uri(

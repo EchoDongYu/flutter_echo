@@ -384,11 +384,11 @@ class Api {
   }
 
   /// 获取账单列表
-  static Future<BillListResp> getBillListInfo() {
+  static Future<LoanBillResp> getBillListInfo() {
     return _apiService.post(
-      ApiPath.queryBillList,
-      body: BillListReq().toJson(),
-      convert: (json) => BillListResp.fromJson(json),
+      ApiPath.queryLoanBillList,
+      body: LoanBillReq(size: 1, current: 1).toJson(),
+      convert: (json) => LoanBillResp.fromJson(json),
     );
   }
 

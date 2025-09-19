@@ -17,6 +17,6 @@ class PermissionService {
       Permission.phone,
       Permission.notification,
     ].request();
-    return !result.values.any((status) => status.isDenied);
+    return result.values.every((status) => status.isGranted);
   }
 }

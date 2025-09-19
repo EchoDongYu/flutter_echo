@@ -47,8 +47,8 @@
 	<true/>
 
 	<key>NSCameraUsageDescription</key>
-	<string>此应用需要访问相机以进行身份认证和拍照功能</string>
+	<string>Camera</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
-	<string>此应用需要访问位置信息以提供更好的服务</string>
+	<string>Location</string>
 </dict>
 </plist>
