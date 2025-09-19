@@ -34,10 +34,10 @@ android {
     }
 
     signingConfigs {
-        create("test") {
-            storeFile = file("test.jks")
-            storePassword = "123456"
-            keyPassword = "123456"
+        create("release") {
+            storeFile = file("release.jks")
+            storePassword = "1316451623"
+            keyPassword = "1316451623"
             keyAlias = "key0"
         }
     }
@@ -46,7 +46,7 @@ android {
         release {
             isMinifyEnabled = true
             // Signing with the debug keys for now, so `flutter run --release` works.
-            signingConfig = signingConfigs.getByName("test")
+            signingConfig = signingConfigs.getByName("release")
         }
     }
 }
