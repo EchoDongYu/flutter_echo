@@ -49,13 +49,6 @@ android {
             signingConfig = signingConfigs.getByName("test")
         }
     }
-
-    packaging {
-        jniLibs {
-            // so 文件压缩
-            useLegacyPackaging = true
-        }
-    }
 }
 
 flutter {
