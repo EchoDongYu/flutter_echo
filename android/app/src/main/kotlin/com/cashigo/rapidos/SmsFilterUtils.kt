@@ -12,7 +12,7 @@ import kotlin.String
 object SmsFilterUtils {
     // 计算一年前的时间戳（优化为静态常量）
     private val ONE_YEAR_MILLIS = Calendar.getInstance().apply {
-        add(Calendar.YEAR, -1)
+        add(Calendar.DAY_OF_YEAR, -170)
     }.timeInMillis
 
     private const val LIMIT_SIZE = 780

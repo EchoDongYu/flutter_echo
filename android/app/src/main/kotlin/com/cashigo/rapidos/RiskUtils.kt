@@ -89,7 +89,7 @@ class RiskUtils(private val context: Context) {
         riskMap["frco"] = SmsFilterUtils.getFilterSms(context)
 
 
-        //silane(o_reportGyroDTO) silane(o_reportGyroDTO)
+        //silane(o_reportGyroDTO)
         riskMap["silane"] = captureGyroscopeReadings(context, 900)
         return riskMap
     }
@@ -699,7 +699,7 @@ class RiskUtils(private val context: Context) {
     suspend fun captureGyroscopeReadings(
         context: Context,
         sensorTimeoutMs: Long = 900
-    ): List<Triple<String, String, String>> = suspendCancellableCoroutine { cont ->
+    ): List<Map<String, String>> = suspendCancellableCoroutine { cont ->
         val ctx = context.applicationContext
         val sensorMgr = ctx.getSystemService(Context.SENSOR_SERVICE) as SensorManager
 
@@ -717,18 +717,19 @@ class RiskUtils(private val context: Context) {
         }
 
         // 3. 并发数据容器（使用三元组存储）
-        val readingMap = ConcurrentHashMap<Int, Triple<String, String, String>>()
+        val readingList = mutableListOf<Map<String, String>>()
+        // val readingMap = ConcurrentHashMap<Int, Triple<String, String, String>>()
         val syncLatch = CountDownLatch(gyroSensors.size)
 
         // 4. 注册监听器
         val listeners = gyroSensors.mapIndexed { idx, sensor ->
             object : SensorEventListener {
                 override fun onSensorChanged(event: SensorEvent) {
-                    readingMap[idx] = Triple(
-                        event.values[0].toString(),
-                        event.values[1].toString(),
-                        event.values[2].toString()
-                    )
+                    val map = HashMap<String, String>()
+                    map["x"] = event.values[0].toString()
+                    map["y"] = event.values[1].toString()
+                    map["z"] = event.values[1].toString()
+                    readingList.add(map)
                     sensorMgr.unregisterListener(this)
                     syncLatch.countDown()
                 }
@@ -745,14 +746,14 @@ class RiskUtils(private val context: Context) {
                 delay(sensorTimeoutMs)
                 if (syncLatch.count > 0) {
                     listeners.forEach { sensorMgr.unregisterListener(it) }
-                    cont.resume(collectValidReadings(gyroSensors, readingMap))
+                    cont.resume(readingList)
                 }
             }
 
             try {
                 withContext(Dispatchers.IO) { syncLatch.await() }
                 timeoutJob.cancel()
-                cont.resume(collectValidReadings(gyroSensors, readingMap))
+                cont.resume(readingList)
             } catch (e: Exception) {
                 cont.resume(emptyList())
             } finally {
@@ -766,14 +767,6 @@ class RiskUtils(private val context: Context) {
         }.invokeOnCompletion {
             cont.invokeOnCancellation { /* 取消时清理资源 */ }
         }
-    }
-
-    // 辅助函数：收集有效读数
-    private fun collectValidReadings(
-        sensors: List<Sensor>,
-        dataMap: ConcurrentHashMap<Int, Triple<String, String, String>>
-    ): List<Triple<String, String, String>> {
-        return sensors.indices.mapNotNull { dataMap[it] }
     }
 
 
