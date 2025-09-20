@@ -1,45 +1,33 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_echo/common/app_theme.dart';
+import 'package:flutter_echo/pages/bill/bill_status.dart';
 import 'package:flutter_echo/ui/widgets/common_button.dart';
 import 'package:flutter_echo/utils/common_utils.dart';
 import 'package:flutter_echo/utils/drawable_utils.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-enum BillDetailLoanEnum { pagos, atrasado, pagado }
-
 class BillDetailLoanStatus extends StatelessWidget {
   final double amount;
+  final int dueDays;
   final String vencimientoDate;
-  final BillDetailLoanEnum status;
+  final BillStatus status;
   final VoidCallback onPagar;
   final VoidCallback onHistory;
-  final Widget loanStatusBox;
-  final bool isShowPagar;
-  final bool isShowVen;
+  final Widget planListBox;
 
   const BillDetailLoanStatus({
     super.key,
     required this.amount,
+    required this.dueDays,
     required this.vencimientoDate,
     required this.status,
     required this.onPagar,
     required this.onHistory,
-    required this.loanStatusBox,
-    this.isShowPagar = true,
-    this.isShowVen = false,
+    required this.planListBox,
   });
 
-  // 状态对应的颜色和文字
-  Map<String, dynamic> get _statusStyle {
-    switch (status) {
-      case BillDetailLoanEnum.pagos:
-        return {"label": "Pagos", "color": NowColors.c0xFF3288F1};
-      case BillDetailLoanEnum.atrasado:
-        return {"label": "Atrasado", "color": NowColors.c0xFFFB4F34};
-      case BillDetailLoanEnum.pagado:
-        return {"label": "Pagado", "color": NowColors.c0xFF3EB34D};
-    }
-  }
+  bool get showPagar =>
+      status == BillStatus.pagos || status == BillStatus.atrasado;
 
   @override
   Widget build(BuildContext context) {
@@ -54,9 +42,9 @@ class BillDetailLoanStatus extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           // 顶部日期 + 状态
-          !isShowVen
+          status != BillStatus.atrasado
               ? Text(
-                  "Vencimiento: $vencimientoDate",
+                  'Vencimiento: $vencimientoDate',
                   style: TextStyle(
                     fontSize: 14.sp,
                     fontWeight: FontWeight.w500,
@@ -65,19 +53,19 @@ class BillDetailLoanStatus extends StatelessWidget {
                 )
               : Container(
                   padding: const EdgeInsets.symmetric(
-                    horizontal: 10,
-                    vertical: 4,
+                    horizontal: 8,
+                    vertical: 2,
                   ),
                   decoration: BoxDecoration(
-                    color: _statusStyle["color"].withOpacity(0.1),
+                    color: NowColors.c0xFFFB4F34.withValues(alpha: 0.1),
                     borderRadius: BorderRadius.circular(12),
                   ),
                   child: Text(
-                    "N Dias Atrasados",
+                    '$dueDays Dias Atrasados',
                     style: TextStyle(
-                      fontSize: 16.sp,
-                      color: _statusStyle["color"],
+                      fontSize: 14.sp,
                       fontWeight: FontWeight.w500,
+                      color: NowColors.c0xFFFB4F34,
                     ),
                   ),
                 ),
@@ -93,30 +81,19 @@ class BillDetailLoanStatus extends StatelessWidget {
           ),
           SizedBox(height: 12.h),
           // 明细区域
-          loanStatusBox,
+          planListBox,
           SizedBox(height: 12.h),
           // 底部按钮
           Visibility(
-            visible: isShowPagar,
-            child: SizedBox(
-              height: 56,
-              width: context.screenWidth,
-              child: EchoSecondaryButton(
-                filledColor: _statusStyle["color"],
-                text: 'Pagar inmediatamente',
-                onPressed: onPagar,
-              ),
+            visible: showPagar,
+            child: EchoSecondaryButton(
+              filledColor: status.color,
+              text: 'Pagar inmediatamente',
+              onPressed: onPagar,
             ),
           ),
           SizedBox(height: 10.h),
-          SizedBox(
-            height: 56,
-            width: context.screenWidth,
-            child: EchoOutlinedButton(
-              text: 'Historial de pagos',
-              onPressed: onHistory,
-            ),
-          ),
+          EchoOutlinedButton(text: 'Historial de pagos', onPressed: onHistory),
         ],
       ),
     );
@@ -138,24 +115,12 @@ class BillDetailLoanItem extends StatelessWidget {
 
   final double amount;
   final String dueDate;
-  final BillDetailLoanEnum status;
+  final BillStatus status;
   final bool isShowOther;
   final bool isSelectedItem;
   final bool isSelectedRadio;
   final VoidCallback? onRadioTap;
   final VoidCallback? onItemTap;
-
-  // 状态对应的颜色和文字
-  Map<String, dynamic> get _statusStyle {
-    switch (status) {
-      case BillDetailLoanEnum.pagos:
-        return {"label": "Pagos", "color": NowColors.c0xFF3288F1};
-      case BillDetailLoanEnum.atrasado:
-        return {"label": "Atrasado", "color": NowColors.c0xFFFB4F34};
-      case BillDetailLoanEnum.pagado:
-        return {"label": "Pagado", "color": NowColors.c0xFF3EB34D};
-    }
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -166,7 +131,7 @@ class BillDetailLoanItem extends StatelessWidget {
           color: NowColors.c0xFFF3F3F5,
           borderRadius: BorderRadius.circular(12),
           border: isSelectedItem
-              ? Border.all(width: 1, color: _statusStyle["color"])
+              ? Border.all(width: 1, color: status.color)
               : null,
         ),
         child: Stack(
@@ -178,14 +143,14 @@ class BillDetailLoanItem extends StatelessWidget {
                 padding: EdgeInsets.symmetric(vertical: 3, horizontal: 6),
                 alignment: Alignment.center,
                 decoration: BoxDecoration(
-                  color: _statusStyle["color"],
+                  color: status.color,
                   borderRadius: BorderRadius.only(
                     topLeft: Radius.circular(12),
                     bottomRight: Radius.circular(12),
                   ),
                 ),
                 child: Text(
-                  "1/10",
+                  '1/10',
                   style: TextStyle(
                     fontSize: 12.sp,
                     color: NowColors.c0xFFFFFFFF,
@@ -217,7 +182,7 @@ class BillDetailLoanItem extends StatelessWidget {
                           isSelectedRadio
                               ? Drawable.iconSelectOn
                               : Drawable.iconSelectOff,
-                          color: _statusStyle["color"],
+                          color: status.color,
                           width: 22.r,
                           height: 22.r,
                         ),
@@ -233,7 +198,7 @@ class BillDetailLoanItem extends StatelessWidget {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Text(
-                              "Vencimiento",
+                              'Vencimiento',
                               style: TextStyle(
                                 fontSize: 12.sp,
                                 fontWeight: FontWeight.w400,
@@ -256,7 +221,7 @@ class BillDetailLoanItem extends StatelessWidget {
                           crossAxisAlignment: CrossAxisAlignment.end,
                           children: [
                             Text(
-                              "Monto a pagar",
+                              'Monto a pagar',
                               style: TextStyle(
                                 fontSize: 12.sp,
                                 fontWeight: FontWeight.w400,
@@ -268,7 +233,7 @@ class BillDetailLoanItem extends StatelessWidget {
                               style: TextStyle(
                                 fontSize: 14.sp,
                                 fontWeight: FontWeight.w500,
-                                color: _statusStyle["color"],
+                                color: status.color,
                               ),
                             ),
                           ],
@@ -279,7 +244,7 @@ class BillDetailLoanItem extends StatelessWidget {
                           crossAxisAlignment: CrossAxisAlignment.end,
                           children: [
                             Text(
-                              "Cantidad pagada",
+                              'Cantidad pagada',
                               style: TextStyle(
                                 fontSize: 12.sp,
                                 fontWeight: FontWeight.w400,
@@ -291,7 +256,7 @@ class BillDetailLoanItem extends StatelessWidget {
                               style: TextStyle(
                                 fontSize: 14.sp,
                                 fontWeight: FontWeight.w500,
-                                color: _statusStyle["color"],
+                                color: status.color,
                               ),
                             ),
                           ],
@@ -307,7 +272,7 @@ class BillDetailLoanItem extends StatelessWidget {
                                 crossAxisAlignment: CrossAxisAlignment.end,
                                 children: [
                                   Text(
-                                    "Dias atrasados",
+                                    'Dias atrasados',
                                     style: TextStyle(
                                       fontSize: 12.sp,
                                       fontWeight: FontWeight.w400,
@@ -319,7 +284,7 @@ class BillDetailLoanItem extends StatelessWidget {
                                     style: TextStyle(
                                       fontSize: 14.sp,
                                       fontWeight: FontWeight.w500,
-                                      color: _statusStyle["color"],
+                                      color: status.color,
                                     ),
                                   ),
                                 ],
@@ -331,7 +296,7 @@ class BillDetailLoanItem extends StatelessWidget {
                                 crossAxisAlignment: CrossAxisAlignment.end,
                                 children: [
                                   Text(
-                                    "Cargo por pago tardio",
+                                    'Cargo por pago tardio',
                                     style: TextStyle(
                                       fontSize: 12.sp,
                                       fontWeight: FontWeight.w400,
@@ -343,7 +308,7 @@ class BillDetailLoanItem extends StatelessWidget {
                                     style: TextStyle(
                                       fontSize: 14.sp,
                                       fontWeight: FontWeight.w500,
-                                      color: _statusStyle["color"],
+                                      color: status.color,
                                     ),
                                   ),
                                 ],

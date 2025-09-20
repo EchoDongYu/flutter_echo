@@ -4,6 +4,7 @@ import 'package:flutter_echo/common/app_theme.dart';
 import 'package:flutter_echo/models/common_model.dart';
 import 'package:flutter_echo/models/swaggerApi.models.swagger.dart';
 import 'package:flutter_echo/pages/before/trader_password_dialog.dart';
+import 'package:flutter_echo/pages/bill/bill_status.dart';
 import 'package:flutter_echo/pages/user/user_bank_dialog.dart';
 import 'package:flutter_echo/providers/apply_provider.dart';
 import 'package:flutter_echo/ui/widget_helper.dart';
@@ -342,12 +343,14 @@ class _ApplyConfirmPageState extends State<ApplyConfirmPage> {
                 shrinkWrap: true,
                 physics: const NeverScrollableScrollPhysics(),
                 itemCount: planList.length,
-                separatorBuilder: (context, index) => SizedBox(height: 12.h),
-                itemBuilder: (context, index) {
+                separatorBuilder: (_, _) => SizedBox(height: 10.h),
+                itemBuilder: (_, index) {
+                  final planItem = planList[index];
                   return WidgetHelper.buildPlanItem(
-                    '${planList[index].ih2upqOCtPeriod}/${planList[index].ez64t7OPeriodCount}',
-                    planList[index].r5k31qODueTime,
-                    planList[index].timesOBillAmount,
+                    '${planItem.ih2upqOCtPeriod}/${planItem.ez64t7OPeriodCount}',
+                    first: planItem.r5k31qODueTime,
+                    second: planItem.timesOBillAmount ?? 0,
+                    color: planColor(null),
                   );
                 },
               ),

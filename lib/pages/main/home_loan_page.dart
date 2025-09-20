@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_echo/common/app_theme.dart';
 import 'package:flutter_echo/common/constants.dart';
 import 'package:flutter_echo/models/swaggerApi.models.swagger.dart';
-import 'package:flutter_echo/pages/bill/bill_list_page.dart';
+import 'package:flutter_echo/pages/bill/bill_status.dart';
 import 'package:flutter_echo/providers/main_provider.dart';
 import 'package:flutter_echo/ui/widget_helper.dart';
 import 'package:flutter_echo/ui/widgets/common_button.dart';
@@ -175,12 +175,14 @@ class _HomeLoanPageState extends State<HomeLoanPage> {
                     padding: EdgeInsets.symmetric(horizontal: 16.w),
                     physics: const NeverScrollableScrollPhysics(),
                     itemCount: planList.length,
-                    separatorBuilder: (_, _) => SizedBox(height: 12.h),
-                    itemBuilder: (context, index) {
+                    separatorBuilder: (_, _) => SizedBox(height: 10.h),
+                    itemBuilder: (_, index) {
+                      final planItem = planList[index];
                       return WidgetHelper.buildPlanItem(
-                        '${planList[index].ih2upqOCtPeriod}/${planList[index].ez64t7OPeriodCount}',
-                        planList[index].r5k31qODueTime,
-                        planList[index].wantonlyOLoanLeftAmount,
+                        '${planItem.ih2upqOCtPeriod}/${planItem.ez64t7OPeriodCount}',
+                        first: planItem.r5k31qODueTime,
+                        second: planItem.wantonlyOLoanLeftAmount ?? 0,
+                        color: planColor(planItem.i2jk5fOPeriodStatus),
                       );
                     },
                   ),

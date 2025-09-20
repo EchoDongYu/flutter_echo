@@ -36,7 +36,7 @@ class BillDetailLoanInfo extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Text(
-                "Fecha del préstamo",
+                'Fecha del préstamo',
                 style: TextStyle(
                   fontSize: 18.sp,
                   fontWeight: FontWeight.w500,
@@ -69,14 +69,14 @@ class BillDetailLoanInfo extends StatelessWidget {
               Flexible(
                 flex: 1,
                 child: LoanInfoBox(
-                  title: "Monto del préstamo",
+                  title: 'Monto del préstamo',
                   text: detailLoanInfoAmount,
                 ),
               ),
               Flexible(
                 flex: 1,
                 child: LoanInfoBox(
-                  title: "Comisión",
+                  title: 'Comisión',
                   text: detailLoanInfoCommission,
                   isShowIcon: true,
                   iconTap: onCommission,
@@ -90,14 +90,14 @@ class BillDetailLoanInfo extends StatelessWidget {
               Flexible(
                 flex: 1,
                 child: LoanInfoBox(
-                  title: "Cargo por Interés",
+                  title: 'Cargo por Interés',
                   text: detailLoanInfoCharge,
                 ),
               ),
               Flexible(
                 flex: 1,
                 child: LoanInfoBox(
-                  title: "Cantidad reciblda",
+                  title: 'Cantidad reciblda',
                   text: detailLoanInfoReceived,
                 ),
               ),

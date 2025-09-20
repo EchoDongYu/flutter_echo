@@ -334,7 +334,7 @@ class AppRouter {
       GoRoute(
         path: billList,
         builder: (context, state) => ChangeNotifierProvider(
-          create: (_) => BillModel()..fetchBillListData(),
+          create: (_) => BillModel(),
           builder: (context, state) {
             return PageConsumer<BillModel>(child: const BillListPage());
           },
@@ -345,12 +345,13 @@ class AppRouter {
       GoRoute(
         path: billDetail,
         builder: (context, state) => ChangeNotifierProvider(
-          create: (_) => BillDetailModel()
-            ..fetchBillDetailData(
-              loanGid: state.uri.queryParameters[NavKey.id]?.tryParseInt,
-            ),
-          builder: (context, state) {
-            return PageConsumer<BillDetailModel>(child: const BillDetailPage());
+          create: (_) => BillDetailModel(),
+          builder: (context, _) {
+            return PageConsumer<BillDetailModel>(
+              child: BillDetailPage(
+                billId: state.uri.queryParameters[NavKey.id],
+              ),
+            );
           },
         ),
       ),
@@ -454,11 +455,13 @@ class AppRouter {
       GoRoute(path: demo, builder: (context, state) => const DemoPage()),
 
       /// 图片预览
-      GoRoute(path: photoView,  builder: (context, state) {
-        final url = state.uri.queryParameters['url'];
-        return PhotoViewPage(url: url);
-      },),
-
+      GoRoute(
+        path: photoView,
+        builder: (context, state) {
+          final url = state.uri.queryParameters['url'];
+          return PhotoViewPage(url: url);
+        },
+      ),
     ],
 
     /// 错误页面

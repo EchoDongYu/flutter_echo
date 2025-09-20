@@ -33,7 +33,7 @@ class BillDetailLoanDetail extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               Text(
-                "Cargo por Servicio",
+                'Cargo por Servicio',
                 style: TextStyle(
                   fontSize: 12.sp,
                   fontWeight: FontWeight.w500,
@@ -56,7 +56,7 @@ class BillDetailLoanDetail extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               Text(
-                "Tarifa de Consulta de Crédito",
+                'Tarifa de Consulta de Crédito',
                 style: TextStyle(
                   fontSize: 12.sp,
                   fontWeight: FontWeight.w500,
@@ -79,7 +79,7 @@ class BillDetailLoanDetail extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               Text(
-                "Tarifa de Transferencia",
+                'Tarifa de Transferencia',
                 style: TextStyle(
                   fontSize: 12.sp,
                   fontWeight: FontWeight.w500,
@@ -102,7 +102,7 @@ class BillDetailLoanDetail extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               Text(
-                "IVA",
+                'IVA',
                 style: TextStyle(
                   fontSize: 12.sp,
                   fontWeight: FontWeight.w500,

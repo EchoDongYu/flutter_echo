@@ -5,12 +5,13 @@ import 'package:flutter_echo/services/api_service.dart';
 class BillDetailModel extends BaseProvider {
   ///账单详情数据
   BillDetailResp? _billDetailData;
+
   BillDetailResp? get billDetailData => _billDetailData;
 
   ///获取账单详情数据
-  Future<void> fetchBillDetailData({int? loanGid}) async {
-    var detailData = await launchRequest(() async {
-      return await Api.getBillDetailInfo(loanGid: loanGid);
+  Future<void> fetchBillDetailData(String? id) async {
+    final detailData = await launchRequest(() async {
+      return await Api.getBillDetailInfo(id);
     });
     if (detailData != null) {
       _billDetailData = detailData;

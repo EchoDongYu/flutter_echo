@@ -49,7 +49,7 @@ class EchoPrimaryButton extends _EchoButton {
     return ElevatedButton(
       onPressed: enable ? onPressed : null,
       style: ElevatedButton.styleFrom(
-        minimumSize: Size.fromHeight(48.h),
+        minimumSize: Size.fromHeight(50.h),
         backgroundColor: Colors.transparent,
         padding: EdgeInsets.zero,
         elevation: 0,
@@ -102,7 +102,7 @@ class EchoSecondaryButton extends _EchoButton {
     return ElevatedButton(
       onPressed: enable ? onPressed : null,
       style: ElevatedButton.styleFrom(
-        minimumSize: Size.fromHeight(48.h),
+        minimumSize: Size.fromHeight(50.h),
         backgroundColor: enable ? filledColor : disableColor(filledColor),
         padding: _EchoButton.padding,
         elevation: 0,
@@ -146,7 +146,7 @@ class EchoOutlinedButton extends _EchoButton {
     return OutlinedButton(
       onPressed: enable ? onPressed : null,
       style: OutlinedButton.styleFrom(
-        minimumSize: Size.fromHeight(48.h),
+        minimumSize: Size.fromHeight(50.h),
         backgroundColor: filledColor,
         padding: _EchoButton.padding,
         side: BorderSide(color: borderColor, width: outlineWidth),

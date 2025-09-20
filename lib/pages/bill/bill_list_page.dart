@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_echo/common/app_theme.dart';
 import 'package:flutter_echo/pages/app_router.dart';
+import 'package:flutter_echo/pages/bill/bill_status.dart';
 import 'package:flutter_echo/pages/bill/list_view/bill_list_item.dart';
 import 'package:flutter_echo/pages/bill/list_view/bill_list_top_card.dart';
 import 'package:flutter_echo/providers/bill_provider.dart';
@@ -13,8 +14,21 @@ import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
 
 ///账单列表
-class BillListPage extends StatelessWidget {
+class BillListPage extends StatefulWidget {
   const BillListPage({super.key});
+
+  @override
+  State<BillListPage> createState() => _BillListPageState();
+}
+
+class _BillListPageState extends State<BillListPage> {
+  @override
+  void initState() {
+    super.initState();
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      context.read<BillModel>().fetchBillListData();
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -22,7 +36,7 @@ class BillListPage extends StatelessWidget {
     final billList = billModel.billListData ?? [];
     return Scaffold(
       backgroundColor: NowColors.c0xFFF3F3F5,
-      appBar: const CommonAppBar(title: "Cuentas"),
+      appBar: const CommonAppBar(title: 'Cuentas'),
       body: RefreshIndicator(
         onRefresh: () => context.read<BillModel>().fetchBillListData(),
         child: Padding(
@@ -59,25 +73,27 @@ class BillListView extends StatelessWidget {
           child: ListView.separated(
             itemCount: billList.length,
             padding: EdgeInsets.symmetric(vertical: 12.h),
-            separatorBuilder: (context, index) => SizedBox(height: 12.h),
+            separatorBuilder: (_, _) => SizedBox(height: 12.h),
             itemBuilder: (context, index) {
               final billInfo = billList[index];
               final planList = billInfo.outdoOPlanSimpleList ?? [];
               return BillListItem(
                 amount: billInfo.kinkyOOrderAmount ?? 0.0,
                 dueDays: billInfo.coandaODueDays ?? 0,
-                vencimientoDate: billInfo.encloseOOrderTime?.showDate ?? "",
+                vencimientoDate: billInfo.encloseOOrderTime?.showDate ?? '',
                 status: billStatus(billInfo.cherubimOOrderStatus),
-                billListItemBox: ListView.separated(
+                planListBox: ListView.separated(
                   shrinkWrap: true,
                   physics: const NeverScrollableScrollPhysics(),
                   itemCount: planList.length,
-                  separatorBuilder: (context, index) => SizedBox(height: 12.h),
-                  itemBuilder: (context, index) {
+                  separatorBuilder: (_, _) => SizedBox(height: 10.h),
+                  itemBuilder: (_, index) {
+                    final planItem = planList[index];
                     return WidgetHelper.buildPlanItem(
-                      '${planList[index].ih2upqOCtPeriod}/${planList[index].ez64t7OPeriodCount}',
-                      planList[index].r5k31qODueTime,
-                      planList[index].wantonlyOLoanLeftAmount,
+                      '${planItem.ih2upqOCtPeriod}/${planItem.ez64t7OPeriodCount}',
+                      first: planItem.r5k31qODueTime,
+                      second: planItem.wantonlyOLoanLeftAmount ?? 0,
+                      color: planColor(planItem.i2jk5fOPeriodStatus),
                     );
                   },
                 ),
@@ -104,42 +120,5 @@ class BillListView extends StatelessWidget {
         );
       },
     );
-  }
-}
-
-//订单展示状态(产品工厂改版新增)：,0打款中,1打款失败,2打款成功且未结清未逾期,3打款成功且未结清有逾期,4全结清
-BillStatus billStatus(int? status) {
-  switch (status) {
-    case 0:
-      return BillStatus.pendiente;
-    case 1:
-      return BillStatus.fracaso;
-    case 2:
-      return BillStatus.pagos;
-    case 3:
-      return BillStatus.atrasado;
-    case 4:
-      return BillStatus.pagado;
-    default:
-      return BillStatus.pendiente;
-  }
-}
-
-String routeDetails(int? status, String? id) {
-  switch (status) {
-    case 0:
-      return AppRouter.applyProcess;
-    case 1:
-      return AppRouter.applyFailed;
-    case 2:
-    case 3:
-    case 4:
-      //跳转账单详情
-      return Uri(
-        path: AppRouter.billDetail,
-        queryParameters: {NavKey.id: id.toString()},
-      ).toString();
-    default:
-      return AppRouter.applyProcess;
   }
 }

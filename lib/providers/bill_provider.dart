@@ -15,7 +15,7 @@ class BillModel extends BaseProvider {
 
   ///获取账单列表数据
   Future<void> fetchBillListData() async {
-    var billData = await launchRequest(() async {
+    final billData = await launchRequest(() async {
       return await Api.getBillListInfo();
     });
     if (billData != null) {

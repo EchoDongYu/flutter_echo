@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_echo/common/app_theme.dart';
+import 'package:flutter_echo/pages/bill/bill_status.dart';
 import 'package:flutter_echo/ui/widgets/common_button.dart';
 import 'package:flutter_echo/utils/common_utils.dart';
 import 'package:flutter_echo/utils/drawable_utils.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-
-enum BillStatus { pagos, atrasado, pendiente, fracaso, pagado }
 
 class BillListItem extends StatelessWidget {
   final double amount;
@@ -14,7 +13,7 @@ class BillListItem extends StatelessWidget {
   final BillStatus status;
   final VoidCallback onPagar;
   final VoidCallback onDetails;
-  final Widget billListItemBox;
+  final Widget planListBox;
 
   const BillListItem({
     super.key,
@@ -24,29 +23,21 @@ class BillListItem extends StatelessWidget {
     required this.status,
     required this.onPagar,
     required this.onDetails,
-    required this.billListItemBox,
+    required this.planListBox,
   });
 
-  bool get isShowPagar =>
+  bool get showPagar =>
       status == BillStatus.pagos || status == BillStatus.atrasado;
 
-  bool get isShowFill => status == BillStatus.pendiente;
+  bool get showHourglass => status == BillStatus.pendiente;
 
-  // 状态对应的颜色和文字
-  Map<String, dynamic> get _statusStyle {
-    switch (status) {
-      case BillStatus.pagos:
-        return {"label": "Pagos", "color": NowColors.c0xFF3288F1};
-      case BillStatus.atrasado:
-        return {"label": "Atrasado", "color": NowColors.c0xFFFB4F34};
-      case BillStatus.pendiente:
-        return {"label": "Pendiente", "color": NowColors.c0xFFFF9817};
-      case BillStatus.fracaso:
-        return {"label": "Fracaso", "color": NowColors.c0xFFFB4F34};
-      case BillStatus.pagado:
-        return {"label": "Pagado", "color": NowColors.c0xFF3EB34D};
-    }
-  }
+  String get _statusLabel => switch (status) {
+    BillStatus.pagos => 'Pagos',
+    BillStatus.atrasado => 'Atrasado',
+    BillStatus.pendiente => 'Pendiente',
+    BillStatus.fracaso => 'Fracaso',
+    BillStatus.pagado => 'Pagado',
+  };
 
   @override
   Widget build(BuildContext context) {
@@ -64,7 +55,7 @@ class BillListItem extends StatelessWidget {
             children: [
               status != BillStatus.atrasado
                   ? Text(
-                      "Vencimiento: $vencimientoDate",
+                      'Vencimiento: $vencimientoDate',
                       style: TextStyle(
                         fontSize: 14.sp,
                         fontWeight: FontWeight.w500,
@@ -72,7 +63,7 @@ class BillListItem extends StatelessWidget {
                       ),
                     )
                   : Text(
-                      "$dueDays Dias Atrasados",
+                      '$dueDays Dias Atrasados',
                       style: TextStyle(
                         fontSize: 14.sp,
                         fontWeight: FontWeight.w500,
@@ -81,7 +72,7 @@ class BillListItem extends StatelessWidget {
                     ),
               SizedBox(width: 4.w),
               Visibility(
-                visible: isShowFill,
+                visible: showHourglass,
                 child: Image.asset(
                   Drawable.iconHourglassFill,
                   width: 16,
@@ -109,14 +100,14 @@ class BillListItem extends StatelessWidget {
                   vertical: 2,
                 ),
                 decoration: BoxDecoration(
-                  color: _statusStyle["color"].withOpacity(0.1),
+                  color: status.color.withValues(alpha: 0.1),
                   borderRadius: BorderRadius.circular(15),
                 ),
                 child: Text(
-                  _statusStyle["label"],
+                  _statusLabel,
                   style: TextStyle(
                     fontSize: 16.sp,
-                    color: _statusStyle["color"],
+                    color: status.color,
                     fontWeight: FontWeight.w500,
                   ),
                 ),
@@ -125,11 +116,10 @@ class BillListItem extends StatelessWidget {
           ),
           SizedBox(height: 12.h),
           // 明细区域
-          billListItemBox,
+          planListBox,
           SizedBox(height: 12.h),
           // 底部按钮
           Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
             spacing: 10.w,
             children: [
               Expanded(
@@ -138,10 +128,10 @@ class BillListItem extends StatelessWidget {
                   onPressed: onDetails,
                 ),
               ),
-              if (isShowPagar)
+              if (showPagar)
                 Expanded(
                   child: EchoSecondaryButton(
-                    filledColor: _statusStyle["color"],
+                    filledColor: status.color,
                     text: 'Pagar',
                     onPressed: onPagar,
                   ),

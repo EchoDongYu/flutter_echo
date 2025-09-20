@@ -233,7 +233,12 @@ class WidgetHelper {
   }
 
   /// 还款计划
-  static Widget buildPlanItem(String index, int? first, double? second) {
+  static Widget buildPlanItem(
+    String index, {
+    required int? first,
+    required double second,
+    required Color color,
+  }) {
     return Container(
       width: double.infinity,
       decoration: const BoxDecoration(
@@ -244,9 +249,10 @@ class WidgetHelper {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Container(
-            padding: const EdgeInsets.symmetric(horizontal: 8),
+            margin: const EdgeInsets.only(top: 0.5, left: 0.5),
+            padding: const EdgeInsets.symmetric(horizontal: 9, vertical: 1),
             decoration: BoxDecoration(
-              color: NowColors.c0xFFFF9817,
+              color: color,
               borderRadius: BorderRadius.only(
                 topLeft: Radius.circular(12),
                 bottomRight: Radius.circular(12),
@@ -306,11 +312,11 @@ class WidgetHelper {
                         ),
                       ),
                       Text(
-                        second?.showAmount ?? '',
+                        second.showAmount,
                         style: TextStyle(
                           fontSize: 14.sp,
                           fontWeight: FontWeight.w500,
-                          color: NowColors.c0xFFFF9817,
+                          color: color,
                           height: 18 / 14,
                         ),
                       ),
