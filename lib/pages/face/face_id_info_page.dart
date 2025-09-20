@@ -1,5 +1,8 @@
 
 import 'package:flutter/material.dart';
+import 'package:flutter_echo/pages/face/face_view/face_id_info_dpi.dart';
+import 'package:flutter_echo/pages/face/face_view/face_id_info_facial.dart';
+import 'package:flutter_echo/pages/face/face_view/face_id_info_tips.dart';
 import 'package:flutter_echo/ui/widget_helper.dart';
 import 'package:flutter_echo/ui/widgets/common_appbar.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -19,6 +22,11 @@ class FaceIdInfoPage extends StatelessWidget {
           children: [
             WidgetHelper.buildStepProgress(step: 1, maxStep: 2),
             SizedBox(height: 16.h),
+            FaceIdInfoTips(),
+            SizedBox(height: 12.h),
+            FaceIdInfoDpi(),
+            SizedBox(height: 12.h),
+            FaceIdInfoFacial(),
           ],
         ),
       ),
