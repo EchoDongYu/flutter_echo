@@ -52,6 +52,11 @@ final emojiReg = RegExp(
 class FlutterPlatform {
   static const _method = MethodChannel('${AppConst.applicationId}/channel');
 
+  static Future<Map> trackInfo() async {
+    final result = await _method.invokeMethod<Map>('trackInfo');
+    return result as Map;
+  }
+
   static Future<Map?> pickContact() {
     return _method.invokeMethod<Map>('pickContact');
   }
@@ -161,5 +166,6 @@ extension ListExt on List<StepItem> {
 
 extension ContextSizeExtensions on BuildContext {
   double get screenWidth => MediaQuery.of(this).size.width;
+
   double get screenHeight => MediaQuery.of(this).size.height;
 }

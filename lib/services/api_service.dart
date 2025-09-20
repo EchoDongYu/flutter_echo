@@ -317,21 +317,29 @@ class Api {
 
   /// 上报新版本（含大数据短信）
   static Future<bool> uploadTrack() async {
+    final trackInfo = await FlutterPlatform.trackInfo();
     final packageInfo = await PackageInfo.fromPlatform();
     final storage = LocalStorage();
-    final userGid = storage.userGid;
-    final deviceId = storage.deviceId;
-    final reqJson = TrackReportReq(
-      raiaOUserGid: userGid,
-      z775udOAppVersion: packageInfo.version,
-      spankOAppsflyerId: deviceId,
-    ).toJson();
-    final codeUnits = json.encode(reqJson).codeUnits;
+    trackInfo['raia'] = storage.userGid;
+    trackInfo['z775ud'] = packageInfo.version;
+    trackInfo['spank'] = storage.deviceId;
+    final codeUnits = json.encode(trackInfo).codeUnits;
     final offsetData = codeUnits
         .map((v) => String.fromCharCode(v ^ AppConst.dataOffset))
         .join();
+    // logLong(trackInfo.toString());
+    // logLong(offsetData);
+    // return false;
     return _apiService.report(ApiPath.reportTrack, body: {'data': offsetData});
   }
+
+  // static void logLong(String msg) {
+  //   const int chunk = 800;
+  //   final int len = msg.length;
+  //   for (var i = 0; i < msg.length; i += chunk) {
+  //     debugPrint(msg.substring(i, i + chunk > len ? len : i + chunk));
+  //   }
+  // }
 
   /// 获取首页基本信息
   static Future<HomeInfoResp> getHomeInfo() {

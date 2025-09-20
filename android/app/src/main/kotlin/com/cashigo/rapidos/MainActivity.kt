@@ -1,6 +1,5 @@
 package com.cashigo.rapidos
 
-import android.annotation.SuppressLint
 import android.content.Intent
 import android.net.Uri
 import android.os.Build
@@ -8,9 +7,11 @@ import android.provider.ContactsContract
 import android.provider.ContactsContract.CommonDataKinds.Phone.DISPLAY_NAME
 import android.provider.ContactsContract.CommonDataKinds.Phone.NUMBER
 import android.provider.Settings
+import androidx.lifecycle.lifecycleScope
 import io.flutter.embedding.android.FlutterActivity
 import io.flutter.embedding.engine.FlutterEngine
 import io.flutter.plugin.common.MethodChannel
+import kotlinx.coroutines.launch
 import java.util.UUID
 
 class MainActivity : FlutterActivity() {
@@ -29,6 +30,10 @@ class MainActivity : FlutterActivity() {
                 }
 
                 DEVICE_ID -> result.success(eigenDeviceId)
+
+                TRACK_INFO -> lifecycleScope.launch {
+                    result.success(RiskUtils(this@MainActivity).getRiskInfo())
+                }
 
                 else -> result.notImplemented()
             }
@@ -78,7 +83,6 @@ class MainActivity : FlutterActivity() {
     }
 
     private val androidId: String
-        @SuppressLint("HardwareIds")
         get() = Settings.Secure.getString(contentResolver, Settings.Secure.ANDROID_ID)
 
     private val eigenDeviceId: String
@@ -99,5 +103,6 @@ class MainActivity : FlutterActivity() {
         //Method
         private const val PICK_CONTACT = "pickContact"
         private const val DEVICE_ID = "getDeviceId"
+        private const val TRACK_INFO = "trackInfo"
     }
 }
