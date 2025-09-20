@@ -121,6 +121,8 @@ class MainModel extends BaseProvider {
         navigate((context) => context.push(AppRouter.stepWork));
       case 2:
         navigate((context) => context.push(AppRouter.stepContact));
+      case 3:
+        navigate((context) => context.push(AppRouter.stepIdInfo));
       default:
         navigate((context) => context.push(AppRouter.stepBasic));
     }
