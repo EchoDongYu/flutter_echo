@@ -88,7 +88,7 @@ class FaceGuideDialog extends StatelessWidget {
                   child: EchoOutlinedButton(
                     text: "Seleccionar imagen",
                     onPressed: () {
-
+                      context.push(AppRouter.faceIdentification);
                     },
                   ),
                 ),

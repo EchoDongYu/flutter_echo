@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_echo/common/app_theme.dart';
 import 'package:flutter_echo/ui/widgets/common_box.dart';
+import 'package:flutter_echo/ui/widgets/common_toggle_box.dart';
 import 'package:flutter_echo/ui/widgets/step_input_field.dart';
 import 'package:flutter_echo/ui/widgets/step_select_field.dart';
 import 'package:flutter_echo/utils/common_utils.dart';
@@ -143,6 +144,67 @@ class FaceIdInfoDpi extends StatelessWidget {
                         isError: false,
                         errorText: "",
                       ),
+                      SizedBox(height: 16.h),
+                      CommonToggleBox(
+                        title: "Sexo",
+                        options: ["Masculino", "Femenino"],
+                        onChanged: (val) {
+                          print("选中了: $val");
+                        },
+                      ),
+                      // CommonBox(
+                      //   height: 60.h,
+                      //   borderWidth: 1,
+                      //   padding: EdgeInsets.symmetric(vertical: 14.h,horizontal: 12.w),
+                      //   borderColor: NowColors.c0xFFD8D8D8,
+                      //   child: Row(
+                      //     children: [
+                      //       Text(
+                      //         "Sexo",
+                      //         style: TextStyle(
+                      //           fontSize: 16.sp,
+                      //           color: NowColors.c0xFF77797B,
+                      //           fontWeight: FontWeight.w400,
+                      //         ),
+                      //       ),
+                      //       SizedBox(width: 65.w),
+                      //       Expanded(
+                      //           child: CommonBox(
+                      //             height: 32.h,
+                      //             alignment: Alignment.center,
+                      //             color: NowColors.c0xFF3288F1,
+                      //             padding: EdgeInsets.zero,
+                      //               child:  Text(
+                      //                 "Masculino",
+                      //                 style: TextStyle(
+                      //                   fontSize: 14.sp,
+                      //                   color: NowColors.c0xFFFFFFFF,
+                      //                   fontWeight: FontWeight.w500,
+                      //                 ),
+                      //               ),
+                      //           ),
+                      //       ),
+                      //       SizedBox(width: 12.w),
+                      //       Expanded(
+                      //         child: CommonBox(
+                      //           height: 32.h,
+                      //           alignment: Alignment.center,
+                      //           borderWidth: 1,
+                      //           borderColor: NowColors.c0xFFD8D8D8,
+                      //           padding: EdgeInsets.zero,
+                      //           child:  Text(
+                      //             "Femenino",
+                      //             style: TextStyle(
+                      //               fontSize: 14.sp,
+                      //               color: NowColors.c0xFF494C4F,
+                      //               fontWeight: FontWeight.w500,
+                      //             ),
+                      //           ),
+                      //         ),
+                      //       ),
+                      //     ],
+                      //   ),
+                      // ),
                     ],
                   ),
                 ),
