@@ -74,5 +74,6 @@ class Drawable {
   static const String iconReturn = 'assets/images/icon_return.png';
   static const String iconSuccess = 'assets/images/icon_success.png';
   static const String iconFailure = 'assets/images/icon_failure.png';
+  static const String iconBrokea = 'assets/images/icon_brokea.png';
 
 }

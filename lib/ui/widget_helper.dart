@@ -201,7 +201,7 @@ class WidgetHelper {
                 Container(
                   width: 56.w,
                   height: 26.h,
-                  margin: EdgeInsets.symmetric(horizontal: 28.w),
+                  //margin: EdgeInsets.symmetric(horizontal: 12.w),
                   decoration: BoxDecoration(
                     color: NowColors.c0xFF3288F1,
                     borderRadius: const BorderRadius.all(Radius.circular(13)),

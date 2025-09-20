@@ -20,7 +20,7 @@ class FaceIdInfoPage extends StatelessWidget {
         padding: EdgeInsets.fromLTRB(12.w, 12.h, 12.w, 12.h),
         child:  Column(
           children: [
-            WidgetHelper.buildStepProgress(step: 1, maxStep: 2),
+            WidgetHelper.buildStepProgress(step: 4, maxStep: 4),
             SizedBox(height: 16.h),
             FaceIdInfoTips(),
             SizedBox(height: 12.h),
