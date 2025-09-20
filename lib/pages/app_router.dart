@@ -1,8 +1,4 @@
-import 'package:flutter/foundation.dart';
 import 'package:flutter_echo/common/page_consumer.dart';
-import 'package:flutter_echo/pages/after/repay_bank_bac_page.dart';
-import 'package:flutter_echo/pages/after/repay_bank_bi_page.dart';
-import 'package:flutter_echo/pages/after/repay_bank_gt_page.dart';
 import 'package:flutter_echo/pages/after/repay_bank_page.dart';
 import 'package:flutter_echo/pages/after/repay_certificate_page.dart';
 import 'package:flutter_echo/pages/after/repay_confirm_page.dart';
@@ -46,6 +42,7 @@ import 'package:flutter_echo/providers/bill_provider.dart';
 import 'package:flutter_echo/providers/feedback_provider.dart';
 import 'package:flutter_echo/providers/login_provider.dart';
 import 'package:flutter_echo/providers/main_provider.dart';
+import 'package:flutter_echo/providers/repay_history_provider.dart';
 import 'package:flutter_echo/providers/repay_provider.dart';
 import 'package:flutter_echo/providers/step_status_provider.dart';
 import 'package:flutter_echo/providers/submit_provider.dart';
@@ -77,9 +74,6 @@ class AppRouter {
   static const String repayConfirm = '/repay_confirm';
   static const String repayFailed = '/repay_failed';
   static const String repayProcess = '/repay_process';
-  static const String repayBankBI = '/repay_bank_bi';
-  static const String repayBankBAC = '/repay_bank_bac';
-  static const String repayBankGT = '/repay_bank_gt';
   static const String repayBank = '/repay_bank';
   static const String repayCertificate = '/repay_certificate';
   static const String repayUploaded = '/repay_uploaded';
@@ -110,7 +104,7 @@ class AppRouter {
         builder: (context, state) => ChangeNotifierProvider(
           create: (_) => MainModel(),
           builder: (_, _) {
-            return PageConsumer<MainModel>(child: MainPage(key: UniqueKey()));
+            return PageConsumer<MainModel>(child: const MainPage());
           },
         ),
       ),
@@ -260,12 +254,6 @@ class AppRouter {
         builder: (context, state) => const ApplyProcessPage(),
       ),
 
-      /// 还款确认页面
-      GoRoute(
-        path: repayConfirm,
-        builder: (context, state) => const RepayConfirmPage(),
-      ),
-
       /// 还款失败页面
       GoRoute(
         path: repayFailed,
@@ -282,24 +270,6 @@ class AppRouter {
       GoRoute(
         path: repayBank,
         builder: (context, state) => const RepayBankPage(),
-      ),
-
-      /// 还款银行页面-GT
-      GoRoute(
-        path: repayBankGT,
-        builder: (context, state) => const RepayBankGtPage(),
-      ),
-
-      /// 还款银行页面-BAC
-      GoRoute(
-        path: repayBankBAC,
-        builder: (context, state) => const RepayBankBacPage(),
-      ),
-
-      /// 还款银行页面-BI
-      GoRoute(
-        path: repayBankBI,
-        builder: (context, state) => const RepayBankBiPage(),
       ),
 
       /// 还款凭证页面
@@ -323,9 +293,11 @@ class AppRouter {
       GoRoute(
         path: repayHistory,
         builder: (context, state) => ChangeNotifierProvider(
-          create: (_) => RepayModel(),
+          create: (_) => RepayHistoryModel()..fetchRepayListData(),
           builder: (context, state) {
-            return PageConsumer<RepayModel>(child: const RepayHistoryPage());
+            return PageConsumer<RepayHistoryModel>(
+              child: const RepayHistoryPage(),
+            );
           },
         ),
       ),
@@ -334,26 +306,35 @@ class AppRouter {
       GoRoute(
         path: billList,
         builder: (context, state) => ChangeNotifierProvider(
-          create: (_) => BillModel(),
+          create: (_) => BillModel()..fetchBillListData(),
           builder: (context, state) {
             return PageConsumer<BillModel>(child: const BillListPage());
           },
         ),
       ),
 
-      /// 账单详情页面
-      GoRoute(
-        path: billDetail,
-        builder: (context, state) => ChangeNotifierProvider(
-          create: (_) => BillDetailModel(),
-          builder: (context, _) {
-            return PageConsumer<BillDetailModel>(
-              child: BillDetailPage(
-                billId: state.uri.queryParameters[NavKey.id],
-              ),
-            );
-          },
-        ),
+      /// 账单详情模块
+      ShellRoute(
+        builder: (context, state, child) {
+          final id = state.uri.queryParameters[NavKey.id];
+          return ChangeNotifierProvider(
+            create: (_) => BillDetailModel()..fetchBillDetailData(id),
+            builder: (_, _) => PageConsumer<BillDetailModel>(child: child),
+          );
+        },
+        routes: [
+          /// 账单详情页面
+          GoRoute(
+            path: billDetail,
+            builder: (context, state) => const BillDetailPage(),
+          ),
+
+          /// 还款确认页面
+          GoRoute(
+            path: repayConfirm,
+            builder: (context, state) => const RepayConfirmPage(),
+          ),
+        ],
       ),
 
       /// 安全验证页面

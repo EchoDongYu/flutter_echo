@@ -1,35 +1,52 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_echo/common/app_theme.dart';
+import 'package:flutter_echo/utils/common_utils.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-enum RepayHistoryStatus { pagos, atrasado, pendiente, fracaso, pagado }
-
 class RepayHistoryListItem extends StatelessWidget {
-  const RepayHistoryListItem({super.key, required this.status});
+  final double amount;
+  final String venDate;
 
-  final RepayHistoryStatus status;
+  ///本次还款处理后状态：0：还款中，1：还款成功,2：还款失败
+  final int? status;
 
-  // 状态对应的颜色和文字
-  Map<String, dynamic> get _statusStyle {
+  const RepayHistoryListItem({
+    super.key,
+    required this.amount,
+    required this.venDate,
+    required this.status,
+  });
+
+  Color get _statusColor {
     switch (status) {
-      case RepayHistoryStatus.pagos:
-        return {"label": "Pagos", "color": NowColors.c0xFF3288F1};
-      case RepayHistoryStatus.atrasado:
-        return {"label": "Atrasado", "color": NowColors.c0xFFFB4F34};
-      case RepayHistoryStatus.pendiente:
-        return {"label": "Pendiente", "color": NowColors.c0xFFFF9817};
-      case RepayHistoryStatus.fracaso:
-        return {"label": "Fracaso", "color": NowColors.c0xFFFB4F34};
-      case RepayHistoryStatus.pagado:
-        return {"label": "Pagado", "color": NowColors.c0xFF3EB34D};
+      case 0:
+        return NowColors.c0xFF3288F1;
+      case 1:
+        return NowColors.c0xFF3EB34D;
+      case 2:
+        return NowColors.c0xFFFB4F34;
+      default:
+        return NowColors.c0xFF3288F1;
+    }
+  }
+
+  String get _statusLabel {
+    switch (status) {
+      case 0:
+        return 'Pago pendiente';
+      case 1:
+        return 'Pagado';
+      case 2:
+        return 'Atrasado';
+      default:
+        return '';
     }
   }
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      // margin: EdgeInsets.symmetric(vertical: 12.h),
-      padding: EdgeInsets.symmetric(vertical: 16.h, horizontal: 20.w),
+      padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 20.h),
       decoration: BoxDecoration(
         color: NowColors.c0xFFFFFFFF,
         borderRadius: BorderRadius.circular(12),
@@ -41,7 +58,7 @@ class RepayHistoryListItem extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Text(
-                "2025",
+                'Vencimiento: $venDate',
                 style: TextStyle(
                   fontSize: 14.sp,
                   fontWeight: FontWeight.w500,
@@ -51,28 +68,28 @@ class RepayHistoryListItem extends StatelessWidget {
               Container(
                 padding: const EdgeInsets.symmetric(
                   horizontal: 10,
-                  //vertical: 2,
+                  vertical: 2,
                 ),
                 decoration: BoxDecoration(
-                  color: _statusStyle["color"].withOpacity(0.1),
-                  borderRadius: BorderRadius.circular(12),
+                  color: _statusColor.withValues(alpha: 0.1),
+                  borderRadius: BorderRadius.circular(15),
                 ),
                 child: Text(
-                  _statusStyle["label"],
+                  _statusLabel,
                   style: TextStyle(
-                    fontSize: 14.sp,
-                    color: _statusStyle["color"],
+                    fontSize: 16.sp,
+                    color: _statusColor,
                     fontWeight: FontWeight.w500,
                   ),
                 ),
               ),
             ],
           ),
-          SizedBox(height: 12.h),
+          SizedBox(height: 10.h),
           Text(
-            "Q 4,800.00",
+            amount.showAmount,
             style: TextStyle(
-              fontSize: 30.sp,
+              fontSize: 32.sp,
               fontWeight: FontWeight.w700,
               color: NowColors.c0xFF1C1F23,
             ),

@@ -8,8 +8,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class BillDetailLoanStatus extends StatelessWidget {
   final double amount;
-  final int dueDays;
-  final String vencimientoDate;
+  final String? time;
   final BillStatus status;
   final VoidCallback onPagar;
   final VoidCallback onHistory;
@@ -18,8 +17,7 @@ class BillDetailLoanStatus extends StatelessWidget {
   const BillDetailLoanStatus({
     super.key,
     required this.amount,
-    required this.dueDays,
-    required this.vencimientoDate,
+    required this.time,
     required this.status,
     required this.onPagar,
     required this.onHistory,
@@ -29,11 +27,50 @@ class BillDetailLoanStatus extends StatelessWidget {
   bool get showPagar =>
       status == BillStatus.pagos || status == BillStatus.atrasado;
 
+  String get _statusLogo => switch (status) {
+    BillStatus.pagos => Drawable.iconPagos,
+    BillStatus.atrasado => Drawable.iconAtrasado,
+    BillStatus.pendiente => Drawable.iconSelectOn,
+    BillStatus.fracaso => Drawable.iconSelectOn,
+    BillStatus.pagado => Drawable.iconSelectOn,
+    BillStatus.unknown => Drawable.iconSelectOn,
+  };
+
   @override
   Widget build(BuildContext context) {
+    return Column(
+      children: [
+        Padding(
+          padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 24.h),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Image.asset(
+                _statusLogo,
+                color: status.color,
+                width: 26.r,
+                height: 26.r,
+              ),
+              SizedBox(width: 12.w),
+              Text(
+                status.label,
+                style: TextStyle(
+                  fontSize: 16.sp,
+                  color: status.color,
+                  fontWeight: FontWeight.w500,
+                ),
+              ),
+            ],
+          ),
+        ),
+        _buildCard(context),
+      ],
+    );
+  }
+
+  Widget _buildCard(BuildContext context) {
     return Container(
-      // margin: EdgeInsets.symmetric(vertical: 12.h),
-      padding: EdgeInsets.symmetric(vertical: 16.h, horizontal: 20.w),
+      padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 20.h),
       decoration: BoxDecoration(
         color: NowColors.c0xFFFFFFFF,
         borderRadius: BorderRadius.circular(12),
@@ -44,7 +81,7 @@ class BillDetailLoanStatus extends StatelessWidget {
           // 顶部日期 + 状态
           status != BillStatus.atrasado
               ? Text(
-                  'Vencimiento: $vencimientoDate',
+                  'Vencimiento: $time',
                   style: TextStyle(
                     fontSize: 14.sp,
                     fontWeight: FontWeight.w500,
@@ -61,7 +98,7 @@ class BillDetailLoanStatus extends StatelessWidget {
                     borderRadius: BorderRadius.circular(12),
                   ),
                   child: Text(
-                    '$dueDays Dias Atrasados',
+                    '$time Dias Atrasados',
                     style: TextStyle(
                       fontSize: 14.sp,
                       fontWeight: FontWeight.w500,
@@ -79,10 +116,10 @@ class BillDetailLoanStatus extends StatelessWidget {
               color: NowColors.c0xFF1C1F23,
             ),
           ),
-          SizedBox(height: 12.h),
+          SizedBox(height: 16.h),
           // 明细区域
           planListBox,
-          SizedBox(height: 12.h),
+          SizedBox(height: 20.h),
           // 底部按钮
           Visibility(
             visible: showPagar,
@@ -101,26 +138,34 @@ class BillDetailLoanStatus extends StatelessWidget {
 }
 
 class BillDetailLoanItem extends StatelessWidget {
-  const BillDetailLoanItem({
+  final String planIndex;
+  final int? status;
+  final double first;
+  final double second;
+  final int dueDays;
+  final double third;
+  final String date;
+  final bool isOverdue;
+  final bool isSelect;
+  final VoidCallback onItemTap;
+
+  const BillDetailLoanItem(
+    this.planIndex, {
     super.key,
     required this.status,
-    required this.amount,
-    required this.dueDate,
-    this.isShowOther = false,
-    this.isSelectedItem = false,
-    this.isSelectedRadio = false,
-    this.onRadioTap,
-    this.onItemTap,
+    required this.first,
+    required this.second,
+    required this.dueDays,
+    required this.third,
+    required this.date,
+    required this.isOverdue,
+    required this.isSelect,
+    required this.onItemTap,
   });
 
-  final double amount;
-  final String dueDate;
-  final BillStatus status;
-  final bool isShowOther;
-  final bool isSelectedItem;
-  final bool isSelectedRadio;
-  final VoidCallback? onRadioTap;
-  final VoidCallback? onItemTap;
+  Color get statusColor => planColor(status);
+
+  bool get isSettle => status == 3;
 
   @override
   Widget build(BuildContext context) {
@@ -130,9 +175,10 @@ class BillDetailLoanItem extends StatelessWidget {
         decoration: BoxDecoration(
           color: NowColors.c0xFFF3F3F5,
           borderRadius: BorderRadius.circular(12),
-          border: isSelectedItem
-              ? Border.all(width: 1, color: status.color)
-              : null,
+          border: Border.all(
+            width: 1,
+            color: isSelect ? statusColor : Colors.transparent,
+          ),
         ),
         child: Stack(
           children: [
@@ -140,17 +186,17 @@ class BillDetailLoanItem extends StatelessWidget {
               left: 0,
               top: 0,
               child: Container(
-                padding: EdgeInsets.symmetric(vertical: 3, horizontal: 6),
+                padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 2),
                 alignment: Alignment.center,
                 decoration: BoxDecoration(
-                  color: status.color,
+                  color: statusColor,
                   borderRadius: BorderRadius.only(
                     topLeft: Radius.circular(12),
                     bottomRight: Radius.circular(12),
                   ),
                 ),
                 child: Text(
-                  '1/10',
+                  planIndex,
                   style: TextStyle(
                     fontSize: 12.sp,
                     color: NowColors.c0xFFFFFFFF,
@@ -170,19 +216,19 @@ class BillDetailLoanItem extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Visibility(
-                    visible: isSelectedItem,
+                    visible: !isSettle,
                     maintainSize: true,
                     maintainAnimation: true,
                     maintainState: true,
                     child: Padding(
                       padding: const EdgeInsets.only(right: 12),
                       child: GestureDetector(
-                        onTap: onRadioTap,
+                        onTap: onItemTap,
                         child: Image.asset(
-                          isSelectedRadio
+                          isSelect
                               ? Drawable.iconSelectOn
                               : Drawable.iconSelectOff,
-                          color: status.color,
+                          color: statusColor,
                           width: 22.r,
                           height: 22.r,
                         ),
@@ -193,125 +239,25 @@ class BillDetailLoanItem extends StatelessWidget {
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text(
-                              'Vencimiento',
-                              style: TextStyle(
-                                fontSize: 12.sp,
-                                fontWeight: FontWeight.w400,
-                                color: NowColors.c0xFF494C4F,
-                              ),
-                            ),
-                            Text(
-                              dueDate,
-                              style: TextStyle(
-                                fontSize: 14.sp,
-                                fontWeight: FontWeight.w500,
-                                color: NowColors.c0xFF000000,
-                              ),
-                            ),
-                          ],
+                        _buildTwoItem('Vencimiento', date),
+                        SizedBox(height: 6.h),
+                        _buildTwoItem(
+                          'Monto a pagar',
+                          first.showAmount,
+                          status: true,
                         ),
                         SizedBox(height: 6.h),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          crossAxisAlignment: CrossAxisAlignment.end,
-                          children: [
-                            Text(
-                              'Monto a pagar',
-                              style: TextStyle(
-                                fontSize: 12.sp,
-                                fontWeight: FontWeight.w400,
-                                color: NowColors.c0xFF494C4F,
-                              ),
-                            ),
-                            Text(
-                              amount.showAmount,
-                              style: TextStyle(
-                                fontSize: 14.sp,
-                                fontWeight: FontWeight.w500,
-                                color: status.color,
-                              ),
-                            ),
-                          ],
-                        ),
-                        SizedBox(height: 6.h),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          crossAxisAlignment: CrossAxisAlignment.end,
-                          children: [
-                            Text(
-                              'Cantidad pagada',
-                              style: TextStyle(
-                                fontSize: 12.sp,
-                                fontWeight: FontWeight.w400,
-                                color: NowColors.c0xFF494C4F,
-                              ),
-                            ),
-                            Text(
-                              amount.showAmount,
-                              style: TextStyle(
-                                fontSize: 14.sp,
-                                fontWeight: FontWeight.w500,
-                                color: status.color,
-                              ),
-                            ),
-                          ],
-                        ),
+                        _buildTwoItem('Cantidad pagada', second.showAmount),
                         Visibility(
-                          visible: isShowOther,
+                          visible: isOverdue,
                           child: Column(
                             children: [
                               SizedBox(height: 6.h),
-                              Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
-                                crossAxisAlignment: CrossAxisAlignment.end,
-                                children: [
-                                  Text(
-                                    'Dias atrasados',
-                                    style: TextStyle(
-                                      fontSize: 12.sp,
-                                      fontWeight: FontWeight.w400,
-                                      color: NowColors.c0xFF494C4F,
-                                    ),
-                                  ),
-                                  Text(
-                                    amount.showAmount,
-                                    style: TextStyle(
-                                      fontSize: 14.sp,
-                                      fontWeight: FontWeight.w500,
-                                      color: status.color,
-                                    ),
-                                  ),
-                                ],
-                              ),
+                              _buildTwoItem('Dias atrasados', '$dueDays Dias'),
                               SizedBox(height: 6.h),
-                              Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
-                                crossAxisAlignment: CrossAxisAlignment.end,
-                                children: [
-                                  Text(
-                                    'Cargo por pago tardio',
-                                    style: TextStyle(
-                                      fontSize: 12.sp,
-                                      fontWeight: FontWeight.w400,
-                                      color: NowColors.c0xFF494C4F,
-                                    ),
-                                  ),
-                                  Text(
-                                    amount.showAmount,
-                                    style: TextStyle(
-                                      fontSize: 14.sp,
-                                      fontWeight: FontWeight.w500,
-                                      color: status.color,
-                                    ),
-                                  ),
-                                ],
+                              _buildTwoItem(
+                                'Cargo por pago tardio',
+                                third.showAmount,
                               ),
                             ],
                           ),
@@ -325,6 +271,30 @@ class BillDetailLoanItem extends StatelessWidget {
           ],
         ),
       ),
+    );
+  }
+
+  Widget _buildTwoItem(String first, String second, {bool status = false}) {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      children: [
+        Text(
+          first,
+          style: TextStyle(
+            fontSize: 12.sp,
+            fontWeight: FontWeight.w400,
+            color: NowColors.c0xFF494C4F,
+          ),
+        ),
+        Text(
+          second,
+          style: TextStyle(
+            fontSize: 14.sp,
+            fontWeight: FontWeight.w500,
+            color: status ? statusColor : NowColors.c0xFF1C1F23,
+          ),
+        ),
+      ],
     );
   }
 }

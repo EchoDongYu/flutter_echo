@@ -17,7 +17,7 @@ class RepayConfirmPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: CommonAppBar(title: "Metodo de pago"),
+      appBar: CommonAppBar(title: 'Metodo de pago'),
       body: SingleChildScrollView(
         padding: EdgeInsets.fromLTRB(12.w, 12.h, 12.w, 12.h),
         child: Column(
@@ -46,15 +46,15 @@ class RepayConfirmPage extends StatelessWidget {
       ),
       bottomNavigationBar: WidgetHelper.buildBottomButton(
         text: 'Pagar inmediatamente',
-        onPressed: () async{
+        onPressed: () async {
           final result = await PromptDialog.show(
             context: context,
             title: 'Consejos',
-            content:"¿Estas seguro de modificarla cantidad?",
+            content: '¿Estas seguro de modificarla cantidad?',
             confirmText: 'Confirmación',
-            cancelText: "Cancelar",
+            cancelText: 'Cancelar',
           );
-          if (result == true && context.mounted){
+          if (result == true && context.mounted) {
             //跳转还款状态页面
             //todo ?? 跳转那里？
             context.push(AppRouter.repayProcess);

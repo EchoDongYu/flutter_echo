@@ -15,7 +15,7 @@ class RepayFailedPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: NowColors.c0xFFF3F3F5,
-      appBar: CommonAppBar(title: "Resultado del Pagar"),
+      appBar: CommonAppBar(title: 'Resultado del Pagar'),
       body: SingleChildScrollView(
         padding: EdgeInsets.fromLTRB(28.w, 64.h, 28.w, 28.h),
         child: Column(
@@ -71,7 +71,7 @@ class RepayProcessPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: NowColors.c0xFFF3F3F5,
-      appBar: CommonAppBar(title: "Resultado del Pagar"),
+      appBar: CommonAppBar(title: 'Resultado del Pagar'),
       body: SingleChildScrollView(
         padding: EdgeInsets.fromLTRB(28.w, 64.h, 28.w, 28.h),
         child: Column(

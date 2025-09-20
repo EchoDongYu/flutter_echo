@@ -22,7 +22,7 @@ class RepayCertificatePage extends StatelessWidget {
     //凭证步骤 1-上传凭证 2-信息填写
     final indexCertificate = 2;
     return Scaffold(
-      appBar: CommonAppBar(title: "Envía comprobante"),
+      appBar: CommonAppBar(title: 'Envía comprobante'),
       body: SingleChildScrollView(
         padding: EdgeInsets.fromLTRB(12.w, 12.h, 12.w, 12.h),
         child: indexCertificate == 1 ? Column(
@@ -32,7 +32,7 @@ class RepayCertificatePage extends StatelessWidget {
             RepayCertificatePhoto(
               onPhotoTap: () {
                 //图片预览
-                context.push("${AppRouter.photoView}?url=${Drawable.iconLogo}",);
+                context.push('${AppRouter.photoView}?url=${Drawable.iconLogo}',);
               },
               onTakePressed: () {},
               onPhotoPressed: () {},
@@ -45,7 +45,7 @@ class RepayCertificatePage extends StatelessWidget {
             RepayCertificateInfo(
               onPhotoTap: () {
                 //跳转图片预览
-                context.push("${AppRouter.photoView}?url=${Drawable.iconLogo}",);
+                context.push('${AppRouter.photoView}?url=${Drawable.iconLogo}',);
               },
             ),
             SizedBox(height: 12.h),
@@ -61,16 +61,16 @@ class RepayCertificatePage extends StatelessWidget {
         ),
       ),
       bottomNavigationBar: WidgetHelper.buildBottomButton(
-        text: indexCertificate == 1 ? 'Confirmar esta imagen' : "Enviar pago",
+        text: indexCertificate == 1 ? 'Confirmar esta imagen' : 'Enviar pago',
         onPressed: () async {
           if( indexCertificate == 1 ){
             final result = await PromptDialog.show(
               context: context,
               title: 'Recordatorio',
-              //content:"Excedio limite de intento de envios, por favor envíe de nuevo después de dos horas",
-              content: "Por favor, no suba nuevamente el mismo comprobante.",
+              //content:'Excedio limite de intento de envios, por favor envíe de nuevo después de dos horas',
+              content: 'Por favor, no suba nuevamente el mismo comprobante.',
               confirmText: 'Enviar el registro',
-              cancelText: "Cerrar",
+              cancelText: 'Cerrar',
             );
             if (result == true && context.mounted) {
               //跳转还款状态页面
@@ -80,8 +80,8 @@ class RepayCertificatePage extends StatelessWidget {
           }else{
             await BoxDialog.show(
               context: context,
-              title: "Diagrama de ejemplo de vale",
-              btnText: "Confirmar",
+              title: 'Diagrama de ejemplo de vale',
+              btnText: 'Confirmar',
               centerLayout: RepayCertificateDiagram(),
               onConfirm: () {
                 context.pop(true);

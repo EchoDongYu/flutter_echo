@@ -234,7 +234,7 @@ class WidgetHelper {
 
   /// 还款计划
   static Widget buildPlanItem(
-    String index, {
+    String planIndex, {
     required int? first,
     required double second,
     required Color color,
@@ -250,7 +250,7 @@ class WidgetHelper {
         children: [
           Container(
             margin: const EdgeInsets.only(top: 0.5, left: 0.5),
-            padding: const EdgeInsets.symmetric(horizontal: 9, vertical: 1),
+            padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 2),
             decoration: BoxDecoration(
               color: color,
               borderRadius: BorderRadius.only(
@@ -259,12 +259,11 @@ class WidgetHelper {
               ),
             ),
             child: Text(
-              index,
+              planIndex,
               style: TextStyle(
                 fontSize: 12.sp,
                 fontWeight: FontWeight.w500,
                 color: Colors.white,
-                height: 16 / 12,
               ),
             ),
           ),

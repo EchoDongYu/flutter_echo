@@ -14,113 +14,88 @@ import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
 
 ///账单详情
-class BillDetailPage extends StatefulWidget {
-  final String? billId;
-
-  const BillDetailPage({super.key, this.billId});
-
-  @override
-  State<BillDetailPage> createState() => _BillDetailPageState();
-}
-
-class _BillDetailPageState extends State<BillDetailPage> {
-  @override
-  void initState() {
-    super.initState();
-    WidgetsBinding.instance.addPostFrameCallback((_) {
-      context.read<BillDetailModel>().fetchBillDetailData(widget.billId);
-    });
-  }
+class BillDetailPage extends StatelessWidget {
+  const BillDetailPage({super.key});
 
   @override
   Widget build(BuildContext context) {
     final billDetailModel = context.watch<BillDetailModel>();
     final billInfo = billDetailModel.billDetailData;
+    final planList = billDetailModel.planList;
     return Scaffold(
       backgroundColor: NowColors.c0xFFF3F3F5,
       appBar: const CommonAppBar(title: 'Detalles del préstamo'),
-      body: SingleChildScrollView(
-        padding: EdgeInsets.fromLTRB(12.w, 12.h, 12.w, 12.h),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: [
-            //账单详情-还款状态框
-            BillDetailLoanStatus(
-              amount: billInfo?.wantonlyOLoanLeftAmount ?? 0.0,
-              dueDays: billInfo?.coandaODueDays ?? 0,
-              vencimientoDate: billInfo?.encloseOOrderTime?.showDate ?? '',
-              status: billStatus(billInfo?.cherubimOOrderStatus),
-              planListBox: const BillDetailPlanListView(),
-              onPagar: () {
-                //跳转还款页面
-                context.push(AppRouter.repayConfirm);
-              },
-              onHistory: () {
-                //跳转还款历史列表
-                context.push(AppRouter.repayHistory);
-              },
-            ),
-            SizedBox(height: 12.h),
-            //账单详情-还款信息框
-            BillDetailLoanInfo(
-              detailLoanInfoDate: '2025/01/01',
-              detailLoanInfoAmount: 'Q 123.33',
-              detailLoanInfoCommission: 'Q 123.33',
-              detailLoanInfoCharge: 'Q 123.33',
-              detailLoanInfoReceived: 'Q 123.33',
-              onCommission: () {
-                _showBillDetailLoanDialog(context);
-              },
-            ),
-          ],
+      body: SafeArea(
+        child: SingleChildScrollView(
+          padding: EdgeInsets.fromLTRB(12.w, 0.h, 12.w, 20.h),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: [
+              //账单详情-还款状态框
+              BillDetailLoanStatus(
+                amount: billInfo?.wantonlyOLoanLeftAmount ?? 0.0,
+                time: billDateTime(billInfo?.cherubimOOrderStatus, planList),
+                status: billStatus(billInfo?.cherubimOOrderStatus),
+                planListBox: ListView.separated(
+                  shrinkWrap: true,
+                  physics: NeverScrollableScrollPhysics(),
+                  itemCount: planList.length,
+                  separatorBuilder: (context, index) => SizedBox(height: 12.h),
+                  itemBuilder: (context, index) {
+                    final planItem = planList[index];
+                    return BillDetailLoanItem(
+                      '${planItem.ih2upqOCtPeriod}/${planItem.ez64t7OPeriodCount}',
+                      status: planItem.i2jk5fOPeriodStatus,
+                      first: planItem.wantonlyOLoanLeftAmount ?? 0,
+                      second: planItem.gatemanORepaymentAmount ?? 0,
+                      dueDays: planItem.clansmanODueDay ?? 0,
+                      third: planItem.faciendOOverdueFee ?? 0,
+                      date: planItem.r5k31qODueTime?.showDate ?? '',
+                      isOverdue: planItem.slackOIsOverdue == true,
+                      isSelect: billDetailModel.checkPlanList[index] == true,
+                      onItemTap: () => billDetailModel.checkPlan(index),
+                    );
+                  },
+                ),
+                onPagar: () => context.push(AppRouter.repayConfirm),
+                onHistory: () => context.push(AppRouter.repayHistory),
+              ),
+              SizedBox(height: 12.h),
+              //账单详情-还款信息框
+              BillDetailLoanInfo(
+                date: billInfo?.n410zdOLoanTime?.showDate ?? '',
+                apply: billInfo?.retiaryOLoanAmount?.showAmount ?? '',
+                comision: billInfo?.spriteOBusinessFee?.showAmount ?? '',
+                charge: billInfo?.centiareOServiceFee?.showAmount ?? '',
+                received: billInfo?.pluralOReceiveAmount?.showAmount ?? '',
+                onComision: () => _showBillDetailLoanDialog(
+                  context,
+                  child: BillDetailLoanDetail(
+                    serviceCharge: 'Q 0',
+                    creditInquiryFee: 'Q 0',
+                    transferFee: 'Q 0',
+                    iva: 'Q 0',
+                  ),
+                ),
+              ),
+            ],
+          ),
         ),
       ),
     );
   }
 
   ///费用详情-弹框
-  Future<void> _showBillDetailLoanDialog(BuildContext context) async {
+  Future<void> _showBillDetailLoanDialog(
+    BuildContext context, {
+    required Widget child,
+  }) async {
     await BoxDialog.show(
       context: context,
       title: 'Comisión',
       btnText: 'Confirmar',
-      centerLayout: BillDetailLoanDetail(
-        serviceCharge: 'Q 15',
-        creditInquiryFee: 'Q 15',
-        transferFee: 'Q 15',
-        iva: 'Q 15',
-      ),
-      onConfirm: () {
-        context.pop(true);
-      },
-    );
-  }
-}
-
-class BillDetailPlanListView extends StatelessWidget {
-  const BillDetailPlanListView({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return Consumer<BillDetailModel>(
-      builder: (_, provider, _) {
-        final planList =
-            provider.billDetailData?.glacisORepaymentPlanList ?? [];
-        return ListView.separated(
-          shrinkWrap: true,
-          physics: NeverScrollableScrollPhysics(),
-          itemCount: planList.length,
-          separatorBuilder: (context, index) => SizedBox(height: 12.h),
-          itemBuilder: (context, index) {
-            final itemData = planList[index];
-            return BillDetailLoanItem(
-              amount: 0.0,
-              dueDate: '2025',
-              status: billStatus(itemData.i2jk5fOPeriodStatus),
-            );
-          },
-        );
-      },
+      centerLayout: child,
+      onConfirm: () => context.pop(true),
     );
   }
 }

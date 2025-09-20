@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_echo/common/app_theme.dart';
 import 'package:flutter_echo/models/common_model.dart';
+import 'package:flutter_echo/utils/common_utils.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class StepCheckField extends StatelessWidget {
@@ -32,7 +33,7 @@ class StepCheckField extends StatelessWidget {
   }) => StepCheckField(
     value: pickedItem?.value,
     onValueChange: (value) async {
-      final result = items?.firstWhere((it) => it.value == value);
+      final result = items?.firstWhereOrNull((it) => it.value == value);
       if (result != null) onValueChange(result);
     },
     items: items?.reversed.map((it) => it.value).toList() ?? List.empty(),
@@ -85,7 +86,9 @@ class StepCheckField extends StatelessWidget {
                           style: TextStyle(
                             fontSize: 14.sp,
                             fontWeight: FontWeight.w500,
-                            color: selected ? Colors.white : NowColors.c0xFF494C4F,
+                            color: selected
+                                ? Colors.white
+                                : NowColors.c0xFF494C4F,
                           ),
                         ),
                         selected: selected,
@@ -99,7 +102,9 @@ class StepCheckField extends StatelessWidget {
                           borderRadius: BorderRadius.all(Radius.circular(20)),
                         ),
                         side: BorderSide(
-                          color: selected ? Colors.transparent : NowColors.c0xFF77797B,
+                          color: selected
+                              ? Colors.transparent
+                              : NowColors.c0xFF77797B,
                           width: 1.w,
                         ),
                       );

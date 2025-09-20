@@ -391,8 +391,8 @@ class Api {
     );
   }
 
-  /// 获取账单列表
-  static Future<LoanBillResp> getBillListInfo() {
+  /// 借款历史列表
+  static Future<LoanBillResp> getBillList() {
     return _apiService.post(
       ApiPath.queryLoanBillList,
       body: LoanBillReq(size: 200, current: 1).toJson(),
@@ -406,6 +406,15 @@ class Api {
       ApiPath.getBillDetail,
       body: BillDetailReq(r5a4x8OLoanGid: id).toJson(),
       convert: (json) => BillDetailResp.fromJson(json),
+    );
+  }
+
+  /// 还款历史列表
+  static Future<BillRepayResp> getRepayList() {
+    return _apiService.post(
+      ApiPath.queryRepaymentList,
+      body: BillRepayReq(size: 200, current: 1).toJson(),
+      convert: (json) => BillRepayResp.fromJson(json),
     );
   }
 }

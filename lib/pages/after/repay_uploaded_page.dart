@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:flutter_echo/pages/after/uploaded_view/repay_uploaded_list_item.dart';
 import 'package:flutter_echo/providers/repay_provider.dart';
@@ -13,7 +12,7 @@ class RepayUploadedPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: CommonAppBar(title: "Historial de pagos subidos"),
+      appBar: CommonAppBar(title: 'Historial de pagos subidos'),
       body: Padding(
         padding: EdgeInsets.fromLTRB(12.w, 12.h, 12.w, 12.h),
         child: Consumer<RepayModel>(
@@ -22,7 +21,9 @@ class RepayUploadedPage extends StatelessWidget {
               itemCount: 3,
               separatorBuilder: (context, index) => SizedBox(height: 12.h),
               itemBuilder: (context, index) {
-                return RepayUploadedListItem(status: RepayUploadedStatus.progress);
+                return RepayUploadedListItem(
+                  status: RepayUploadedStatus.progress,
+                );
               },
             );
           },

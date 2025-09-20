@@ -8,6 +8,7 @@ import 'package:flutter_echo/providers/user_bank_provider.dart';
 import 'package:flutter_echo/ui/dialogs/prompt_dialog.dart';
 import 'package:flutter_echo/ui/widget_helper.dart';
 import 'package:flutter_echo/ui/widgets/top_bar.dart';
+import 'package:flutter_echo/utils/common_utils.dart';
 import 'package:flutter_echo/utils/drawable_utils.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
@@ -128,8 +129,8 @@ class _UserBankPageState extends State<UserBankPage> {
         }
         final item = bankCardList[index - 1];
         final typeStr = stepItems
-            ?.firstWhere((v) => v.key == item.exhedraOAccountType)
-            .value;
+            ?.firstWhereOrNull((v) => v.key == item.exhedraOAccountType)
+            ?.value;
         return Column(
           children: [
             Container(

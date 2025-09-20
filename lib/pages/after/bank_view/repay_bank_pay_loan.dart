@@ -1,12 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_echo/common/app_theme.dart';
 import 'package:flutter_echo/pages/after/bank_view/widget/bank_pay_box.dart';
-import 'package:flutter_echo/pages/app_router.dart';
-import 'package:flutter_echo/ui/widgets/common_box.dart';
 import 'package:flutter_echo/pages/after/bank_view/widget/bank_step_text.dart';
+import 'package:flutter_echo/ui/widgets/common_box.dart';
 import 'package:flutter_echo/utils/drawable_utils.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:go_router/go_router.dart';
 
 class RepayBankPayLoan extends StatelessWidget {
   const RepayBankPayLoan({super.key});
@@ -41,25 +39,19 @@ class RepayBankPayLoan extends StatelessWidget {
           BankPayBox(
             backImageUrl: Drawable.iconBankGt,
             backTitle: "Banco G&T continental",
-            onTap: (){
-              context.push(AppRouter.repayBankGT);
-            },
+            onTap: () {},
           ),
           SizedBox(height: 10.h),
           BankPayBox(
             backImageUrl: Drawable.iconBankBac,
             backTitle: "Banco BAC",
-            onTap: (){
-              context.push(AppRouter.repayBankBAC);
-            },
+            onTap: () {},
           ),
           SizedBox(height: 10.h),
           BankPayBox(
             backImageUrl: Drawable.iconBankBi,
             backTitle: "BANCO INDUSTRIAL",
-            onTap: (){
-              context.push(AppRouter.repayBankBI);
-            },
+            onTap: () {},
           ),
         ],
       ),

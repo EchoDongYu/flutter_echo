@@ -7,6 +7,7 @@ class Drawable {
   static const String iconAboutCopy = 'assets/images/icon_about_copy.png';
   static const String iconAboutForward = 'assets/images/icon_about_forward.png';
   static const String iconAboutPhone = 'assets/images/icon_about_phone.png';
+  static const String iconAtrasado = 'assets/images/icon_atrasado.png';
   static const String iconBankBac = 'assets/images/icon_bank_bac.png';
   static const String iconBankBi = 'assets/images/icon_bank_bi.png';
   static const String iconBankGt = 'assets/images/icon_bank_gt.png';
@@ -40,6 +41,7 @@ class Drawable {
   static const String iconMineV1 = 'assets/images/icon_mine_v1.png';
   static const String iconMineV2 = 'assets/images/icon_mine_v2.png';
   static const String iconMineV3 = 'assets/images/icon_mine_v3.png';
+  static const String iconPagos = 'assets/images/icon_pagos.png';
   static const String iconPhoto = 'assets/images/icon_photo.png';
   static const String iconQuestion = 'assets/images/icon_question.png';
   static const String iconRetainLogin1 = 'assets/images/icon_retain_login1.png';

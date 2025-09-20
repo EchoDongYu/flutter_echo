@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:flutter_echo/common/app_theme.dart';
 import 'package:flutter_echo/utils/drawable_utils.dart';
@@ -7,20 +6,20 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 class BillDetailLoanInfo extends StatelessWidget {
   const BillDetailLoanInfo({
     super.key,
-    required this.detailLoanInfoDate,
-    required this.detailLoanInfoAmount,
-    required this.detailLoanInfoCommission,
-    required this.detailLoanInfoCharge,
-    required this.detailLoanInfoReceived,
-    this.onCommission,
+    required this.date,
+    required this.apply,
+    required this.comision,
+    required this.charge,
+    required this.received,
+    required this.onComision,
   });
 
-  final String detailLoanInfoDate;
-  final String detailLoanInfoAmount;
-  final String detailLoanInfoCommission;
-  final String detailLoanInfoCharge;
-  final String detailLoanInfoReceived;
-  final VoidCallback? onCommission;
+  final String date;
+  final String apply;
+  final String comision;
+  final String charge;
+  final String received;
+  final VoidCallback onComision;
 
   @override
   Widget build(BuildContext context) {
@@ -44,16 +43,13 @@ class BillDetailLoanInfo extends StatelessWidget {
                 ),
               ),
               Container(
-                padding: const EdgeInsets.symmetric(
-                  horizontal: 10,
-                  vertical: 4,
-                ),
+                padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 3),
                 decoration: BoxDecoration(
                   color: NowColors.c0xFFFF9817.withValues(alpha: 0.1),
-                  borderRadius: BorderRadius.circular(12),
+                  borderRadius: BorderRadius.circular(15),
                 ),
                 child: Text(
-                  detailLoanInfoDate,
+                  date,
                   style: TextStyle(
                     fontSize: 16.sp,
                     color: NowColors.c0xFFFF9817,
@@ -68,18 +64,17 @@ class BillDetailLoanInfo extends StatelessWidget {
             children: [
               Flexible(
                 flex: 1,
-                child: LoanInfoBox(
-                  title: 'Monto del préstamo',
-                  text: detailLoanInfoAmount,
-                ),
+                child: LoanInfoBox(title: 'Monto del préstamo', text: apply),
               ),
               Flexible(
                 flex: 1,
-                child: LoanInfoBox(
-                  title: 'Comisión',
-                  text: detailLoanInfoCommission,
-                  isShowIcon: true,
-                  iconTap: onCommission,
+                child: InkWell(
+                  onTap: onComision,
+                  child: LoanInfoBox(
+                    title: 'Comisión',
+                    text: comision,
+                    isShowIcon: true,
+                  ),
                 ),
               ),
             ],
@@ -89,17 +84,11 @@ class BillDetailLoanInfo extends StatelessWidget {
             children: [
               Flexible(
                 flex: 1,
-                child: LoanInfoBox(
-                  title: 'Cargo por Interés',
-                  text: detailLoanInfoCharge,
-                ),
+                child: LoanInfoBox(title: 'Cargo por Interés', text: charge),
               ),
               Flexible(
                 flex: 1,
-                child: LoanInfoBox(
-                  title: 'Cantidad reciblda',
-                  text: detailLoanInfoReceived,
-                ),
+                child: LoanInfoBox(title: 'Cantidad reciblda', text: received),
               ),
             ],
           ),
@@ -115,13 +104,11 @@ class LoanInfoBox extends StatelessWidget {
     required this.title,
     required this.text,
     this.isShowIcon = false,
-    this.iconTap,
   });
 
   final String title;
   final String text;
   final bool isShowIcon;
-  final VoidCallback? iconTap;
 
   @override
   Widget build(BuildContext context) {
@@ -140,15 +127,12 @@ class LoanInfoBox extends StatelessWidget {
             ),
             Visibility(
               visible: isShowIcon,
-              child: GestureDetector(
-                onTap: iconTap,
-                child: Padding(
-                  padding: const EdgeInsets.only(left: 4),
-                  child: Image.asset(
-                    Drawable.iconQuestion,
-                    width: 12.r,
-                    height: 12.r,
-                  ),
+              child: Padding(
+                padding: const EdgeInsets.only(left: 4),
+                child: Image.asset(
+                  Drawable.iconQuestion,
+                  width: 14.r,
+                  height: 14.r,
                 ),
               ),
             ),

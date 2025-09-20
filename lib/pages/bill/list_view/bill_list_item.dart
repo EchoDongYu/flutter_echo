@@ -9,7 +9,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 class BillListItem extends StatelessWidget {
   final double amount;
   final int dueDays;
-  final String vencimientoDate;
+  final String venDate;
   final BillStatus status;
   final VoidCallback onPagar;
   final VoidCallback onDetails;
@@ -19,7 +19,7 @@ class BillListItem extends StatelessWidget {
     super.key,
     required this.amount,
     required this.dueDays,
-    required this.vencimientoDate,
+    required this.venDate,
     required this.status,
     required this.onPagar,
     required this.onDetails,
@@ -30,14 +30,6 @@ class BillListItem extends StatelessWidget {
       status == BillStatus.pagos || status == BillStatus.atrasado;
 
   bool get showHourglass => status == BillStatus.pendiente;
-
-  String get _statusLabel => switch (status) {
-    BillStatus.pagos => 'Pagos',
-    BillStatus.atrasado => 'Atrasado',
-    BillStatus.pendiente => 'Pendiente',
-    BillStatus.fracaso => 'Fracaso',
-    BillStatus.pagado => 'Pagado',
-  };
 
   @override
   Widget build(BuildContext context) {
@@ -55,7 +47,7 @@ class BillListItem extends StatelessWidget {
             children: [
               status != BillStatus.atrasado
                   ? Text(
-                      'Vencimiento: $vencimientoDate',
+                      'Vencimiento: $venDate',
                       style: TextStyle(
                         fontSize: 14.sp,
                         fontWeight: FontWeight.w500,
@@ -104,7 +96,7 @@ class BillListItem extends StatelessWidget {
                   borderRadius: BorderRadius.circular(15),
                 ),
                 child: Text(
-                  _statusLabel,
+                  status.label,
                   style: TextStyle(
                     fontSize: 16.sp,
                     color: status.color,

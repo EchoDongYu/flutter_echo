@@ -21,7 +21,8 @@ class MainModel extends BaseProvider {
   MainInfoResp? _mainInfo;
 
   bool get hasPasswordEntry =>
-      mainInfo?.fm50w8OLoginPwd == true || (mainInfo?.cressyOTraderPwd == true && _creditStatus ==2);
+      mainInfo?.fm50w8OLoginPwd == true ||
+      (mainInfo?.cressyOTraderPwd == true && _creditStatus == 2);
 
   /// 0未授信 1授信中 2授信完成 3授信失败
   int? get status => _creditStatus;
@@ -64,8 +65,8 @@ class MainModel extends BaseProvider {
       _value = _pickedProduct?.xuwh2oOLoanRangeMax ?? 0;
     } else {
       _creditStatus = null;
-      notifyListeners();
     }
+    notifyListeners();
   }
 
   Future<MainInfoResp?> getMainBaseInfo() async {
@@ -73,7 +74,7 @@ class MainModel extends BaseProvider {
       _mainInfo = await Api.getMainBaseInfo();
       await LocalStorage().set(AppConst.mainInfoKey, _mainInfo);
     }
-    return _mainInfo;
+    return null;
   }
 
   void launchDefault() async {

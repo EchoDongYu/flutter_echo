@@ -8,6 +8,7 @@ import 'package:flutter_echo/pages/submit/step_bank_dialog.dart';
 import 'package:flutter_echo/providers/user_bank_provider.dart';
 import 'package:flutter_echo/ui/widget_helper.dart';
 import 'package:flutter_echo/ui/widgets/common_button.dart';
+import 'package:flutter_echo/utils/common_utils.dart';
 import 'package:flutter_echo/utils/drawable_utils.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
@@ -204,8 +205,8 @@ class _UserBankDialogState extends State<UserBankDialog> {
       itemBuilder: (context, index) {
         final item = bankCardList[index];
         final typeValue = stepItems
-            ?.firstWhere((v) => v.key == item.exhedraOAccountType)
-            .value;
+            ?.firstWhereOrNull((v) => v.key == item.exhedraOAccountType)
+            ?.value;
         return InkWell(
           onTap: () => setState(() => _pickedItem = item),
           borderRadius: const BorderRadius.all(Radius.circular(20)),

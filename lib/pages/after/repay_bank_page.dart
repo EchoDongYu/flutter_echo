@@ -15,7 +15,7 @@ class RepayBankPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: CommonAppBar(
-        title: "Reembolso bancario",
+        title: 'Reembolso bancario',
       ),
       body: SingleChildScrollView(
         padding: EdgeInsets.fromLTRB(12.w, 12.h, 12.w, 12.h),

@@ -165,6 +165,15 @@ extension ListExt on List<StepItem> {
   }
 }
 
+extension IterableExtension<T> on Iterable<T> {
+  T? firstWhereOrNull(bool Function(T element) test) {
+    for (var element in this) {
+      if (test(element)) return element;
+    }
+    return null;
+  }
+}
+
 extension ContextSizeExtensions on BuildContext {
   double get screenWidth => MediaQuery.of(this).size.width;
 
