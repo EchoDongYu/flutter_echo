@@ -22,7 +22,7 @@ class RepayBankGtPage extends StatelessWidget {
         child: Column(
           children: [
             RepayBankCardInfo(
-              bankCardInfoImageUrl: Drawable.iconBankGT,
+              bankCardInfoImageUrl: Drawable.iconBankGt,
               bankCardInfoTitle: "G&T",
               bankCardInfoText: "Banco G&T continental",
               bankCardInfoAccountNumber: "062095675",

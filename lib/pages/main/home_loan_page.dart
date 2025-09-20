@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_echo/common/app_theme.dart';
 import 'package:flutter_echo/common/constants.dart';
 import 'package:flutter_echo/models/swaggerApi.models.swagger.dart';
-import 'package:flutter_echo/pages/app_router.dart';
+import 'package:flutter_echo/pages/bill/bill_list_page.dart';
 import 'package:flutter_echo/providers/main_provider.dart';
 import 'package:flutter_echo/ui/widget_helper.dart';
 import 'package:flutter_echo/ui/widgets/common_button.dart';
@@ -68,10 +68,9 @@ class _HomeLoanPageState extends State<HomeLoanPage> {
 
   Widget _buildBill() => Consumer<MainModel>(
     builder: (context, provider, _) {
-      final homeInfo = provider.homeInfo;
-      final bill = homeInfo?.papuanOLastRecordLoan;
-      final planList = bill?.outdoOPlanSimpleList;
-      if (bill == null || planList == null) return SizedBox();
+      final billInfo = provider.homeInfo?.papuanOLastRecordLoan;
+      if (billInfo == null) return SizedBox();
+      final planList = billInfo.outdoOPlanSimpleList ?? [];
       return Container(
         margin: EdgeInsets.only(bottom: 12.h),
         padding: EdgeInsets.symmetric(vertical: 20.h),
@@ -85,24 +84,12 @@ class _HomeLoanPageState extends State<HomeLoanPage> {
           boxShadow: NowStyles.cardShadows,
         ),
         child: InkWell(
-          onTap: () async{
-            // 0-借款处理中 1-账单详情 2-借款失败
-            switch (bill.suffOLoanStatus) {
-              case -1:
-              case 0:
-                context.push(AppRouter.applyProcess);
-              case 1:
-                final uriRoute = Uri(
-                  path: AppRouter.billDetail,
-                  queryParameters: {
-                    NavKey.id: bill.r5a4x8OLoanGid.toString(),
-                  },
-                );
-                //跳转账单详情
-                context.push(uriRoute.toString());
-              case 2:
-                context.push(AppRouter.applyFailed);
-            }
+          onTap: () async {
+            final route = routeDetails(
+              billInfo.cherubimOOrderStatus,
+              billInfo.r5a4x8OLoanGid,
+            );
+            context.push(route);
           },
           borderRadius: const BorderRadius.all(Radius.circular(20)),
           child: Stack(
@@ -118,7 +105,7 @@ class _HomeLoanPageState extends State<HomeLoanPage> {
                   Padding(
                     padding: EdgeInsets.only(left: 16.w),
                     child: Text(
-                      bill.n410zdOLoanTime?.showDate ?? '',
+                      billInfo.encloseOOrderTime?.showDate ?? '',
                       style: TextStyle(
                         fontSize: 14.sp,
                         fontWeight: FontWeight.w500,
@@ -135,7 +122,7 @@ class _HomeLoanPageState extends State<HomeLoanPage> {
                       mainAxisSize: MainAxisSize.max,
                       children: [
                         Text(
-                          bill.retiaryOLoanAmount?.showAmount ?? '',
+                          billInfo.kinkyOOrderAmount?.showAmount ?? '',
                           style: TextStyle(
                             fontSize: 30.sp,
                             fontWeight: FontWeight.w700,
@@ -188,12 +175,10 @@ class _HomeLoanPageState extends State<HomeLoanPage> {
                     padding: EdgeInsets.symmetric(horizontal: 16.w),
                     physics: const NeverScrollableScrollPhysics(),
                     itemCount: planList.length,
-                    separatorBuilder: (context, index) {
-                      return SizedBox(height: 12.h);
-                    },
+                    separatorBuilder: (_, _) => SizedBox(height: 12.h),
                     itemBuilder: (context, index) {
                       return WidgetHelper.buildPlanItem(
-                        '${index + 1}/${planList.length}',
+                        '${planList[index].ih2upqOCtPeriod}/${planList[index].ez64t7OPeriodCount}',
                         planList[index].r5k31qODueTime,
                         planList[index].wantonlyOLoanLeftAmount,
                       );

@@ -2698,8 +2698,8 @@ Map<String, dynamic> _$CouponPopRespToJson(CouponPopResp instance) =>
 
 LoanBillResp _$LoanBillRespFromJson(Map<String, dynamic> json) => LoanBillResp(
   y934teOTotalAmount: (json['y934te'] as num?)?.toDouble(),
-  total: (json['total'] as num?)?.toInt(),
-  pages: (json['pages'] as num?)?.toInt(),
+  total: (json['total'] as String?)?.tryParseInt,
+  pages: (json['pages'] as String?)?.tryParseInt,
   ouxtd3OLoanList: (json['ouxtd3'] as List<dynamic>?)
       ?.map(
         (e) => LoanBillResp$Ouxtd3OLoanList$Item.fromJson(
@@ -2847,8 +2847,8 @@ Map<String, dynamic> _$BillDetailRespToJson(
 
 BillRepayResp _$BillRepayRespFromJson(Map<String, dynamic> json) =>
     BillRepayResp(
-      total: (json['total'] as num?)?.toInt(),
-      pages: (json['pages'] as num?)?.toInt(),
+      total: (json['total'] as String?)?.tryParseInt,
+      pages: (json['pages'] as String?)?.tryParseInt,
       endmostOTotalLoanLeftAmount: (json['endmost'] as num?)?.toDouble(),
       my4dd2ORepaymentList: (json['my4dd2'] as List<dynamic>?)
           ?.map(

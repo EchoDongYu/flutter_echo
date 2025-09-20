@@ -304,9 +304,7 @@ class _ApplyConfirmPageState extends State<ApplyConfirmPage> {
   Widget _buildCard2() {
     return Consumer<ApplyModel>(
       builder: (context, provider, child) {
-        final planList = provider.loanInfo?.glacisORepaymentPlanList;
-        if (planList == null) return SizedBox();
-        final length = planList.length;
+        final planList = provider.loanInfo?.glacisORepaymentPlanList ?? [];
         return Container(
           width: double.infinity,
           padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 20.h),
@@ -328,7 +326,7 @@ class _ApplyConfirmPageState extends State<ApplyConfirmPage> {
                       borderRadius: BorderRadius.circular(20),
                     ),
                     child: Text(
-                      '$length Cuotas',
+                      '${planList.length} Cuotas',
                       style: TextStyle(
                         fontSize: 14.sp,
                         fontWeight: FontWeight.w500,
@@ -343,11 +341,11 @@ class _ApplyConfirmPageState extends State<ApplyConfirmPage> {
               ListView.separated(
                 shrinkWrap: true,
                 physics: const NeverScrollableScrollPhysics(),
-                itemCount: length,
+                itemCount: planList.length,
                 separatorBuilder: (context, index) => SizedBox(height: 12.h),
                 itemBuilder: (context, index) {
                   return WidgetHelper.buildPlanItem(
-                    '${index + 1}/$length',
+                    '${planList[index].ih2upqOCtPeriod}/${planList[index].ez64t7OPeriodCount}',
                     planList[index].r5k31qODueTime,
                     planList[index].timesOBillAmount,
                   );

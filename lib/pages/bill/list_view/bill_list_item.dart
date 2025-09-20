@@ -9,25 +9,28 @@ enum BillStatus { pagos, atrasado, pendiente, fracaso, pagado }
 
 class BillListItem extends StatelessWidget {
   final double amount;
+  final int dueDays;
   final String vencimientoDate;
   final BillStatus status;
   final VoidCallback onPagar;
   final VoidCallback onDetails;
-  final bool isShowPagar;
-  final bool isShowFill;
   final Widget billListItemBox;
 
   const BillListItem({
     super.key,
     required this.amount,
+    required this.dueDays,
     required this.vencimientoDate,
     required this.status,
     required this.onPagar,
     required this.onDetails,
     required this.billListItemBox,
-    this.isShowPagar = true,
-    this.isShowFill = false,
   });
+
+  bool get isShowPagar =>
+      status == BillStatus.pagos || status == BillStatus.atrasado;
+
+  bool get isShowFill => status == BillStatus.pendiente;
 
   // 状态对应的颜色和文字
   Map<String, dynamic> get _statusStyle {
@@ -48,8 +51,7 @@ class BillListItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      // margin: EdgeInsets.symmetric(vertical: 12.h),
-      padding: EdgeInsets.symmetric(vertical: 16.h, horizontal: 20.w),
+      padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 20.h),
       decoration: BoxDecoration(
         color: NowColors.c0xFFFFFFFF,
         borderRadius: BorderRadius.circular(12),
@@ -60,14 +62,23 @@ class BillListItem extends StatelessWidget {
           // 顶部日期 + 状态
           Row(
             children: [
-              Text(
-                "Vencimiento: $vencimientoDate",
-                style: TextStyle(
-                  fontSize: 14.sp,
-                  fontWeight: FontWeight.w500,
-                  color: NowColors.c0xFF77797B,
-                ),
-              ),
+              status != BillStatus.atrasado
+                  ? Text(
+                      "Vencimiento: $vencimientoDate",
+                      style: TextStyle(
+                        fontSize: 14.sp,
+                        fontWeight: FontWeight.w500,
+                        color: NowColors.c0xFF77797B,
+                      ),
+                    )
+                  : Text(
+                      "$dueDays Dias Atrasados",
+                      style: TextStyle(
+                        fontSize: 14.sp,
+                        fontWeight: FontWeight.w500,
+                        color: NowColors.c0xFFFB4F34,
+                      ),
+                    ),
               SizedBox(width: 4.w),
               Visibility(
                 visible: isShowFill,
@@ -85,7 +96,7 @@ class BillListItem extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Text(
-                "Q ${amount.toStringAsFixed(2)}",
+                amount.showAmount,
                 style: TextStyle(
                   fontSize: 30.sp,
                   fontWeight: FontWeight.w700,
@@ -95,11 +106,11 @@ class BillListItem extends StatelessWidget {
               Container(
                 padding: const EdgeInsets.symmetric(
                   horizontal: 10,
-                  //vertical: 4,
+                  vertical: 2,
                 ),
                 decoration: BoxDecoration(
                   color: _statusStyle["color"].withOpacity(0.1),
-                  borderRadius: BorderRadius.circular(12),
+                  borderRadius: BorderRadius.circular(15),
                 ),
                 child: Text(
                   _statusStyle["label"],
@@ -119,152 +130,23 @@ class BillListItem extends StatelessWidget {
           // 底部按钮
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            spacing: 10.w,
             children: [
-              SizedBox(
-                width: context.screenWidth * 0.4,
+              Expanded(
                 child: EchoOutlinedButton(
-                  text: 'Detalles',
+                  text: 'Ver detalles',
                   onPressed: onDetails,
                 ),
               ),
-              Visibility(
-                visible: isShowPagar,
-                child: SizedBox(
-                  width: context.screenWidth * 0.4,
+              if (isShowPagar)
+                Expanded(
                   child: EchoSecondaryButton(
                     filledColor: _statusStyle["color"],
                     text: 'Pagar',
                     onPressed: onPagar,
                   ),
                 ),
-              ),
             ],
-          ),
-        ],
-      ),
-    );
-  }
-}
-
-class BillListLoanItem extends StatelessWidget {
-  final double amount;
-  final String vencimientoDate;
-  final String dueDate;
-  final BillStatus status;
-
-  const BillListLoanItem({
-    super.key,
-    required this.amount,
-    required this.vencimientoDate,
-    required this.dueDate,
-    required this.status,
-  });
-
-  // 状态对应的颜色和文字
-  Map<String, dynamic> get _statusStyle {
-    switch (status) {
-      case BillStatus.pagos:
-        return {"label": "Pagos", "color": NowColors.c0xFF3288F1};
-      case BillStatus.atrasado:
-        return {"label": "Atrasado", "color": NowColors.c0xFFFB4F34};
-      case BillStatus.pendiente:
-        return {"label": "Pendiente", "color": NowColors.c0xFFFF9817};
-      case BillStatus.fracaso:
-        return {"label": "Fracaso", "color": NowColors.c0xFFFB4F34};
-      case BillStatus.pagado:
-        return {"label": "Pagado", "color": NowColors.c0xFF3EB34D};
-    }
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      decoration: BoxDecoration(
-        color: NowColors.c0xFFF3F3F5,
-        borderRadius: BorderRadius.circular(12),
-      ),
-      child: Stack(
-        children: [
-          Positioned(
-            left: 0,
-            top: 0,
-            child: Container(
-              padding: EdgeInsets.symmetric(vertical: 3, horizontal: 6),
-              alignment: Alignment.center,
-              decoration: BoxDecoration(
-                color: _statusStyle["color"],
-                borderRadius: BorderRadius.only(
-                  topLeft: Radius.circular(12),
-                  bottomRight: Radius.circular(12),
-                ),
-              ),
-              child: Text(
-                "1/10",
-                style: TextStyle(
-                  fontSize: 12.sp,
-                  color: NowColors.c0xFFFFFFFF,
-                  fontWeight: FontWeight.w500,
-                ),
-              ),
-            ),
-          ),
-          Padding(
-            padding: const EdgeInsets.only(
-              left: 48,
-              top: 12,
-              right: 12,
-              bottom: 12,
-            ),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      "Vencimiento",
-                      style: TextStyle(
-                        fontSize: 12.sp,
-                        fontWeight: FontWeight.w400,
-                        color: NowColors.c0xFF494C4F,
-                      ),
-                    ),
-                    Text(
-                      dueDate,
-                      style: TextStyle(
-                        fontSize: 14.sp,
-                        fontWeight: FontWeight.w500,
-                        color: NowColors.c0xFF000000,
-                      ),
-                    ),
-                  ],
-                ),
-                SizedBox(height: 6.h),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  crossAxisAlignment: CrossAxisAlignment.end,
-                  children: [
-                    Text(
-                      "Monto a pagar",
-                      style: TextStyle(
-                        fontSize: 12.sp,
-                        fontWeight: FontWeight.w400,
-                        color: NowColors.c0xFF494C4F,
-                      ),
-                    ),
-                    Text(
-                      "Q ${amount.toStringAsFixed(2)}",
-                      style: TextStyle(
-                        fontSize: 14.sp,
-                        fontWeight: FontWeight.w500,
-                        color: _statusStyle["color"],
-                      ),
-                    ),
-                  ],
-                ),
-              ],
-            ),
           ),
         ],
       ),

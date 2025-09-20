@@ -232,6 +232,7 @@ class WidgetHelper {
     );
   }
 
+  /// 还款计划
   static Widget buildPlanItem(String index, int? first, double? second) {
     return Container(
       width: double.infinity,

@@ -39,7 +39,7 @@ class RepayBankPayLoan extends StatelessWidget {
           ),
           SizedBox(height: 20.h),
           BankPayBox(
-            backImageUrl: Drawable.iconBankGT,
+            backImageUrl: Drawable.iconBankGt,
             backTitle: "Banco G&T continental",
             onTap: (){
               context.push(AppRouter.repayBankGT);
@@ -47,7 +47,7 @@ class RepayBankPayLoan extends StatelessWidget {
           ),
           SizedBox(height: 10.h),
           BankPayBox(
-            backImageUrl: Drawable.iconBankBAC,
+            backImageUrl: Drawable.iconBankBac,
             backTitle: "Banco BAC",
             onTap: (){
               context.push(AppRouter.repayBankBAC);
@@ -55,7 +55,7 @@ class RepayBankPayLoan extends StatelessWidget {
           ),
           SizedBox(height: 10.h),
           BankPayBox(
-            backImageUrl: Drawable.iconBankBI,
+            backImageUrl: Drawable.iconBankBi,
             backTitle: "BANCO INDUSTRIAL",
             onTap: (){
               context.push(AppRouter.repayBankBI);

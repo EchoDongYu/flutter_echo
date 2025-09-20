@@ -1,5 +1,6 @@
 // ignore_for_file: type=lint
 
+import 'package:flutter_echo/utils/common_utils.dart';
 import 'package:json_annotation/json_annotation.dart';
 import 'package:collection/collection.dart';
 import 'dart:convert';

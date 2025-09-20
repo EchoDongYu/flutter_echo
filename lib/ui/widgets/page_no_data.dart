@@ -11,7 +11,8 @@ class PageNoData extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        Image.asset(Drawable.iconStatusCard, width: 70.r, height: 70.r),
+        SizedBox(height: 64.h),
+        Image.asset(Drawable.iconStatusHis, width: 70.r, height: 70.r),
         SizedBox(height: 24.h),
         Text(
           'Sin datos',

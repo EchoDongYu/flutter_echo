@@ -395,7 +395,7 @@ class Api {
   static Future<LoanBillResp> getBillListInfo() {
     return _apiService.post(
       ApiPath.queryLoanBillList,
-      body: LoanBillReq(size: 1, current: 1).toJson(),
+      body: LoanBillReq(size: 200, current: 1).toJson(),
       convert: (json) => LoanBillResp.fromJson(json),
     );
   }

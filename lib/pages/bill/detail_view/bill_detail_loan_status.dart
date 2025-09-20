@@ -84,7 +84,7 @@ class BillDetailLoanStatus extends StatelessWidget {
           SizedBox(height: 10.h),
           // 金额
           Text(
-            "Q ${amount.toStringAsFixed(2)}",
+            amount.showAmount,
             style: TextStyle(
               fontSize: 30.sp,
               fontWeight: FontWeight.w700,
@@ -165,8 +165,8 @@ class BillDetailLoanItem extends StatelessWidget {
         decoration: BoxDecoration(
           color: NowColors.c0xFFF3F3F5,
           borderRadius: BorderRadius.circular(12),
-          border: isSelectedItem ?
-          Border.all(width: 1, color: _statusStyle["color"])
+          border: isSelectedItem
+              ? Border.all(width: 1, color: _statusStyle["color"])
               : null,
         ),
         child: Stack(
@@ -175,7 +175,7 @@ class BillDetailLoanItem extends StatelessWidget {
               left: 0,
               top: 0,
               child: Container(
-                padding: EdgeInsets.symmetric(vertical: 3,horizontal: 6),
+                padding: EdgeInsets.symmetric(vertical: 3, horizontal: 6),
                 alignment: Alignment.center,
                 decoration: BoxDecoration(
                   color: _statusStyle["color"],
@@ -211,10 +211,12 @@ class BillDetailLoanItem extends StatelessWidget {
                     maintainState: true,
                     child: Padding(
                       padding: const EdgeInsets.only(right: 12),
-                      child:  GestureDetector(
+                      child: GestureDetector(
                         onTap: onRadioTap,
                         child: Image.asset(
-                          isSelectedRadio ? Drawable.iconSelectOn : Drawable.iconSelectOff,
+                          isSelectedRadio
+                              ? Drawable.iconSelectOn
+                              : Drawable.iconSelectOff,
                           color: _statusStyle["color"],
                           width: 22.r,
                           height: 22.r,
@@ -262,7 +264,7 @@ class BillDetailLoanItem extends StatelessWidget {
                               ),
                             ),
                             Text(
-                              "Q ${amount.toStringAsFixed(2)}",
+                              amount.showAmount,
                               style: TextStyle(
                                 fontSize: 14.sp,
                                 fontWeight: FontWeight.w500,
@@ -285,7 +287,7 @@ class BillDetailLoanItem extends StatelessWidget {
                               ),
                             ),
                             Text(
-                              "Q ${amount.toStringAsFixed(2)}",
+                              amount.showAmount,
                               style: TextStyle(
                                 fontSize: 14.sp,
                                 fontWeight: FontWeight.w500,
@@ -300,7 +302,8 @@ class BillDetailLoanItem extends StatelessWidget {
                             children: [
                               SizedBox(height: 6.h),
                               Row(
-                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
                                 crossAxisAlignment: CrossAxisAlignment.end,
                                 children: [
                                   Text(
@@ -312,7 +315,7 @@ class BillDetailLoanItem extends StatelessWidget {
                                     ),
                                   ),
                                   Text(
-                                    "Q ${amount.toStringAsFixed(2)}",
+                                    amount.showAmount,
                                     style: TextStyle(
                                       fontSize: 14.sp,
                                       fontWeight: FontWeight.w500,
@@ -323,7 +326,8 @@ class BillDetailLoanItem extends StatelessWidget {
                               ),
                               SizedBox(height: 6.h),
                               Row(
-                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
                                 crossAxisAlignment: CrossAxisAlignment.end,
                                 children: [
                                   Text(
@@ -335,7 +339,7 @@ class BillDetailLoanItem extends StatelessWidget {
                                     ),
                                   ),
                                   Text(
-                                    "Q ${amount.toStringAsFixed(2)}",
+                                    amount.showAmount,
                                     style: TextStyle(
                                       fontSize: 14.sp,
                                       fontWeight: FontWeight.w500,

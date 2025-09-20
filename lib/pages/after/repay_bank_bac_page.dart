@@ -24,7 +24,7 @@ class RepayBankBacPage extends StatelessWidget {
         child: Column(
           children: [
             RepayBankCardInfo(
-              bankCardInfoImageUrl: Drawable.iconBankBAC,
+              bankCardInfoImageUrl: Drawable.iconBankBac,
               bankCardInfoTitle: "BAC",
               bankCardInfoText: "Banco BAC",
               bankCardInfoAccountNumber: "906289913",
