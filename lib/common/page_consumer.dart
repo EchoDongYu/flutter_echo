@@ -10,21 +10,10 @@ import 'package:flutter_echo/ui/dialogs/loading_dialog.dart';
 import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
 
-class PageConsumer<T extends BaseProvider> extends StatefulWidget {
+class PageConsumer<T extends BaseProvider> extends StatelessWidget {
   final Widget? _child;
 
   const PageConsumer({super.key, required Widget child}) : _child = child;
-
-  @override
-  State<PageConsumer> createState() => _PageConsumerState<T>();
-}
-
-class _PageConsumerState<T extends BaseProvider> extends State<PageConsumer> {
-  @override
-  void dispose() {
-    LoadingDialog.dispose();
-    super.dispose();
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -77,7 +66,7 @@ class _PageConsumerState<T extends BaseProvider> extends State<PageConsumer> {
         });
         return child!;
       },
-      child: widget._child,
+      child: _child,
     );
   }
 }

@@ -3,10 +3,12 @@ import 'package:flutter_echo/ui/widgets/loading_ring.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class LoadingDialog {
+  static int _loadingCount = 0;
   static OverlayEntry? _overlayEntry;
 
   static void show(BuildContext context) {
-    if (_overlayEntry != null) hide();
+    _loadingCount++;
+    if (_overlayEntry != null) return;
     final overlayEntry = OverlayEntry(
       builder: (_) => PopScope(
         canPop: false,
@@ -51,11 +53,11 @@ class LoadingDialog {
   }
 
   static void hide() {
-    _overlayEntry?.remove();
-    _overlayEntry = null;
-  }
-
-  static void dispose() {
-    if (_overlayEntry != null) hide();
+    if (_loadingCount <= 0) return;
+    _loadingCount--;
+    if (_loadingCount == 0) {
+      _overlayEntry?.remove();
+      _overlayEntry = null;
+    }
   }
 }
