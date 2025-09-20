@@ -1,7 +1,7 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:camera/camera.dart';
-import 'package:flutter_echo/common/app_theme.dart';
+import 'package:flutter_echo/utils/drawable_utils.dart';
 import 'package:google_mlkit_face_detection/google_mlkit_face_detection.dart';
 
 class FaceIdentificationBox extends StatefulWidget {
@@ -100,13 +100,13 @@ class _FaceIdentificationBoxState extends State<FaceIdentificationBox>
         final headEulerX = face.headEulerAngleX ?? 0;
 
         if (headEulerY > 15) {
-          _updateHint("Por favor, vire à esquerda");
+          _updateHint("Por favor, continue de frente para a câmera");
         } else if (headEulerY < -15) {
-          _updateHint("Por favor, vire à direita");
+          _updateHint("Por favor, continue de frente para a câmera");
         } else if (headEulerX > 15) {
-          _updateHint("Por favor, olhe para cima");
+          _updateHint("Por favor, continue de frente para a câmera");
         } else if (headEulerX < -15) {
-          _updateHint("Por favor, olhe para baixo");
+          _updateHint("Por favor, continue de frente para a câmera");
         } else {
           _updateHint(widget.hintText);
         }
@@ -151,17 +151,11 @@ class _FaceIdentificationBoxState extends State<FaceIdentificationBox>
               ),
             ),
             SizedBox(
-              width: widget.borderSize + widget.strokeWidth * 2,
-              height: widget.borderSize + widget.strokeWidth * 2,
+              width: widget.borderSize + widget.strokeWidth * 6,
+              height: widget.borderSize + widget.strokeWidth * 6,
               child: AnimatedBuilder(
                 animation: _animationController,
                 builder: (context, child) {
-                  // return CustomPaint(
-                  //   painter: _CircleBorderPainter(
-                  //     progress: _animationController.value,
-                  //     strokeWidth: widget.strokeWidth,
-                  //   ),
-                  // );
                   return RotatingBorder(
                     controller: _animationController,
                     size: widget.borderSize + widget.strokeWidth * 2,
@@ -183,37 +177,6 @@ class _FaceIdentificationBoxState extends State<FaceIdentificationBox>
   }
 }
 
-// class _CircleBorderPainter extends CustomPainter {
-//   final double progress;
-//   final double strokeWidth;
-//
-//   _CircleBorderPainter({required this.progress, required this.strokeWidth});
-//
-//   @override
-//   void paint(Canvas canvas, Size size) {
-//     final rect = Offset.zero & size;
-//     final paint = Paint()
-//       ..color = Colors.blue
-//       ..style = PaintingStyle.stroke
-//       ..strokeWidth = strokeWidth
-//       ..strokeCap = StrokeCap.round;
-//
-//     final startAngle = -90.0 * 3.14159 / 180;
-//     final sweepAngle = 2 * 3.14159 * progress;
-//
-//     canvas.drawArc(
-//       rect.deflate(strokeWidth / 2),
-//       startAngle,
-//       sweepAngle,
-//       false,
-//       paint,
-//     );
-//   }
-//
-//   @override
-//   bool shouldRepaint(_CircleBorderPainter oldDelegate) => true;
-// }
-
 class RotatingBorder extends StatelessWidget {
   final AnimationController controller;
   final double size;
@@ -233,42 +196,7 @@ class RotatingBorder extends StatelessWidget {
       child: SizedBox(
         width: size,
         height: size,
-        child: Stack(
-          alignment: Alignment.center,
-          children: [
-            // 圆形边框
-            Container(
-              width: size,
-              height: size,
-              decoration: BoxDecoration(
-                shape: BoxShape.circle,
-                border: Border.all(
-                  color: NowColors.c0xFF3288F1,
-                  width: strokeWidth,
-                ),
-              ),
-            ),
-            // 蓝点 1
-            Align(alignment: Alignment.topCenter, child: _dot()),
-            // 蓝点 2
-            Align(alignment: Alignment.centerRight, child: _dot()),
-            // 蓝点 3
-            Align(alignment: Alignment.bottomCenter, child: _dot()),
-            // 蓝点 4
-            Align(alignment: Alignment.centerLeft, child: _dot()),
-          ],
-        ),
-      ),
-    );
-  }
-
-  Widget _dot() {
-    return Container(
-      width: 10,
-      height: 10,
-      decoration: const BoxDecoration(
-        color: Colors.blue,
-        shape: BoxShape.circle,
+        child: Image.asset(Drawable.iconCirculate),
       ),
     );
   }

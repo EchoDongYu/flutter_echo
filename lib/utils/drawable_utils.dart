@@ -79,5 +79,6 @@ class Drawable {
   static const String iconRefresh = 'assets/images/icon_refresh.png';
   static const String iconPhotoTake = 'assets/images/icon_photo_take.png';
   static const String iconPhotoFinish = 'assets/images/icon_photo_finish.png';
+  static const String iconCirculate = 'assets/images/icon_circulate.png';
 
 }

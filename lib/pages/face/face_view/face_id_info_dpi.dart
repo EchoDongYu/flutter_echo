@@ -149,7 +149,7 @@ class FaceIdInfoDpi extends StatelessWidget {
                         title: "Sexo",
                         options: ["Masculino", "Femenino"],
                         onChanged: (val) {
-                          print("选中了: $val");
+                          debugPrint("选中了: $val");
                         },
                       ),
                       // CommonBox(
