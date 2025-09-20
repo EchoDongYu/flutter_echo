@@ -359,7 +359,7 @@ class _HomeLoanPageState extends State<HomeLoanPage> {
                   ),
                   padding: EdgeInsets.symmetric(horizontal: 8.w, vertical: 2.h),
                   child: Text(
-                    '${item.peddlerOPeriodCountId} Parcela',
+                    '${item.peddlerOPeriodCountId} Cuota',
                     style: TextStyle(
                       fontSize: 12.sp,
                       fontWeight: FontWeight.w500,
@@ -394,7 +394,7 @@ class _HomeLoanPageState extends State<HomeLoanPage> {
               ),
             ),
             Text(
-              '${item.peddlerOPeriodCountId} Parcela',
+              '${item.peddlerOPeriodCountId} Cuota',
               style: TextStyle(
                 fontSize: 12.sp,
                 fontWeight: FontWeight.w400,

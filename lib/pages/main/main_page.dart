@@ -86,7 +86,10 @@ class _MainPageState extends State<MainPage> {
               },
               children: const [HomePage(), ProfilePage()],
             ),
-            Align(alignment: Alignment.bottomCenter, child: _buildBottomBar()),
+            Align(
+              alignment: Alignment.bottomCenter,
+              child: SafeArea(child: _buildBottomBar()),
+            ),
           ],
         ),
       ),

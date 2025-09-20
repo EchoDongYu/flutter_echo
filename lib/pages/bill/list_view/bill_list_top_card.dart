@@ -11,9 +11,8 @@ class BillListTopCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 120.h,
       width: double.infinity,
-      padding: EdgeInsets.fromLTRB(16.w, 24.h, 6.w, 24.h),
+      padding: EdgeInsets.fromLTRB(16.w, 24.h, 16.w, 20.h),
       decoration: const BoxDecoration(
         gradient: LinearGradient(
           begin: Alignment.centerLeft,
@@ -24,15 +23,13 @@ class BillListTopCard extends StatelessWidget {
       ),
       child: Column(
         children: [
-          Expanded(
-            child: Text(
-              title,
-              style: TextStyle(
-                fontSize: 14.sp,
-                fontWeight: FontWeight.w500,
-                color: NowColors.c0xFFFFFFFF,
-                height: 28 / 18,
-              ),
+          Text(
+            title,
+            style: TextStyle(
+              fontSize: 14.sp,
+              fontWeight: FontWeight.w500,
+              color: NowColors.c0xFFFFFFFF,
+              height: 28 / 18,
             ),
           ),
           SizedBox(height: 12.h),

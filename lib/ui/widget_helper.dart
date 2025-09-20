@@ -13,22 +13,24 @@ class WidgetHelper {
     required VoidCallback? onPressed,
     bool enable = true,
   }) {
-    return Container(
-      width: double.infinity,
-      padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 10.h),
-      decoration: BoxDecoration(
-        color: Colors.white,
-        borderRadius: const BorderRadius.only(
-          topLeft: Radius.circular(20),
-          topRight: Radius.circular(20),
+    return SafeArea(
+      child: Container(
+        width: double.infinity,
+        padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 10.h),
+        decoration: BoxDecoration(
+          color: Colors.white,
+          borderRadius: const BorderRadius.only(
+            topLeft: Radius.circular(20),
+            topRight: Radius.circular(20),
+          ),
+          border: Border.all(color: const Color(0xD9FFFFFF), width: 1),
+          boxShadow: NowStyles.bottomShadows,
         ),
-        border: Border.all(color: const Color(0xD9FFFFFF), width: 1),
-        boxShadow: NowStyles.bottomShadows,
-      ),
-      child: EchoPrimaryButton(
-        text: text,
-        enable: enable,
-        onPressed: onPressed,
+        child: EchoPrimaryButton(
+          text: text,
+          enable: enable,
+          onPressed: onPressed,
+        ),
       ),
     );
   }
@@ -38,22 +40,24 @@ class WidgetHelper {
     required String text,
     required VoidCallback? onPressed,
   }) {
-    return Container(
-      width: double.infinity,
-      padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 10.h),
-      decoration: BoxDecoration(
-        color: Colors.white,
-        borderRadius: const BorderRadius.only(
-          topLeft: Radius.circular(20),
-          topRight: Radius.circular(20),
+    return SafeArea(
+      child: Container(
+        width: double.infinity,
+        padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 10.h),
+        decoration: BoxDecoration(
+          color: Colors.white,
+          borderRadius: const BorderRadius.only(
+            topLeft: Radius.circular(20),
+            topRight: Radius.circular(20),
+          ),
+          border: Border.all(color: const Color(0xD9FFFFFF), width: 1),
+          boxShadow: NowStyles.bottomShadows,
         ),
-        border: Border.all(color: const Color(0xD9FFFFFF), width: 1),
-        boxShadow: NowStyles.bottomShadows,
-      ),
-      child: EchoSecondaryButton(
-        text: text,
-        filledColor: NowColors.c0xFFFB4F34,
-        onPressed: onPressed,
+        child: EchoSecondaryButton(
+          text: text,
+          filledColor: NowColors.c0xFFFB4F34,
+          onPressed: onPressed,
+        ),
       ),
     );
   }
@@ -66,32 +70,34 @@ class WidgetHelper {
     required VoidCallback? onCancel,
     bool enable = true,
   }) {
-    return Container(
-      width: double.infinity,
-      decoration: BoxDecoration(
-        color: const Color(0xD9FFFFFF),
-        borderRadius: const BorderRadius.only(
-          topLeft: Radius.circular(20),
-          topRight: Radius.circular(20),
+    return SafeArea(
+      child: Container(
+        width: double.infinity,
+        decoration: BoxDecoration(
+          color: const Color(0xD9FFFFFF),
+          borderRadius: const BorderRadius.only(
+            topLeft: Radius.circular(20),
+            topRight: Radius.circular(20),
+          ),
+          border: Border.all(color: Colors.white, width: 1),
+          boxShadow: NowStyles.bottomShadows,
         ),
-        border: Border.all(color: Colors.white, width: 1),
-        boxShadow: NowStyles.bottomShadows,
-      ),
-      padding: EdgeInsets.symmetric(horizontal: 12.w, vertical: 10.h),
-      child: Row(
-        children: [
-          Expanded(
-            child: EchoOutlinedButton(text: cancelText, onPressed: onCancel),
-          ),
-          SizedBox(width: 12.w),
-          Expanded(
-            child: EchoPrimaryButton(
-              text: confirmText,
-              enable: enable,
-              onPressed: onConfirm,
+        padding: EdgeInsets.symmetric(horizontal: 12.w, vertical: 10.h),
+        child: Row(
+          children: [
+            Expanded(
+              child: EchoOutlinedButton(text: cancelText, onPressed: onCancel),
             ),
-          ),
-        ],
+            SizedBox(width: 12.w),
+            Expanded(
+              child: EchoPrimaryButton(
+                text: confirmText,
+                enable: enable,
+                onPressed: onConfirm,
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }
@@ -104,42 +110,44 @@ class WidgetHelper {
     required VoidCallback? onCancel,
     bool enable = true,
   }) {
-    return ClipRRect(
-      borderRadius: const BorderRadius.only(
-        topLeft: Radius.circular(20),
-        topRight: Radius.circular(20),
-      ),
-      child: BackdropFilter(
-        filter: ImageFilter.blur(sigmaX: 10, sigmaY: 10),
-        child: Container(
-          width: double.infinity,
-          decoration: BoxDecoration(
-            color: const Color(0xCCFFFFFF),
-            borderRadius: const BorderRadius.only(
-              topLeft: Radius.circular(20),
-              topRight: Radius.circular(20),
+    return SafeArea(
+      child: ClipRRect(
+        borderRadius: const BorderRadius.only(
+          topLeft: Radius.circular(20),
+          topRight: Radius.circular(20),
+        ),
+        child: BackdropFilter(
+          filter: ImageFilter.blur(sigmaX: 10, sigmaY: 10),
+          child: Container(
+            width: double.infinity,
+            decoration: BoxDecoration(
+              color: const Color(0xCCFFFFFF),
+              borderRadius: const BorderRadius.only(
+                topLeft: Radius.circular(20),
+                topRight: Radius.circular(20),
+              ),
+              border: Border.all(color: Colors.white, width: 1),
+              boxShadow: NowStyles.bottomShadows,
             ),
-            border: Border.all(color: Colors.white, width: 1),
-            boxShadow: NowStyles.bottomShadows,
-          ),
-          padding: EdgeInsets.symmetric(horizontal: 12.w, vertical: 10.h),
-          child: Row(
-            children: [
-              Expanded(
-                child: EchoOutlinedButton(
-                  text: cancelText,
-                  onPressed: onCancel,
+            padding: EdgeInsets.symmetric(horizontal: 12.w, vertical: 10.h),
+            child: Row(
+              children: [
+                Expanded(
+                  child: EchoOutlinedButton(
+                    text: cancelText,
+                    onPressed: onCancel,
+                  ),
                 ),
-              ),
-              SizedBox(width: 12.w),
-              Expanded(
-                child: EchoPrimaryButton(
-                  text: confirmText,
-                  enable: enable,
-                  onPressed: onConfirm,
+                SizedBox(width: 12.w),
+                Expanded(
+                  child: EchoPrimaryButton(
+                    text: confirmText,
+                    enable: enable,
+                    onPressed: onConfirm,
+                  ),
                 ),
-              ),
-            ],
+              ],
+            ),
           ),
         ),
       ),

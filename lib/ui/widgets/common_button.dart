@@ -52,6 +52,7 @@ class EchoPrimaryButton extends _EchoButton {
         minimumSize: Size.fromHeight(48.h),
         backgroundColor: Colors.transparent,
         padding: EdgeInsets.zero,
+        elevation: 0,
         shape: const RoundedRectangleBorder(
           borderRadius: BorderRadius.all(Radius.circular(50)),
         ),
@@ -104,6 +105,7 @@ class EchoSecondaryButton extends _EchoButton {
         minimumSize: Size.fromHeight(48.h),
         backgroundColor: enable ? filledColor : disableColor(filledColor),
         padding: _EchoButton.padding,
+        elevation: 0,
         shape: const RoundedRectangleBorder(
           borderRadius: BorderRadius.all(Radius.circular(50)),
         ),
