@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_echo/pages/app_router.dart';
 import 'package:flutter_echo/pages/face/face_guide_dialog.dart';
 import 'package:flutter_echo/pages/face/face_view/face_id_info_dpi.dart';
 import 'package:flutter_echo/pages/face/face_view/face_id_info_facial.dart';
@@ -6,6 +7,7 @@ import 'package:flutter_echo/pages/face/face_view/face_id_info_tips.dart';
 import 'package:flutter_echo/ui/widget_helper.dart';
 import 'package:flutter_echo/ui/widgets/common_appbar.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:go_router/go_router.dart';
 
 /// 授信证件信息页面
 class FaceIdInfoPage extends StatelessWidget {
@@ -34,7 +36,12 @@ class FaceIdInfoPage extends StatelessWidget {
               },
             ),
             SizedBox(height: 12.h),
-            FaceIdInfoFacial(dpiFaceTitle: 'Foto facial'),
+            FaceIdInfoFacial(
+              dpiFaceTitle: 'Foto facial',
+              dpiFaceTap: (){
+                context.push(AppRouter.faceIdentification);
+              },
+            ),
           ],
         ),
       ),

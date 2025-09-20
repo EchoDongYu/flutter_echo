@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:flutter_echo/common/app_theme.dart';
 import 'package:flutter_echo/ui/widgets/common_box.dart';
@@ -7,7 +6,11 @@ import 'package:flutter_echo/utils/drawable_utils.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class FaceIdInfoFacial extends StatelessWidget {
-  const FaceIdInfoFacial({super.key, required this.dpiFaceTitle, this.dpiFaceTap});
+  const FaceIdInfoFacial({
+    super.key,
+    required this.dpiFaceTitle,
+    this.dpiFaceTap,
+  });
 
   final String dpiFaceTitle;
   final VoidCallback? dpiFaceTap;
@@ -47,7 +50,7 @@ class FaceIdInfoFacial extends StatelessWidget {
                   child: Column(
                     children: [
                       Image.asset(
-                        Drawable.iconIdCard,
+                        Drawable.iconRosto,
                         width: context.screenWidth,
                         height: 160.h,
                       ),
@@ -59,7 +62,7 @@ class FaceIdInfoFacial extends StatelessWidget {
                           color: NowColors.c0xFF3288F1,
                           fontWeight: FontWeight.w400,
                           decoration: TextDecoration.underline,
-                          decorationColor:NowColors.c0xFF3288F1,
+                          decorationColor: NowColors.c0xFF3288F1,
                           decorationThickness: 1,
                         ),
                       ),
