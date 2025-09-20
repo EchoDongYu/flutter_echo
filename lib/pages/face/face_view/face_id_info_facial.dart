@@ -7,7 +7,10 @@ import 'package:flutter_echo/utils/drawable_utils.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class FaceIdInfoFacial extends StatelessWidget {
-  const FaceIdInfoFacial({super.key});
+  const FaceIdInfoFacial({super.key, required this.dpiFaceTitle, this.dpiFaceTap});
+
+  final String dpiFaceTitle;
+  final VoidCallback? dpiFaceTap;
 
   @override
   Widget build(BuildContext context) {
@@ -38,6 +41,7 @@ class FaceIdInfoFacial extends StatelessWidget {
             child: Column(
               children: [
                 CommonBox(
+                  onTap: dpiFaceTap,
                   borderWidth: 1,
                   borderColor: NowColors.c0xFFD8D8D8,
                   child: Column(
@@ -49,7 +53,7 @@ class FaceIdInfoFacial extends StatelessWidget {
                       ),
                       SizedBox(height: 12.h),
                       Text(
-                        "Haz clic para volver a subir",
+                        dpiFaceTitle,
                         style: TextStyle(
                           fontSize: 14.sp,
                           color: NowColors.c0xFF3288F1,

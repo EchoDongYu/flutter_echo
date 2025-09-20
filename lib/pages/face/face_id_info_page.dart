@@ -1,5 +1,5 @@
-
 import 'package:flutter/material.dart';
+import 'package:flutter_echo/pages/face/face_guide_dialog.dart';
 import 'package:flutter_echo/pages/face/face_view/face_id_info_dpi.dart';
 import 'package:flutter_echo/pages/face/face_view/face_id_info_facial.dart';
 import 'package:flutter_echo/pages/face/face_view/face_id_info_tips.dart';
@@ -13,29 +13,47 @@ class FaceIdInfoPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
     return Scaffold(
       appBar: CommonAppBar(title: "Autenticación de identidad"),
       body: SingleChildScrollView(
         padding: EdgeInsets.fromLTRB(12.w, 12.h, 12.w, 12.h),
-        child:  Column(
+        child: Column(
           children: [
             WidgetHelper.buildStepProgress(step: 4, maxStep: 4),
             SizedBox(height: 16.h),
             FaceIdInfoTips(),
             SizedBox(height: 12.h),
-            FaceIdInfoDpi(),
+            FaceIdInfoDpi(
+              dpiTitle: 'Foto del frente del DPI',
+              dpiBackTitle: 'Foto del reverso del DPI',
+              dpiTap: (){
+                _showStepFaceIdDialog(context,1);
+              },
+              dpiBackTap: (){
+                _showStepFaceIdDialog(context,2);
+              },
+            ),
             SizedBox(height: 12.h),
-            FaceIdInfoFacial(),
+            FaceIdInfoFacial(dpiFaceTitle: 'Foto facial'),
           ],
         ),
       ),
       bottomNavigationBar: WidgetHelper.buildBottomButton(
-        text:  "Enviar",
-        onPressed: () async {
-
-        },
+        text: "Enviar",
+        onPressed: () async {},
       ),
     );
+  }
+
+  Future<void> _showStepFaceIdDialog(BuildContext context,int type) async {
+    // 1-身份证正面，2-身份证反面
+    final result = await FaceGuideDialog.show(context,type);
+    if (context.mounted) {
+      if (result == true) {
+
+      } else {
+
+      }
+    }
   }
 }

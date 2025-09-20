@@ -10,16 +10,18 @@ import 'package:go_router/go_router.dart';
 
 ///拍照引导
 class FaceGuideDialog extends StatelessWidget {
-  const FaceGuideDialog({super.key});
+  const FaceGuideDialog({super.key, required this.type});
+
+  final int type;
 
   /// 显示拍照引导弹窗
-  static Future<bool?> show(BuildContext context) {
+  static Future<bool?> show(BuildContext context, int type) {
     return showModalBottomSheet<bool>(
       context: context,
       enableDrag: false,
       isDismissible: false,
       isScrollControlled: true,
-      builder: (_) => FaceGuideDialog(),
+      builder: (_) => FaceGuideDialog(type: type,),
     );
   }
 
@@ -64,14 +66,13 @@ class FaceGuideDialog extends StatelessWidget {
             ),
           ),
           SizedBox(height: 12.h),
-          FacePhotoBox(
+          type == 1 ? FacePhotoBox(
             facePhotoUrl: Drawable.iconIdCard,
             faceTipsUrl: Drawable.iconIdFront,
+          ) :  FacePhotoBox(
+            facePhotoUrl: Drawable.iconIdCardBack,
+            faceTipsUrl: Drawable.iconIdBack,
           ),
-          // FacePhotoBox(
-          //   facePhotoUrl: Drawable.iconIdCardBack,
-          //   faceTipsUrl: Drawable.iconIdBack,
-          // ),
           SizedBox(height: 36.h),
           CommonBox(
             height: 68.h,

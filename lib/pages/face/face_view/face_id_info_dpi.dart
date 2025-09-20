@@ -8,7 +8,18 @@ import 'package:flutter_echo/utils/drawable_utils.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class FaceIdInfoDpi extends StatelessWidget {
-  const FaceIdInfoDpi({super.key});
+  const FaceIdInfoDpi({
+    super.key,
+    required this.dpiTitle,
+    required this.dpiBackTitle,
+    this.dpiTap,
+    this.dpiBackTap,
+  });
+
+  final String dpiTitle;
+  final String dpiBackTitle;
+  final VoidCallback? dpiTap;
+  final VoidCallback? dpiBackTap;
 
   @override
   Widget build(BuildContext context) {
@@ -39,6 +50,7 @@ class FaceIdInfoDpi extends StatelessWidget {
             child: Column(
               children: [
                 CommonBox(
+                  onTap: dpiTap,
                   borderWidth: 1,
                   borderColor: NowColors.c0xFFD8D8D8,
                   child: Column(
@@ -50,13 +62,13 @@ class FaceIdInfoDpi extends StatelessWidget {
                       ),
                       SizedBox(height: 12.h),
                       Text(
-                        "Foto del frente del DPI",
+                        dpiTitle,
                         style: TextStyle(
                           fontSize: 14.sp,
                           color: NowColors.c0xFF3288F1,
                           fontWeight: FontWeight.w400,
                           decoration: TextDecoration.underline,
-                          decorationColor:NowColors.c0xFF3288F1,
+                          decorationColor: NowColors.c0xFF3288F1,
                           decorationThickness: 1,
                         ),
                       ),
@@ -65,24 +77,25 @@ class FaceIdInfoDpi extends StatelessWidget {
                 ),
                 SizedBox(height: 16.h),
                 CommonBox(
+                  onTap: dpiBackTap,
                   borderWidth: 1,
                   borderColor: NowColors.c0xFFD8D8D8,
                   child: Column(
                     children: [
                       Image.asset(
-                        Drawable.iconIdCard,
+                        Drawable.iconIdCardBack,
                         width: context.screenWidth,
                         height: 160.h,
                       ),
                       SizedBox(height: 12.h),
                       Text(
-                        "Foto del frente del DPI",
+                        dpiBackTitle,
                         style: TextStyle(
                           fontSize: 14.sp,
                           color: NowColors.c0xFF3288F1,
                           fontWeight: FontWeight.w400,
                           decoration: TextDecoration.underline,
-                          decorationColor:NowColors.c0xFF3288F1,
+                          decorationColor: NowColors.c0xFF3288F1,
                           decorationThickness: 1,
                         ),
                       ),
