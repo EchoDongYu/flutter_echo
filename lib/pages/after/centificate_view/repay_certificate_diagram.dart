@@ -11,9 +11,11 @@ class RepayCertificateDiagram extends StatelessWidget {
     return Column(
       children: [
         CommonBox(
+          padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 10.h),
+          borderRadius: const BorderRadius.all(Radius.circular(12)),
           color: NowColors.c0xFFFF9817.withValues(alpha: 0.1),
           child: Text(
-            "Estimado estos son los nombres de referencias disponibles para poder darle un ejemplo y facilitar cuando completas las informaciones del préstamo que pago.",
+            'Estimado estos son los nombres de referencias disponibles para poder darle un ejemplo y facilitar cuando completas las informaciones del préstamo que pago.',
             style: TextStyle(
               fontSize: 14.sp,
               color: NowColors.c0xFFFF9817,
@@ -23,12 +25,14 @@ class RepayCertificateDiagram extends StatelessWidget {
         ),
         SizedBox(height: 16.h),
         CommonBox(
+          padding: EdgeInsets.symmetric(horizontal: 12.w, vertical: 16.h),
+          borderRadius: const BorderRadius.all(Radius.circular(12)),
           color: NowColors.c0xFFF3F3F5,
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                "NO.de autorizacion",
+                'NO.de autorizacion',
                 style: TextStyle(
                   fontSize: 12.sp,
                   color: NowColors.c0xFF1C1F23,
@@ -37,7 +41,7 @@ class RepayCertificateDiagram extends StatelessWidget {
               ),
               SizedBox(height: 12.h),
               Text(
-                "No.Comprobante",
+                'No.Comprobante',
                 style: TextStyle(
                   fontSize: 12.sp,
                   color: NowColors.c0xFF1C1F23,
@@ -46,7 +50,7 @@ class RepayCertificateDiagram extends StatelessWidget {
               ),
               SizedBox(height: 12.h),
               Text(
-                "AUT",
+                'AUT',
                 style: TextStyle(
                   fontSize: 12.sp,
                   color: NowColors.c0xFF1C1F23,
@@ -55,7 +59,7 @@ class RepayCertificateDiagram extends StatelessWidget {
               ),
               SizedBox(height: 12.h),
               Text(
-                "Codigo de autorizacion",
+                'Codigo de autorizacion',
                 style: TextStyle(
                   fontSize: 12.sp,
                   color: NowColors.c0xFF1C1F23,
@@ -64,7 +68,7 @@ class RepayCertificateDiagram extends StatelessWidget {
               ),
               SizedBox(height: 12.h),
               Text(
-                "Referencia del Clien",
+                'Referencia del Clien',
                 style: TextStyle(
                   fontSize: 12.sp,
                   color: NowColors.c0xFF1C1F23,

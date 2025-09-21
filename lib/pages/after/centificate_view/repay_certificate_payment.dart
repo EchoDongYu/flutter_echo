@@ -17,7 +17,7 @@ class RepayCertificatePayment extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            "Detalles de pago",
+            'Detalles de pago',
             style: TextStyle(
               fontSize: 18.sp,
               color: NowColors.c0xFF1C1F23,
@@ -26,7 +26,7 @@ class RepayCertificatePayment extends StatelessWidget {
           ),
           SizedBox(height: 8.h),
           Text(
-            "Ingresa los datos de tu depósito como aparecenen tu comprobante.",
+            'Ingresa los datos de tu depósito como aparecenen tu comprobante.',
             style: TextStyle(
               fontSize: 12.sp,
               color: NowColors.c0xFFFF9817,

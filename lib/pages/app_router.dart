@@ -1,4 +1,5 @@
 import 'package:flutter_echo/common/page_consumer.dart';
+import 'package:flutter_echo/pages/after/cert_camera_page.dart';
 import 'package:flutter_echo/pages/after/repay_bank_page.dart';
 import 'package:flutter_echo/pages/after/repay_certificate_page.dart';
 import 'package:flutter_echo/pages/after/repay_confirm_page.dart';
@@ -90,8 +91,9 @@ class AppRouter {
   static const String userBank = '/user_bank';
   static const String feedback = '/feedback';
   static const String appWeb = '/app_web';
-  static const String demo = '/demo';
+  static const String certCamera = '/cert_camera';
   static const String photoView = '/photo_view';
+  static const String demo = '/demo';
 
   static final GoRouter router = GoRouter(
     initialLocation: splash,
@@ -335,6 +337,12 @@ class AppRouter {
           GoRoute(
             path: repayUploaded,
             builder: (context, state) => const RepayUploadedPage(),
+          ),
+
+          /// 凭证拍照页面
+          GoRoute(
+            path: certCamera,
+            builder: (context, state) => const CertCameraPage(),
           ),
         ],
       ),

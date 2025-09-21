@@ -11,8 +11,11 @@ class Drawable {
   static const String iconBankBac = 'assets/images/icon_bank_bac.png';
   static const String iconBankBi = 'assets/images/icon_bank_bi.png';
   static const String iconBankGt = 'assets/images/icon_bank_gt.png';
+  static const String iconBrokea = 'assets/images/icon_brokea.png';
+  static const String iconCandardate = 'assets/images/icon_candardate.png';
   static const String iconCaptchaBrokea = 'assets/images/icon_captcha_brokea.png';
   static const String iconCaptchaRefresh = 'assets/images/icon_captcha_refresh.png';
+  static const String iconCirculate = 'assets/images/icon_circulate.png';
   static const String iconClear = 'assets/images/icon_clear.png';
   static const String iconClose = 'assets/images/icon_close.png';
   static const String iconContact = 'assets/images/icon_contact.png';
@@ -43,11 +46,15 @@ class Drawable {
   static const String iconMineV3 = 'assets/images/icon_mine_v3.png';
   static const String iconPagos = 'assets/images/icon_pagos.png';
   static const String iconPhoto = 'assets/images/icon_photo.png';
+  static const String iconPhotoFinish = 'assets/images/icon_photo_finish.png';
+  static const String iconPhotoTake = 'assets/images/icon_photo_take.png';
   static const String iconQuestion = 'assets/images/icon_question.png';
+  static const String iconRefresh = 'assets/images/icon_refresh.png';
   static const String iconRetainLogin1 = 'assets/images/icon_retain_login1.png';
   static const String iconRetainLogin2 = 'assets/images/icon_retain_login2.png';
   static const String iconRetainLogin3 = 'assets/images/icon_retain_login3.png';
   static const String iconReturn = 'assets/images/icon_return.png';
+  static const String iconRosto = 'assets/images/icon_rosto.png';
   static const String iconSelectOff = 'assets/images/icon_select_off.png';
   static const String iconSelectOn = 'assets/images/icon_select_on.png';
   static const String iconStatusCard = 'assets/images/icon_status_card.png';
@@ -69,6 +76,7 @@ class Drawable {
   static const String iconTake = 'assets/images/icon_take.png';
   static const String iconXtcustomer = 'assets/images/icon_xtcustomer.png';
   static const String iconXtleft = 'assets/images/icon_xtleft.png';
+  static const String imageCertExample = 'assets/images/image_cert_example.png';
   static const String imageDpi = 'assets/images/image_dpi.png';
   static const String imageGoodview = 'assets/images/image_goodview.png';
   static const String imageGuard = 'assets/images/image_guard.png';
@@ -76,26 +84,5 @@ class Drawable {
   static const String imageScreenshot2 = 'assets/images/image_screenshot2.png';
   static const String imageShildsequere = 'assets/images/image_shildsequere.png';
   static const String imageUpgrade = 'assets/images/image_upgrade.png';
-  static const String iconHourglassFill = 'assets/images/icon_hourglass_fill.png';
-  static const String iconClear = 'assets/images/icon_clear.png';
-  static const String iconBankGT = 'assets/images/icon_bank_gt.png';
-  static const String iconBankBAC = 'assets/images/icon_bank_bi.png';
-  static const String iconBankBI = 'assets/images/icon_bank_bac.png';
-  static const String iconPhoto = 'assets/images/icon_photo.png';
-  static const String iconTake = 'assets/images/icon_take.png';
-  static const String iconClose = 'assets/images/icon_close.png';
-  static const String iconIdCard = 'assets/images/icon_id_card.png';
-  static const String iconIdCardBack = 'assets/images/icon_id_card_back.png';
-  static const String iconIdFront = 'assets/images/icon_id_front.png';
-  static const String iconIdBack = 'assets/images/icon_id_back.png';
-  static const String iconReturn = 'assets/images/icon_return.png';
-  static const String iconSuccess = 'assets/images/icon_success.png';
-  static const String iconFailure = 'assets/images/icon_failure.png';
-  static const String iconBrokea = 'assets/images/icon_brokea.png';
-  static const String iconRosto = 'assets/images/icon_rosto.png';
-  static const String iconRefresh = 'assets/images/icon_refresh.png';
-  static const String iconPhotoTake = 'assets/images/icon_photo_take.png';
-  static const String iconPhotoFinish = 'assets/images/icon_photo_finish.png';
-  static const String iconCirculate = 'assets/images/icon_circulate.png';
 
 }

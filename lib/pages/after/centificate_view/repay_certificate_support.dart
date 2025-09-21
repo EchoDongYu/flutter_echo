@@ -17,7 +17,7 @@ class RepayCertificateSupport extends StatelessWidget {
           GestureDetector(
             onTap: onUploaded,
             child: Text(
-              "Historial de pagos subidos",
+              'Historial de pagos subidos',
               style: TextStyle(
                 fontSize: 14.sp,
                 decoration: TextDecoration.underline,
@@ -32,7 +32,7 @@ class RepayCertificateSupport extends StatelessWidget {
           Divider(height: 1, color: NowColors.c0xFFF3F3F5),
           SizedBox(height: 12.h),
           Text(
-            "Si tiene algún problema con el pago, póngase en contacto con nosotros.",
+            'Si tiene algún problema con el pago, póngase en contacto con nosotros.',
             style: TextStyle(
               fontSize: 14.sp,
               color: NowColors.c0xFF494C4F,
@@ -41,7 +41,7 @@ class RepayCertificateSupport extends StatelessWidget {
           ),
           SizedBox(height: 12.h),
           Text(
-            "Suporte via WhatsApp",
+            'Suporte via WhatsApp',
             style: TextStyle(
               fontSize: 14.sp,
               decoration: TextDecoration.underline,

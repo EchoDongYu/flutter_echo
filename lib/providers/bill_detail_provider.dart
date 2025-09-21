@@ -1,7 +1,13 @@
+import 'dart:convert';
+
+import 'package:flutter/foundation.dart';
 import 'package:flutter_echo/common/base_provider.dart';
 import 'package:flutter_echo/models/common_model.dart';
 import 'package:flutter_echo/models/swaggerApi.models.swagger.dart';
+import 'package:flutter_echo/pages/app_router.dart';
 import 'package:flutter_echo/services/api_service.dart';
+import 'package:flutter_image_compress/flutter_image_compress.dart';
+import 'package:go_router/go_router.dart';
 
 class BillDetailModel extends BaseProvider {
   ///账单详情数据
@@ -49,10 +55,17 @@ class BillDetailModel extends BaseProvider {
   BankDictV0Item? get selectedBank => _selectedBank;
   BankDictV0Item? _selectedBank;
 
+  ///凭证图片
+  Uint8List? get certPhoto => _certPhoto;
+  Uint8List? _certPhoto;
+
+  String? _loanGid;
+
   ///获取账单详情数据
-  void fetchBillDetailData(String? id) async {
+  void fetchBillDetailData(String? loanGid) async {
+    _loanGid = loanGid;
     final detailData = await launchRequest(() async {
-      return await Api.getBillDetailInfo(id);
+      return await Api.getBillDetailInfo(loanGid);
     });
     if (detailData != null) {
       _billDetailData = detailData;
@@ -95,10 +108,52 @@ class BillDetailModel extends BaseProvider {
     notifyListeners();
   }
 
-  void applyRepay() async {
-    await launchRequest(() async {
-      final req = RepayApplyReq(o12sd0OAmount: _confirmValue);
-      await Api.applyRepay(req);
+  void confimPhoto(Uint8List? photo) async {
+    _certPhoto = photo;
+    notifyListeners();
+  }
+
+  Future<String?> base64Str() async {
+    final data = certPhoto;
+    if (data == null) return null;
+    final compressData = await FlutterImageCompress.compressWithList(
+      data,
+      minHeight: 1920,
+      minWidth: 1080,
+      quality: 96,
+    );
+    return base64Encode(compressData);
+  }
+
+  void applyRepay({
+    required List<String> inputs,
+    required BankDictV0Item? bank,
+    required int? date,
+  }) async {
+    final apiResult = await launchRequest(() async {
+      final base64 = await base64Str();
+      final req = RepayApplyReq(
+        o12sd0OAmount: _confirmValue,
+        r5a4x8OLoanGid: _loanGid,
+        bdvg46ORepaymentStage: 0,
+        percherOJumpSourceType: 1,
+        mahoganyORepaymentType: 2,
+        oe5u39OChannelName: selectedChannel?.oe5u39OChannelName,
+        worstOChannelCode: selectedChannel?.worstOChannelCode,
+        y28nd4OChannelType: selectedChannel?.y28nd4OChannelType?.toString(),
+        k5j6q9OChannelAccount: selectedChannel?.k5j6q9OChannelAccount,
+        fratOMark: selectedChannel?.fratOMark,
+        hm7756OCheckLoanLeftAmount: totalAmount,
+        //vnbh46OBankCardGid: bank.t1h91p,
+        t1h91pOBankName: bank?.t1h91p,
+        e77490ORequestId: inputs[0],
+        lz09kpOUserName: inputs[2],
+        x01y7qOBase64String: base64,
+      );
+      return await Api.applyRepay(req);
     });
+    if (apiResult != null) {
+      navigate((context) => context.go(AppRouter.repayProcess));
+    }
   }
 }

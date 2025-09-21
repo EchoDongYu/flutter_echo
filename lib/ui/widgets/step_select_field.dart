@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_echo/common/app_theme.dart';
 import 'package:flutter_echo/models/common_model.dart';
 import 'package:flutter_echo/models/swaggerApi.models.swagger.dart';
+import 'package:flutter_echo/pages/after/repay_bank_dialog.dart';
 import 'package:flutter_echo/pages/submit/pick_bank_dialog.dart';
 import 'package:flutter_echo/pages/submit/pick_date_dialog.dart';
 import 'package:flutter_echo/pages/submit/pick_day_dialog.dart';
@@ -50,6 +51,32 @@ class StepSelectField extends StatefulWidget {
     hintText: hintText,
     errorText: errorText,
     isError: isError,
+  );
+
+  factory StepSelectField.pickRepayBank(
+    BuildContext context, {
+    required List<BankDictV0Item>? items,
+    required BankDictV0Item? pickedItem,
+    required Function(BankDictV0Item) onValueChange,
+    required String hintText,
+    String errorText = 'Por favor seleccione',
+    bool isError = false,
+    Widget? prefix,
+  }) => StepSelectField(
+    value: pickedItem?.t1h91p,
+    onValueChange: () async {
+      final result = await RepayBankDialog.show(
+        context,
+        items: items,
+        pickedItem: pickedItem,
+        title: hintText,
+      );
+      if (result != null) onValueChange(result);
+    },
+    hintText: hintText,
+    errorText: errorText,
+    isError: isError,
+    prefix: prefix,
   );
 
   factory StepSelectField.pickBank(
