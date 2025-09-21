@@ -53,7 +53,7 @@ class BillDetailPage extends StatelessWidget {
                       date: planItem.r5k31qODueTime?.showDate ?? '',
                       isOverdue: planItem.slackOIsOverdue == true,
                       isSelect: billDetailModel.checkPlanList[index] == true,
-                      onItemTap: () => billDetailModel.checkPlan(index),
+                      onItemTap: () => billDetailModel.selectPlan(index),
                     );
                   },
                 ),

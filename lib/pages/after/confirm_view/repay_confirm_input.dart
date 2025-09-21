@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_echo/common/app_theme.dart';
 import 'package:flutter_echo/ui/widgets/common_box.dart';
 import 'package:flutter_echo/utils/drawable_utils.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-class RepayConfirmPaymentAmount extends StatelessWidget {
-  const RepayConfirmPaymentAmount({super.key, this.onChanged});
+class RepayConfirmInput extends StatelessWidget {
+  const RepayConfirmInput({super.key, this.onChanged});
 
   final ValueChanged<String>? onChanged;
 
@@ -16,16 +17,15 @@ class RepayConfirmPaymentAmount extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            "Importe de pago",
+            'Monto a pagar',
             style: TextStyle(
               fontSize: 18.sp,
               color: NowColors.c0xFF1C1F23,
               fontWeight: FontWeight.w500,
             ),
           ),
-          SizedBox(height: 12.h),
+          SizedBox(height: 2.h),
           QInput(onChanged: onChanged),
-          SizedBox(height: 8.h),
           Divider(color: NowColors.c0xFFC7C7C7, height: 1),
         ],
       ),
@@ -34,16 +34,10 @@ class RepayConfirmPaymentAmount extends StatelessWidget {
 }
 
 class QInput extends StatefulWidget {
-  final String prefix;
   final String hintText;
   final ValueChanged<String>? onChanged;
 
-  const QInput({
-    super.key,
-    this.prefix = "Q",
-    this.hintText = "123",
-    this.onChanged,
-  });
+  const QInput({super.key, this.hintText = '123', this.onChanged});
 
   @override
   State<QInput> createState() => _QInputState();
@@ -51,6 +45,25 @@ class QInput extends StatefulWidget {
 
 class _QInputState extends State<QInput> {
   final TextEditingController _controller = TextEditingController();
+  int _inputLength = 0;
+
+  @override
+  void initState() {
+    super.initState();
+    _controller.addListener(_onInputChanged);
+  }
+
+  @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
+  }
+
+  /// 输入变化监听
+  void _onInputChanged() {
+    final value = _controller.text.length;
+    if (_inputLength != value) setState(() => _inputLength = value);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -59,48 +72,48 @@ class _QInputState extends State<QInput> {
       children: [
         // 左侧固定前缀
         Text(
-          widget.prefix,
+          'Q',
           style: TextStyle(
             color: NowColors.c0xFF3288F1,
-            fontWeight: FontWeight.w500,
+            fontWeight: FontWeight.w700,
             fontSize: 32.sp,
           ),
         ),
-        SizedBox(width: 6.w),
+        SizedBox(width: 12.w),
         // 中间输入框
         Expanded(
           child: TextField(
             controller: _controller,
             decoration: InputDecoration(
               hintText: widget.hintText,
-              // hintStyle: TextStyle(
-              //   fontSize: 32.sp,
-              //   color: NowColors.c0xFFB0B1B2,
-              //   fontWeight: FontWeight.w500,
-              // ),
+              hintStyle: TextStyle(
+                fontSize: 30.sp,
+                color: NowColors.c0xFF494C4F,
+                fontWeight: FontWeight.w400,
+              ),
               border: InputBorder.none,
             ),
             style: TextStyle(
               fontSize: 32.sp,
               color: NowColors.c0xFF1C1F23,
-              fontWeight: FontWeight.w500,
+              fontWeight: FontWeight.w600,
             ),
-            onChanged: (value) {
-              setState(() {}); // 更新清除按钮显示状态
-              widget.onChanged?.call(value);
-            },
+            keyboardType: TextInputType.number,
+            textInputAction: TextInputAction.done,
+            inputFormatters: [FilteringTextInputFormatter.digitsOnly],
+            cursorColor: NowColors.c0xFF3288F1,
+            onChanged: (value) => widget.onChanged?.call(value),
           ),
         ),
         // 右侧清除按钮
-        // if (_controller.text.isNotEmpty)
-        GestureDetector(
-          onTap: () {
-            _controller.clear();
-            setState(() {});
-            widget.onChanged?.call("");
-          },
-          child: Image.asset(Drawable.iconClear, width: 20, height: 20),
-        ),
+        if (_inputLength > 0)
+          GestureDetector(
+            onTap: () {
+              _controller.clear();
+              widget.onChanged?.call('');
+            },
+            child: Image.asset(Drawable.iconClear, width: 20, height: 20),
+          ),
       ],
     );
   }

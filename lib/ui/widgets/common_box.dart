@@ -45,7 +45,7 @@ class CommonBox extends StatelessWidget {
         height: height,
         margin: margin,
         padding:
-            padding ?? EdgeInsets.symmetric(vertical: 16.h, horizontal: 20.w),
+            padding ?? EdgeInsets.symmetric(horizontal: 16.w, vertical: 20.h),
         alignment: alignment,
         decoration: BoxDecoration(
           gradient: gradient,

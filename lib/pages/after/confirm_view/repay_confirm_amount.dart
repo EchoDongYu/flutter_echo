@@ -3,17 +3,17 @@ import 'package:flutter_echo/common/app_theme.dart';
 import 'package:flutter_echo/ui/widgets/common_box.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-class RepayConfirmAmountPay extends StatelessWidget {
-  const RepayConfirmAmountPay({
+class RepayConfirmAmount extends StatelessWidget {
+  const RepayConfirmAmount({
     super.key,
-    required this.amountPay,
-    required this.amountPayVen,
-    required this.amountPayCom,
+    required this.amount,
+    required this.date,
+    required this.comision,
   });
 
-  final String amountPay;
-  final String amountPayVen;
-  final String amountPayCom;
+  final String amount;
+  final String date;
+  final String comision;
 
   @override
   Widget build(BuildContext context) {
@@ -25,7 +25,7 @@ class RepayConfirmAmountPay extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            "Monto a pagar (Q)",
+            'Monto a pagar (Q)',
             style: TextStyle(
               fontSize: 14.sp,
               color: NowColors.c0xFFFFFFFF,
@@ -34,7 +34,7 @@ class RepayConfirmAmountPay extends StatelessWidget {
           ),
           SizedBox(height: 12.h),
           Text(
-            amountPay,
+            amount,
             style: TextStyle(
               fontSize: 30.sp,
               color: NowColors.c0xFFFFFFFF,
@@ -50,7 +50,7 @@ class RepayConfirmAmountPay extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      "Vencimiento",
+                      'Vencimiento',
                       style: TextStyle(
                         fontSize: 12.sp,
                         fontWeight: FontWeight.w400,
@@ -58,7 +58,7 @@ class RepayConfirmAmountPay extends StatelessWidget {
                       ),
                     ),
                     Text(
-                      "2025",
+                      date,
                       style: TextStyle(
                         fontSize: 14.sp,
                         fontWeight: FontWeight.w500,
@@ -73,7 +73,7 @@ class RepayConfirmAmountPay extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.end,
                   children: [
                     Text(
-                      "Comisión de pago",
+                      'Comisión de pago',
                       style: TextStyle(
                         fontSize: 12.sp,
                         fontWeight: FontWeight.w400,
@@ -81,7 +81,7 @@ class RepayConfirmAmountPay extends StatelessWidget {
                       ),
                     ),
                     Text(
-                      "Q 100000",
+                      comision,
                       style: TextStyle(
                         fontSize: 14.sp,
                         fontWeight: FontWeight.w500,

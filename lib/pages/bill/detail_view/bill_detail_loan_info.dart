@@ -24,7 +24,7 @@ class BillDetailLoanInfo extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.symmetric(vertical: 16.h, horizontal: 20.w),
+      padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 20.h),
       decoration: BoxDecoration(
         color: NowColors.c0xFFFFFFFF,
         borderRadius: BorderRadius.circular(12),

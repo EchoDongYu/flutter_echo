@@ -21,7 +21,7 @@ class BillDetailLoanDetail extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       width: context.screenWidth,
-      padding: EdgeInsets.symmetric(vertical: 16.h, horizontal: 20.w),
+      padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 20.h),
       decoration: BoxDecoration(
         color: NowColors.c0xFFF3F3F5,
         borderRadius: BorderRadius.circular(12),

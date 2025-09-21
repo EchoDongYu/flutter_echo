@@ -1,26 +1,22 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_echo/common/app_theme.dart';
+import 'package:flutter_echo/models/swaggerApi.models.swagger.dart';
 import 'package:flutter_echo/ui/widgets/common_box.dart';
 import 'package:flutter_echo/utils/drawable_utils.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class RepayConfirmChannel extends StatelessWidget {
+  final List<BillDetailResp$V08uw3ORepaymentChannelList$Item> channelList;
+  final BillDetailResp$V08uw3ORepaymentChannelList$Item? selectedChannel;
+  final Function(BillDetailResp$V08uw3ORepaymentChannelList$Item)
+  onSelectChannel;
+
   const RepayConfirmChannel({
     super.key,
-    this.selectedBankRefund = false,
-    this.onBankRefund,
-    this.selectedCashPayment = false,
-    this.onCashPayment,
-    this.selectedInternetBanking = false,
-    this.onInternetBanking,
+    required this.channelList,
+    required this.selectedChannel,
+    required this.onSelectChannel,
   });
-
-  final bool selectedBankRefund;
-  final VoidCallback? onBankRefund;
-  final bool selectedCashPayment;
-  final VoidCallback? onCashPayment;
-  final bool selectedInternetBanking;
-  final VoidCallback? onInternetBanking;
 
   @override
   Widget build(BuildContext context) {
@@ -29,31 +25,7 @@ class RepayConfirmChannel extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            "Canal principal",
-            style: TextStyle(
-              fontSize: 18.sp,
-              color: NowColors.c0xFF1C1F23,
-              fontWeight: FontWeight.w500,
-            ),
-          ),
-          SizedBox(height: 12.h),
-          Text(
-            "Si hay algún error para el reembolso en el canal principal, utilice el canal alternativo para el reembolso.",
-            style: TextStyle(
-              fontSize: 12.sp,
-              color: NowColors.c0xFFFF9817,
-              fontWeight: FontWeight.w400,
-            ),
-          ),
-          SizedBox(height: 20.h),
-          PickItem(
-            label: "Reembolso bancario",
-            selected: selectedBankRefund,
-            onTap: onBankRefund,
-          ),
-          SizedBox(height: 32.h),
-          Text(
-            "Canal alternativo",
+            'Opcion 1',
             style: TextStyle(
               fontSize: 18.sp,
               color: NowColors.c0xFF1C1F23,
@@ -62,7 +34,40 @@ class RepayConfirmChannel extends StatelessWidget {
           ),
           SizedBox(height: 8.h),
           Text(
-            "Seleccionar método de pago",
+            'Si no puede pagar con el opcion 1, utiliza el opcion 2 para hacer el pago.',
+            style: TextStyle(
+              fontSize: 12.sp,
+              color: NowColors.c0xFFFF9817,
+              fontWeight: FontWeight.w400,
+            ),
+          ),
+          ListView.separated(
+            shrinkWrap: true,
+            physics: const NeverScrollableScrollPhysics(),
+            itemCount: channelList.length,
+            padding: EdgeInsets.symmetric(vertical: 16.h),
+            separatorBuilder: (_, _) => SizedBox(height: 10.h),
+            itemBuilder: (context, index) {
+              final channelInfo = channelList[index];
+              return PickItem(
+                label: channelInfo.oe5u39OChannelName ?? '',
+                selected: selectedChannel == channelInfo,
+                onTap: () => onSelectChannel(channelInfo),
+              );
+            },
+          ),
+          SizedBox(height: 16.h),
+          Text(
+            'Opcion 2',
+            style: TextStyle(
+              fontSize: 18.sp,
+              color: NowColors.c0xFF1C1F23,
+              fontWeight: FontWeight.w500,
+            ),
+          ),
+          SizedBox(height: 8.h),
+          Text(
+            'Seleccionar método de pago',
             style: TextStyle(
               fontSize: 12.sp,
               color: NowColors.c0xFF77797B,
@@ -70,16 +75,20 @@ class RepayConfirmChannel extends StatelessWidget {
             ),
           ),
           SizedBox(height: 16.h),
-          PickItem(
-            label: "Pago en efectivo",
-            selected: selectedCashPayment,
-            onTap: onCashPayment,
-          ),
-          SizedBox(height: 8.h),
-          PickItem(
-            label: "Banca por Internet",
-            selected: selectedInternetBanking,
-            onTap: onInternetBanking,
+          ListView.separated(
+            shrinkWrap: true,
+            physics: const NeverScrollableScrollPhysics(),
+            itemCount: channelList.length,
+            padding: EdgeInsets.symmetric(vertical: 16.h),
+            separatorBuilder: (_, _) => SizedBox(height: 10.h),
+            itemBuilder: (context, index) {
+              final channelInfo = channelList[index];
+              return PickItem(
+                label: channelInfo.oe5u39OChannelName ?? '',
+                selected: selectedChannel == channelInfo,
+                onTap: () => onSelectChannel(channelInfo),
+              );
+            },
           ),
         ],
       ),
@@ -91,16 +100,11 @@ class PickItem extends StatelessWidget {
   final String label;
   final bool selected;
   final VoidCallback? onTap;
-  final String iconOn;
-
-  final String iconOff;
 
   const PickItem({
     super.key,
     required this.label,
     required this.selected,
-    this.iconOn = Drawable.iconSelectOn,
-    this.iconOff = Drawable.iconSelectOff,
     this.onTap,
   });
 
@@ -117,7 +121,11 @@ class PickItem extends StatelessWidget {
         borderColor: selected ? NowColors.c0xFF3288F1 : NowColors.c0x00000000,
         child: Row(
           children: [
-            Image.asset(selected ? iconOn : iconOff, width: 22, height: 22),
+            Image.asset(
+              selected ? Drawable.iconSelectOn : Drawable.iconSelectOff,
+              width: 22,
+              height: 22,
+            ),
             SizedBox(width: 12.w),
             Expanded(
               child: Text(

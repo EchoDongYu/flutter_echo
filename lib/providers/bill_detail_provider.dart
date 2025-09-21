@@ -15,10 +15,44 @@ class BillDetailModel extends BaseProvider {
   List<bool?> get checkPlanList => _checkPlanList;
   List<bool?> _checkPlanList = [];
 
+  ///总待还金额
+  double? get totalAmount {
+    if (_checkPlanList.every((v) => v != true)) {
+      return _billDetailData?.wantonlyOLoanLeftAmount;
+    }
+    var amount = 0.0;
+    for (int i = 0; i < _checkPlanList.length; i++) {
+      if (_checkPlanList[i] == true) {
+        amount += _planList[i].wantonlyOLoanLeftAmount ?? 0;
+      }
+    }
+    return amount;
+  }
+
+  ///业务费用
+  double? get businessFee {
+    if (_checkPlanList.every((v) => v != true)) {
+      return _billDetailData?.spriteOBusinessFee;
+    }
+    var amount = 0.0;
+    for (int i = 0; i < _checkPlanList.length; i++) {
+      if (_checkPlanList[i] == true) {
+        amount += _planList[i].spriteOBusinessFee ?? 0;
+      }
+    }
+    return amount;
+  }
+
   ///渠道数据
   List<BillDetailResp$V08uw3ORepaymentChannelList$Item> get channelList =>
       _channelList;
   List<BillDetailResp$V08uw3ORepaymentChannelList$Item> _channelList = [];
+
+  ///渠道勾选
+  BillDetailResp$V08uw3ORepaymentChannelList$Item? selectedChannel;
+
+  ///确认金额
+  String? _confirmValue;
 
   ///获取账单详情数据
   Future<void> fetchBillDetailData(String? id) async {
@@ -34,14 +68,24 @@ class BillDetailModel extends BaseProvider {
         }, growable: false);
       }
       _channelList = detailData.v08uw3ORepaymentChannelList ?? [];
+      selectedChannel = _channelList.firstWhere((v) => v.fratOMark == '1');
     }
     notifyListeners();
   }
 
-  void checkPlan(int index) {
+  void selectPlan(int index) {
     if (index < _checkPlanList.length) {
       _checkPlanList[index] = _checkPlanList[index] != true;
       notifyListeners();
     }
+  }
+
+  void selectChannel(BillDetailResp$V08uw3ORepaymentChannelList$Item channel) {
+    selectedChannel = channel;
+    notifyListeners();
+  }
+
+  void inputAmount(String value) {
+    _confirmValue = value;
   }
 }
