@@ -143,7 +143,7 @@ class _ResetTraderPwdPageState extends State<ResetTraderPwdPage> {
                   ),
                 ),
                 TextSpan(
-                  text: LocalStorage().account,
+                  text: LocalStorage().maskAccount,
                   style: TextStyle(
                     fontWeight: FontWeight.w500,
                     color: NowColors.c0xFF1C1F23,

@@ -104,7 +104,7 @@ class _StepBasicPageState extends State<StepBasicPage> {
           ? null
           : text3.length != 8
           ? _errorTip[3]
-          : text3 == LocalStorage().account
+          : text3 == LocalStorage().realAccount
           ? _errorTip[2]
           : null;
       _emailError = text4.isEmpty

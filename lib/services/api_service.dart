@@ -225,7 +225,7 @@ class Api {
     return _apiService.postSt(
       ApiPath.resetLoginPassword,
       body: LoginPwdResetReq(
-        sordidOMobile: LocalStorage().account,
+        sordidOMobile: LocalStorage().realAccount,
         password: password,
         presageOVerCode: verifyCode,
         snafuOVerImageCode: imageCode,
@@ -244,7 +244,7 @@ class Api {
     return _apiService.postSt(
       ApiPath.resetTraderPassword,
       body: TraderPwdResetReq(
-        sordidOMobile: LocalStorage().account,
+        sordidOMobile: LocalStorage().realAccount,
         type: type,
         password: password,
         presageOVerCode: verifyCode,

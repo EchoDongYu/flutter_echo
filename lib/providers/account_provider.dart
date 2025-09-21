@@ -14,7 +14,7 @@ class AccountModel extends BaseProvider {
   int get countdown => _countdown;
 
   void sendVerifyCode({required int type}) async {
-    _phoneNumber = LocalStorage().account;
+    _phoneNumber = LocalStorage().realAccount;
     _codeType = type;
     final apiResult = await launchRequest(() {
       return Api.sendVerificationCode(

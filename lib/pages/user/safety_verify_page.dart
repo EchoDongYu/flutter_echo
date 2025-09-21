@@ -35,7 +35,7 @@ class _SafetyVerifyPageState extends State<SafetyVerifyPage> {
     super.initState();
     _controllers[1].addListener(_onCodeChanged);
     WidgetsBinding.instance.addPostFrameCallback((_) {
-      final account = LocalStorage().account;
+      final account = LocalStorage().maskAccount;
       if (account != null) {
         _controllers[0].text = account;
       }

@@ -65,10 +65,10 @@ class LocalStorage {
 
   String? get userGid => _prefs.getString(AppConst.userGidKey);
 
-  String? get account => _prefs.getString(AppConst.accountKey);
+  String? get realAccount => _prefs.getString(AppConst.accountKey);
 
   String? get maskAccount {
-    final value = account;
+    final value = realAccount;
     if (value == null || value.length <= 4) return value;
     final start = value.substring(0, 2);
     final end = value.substring(value.length - 2);

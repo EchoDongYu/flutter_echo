@@ -22,7 +22,7 @@ class VerifyModel extends BaseProvider {
   String get phoneNumber => _phoneNumber ?? '';
 
   Future<bool?> sendVerifyCode() async {
-    _phoneNumber = LocalStorage().account;
+    _phoneNumber = LocalStorage().realAccount;
     return await launchRequest(() async {
       _needCaptcha = await Api.needCheckCaptcha(
         mobile: _phoneNumber,

@@ -125,7 +125,7 @@ class _StepContactPageState extends State<StepContactPage> {
     });
     if (!_isErrors.any((it) => it.contains(true))) {
       final list = [_controllers[0][1].text, _controllers[1][1].text];
-      final account = LocalStorage().account;
+      final account = LocalStorage().realAccount;
       if (list.any((v) => v.length != AppConst.phoneLen)) {
         toast('El número de teléfono que ingresaste no es válido');
         return;
@@ -162,7 +162,7 @@ class _StepContactPageState extends State<StepContactPage> {
               children: [
                 EchoTopBar(title: 'Contacto de emergencia'),
                 SizedBox(height: 16.h),
-                WidgetHelper.buildStepProgress(step: 3,maxStep: 3),
+                WidgetHelper.buildStepProgress(step: 3, maxStep: 3),
                 SizedBox(height: 16.h),
                 Container(
                   margin: EdgeInsets.symmetric(horizontal: 12.w),

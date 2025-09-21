@@ -6,6 +6,7 @@ import 'package:flutter_echo/common/app_theme.dart';
 import 'package:flutter_echo/common/constants.dart';
 import 'package:flutter_echo/common/page_consumer.dart';
 import 'package:flutter_echo/providers/verification_provider.dart';
+import 'package:flutter_echo/services/storage_service.dart';
 import 'package:flutter_echo/ui/widgets/common_button.dart';
 import 'package:flutter_echo/ui/widgets/step_input_field.dart';
 import 'package:flutter_echo/utils/drawable_utils.dart';
@@ -181,7 +182,7 @@ class _DeviceVerifyDialogState extends State<DeviceVerifyDialog>
                           ),
                         ),
                         TextSpan(
-                          text: provider.phoneNumber,
+                          text: LocalStorage().maskAccount,
                           style: TextStyle(
                             fontWeight: FontWeight.w500,
                             color: NowColors.c0xFF1C1F23,
