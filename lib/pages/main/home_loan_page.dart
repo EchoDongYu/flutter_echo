@@ -71,6 +71,7 @@ class _HomeLoanPageState extends State<HomeLoanPage> {
       final billInfo = provider.homeInfo?.papuanOLastRecordLoan;
       if (billInfo == null) return SizedBox();
       final planList = billInfo.outdoOPlanSimpleList ?? [];
+      final status = billStatus(billInfo.cherubimOOrderStatus);
       return Container(
         margin: EdgeInsets.only(bottom: 12.h),
         padding: EdgeInsets.symmetric(vertical: 20.h),
@@ -136,7 +137,7 @@ class _HomeLoanPageState extends State<HomeLoanPage> {
                             vertical: 5.h,
                           ),
                           decoration: BoxDecoration(
-                            color: NowColors.c0xFF1C1F23.withValues(alpha: 0.5),
+                            color: status.homeColor,
                             borderRadius: BorderRadius.only(
                               topLeft: Radius.circular(20),
                               bottomLeft: Radius.circular(20),
@@ -150,7 +151,7 @@ class _HomeLoanPageState extends State<HomeLoanPage> {
                           child: Row(
                             children: [
                               Text(
-                                'Pendiente',
+                                status.label,
                                 style: TextStyle(
                                   fontSize: 14.sp,
                                   fontWeight: FontWeight.w500,

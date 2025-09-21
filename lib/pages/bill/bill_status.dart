@@ -16,6 +16,15 @@ extension BillStatusColor on BillStatus {
     BillStatus.unknown => Colors.transparent,
   };
 
+  Color get homeColor => switch (this) {
+    BillStatus.pagos => NowColors.c0xFFFF9817,
+    BillStatus.atrasado => NowColors.c0xFFFB4F34,
+    BillStatus.pendiente => NowColors.c0xFF1C1F23.withValues(alpha: 0.5),
+    BillStatus.fracaso => NowColors.c0xFFFB4F34,
+    BillStatus.pagado => NowColors.c0xFF3EB34D,
+    BillStatus.unknown => Colors.transparent,
+  };
+
   String get label => switch (this) {
     BillStatus.pagos => 'Pagos',
     BillStatus.atrasado => 'Atrasado',
