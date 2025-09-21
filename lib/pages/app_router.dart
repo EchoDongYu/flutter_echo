@@ -43,7 +43,6 @@ import 'package:flutter_echo/providers/feedback_provider.dart';
 import 'package:flutter_echo/providers/login_provider.dart';
 import 'package:flutter_echo/providers/main_provider.dart';
 import 'package:flutter_echo/providers/repay_history_provider.dart';
-import 'package:flutter_echo/providers/repay_provider.dart';
 import 'package:flutter_echo/providers/step_status_provider.dart';
 import 'package:flutter_echo/providers/submit_provider.dart';
 import 'package:flutter_echo/providers/user_bank_provider.dart';
@@ -266,29 +265,6 @@ class AppRouter {
         builder: (context, state) => const RepayProcessPage(),
       ),
 
-      /// 还款银行页面
-      GoRoute(
-        path: repayBank,
-        builder: (context, state) => const RepayBankPage(),
-      ),
-
-      /// 还款凭证页面
-      GoRoute(
-        path: repayCertificate,
-        builder: (context, state) => const RepayCertificatePage(),
-      ),
-
-      /// 还款已上传付款记录页面
-      GoRoute(
-        path: repayUploaded,
-        builder: (context, state) => ChangeNotifierProvider(
-          create: (_) => RepayModel(),
-          builder: (context, state) {
-            return PageConsumer<RepayModel>(child: const RepayUploadedPage());
-          },
-        ),
-      ),
-
       /// 还款历史页面
       GoRoute(
         path: repayHistory,
@@ -333,6 +309,24 @@ class AppRouter {
           GoRoute(
             path: repayConfirm,
             builder: (context, state) => const RepayConfirmPage(),
+          ),
+
+          /// 还款银行页面
+          GoRoute(
+            path: repayBank,
+            builder: (context, state) => const RepayBankPage(),
+          ),
+
+          /// 还款凭证页面
+          GoRoute(
+            path: repayCertificate,
+            builder: (context, state) => const RepayCertificatePage(),
+          ),
+
+          /// 还款已上传付款记录页面
+          GoRoute(
+            path: repayUploaded,
+            builder: (context, state) => const RepayUploadedPage(),
           ),
         ],
       ),

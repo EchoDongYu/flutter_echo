@@ -108,7 +108,7 @@ class _UserBankPageState extends State<UserBankPage> {
 
   Widget _buildCardContent(
     List<BankCardResp$Item> bankCardList,
-    List<StepItem>? stepItems,
+    List<DictItem>? stepItems,
   ) {
     return ListView.separated(
       shrinkWrap: true,

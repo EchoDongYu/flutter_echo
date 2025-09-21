@@ -33,11 +33,11 @@ class _StepContactPageState extends State<StepContactPage> {
       return TextEditingController();
     }, growable: false);
   }, growable: false);
-  List<StepItem>? _stepItems;
-  final _stepItemsLimit = List<List<StepItem>?>.generate(2, (index) {
+  List<DictItem>? _stepItems;
+  final _stepItemsLimit = List<List<DictItem>?>.generate(2, (index) {
     return null;
   }, growable: false);
-  final _pickedItem = List<StepItem?>.generate(2, (index) {
+  final _pickedItem = List<DictItem?>.generate(2, (index) {
     return null;
   }, growable: false);
 

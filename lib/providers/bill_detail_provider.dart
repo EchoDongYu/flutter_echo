@@ -1,4 +1,5 @@
 import 'package:flutter_echo/common/base_provider.dart';
+import 'package:flutter_echo/models/common_model.dart';
 import 'package:flutter_echo/models/swaggerApi.models.swagger.dart';
 import 'package:flutter_echo/services/api_service.dart';
 
@@ -52,7 +53,10 @@ class BillDetailModel extends BaseProvider {
   BillDetailResp$V08uw3ORepaymentChannelList$Item? selectedChannel;
 
   ///确认金额
-  String? _confirmValue;
+  double? _confirmValue;
+
+  ///选择银行
+  BankDictV0Item? _selectedBankItem;
 
   ///获取账单详情数据
   Future<void> fetchBillDetailData(String? id) async {
@@ -68,7 +72,7 @@ class BillDetailModel extends BaseProvider {
         }, growable: false);
       }
       _channelList = detailData.v08uw3ORepaymentChannelList ?? [];
-      selectedChannel = _channelList.firstWhere((v) => v.fratOMark == '1');
+      selectedChannel = _channelList.firstOrNull;
     }
     notifyListeners();
   }
@@ -85,7 +89,17 @@ class BillDetailModel extends BaseProvider {
     notifyListeners();
   }
 
-  void inputAmount(String value) {
+  void confirmAmount(double value) {
     _confirmValue = value;
+  }
+
+  Future<List<BankDictV0Item>?> getBankDictionary() async {
+    return await launchRequest(() async {
+      return await Api.getBankDictionary();
+    });
+  }
+
+  void selectBankDict(BankDictV0Item value) {
+    _selectedBankItem = value;
   }
 }

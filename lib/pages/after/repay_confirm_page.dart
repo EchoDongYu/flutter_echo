@@ -15,8 +15,43 @@ import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
 
 /// 还款确认页面
-class RepayConfirmPage extends StatelessWidget {
+class RepayConfirmPage extends StatefulWidget {
   const RepayConfirmPage({super.key});
+
+  @override
+  State<RepayConfirmPage> createState() => _RepayConfirmPageState();
+}
+
+class _RepayConfirmPageState extends State<RepayConfirmPage> {
+  final TextEditingController _controller = TextEditingController();
+  int _inputLength = 0;
+
+  @override
+  void initState() {
+    super.initState();
+    _controller.addListener(_onInputChanged);
+  }
+
+  @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
+  }
+
+  /// 输入变化监听
+  void _onInputChanged() {
+    final text = _controller.text;
+    final length = text.length;
+    if (_inputLength != length) setState(() => _inputLength = length);
+    final channel = context.read<BillDetailModel>().selectedChannel;
+    final max = channel?.maxAmount ?? 0;
+    //final min = channel?.minAmount ?? 0;
+    final current = _controller.text.tryParseDouble ?? 0;
+    if (current > max) {
+      toast('msg');
+      _controller.text = text.substring(0, length - 1);
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -39,13 +74,19 @@ class RepayConfirmPage extends StatelessWidget {
                 ),
                 SizedBox(height: 12.h),
                 //输入金额
-                RepayConfirmInput(onChanged: (v) => provider.inputAmount(v)),
+                RepayConfirmInput(
+                  controller: _controller,
+                  inputLength: _inputLength,
+                ),
                 SizedBox(height: 12.h),
                 //渠道
                 RepayConfirmChannel(
                   channelList: provider.channelList,
                   selectedChannel: provider.selectedChannel,
-                  onSelectChannel: (v) => provider.selectChannel(v),
+                  onSelectChannel: (channel) {
+                    FocusScope.of(context).requestFocus(FocusNode());
+                    provider.selectChannel(channel);
+                  },
                 ),
               ],
             );
@@ -66,14 +107,25 @@ class RepayConfirmPage extends StatelessWidget {
       bottomNavigationBar: WidgetHelper.buildBottomButton(
         text: 'Pagar inmediatamente',
         onPressed: () async {
+          FocusScope.of(context).requestFocus(FocusNode());
+          final model = context.read<BillDetailModel>();
+          final channel = model.selectedChannel;
+          final max = channel?.maxAmount ?? 0;
+          final min = channel?.minAmount ?? 0;
+          final current = _controller.text.tryParseDouble ?? 0;
+          if (current > max || current < min) {
+            toast('msg');
+            return;
+          }
           final result = await PromptDialog.show(
             context: context,
             title: 'Consejos',
             content: '¿Estas seguro de modificarla cantidad?',
-            confirmText: 'Confirmación',
+            confirmText: 'Confirmar',
             cancelText: 'Cancelar',
           );
           if (result == true && context.mounted) {
+            model.confirmAmount(current);
             context.push(AppRouter.repayBank);
           }
         },

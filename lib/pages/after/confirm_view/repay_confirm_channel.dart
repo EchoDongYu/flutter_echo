@@ -20,76 +20,82 @@ class RepayConfirmChannel extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final channels1 = channelList.where((v) => v.fratOMark == '1').toList();
+    final channels2 = channelList.where((v) => v.fratOMark != '1').toList();
     return CommonBox(
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text(
-            'Opcion 1',
-            style: TextStyle(
-              fontSize: 18.sp,
-              color: NowColors.c0xFF1C1F23,
-              fontWeight: FontWeight.w500,
+          if (channels1.isNotEmpty) ...[
+            Text(
+              'Opcion 1',
+              style: TextStyle(
+                fontSize: 18.sp,
+                color: NowColors.c0xFF1C1F23,
+                fontWeight: FontWeight.w500,
+              ),
             ),
-          ),
-          SizedBox(height: 8.h),
-          Text(
-            'Si no puede pagar con el opcion 1, utiliza el opcion 2 para hacer el pago.',
-            style: TextStyle(
-              fontSize: 12.sp,
-              color: NowColors.c0xFFFF9817,
-              fontWeight: FontWeight.w400,
+            SizedBox(height: 8.h),
+            Text(
+              'Si no puede pagar con el opcion 1, utiliza el opcion 2 para hacer el pago.',
+              style: TextStyle(
+                fontSize: 12.sp,
+                color: NowColors.c0xFFFF9817,
+                fontWeight: FontWeight.w400,
+              ),
             ),
-          ),
-          ListView.separated(
-            shrinkWrap: true,
-            physics: const NeverScrollableScrollPhysics(),
-            itemCount: channelList.length,
-            padding: EdgeInsets.symmetric(vertical: 16.h),
-            separatorBuilder: (_, _) => SizedBox(height: 10.h),
-            itemBuilder: (context, index) {
-              final channelInfo = channelList[index];
-              return PickItem(
-                label: channelInfo.oe5u39OChannelName ?? '',
-                selected: selectedChannel == channelInfo,
-                onTap: () => onSelectChannel(channelInfo),
-              );
-            },
-          ),
-          SizedBox(height: 16.h),
-          Text(
-            'Opcion 2',
-            style: TextStyle(
-              fontSize: 18.sp,
-              color: NowColors.c0xFF1C1F23,
-              fontWeight: FontWeight.w500,
+            SizedBox(height: 16.h),
+            ListView.separated(
+              shrinkWrap: true,
+              physics: const NeverScrollableScrollPhysics(),
+              itemCount: channels1.length,
+              separatorBuilder: (_, _) => SizedBox(height: 10.h),
+              itemBuilder: (context, index) {
+                final channelInfo = channels1[index];
+                return PickItem(
+                  label: channelInfo.oe5u39OChannelName ?? '',
+                  selected: selectedChannel == channelInfo,
+                  onTap: () => onSelectChannel(channelInfo),
+                );
+              },
             ),
-          ),
-          SizedBox(height: 8.h),
-          Text(
-            'Seleccionar método de pago',
-            style: TextStyle(
-              fontSize: 12.sp,
-              color: NowColors.c0xFF77797B,
-              fontWeight: FontWeight.w400,
+          ],
+          if (channels1.isNotEmpty && channels2.isNotEmpty)
+            SizedBox(height: 32.h),
+          if (channels2.isNotEmpty) ...[
+            Text(
+              'Opcion 2',
+              style: TextStyle(
+                fontSize: 18.sp,
+                color: NowColors.c0xFF1C1F23,
+                fontWeight: FontWeight.w500,
+              ),
             ),
-          ),
-          SizedBox(height: 16.h),
-          ListView.separated(
-            shrinkWrap: true,
-            physics: const NeverScrollableScrollPhysics(),
-            itemCount: channelList.length,
-            padding: EdgeInsets.symmetric(vertical: 16.h),
-            separatorBuilder: (_, _) => SizedBox(height: 10.h),
-            itemBuilder: (context, index) {
-              final channelInfo = channelList[index];
-              return PickItem(
-                label: channelInfo.oe5u39OChannelName ?? '',
-                selected: selectedChannel == channelInfo,
-                onTap: () => onSelectChannel(channelInfo),
-              );
-            },
-          ),
+            SizedBox(height: 8.h),
+            Text(
+              'Seleccionar método de pago',
+              style: TextStyle(
+                fontSize: 12.sp,
+                color: NowColors.c0xFF77797B,
+                fontWeight: FontWeight.w400,
+              ),
+            ),
+            SizedBox(height: 16.h),
+            ListView.separated(
+              shrinkWrap: true,
+              physics: const NeverScrollableScrollPhysics(),
+              itemCount: channels2.length,
+              separatorBuilder: (_, _) => SizedBox(height: 10.h),
+              itemBuilder: (context, index) {
+                final channelInfo = channels2[index];
+                return PickItem(
+                  label: channelInfo.oe5u39OChannelName ?? '',
+                  selected: selectedChannel == channelInfo,
+                  onTap: () => onSelectChannel(channelInfo),
+                );
+              },
+            ),
+          ],
         ],
       ),
     );

@@ -30,22 +30,21 @@ class _ApplyConfirmPageState extends State<ApplyConfirmPage> {
     return false;
   }, growable: false);
   BankCardResp$Item? _pickedBank;
-  List<StepItem>? _stepItems;
-  StepItem? _pickedPurpose;
+  List<DictItem>? _stepItems;
+  DictItem? _pickedPurpose;
   bool _expanded = false;
   bool _showBankDialog = false;
-
-  ApplyModel get applyModel => Provider.of<ApplyModel>(context, listen: false);
 
   @override
   void initState() {
     super.initState();
     WidgetsBinding.instance.addPostFrameCallback((_) async {
+      final applyModel = context.read<ApplyModel>();
       final dict = await applyModel.getLoanPreInfo(
         widget.productId,
         widget.amount,
       );
-      setState(() => _stepItems = dict?['${ApplyModel.dictType}']);
+      setState(() => _stepItems = dict);
     });
   }
 
@@ -55,6 +54,7 @@ class _ApplyConfirmPageState extends State<ApplyConfirmPage> {
       _isErrors[1] = _pickedPurpose == null;
     });
     if (!_isErrors.contains(true)) {
+      final applyModel = context.read<ApplyModel>();
       final loanInfo = applyModel.loanInfo;
       String? password;
       if (loanInfo?.cressyOTraderPwd == true) {

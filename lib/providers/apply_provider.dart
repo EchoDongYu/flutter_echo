@@ -7,25 +7,19 @@ import 'package:go_router/go_router.dart';
 
 class ApplyModel extends BaseProvider {
   /// 13 借款目的
-  static const dictType = 13;
-  static Map<String, List<StepItem>?>? _stepItems;
+  static const _dictType = '13';
+  static List<DictItem>? _stepItems;
   LoanPreInfoResp? _loanInfo;
 
   LoanPreInfoResp? get loanInfo => _loanInfo;
 
-  Future<Map<String, List<StepItem>?>?> getLoanPreInfo(
-    int? productId,
-    double? amount,
-  ) async {
+  Future<List<DictItem>?> getLoanPreInfo(int? id, double? amount) async {
     return await launchRequest(() async {
-      _loanInfo = await Api.getLoanPreInfo(
-        productId: productId,
-        amount: amount,
-      );
+      _loanInfo = await Api.getLoanPreInfo(productId: id, amount: amount);
       if (_stepItems?.isNotEmpty == true) return _stepItems;
-      final apiResult = await Api.getDictionary(dictType.toString());
-      _stepItems = apiResult;
-      return apiResult;
+      final apiResult = await Api.getDictionary(_dictType);
+      _stepItems = apiResult[_dictType];
+      return _stepItems;
     });
   }
 

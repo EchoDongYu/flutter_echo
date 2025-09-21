@@ -5,17 +5,16 @@ import 'package:flutter_echo/services/api_service.dart';
 
 class UserBankModel extends BankDictModel {
   BankCardResp? _bankCardList;
-  static List<StepItem>? _stepItems;
+  static List<DictItem>? _stepItems;
 
   BankCardResp? get bankCardList => _bankCardList;
 
-  List<StepItem>? get stepItems => _stepItems;
+  List<DictItem>? get stepItems => _stepItems;
 
   void queryBankCardList() {
     launchRequest(() async {
       _bankCardList = await Api.queryBankCardList();
-      final dict = await getDictionary();
-      _stepItems = dict?['${BankDictModel.dictType}'];
+      _stepItems = await getDictionary();
     });
   }
 

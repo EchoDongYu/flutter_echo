@@ -7,7 +7,7 @@ import 'package:flutter_echo/services/storage_service.dart';
 class BankModel extends BankDictModel {
   String? cuiNumber;
 
-  Future<Pair<BankVOResp?, Map?>?> queryBankList() async {
+  Future<Pair<BankVOResp?, List<DictItem>?>?> queryBankList() async {
     return await launchRequest(() async {
       cuiNumber = LocalStorage().userInfo?.merdekaOIdCard;
       if (cuiNumber?.isNotEmpty != true) {

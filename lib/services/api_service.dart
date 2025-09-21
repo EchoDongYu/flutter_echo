@@ -271,16 +271,34 @@ class Api {
   /// 字典分类(多个使用逗号分割) :0 性别 1 学历 2 收入 3 婚姻状况 4 工作状况（职业） 5 住房状态 6 其他贷款
   /// 7 工作年限 8 发薪周期 9 城市列表 10 联系人-关系 11 电费账单 12 每月家庭支出 13 借款目的 14 意见反馈
   /// 17 whatsapp 18 客服邮箱 21 客服热线 22 账户类型 23 公司官网 24 公司地址 25 注销挽留 26 银行直连线下还款银行字典
-  static Future<Map<String, List<StepItem>?>> getDictionary(String types) {
+  static Future<Map<String, List<DictItem>?>> getDictionary(String types) {
     return _apiService.post(
       ApiPath.getDictionary,
       body: {'types': types},
       convert: (json) => (json as Map<String, dynamic>).map((key, value) {
-        return MapEntry<String, List<StepItem>?>(
+        return MapEntry<String, List<DictItem>?>(
           key,
-          (value as List<dynamic>?)?.map((v) => StepItem.fromJson(v)).toList(),
+          (value as List<dynamic>?)?.map((v) => DictItem.fromJson(v)).toList(),
         );
       }),
+    );
+  }
+
+  static Future<List<BankDictV0Item>?> getBankDictionary() {
+    return _apiService.post(
+      ApiPath.getDictionary,
+      body: {'types': '26'},
+      convert: (json) => (json as Map<String, dynamic>)
+          .map((key, value) {
+            return MapEntry<String, List<BankDictItem>?>(
+              key,
+              (value as List<dynamic>?)
+                  ?.map((v) => BankDictItem.fromJson(v))
+                  .toList(),
+            );
+          })['26']
+          ?.firstOrNull
+          ?.value,
     );
   }
 

@@ -29,16 +29,16 @@ class StepSelectField extends StatefulWidget {
 
   factory StepSelectField.pickItem(
     BuildContext context, {
-    required List<StepItem>? items,
-    required StepItem? pickedItem,
-    required Function(StepItem) onValueChange,
+    required List<DictItem>? items,
+    required DictItem? pickedItem,
+    required Function(DictItem) onValueChange,
     required String hintText,
     String errorText = 'Por favor seleccione',
     bool isError = false,
   }) => StepSelectField(
     value: pickedItem?.value,
     onValueChange: () async {
-      final result = await PickItemDialog.show<StepItem>(
+      final result = await PickItemDialog.show<DictItem>(
         context,
         items: items,
         pickedItem: pickedItem,

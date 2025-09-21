@@ -156,9 +156,9 @@ extension StringParse on String? {
   double? get tryParseDouble => this != null ? double.tryParse(this!) : null;
 }
 
-extension ListExt on List<StepItem> {
-  StepItem? findKey(int? key) {
-    for (StepItem element in this) {
+extension ListExt on List<DictItem> {
+  DictItem? findKey(int? key) {
+    for (DictItem element in this) {
       if (key == element.key) return element;
     }
     return null;

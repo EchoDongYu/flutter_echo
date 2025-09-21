@@ -20,7 +20,7 @@ class AboutUsPage extends StatefulWidget {
 }
 
 class _AboutUsPageState extends State<AboutUsPage> {
-  List<StepItem>? _stepItems;
+  List<DictItem>? _stepItems;
 
   @override
   void initState() {
@@ -31,7 +31,7 @@ class _AboutUsPageState extends State<AboutUsPage> {
       setState(() {
         _stepItems = AboutUsModel.dictTypes
             .map((it) => dict?['$it'])
-            .expand((it) => it ?? List<StepItem>.empty())
+            .expand((it) => it ?? List<DictItem>.empty())
             .toList();
       });
     });
@@ -96,7 +96,7 @@ class _AboutUsPageState extends State<AboutUsPage> {
     );
   }
 
-  Widget _buildAboutItem(StepItem? item) {
+  Widget _buildAboutItem(DictItem? item) {
     final label = _labelMap[item?.type];
     final icon = _iconMap[item?.type];
     return Row(

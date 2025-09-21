@@ -5,7 +5,6 @@ import 'package:flutter_echo/common/app_theme.dart';
 import 'package:flutter_echo/common/page_consumer.dart';
 import 'package:flutter_echo/models/common_model.dart';
 import 'package:flutter_echo/models/swaggerApi.models.swagger.dart';
-import 'package:flutter_echo/providers/bank_dict_provider.dart';
 import 'package:flutter_echo/providers/bank_provider.dart';
 import 'package:flutter_echo/ui/widgets/common_button.dart';
 import 'package:flutter_echo/ui/widgets/step_input_field.dart';
@@ -49,8 +48,8 @@ class _StepBankDialogState extends State<StepBankDialog> {
   }, growable: false);
   List<BankVOResp$Item>? _bankItems;
   BankVOResp$Item? _pickedBank;
-  List<StepItem>? _stepItems;
-  StepItem? _pickedType;
+  List<DictItem>? _stepItems;
+  DictItem? _pickedType;
   String? _numberError;
 
   BankModel get bankModel => Provider.of<BankModel>(context, listen: false);
@@ -64,7 +63,7 @@ class _StepBankDialogState extends State<StepBankDialog> {
       final result = await bankModel.queryBankList();
       setState(() {
         _bankItems = result?.first;
-        _stepItems = result?.second?['${BankDictModel.dictType}'];
+        _stepItems = result?.second;
       });
     });
   }

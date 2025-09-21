@@ -19,12 +19,9 @@ class FeedbackPage extends StatefulWidget {
 
 class _FeedbackPageState extends State<FeedbackPage> {
   final _controller = TextEditingController();
-  List<StepItem>? _stepItems;
+  List<DictItem>? _stepItems;
   List<bool>? _selected;
   bool _selectedOther = false;
-
-  FeedbackModel get feedbackModel =>
-      Provider.of<FeedbackModel>(context, listen: false);
 
   int get stepLength {
     final items = _stepItems;
@@ -35,9 +32,10 @@ class _FeedbackPageState extends State<FeedbackPage> {
   void initState() {
     super.initState();
     WidgetsBinding.instance.addPostFrameCallback((_) async {
+      final feedbackModel = context.read<FeedbackModel>();
       final dict = await feedbackModel.getDictionary();
       setState(() {
-        _stepItems = dict?['${FeedbackModel.dictType}'];
+        _stepItems = dict;
         _selected = _stepItems?.map((v) => false).toList();
       });
     });
@@ -67,6 +65,7 @@ class _FeedbackPageState extends State<FeedbackPage> {
       toast('Por favor ingrese otro motivo');
       return;
     }
+    final feedbackModel = context.read<FeedbackModel>();
     final result = await feedbackModel.submitFeedback(
       type: types.join(','),
       content: _selectedOther == true ? _controller.text : null,

@@ -4,13 +4,13 @@ import 'package:flutter_echo/services/api_service.dart';
 
 class BankDictModel extends BaseProvider {
   /// 27 账户类型
-  static const dictType = 27;
-  static Map<String, List<StepItem>?>? _stepItems;
+  static const _dictType = '27';
+  static List<DictItem>? _stepItems;
 
-  Future<Map<String, List<StepItem>?>?> getDictionary() async {
+  Future<List<DictItem>?> getDictionary() async {
     if (_stepItems?.isNotEmpty == true) return _stepItems;
-    final apiResult = await Api.getDictionary(dictType.toString());
-    _stepItems = apiResult;
-    return apiResult;
+    final apiResult = await Api.getDictionary(_dictType);
+    _stepItems = apiResult[_dictType];
+    return _stepItems;
   }
 }

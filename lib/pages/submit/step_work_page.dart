@@ -25,7 +25,7 @@ class _StepWorkPageState extends State<StepWorkPage> {
     return false;
   }, growable: false);
   final _controller = TextEditingController();
-  final _pickedItem = List<StepItem?>.generate(8, (index) {
+  final _pickedItem = List<DictItem?>.generate(8, (index) {
     return null;
   }, growable: false);
   final _pickedArea = List<String?>.generate(3, (index) {
@@ -34,7 +34,7 @@ class _StepWorkPageState extends State<StepWorkPage> {
   final _pickedDay = List<int?>.generate(2, (index) {
     return null;
   }, growable: false);
-  List<List<StepItem>?>? _stepItems;
+  List<List<DictItem>?>? _stepItems;
   Map<String, dynamic>? _stepAreas;
   String? _dayError; // 发薪日
 

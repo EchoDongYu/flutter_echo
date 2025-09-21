@@ -4,15 +4,15 @@ import 'package:flutter_echo/services/api_service.dart';
 
 class FeedbackModel extends BaseProvider {
   /// 14 意见反馈
-  static const dictType = 14;
-  static Map<String, List<StepItem>?>? _stepItems;
+  static const _dictType = '14';
+  static List<DictItem>? _stepItems;
 
-  Future<Map<String, List<StepItem>?>?> getDictionary() async {
+  Future<List<DictItem>?> getDictionary() async {
     if (_stepItems?.isNotEmpty == true) return _stepItems;
     return await launchRequest(() async {
-      final apiResult = await Api.getDictionary(dictType.toString());
-      _stepItems = apiResult;
-      return apiResult;
+      final apiResult = await Api.getDictionary(_dictType);
+      _stepItems = apiResult[_dictType];
+      return apiResult[_dictType];
     });
   }
 

@@ -195,7 +195,7 @@ class _UserBankDialogState extends State<UserBankDialog> {
 
   Widget _buildCardContent(
     List<BankCardResp$Item> bankCardList,
-    List<StepItem>? stepItems,
+    List<DictItem>? stepItems,
   ) {
     return ListView.separated(
       primary: false,

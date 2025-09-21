@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_echo/common/app_theme.dart';
 import 'package:flutter_echo/ui/widgets/common_box.dart';
@@ -7,42 +8,51 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 class BankPayBox extends StatelessWidget {
   const BankPayBox({
     super.key,
-    required this.backImageUrl,
-    required this.backTitle,
+    required this.bankImage,
+    required this.bankTitle,
     this.onTap,
   });
 
-  final String backImageUrl;
-  final String backTitle;
+  final String bankImage;
+  final String bankTitle;
   final VoidCallback? onTap;
 
   @override
   Widget build(BuildContext context) {
     return CommonBox(
-      height: 76.h,
       onTap: onTap,
       color: NowColors.c0xFFF3F3F5,
       child: Row(
         children: [
-          Image.asset(backImageUrl, width: 72.w, height: 44.h),
+          CachedNetworkImage(
+            imageUrl: bankImage,
+            height: 45.h,
+            fit: BoxFit.fitHeight,
+          ),
           SizedBox(width: 12.w),
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Text(
-                backTitle,
+                bankTitle,
                 style: TextStyle(
                   fontSize: 14.sp,
                   fontWeight: FontWeight.w500,
                   color: NowColors.c0xFF000000,
                 ),
               ),
-              CommonBox(
-                width: 100.w,
-                height: 18.h,
-                padding: EdgeInsets.zero,
-                color: NowColors.c0xFF3288F1.withValues(alpha: 0.1),
+              SizedBox(height: 6.h),
+              Container(
+                padding: const EdgeInsets.symmetric(horizontal: 8),
+                decoration: BoxDecoration(
+                  color: NowColors.c0xFF3288F1.withValues(alpha: 0.1),
+                  borderRadius: BorderRadius.circular(15),
+                  border: Border.all(
+                    width: 1,
+                    color: NowColors.c0xFF3288F1,
+                    style: BorderStyle.solid,
+                  ),
+                ),
                 child: Text(
                   "Costo: ¡Gratis!",
                   textAlign: TextAlign.center,

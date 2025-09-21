@@ -33,14 +33,14 @@ class _StepBasicPageState extends State<StepBasicPage> {
   final _controllers = List.generate(5, (index) {
     return TextEditingController();
   }, growable: false);
-  final _pickedItem = List<StepItem?>.generate(2, (index) {
+  final _pickedItem = List<DictItem?>.generate(2, (index) {
     return null;
   }, growable: false);
   DateTime? _pickedDate;
   String? _cuiError;
   String? _emailError;
   String? _phoneError; // 备用手机号
-  List<List<StepItem>?>? _stepItems;
+  List<List<DictItem>?>? _stepItems;
 
   @override
   void initState() {

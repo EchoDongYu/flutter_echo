@@ -24,9 +24,9 @@ class StepCheckField extends StatelessWidget {
 
   factory StepCheckField.pickItem(
     BuildContext context, {
-    required List<StepItem>? items,
-    required StepItem? pickedItem,
-    required Function(StepItem) onValueChange,
+    required List<DictItem>? items,
+    required DictItem? pickedItem,
+    required Function(DictItem) onValueChange,
     required String hintText,
     String errorText = 'Por favor seleccione',
     bool isError = false,

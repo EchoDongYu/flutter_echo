@@ -13,7 +13,7 @@ class SubmitModel extends BaseProvider {
   static const dictArea = 9;
   static const dictContact = 10;
   static const _dictTypes = [...dictBasic, ...dictWork, dictArea, dictContact];
-  static Map<String, List<StepItem>?>? _stepItems;
+  static Map<String, List<DictItem>?>? _stepItems;
   static SubmitDataReq _submitData = SubmitDataReq();
 
   SubmitDataReq? getCachedData() {
@@ -26,7 +26,7 @@ class SubmitModel extends BaseProvider {
     _submitData = SubmitDataReq();
   }
 
-  Future<Map<String, List<StepItem>?>?> getDictionary() async {
+  Future<Map<String, List<DictItem>?>?> getDictionary() async {
     if (_stepItems?.isNotEmpty == true) return _stepItems;
     return await launchRequest(() async {
       final apiResult = await Api.getDictionary(_dictTypes.join(','));
