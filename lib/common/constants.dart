@@ -273,4 +273,7 @@ class ApiPath {
 
   /// 还款历史列表
   static const String queryRepaymentList = '/philtrum/kbzd';
+
+  /// 图片上传（包含上传/滤波分检查/人脸检测
+  static const String imageUploads = '/loan/awspic/uploads';
 }

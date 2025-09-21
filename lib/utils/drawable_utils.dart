@@ -76,5 +76,26 @@ class Drawable {
   static const String imageScreenshot2 = 'assets/images/image_screenshot2.png';
   static const String imageShildsequere = 'assets/images/image_shildsequere.png';
   static const String imageUpgrade = 'assets/images/image_upgrade.png';
+  static const String iconHourglassFill = 'assets/images/icon_hourglass_fill.png';
+  static const String iconClear = 'assets/images/icon_clear.png';
+  static const String iconBankGT = 'assets/images/icon_bank_gt.png';
+  static const String iconBankBAC = 'assets/images/icon_bank_bi.png';
+  static const String iconBankBI = 'assets/images/icon_bank_bac.png';
+  static const String iconPhoto = 'assets/images/icon_photo.png';
+  static const String iconTake = 'assets/images/icon_take.png';
+  static const String iconClose = 'assets/images/icon_close.png';
+  static const String iconIdCard = 'assets/images/icon_id_card.png';
+  static const String iconIdCardBack = 'assets/images/icon_id_card_back.png';
+  static const String iconIdFront = 'assets/images/icon_id_front.png';
+  static const String iconIdBack = 'assets/images/icon_id_back.png';
+  static const String iconReturn = 'assets/images/icon_return.png';
+  static const String iconSuccess = 'assets/images/icon_success.png';
+  static const String iconFailure = 'assets/images/icon_failure.png';
+  static const String iconBrokea = 'assets/images/icon_brokea.png';
+  static const String iconRosto = 'assets/images/icon_rosto.png';
+  static const String iconRefresh = 'assets/images/icon_refresh.png';
+  static const String iconPhotoTake = 'assets/images/icon_photo_take.png';
+  static const String iconPhotoFinish = 'assets/images/icon_photo_finish.png';
+  static const String iconCirculate = 'assets/images/icon_circulate.png';
 
 }

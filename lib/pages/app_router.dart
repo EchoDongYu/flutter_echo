@@ -10,6 +10,7 @@ import 'package:flutter_echo/pages/before/apply_result_page.dart';
 import 'package:flutter_echo/pages/bill/bill_detail_page.dart';
 import 'package:flutter_echo/pages/bill/bill_list_page.dart';
 import 'package:flutter_echo/pages/face/face_camera_page.dart';
+import 'package:flutter_echo/pages/face/face_id_info_page.dart';
 import 'package:flutter_echo/pages/face/face_identification_page.dart';
 import 'package:flutter_echo/pages/login/login_code_page.dart';
 import 'package:flutter_echo/pages/login/login_password_page.dart';
@@ -62,6 +63,7 @@ class AppRouter {
   static const String stepBasic = '/step_basic';
   static const String stepWork = '/step_work';
   static const String stepContact = '/step_contact';
+  static const String stepIdInfo = '/step_id_info';
   static const String stepResult = '/step_result';
   static const String stepFailed = '/step_failed';
   static const String stepProcess = '/step_process';
@@ -168,6 +170,12 @@ class AppRouter {
           GoRoute(
             path: stepContact,
             builder: (context, state) => const StepContactPage(),
+          ),
+
+          /// 授信表单页面-证件信息
+          GoRoute(
+            path: stepIdInfo,
+            builder: (context, state) => const FaceIdInfoPage(),
           ),
         ],
       ),

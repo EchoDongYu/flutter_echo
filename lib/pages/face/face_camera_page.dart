@@ -136,13 +136,32 @@ class _FaceCameraPageState extends State<FaceCameraPage> {
               height: 125.h,
               child: GestureDetector(
                 onTap: _takePhoto,
-                child: Container(
-                  width: 64.w,
-                  height: 64.h,
-                  decoration: BoxDecoration(
-                    shape: BoxShape.circle,
-                    border: Border.all(color: Colors.white, width: 4),
-                  ),
+                // child: Image.asset(
+                //   Drawable.iconPhotoTake,
+                //   width: 82.w,
+                //   height: 82.h,
+                // ),
+                child: Row(
+                  children: [
+                    Expanded(child: SizedBox()),
+                    Expanded(
+                      child: Image.asset(
+                        Drawable.iconPhotoFinish,
+                        width: 82.w,
+                        height: 82.h,
+                      ),
+                    ),
+                    Expanded(
+                      child: Padding(
+                        padding: EdgeInsets.only(right: 50.w),
+                        child: Image.asset(
+                          Drawable.iconRefresh,
+                          width: 24.w,
+                          height: 24.h,
+                        ),
+                      ),
+                    ),
+                  ],
                 ),
               ),
             ),
