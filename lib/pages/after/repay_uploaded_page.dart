@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_echo/common/app_theme.dart';
 import 'package:flutter_echo/pages/after/uploaded_view/repay_uploaded_list_item.dart';
 import 'package:flutter_echo/providers/repay_provider.dart';
 import 'package:flutter_echo/ui/widgets/common_appbar.dart';
@@ -12,6 +13,7 @@ class RepayUploadedPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: NowColors.c0xFFF3F3F5,
       appBar: CommonAppBar(title: 'Historial de pagos subidos'),
       body: Padding(
         padding: EdgeInsets.fromLTRB(12.w, 12.h, 12.w, 12.h),

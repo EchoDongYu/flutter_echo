@@ -42,12 +42,12 @@ class BillDetailModel extends BaseProvider {
   double? _confirmValue;
 
   ///银行直连线下还款银行字典
-  List<BankDictV0Item> get bankItems => _bankItems ?? [];
-  List<BankDictV0Item>? _bankItems;
+  List<BankDictV0Item> get bankDictItems => _bankDictItems ?? [];
+  List<BankDictV0Item>? _bankDictItems;
 
   ///选择银行
-  BankDictV0Item? get selectedBankItem => _selectedBankItem;
-  BankDictV0Item? _selectedBankItem;
+  BankDictV0Item? get selectedBank => _selectedBank;
+  BankDictV0Item? _selectedBank;
 
   ///获取账单详情数据
   void fetchBillDetailData(String? id) async {
@@ -86,12 +86,19 @@ class BillDetailModel extends BaseProvider {
 
   void getBankDictionary() async {
     await launchRequest(() async {
-      _bankItems = await Api.getBankDictionary();
+      _bankDictItems = await Api.getBankDictionary();
     });
   }
 
   void selectBankDict(BankDictV0Item? value) {
-    _selectedBankItem = value;
+    _selectedBank = value;
     notifyListeners();
+  }
+
+  void applyRepay() async {
+    await launchRequest(() async {
+      final req = RepayApplyReq(o12sd0OAmount: _confirmValue);
+      await Api.applyRepay(req);
+    });
   }
 }

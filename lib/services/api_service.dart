@@ -435,4 +435,13 @@ class Api {
       convert: (json) => BillRepayResp.fromJson(json),
     );
   }
+
+  /// 还款请求
+  static Future<RepayApplyResp> applyRepay(RepayApplyReq req) {
+    return _apiService.post(
+      ApiPath.applyRepay,
+      body: req.toJson(),
+      convert: (json) => RepayApplyResp.fromJson(json),
+    );
+  }
 }

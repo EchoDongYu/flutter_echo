@@ -19,6 +19,7 @@ class RepayConfirmAmount extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return CommonBox(
+      borderRadius: const BorderRadius.all(Radius.circular(20)),
       gradient: LinearGradient(
         colors: [NowColors.c0xFF3288F1, NowColors.c0xFF4FAAFF],
       ),

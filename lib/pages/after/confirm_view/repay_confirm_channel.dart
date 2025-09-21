@@ -22,7 +22,13 @@ class RepayConfirmChannel extends StatelessWidget {
   Widget build(BuildContext context) {
     final channels1 = channelList.where((v) => v.fratOMark == '1').toList();
     final channels2 = channelList.where((v) => v.fratOMark != '1').toList();
-    return CommonBox(
+    return Container(
+      padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 20.h),
+      decoration: BoxDecoration(
+        color: NowColors.c0xFFFFFFFF,
+        borderRadius: const BorderRadius.all(Radius.circular(20)),
+        boxShadow: NowStyles.cardShadows,
+      ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [

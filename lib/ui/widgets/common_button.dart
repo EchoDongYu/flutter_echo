@@ -46,9 +46,9 @@ class EchoPrimaryButton extends _EchoButton {
 
   @override
   Widget build(BuildContext context) {
-    return ElevatedButton(
+    return FilledButton(
       onPressed: enable ? onPressed : null,
-      style: ElevatedButton.styleFrom(
+      style: FilledButton.styleFrom(
         minimumSize: Size.fromHeight(50.h),
         backgroundColor: Colors.transparent,
         padding: EdgeInsets.zero,
@@ -99,9 +99,9 @@ class EchoSecondaryButton extends _EchoButton {
 
   @override
   Widget build(BuildContext context) {
-    return ElevatedButton(
+    return FilledButton(
       onPressed: enable ? onPressed : null,
-      style: ElevatedButton.styleFrom(
+      style: FilledButton.styleFrom(
         minimumSize: Size.fromHeight(50.h),
         backgroundColor: enable ? filledColor : disableColor(filledColor),
         padding: _EchoButton.padding,

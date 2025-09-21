@@ -36,11 +36,12 @@ class _RepayBankPageState extends State<RepayBankPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: NowColors.c0xFFF3F3F5,
       appBar: CommonAppBar(
         title: 'Pago por bancos',
         onPopBack: () {
           final model = context.read<BillDetailModel>();
-          if (model.selectedBankItem == null) {
+          if (model.selectedBank == null) {
             context.pop();
           } else {
             model.selectBankDict(null);
@@ -53,7 +54,7 @@ class _RepayBankPageState extends State<RepayBankPage> {
           children: [
             Consumer<BillDetailModel>(
               builder: (_, provider, _) {
-                final selectedBankItem = provider.selectedBankItem;
+                final selectedBankItem = provider.selectedBank;
                 if (selectedBankItem != null) {
                   return Column(
                     children: [
@@ -63,7 +64,7 @@ class _RepayBankPageState extends State<RepayBankPage> {
                     ],
                   );
                 }
-                return _buildListCard(provider.bankItems);
+                return _buildListCard(provider.bankDictItems);
               },
             ),
             SizedBox(height: 12.h),
@@ -79,7 +80,13 @@ class _RepayBankPageState extends State<RepayBankPage> {
   }
 
   Widget _buildListCard(List<BankDictV0Item> bankItems) {
-    return CommonBox(
+    return Container(
+      padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 20.h),
+      decoration: BoxDecoration(
+        color: NowColors.c0xFFFFFFFF,
+        borderRadius: const BorderRadius.all(Radius.circular(20)),
+        boxShadow: NowStyles.cardShadows,
+      ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -124,187 +131,188 @@ class _RepayBankPageState extends State<RepayBankPage> {
   }
 
   Widget _buildDetailCard(BankDictV0Item item) {
-    return CommonBox(
-      padding: EdgeInsets.zero,
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          CommonBox(
-            borderRadius: BorderRadius.only(
-              topLeft: Radius.circular(12),
-              topRight: Radius.circular(12),
-            ),
-            child: Row(
-              children: [
-                Container(
-                  decoration: BoxDecoration(
-                    border: BoxBorder.all(
-                      color: NowColors.c0xFFD8D8D8,
-                      width: 0.6.w,
-                    ),
-                    borderRadius: BorderRadius.circular(8.r),
-                  ),
-                  child: ClipRRect(
-                    borderRadius: BorderRadius.circular(8.r),
-                    child: CachedNetworkImage(
-                      imageUrl: item.m871v6 ?? '',
-                      height: 45.h,
-                      fit: BoxFit.fitHeight,
-                    ),
-                  ),
-                ),
-                SizedBox(width: 12.w),
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      item.ruschuk ?? '',
-                      style: TextStyle(
-                        fontSize: 14.sp,
-                        fontWeight: FontWeight.w500,
-                        color: NowColors.c0xFF000000,
-                      ),
-                    ),
-                    Text(
-                      item.t1h91p ?? '',
-                      style: TextStyle(
-                        fontSize: 12.sp,
-                        fontWeight: FontWeight.w400,
-                        color: NowColors.c0xFF3288F1,
-                      ),
-                    ),
-                  ],
-                ),
-              ],
-            ),
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        CommonBox(
+          borderRadius: BorderRadius.only(
+            topLeft: Radius.circular(20),
+            topRight: Radius.circular(20),
           ),
-          CommonBox(
-            color: NowColors.c0xFF3288F1,
-            borderRadius: BorderRadius.only(
-              bottomLeft: Radius.circular(12),
-              bottomRight: Radius.circular(12),
-            ),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  'Tipo de cuenta',
-                  style: TextStyle(
-                    fontSize: 12.sp,
-                    fontWeight: FontWeight.w400,
-                    color: NowColors.c0xFFFFFFFF.withValues(alpha: 0.8),
+          child: Row(
+            children: [
+              Container(
+                decoration: BoxDecoration(
+                  border: BoxBorder.all(
+                    color: NowColors.c0xFFD8D8D8,
+                    width: 0.6.w,
+                  ),
+                  borderRadius: BorderRadius.circular(8.r),
+                ),
+                child: ClipRRect(
+                  borderRadius: BorderRadius.circular(8.r),
+                  child: CachedNetworkImage(
+                    imageUrl: item.m871v6 ?? '',
+                    height: 45.h,
+                    fit: BoxFit.fitHeight,
                   ),
                 ),
-                SizedBox(height: 4.h),
-                Text(
-                  item.exhedra ?? '',
-                  style: TextStyle(
-                    fontSize: 14.sp,
-                    fontWeight: FontWeight.w500,
-                    color: NowColors.c0xFFFFFFFF,
+              ),
+              SizedBox(width: 12.w),
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    item.ruschuk ?? '',
+                    style: TextStyle(
+                      fontSize: 14.sp,
+                      fontWeight: FontWeight.w500,
+                      color: NowColors.c0xFF000000,
+                    ),
                   ),
-                ),
-                SizedBox(height: 16.h),
-                Text(
-                  'Nombre',
-                  style: TextStyle(
-                    fontSize: 12.sp,
-                    fontWeight: FontWeight.w400,
-                    color: NowColors.c0xFFFFFFFF.withValues(alpha: 0.8),
+                  Text(
+                    item.t1h91p ?? '',
+                    style: TextStyle(
+                      fontSize: 12.sp,
+                      fontWeight: FontWeight.w400,
+                      color: NowColors.c0xFF3288F1,
+                    ),
                   ),
+                ],
+              ),
+            ],
+          ),
+        ),
+        CommonBox(
+          color: NowColors.c0xFF3288F1,
+          borderRadius: BorderRadius.only(
+            bottomLeft: Radius.circular(20),
+            bottomRight: Radius.circular(20),
+          ),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                'Tipo de cuenta',
+                style: TextStyle(
+                  fontSize: 12.sp,
+                  fontWeight: FontWeight.w400,
+                  color: NowColors.c0xFFFFFFFF.withValues(alpha: 0.8),
                 ),
-                SizedBox(height: 4.h),
-                Text(
-                  item.k5j6q9 ?? '',
-                  style: TextStyle(
-                    fontSize: 14.sp,
-                    fontWeight: FontWeight.w500,
-                    color: NowColors.c0xFFFFFFFF,
-                  ),
+              ),
+              SizedBox(height: 4.h),
+              Text(
+                item.exhedra ?? '',
+                style: TextStyle(
+                  fontSize: 14.sp,
+                  fontWeight: FontWeight.w500,
+                  color: NowColors.c0xFFFFFFFF,
                 ),
-                SizedBox(height: 16.h),
-                CommonBox(
-                  color: NowColors.c0x00000000.withValues(alpha: 0.1),
-                  padding: EdgeInsets.symmetric(horizontal: 12, vertical: 6),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Column(
-                        children: [
-                          Text(
-                            'Námero de cuenta',
+              ),
+              SizedBox(height: 16.h),
+              Text(
+                'Nombre',
+                style: TextStyle(
+                  fontSize: 12.sp,
+                  fontWeight: FontWeight.w400,
+                  color: NowColors.c0xFFFFFFFF.withValues(alpha: 0.8),
+                ),
+              ),
+              SizedBox(height: 4.h),
+              Text(
+                item.k5j6q9 ?? '',
+                style: TextStyle(
+                  fontSize: 14.sp,
+                  fontWeight: FontWeight.w500,
+                  color: NowColors.c0xFFFFFFFF,
+                ),
+              ),
+              SizedBox(height: 16.h),
+              CommonBox(
+                color: NowColors.c0x00000000.withValues(alpha: 0.1),
+                padding: EdgeInsets.symmetric(horizontal: 12, vertical: 6),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Column(
+                      children: [
+                        Text(
+                          'Námero de cuenta',
+                          style: TextStyle(
+                            fontSize: 12.sp,
+                            fontWeight: FontWeight.w400,
+                            color: NowColors.c0xFFFFFFFF.withValues(alpha: 0.8),
+                          ),
+                        ),
+                        SizedBox(height: 2.h),
+                        Text(
+                          item.yca98c ?? '',
+                          style: TextStyle(
+                            fontSize: 16.sp,
+                            fontWeight: FontWeight.w500,
+                            color: NowColors.c0xFFFFFFFF,
+                          ),
+                        ),
+                      ],
+                    ),
+                    Spacer(),
+                    InkWell(
+                      onTap: () {
+                        Clipboard.setData(
+                          ClipboardData(text: item.yca98c ?? ''),
+                        );
+                        toast('copiar');
+                      },
+                      child: Container(
+                        padding: EdgeInsets.symmetric(
+                          horizontal: 10,
+                          vertical: 4,
+                        ),
+                        decoration: BoxDecoration(
+                          color: NowColors.c0x00000000,
+                          borderRadius: BorderRadius.circular(24),
+                          border: Border.all(
+                            color: NowColors.c0xFFFFFFFF,
+                            width: 1,
+                          ),
+                        ),
+                        child: InkWell(
+                          onTap: () {
+                            Clipboard.setData(
+                              ClipboardData(text: item.yca98c ?? ''),
+                            );
+                            toast('copiar');
+                          },
+                          child: Text(
+                            'Copiar',
+                            textAlign: TextAlign.center,
                             style: TextStyle(
                               fontSize: 12.sp,
-                              fontWeight: FontWeight.w400,
-                              color: NowColors.c0xFFFFFFFF.withValues(
-                                alpha: 0.8,
-                              ),
-                            ),
-                          ),
-                          SizedBox(height: 2.h),
-                          Text(
-                            item.yca98c ?? '',
-                            style: TextStyle(
-                              fontSize: 16.sp,
                               fontWeight: FontWeight.w500,
                               color: NowColors.c0xFFFFFFFF,
                             ),
                           ),
-                        ],
-                      ),
-                      Spacer(),
-                      InkWell(
-                        onTap: () {
-                          Clipboard.setData(
-                            ClipboardData(text: item.yca98c ?? ''),
-                          );
-                          toast('copiar');
-                        },
-                        child: Container(
-                          padding: EdgeInsets.symmetric(
-                            horizontal: 10,
-                            vertical: 4,
-                          ),
-                          decoration: BoxDecoration(
-                            color: NowColors.c0x00000000,
-                            borderRadius: BorderRadius.circular(24),
-                            border: Border.all(
-                              color: NowColors.c0xFFFFFFFF,
-                              width: 1,
-                            ),
-                          ),
-                          child: InkWell(
-                            onTap: () {
-                              Clipboard.setData(
-                                ClipboardData(text: item.yca98c ?? ''),
-                              );
-                              toast('copiar');
-                            },
-                            child: Text(
-                              'Copiar',
-                              textAlign: TextAlign.center,
-                              style: TextStyle(
-                                fontSize: 12.sp,
-                                fontWeight: FontWeight.w500,
-                                color: NowColors.c0xFFFFFFFF,
-                              ),
-                            ),
-                          ),
                         ),
                       ),
-                    ],
-                  ),
+                    ),
+                  ],
                 ),
-              ],
-            ),
+              ),
+            ],
           ),
-        ],
-      ),
+        ),
+      ],
     );
   }
 
   Widget _buildTipCard() {
-    return CommonBox(
+    return Container(
+      padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 20.h),
+      decoration: BoxDecoration(
+        color: NowColors.c0xFFFFFFFF,
+        borderRadius: const BorderRadius.all(Radius.circular(20)),
+        boxShadow: NowStyles.cardShadows,
+      ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -342,7 +350,13 @@ class _RepayBankPageState extends State<RepayBankPage> {
   }
 
   Widget _buildBottomCard() {
-    return CommonBox(
+    return Container(
+      padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 20.h),
+      decoration: BoxDecoration(
+        color: NowColors.c0xFFFFFFFF,
+        borderRadius: const BorderRadius.all(Radius.circular(20)),
+        boxShadow: NowStyles.cardShadows,
+      ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [

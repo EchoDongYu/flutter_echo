@@ -60,6 +60,7 @@ class _RepayConfirmPageState extends State<RepayConfirmPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: NowColors.c0xFFF3F3F5,
       appBar: CommonAppBar(title: 'Metodo de pago'),
       body: SingleChildScrollView(
         padding: EdgeInsets.fromLTRB(12.w, 12.h, 12.w, 12.h),
@@ -97,6 +98,8 @@ class _RepayConfirmPageState extends State<RepayConfirmPage> {
           },
           child: CommonBox(
             color: NowColors.c0xFFFF9817.withValues(alpha: 0.1),
+            padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 14.h),
+            borderRadius: const BorderRadius.all(Radius.circular(20)),
             child: Text(
               "Estimado usuario, CashiGO mantendra sus datos seguros y no los compartira con tercero",
               style: TextStyle(

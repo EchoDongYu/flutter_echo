@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:flutter_echo/common/app_theme.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -30,7 +29,7 @@ class RepayCertificateSupport extends StatelessWidget {
             ),
           ),
           SizedBox(height: 32.h),
-          Divider(height: 1,color: NowColors.c0xFFF3F3F5,),
+          Divider(height: 1, color: NowColors.c0xFFF3F3F5),
           SizedBox(height: 12.h),
           Text(
             "Si tiene algún problema con el pago, póngase en contacto con nosotros.",

@@ -34,21 +34,11 @@ class NowColors {
 
 class NowStyles {
   static const List<BoxShadow> cardShadows = [
-    BoxShadow(
-      color: Color(0x0D000000),
-      offset: Offset(0, 2),
-      blurRadius: 5,
-      spreadRadius: 2,
-    ),
+    BoxShadow(color: Color(0x0D000000), offset: Offset(0, 2), blurRadius: 5),
   ];
 
   static const List<BoxShadow> bottomShadows = [
-    BoxShadow(
-      color: Color(0x1F000000),
-      offset: Offset(0, 0),
-      blurRadius: 16,
-      spreadRadius: 2,
-    ),
+    BoxShadow(color: Color(0x1F000000), offset: Offset(0, 0), blurRadius: 16),
   ];
 }
 

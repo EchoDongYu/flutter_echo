@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_echo/common/app_theme.dart';
-import 'package:flutter_echo/ui/widgets/common_box.dart';
 import 'package:flutter_echo/utils/drawable_utils.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -17,7 +16,13 @@ class RepayConfirmInput extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return CommonBox(
+    return Container(
+      padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 20.h),
+      decoration: BoxDecoration(
+        color: NowColors.c0xFFFFFFFF,
+        borderRadius: const BorderRadius.all(Radius.circular(20)),
+        boxShadow: NowStyles.cardShadows,
+      ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
