@@ -22,6 +22,7 @@ class BankPayBox extends StatelessWidget {
     return CommonBox(
       onTap: onTap,
       color: NowColors.c0xFFF3F3F5,
+      padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 16),
       child: Row(
         children: [
           CachedNetworkImage(
@@ -43,7 +44,7 @@ class BankPayBox extends StatelessWidget {
               ),
               SizedBox(height: 6.h),
               Container(
-                padding: const EdgeInsets.symmetric(horizontal: 8),
+                padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 1),
                 decoration: BoxDecoration(
                   color: NowColors.c0xFF3288F1.withValues(alpha: 0.1),
                   borderRadius: BorderRadius.circular(15),

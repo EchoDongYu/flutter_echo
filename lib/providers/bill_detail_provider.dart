@@ -55,11 +55,16 @@ class BillDetailModel extends BaseProvider {
   ///确认金额
   double? _confirmValue;
 
+  ///银行直连线下还款银行字典
+  List<BankDictV0Item> get bankItems => _bankItems ?? [];
+  List<BankDictV0Item>? _bankItems;
+
   ///选择银行
+  BankDictV0Item? get selectedBankItem => _selectedBankItem;
   BankDictV0Item? _selectedBankItem;
 
   ///获取账单详情数据
-  Future<void> fetchBillDetailData(String? id) async {
+  void fetchBillDetailData(String? id) async {
     final detailData = await launchRequest(() async {
       return await Api.getBillDetailInfo(id);
     });
@@ -93,13 +98,14 @@ class BillDetailModel extends BaseProvider {
     _confirmValue = value;
   }
 
-  Future<List<BankDictV0Item>?> getBankDictionary() async {
-    return await launchRequest(() async {
-      return await Api.getBankDictionary();
+  void getBankDictionary() async {
+    await launchRequest(() async {
+      _bankItems = await Api.getBankDictionary();
     });
   }
 
-  void selectBankDict(BankDictV0Item value) {
+  void selectBankDict(BankDictV0Item? value) {
     _selectedBankItem = value;
+    notifyListeners();
   }
 }

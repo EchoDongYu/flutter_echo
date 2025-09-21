@@ -3,11 +3,7 @@ import 'package:flutter_echo/common/app_theme.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class BankStepText extends StatelessWidget {
-  const BankStepText({
-    super.key,
-    required this.stepNumber,
-    required this.stepText,
-  });
+  const BankStepText(this.stepText, {required this.stepNumber, super.key});
 
   final String stepNumber;
   final String stepText;

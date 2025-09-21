@@ -20,7 +20,7 @@ class RepayCertificatePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     //凭证步骤 1-上传凭证 2-信息填写
-    final indexCertificate = 2;
+    final indexCertificate = 1;
     return Scaffold(
       appBar: CommonAppBar(title: 'Envía comprobante'),
       body: SingleChildScrollView(
