@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_echo/common/app_theme.dart';
 import 'package:flutter_echo/ui/widgets/common_box.dart';
+import 'package:flutter_echo/utils/common_utils.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class RepayConfirmAmount extends StatelessWidget {
@@ -13,7 +14,7 @@ class RepayConfirmAmount extends StatelessWidget {
 
   final String amount;
   final String date;
-  final String comision;
+  final double comision;
 
   @override
   Widget build(BuildContext context) {
@@ -67,29 +68,31 @@ class RepayConfirmAmount extends StatelessWidget {
                     ),
                   ],
                 ),
-                SizedBox(height: 6.h),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  crossAxisAlignment: CrossAxisAlignment.end,
-                  children: [
-                    Text(
-                      'Comisión de pago',
-                      style: TextStyle(
-                        fontSize: 12.sp,
-                        fontWeight: FontWeight.w400,
-                        color: NowColors.c0xFF494C4F,
+                if (comision > 0) ...[
+                  SizedBox(height: 6.h),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    crossAxisAlignment: CrossAxisAlignment.end,
+                    children: [
+                      Text(
+                        'Comisión de pago',
+                        style: TextStyle(
+                          fontSize: 12.sp,
+                          fontWeight: FontWeight.w400,
+                          color: NowColors.c0xFF494C4F,
+                        ),
                       ),
-                    ),
-                    Text(
-                      comision,
-                      style: TextStyle(
-                        fontSize: 14.sp,
-                        fontWeight: FontWeight.w500,
-                        color: NowColors.c0xFF1C1F23,
+                      Text(
+                        comision.showAmount2,
+                        style: TextStyle(
+                          fontSize: 14.sp,
+                          fontWeight: FontWeight.w500,
+                          color: NowColors.c0xFF1C1F23,
+                        ),
                       ),
-                    ),
-                  ],
-                ),
+                    ],
+                  ),
+                ],
               ],
             ),
           ),

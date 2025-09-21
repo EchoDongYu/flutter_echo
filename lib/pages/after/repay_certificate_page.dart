@@ -19,51 +19,57 @@ class RepayCertificatePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    //凭证步骤 1-上传凭证 2-信息填写
+    //凭证步骤 1-上传凭证 2-确认凭证 3-信息填写
     final indexCertificate = 1;
     return Scaffold(
       appBar: CommonAppBar(title: 'Envía comprobante'),
       body: SingleChildScrollView(
         padding: EdgeInsets.fromLTRB(12.w, 12.h, 12.w, 12.h),
-        child: indexCertificate == 1 ? Column(
-          children: [
-            WidgetHelper.buildStepProgress(step: 1, maxStep: 2),
-            SizedBox(height: 16.h),
-            RepayCertificatePhoto(
-              onPhotoTap: () {
-                //图片预览
-                context.push('${AppRouter.photoView}?url=${Drawable.iconLogo}',);
-              },
-              onTakePressed: () {},
-              onPhotoPressed: () {},
-            ),
-          ],
-        ) : Column(
-          children: [
-            WidgetHelper.buildStepProgress(step: 2, maxStep: 2),
-            SizedBox(height: 16.h),
-            RepayCertificateInfo(
-              onPhotoTap: () {
-                //跳转图片预览
-                context.push('${AppRouter.photoView}?url=${Drawable.iconLogo}',);
-              },
-            ),
-            SizedBox(height: 12.h),
-            RepayCertificatePayment(),
-            SizedBox(height: 32.h),
-            RepayCertificateSupport(
-              onUploaded: (){
-                //跳转还款已上传付款记录
-                context.push(AppRouter.repayUploaded);
-              },
-            ),
-          ],
-        ),
+        child: indexCertificate == 1
+            ? Column(
+                children: [
+                  WidgetHelper.buildStepProgress(step: 1, maxStep: 2),
+                  SizedBox(height: 16.h),
+                  RepayCertificatePhoto(
+                    onPhotoTap: () {
+                      //图片预览
+                      context.push(
+                        '${AppRouter.photoView}?url=${Drawable.iconLogo}',
+                      );
+                    },
+                    onTakePressed: () {},
+                    onPhotoPressed: () {},
+                  ),
+                ],
+              )
+            : Column(
+                children: [
+                  WidgetHelper.buildStepProgress(step: 2, maxStep: 2),
+                  SizedBox(height: 16.h),
+                  RepayCertificateInfo(
+                    onPhotoTap: () {
+                      //跳转图片预览
+                      context.push(
+                        '${AppRouter.photoView}?url=${Drawable.iconLogo}',
+                      );
+                    },
+                  ),
+                  SizedBox(height: 12.h),
+                  RepayCertificatePayment(),
+                  SizedBox(height: 32.h),
+                  RepayCertificateSupport(
+                    onUploaded: () {
+                      //跳转还款已上传付款记录
+                      context.push(AppRouter.repayUploaded);
+                    },
+                  ),
+                ],
+              ),
       ),
       bottomNavigationBar: WidgetHelper.buildBottomButton(
         text: indexCertificate == 1 ? 'Confirmar esta imagen' : 'Enviar pago',
         onPressed: () async {
-          if( indexCertificate == 1 ){
+          if (indexCertificate == 1) {
             final result = await PromptDialog.show(
               context: context,
               title: 'Recordatorio',
@@ -77,7 +83,7 @@ class RepayCertificatePage extends StatelessWidget {
               //todo ?? 跳转那里？
               //context.push(AppRouter.repayProcess);
             }
-          }else{
+          } else {
             await BoxDialog.show(
               context: context,
               title: 'Diagrama de ejemplo de vale',

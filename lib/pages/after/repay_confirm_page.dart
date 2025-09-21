@@ -25,6 +25,7 @@ class RepayConfirmPage extends StatefulWidget {
 class _RepayConfirmPageState extends State<RepayConfirmPage> {
   final TextEditingController _controller = TextEditingController();
   int _inputLength = 0;
+  double _comisionFee = 0;
 
   @override
   void initState() {
@@ -50,6 +51,9 @@ class _RepayConfirmPageState extends State<RepayConfirmPage> {
     if (current > max) {
       toast('msg');
       _controller.text = text.substring(0, length - 1);
+    } else {
+      final rate = channel?.kd94z7OChannelRate ?? 0;
+      setState(() => _comisionFee = current * rate);
     }
   }
 
@@ -69,8 +73,8 @@ class _RepayConfirmPageState extends State<RepayConfirmPage> {
                 //应付金额
                 RepayConfirmAmount(
                   amount: provider.totalAmount?.showAmount ?? '',
-                  comision: provider.businessFee?.showAmount ?? '',
                   date: provider.billDetailData?.r5k31qODueTime?.showDate ?? '',
+                  comision: _comisionFee,
                 ),
                 SizedBox(height: 12.h),
                 //输入金额

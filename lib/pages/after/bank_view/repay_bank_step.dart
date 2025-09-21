@@ -2,8 +2,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter_echo/common/app_theme.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-class BankStepText extends StatelessWidget {
-  const BankStepText(this.stepText, {required this.stepNumber, super.key});
+class RepayBankStep extends StatelessWidget {
+  const RepayBankStep(this.stepText, {required this.stepNumber, super.key});
 
   final String stepNumber;
   final String stepText;

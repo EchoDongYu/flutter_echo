@@ -30,20 +30,6 @@ class BillDetailModel extends BaseProvider {
     return amount;
   }
 
-  ///业务费用
-  double? get businessFee {
-    if (_checkPlanList.every((v) => v != true)) {
-      return _billDetailData?.spriteOBusinessFee;
-    }
-    var amount = 0.0;
-    for (int i = 0; i < _checkPlanList.length; i++) {
-      if (_checkPlanList[i] == true) {
-        amount += _planList[i].spriteOBusinessFee ?? 0;
-      }
-    }
-    return amount;
-  }
-
   ///渠道数据
   List<BillDetailResp$V08uw3ORepaymentChannelList$Item> get channelList =>
       _channelList;

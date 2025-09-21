@@ -3,8 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_echo/common/app_theme.dart';
 import 'package:flutter_echo/models/common_model.dart';
-import 'package:flutter_echo/pages/after/bank_view/bank_pay_box.dart';
-import 'package:flutter_echo/pages/after/bank_view/bank_step_text.dart';
+import 'package:flutter_echo/pages/after/bank_view/repay_bank_box.dart';
+import 'package:flutter_echo/pages/after/bank_view/repay_bank_step.dart';
 import 'package:flutter_echo/pages/app_router.dart';
 import 'package:flutter_echo/providers/bill_detail_provider.dart';
 import 'package:flutter_echo/services/storage_service.dart';
@@ -92,12 +92,12 @@ class _RepayBankPageState extends State<RepayBankPage> {
             ),
           ),
           SizedBox(height: 16.h),
-          BankStepText(
+          RepayBankStep(
             stepNumber: '1',
             'Paga a través de comercios afiliados o condepósitos bancarios.',
           ),
           SizedBox(height: 16.h),
-          BankStepText(
+          RepayBankStep(
             stepNumber: '2',
             'Por favor, utilice el banco del que tenemos para pagar su préstamo.',
           ),
@@ -109,7 +109,7 @@ class _RepayBankPageState extends State<RepayBankPage> {
             separatorBuilder: (_, _) => SizedBox(height: 10.h),
             itemBuilder: (context, index) {
               final itemData = bankItems[index];
-              return BankPayBox(
+              return RepayBankBox(
                 bankImage: itemData.m871v6 ?? '',
                 bankTitle: itemData.t1h91p ?? '',
                 onTap: () {
@@ -136,10 +136,22 @@ class _RepayBankPageState extends State<RepayBankPage> {
             ),
             child: Row(
               children: [
-                CachedNetworkImage(
-                  imageUrl: item.m871v6 ?? '',
-                  height: 45.h,
-                  fit: BoxFit.fitHeight,
+                Container(
+                  decoration: BoxDecoration(
+                    border: BoxBorder.all(
+                      color: NowColors.c0xFFD8D8D8,
+                      width: 0.6.w,
+                    ),
+                    borderRadius: BorderRadius.circular(8.r),
+                  ),
+                  child: ClipRRect(
+                    borderRadius: BorderRadius.circular(8.r),
+                    child: CachedNetworkImage(
+                      imageUrl: item.m871v6 ?? '',
+                      height: 45.h,
+                      fit: BoxFit.fitHeight,
+                    ),
+                  ),
                 ),
                 SizedBox(width: 12.w),
                 Column(
@@ -305,22 +317,22 @@ class _RepayBankPageState extends State<RepayBankPage> {
             ),
           ),
           SizedBox(height: 16.h),
-          BankStepText(
+          RepayBankStep(
             stepNumber: '1',
             'Deposita en efectivo o transfiere a nuestra cuenta.',
           ),
           SizedBox(height: 16.h),
-          BankStepText(
+          RepayBankStep(
             stepNumber: '2',
             'cuando realice la transferencia por favor en la NOTA colocar el siguiente numero de telefono (${LocalStorage().account})',
           ),
           SizedBox(height: 16.h),
-          BankStepText(
+          RepayBankStep(
             stepNumber: '3',
             'Envia una foto o captura de tu comprobante desde la app CashiGO',
           ),
           SizedBox(height: 16.h),
-          BankStepText(
+          RepayBankStep(
             stepNumber: '4',
             'Después de que sube el comprobante, el sistema será validara el mismo día, si la validacion se retrasa reducirá automáticamente el coste de intereses que genera.',
           ),

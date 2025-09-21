@@ -5,17 +5,17 @@ import 'package:flutter_echo/ui/widgets/common_box.dart';
 import 'package:flutter_echo/utils/drawable_utils.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-class BankPayBox extends StatelessWidget {
-  const BankPayBox({
+class RepayBankBox extends StatelessWidget {
+  final String bankImage;
+  final String bankTitle;
+  final VoidCallback onTap;
+
+  const RepayBankBox({
     super.key,
     required this.bankImage,
     required this.bankTitle,
-    this.onTap,
+    required this.onTap,
   });
-
-  final String bankImage;
-  final String bankTitle;
-  final VoidCallback? onTap;
 
   @override
   Widget build(BuildContext context) {
@@ -25,10 +25,19 @@ class BankPayBox extends StatelessWidget {
       padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 16),
       child: Row(
         children: [
-          CachedNetworkImage(
-            imageUrl: bankImage,
-            height: 45.h,
-            fit: BoxFit.fitHeight,
+          Container(
+            decoration: BoxDecoration(
+              border: BoxBorder.all(color: NowColors.c0xFFD8D8D8, width: 0.6.w),
+              borderRadius: BorderRadius.circular(8.r),
+            ),
+            child: ClipRRect(
+              borderRadius: BorderRadius.circular(8.r),
+              child: CachedNetworkImage(
+                imageUrl: bankImage,
+                height: 45.h,
+                fit: BoxFit.fitHeight,
+              ),
+            ),
           ),
           SizedBox(width: 12.w),
           Column(

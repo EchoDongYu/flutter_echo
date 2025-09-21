@@ -67,6 +67,15 @@ class LocalStorage {
 
   String? get account => _prefs.getString(AppConst.accountKey);
 
+  String? get maskAccount {
+    final value = account;
+    if (value == null || value.length <= 4) return value;
+    final start = value.substring(0, 2);
+    final end = value.substring(value.length - 2);
+    final middle = '*' * (value.length - 4);
+    return '$start$middle$end';
+  }
+
   UserInfoResp? get userInfo {
     final json = getObject(AppConst.userInfoKey);
     if (json == null) return null;

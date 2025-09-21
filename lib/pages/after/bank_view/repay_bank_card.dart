@@ -3,8 +3,8 @@ import 'package:flutter_echo/common/app_theme.dart';
 import 'package:flutter_echo/ui/widgets/common_box.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-class RepayBankCardInfo extends StatelessWidget {
-  const RepayBankCardInfo({
+class RepayBankCard extends StatelessWidget {
+  const RepayBankCard({
     super.key,
     required this.bankCardInfoImageUrl,
     required this.bankCardInfoTitle,

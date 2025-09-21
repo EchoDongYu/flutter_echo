@@ -90,37 +90,27 @@ class FlutterPlatform {
   }
 }
 
-final uriH5Privacy = Uri(
-  path: AppRouter.appWeb,
-  queryParameters: {
-    NavKey.title: 'Politica de privacidad',
-    NavKey.url: AppConst.h5Privacy,
-  },
-);
-
-final uriH5Service = Uri(
-  path: AppRouter.appWeb,
-  queryParameters: {
-    NavKey.title: 'Acuerdo de servicio',
-    NavKey.url: AppConst.h5Service,
-  },
-);
-
-extension ContextNav on BuildContext {
+extension ContextNavigation on BuildContext {
   void pushH5Privacy() {
+    final uriH5Privacy = Uri(
+      path: AppRouter.appWeb,
+      queryParameters: {
+        NavKey.title: 'Politica de privacidad',
+        NavKey.url: AppConst.h5Privacy,
+      },
+    );
     push(uriH5Privacy.toString());
   }
 
   void pushH5Service() {
+    final uriH5Service = Uri(
+      path: AppRouter.appWeb,
+      queryParameters: {
+        NavKey.title: 'Acuerdo de servicio',
+        NavKey.url: AppConst.h5Service,
+      },
+    );
     push(uriH5Service.toString());
-  }
-
-  void pushReplacementH5Privacy() {
-    pushReplacement(uriH5Privacy.toString());
-  }
-
-  void pushReplacementH5Service() {
-    pushReplacement(uriH5Service.toString());
   }
 }
 
@@ -147,16 +137,18 @@ extension AmountFormat on num {
   String get showAmount =>
       NumberFormat.currency(symbol: 'Q ', decimalDigits: 0).format(this);
 
+  String get showAmount2 => NumberFormat.currency(symbol: 'Q ').format(this);
+
   String get showRound => NumberFormat('#,###').format(this);
 }
 
-extension StringParse on String? {
+extension StringExtensions on String? {
   int? get tryParseInt => this != null ? int.tryParse(this!) : null;
 
   double? get tryParseDouble => this != null ? double.tryParse(this!) : null;
 }
 
-extension ListExt on List<DictItem> {
+extension ListDictExtensions on List<DictItem> {
   DictItem? findKey(int? key) {
     for (DictItem element in this) {
       if (key == element.key) return element;
@@ -165,7 +157,7 @@ extension ListExt on List<DictItem> {
   }
 }
 
-extension IterableExtension<T> on Iterable<T> {
+extension IterableExtensions<T> on Iterable<T> {
   T? firstWhereOrNull(bool Function(T element) test) {
     for (var element in this) {
       if (test(element)) return element;
