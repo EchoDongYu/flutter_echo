@@ -446,11 +446,13 @@ class Api {
   }
 
   /// 银行直连还款申请列表
-  static Future<RepayRecordResp> queryRepaymentRecord() {
+  static Future<RepayRecordResp?> queryRepaymentRecord(RepayRecordReq req) {
     return _apiService.post(
       ApiPath.queryRepaymentRecord,
-      body: RepayRecordReq().toJson(),
-      //convert: (json) => RepayRecordResp.fromJson(json),
+      body: req.toJson(),
+      convert: (json) => (json as List<dynamic>?)
+          ?.map((e) => RepayRecordResp$Item.fromJson(e))
+          .toList(),
     );
   }
 }

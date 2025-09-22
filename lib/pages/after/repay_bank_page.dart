@@ -74,7 +74,7 @@ class _RepayBankPageState extends State<RepayBankPage> {
       ),
       bottomNavigationBar: WidgetHelper.buildBottomButton(
         text: 'Pagar inmediatamente',
-        onPressed: () => context.push(AppRouter.repayCertificate),
+        onPressed: () => context.push(AppRouter.repayCert),
       ),
     );
   }

@@ -393,7 +393,14 @@ class _RepayCertificatePageState extends State<RepayCertificatePage> {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           GestureDetector(
-            onTap: () {},
+            onTap: () {
+              context.push(AppRouter.certRecord);
+              context.read<BillDetailModel>().queryRepaymentRecord(
+                inputs: _controllers.map((it) => it.text).toList(),
+                date: _pickedDate?.secondSinceEpoch,
+                bank: _pickedBank,
+              );
+            },
             child: Text(
               'Historial de pagos subidos',
               style: TextStyle(

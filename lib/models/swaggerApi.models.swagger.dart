@@ -1,6 +1,5 @@
 // ignore_for_file: type=lint
 
-import 'package:flutter_echo/utils/common_utils.dart';
 import 'package:json_annotation/json_annotation.dart';
 import 'package:collection/collection.dart';
 import 'dart:convert';
@@ -10968,7 +10967,7 @@ class RepayApplyResp {
   @JsonKey(name: 'courtier')
   final String? courtierOAccessCode;
   @JsonKey(name: 'p9428v')
-  final int? p9428vOExpireTime;
+  final String? p9428vOExpireTime;
   @JsonKey(name: 'krddvv')
   final String? krddvvOReference;
   @JsonKey(name: 'w2y37v')
@@ -11133,7 +11132,7 @@ extension $RepayApplyRespExtension on RepayApplyResp {
     String? zebrineOCardNo,
     String? cvv,
     String? courtierOAccessCode,
-    int? p9428vOExpireTime,
+    String? p9428vOExpireTime,
     String? krddvvOReference,
     int? w2y37vOOrderType,
     String? oe5u39OChannelName,
@@ -11180,7 +11179,7 @@ extension $RepayApplyRespExtension on RepayApplyResp {
     Wrapped<String?>? zebrineOCardNo,
     Wrapped<String?>? cvv,
     Wrapped<String?>? courtierOAccessCode,
-    Wrapped<int?>? p9428vOExpireTime,
+    Wrapped<String?>? p9428vOExpireTime,
     Wrapped<String?>? krddvvOReference,
     Wrapped<int?>? w2y37vOOrderType,
     Wrapped<String?>? oe5u39OChannelName,
@@ -12912,7 +12911,6 @@ class LoanOrderResp {
     this.slackOIsOverdue,
     this.c2r90qOLoanRefixRate,
     this.tigereyeOInterest,
-    this.remark,
     this.z38e62OOrderGid,
     this.vnbh46OBankCardGid,
     this.t1h91pOBankName,
@@ -13018,8 +13016,6 @@ class LoanOrderResp {
   final double? c2r90qOLoanRefixRate;
   @JsonKey(name: 'tigereye')
   final double? tigereyeOInterest;
-  @JsonKey(name: 'remark')
-  final Object? remark;
   @JsonKey(name: 'z38e62')
   final String? z38e62OOrderGid;
   @JsonKey(name: 'vnbh46')
@@ -13291,8 +13287,6 @@ class LoanOrderResp {
                   other.tigereyeOInterest,
                   tigereyeOInterest,
                 )) &&
-            (identical(other.remark, remark) ||
-                const DeepCollectionEquality().equals(other.remark, remark)) &&
             (identical(other.z38e62OOrderGid, z38e62OOrderGid) ||
                 const DeepCollectionEquality().equals(
                   other.z38e62OOrderGid,
@@ -13491,7 +13485,6 @@ class LoanOrderResp {
       const DeepCollectionEquality().hash(slackOIsOverdue) ^
       const DeepCollectionEquality().hash(c2r90qOLoanRefixRate) ^
       const DeepCollectionEquality().hash(tigereyeOInterest) ^
-      const DeepCollectionEquality().hash(remark) ^
       const DeepCollectionEquality().hash(z38e62OOrderGid) ^
       const DeepCollectionEquality().hash(vnbh46OBankCardGid) ^
       const DeepCollectionEquality().hash(t1h91pOBankName) ^
@@ -13563,7 +13556,6 @@ extension $LoanOrderRespExtension on LoanOrderResp {
     bool? slackOIsOverdue,
     double? c2r90qOLoanRefixRate,
     double? tigereyeOInterest,
-    String? remark,
     String? z38e62OOrderGid,
     String? vnbh46OBankCardGid,
     String? t1h91pOBankName,
@@ -13644,7 +13636,6 @@ extension $LoanOrderRespExtension on LoanOrderResp {
       slackOIsOverdue: slackOIsOverdue ?? this.slackOIsOverdue,
       c2r90qOLoanRefixRate: c2r90qOLoanRefixRate ?? this.c2r90qOLoanRefixRate,
       tigereyeOInterest: tigereyeOInterest ?? this.tigereyeOInterest,
-      remark: remark ?? this.remark,
       z38e62OOrderGid: z38e62OOrderGid ?? this.z38e62OOrderGid,
       vnbh46OBankCardGid: vnbh46OBankCardGid ?? this.vnbh46OBankCardGid,
       t1h91pOBankName: t1h91pOBankName ?? this.t1h91pOBankName,
@@ -13720,7 +13711,6 @@ extension $LoanOrderRespExtension on LoanOrderResp {
     Wrapped<bool?>? slackOIsOverdue,
     Wrapped<double?>? c2r90qOLoanRefixRate,
     Wrapped<double?>? tigereyeOInterest,
-    Wrapped<String?>? remark,
     Wrapped<String?>? z38e62OOrderGid,
     Wrapped<String?>? vnbh46OBankCardGid,
     Wrapped<String?>? t1h91pOBankName,
@@ -13859,7 +13849,6 @@ extension $LoanOrderRespExtension on LoanOrderResp {
       tigereyeOInterest: (tigereyeOInterest != null
           ? tigereyeOInterest.value
           : this.tigereyeOInterest),
-      remark: (remark != null ? remark.value : this.remark),
       z38e62OOrderGid: (z38e62OOrderGid != null
           ? z38e62OOrderGid.value
           : this.z38e62OOrderGid),
@@ -16699,9 +16688,9 @@ class LoanBillResp {
   @JsonKey(name: 'y934te')
   final double? y934teOTotalAmount;
   @JsonKey(name: 'total')
-  final int? total;
+  final String? total;
   @JsonKey(name: 'pages')
-  final int? pages;
+  final String? pages;
   @JsonKey(name: 'ouxtd3')
   final List<LoanBillResp$Ouxtd3OLoanList$Item>? ouxtd3OLoanList;
 
@@ -16748,8 +16737,8 @@ class LoanBillResp {
 extension $LoanBillRespExtension on LoanBillResp {
   LoanBillResp copyWith({
     double? y934teOTotalAmount,
-    int? total,
-    int? pages,
+    String? total,
+    String? pages,
     List<LoanBillResp$Ouxtd3OLoanList$Item>? ouxtd3OLoanList,
   }) {
     return LoanBillResp(
@@ -16762,8 +16751,8 @@ extension $LoanBillRespExtension on LoanBillResp {
 
   LoanBillResp copyWithWrapped({
     Wrapped<double?>? y934teOTotalAmount,
-    Wrapped<int?>? total,
-    Wrapped<int?>? pages,
+    Wrapped<String?>? total,
+    Wrapped<String?>? pages,
     Wrapped<List<LoanBillResp$Ouxtd3OLoanList$Item>?>? ouxtd3OLoanList,
   }) {
     return LoanBillResp(
@@ -17579,9 +17568,9 @@ class BillRepayResp {
   });
 
   @JsonKey(name: 'total')
-  final int? total;
+  final String? total;
   @JsonKey(name: 'pages')
-  final int? pages;
+  final String? pages;
   @JsonKey(name: 'endmost')
   final double? endmostOTotalLoanLeftAmount;
   @JsonKey(name: 'my4dd2')
@@ -17632,8 +17621,8 @@ class BillRepayResp {
 
 extension $BillRepayRespExtension on BillRepayResp {
   BillRepayResp copyWith({
-    int? total,
-    int? pages,
+    String? total,
+    String? pages,
     double? endmostOTotalLoanLeftAmount,
     List<BillRepayResp$My4dd2ORepaymentList$Item>? my4dd2ORepaymentList,
   }) {
@@ -17647,8 +17636,8 @@ extension $BillRepayRespExtension on BillRepayResp {
   }
 
   BillRepayResp copyWithWrapped({
-    Wrapped<int?>? total,
-    Wrapped<int?>? pages,
+    Wrapped<String?>? total,
+    Wrapped<String?>? pages,
     Wrapped<double?>? endmostOTotalLoanLeftAmount,
     Wrapped<List<BillRepayResp$My4dd2ORepaymentList$Item>?>?
     my4dd2ORepaymentList,
@@ -19353,7 +19342,6 @@ class HomeInfoResp$PapuanOLastRecordLoan {
     this.kinkyOOrderAmount,
     this.outdoOPlanSimpleList,
     this.slackOIsOverdue,
-    this.remark,
     this.kc1347OEnableRenew,
   });
 
@@ -19402,8 +19390,6 @@ class HomeInfoResp$PapuanOLastRecordLoan {
   outdoOPlanSimpleList;
   @JsonKey(name: 'slack')
   final bool? slackOIsOverdue;
-  @JsonKey(name: 'remark')
-  final Object? remark;
   @JsonKey(name: 'kc1347')
   final bool? kc1347OEnableRenew;
 
@@ -19534,8 +19520,6 @@ class HomeInfoResp$PapuanOLastRecordLoan {
                   other.slackOIsOverdue,
                   slackOIsOverdue,
                 )) &&
-            (identical(other.remark, remark) ||
-                const DeepCollectionEquality().equals(other.remark, remark)) &&
             (identical(other.kc1347OEnableRenew, kc1347OEnableRenew) ||
                 const DeepCollectionEquality().equals(
                   other.kc1347OEnableRenew,
@@ -19570,7 +19554,6 @@ class HomeInfoResp$PapuanOLastRecordLoan {
       const DeepCollectionEquality().hash(kinkyOOrderAmount) ^
       const DeepCollectionEquality().hash(outdoOPlanSimpleList) ^
       const DeepCollectionEquality().hash(slackOIsOverdue) ^
-      const DeepCollectionEquality().hash(remark) ^
       const DeepCollectionEquality().hash(kc1347OEnableRenew) ^
       runtimeType.hashCode;
 }
@@ -19601,7 +19584,6 @@ extension $HomeInfoResp$PapuanOLastRecordLoanExtension
     List<HomeInfoResp$PapuanOLastRecordLoan$OutdoOPlanSimpleList$Item>?
     outdoOPlanSimpleList,
     bool? slackOIsOverdue,
-    String? remark,
     bool? kc1347OEnableRenew,
   }) {
     return HomeInfoResp$PapuanOLastRecordLoan(
@@ -19629,7 +19611,6 @@ extension $HomeInfoResp$PapuanOLastRecordLoanExtension
       kinkyOOrderAmount: kinkyOOrderAmount ?? this.kinkyOOrderAmount,
       outdoOPlanSimpleList: outdoOPlanSimpleList ?? this.outdoOPlanSimpleList,
       slackOIsOverdue: slackOIsOverdue ?? this.slackOIsOverdue,
-      remark: remark ?? this.remark,
       kc1347OEnableRenew: kc1347OEnableRenew ?? this.kc1347OEnableRenew,
     );
   }
@@ -19660,7 +19641,6 @@ extension $HomeInfoResp$PapuanOLastRecordLoanExtension
     >?
     outdoOPlanSimpleList,
     Wrapped<bool?>? slackOIsOverdue,
-    Wrapped<String?>? remark,
     Wrapped<bool?>? kc1347OEnableRenew,
   }) {
     return HomeInfoResp$PapuanOLastRecordLoan(
@@ -19730,7 +19710,6 @@ extension $HomeInfoResp$PapuanOLastRecordLoanExtension
       slackOIsOverdue: (slackOIsOverdue != null
           ? slackOIsOverdue.value
           : this.slackOIsOverdue),
-      remark: (remark != null ? remark.value : this.remark),
       kc1347OEnableRenew: (kc1347OEnableRenew != null
           ? kc1347OEnableRenew.value
           : this.kc1347OEnableRenew),
@@ -19763,7 +19742,6 @@ class HomeInfoResp$Xu551uOSpareLastRecordLoan {
     this.kinkyOOrderAmount,
     this.outdoOPlanSimpleList,
     this.slackOIsOverdue,
-    this.remark,
     this.kc1347OEnableRenew,
   });
 
@@ -19812,8 +19790,6 @@ class HomeInfoResp$Xu551uOSpareLastRecordLoan {
   outdoOPlanSimpleList;
   @JsonKey(name: 'slack')
   final bool? slackOIsOverdue;
-  @JsonKey(name: 'remark')
-  final Object? remark;
   @JsonKey(name: 'kc1347')
   final bool? kc1347OEnableRenew;
 
@@ -19945,8 +19921,6 @@ class HomeInfoResp$Xu551uOSpareLastRecordLoan {
                   other.slackOIsOverdue,
                   slackOIsOverdue,
                 )) &&
-            (identical(other.remark, remark) ||
-                const DeepCollectionEquality().equals(other.remark, remark)) &&
             (identical(other.kc1347OEnableRenew, kc1347OEnableRenew) ||
                 const DeepCollectionEquality().equals(
                   other.kc1347OEnableRenew,
@@ -19981,7 +19955,6 @@ class HomeInfoResp$Xu551uOSpareLastRecordLoan {
       const DeepCollectionEquality().hash(kinkyOOrderAmount) ^
       const DeepCollectionEquality().hash(outdoOPlanSimpleList) ^
       const DeepCollectionEquality().hash(slackOIsOverdue) ^
-      const DeepCollectionEquality().hash(remark) ^
       const DeepCollectionEquality().hash(kc1347OEnableRenew) ^
       runtimeType.hashCode;
 }
@@ -20012,7 +19985,6 @@ extension $HomeInfoResp$Xu551uOSpareLastRecordLoanExtension
     List<HomeInfoResp$Xu551uOSpareLastRecordLoan$OutdoOPlanSimpleList$Item>?
     outdoOPlanSimpleList,
     bool? slackOIsOverdue,
-    String? remark,
     bool? kc1347OEnableRenew,
   }) {
     return HomeInfoResp$Xu551uOSpareLastRecordLoan(
@@ -20040,7 +20012,6 @@ extension $HomeInfoResp$Xu551uOSpareLastRecordLoanExtension
       kinkyOOrderAmount: kinkyOOrderAmount ?? this.kinkyOOrderAmount,
       outdoOPlanSimpleList: outdoOPlanSimpleList ?? this.outdoOPlanSimpleList,
       slackOIsOverdue: slackOIsOverdue ?? this.slackOIsOverdue,
-      remark: remark ?? this.remark,
       kc1347OEnableRenew: kc1347OEnableRenew ?? this.kc1347OEnableRenew,
     );
   }
@@ -20071,7 +20042,6 @@ extension $HomeInfoResp$Xu551uOSpareLastRecordLoanExtension
     >?
     outdoOPlanSimpleList,
     Wrapped<bool?>? slackOIsOverdue,
-    Wrapped<String?>? remark,
     Wrapped<bool?>? kc1347OEnableRenew,
   }) {
     return HomeInfoResp$Xu551uOSpareLastRecordLoan(
@@ -20141,7 +20111,6 @@ extension $HomeInfoResp$Xu551uOSpareLastRecordLoanExtension
       slackOIsOverdue: (slackOIsOverdue != null
           ? slackOIsOverdue.value
           : this.slackOIsOverdue),
-      remark: (remark != null ? remark.value : this.remark),
       kc1347OEnableRenew: (kc1347OEnableRenew != null
           ? kc1347OEnableRenew.value
           : this.kc1347OEnableRenew),
@@ -22330,7 +22299,6 @@ class HomeCouponResp$FireballOUserCouponList$Item {
     this.colubridOEndTime,
     this.pqf70dOIsDeleted,
     this.mtsv37OIsUsed,
-    this.remark,
     this.staticsOCreateTime,
     this.l16h95OUpdateTime,
     this.l536ojOCreateUser,
@@ -22368,8 +22336,6 @@ class HomeCouponResp$FireballOUserCouponList$Item {
   final int? pqf70dOIsDeleted;
   @JsonKey(name: 'mtsv37')
   final int? mtsv37OIsUsed;
-  @JsonKey(name: 'remark')
-  final Object? remark;
   @JsonKey(name: 'statics')
   final int? staticsOCreateTime;
   @JsonKey(name: 'l16h95')
@@ -22468,8 +22434,6 @@ class HomeCouponResp$FireballOUserCouponList$Item {
                   other.mtsv37OIsUsed,
                   mtsv37OIsUsed,
                 )) &&
-            (identical(other.remark, remark) ||
-                const DeepCollectionEquality().equals(other.remark, remark)) &&
             (identical(other.staticsOCreateTime, staticsOCreateTime) ||
                 const DeepCollectionEquality().equals(
                   other.staticsOCreateTime,
@@ -22526,7 +22490,6 @@ class HomeCouponResp$FireballOUserCouponList$Item {
       const DeepCollectionEquality().hash(colubridOEndTime) ^
       const DeepCollectionEquality().hash(pqf70dOIsDeleted) ^
       const DeepCollectionEquality().hash(mtsv37OIsUsed) ^
-      const DeepCollectionEquality().hash(remark) ^
       const DeepCollectionEquality().hash(staticsOCreateTime) ^
       const DeepCollectionEquality().hash(l16h95OUpdateTime) ^
       const DeepCollectionEquality().hash(l536ojOCreateUser) ^
@@ -22554,7 +22517,6 @@ extension $HomeCouponResp$FireballOUserCouponList$ItemExtension
     int? colubridOEndTime,
     int? pqf70dOIsDeleted,
     int? mtsv37OIsUsed,
-    String? remark,
     int? staticsOCreateTime,
     int? l16h95OUpdateTime,
     String? l536ojOCreateUser,
@@ -22579,7 +22541,6 @@ extension $HomeCouponResp$FireballOUserCouponList$ItemExtension
       colubridOEndTime: colubridOEndTime ?? this.colubridOEndTime,
       pqf70dOIsDeleted: pqf70dOIsDeleted ?? this.pqf70dOIsDeleted,
       mtsv37OIsUsed: mtsv37OIsUsed ?? this.mtsv37OIsUsed,
-      remark: remark ?? this.remark,
       staticsOCreateTime: staticsOCreateTime ?? this.staticsOCreateTime,
       l16h95OUpdateTime: l16h95OUpdateTime ?? this.l16h95OUpdateTime,
       l536ojOCreateUser: l536ojOCreateUser ?? this.l536ojOCreateUser,
@@ -22605,7 +22566,6 @@ extension $HomeCouponResp$FireballOUserCouponList$ItemExtension
     Wrapped<int?>? colubridOEndTime,
     Wrapped<int?>? pqf70dOIsDeleted,
     Wrapped<int?>? mtsv37OIsUsed,
-    Wrapped<String?>? remark,
     Wrapped<int?>? staticsOCreateTime,
     Wrapped<int?>? l16h95OUpdateTime,
     Wrapped<String?>? l536ojOCreateUser,
@@ -22653,7 +22613,6 @@ extension $HomeCouponResp$FireballOUserCouponList$ItemExtension
       mtsv37OIsUsed: (mtsv37OIsUsed != null
           ? mtsv37OIsUsed.value
           : this.mtsv37OIsUsed),
-      remark: (remark != null ? remark.value : this.remark),
       staticsOCreateTime: (staticsOCreateTime != null
           ? staticsOCreateTime.value
           : this.staticsOCreateTime),
@@ -22696,7 +22655,6 @@ class LoanCouponResp$T933d6OUserCouponAvailableList$Item {
     this.colubridOEndTime,
     this.pqf70dOIsDeleted,
     this.mtsv37OIsUsed,
-    this.remark,
     this.staticsOCreateTime,
     this.l16h95OUpdateTime,
     this.l536ojOCreateUser,
@@ -22734,8 +22692,6 @@ class LoanCouponResp$T933d6OUserCouponAvailableList$Item {
   final int? pqf70dOIsDeleted;
   @JsonKey(name: 'mtsv37')
   final int? mtsv37OIsUsed;
-  @JsonKey(name: 'remark')
-  final Object? remark;
   @JsonKey(name: 'statics')
   final int? staticsOCreateTime;
   @JsonKey(name: 'l16h95')
@@ -22834,8 +22790,6 @@ class LoanCouponResp$T933d6OUserCouponAvailableList$Item {
                   other.mtsv37OIsUsed,
                   mtsv37OIsUsed,
                 )) &&
-            (identical(other.remark, remark) ||
-                const DeepCollectionEquality().equals(other.remark, remark)) &&
             (identical(other.staticsOCreateTime, staticsOCreateTime) ||
                 const DeepCollectionEquality().equals(
                   other.staticsOCreateTime,
@@ -22892,7 +22846,6 @@ class LoanCouponResp$T933d6OUserCouponAvailableList$Item {
       const DeepCollectionEquality().hash(colubridOEndTime) ^
       const DeepCollectionEquality().hash(pqf70dOIsDeleted) ^
       const DeepCollectionEquality().hash(mtsv37OIsUsed) ^
-      const DeepCollectionEquality().hash(remark) ^
       const DeepCollectionEquality().hash(staticsOCreateTime) ^
       const DeepCollectionEquality().hash(l16h95OUpdateTime) ^
       const DeepCollectionEquality().hash(l536ojOCreateUser) ^
@@ -22920,7 +22873,6 @@ extension $LoanCouponResp$T933d6OUserCouponAvailableList$ItemExtension
     int? colubridOEndTime,
     int? pqf70dOIsDeleted,
     int? mtsv37OIsUsed,
-    String? remark,
     int? staticsOCreateTime,
     int? l16h95OUpdateTime,
     String? l536ojOCreateUser,
@@ -22945,7 +22897,6 @@ extension $LoanCouponResp$T933d6OUserCouponAvailableList$ItemExtension
       colubridOEndTime: colubridOEndTime ?? this.colubridOEndTime,
       pqf70dOIsDeleted: pqf70dOIsDeleted ?? this.pqf70dOIsDeleted,
       mtsv37OIsUsed: mtsv37OIsUsed ?? this.mtsv37OIsUsed,
-      remark: remark ?? this.remark,
       staticsOCreateTime: staticsOCreateTime ?? this.staticsOCreateTime,
       l16h95OUpdateTime: l16h95OUpdateTime ?? this.l16h95OUpdateTime,
       l536ojOCreateUser: l536ojOCreateUser ?? this.l536ojOCreateUser,
@@ -22971,7 +22922,6 @@ extension $LoanCouponResp$T933d6OUserCouponAvailableList$ItemExtension
     Wrapped<int?>? colubridOEndTime,
     Wrapped<int?>? pqf70dOIsDeleted,
     Wrapped<int?>? mtsv37OIsUsed,
-    Wrapped<String?>? remark,
     Wrapped<int?>? staticsOCreateTime,
     Wrapped<int?>? l16h95OUpdateTime,
     Wrapped<String?>? l536ojOCreateUser,
@@ -23019,7 +22969,6 @@ extension $LoanCouponResp$T933d6OUserCouponAvailableList$ItemExtension
       mtsv37OIsUsed: (mtsv37OIsUsed != null
           ? mtsv37OIsUsed.value
           : this.mtsv37OIsUsed),
-      remark: (remark != null ? remark.value : this.remark),
       staticsOCreateTime: (staticsOCreateTime != null
           ? staticsOCreateTime.value
           : this.staticsOCreateTime),
@@ -23062,7 +23011,6 @@ class LoanCouponResp$StannateOUserCouponUnavailableList$Item {
     this.colubridOEndTime,
     this.pqf70dOIsDeleted,
     this.mtsv37OIsUsed,
-    this.remark,
     this.staticsOCreateTime,
     this.l16h95OUpdateTime,
     this.l536ojOCreateUser,
@@ -23100,8 +23048,6 @@ class LoanCouponResp$StannateOUserCouponUnavailableList$Item {
   final int? pqf70dOIsDeleted;
   @JsonKey(name: 'mtsv37')
   final int? mtsv37OIsUsed;
-  @JsonKey(name: 'remark')
-  final Object? remark;
   @JsonKey(name: 'statics')
   final int? staticsOCreateTime;
   @JsonKey(name: 'l16h95')
@@ -23200,8 +23146,6 @@ class LoanCouponResp$StannateOUserCouponUnavailableList$Item {
                   other.mtsv37OIsUsed,
                   mtsv37OIsUsed,
                 )) &&
-            (identical(other.remark, remark) ||
-                const DeepCollectionEquality().equals(other.remark, remark)) &&
             (identical(other.staticsOCreateTime, staticsOCreateTime) ||
                 const DeepCollectionEquality().equals(
                   other.staticsOCreateTime,
@@ -23258,7 +23202,6 @@ class LoanCouponResp$StannateOUserCouponUnavailableList$Item {
       const DeepCollectionEquality().hash(colubridOEndTime) ^
       const DeepCollectionEquality().hash(pqf70dOIsDeleted) ^
       const DeepCollectionEquality().hash(mtsv37OIsUsed) ^
-      const DeepCollectionEquality().hash(remark) ^
       const DeepCollectionEquality().hash(staticsOCreateTime) ^
       const DeepCollectionEquality().hash(l16h95OUpdateTime) ^
       const DeepCollectionEquality().hash(l536ojOCreateUser) ^
@@ -23286,7 +23229,6 @@ extension $LoanCouponResp$StannateOUserCouponUnavailableList$ItemExtension
     int? colubridOEndTime,
     int? pqf70dOIsDeleted,
     int? mtsv37OIsUsed,
-    String? remark,
     int? staticsOCreateTime,
     int? l16h95OUpdateTime,
     String? l536ojOCreateUser,
@@ -23311,7 +23253,6 @@ extension $LoanCouponResp$StannateOUserCouponUnavailableList$ItemExtension
       colubridOEndTime: colubridOEndTime ?? this.colubridOEndTime,
       pqf70dOIsDeleted: pqf70dOIsDeleted ?? this.pqf70dOIsDeleted,
       mtsv37OIsUsed: mtsv37OIsUsed ?? this.mtsv37OIsUsed,
-      remark: remark ?? this.remark,
       staticsOCreateTime: staticsOCreateTime ?? this.staticsOCreateTime,
       l16h95OUpdateTime: l16h95OUpdateTime ?? this.l16h95OUpdateTime,
       l536ojOCreateUser: l536ojOCreateUser ?? this.l536ojOCreateUser,
@@ -23337,7 +23278,6 @@ extension $LoanCouponResp$StannateOUserCouponUnavailableList$ItemExtension
     Wrapped<int?>? colubridOEndTime,
     Wrapped<int?>? pqf70dOIsDeleted,
     Wrapped<int?>? mtsv37OIsUsed,
-    Wrapped<String?>? remark,
     Wrapped<int?>? staticsOCreateTime,
     Wrapped<int?>? l16h95OUpdateTime,
     Wrapped<String?>? l536ojOCreateUser,
@@ -23385,7 +23325,6 @@ extension $LoanCouponResp$StannateOUserCouponUnavailableList$ItemExtension
       mtsv37OIsUsed: (mtsv37OIsUsed != null
           ? mtsv37OIsUsed.value
           : this.mtsv37OIsUsed),
-      remark: (remark != null ? remark.value : this.remark),
       staticsOCreateTime: (staticsOCreateTime != null
           ? staticsOCreateTime.value
           : this.staticsOCreateTime),
@@ -23428,7 +23367,6 @@ class MyCouponResp$FireballOUserCouponList$Item {
     this.colubridOEndTime,
     this.pqf70dOIsDeleted,
     this.mtsv37OIsUsed,
-    this.remark,
     this.staticsOCreateTime,
     this.l16h95OUpdateTime,
     this.l536ojOCreateUser,
@@ -23466,8 +23404,6 @@ class MyCouponResp$FireballOUserCouponList$Item {
   final int? pqf70dOIsDeleted;
   @JsonKey(name: 'mtsv37')
   final int? mtsv37OIsUsed;
-  @JsonKey(name: 'remark')
-  final Object? remark;
   @JsonKey(name: 'statics')
   final int? staticsOCreateTime;
   @JsonKey(name: 'l16h95')
@@ -23566,8 +23502,6 @@ class MyCouponResp$FireballOUserCouponList$Item {
                   other.mtsv37OIsUsed,
                   mtsv37OIsUsed,
                 )) &&
-            (identical(other.remark, remark) ||
-                const DeepCollectionEquality().equals(other.remark, remark)) &&
             (identical(other.staticsOCreateTime, staticsOCreateTime) ||
                 const DeepCollectionEquality().equals(
                   other.staticsOCreateTime,
@@ -23624,7 +23558,6 @@ class MyCouponResp$FireballOUserCouponList$Item {
       const DeepCollectionEquality().hash(colubridOEndTime) ^
       const DeepCollectionEquality().hash(pqf70dOIsDeleted) ^
       const DeepCollectionEquality().hash(mtsv37OIsUsed) ^
-      const DeepCollectionEquality().hash(remark) ^
       const DeepCollectionEquality().hash(staticsOCreateTime) ^
       const DeepCollectionEquality().hash(l16h95OUpdateTime) ^
       const DeepCollectionEquality().hash(l536ojOCreateUser) ^
@@ -23652,7 +23585,6 @@ extension $MyCouponResp$FireballOUserCouponList$ItemExtension
     int? colubridOEndTime,
     int? pqf70dOIsDeleted,
     int? mtsv37OIsUsed,
-    String? remark,
     int? staticsOCreateTime,
     int? l16h95OUpdateTime,
     String? l536ojOCreateUser,
@@ -23677,7 +23609,6 @@ extension $MyCouponResp$FireballOUserCouponList$ItemExtension
       colubridOEndTime: colubridOEndTime ?? this.colubridOEndTime,
       pqf70dOIsDeleted: pqf70dOIsDeleted ?? this.pqf70dOIsDeleted,
       mtsv37OIsUsed: mtsv37OIsUsed ?? this.mtsv37OIsUsed,
-      remark: remark ?? this.remark,
       staticsOCreateTime: staticsOCreateTime ?? this.staticsOCreateTime,
       l16h95OUpdateTime: l16h95OUpdateTime ?? this.l16h95OUpdateTime,
       l536ojOCreateUser: l536ojOCreateUser ?? this.l536ojOCreateUser,
@@ -23703,7 +23634,6 @@ extension $MyCouponResp$FireballOUserCouponList$ItemExtension
     Wrapped<int?>? colubridOEndTime,
     Wrapped<int?>? pqf70dOIsDeleted,
     Wrapped<int?>? mtsv37OIsUsed,
-    Wrapped<String?>? remark,
     Wrapped<int?>? staticsOCreateTime,
     Wrapped<int?>? l16h95OUpdateTime,
     Wrapped<String?>? l536ojOCreateUser,
@@ -23751,7 +23681,6 @@ extension $MyCouponResp$FireballOUserCouponList$ItemExtension
       mtsv37OIsUsed: (mtsv37OIsUsed != null
           ? mtsv37OIsUsed.value
           : this.mtsv37OIsUsed),
-      remark: (remark != null ? remark.value : this.remark),
       staticsOCreateTime: (staticsOCreateTime != null
           ? staticsOCreateTime.value
           : this.staticsOCreateTime),
@@ -23794,7 +23723,6 @@ class LandCouponResp$FireballOUserCouponList$Item {
     this.colubridOEndTime,
     this.pqf70dOIsDeleted,
     this.mtsv37OIsUsed,
-    this.remark,
     this.staticsOCreateTime,
     this.l16h95OUpdateTime,
     this.l536ojOCreateUser,
@@ -23832,8 +23760,6 @@ class LandCouponResp$FireballOUserCouponList$Item {
   final int? pqf70dOIsDeleted;
   @JsonKey(name: 'mtsv37')
   final int? mtsv37OIsUsed;
-  @JsonKey(name: 'remark')
-  final Object? remark;
   @JsonKey(name: 'statics')
   final int? staticsOCreateTime;
   @JsonKey(name: 'l16h95')
@@ -23932,8 +23858,6 @@ class LandCouponResp$FireballOUserCouponList$Item {
                   other.mtsv37OIsUsed,
                   mtsv37OIsUsed,
                 )) &&
-            (identical(other.remark, remark) ||
-                const DeepCollectionEquality().equals(other.remark, remark)) &&
             (identical(other.staticsOCreateTime, staticsOCreateTime) ||
                 const DeepCollectionEquality().equals(
                   other.staticsOCreateTime,
@@ -23990,7 +23914,6 @@ class LandCouponResp$FireballOUserCouponList$Item {
       const DeepCollectionEquality().hash(colubridOEndTime) ^
       const DeepCollectionEquality().hash(pqf70dOIsDeleted) ^
       const DeepCollectionEquality().hash(mtsv37OIsUsed) ^
-      const DeepCollectionEquality().hash(remark) ^
       const DeepCollectionEquality().hash(staticsOCreateTime) ^
       const DeepCollectionEquality().hash(l16h95OUpdateTime) ^
       const DeepCollectionEquality().hash(l536ojOCreateUser) ^
@@ -24018,7 +23941,6 @@ extension $LandCouponResp$FireballOUserCouponList$ItemExtension
     int? colubridOEndTime,
     int? pqf70dOIsDeleted,
     int? mtsv37OIsUsed,
-    String? remark,
     int? staticsOCreateTime,
     int? l16h95OUpdateTime,
     String? l536ojOCreateUser,
@@ -24043,7 +23965,6 @@ extension $LandCouponResp$FireballOUserCouponList$ItemExtension
       colubridOEndTime: colubridOEndTime ?? this.colubridOEndTime,
       pqf70dOIsDeleted: pqf70dOIsDeleted ?? this.pqf70dOIsDeleted,
       mtsv37OIsUsed: mtsv37OIsUsed ?? this.mtsv37OIsUsed,
-      remark: remark ?? this.remark,
       staticsOCreateTime: staticsOCreateTime ?? this.staticsOCreateTime,
       l16h95OUpdateTime: l16h95OUpdateTime ?? this.l16h95OUpdateTime,
       l536ojOCreateUser: l536ojOCreateUser ?? this.l536ojOCreateUser,
@@ -24069,7 +23990,6 @@ extension $LandCouponResp$FireballOUserCouponList$ItemExtension
     Wrapped<int?>? colubridOEndTime,
     Wrapped<int?>? pqf70dOIsDeleted,
     Wrapped<int?>? mtsv37OIsUsed,
-    Wrapped<String?>? remark,
     Wrapped<int?>? staticsOCreateTime,
     Wrapped<int?>? l16h95OUpdateTime,
     Wrapped<String?>? l536ojOCreateUser,
@@ -24117,7 +24037,6 @@ extension $LandCouponResp$FireballOUserCouponList$ItemExtension
       mtsv37OIsUsed: (mtsv37OIsUsed != null
           ? mtsv37OIsUsed.value
           : this.mtsv37OIsUsed),
-      remark: (remark != null ? remark.value : this.remark),
       staticsOCreateTime: (staticsOCreateTime != null
           ? staticsOCreateTime.value
           : this.staticsOCreateTime),
@@ -24242,7 +24161,6 @@ class LoanBillResp$Ouxtd3OLoanList$Item {
     this.kinkyOOrderAmount,
     this.outdoOPlanSimpleList,
     this.slackOIsOverdue,
-    this.remark,
     this.kc1347OEnableRenew,
   });
 
@@ -24291,8 +24209,6 @@ class LoanBillResp$Ouxtd3OLoanList$Item {
   outdoOPlanSimpleList;
   @JsonKey(name: 'slack')
   final bool? slackOIsOverdue;
-  @JsonKey(name: 'remark')
-  final Object? remark;
   @JsonKey(name: 'kc1347')
   final bool? kc1347OEnableRenew;
 
@@ -24423,8 +24339,6 @@ class LoanBillResp$Ouxtd3OLoanList$Item {
                   other.slackOIsOverdue,
                   slackOIsOverdue,
                 )) &&
-            (identical(other.remark, remark) ||
-                const DeepCollectionEquality().equals(other.remark, remark)) &&
             (identical(other.kc1347OEnableRenew, kc1347OEnableRenew) ||
                 const DeepCollectionEquality().equals(
                   other.kc1347OEnableRenew,
@@ -24459,7 +24373,6 @@ class LoanBillResp$Ouxtd3OLoanList$Item {
       const DeepCollectionEquality().hash(kinkyOOrderAmount) ^
       const DeepCollectionEquality().hash(outdoOPlanSimpleList) ^
       const DeepCollectionEquality().hash(slackOIsOverdue) ^
-      const DeepCollectionEquality().hash(remark) ^
       const DeepCollectionEquality().hash(kc1347OEnableRenew) ^
       runtimeType.hashCode;
 }
@@ -24490,7 +24403,6 @@ extension $LoanBillResp$Ouxtd3OLoanList$ItemExtension
     List<LoanBillResp$Ouxtd3OLoanList$Item$OutdoOPlanSimpleList$Item>?
     outdoOPlanSimpleList,
     bool? slackOIsOverdue,
-    String? remark,
     bool? kc1347OEnableRenew,
   }) {
     return LoanBillResp$Ouxtd3OLoanList$Item(
@@ -24518,7 +24430,6 @@ extension $LoanBillResp$Ouxtd3OLoanList$ItemExtension
       kinkyOOrderAmount: kinkyOOrderAmount ?? this.kinkyOOrderAmount,
       outdoOPlanSimpleList: outdoOPlanSimpleList ?? this.outdoOPlanSimpleList,
       slackOIsOverdue: slackOIsOverdue ?? this.slackOIsOverdue,
-      remark: remark ?? this.remark,
       kc1347OEnableRenew: kc1347OEnableRenew ?? this.kc1347OEnableRenew,
     );
   }
@@ -24547,7 +24458,6 @@ extension $LoanBillResp$Ouxtd3OLoanList$ItemExtension
     Wrapped<List<LoanBillResp$Ouxtd3OLoanList$Item$OutdoOPlanSimpleList$Item>?>?
     outdoOPlanSimpleList,
     Wrapped<bool?>? slackOIsOverdue,
-    Wrapped<String?>? remark,
     Wrapped<bool?>? kc1347OEnableRenew,
   }) {
     return LoanBillResp$Ouxtd3OLoanList$Item(
@@ -24617,7 +24527,6 @@ extension $LoanBillResp$Ouxtd3OLoanList$ItemExtension
       slackOIsOverdue: (slackOIsOverdue != null
           ? slackOIsOverdue.value
           : this.slackOIsOverdue),
-      remark: (remark != null ? remark.value : this.remark),
       kc1347OEnableRenew: (kc1347OEnableRenew != null
           ? kc1347OEnableRenew.value
           : this.kc1347OEnableRenew),
@@ -24985,7 +24894,6 @@ class BillDetailResp$V08uw3ORepaymentChannelList$Item {
     this.minAmount,
     this.sort,
     this.fratOMark,
-    this.remark,
     this.ejv164OChannelTypeName,
     this.nq7f9vOMinChannelFee,
     this.kd94z7OChannelRate,
@@ -25014,8 +24922,6 @@ class BillDetailResp$V08uw3ORepaymentChannelList$Item {
   final int? sort;
   @JsonKey(name: 'frat')
   final String? fratOMark;
-  @JsonKey(name: 'remark')
-  final Object? remark;
   @JsonKey(name: 'ejv164')
   final String? ejv164OChannelTypeName;
   @JsonKey(name: 'nq7f9v')
@@ -25087,8 +24993,6 @@ class BillDetailResp$V08uw3ORepaymentChannelList$Item {
                   other.fratOMark,
                   fratOMark,
                 )) &&
-            (identical(other.remark, remark) ||
-                const DeepCollectionEquality().equals(other.remark, remark)) &&
             (identical(other.ejv164OChannelTypeName, ejv164OChannelTypeName) ||
                 const DeepCollectionEquality().equals(
                   other.ejv164OChannelTypeName,
@@ -25130,7 +25034,6 @@ class BillDetailResp$V08uw3ORepaymentChannelList$Item {
       const DeepCollectionEquality().hash(minAmount) ^
       const DeepCollectionEquality().hash(sort) ^
       const DeepCollectionEquality().hash(fratOMark) ^
-      const DeepCollectionEquality().hash(remark) ^
       const DeepCollectionEquality().hash(ejv164OChannelTypeName) ^
       const DeepCollectionEquality().hash(nq7f9vOMinChannelFee) ^
       const DeepCollectionEquality().hash(kd94z7OChannelRate) ^
@@ -25152,7 +25055,6 @@ extension $BillDetailResp$V08uw3ORepaymentChannelList$ItemExtension
     double? minAmount,
     int? sort,
     String? fratOMark,
-    String? remark,
     String? ejv164OChannelTypeName,
     double? nq7f9vOMinChannelFee,
     double? kd94z7OChannelRate,
@@ -25171,7 +25073,6 @@ extension $BillDetailResp$V08uw3ORepaymentChannelList$ItemExtension
       minAmount: minAmount ?? this.minAmount,
       sort: sort ?? this.sort,
       fratOMark: fratOMark ?? this.fratOMark,
-      remark: remark ?? this.remark,
       ejv164OChannelTypeName:
           ejv164OChannelTypeName ?? this.ejv164OChannelTypeName,
       nq7f9vOMinChannelFee: nq7f9vOMinChannelFee ?? this.nq7f9vOMinChannelFee,
@@ -25193,7 +25094,6 @@ extension $BillDetailResp$V08uw3ORepaymentChannelList$ItemExtension
     Wrapped<double?>? minAmount,
     Wrapped<int?>? sort,
     Wrapped<String?>? fratOMark,
-    Wrapped<String?>? remark,
     Wrapped<String?>? ejv164OChannelTypeName,
     Wrapped<double?>? nq7f9vOMinChannelFee,
     Wrapped<double?>? kd94z7OChannelRate,
@@ -25221,7 +25121,6 @@ extension $BillDetailResp$V08uw3ORepaymentChannelList$ItemExtension
       minAmount: (minAmount != null ? minAmount.value : this.minAmount),
       sort: (sort != null ? sort.value : this.sort),
       fratOMark: (fratOMark != null ? fratOMark.value : this.fratOMark),
-      remark: (remark != null ? remark.value : this.remark),
       ejv164OChannelTypeName: (ejv164OChannelTypeName != null
           ? ejv164OChannelTypeName.value
           : this.ejv164OChannelTypeName),
@@ -25288,7 +25187,6 @@ class BillDetailResp$GlacisORepaymentPlanList$Item {
     this.d7x52pOBizChannel,
     this.z38e62OOrderGid,
     this.sweenyOWorkFlowId,
-    this.remark,
     this.i2jk5fOPeriodStatus,
     this.emceeOReduceAmount,
     this.spriteOBusinessFee,
@@ -25393,8 +25291,6 @@ class BillDetailResp$GlacisORepaymentPlanList$Item {
   final String? z38e62OOrderGid;
   @JsonKey(name: 'sweeny')
   final String? sweenyOWorkFlowId;
-  @JsonKey(name: 'remark')
-  final Object? remark;
   @JsonKey(name: 'i2jk5f')
   final int? i2jk5fOPeriodStatus;
   @JsonKey(name: 'emcee')
@@ -25696,8 +25592,6 @@ class BillDetailResp$GlacisORepaymentPlanList$Item {
                   other.sweenyOWorkFlowId,
                   sweenyOWorkFlowId,
                 )) &&
-            (identical(other.remark, remark) ||
-                const DeepCollectionEquality().equals(other.remark, remark)) &&
             (identical(other.i2jk5fOPeriodStatus, i2jk5fOPeriodStatus) ||
                 const DeepCollectionEquality().equals(
                   other.i2jk5fOPeriodStatus,
@@ -25792,7 +25686,6 @@ class BillDetailResp$GlacisORepaymentPlanList$Item {
       const DeepCollectionEquality().hash(d7x52pOBizChannel) ^
       const DeepCollectionEquality().hash(z38e62OOrderGid) ^
       const DeepCollectionEquality().hash(sweenyOWorkFlowId) ^
-      const DeepCollectionEquality().hash(remark) ^
       const DeepCollectionEquality().hash(i2jk5fOPeriodStatus) ^
       const DeepCollectionEquality().hash(emceeOReduceAmount) ^
       const DeepCollectionEquality().hash(spriteOBusinessFee) ^
@@ -25854,7 +25747,6 @@ extension $BillDetailResp$GlacisORepaymentPlanList$ItemExtension
     String? d7x52pOBizChannel,
     String? z38e62OOrderGid,
     String? sweenyOWorkFlowId,
-    String? remark,
     int? i2jk5fOPeriodStatus,
     double? emceeOReduceAmount,
     double? spriteOBusinessFee,
@@ -25928,7 +25820,6 @@ extension $BillDetailResp$GlacisORepaymentPlanList$ItemExtension
       d7x52pOBizChannel: d7x52pOBizChannel ?? this.d7x52pOBizChannel,
       z38e62OOrderGid: z38e62OOrderGid ?? this.z38e62OOrderGid,
       sweenyOWorkFlowId: sweenyOWorkFlowId ?? this.sweenyOWorkFlowId,
-      remark: remark ?? this.remark,
       i2jk5fOPeriodStatus: i2jk5fOPeriodStatus ?? this.i2jk5fOPeriodStatus,
       emceeOReduceAmount: emceeOReduceAmount ?? this.emceeOReduceAmount,
       spriteOBusinessFee: spriteOBusinessFee ?? this.spriteOBusinessFee,
@@ -25989,7 +25880,6 @@ extension $BillDetailResp$GlacisORepaymentPlanList$ItemExtension
     Wrapped<String?>? d7x52pOBizChannel,
     Wrapped<String?>? z38e62OOrderGid,
     Wrapped<String?>? sweenyOWorkFlowId,
-    Wrapped<String?>? remark,
     Wrapped<int?>? i2jk5fOPeriodStatus,
     Wrapped<double?>? emceeOReduceAmount,
     Wrapped<double?>? spriteOBusinessFee,
@@ -26141,7 +26031,6 @@ extension $BillDetailResp$GlacisORepaymentPlanList$ItemExtension
       sweenyOWorkFlowId: (sweenyOWorkFlowId != null
           ? sweenyOWorkFlowId.value
           : this.sweenyOWorkFlowId),
-      remark: (remark != null ? remark.value : this.remark),
       i2jk5fOPeriodStatus: (i2jk5fOPeriodStatus != null
           ? i2jk5fOPeriodStatus.value
           : this.i2jk5fOPeriodStatus),
@@ -26278,7 +26167,6 @@ class BillRepayResp$My4dd2ORepaymentList$Item {
     this.gatemanORepaymentAmount,
     this.d95091ORepaymentStatus,
     this.wtpuztORepaymentTime,
-    this.remark,
     this.nannetteOReturnCode,
     this.vx4165OFailReason,
     this.pyreneesOPayStatus,
@@ -26295,8 +26183,6 @@ class BillRepayResp$My4dd2ORepaymentList$Item {
   final int? d95091ORepaymentStatus;
   @JsonKey(name: 'wtpuzt')
   final int? wtpuztORepaymentTime;
-  @JsonKey(name: 'remark')
-  final Object? remark;
   @JsonKey(name: 'nannette')
   final String? nannetteOReturnCode;
   @JsonKey(name: 'vx4165')
@@ -26349,8 +26235,6 @@ class BillRepayResp$My4dd2ORepaymentList$Item {
                   other.wtpuztORepaymentTime,
                   wtpuztORepaymentTime,
                 )) &&
-            (identical(other.remark, remark) ||
-                const DeepCollectionEquality().equals(other.remark, remark)) &&
             (identical(other.nannetteOReturnCode, nannetteOReturnCode) ||
                 const DeepCollectionEquality().equals(
                   other.nannetteOReturnCode,
@@ -26383,7 +26267,6 @@ class BillRepayResp$My4dd2ORepaymentList$Item {
       const DeepCollectionEquality().hash(gatemanORepaymentAmount) ^
       const DeepCollectionEquality().hash(d95091ORepaymentStatus) ^
       const DeepCollectionEquality().hash(wtpuztORepaymentTime) ^
-      const DeepCollectionEquality().hash(remark) ^
       const DeepCollectionEquality().hash(nannetteOReturnCode) ^
       const DeepCollectionEquality().hash(vx4165OFailReason) ^
       const DeepCollectionEquality().hash(pyreneesOPayStatus) ^
@@ -26399,7 +26282,6 @@ extension $BillRepayResp$My4dd2ORepaymentList$ItemExtension
     double? gatemanORepaymentAmount,
     int? d95091ORepaymentStatus,
     int? wtpuztORepaymentTime,
-    String? remark,
     String? nannetteOReturnCode,
     String? vx4165OFailReason,
     int? pyreneesOPayStatus,
@@ -26413,7 +26295,6 @@ extension $BillRepayResp$My4dd2ORepaymentList$ItemExtension
       d95091ORepaymentStatus:
           d95091ORepaymentStatus ?? this.d95091ORepaymentStatus,
       wtpuztORepaymentTime: wtpuztORepaymentTime ?? this.wtpuztORepaymentTime,
-      remark: remark ?? this.remark,
       nannetteOReturnCode: nannetteOReturnCode ?? this.nannetteOReturnCode,
       vx4165OFailReason: vx4165OFailReason ?? this.vx4165OFailReason,
       pyreneesOPayStatus: pyreneesOPayStatus ?? this.pyreneesOPayStatus,
@@ -26427,7 +26308,6 @@ extension $BillRepayResp$My4dd2ORepaymentList$ItemExtension
     Wrapped<double?>? gatemanORepaymentAmount,
     Wrapped<int?>? d95091ORepaymentStatus,
     Wrapped<int?>? wtpuztORepaymentTime,
-    Wrapped<String?>? remark,
     Wrapped<String?>? nannetteOReturnCode,
     Wrapped<String?>? vx4165OFailReason,
     Wrapped<int?>? pyreneesOPayStatus,
@@ -26449,7 +26329,6 @@ extension $BillRepayResp$My4dd2ORepaymentList$ItemExtension
       wtpuztORepaymentTime: (wtpuztORepaymentTime != null
           ? wtpuztORepaymentTime.value
           : this.wtpuztORepaymentTime),
-      remark: (remark != null ? remark.value : this.remark),
       nannetteOReturnCode: (nannetteOReturnCode != null
           ? nannetteOReturnCode.value
           : this.nannetteOReturnCode),

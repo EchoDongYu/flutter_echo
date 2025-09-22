@@ -59,6 +59,10 @@ class BillDetailModel extends BaseProvider {
 
   String? _loanGid;
 
+  ///凭证记录
+  RepayRecordResp? get recordList => _recordList;
+  RepayRecordResp? _recordList;
+
   ///获取账单详情数据
   void fetchBillDetailData(String? loanGid) async {
     _loanGid = loanGid;
@@ -91,7 +95,7 @@ class BillDetailModel extends BaseProvider {
     notifyListeners();
   }
 
-  void getBankDictionary() async {
+  Future<void> getBankDictionary() async {
     await launchRequest(() async {
       _bankDictItems = await Api.getBankDictionary();
     });
@@ -102,7 +106,7 @@ class BillDetailModel extends BaseProvider {
     notifyListeners();
   }
 
-  void confimPhoto(Uint8List? photo) async {
+  void confimPhoto(Uint8List? photo) {
     _certPhoto = photo;
     notifyListeners();
   }
@@ -139,7 +143,7 @@ class BillDetailModel extends BaseProvider {
     );
   }
 
-  void applyRepayH5(double amount) async {
+  Future<void> applyRepayH5(double amount) async {
     final apiResult = await launchRequest(() async {
       return await Api.applyRepay(_createRepayApplyReq(amount));
     });
@@ -148,7 +152,7 @@ class BillDetailModel extends BaseProvider {
     }
   }
 
-  void applyRepay({
+  Future<void> applyRepay({
     required List<String> inputs,
     required BankDictV0Item? bank,
     required int? date,
@@ -167,5 +171,25 @@ class BillDetailModel extends BaseProvider {
     if (apiResult != null) {
       navigate((context) => context.go(AppRouter.repayProcess));
     }
+  }
+
+  Future<void> queryRepaymentRecord({
+    required List<String> inputs,
+    required BankDictV0Item? bank,
+    required int? date,
+  }) async {
+    launchRequest(() async {
+      final amount = inputs[1].tryParseDouble ?? 0;
+      final channelRate = selectedChannel?.kd94z7OChannelRate ?? 0;
+      final channelFee = amount * channelRate;
+      final req = RepayRecordReq(
+        r5a4x8OLoanGid: _loanGid,
+        mahoganyORepaymentType: selectedChannel?.y28nd4OChannelType,
+        t1h91pOBankName: bank?.t1h91p,
+        e77490ORequestId: inputs[0],
+        o12sd0OAmount: amount - channelFee,
+      );
+      _recordList = await Api.queryRepaymentRecord(req);
+    });
   }
 }

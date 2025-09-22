@@ -11855,14 +11855,14 @@
                   "type": "k30z72(o_number)",
                   "description": "记录总条数",
                   "mock": {
-                    "mock": "@Long"
+                    "mock": "@string"
                   }
                 },
                 "pages": {
                   "type": "k30z72(o_number)",
                   "description": "总页数",
                   "mock": {
-                    "mock": "@Long"
+                    "mock": "@string"
                   }
                 },
                 "ouxtd3(o_loanList)": {
@@ -13290,14 +13290,14 @@
                   "type": "k30z72(o_number)",
                   "description": "记录总条数",
                   "mock": {
-                    "mock": "@Long"
+                    "mock": "@string"
                   }
                 },
                 "pages": {
                   "type": "k30z72(o_number)",
                   "description": "总页数",
                   "mock": {
-                    "mock": "@Long"
+                    "mock": "@string"
                   }
                 },
                 "endmost(o_totalLoanLeftAmount)": {

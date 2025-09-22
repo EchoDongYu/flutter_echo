@@ -1733,7 +1733,7 @@ RepayApplyResp _$RepayApplyRespFromJson(Map<String, dynamic> json) =>
       zebrineOCardNo: json['zebrine'] as String?,
       cvv: json['cvv'] as String?,
       courtierOAccessCode: json['courtier'] as String?,
-      p9428vOExpireTime: (json['p9428v'] as num?)?.toInt(),
+      p9428vOExpireTime: json['p9428v'] as String?,
       krddvvOReference: json['krddvv'] as String?,
       w2y37vOOrderType: (json['w2y37v'] as num?)?.toInt(),
       oe5u39OChannelName: json['oe5u39'] as String?,
@@ -2110,7 +2110,6 @@ LoanOrderResp _$LoanOrderRespFromJson(Map<String, dynamic> json) =>
       slackOIsOverdue: json['slack'] as bool?,
       c2r90qOLoanRefixRate: (json['c2r90q'] as num?)?.toDouble(),
       tigereyeOInterest: (json['tigereye'] as num?)?.toDouble(),
-      remark: json['remark'] as Object?,
       z38e62OOrderGid: json['z38e62'] as String?,
       vnbh46OBankCardGid: json['vnbh46'] as String?,
       t1h91pOBankName: json['t1h91p'] as String?,
@@ -2181,7 +2180,6 @@ Map<String, dynamic> _$LoanOrderRespToJson(LoanOrderResp instance) =>
       'slack': instance.slackOIsOverdue,
       'c2r90q': instance.c2r90qOLoanRefixRate,
       'tigereye': instance.tigereyeOInterest,
-      'remark': instance.remark,
       'z38e62': instance.z38e62OOrderGid,
       'vnbh46': instance.vnbh46OBankCardGid,
       't1h91p': instance.t1h91pOBankName,
@@ -2698,8 +2696,8 @@ Map<String, dynamic> _$CouponPopRespToJson(CouponPopResp instance) =>
 
 LoanBillResp _$LoanBillRespFromJson(Map<String, dynamic> json) => LoanBillResp(
   y934teOTotalAmount: (json['y934te'] as num?)?.toDouble(),
-  total: (json['total'] as String?)?.tryParseInt,
-  pages: (json['pages'] as String?)?.tryParseInt,
+  total: json['total'] as String?,
+  pages: json['pages'] as String?,
   ouxtd3OLoanList: (json['ouxtd3'] as List<dynamic>?)
       ?.map(
         (e) => LoanBillResp$Ouxtd3OLoanList$Item.fromJson(
@@ -2847,8 +2845,8 @@ Map<String, dynamic> _$BillDetailRespToJson(
 
 BillRepayResp _$BillRepayRespFromJson(Map<String, dynamic> json) =>
     BillRepayResp(
-      total: (json['total'] as String?)?.tryParseInt,
-      pages: (json['pages'] as String?)?.tryParseInt,
+      total: json['total'] as String?,
+      pages: json['pages'] as String?,
       endmostOTotalLoanLeftAmount: (json['endmost'] as num?)?.toDouble(),
       my4dd2ORepaymentList: (json['my4dd2'] as List<dynamic>?)
           ?.map(
@@ -3243,7 +3241,6 @@ HomeInfoResp$PapuanOLastRecordLoan _$HomeInfoResp$PapuanOLastRecordLoanFromJson(
       )
       .toList(),
   slackOIsOverdue: json['slack'] as bool?,
-  remark: json['remark'] as Object?,
   kc1347OEnableRenew: json['kc1347'] as bool?,
 );
 
@@ -3272,7 +3269,6 @@ Map<String, dynamic> _$HomeInfoResp$PapuanOLastRecordLoanToJson(
   'kinky': instance.kinkyOOrderAmount,
   'outdo': instance.outdoOPlanSimpleList?.map((e) => e.toJson()).toList(),
   'slack': instance.slackOIsOverdue,
-  'remark': instance.remark,
   'kc1347': instance.kc1347OEnableRenew,
 };
 
@@ -3309,7 +3305,6 @@ _$HomeInfoResp$Xu551uOSpareLastRecordLoanFromJson(
       )
       .toList(),
   slackOIsOverdue: json['slack'] as bool?,
-  remark: json['remark'] as Object?,
   kc1347OEnableRenew: json['kc1347'] as bool?,
 );
 
@@ -3338,7 +3333,6 @@ Map<String, dynamic> _$HomeInfoResp$Xu551uOSpareLastRecordLoanToJson(
   'kinky': instance.kinkyOOrderAmount,
   'outdo': instance.outdoOPlanSimpleList?.map((e) => e.toJson()).toList(),
   'slack': instance.slackOIsOverdue,
-  'remark': instance.remark,
   'kc1347': instance.kc1347OEnableRenew,
 };
 
@@ -3709,7 +3703,6 @@ _$HomeCouponResp$FireballOUserCouponList$ItemFromJson(
   colubridOEndTime: (json['colubrid'] as num?)?.toInt(),
   pqf70dOIsDeleted: (json['pqf70d'] as num?)?.toInt(),
   mtsv37OIsUsed: (json['mtsv37'] as num?)?.toInt(),
-  remark: json['remark'] as Object?,
   staticsOCreateTime: (json['statics'] as num?)?.toInt(),
   l16h95OUpdateTime: (json['l16h95'] as num?)?.toInt(),
   l536ojOCreateUser: json['l536oj'] as String?,
@@ -3736,7 +3729,6 @@ Map<String, dynamic> _$HomeCouponResp$FireballOUserCouponList$ItemToJson(
   'colubrid': instance.colubridOEndTime,
   'pqf70d': instance.pqf70dOIsDeleted,
   'mtsv37': instance.mtsv37OIsUsed,
-  'remark': instance.remark,
   'statics': instance.staticsOCreateTime,
   'l16h95': instance.l16h95OUpdateTime,
   'l536oj': instance.l536ojOCreateUser,
@@ -3764,7 +3756,6 @@ _$LoanCouponResp$T933d6OUserCouponAvailableList$ItemFromJson(
   colubridOEndTime: (json['colubrid'] as num?)?.toInt(),
   pqf70dOIsDeleted: (json['pqf70d'] as num?)?.toInt(),
   mtsv37OIsUsed: (json['mtsv37'] as num?)?.toInt(),
-  remark: json['remark'] as Object?,
   staticsOCreateTime: (json['statics'] as num?)?.toInt(),
   l16h95OUpdateTime: (json['l16h95'] as num?)?.toInt(),
   l536ojOCreateUser: json['l536oj'] as String?,
@@ -3791,7 +3782,6 @@ Map<String, dynamic> _$LoanCouponResp$T933d6OUserCouponAvailableList$ItemToJson(
   'colubrid': instance.colubridOEndTime,
   'pqf70d': instance.pqf70dOIsDeleted,
   'mtsv37': instance.mtsv37OIsUsed,
-  'remark': instance.remark,
   'statics': instance.staticsOCreateTime,
   'l16h95': instance.l16h95OUpdateTime,
   'l536oj': instance.l536ojOCreateUser,
@@ -3819,7 +3809,6 @@ _$LoanCouponResp$StannateOUserCouponUnavailableList$ItemFromJson(
   colubridOEndTime: (json['colubrid'] as num?)?.toInt(),
   pqf70dOIsDeleted: (json['pqf70d'] as num?)?.toInt(),
   mtsv37OIsUsed: (json['mtsv37'] as num?)?.toInt(),
-  remark: json['remark'] as Object?,
   staticsOCreateTime: (json['statics'] as num?)?.toInt(),
   l16h95OUpdateTime: (json['l16h95'] as num?)?.toInt(),
   l536ojOCreateUser: json['l536oj'] as String?,
@@ -3847,7 +3836,6 @@ _$LoanCouponResp$StannateOUserCouponUnavailableList$ItemToJson(
   'colubrid': instance.colubridOEndTime,
   'pqf70d': instance.pqf70dOIsDeleted,
   'mtsv37': instance.mtsv37OIsUsed,
-  'remark': instance.remark,
   'statics': instance.staticsOCreateTime,
   'l16h95': instance.l16h95OUpdateTime,
   'l536oj': instance.l536ojOCreateUser,
@@ -3875,7 +3863,6 @@ _$MyCouponResp$FireballOUserCouponList$ItemFromJson(
   colubridOEndTime: (json['colubrid'] as num?)?.toInt(),
   pqf70dOIsDeleted: (json['pqf70d'] as num?)?.toInt(),
   mtsv37OIsUsed: (json['mtsv37'] as num?)?.toInt(),
-  remark: json['remark'] as Object?,
   staticsOCreateTime: (json['statics'] as num?)?.toInt(),
   l16h95OUpdateTime: (json['l16h95'] as num?)?.toInt(),
   l536ojOCreateUser: json['l536oj'] as String?,
@@ -3902,7 +3889,6 @@ Map<String, dynamic> _$MyCouponResp$FireballOUserCouponList$ItemToJson(
   'colubrid': instance.colubridOEndTime,
   'pqf70d': instance.pqf70dOIsDeleted,
   'mtsv37': instance.mtsv37OIsUsed,
-  'remark': instance.remark,
   'statics': instance.staticsOCreateTime,
   'l16h95': instance.l16h95OUpdateTime,
   'l536oj': instance.l536ojOCreateUser,
@@ -3930,7 +3916,6 @@ _$LandCouponResp$FireballOUserCouponList$ItemFromJson(
   colubridOEndTime: (json['colubrid'] as num?)?.toInt(),
   pqf70dOIsDeleted: (json['pqf70d'] as num?)?.toInt(),
   mtsv37OIsUsed: (json['mtsv37'] as num?)?.toInt(),
-  remark: json['remark'] as Object?,
   staticsOCreateTime: (json['statics'] as num?)?.toInt(),
   l16h95OUpdateTime: (json['l16h95'] as num?)?.toInt(),
   l536ojOCreateUser: json['l536oj'] as String?,
@@ -3957,7 +3942,6 @@ Map<String, dynamic> _$LandCouponResp$FireballOUserCouponList$ItemToJson(
   'colubrid': instance.colubridOEndTime,
   'pqf70d': instance.pqf70dOIsDeleted,
   'mtsv37': instance.mtsv37OIsUsed,
-  'remark': instance.remark,
   'statics': instance.staticsOCreateTime,
   'l16h95': instance.l16h95OUpdateTime,
   'l536oj': instance.l536ojOCreateUser,
@@ -4017,7 +4001,6 @@ LoanBillResp$Ouxtd3OLoanList$Item _$LoanBillResp$Ouxtd3OLoanList$ItemFromJson(
       )
       .toList(),
   slackOIsOverdue: json['slack'] as bool?,
-  remark: json['remark'] as Object?,
   kc1347OEnableRenew: json['kc1347'] as bool?,
 );
 
@@ -4046,7 +4029,6 @@ Map<String, dynamic> _$LoanBillResp$Ouxtd3OLoanList$ItemToJson(
   'kinky': instance.kinkyOOrderAmount,
   'outdo': instance.outdoOPlanSimpleList?.map((e) => e.toJson()).toList(),
   'slack': instance.slackOIsOverdue,
-  'remark': instance.remark,
   'kc1347': instance.kc1347OEnableRenew,
 };
 
@@ -4113,7 +4095,6 @@ _$BillDetailResp$V08uw3ORepaymentChannelList$ItemFromJson(
   minAmount: (json['minAmount'] as num?)?.toDouble(),
   sort: (json['sort'] as num?)?.toInt(),
   fratOMark: json['frat'] as String?,
-  remark: json['remark'] as Object?,
   ejv164OChannelTypeName: json['ejv164'] as String?,
   nq7f9vOMinChannelFee: (json['nq7f9v'] as num?)?.toDouble(),
   kd94z7OChannelRate: (json['kd94z7'] as num?)?.toDouble(),
@@ -4134,7 +4115,6 @@ Map<String, dynamic> _$BillDetailResp$V08uw3ORepaymentChannelList$ItemToJson(
   'minAmount': instance.minAmount,
   'sort': instance.sort,
   'frat': instance.fratOMark,
-  'remark': instance.remark,
   'ejv164': instance.ejv164OChannelTypeName,
   'nq7f9v': instance.nq7f9vOMinChannelFee,
   'kd94z7': instance.kd94z7OChannelRate,
@@ -4192,7 +4172,6 @@ _$BillDetailResp$GlacisORepaymentPlanList$ItemFromJson(
   d7x52pOBizChannel: json['d7x52p'] as String?,
   z38e62OOrderGid: json['z38e62'] as String?,
   sweenyOWorkFlowId: json['sweeny'] as String?,
-  remark: json['remark'] as Object?,
   i2jk5fOPeriodStatus: (json['i2jk5f'] as num?)?.toInt(),
   emceeOReduceAmount: (json['emcee'] as num?)?.toDouble(),
   spriteOBusinessFee: (json['sprite'] as num?)?.toDouble(),
@@ -4253,7 +4232,6 @@ Map<String, dynamic> _$BillDetailResp$GlacisORepaymentPlanList$ItemToJson(
   'd7x52p': instance.d7x52pOBizChannel,
   'z38e62': instance.z38e62OOrderGid,
   'sweeny': instance.sweenyOWorkFlowId,
-  'remark': instance.remark,
   'i2jk5f': instance.i2jk5fOPeriodStatus,
   'emcee': instance.emceeOReduceAmount,
   'sprite': instance.spriteOBusinessFee,
@@ -4290,7 +4268,6 @@ _$BillRepayResp$My4dd2ORepaymentList$ItemFromJson(Map<String, dynamic> json) =>
       gatemanORepaymentAmount: (json['gateman'] as num?)?.toDouble(),
       d95091ORepaymentStatus: (json['d95091'] as num?)?.toInt(),
       wtpuztORepaymentTime: (json['wtpuzt'] as num?)?.toInt(),
-      remark: json['remark'] as Object?,
       nannetteOReturnCode: json['nannette'] as String?,
       vx4165OFailReason: json['vx4165'] as String?,
       pyreneesOPayStatus: (json['pyrenees'] as num?)?.toInt(),
@@ -4305,7 +4282,6 @@ Map<String, dynamic> _$BillRepayResp$My4dd2ORepaymentList$ItemToJson(
   'gateman': instance.gatemanORepaymentAmount,
   'd95091': instance.d95091ORepaymentStatus,
   'wtpuzt': instance.wtpuztORepaymentTime,
-  'remark': instance.remark,
   'nannette': instance.nannetteOReturnCode,
   'vx4165': instance.vx4165OFailReason,
   'pyrenees': instance.pyreneesOPayStatus,

@@ -77,13 +77,13 @@ object CameraInfoExtractor {
             "discern" to getMaxResolution(characteristics)?.let { "${it.width}x${it.height}" },
             "w08yy9" to calcuPixelSizex(characteristics),
             "i1u636" to getApertureValues(characteristics),
-            // //l9t1fn(o_sensorSize)
-           // "l9t1fn" to getSensorDimensions(characteristics),
+            //l9t1fn(o_sensorSize)
+            //"l9t1fn" to getSensorDimensions(characteristics),
             "uveitis" to getFocalLengths(characteristics),
-            ////yb5fus(o_afModes)
+            //yb5fus(o_afModes)
             "yb5fus" to getAutoFocusModes(characteristics),
-           // "tobacco" to calculateFieldOfView(characteristics),
-            "flash" to isFlashSupported(characteristics),
+            //"tobacco" to calculateFieldOfView(characteristics),
+            //"flash" to if (isFlashSupported(characteristics)) 1 else 0,
             "level" to getHardwareLevel(characteristics)
         )
     }

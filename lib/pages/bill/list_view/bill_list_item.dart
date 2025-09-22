@@ -92,14 +92,14 @@ class BillListItem extends StatelessWidget {
                   vertical: 2,
                 ),
                 decoration: BoxDecoration(
-                  color: status.color.withValues(alpha: 0.1),
+                  color: status.billColor.withValues(alpha: 0.1),
                   borderRadius: BorderRadius.circular(15),
                 ),
                 child: Text(
                   status.label,
                   style: TextStyle(
                     fontSize: 16.sp,
-                    color: status.color,
+                    color: status.billColor,
                     fontWeight: FontWeight.w500,
                   ),
                 ),
@@ -123,7 +123,7 @@ class BillListItem extends StatelessWidget {
               if (showPagar)
                 Expanded(
                   child: EchoSecondaryButton(
-                    filledColor: status.color,
+                    filledColor: status.billColor,
                     text: 'Pagar',
                     onPressed: onPagar,
                   ),

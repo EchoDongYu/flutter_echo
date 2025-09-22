@@ -1,11 +1,11 @@
 import 'package:flutter_echo/common/page_consumer.dart';
 import 'package:flutter_echo/pages/after/cert_camera_page.dart';
+import 'package:flutter_echo/pages/after/cert_record_page.dart';
 import 'package:flutter_echo/pages/after/repay_bank_page.dart';
 import 'package:flutter_echo/pages/after/repay_certificate_page.dart';
 import 'package:flutter_echo/pages/after/repay_confirm_page.dart';
 import 'package:flutter_echo/pages/after/repay_history_page.dart';
 import 'package:flutter_echo/pages/after/repay_result_page.dart';
-import 'package:flutter_echo/pages/after/cert_record_page.dart';
 import 'package:flutter_echo/pages/before/apply_confirm_page.dart';
 import 'package:flutter_echo/pages/before/apply_result_page.dart';
 import 'package:flutter_echo/pages/bill/bill_detail_page.dart';
@@ -80,7 +80,7 @@ class AppRouter {
   static const String repayFailed = '/repay_failed';
   static const String repayProcess = '/repay_process';
   static const String repayBank = '/repay_bank';
-  static const String repayCertificate = '/repay_certificate';
+  static const String repayCert = '/repay_cert';
   static const String certCamera = '/cert_camera';
   static const String certRecord = '/cert_record';
   static const String photoView = '/photo_view';
@@ -329,7 +329,7 @@ class AppRouter {
 
           /// 还款凭证页面
           GoRoute(
-            path: repayCertificate,
+            path: repayCert,
             builder: (context, state) => const RepayCertificatePage(),
           ),
 
@@ -338,13 +338,13 @@ class AppRouter {
             path: certRecord,
             builder: (context, state) => const CertRecordPage(),
           ),
-
-          /// 凭证拍照页面
-          GoRoute(
-            path: certCamera,
-            builder: (context, state) => const CertCameraPage(),
-          ),
         ],
+      ),
+
+      /// 凭证拍照页面
+      GoRoute(
+        path: certCamera,
+        builder: (context, state) => const CertCameraPage(),
       ),
 
       /// 安全验证页面

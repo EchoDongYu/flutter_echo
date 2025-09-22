@@ -47,7 +47,7 @@ class BillDetailLoanStatus extends StatelessWidget {
             children: [
               Image.asset(
                 _statusLogo,
-                color: status.color,
+                color: status.billColor,
                 width: 26.r,
                 height: 26.r,
               ),
@@ -56,7 +56,7 @@ class BillDetailLoanStatus extends StatelessWidget {
                 status.label,
                 style: TextStyle(
                   fontSize: 16.sp,
-                  color: status.color,
+                  color: status.billColor,
                   fontWeight: FontWeight.w500,
                 ),
               ),
@@ -124,7 +124,7 @@ class BillDetailLoanStatus extends StatelessWidget {
           Visibility(
             visible: showPagar,
             child: EchoSecondaryButton(
-              filledColor: status.color,
+              filledColor: status.billColor,
               text: 'Pagar inmediatamente',
               onPressed: onPagar,
             ),

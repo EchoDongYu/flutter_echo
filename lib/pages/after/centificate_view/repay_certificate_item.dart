@@ -1,26 +1,29 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_echo/common/app_theme.dart';
+import 'package:flutter_echo/models/swaggerApi.models.swagger.dart';
 import 'package:flutter_echo/ui/widgets/common_box.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-enum RepayCertificateStatus { successes, progress, failure }
-
 class RepayCertificateItem extends StatelessWidget {
-  const RepayCertificateItem({super.key, required this.status});
+  final RepayRecordResp$Item item;
 
-  final RepayCertificateStatus status;
+  const RepayCertificateItem(this.item, {super.key});
 
-  // 状态对应的颜色和文字
-  Map<String, dynamic> get _statusStyle {
-    switch (status) {
-      case RepayCertificateStatus.failure:
-        return {"label": "Fallo", "color": NowColors.c0xFFFB4F34};
-      case RepayCertificateStatus.progress:
-        return {"label": "En curso", "color": NowColors.c0xFFFF9817};
-      case RepayCertificateStatus.successes:
-        return {"label": "Exitos", "color": NowColors.c0xFF3EB34D};
-    }
-  }
+  ///还款状态（0、处理中1、成功2、失败3、取消）
+  String get label => switch (item.status) {
+    0 => 'en curso',
+    1 => 'éxitos',
+    2 => 'fallo',
+    _ => '',
+  };
+
+  ///还款状态（0、处理中1、成功2、失败3、取消）
+  Color get color => switch (item.status) {
+    0 => NowColors.c0xFFFF9817,
+    1 => NowColors.c0xFF3EB34D,
+    2 => NowColors.c0xFFFB4F34,
+    _ => Colors.transparent,
+  };
 
   @override
   Widget build(BuildContext context) {
@@ -76,12 +79,12 @@ class RepayCertificateItem extends StatelessWidget {
                       width: 65.w,
                       height: 26.h,
                       padding: EdgeInsets.zero,
-                      color: _statusStyle["color"],
+                      color: color,
                       borderWidth: 1,
                       borderColor: NowColors.c0xFFFFFFFF,
                       alignment: Alignment.center,
                       child: Text(
-                        _statusStyle["label"],
+                        label,
                         style: TextStyle(
                           fontSize: 14.sp,
                           fontWeight: FontWeight.w500,
