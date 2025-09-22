@@ -4,7 +4,7 @@ import 'package:flutter_echo/utils/drawable_utils.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
 
-class EchoTopBar extends StatelessWidget {
+class EchoTopBar extends StatelessWidget implements PreferredSizeWidget {
   final bool showBack;
   final bool showSupport;
   final String? title;
@@ -92,4 +92,8 @@ class EchoTopBar extends StatelessWidget {
       ),
     );
   }
+
+  /// 让 AppBar 可以直接放到 Scaffold.appBar 里
+  @override
+  Size get preferredSize => Size.fromHeight(55.h);
 }

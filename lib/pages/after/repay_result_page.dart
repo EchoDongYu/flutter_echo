@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_echo/common/app_theme.dart';
 import 'package:flutter_echo/pages/app_router.dart';
 import 'package:flutter_echo/ui/widget_helper.dart';
-import 'package:flutter_echo/ui/widgets/common_appbar.dart';
+import 'package:flutter_echo/ui/widgets/top_bar.dart';
 import 'package:flutter_echo/utils/drawable_utils.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
@@ -15,7 +15,10 @@ class RepayFailedPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: NowColors.c0xFFF3F3F5,
-      appBar: CommonAppBar(title: 'Resultado del Pagar'),
+      appBar: EchoTopBar(
+        title: 'Resultado del Pagar',
+        onPopBack: () => context.go(AppRouter.main),
+      ),
       body: SingleChildScrollView(
         padding: EdgeInsets.fromLTRB(28.w, 64.h, 28.w, 28.h),
         child: Column(
@@ -56,7 +59,7 @@ class RepayFailedPage extends StatelessWidget {
         ),
       ),
       bottomNavigationBar: WidgetHelper.buildBottomFailedButton(
-        text: 'Volver a la de inicio',
+        text: 'Volver al inicio',
         onPressed: () => context.go(AppRouter.main),
       ),
     );
@@ -71,7 +74,10 @@ class RepayProcessPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: NowColors.c0xFFF3F3F5,
-      appBar: CommonAppBar(title: 'Resultado del Pagar'),
+      appBar: EchoTopBar(
+        title: 'Resultado del Pagar',
+        onPopBack: () => context.go(AppRouter.main),
+      ),
       body: SingleChildScrollView(
         padding: EdgeInsets.fromLTRB(28.w, 64.h, 28.w, 28.h),
         child: Column(
@@ -135,8 +141,7 @@ class RepayProcessPage extends StatelessWidget {
       ),
       bottomNavigationBar: WidgetHelper.buildBottomButton(
         text: 'Volver al inicio',
-        //todo ?? 跳转那里？
-        onPressed: () => context.push(AppRouter.repayBank),
+        onPressed: () => context.go(AppRouter.main),
       ),
     );
   }
