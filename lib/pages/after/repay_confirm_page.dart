@@ -49,7 +49,7 @@ class _RepayConfirmPageState extends State<RepayConfirmPage> {
     //final min = channel?.minAmount ?? 0;
     final current = _controller.text.tryParseDouble ?? 0;
     if (current > max) {
-      toast('msg');
+      toast('El monto ingreso es mas lo que tiene que pagar');
       _controller.text = text.substring(0, length - 1);
     } else {
       final rate = channel?.kd94z7OChannelRate ?? 0;
@@ -117,11 +117,11 @@ class _RepayConfirmPageState extends State<RepayConfirmPage> {
           FocusScope.of(context).requestFocus(FocusNode());
           final model = context.read<BillDetailModel>();
           final channel = model.selectedChannel;
-          final max = channel?.maxAmount ?? 0;
+          //final max = channel?.maxAmount ?? 0;
           final min = channel?.minAmount ?? 0;
           final current = _controller.text.tryParseDouble ?? 0;
-          if (current > max || current < min) {
-            toast('msg');
+          if (current < min) {
+            toast('el monto ingreso hay que ser mayor de $min');
             return;
           }
           final result = await PromptDialog.show(
