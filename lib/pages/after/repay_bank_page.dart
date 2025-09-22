@@ -332,7 +332,7 @@ class _RepayBankPageState extends State<RepayBankPage> {
           SizedBox(height: 16.h),
           RepayBankStep(
             stepNumber: '2',
-            'cuando realice la transferencia por favor en la NOTA colocar el siguiente numero de telefono (${LocalStorage().maskAccount})',
+            'cuando realice la transferencia por favor en la NOTA colocar el siguiente numero de telefono (${LocalStorage().realAccount})',
           ),
           SizedBox(height: 16.h),
           RepayBankStep(
