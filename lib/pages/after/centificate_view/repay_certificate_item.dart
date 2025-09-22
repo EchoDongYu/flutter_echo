@@ -3,21 +3,21 @@ import 'package:flutter_echo/common/app_theme.dart';
 import 'package:flutter_echo/ui/widgets/common_box.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-enum RepayUploadedStatus { successes, progress, failure }
+enum RepayCertificateStatus { successes, progress, failure }
 
-class RepayUploadedListItem extends StatelessWidget {
-  const RepayUploadedListItem({super.key, required this.status});
+class RepayCertificateItem extends StatelessWidget {
+  const RepayCertificateItem({super.key, required this.status});
 
-  final RepayUploadedStatus status;
+  final RepayCertificateStatus status;
 
   // 状态对应的颜色和文字
   Map<String, dynamic> get _statusStyle {
     switch (status) {
-      case RepayUploadedStatus.failure:
+      case RepayCertificateStatus.failure:
         return {"label": "Fallo", "color": NowColors.c0xFFFB4F34};
-      case RepayUploadedStatus.progress:
+      case RepayCertificateStatus.progress:
         return {"label": "En curso", "color": NowColors.c0xFFFF9817};
-      case RepayUploadedStatus.successes:
+      case RepayCertificateStatus.successes:
         return {"label": "Exitos", "color": NowColors.c0xFF3EB34D};
     }
   }

@@ -94,7 +94,7 @@ class _RepayCertificatePageState extends State<RepayCertificatePage> {
     final min = channel?.minAmount ?? 0;
     final current = _controllers[1].text.tryParseDouble ?? 0;
     if (current < min) {
-      toast('el monto ingreso hay que ser mayor de $min');
+      toast('El monto ingreso hay que ser mayor de $min');
       return;
     }
     if (!_isErrors.contains(true)) {

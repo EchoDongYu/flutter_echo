@@ -444,4 +444,13 @@ class Api {
       convert: (json) => RepayApplyResp.fromJson(json),
     );
   }
+
+  /// 银行直连还款申请列表
+  static Future<RepayRecordResp> queryRepaymentRecord() {
+    return _apiService.post(
+      ApiPath.queryRepaymentRecord,
+      body: RepayRecordReq().toJson(),
+      //convert: (json) => RepayRecordResp.fromJson(json),
+    );
+  }
 }

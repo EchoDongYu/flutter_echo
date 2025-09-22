@@ -3,14 +3,14 @@ import 'package:flutter_echo/common/app_theme.dart';
 import 'package:flutter_echo/utils/common_utils.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-class RepayHistoryListItem extends StatelessWidget {
+class RepayHistoryItem extends StatelessWidget {
   final double amount;
   final String venDate;
 
   ///本次还款处理后状态：0：还款中，1：还款成功,2：还款失败
   final int? status;
 
-  const RepayHistoryListItem({
+  const RepayHistoryItem({
     super.key,
     required this.amount,
     required this.venDate,

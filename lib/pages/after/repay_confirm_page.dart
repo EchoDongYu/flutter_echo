@@ -116,25 +116,25 @@ class _RepayConfirmPageState extends State<RepayConfirmPage> {
           FocusScope.of(context).requestFocus(FocusNode());
           final model = context.read<BillDetailModel>();
           final channel = model.selectedChannel;
-          //final max = channel?.maxAmount ?? 0;
-          final min = channel?.minAmount ?? 0;
-          final current = _controller.text.tryParseDouble ?? 0;
-          if (current < min) {
-            toast('el monto ingreso hay que ser mayor de $min');
-            return;
-          }
-          final result = await PromptDialog.show(
-            context: context,
-            title: 'Consejos',
-            content: '¿Estas seguro de modificarla cantidad?',
-            confirmText: 'Confirmar',
-            cancelText: 'Cancelar',
-          );
-          if (result == true && context.mounted) {
-            final type = channel?.y28nd4OChannelType;
-            if (type == 2) {
-              context.push(AppRouter.repayBank);
-            } else if (type != null) {
+          final type = channel?.y28nd4OChannelType;
+          if (type == 2) {
+            context.push(AppRouter.repayBank);
+          } else if (type != null) {
+            //final max = channel?.maxAmount ?? 0;
+            final min = channel?.minAmount ?? 0;
+            final current = _controller.text.tryParseDouble ?? 0;
+            if (current < min) {
+              toast('El monto ingreso hay que ser mayor de $min');
+              return;
+            }
+            final result = await PromptDialog.show(
+              context: context,
+              title: 'Consejos',
+              content: '¿Estas seguro de modificarla cantidad?',
+              confirmText: 'Confirmar',
+              cancelText: 'Cancelar',
+            );
+            if (result == true) {
               model.applyRepayH5(current);
             }
           }
