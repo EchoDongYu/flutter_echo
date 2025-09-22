@@ -43,6 +43,7 @@ import 'package:flutter_echo/providers/bill_detail_provider.dart';
 import 'package:flutter_echo/providers/bill_provider.dart';
 import 'package:flutter_echo/providers/camera_provider.dart';
 import 'package:flutter_echo/providers/feedback_provider.dart';
+import 'package:flutter_echo/providers/identification_provider.dart';
 import 'package:flutter_echo/providers/login_provider.dart';
 import 'package:flutter_echo/providers/main_provider.dart';
 import 'package:flutter_echo/providers/repay_history_provider.dart';
@@ -212,7 +213,12 @@ class AppRouter {
       /// 授信认证页面
       GoRoute(
         path: faceIdentification,
-        builder: (context, state) => const FaceIdentificationPage(),
+        builder: (context, state) => ChangeNotifierProvider(
+          create: (_) => IdentificationModel(),
+          builder: (_, _) {
+            return PageConsumer<WhatsappModel>(child: const FaceIdentificationPage());
+          },
+        ),
       ),
 
       /// 授信失败页面
