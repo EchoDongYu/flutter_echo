@@ -138,14 +138,11 @@ class _StepProcessPageState extends State<StepProcessPage> {
   late int _countdown;
   Timer? _timer;
 
-  StepStatusModel get statusModel =>
-      Provider.of<StepStatusModel>(context, listen: false);
-
   @override
   void initState() {
     super.initState();
     WidgetsBinding.instance.addPostFrameCallback((_) {
-      statusModel.refreshSubmitResult(5);
+      context.read<StepStatusModel>().refreshSubmitResult(5);
     });
     _countdown = widget.countdown ?? 60;
     _startTimer();

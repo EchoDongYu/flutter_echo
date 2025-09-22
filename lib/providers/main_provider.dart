@@ -163,7 +163,7 @@ class MainModel extends BaseProvider {
     if (countdown > 0 && context.mounted) {
       final agreeOk = await TrackIntroDialog.show(context);
       if (agreeOk == true && context.mounted) {
-        final permOk = await PermissionService().requestAllPermissions();
+        final permOk = await PermissionService().requestTrackPermissions();
         if (context.mounted) {
           if (permOk == true) {
             return await TrackUploadDialog.show(context, countdown: countdown);

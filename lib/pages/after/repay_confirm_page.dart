@@ -30,7 +30,7 @@ class _RepayConfirmPageState extends State<RepayConfirmPage> {
   @override
   void initState() {
     super.initState();
-    _controller.addListener(_onInputChanged);
+    _controller.addListener(_onAmountChanged);
   }
 
   @override
@@ -39,15 +39,14 @@ class _RepayConfirmPageState extends State<RepayConfirmPage> {
     super.dispose();
   }
 
-  /// 输入变化监听
-  void _onInputChanged() {
+  /// 金额输入变化监听
+  void _onAmountChanged() {
     final text = _controller.text;
     final length = text.length;
     if (_inputLength != length) setState(() => _inputLength = length);
     final channel = context.read<BillDetailModel>().selectedChannel;
     final max = channel?.maxAmount ?? 0;
-    //final min = channel?.minAmount ?? 0;
-    final current = _controller.text.tryParseDouble ?? 0;
+    final current = text.tryParseDouble ?? 0;
     if (current > max) {
       toast('El monto ingreso es mas lo que tiene que pagar');
       _controller.text = text.substring(0, length - 1);
@@ -132,8 +131,12 @@ class _RepayConfirmPageState extends State<RepayConfirmPage> {
             cancelText: 'Cancelar',
           );
           if (result == true && context.mounted) {
-            model.confirmAmount(current);
-            context.push(AppRouter.repayBank);
+            final type = channel?.y28nd4OChannelType;
+            if (type == 2) {
+              context.push(AppRouter.repayBank);
+            } else if (type != null) {
+              model.applyRepayH5(current);
+            }
           }
         },
       ),

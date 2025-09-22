@@ -13019,7 +13019,7 @@ class LoanOrderResp {
   @JsonKey(name: 'tigereye')
   final double? tigereyeOInterest;
   @JsonKey(name: 'remark')
-  final String? remark;
+  final Object? remark;
   @JsonKey(name: 'z38e62')
   final String? z38e62OOrderGid;
   @JsonKey(name: 'vnbh46')
@@ -19403,7 +19403,7 @@ class HomeInfoResp$PapuanOLastRecordLoan {
   @JsonKey(name: 'slack')
   final bool? slackOIsOverdue;
   @JsonKey(name: 'remark')
-  final String? remark;
+  final Object? remark;
   @JsonKey(name: 'kc1347')
   final bool? kc1347OEnableRenew;
 
@@ -19813,7 +19813,7 @@ class HomeInfoResp$Xu551uOSpareLastRecordLoan {
   @JsonKey(name: 'slack')
   final bool? slackOIsOverdue;
   @JsonKey(name: 'remark')
-  final String? remark;
+  final Object? remark;
   @JsonKey(name: 'kc1347')
   final bool? kc1347OEnableRenew;
 
@@ -22369,7 +22369,7 @@ class HomeCouponResp$FireballOUserCouponList$Item {
   @JsonKey(name: 'mtsv37')
   final int? mtsv37OIsUsed;
   @JsonKey(name: 'remark')
-  final String? remark;
+  final Object? remark;
   @JsonKey(name: 'statics')
   final int? staticsOCreateTime;
   @JsonKey(name: 'l16h95')
@@ -22735,7 +22735,7 @@ class LoanCouponResp$T933d6OUserCouponAvailableList$Item {
   @JsonKey(name: 'mtsv37')
   final int? mtsv37OIsUsed;
   @JsonKey(name: 'remark')
-  final String? remark;
+  final Object? remark;
   @JsonKey(name: 'statics')
   final int? staticsOCreateTime;
   @JsonKey(name: 'l16h95')
@@ -23101,7 +23101,7 @@ class LoanCouponResp$StannateOUserCouponUnavailableList$Item {
   @JsonKey(name: 'mtsv37')
   final int? mtsv37OIsUsed;
   @JsonKey(name: 'remark')
-  final String? remark;
+  final Object? remark;
   @JsonKey(name: 'statics')
   final int? staticsOCreateTime;
   @JsonKey(name: 'l16h95')
@@ -23467,7 +23467,7 @@ class MyCouponResp$FireballOUserCouponList$Item {
   @JsonKey(name: 'mtsv37')
   final int? mtsv37OIsUsed;
   @JsonKey(name: 'remark')
-  final String? remark;
+  final Object? remark;
   @JsonKey(name: 'statics')
   final int? staticsOCreateTime;
   @JsonKey(name: 'l16h95')
@@ -23833,7 +23833,7 @@ class LandCouponResp$FireballOUserCouponList$Item {
   @JsonKey(name: 'mtsv37')
   final int? mtsv37OIsUsed;
   @JsonKey(name: 'remark')
-  final String? remark;
+  final Object? remark;
   @JsonKey(name: 'statics')
   final int? staticsOCreateTime;
   @JsonKey(name: 'l16h95')
@@ -24292,7 +24292,7 @@ class LoanBillResp$Ouxtd3OLoanList$Item {
   @JsonKey(name: 'slack')
   final bool? slackOIsOverdue;
   @JsonKey(name: 'remark')
-  final String? remark;
+  final Object? remark;
   @JsonKey(name: 'kc1347')
   final bool? kc1347OEnableRenew;
 
@@ -25015,7 +25015,7 @@ class BillDetailResp$V08uw3ORepaymentChannelList$Item {
   @JsonKey(name: 'frat')
   final String? fratOMark;
   @JsonKey(name: 'remark')
-  final String? remark;
+  final Object? remark;
   @JsonKey(name: 'ejv164')
   final String? ejv164OChannelTypeName;
   @JsonKey(name: 'nq7f9v')
@@ -25394,7 +25394,7 @@ class BillDetailResp$GlacisORepaymentPlanList$Item {
   @JsonKey(name: 'sweeny')
   final String? sweenyOWorkFlowId;
   @JsonKey(name: 'remark')
-  final String? remark;
+  final Object? remark;
   @JsonKey(name: 'i2jk5f')
   final int? i2jk5fOPeriodStatus;
   @JsonKey(name: 'emcee')
@@ -26296,7 +26296,7 @@ class BillRepayResp$My4dd2ORepaymentList$Item {
   @JsonKey(name: 'wtpuzt')
   final int? wtpuztORepaymentTime;
   @JsonKey(name: 'remark')
-  final String? remark;
+  final Object? remark;
   @JsonKey(name: 'nannette')
   final String? nannetteOReturnCode;
   @JsonKey(name: 'vx4165')

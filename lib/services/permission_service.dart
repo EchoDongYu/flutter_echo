@@ -8,15 +8,15 @@ class PermissionService {
 
   PermissionService._internal();
 
-  /// 请求所有必要权限
-  Future<bool?> requestAllPermissions() async {
-    final result = await [
-      Permission.camera,
-      Permission.location,
-      Permission.sms,
-      Permission.phone,
-      Permission.notification,
-    ].request();
+  /// 请求埋点权限
+  Future<bool?> requestTrackPermissions() async {
+    final result = await [Permission.location, Permission.sms].request();
     return result.values.every((status) => status.isGranted);
+  }
+
+  /// 请求相机权限
+  Future<bool?> requestCameraPermissions() async {
+    final result = await Permission.camera.request();
+    return result.isGranted;
   }
 }

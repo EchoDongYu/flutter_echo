@@ -6083,13 +6083,6 @@
                         "mock": "@boolean"
                       }
                     },
-                    "remark": {
-                      "type": "string",
-                      "description": "备注",
-                      "mock": {
-                        "mock": "@string"
-                      }
-                    },
                     "kc1347(o_enableRenew)": {
                       "type": "boolean",
                       "description": "续期标志true可以续期false不能续期",
@@ -6302,13 +6295,6 @@
                       "description": "0未逾期1逾期",
                       "mock": {
                         "mock": "@boolean"
-                      }
-                    },
-                    "remark": {
-                      "type": "string",
-                      "description": "备注",
-                      "mock": {
-                        "mock": "@string"
                       }
                     },
                     "kc1347(o_enableRenew)": {
@@ -7917,13 +7903,6 @@
                   "description": "后置利息",
                   "mock": {
                     "mock": "@float"
-                  }
-                },
-                "remark": {
-                  "type": "string",
-                  "description": "备注",
-                  "mock": {
-                    "mock": "@string"
                   }
                 },
                 "z38e62(o_orderGid)": {
@@ -10720,13 +10699,6 @@
                           "mock": "@Long"
                         }
                       },
-                      "remark": {
-                        "type": "string",
-                        "description": "备注",
-                        "mock": {
-                          "mock": "@string"
-                        }
-                      },
                       "statics(o_createTime)": {
                         "type": "k30z72(o_number)",
                         "description": "创建时间",
@@ -10949,13 +10921,6 @@
                           "mock": "@Long"
                         }
                       },
-                      "remark": {
-                        "type": "string",
-                        "description": "备注",
-                        "mock": {
-                          "mock": "@string"
-                        }
-                      },
                       "statics(o_createTime)": {
                         "type": "k30z72(o_number)",
                         "description": "创建时间",
@@ -11111,13 +11076,6 @@
                         "description": "是否已使用(0:未使用，1:已使用)",
                         "mock": {
                           "mock": "@Long"
-                        }
-                      },
-                      "remark": {
-                        "type": "string",
-                        "description": "备注",
-                        "mock": {
-                          "mock": "@string"
                         }
                       },
                       "statics(o_createTime)": {
@@ -11333,13 +11291,6 @@
                         "description": "是否已使用(0:未使用，1:已使用)",
                         "mock": {
                           "mock": "@Long"
-                        }
-                      },
-                      "remark": {
-                        "type": "string",
-                        "description": "备注",
-                        "mock": {
-                          "mock": "@string"
                         }
                       },
                       "statics(o_createTime)": {
@@ -11662,13 +11613,6 @@
                         "description": "是否已使用(0:未使用，1:已使用)",
                         "mock": {
                           "mock": "@Long"
-                        }
-                      },
-                      "remark": {
-                        "type": "string",
-                        "description": "备注",
-                        "mock": {
-                          "mock": "@string"
                         }
                       },
                       "statics(o_createTime)": {
@@ -12126,13 +12070,6 @@
                         "description": "0未逾期1逾期",
                         "mock": {
                           "mock": "@boolean"
-                        }
-                      },
-                      "remark": {
-                        "type": "string",
-                        "description": "备注",
-                        "mock": {
-                          "mock": "@string"
                         }
                       },
                       "kc1347(o_enableRenew)": {
@@ -12698,13 +12635,6 @@
                           "mock": "@string"
                         }
                       },
-                      "remark": {
-                        "type": "string",
-                        "description": "还款备注信息",
-                        "mock": {
-                          "mock": "@string"
-                        }
-                      },
                       "ejv164(o_channelTypeName)": {
                         "type": "string",
                         "description": "还款方式",
@@ -13122,13 +13052,6 @@
                           "mock": "@Long"
                         }
                       },
-                      "remark": {
-                        "type": "string",
-                        "description": "备注",
-                        "mock": {
-                          "mock": "@string"
-                        }
-                      },
                       "i2jk5f(o_periodStatus)": {
                         "type": "k30z72(o_number)",
                         "description": "分期计划状态：,0未结清且到期N天之前,1未结清且到期,2未结清且逾期,3结清",
@@ -13424,13 +13347,6 @@
                         "description": "还款时间",
                         "mock": {
                           "mock": "@Long"
-                        }
-                      },
-                      "remark": {
-                        "type": "string",
-                        "description": "备注",
-                        "mock": {
-                          "mock": "@string"
                         }
                       },
                       "nannette(o_returnCode)": {

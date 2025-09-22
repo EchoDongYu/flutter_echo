@@ -45,7 +45,7 @@ class _RepayCertificatePageState extends State<RepayCertificatePage> {
   void initState() {
     super.initState();
     _controllers[0].addListener(() => _onInputChanged(1));
-    _controllers[1].addListener(() => _onInputChanged(2));
+    _controllers[1].addListener(() => _onAmountChanged());
     _controllers[2].addListener(() => _onInputChanged(4));
     WidgetsBinding.instance.addPostFrameCallback((_) {
       final model = context.read<BillDetailModel>();
@@ -66,6 +66,20 @@ class _RepayCertificatePageState extends State<RepayCertificatePage> {
     if (_isErrors[pos] != false) setState(() => _isErrors[pos] = false);
   }
 
+  /// 金额输入变化监听
+  void _onAmountChanged() {
+    final text = _controllers[1].text;
+    final length = text.length;
+    final channel = context.read<BillDetailModel>().selectedChannel;
+    final max = channel?.maxAmount ?? 0;
+    final current = text.tryParseDouble ?? 0;
+    if (current > max) {
+      toast('El monto ingreso es mas lo que tiene que pagar');
+      _controllers[1].text = text.substring(0, length - 1);
+    }
+    if (_isErrors[2] != false) setState(() => _isErrors[2] = false);
+  }
+
   void _applyRepay(BuildContext context) async {
     setState(() {
       _isErrors[0] = _pickedBank == null;
@@ -74,8 +88,16 @@ class _RepayCertificatePageState extends State<RepayCertificatePage> {
       _isErrors[3] = _pickedDate == null;
       _isErrors[4] = _controllers[2].text.isEmpty;
     });
+    final model = context.read<BillDetailModel>();
+    final channel = model.selectedChannel;
+    //final max = channel?.maxAmount ?? 0;
+    final min = channel?.minAmount ?? 0;
+    final current = _controllers[1].text.tryParseDouble ?? 0;
+    if (current < min) {
+      toast('el monto ingreso hay que ser mayor de $min');
+      return;
+    }
     if (!_isErrors.contains(true)) {
-      final model = context.read<BillDetailModel>();
       model.applyRepay(
         inputs: _controllers.map((it) => it.text).toList(),
         date: _pickedDate?.secondSinceEpoch,
