@@ -1,73 +1,39 @@
 import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_echo/common/app_theme.dart';
+import 'package:flutter_echo/providers/camera_provider.dart';
 import 'package:flutter_echo/ui/widgets/common_box.dart';
 import 'package:flutter_echo/utils/drawable_utils.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
+import 'package:provider/provider.dart';
 
 /// 授信拍照页面
-class FaceCameraPage extends StatefulWidget {
+class FaceCameraPage extends StatelessWidget {
   const FaceCameraPage({super.key});
 
   @override
-  State<FaceCameraPage> createState() => _FaceCameraPageState();
-}
-
-class _FaceCameraPageState extends State<FaceCameraPage> {
-  CameraController? _controller;
-  List<CameraDescription>? _cameras;
-  bool _isReady = false;
-
-  @override
-  void initState() {
-    super.initState();
-    _initCamera();
-  }
-
-  Future<void> _initCamera() async {
-    _cameras = await availableCameras();
-    _controller = CameraController(
-      _cameras!.first,
-      ResolutionPreset.high,
-      enableAudio: false,
-    );
-    await _controller!.initialize();
-    setState(() => _isReady = true);
-  }
-
-  @override
-  void dispose() {
-    _controller?.dispose();
-    super.dispose();
-  }
-
-  Future<void> _takePhoto() async {
-    if (!_controller!.value.isInitialized) return;
-    final file = await _controller!.takePicture();
-    if (!mounted) return;
-    debugPrint("file_path:${file.path}");
-  }
-
-  @override
   Widget build(BuildContext context) {
-    if (!_isReady) {
-      return const Scaffold(body: Center(child: CircularProgressIndicator()));
+    final cameraProvider = context.watch<CameraModel>();
+
+    if (!cameraProvider.isReady || cameraProvider.controller == null) {
+      return const Scaffold(
+        body: Center(child: CircularProgressIndicator()),
+      );
     }
 
     return Scaffold(
       body: Stack(
         fit: StackFit.expand,
         children: [
-          CameraPreview(_controller!),
+          CameraPreview(cameraProvider.controller!),
 
+          // 返回按钮
           Positioned(
             top: 56.h,
             left: 24.w,
             child: GestureDetector(
-              onTap: () {
-                context.pop(true);
-              },
+              onTap: () => context.pop(true),
               child: Image.asset(
                 Drawable.iconReturn,
                 width: 36.w,
@@ -92,7 +58,7 @@ class _FaceCameraPageState extends State<FaceCameraPage> {
             ),
           ),
 
-          // 中间矩形框 + 遮罩
+          // 中间矩形框
           Positioned(
             top: 230.h,
             left: 20.w,
@@ -105,6 +71,7 @@ class _FaceCameraPageState extends State<FaceCameraPage> {
               borderRadius: BorderRadius.circular(16),
             ),
           ),
+          //拍照后矩形框
           // Positioned(
           //   top: 230.h,
           //   left: 20.w,
@@ -135,7 +102,14 @@ class _FaceCameraPageState extends State<FaceCameraPage> {
               borderRadius: BorderRadius.zero,
               height: 125.h,
               child: GestureDetector(
-                onTap: _takePhoto,
+                onTap: () async {
+                  final path = await cameraProvider.takePhoto();
+                  if (path != null && context.mounted) {
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      SnackBar(content: Text("照片已保存: $path")),
+                    );
+                  }
+                },
                 // child: Image.asset(
                 //   Drawable.iconPhotoTake,
                 //   width: 82.w,
@@ -143,7 +117,7 @@ class _FaceCameraPageState extends State<FaceCameraPage> {
                 // ),
                 child: Row(
                   children: [
-                    Expanded(child: SizedBox()),
+                    const Expanded(child: SizedBox()),
                     Expanded(
                       child: Image.asset(
                         Drawable.iconPhotoFinish,

@@ -41,6 +41,7 @@ import 'package:flutter_echo/providers/account_provider.dart';
 import 'package:flutter_echo/providers/apply_provider.dart';
 import 'package:flutter_echo/providers/bill_detail_provider.dart';
 import 'package:flutter_echo/providers/bill_provider.dart';
+import 'package:flutter_echo/providers/camera_provider.dart';
 import 'package:flutter_echo/providers/feedback_provider.dart';
 import 'package:flutter_echo/providers/login_provider.dart';
 import 'package:flutter_echo/providers/main_provider.dart';
@@ -200,7 +201,12 @@ class AppRouter {
       /// 授信拍照页面
       GoRoute(
         path: faceCamera,
-        builder: (context, state) => const FaceCameraPage(),
+        builder: (context, state) => ChangeNotifierProvider(
+          create: (_) => CameraModel()..initCamera(),
+          builder: (_, _) {
+            return PageConsumer<WhatsappModel>(child: const FaceCameraPage());
+          },
+        ),
       ),
 
       /// 授信认证页面
