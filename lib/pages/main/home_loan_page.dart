@@ -4,6 +4,7 @@ import 'package:flutter_echo/common/constants.dart';
 import 'package:flutter_echo/models/swaggerApi.models.swagger.dart';
 import 'package:flutter_echo/pages/bill/bill_status.dart';
 import 'package:flutter_echo/providers/main_provider.dart';
+import 'package:flutter_echo/services/storage_service.dart';
 import 'package:flutter_echo/ui/widget_helper.dart';
 import 'package:flutter_echo/ui/widgets/common_button.dart';
 import 'package:flutter_echo/ui/widgets/home_arc_slider.dart';
@@ -86,6 +87,7 @@ class _HomeLoanPageState extends State<HomeLoanPage> {
         ),
         child: InkWell(
           onTap: () async {
+            LocalStorage().set(AppConst.homeRefreshKey, true);
             final route = routeDetails(
               billInfo.cherubimOOrderStatus,
               billInfo.r5a4x8OLoanGid,
@@ -263,7 +265,7 @@ class _HomeLoanPageState extends State<HomeLoanPage> {
               min: provider.minValue,
               max: provider.maxValue,
               step: provider.step,
-              value: provider.value,
+              value: provider.pickedValue,
               size: 305,
               onChanged: provider.updateValue,
             ),

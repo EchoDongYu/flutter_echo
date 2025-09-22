@@ -169,6 +169,7 @@ class LoginModel extends BaseProvider {
     showCaptchaDialog,
   ) async {
     _imageCode = await showCaptchaDialog(mobile: _phoneNumber, type: _codeType);
+    if (_timer != null && _countdown <= 0) resendVerifyCode(_dType);
   }
 
   @override

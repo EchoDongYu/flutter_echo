@@ -1,16 +1,16 @@
 import 'dart:convert';
 
 import 'package:flutter/foundation.dart';
-import 'package:flutter_echo/common/base_provider.dart';
 import 'package:flutter_echo/models/common_model.dart';
 import 'package:flutter_echo/models/swaggerApi.models.swagger.dart';
 import 'package:flutter_echo/pages/app_router.dart';
+import 'package:flutter_echo/providers/whatsapp_provider.dart';
 import 'package:flutter_echo/services/api_service.dart';
 import 'package:flutter_echo/utils/common_utils.dart';
 import 'package:flutter_image_compress/flutter_image_compress.dart';
 import 'package:go_router/go_router.dart';
 
-class BillDetailModel extends BaseProvider {
+class BillDetailModel extends WhatsappModel {
   ///账单详情数据
   BillDetailResp? get billDetailData => _billDetailData;
   BillDetailResp? _billDetailData;

@@ -70,6 +70,7 @@ class AppConst {
   static const String kycStepKey = 'kycStep';
   static const String kycDataKey = 'kycData';
   static const String mainInfoKey = 'mainInfo';
+  static const String homeRefreshKey = 'homeRefresh';
 }
 
 class ApiPath {

@@ -3,6 +3,7 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_echo/common/app_theme.dart';
+import 'package:flutter_echo/common/constants.dart';
 import 'package:flutter_echo/models/common_model.dart';
 import 'package:flutter_echo/pages/app_router.dart';
 import 'package:flutter_echo/pages/main/home_page.dart';
@@ -78,6 +79,7 @@ class _MainPageState extends State<MainPage> {
               onPageChanged: (value) {
                 if (_currentPage != value) {
                   if (!LocalStorage().isLogin) {
+                    LocalStorage().set(AppConst.homeRefreshKey, true);
                     context.go(AppRouter.loginPhone);
                   } else {
                     setState(() => _currentPage = value);

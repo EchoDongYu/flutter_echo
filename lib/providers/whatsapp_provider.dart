@@ -6,7 +6,7 @@ class WhatsappModel extends BaseProvider {
   static const _dictType = '17';
   static String? _whatsapp;
 
-  Future<String?> getDictionary() async {
+  Future<String?> getWhatsDictionary() async {
     if (_whatsapp?.isNotEmpty == true) return _whatsapp;
     return await launchRequest(() async {
       final apiResult = await Api.getDictionary(_dictType);

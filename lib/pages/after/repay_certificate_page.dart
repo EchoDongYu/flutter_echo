@@ -88,16 +88,16 @@ class _RepayCertificatePageState extends State<RepayCertificatePage> {
       _isErrors[3] = _pickedDate == null;
       _isErrors[4] = _controllers[2].text.isEmpty;
     });
-    final model = context.read<BillDetailModel>();
-    final channel = model.selectedChannel;
-    //final max = channel?.maxAmount ?? 0;
-    final min = channel?.minAmount ?? 0;
-    final current = _controllers[1].text.tryParseDouble ?? 0;
-    if (current < min) {
-      toast('El monto ingreso hay que ser mayor de $min');
-      return;
-    }
     if (!_isErrors.contains(true)) {
+      final model = context.read<BillDetailModel>();
+      final channel = model.selectedChannel;
+      //final max = channel?.maxAmount ?? 0;
+      final min = channel?.minAmount ?? 0;
+      final current = _controllers[1].text.tryParseDouble ?? 0;
+      if (current < min) {
+        toast('El monto ingreso hay que ser mayor de $min');
+        return;
+      }
       model.applyRepay(
         inputs: _controllers.map((it) => it.text).toList(),
         date: _pickedDate?.secondSinceEpoch,
@@ -425,15 +425,23 @@ class _RepayCertificatePageState extends State<RepayCertificatePage> {
             ),
           ),
           SizedBox(height: 12.h),
-          Text(
-            'Suporte via WhatsApp',
-            style: TextStyle(
-              fontSize: 14.sp,
-              decoration: TextDecoration.underline,
-              decorationColor: NowColors.c0xFF3288F1,
-              decorationThickness: 2,
-              color: NowColors.c0xFF3288F1,
-              fontWeight: FontWeight.w500,
+          GestureDetector(
+            onTap: () async {
+              final phone = await context
+                  .read<BillDetailModel>()
+                  .getWhatsDictionary();
+              FlutterPlatform.launchWhatsApp(phone);
+            },
+            child: Text(
+              'Suporte via WhatsApp',
+              style: TextStyle(
+                fontSize: 14.sp,
+                decoration: TextDecoration.underline,
+                decorationColor: NowColors.c0xFF3288F1,
+                decorationThickness: 2,
+                color: NowColors.c0xFF3288F1,
+                fontWeight: FontWeight.w500,
+              ),
             ),
           ),
           SizedBox(height: 56.h),

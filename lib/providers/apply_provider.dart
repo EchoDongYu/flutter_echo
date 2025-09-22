@@ -43,10 +43,13 @@ class ApplyModel extends BaseProvider {
     switch (apiResult?.suffOLoanStatus) {
       case 0:
         pushReplacement(AppRouter.applyProcess);
+        break;
       case 1:
         navigate((context) => context.go(AppRouter.main));
+        break;
       case 2:
         pushReplacement(AppRouter.applyFailed);
+        break;
     }
   }
 }

@@ -133,13 +133,17 @@ class _AboutUsPageState extends State<AboutUsPage> {
               switch (item?.type) {
                 case '17':
                   FlutterPlatform.launchWhatsApp(item?.value);
+                  break;
                 case '21':
                   launchUrl(Uri.parse('tel:${item?.value}'));
+                  break;
                 case '23':
                   launchUrl(Uri.parse('https:${item?.value}'));
+                  break;
                 default:
                   Clipboard.setData(ClipboardData(text: item?.value ?? ''));
                   toast('copiar');
+                  break;
               }
             },
             child: Image.asset(icon, width: 40.r, height: 40.r),

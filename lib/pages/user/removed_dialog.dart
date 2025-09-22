@@ -89,7 +89,7 @@ class RemovedDialog extends StatelessWidget {
               onTap: () async {
                 final phone = await context
                     .read<WhatsappModel>()
-                    .getDictionary();
+                    .getWhatsDictionary();
                 FlutterPlatform.launchWhatsApp(phone);
               },
               child: Text(

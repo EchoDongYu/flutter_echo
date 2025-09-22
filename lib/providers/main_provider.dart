@@ -12,21 +12,23 @@ import 'package:flutter_echo/utils/common_utils.dart';
 import 'package:go_router/go_router.dart';
 
 class MainModel extends BaseProvider {
+  /// 0未授信 1授信中 2授信完成 3授信失败
+  int? get status => _creditStatus;
   int? _creditStatus;
 
+  ///首页信息
   HomeInfoResp? get homeInfo => _homeInfo;
   HomeInfoResp? _homeInfo;
 
-  MainInfoResp? get mainInfo => _mainInfo;
+  ///前端配置信息
   MainInfoResp? _mainInfo;
 
+  ///是否有密码入口
   bool get hasPasswordEntry =>
-      mainInfo?.fm50w8OLoginPwd == true ||
-      (mainInfo?.cressyOTraderPwd == true && _creditStatus == 2);
+      _mainInfo?.fm50w8OLoginPwd == true ||
+      (_mainInfo?.cressyOTraderPwd == true && _creditStatus == 2);
 
-  /// 0未授信 1授信中 2授信完成 3授信失败
-  int? get status => _creditStatus;
-
+  ///首页选择产品
   HomeInfoResp$AssurOFaceList$Item? get pickedProduct => _pickedProduct;
   HomeInfoResp$AssurOFaceList$Item? _pickedProduct;
 
@@ -36,9 +38,11 @@ class MainModel extends BaseProvider {
 
   double get step => _pickedProduct?.marrowOLoanRangeUnit ?? 0;
 
-  double get value => _value;
-  double _value = 0;
+  ///首页选择金额
+  double get pickedValue => _pickedValue;
+  double _pickedValue = 0;
 
+  ///产品是否锁定
   bool get isLock =>
       (_homeInfo?.nookieOCanBorrowAmount ?? 0) <= 0 ||
       _pickedProduct?.faroucheOIsLock == true;
@@ -47,13 +51,13 @@ class MainModel extends BaseProvider {
     double clamped = newValue.clamp(minValue, maxValue);
     double steps = ((clamped - minValue) / step).roundToDouble();
     double snapped = (minValue + steps * step).clamp(minValue, maxValue);
-    _value = snapped;
+    _pickedValue = snapped;
     notifyListeners();
   }
 
   void changeProduct(HomeInfoResp$AssurOFaceList$Item item) {
     _pickedProduct = item;
-    _value = item.xuwh2oOLoanRangeMax ?? 0;
+    _pickedValue = item.xuwh2oOLoanRangeMax ?? 0;
     notifyListeners();
   }
 
@@ -62,7 +66,7 @@ class MainModel extends BaseProvider {
       _homeInfo = await launchRequest(() => Api.getHomeInfo());
       _creditStatus = _homeInfo?.bopomofoOCreditStatus;
       _pickedProduct = _homeInfo?.assurOFaceList?.firstOrNull;
-      _value = _pickedProduct?.xuwh2oOLoanRangeMax ?? 0;
+      _pickedValue = _pickedProduct?.xuwh2oOLoanRangeMax ?? 0;
     } else {
       _creditStatus = null;
     }
@@ -73,19 +77,23 @@ class MainModel extends BaseProvider {
     if (LocalStorage().isLogin && _mainInfo == null) {
       _mainInfo = await Api.getMainBaseInfo();
       await LocalStorage().set(AppConst.mainInfoKey, _mainInfo);
+      return _mainInfo;
     }
     return null;
   }
 
   void launchDefault() async {
+    LocalStorage().set(AppConst.homeRefreshKey, true);
     switch (_creditStatus) {
       case 0:
         _launchKycStep();
+        break;
       default:
         final apiResult = await launchRequest(() => Api.refreshSubmitResult());
         switch (apiResult?.bopomofoOCreditStatus) {
           case 0:
             _launchKycStep();
+            break;
           case 1:
             final uriRoute = Uri(
               path: AppRouter.stepProcess,
@@ -94,6 +102,7 @@ class MainModel extends BaseProvider {
               },
             );
             navigate((context) => context.push(uriRoute.toString()));
+            break;
           case 2:
             final productId = apiResult?.foreyardOProductId;
             final amount = apiResult?.nookieOCanBorrowAmount;
@@ -108,8 +117,10 @@ class MainModel extends BaseProvider {
               },
             );
             navigate((context) => context.push(uriRoute.toString()));
+            break;
           case 3:
             navigate((context) => context.push(AppRouter.stepFailed));
+            break;
         }
     }
   }
@@ -118,14 +129,19 @@ class MainModel extends BaseProvider {
     switch (LocalStorage().kycStep) {
       case null:
         navigate((context) => context.push(AppRouter.stepBasic));
+        break;
       case 1:
         navigate((context) => context.push(AppRouter.stepWork));
+        break;
       case 2:
         navigate((context) => context.push(AppRouter.stepContact));
+        break;
       case 3:
         navigate((context) => context.push(AppRouter.stepIdInfo));
+        break;
       default:
         navigate((context) => context.push(AppRouter.stepBasic));
+        break;
     }
   }
 
@@ -137,11 +153,12 @@ class MainModel extends BaseProvider {
       return;
     }
     if (_creditStatus != 2) return;
-    final amount = _value;
+    final amount = _pickedValue;
     final productId = _pickedProduct?.foreyardOProductId;
     if (productId == null || amount <= 0) {
       return;
     }
+    LocalStorage().set(AppConst.homeRefreshKey, true);
     final uriRoute = Uri(
       path: AppRouter.applyConfirm,
       queryParameters: {

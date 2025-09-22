@@ -17,9 +17,9 @@ extension BillStatusColor on BillStatus {
   };
 
   Color get homeColor => switch (this) {
-    BillStatus.pagos => NowColors.c0xFFFF9817,
+    BillStatus.pagos => NowColors.c0xFF1C1F23.withValues(alpha: 0.5),
     BillStatus.atrasado => NowColors.c0xFFFB4F34,
-    BillStatus.pendiente => NowColors.c0xFF1C1F23.withValues(alpha: 0.5),
+    BillStatus.pendiente => NowColors.c0xFFFF9817,
     BillStatus.fracaso => NowColors.c0xFFFB4F34,
     BillStatus.pagado => NowColors.c0xFF3EB34D,
     _ => Colors.transparent,

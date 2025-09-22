@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_echo/common/base_provider.dart';
+import 'package:flutter_echo/common/constants.dart';
 import 'package:flutter_echo/models/api_response.dart';
 import 'package:flutter_echo/pages/app_router.dart';
 import 'package:flutter_echo/pages/login/captcha_dialog.dart';
@@ -40,13 +41,13 @@ class PageConsumer<T extends BaseProvider> extends StatelessWidget {
           if (apiError != null) {
             provider.consumeApiError();
             if (apiError.needLogin) {
-              apiError.toastErrorMsg();
+              // apiError.toastErrorMsg();
               await LocalStorage().logout();
               if (context.mounted) {
                 context.go(AppRouter.loginPhone);
               }
             } else if (apiError.needCaptcha) {
-              apiError.toastErrorMsg();
+              // apiError.toastErrorMsg();
               provider.onCaptcha(({
                 required String? mobile,
                 required int? type,
@@ -58,6 +59,7 @@ class PageConsumer<T extends BaseProvider> extends StatelessWidget {
                 );
               });
             } else if (apiError.needVerify) {
+              LocalStorage().set(AppConst.homeRefreshKey, true);
               await DeviceVerifyDialog.show(context);
             } else if (apiError.removal) {
               await RemovedDialog.show(context);

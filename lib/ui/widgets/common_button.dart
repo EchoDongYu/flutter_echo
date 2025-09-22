@@ -52,7 +52,6 @@ class EchoPrimaryButton extends _EchoButton {
         minimumSize: Size.fromHeight(50.h),
         backgroundColor: Colors.transparent,
         padding: EdgeInsets.zero,
-        elevation: 0,
         shape: const RoundedRectangleBorder(
           borderRadius: BorderRadius.all(Radius.circular(50)),
         ),

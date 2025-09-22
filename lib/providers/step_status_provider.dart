@@ -19,6 +19,7 @@ class StepStatusModel extends BaseProvider {
       switch (apiResult?.bopomofoOCreditStatus) {
         case 1:
           refreshSubmitResult(total);
+          break;
         case 2:
           final productId = apiResult?.foreyardOProductId;
           final amount = apiResult?.nookieOCanBorrowAmount;
@@ -34,10 +35,13 @@ class StepStatusModel extends BaseProvider {
             },
           );
           navigate((context) => context.push(uriRoute.toString()));
+          break;
         case 3:
           pushReplacement(AppRouter.stepFailed);
+          break;
         default:
           refreshSubmitResult(total * 2);
+          break;
       }
     });
   }
