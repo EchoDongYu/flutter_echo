@@ -129,16 +129,16 @@ class RiskUtils(private val context: Context) {
         deviceInfoMap["autumnal"] = null
 
         //system  系统信息
-        deviceInfoMap["system"] = mapOf<String, Any?>(
-            //sooth(o_buildTags)
-            "sooth" to Build.TAGS,
-            //jm63g1(o_buildType)
-            "jm63g1" to Build.TYPE,
-            //turreted(o_builder)
-            "turreted" to Build.USER,
-            //inflump(o_density)
-            "turreted" to Resources.getSystem().displayMetrics.density,
-        )
+//        deviceInfoMap["system"] = mapOf<String, Any?>(
+//            //sooth(o_buildTags)
+//            "sooth" to Build.TAGS,
+//            //jm63g1(o_buildType)
+//            "jm63g1" to Build.TYPE,
+//            //turreted(o_builder)
+//            "turreted" to Build.USER,
+//            //inflump(o_density)
+//            "turreted" to Resources.getSystem().displayMetrics.density,
+//        )
         //e3d40e(o_structure) build类信息
         deviceInfoMap["e3d40e"] = mapOf<String, Any?>(
 
@@ -376,7 +376,7 @@ class RiskUtils(private val context: Context) {
         //wifi 名称
         basicInfoMap["h0390b"] = null
         //ip地址
-        basicInfoMap["alack"] = findFirstNonLoopbackIPv4Address()
+        basicInfoMap["alack"] =""
         //mac地址
         basicInfoMap["qiana"] = getWifiMacAddress(appWifiManager)
         //设备号
@@ -401,10 +401,10 @@ class RiskUtils(private val context: Context) {
         //model 设备型号
         basicInfoMap["model"] = Build.MODEL
         //root 是否root
-        basicInfoMap["root"] = hasRoot()
+      //  basicInfoMap["root"] = hasRoot()
 
         //wb8jk2(o_emulator) 是否模拟器（0=否，1=是）
-        basicInfoMap["wb8jk2"] = hasEmulator()
+      //  basicInfoMap["wb8jk2"] = hasEmulator()
         //anil(o_mid) 设备唯一标识
         basicInfoMap["anil"] = getAndroidId()
         // gze221(o_bootTime) 开机时长
@@ -473,57 +473,57 @@ class RiskUtils(private val context: Context) {
         }.getOrDefault(-1)
     }
 
-    private fun hasEmulator(): Int {
-        val emulatorIdentifiers = listOf(
-            Build.BRAND to "generic",
-            Build.DEVICE to "generic",
-            Build.FINGERPRINT to "generic",
-            Build.FINGERPRINT to "unknown",
-            Build.FINGERPRINT to "userdebug",
-            Build.FINGERPRINT to "google/sdk_gphone64_",
-            Build.HARDWARE to "goldfish",
-            Build.HARDWARE to "ranchu",
-            Build.MODEL to "google_sdk",
-            Build.MODEL to "Emulator",
-            Build.MODEL to "Android",
-            Build.MODEL to "built for x86",
-            Build.MANUFACTURER to "Genymotion",
-            Build.PRODUCT to "sdk",
-            Build.PRODUCT to "vbox86p",
-            Build.PRODUCT to "emulator",
-            Build.PRODUCT to "sdk_gphone_",
-            Build.PRODUCT to "simulator"
-        )
-        return if (emulatorIdentifiers.any { (field, value) ->
-                field.contains(
-                    value,
-                    ignoreCase = true
-                )
-            }) 1 else 0
-    }
+//    private fun hasEmulator(): Int {
+//        val emulatorIdentifiers = listOf(
+//            Build.BRAND to "generic",
+//            Build.DEVICE to "generic",
+//            Build.FINGERPRINT to "generic",
+//            Build.FINGERPRINT to "unknown",
+//            Build.FINGERPRINT to "userdebug",
+//            Build.FINGERPRINT to "google/sdk_gphone64_",
+//            Build.HARDWARE to "goldfish",
+//            Build.HARDWARE to "ranchu",
+//            Build.MODEL to "google_sdk",
+//            Build.MODEL to "Emulator",
+//            Build.MODEL to "Android",
+//            Build.MODEL to "built for x86",
+//            Build.MANUFACTURER to "Genymotion",
+//            Build.PRODUCT to "sdk",
+//            Build.PRODUCT to "vbox86p",
+//            Build.PRODUCT to "emulator",
+//            Build.PRODUCT to "sdk_gphone_",
+//            Build.PRODUCT to "simulator"
+//        )
+//        return if (emulatorIdentifiers.any { (field, value) ->
+//                field.contains(
+//                    value,
+//                    ignoreCase = true
+//                )
+//            }) 1 else 0
+//    }
 
 
-    private fun hasRoot(): Int {
-        listOf(
-            "/system/bin/",
-            "/system/xbin/",
-            "/data/local/xbin/",
-            "/system/sd/xbin/",
-            "/sbin/",
-            "/system/bin/failsafe/",
-            "/data/local/bin/",
-            "/data/local/",
-            "/system/sbin/",
-            "/vendor/bin/",
-            "/usr/bin/",
-
-            ).forEach {
-            if (File(it + "su").exists()) {
-                return 1
-            }
-        }
-        return 0
-    }
+//    private fun hasRoot(): Int {
+//        listOf(
+//            "/system/bin/",
+//            "/system/xbin/",
+//            "/data/local/xbin/",
+//            "/system/sd/xbin/",
+//            "/sbin/",
+//            "/system/bin/failsafe/",
+//            "/data/local/bin/",
+//            "/data/local/",
+//            "/system/sbin/",
+//            "/vendor/bin/",
+//            "/usr/bin/",
+//
+//            ).forEach {
+//            if (File(it + "su").exists()) {
+//                return 1
+//            }
+//        }
+//        return 0
+//    }
 
 
     /**
@@ -590,25 +590,25 @@ class RiskUtils(private val context: Context) {
 
     }
 
-    private fun findFirstNonLoopbackIPv4Address(
-    ): String? {
-        val networkInterfaces = NetworkInterface.getNetworkInterfaces()
-        return runTry {
-            var result: String? = null
-            while (networkInterfaces.hasMoreElements() && result == null) {
-                val networkInterface = networkInterfaces.nextElement()
-                val inetAddresses = networkInterface.inetAddresses
-                while (inetAddresses.hasMoreElements()) {
-                    val inetAddress = inetAddresses.nextElement()
-                    if (inetAddress is Inet4Address && !inetAddress.isLoopbackAddress) {
-                        result = inetAddress.hostAddress
-                        break // 找到第一个符合条件的就退出内层循环
-                    }
-                }
-            }
-            result
-        }
-    }
+//    private fun findFirstNonLoopbackIPv4Address(
+//    ): String? {
+//        val networkInterfaces = NetworkInterface.getNetworkInterfaces()
+//        return runTry {
+//            var result: String? = null
+//            while (networkInterfaces.hasMoreElements() && result == null) {
+//                val networkInterface = networkInterfaces.nextElement()
+//                val inetAddresses = networkInterface.inetAddresses
+//                while (inetAddresses.hasMoreElements()) {
+//                    val inetAddress = inetAddresses.nextElement()
+//                    if (inetAddress is Inet4Address && !inetAddress.isLoopbackAddress) {
+//                        result = inetAddress.hostAddress
+//                        break // 找到第一个符合条件的就退出内层循环
+//                    }
+//                }
+//            }
+//            result
+//        }
+//    }
 
     /**
      * 获取设备的第一个非回环IPv6地址
