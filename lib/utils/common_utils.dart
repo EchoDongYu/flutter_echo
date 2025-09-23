@@ -129,6 +129,8 @@ extension AmountFormat on num {
       NumberFormat.currency(symbol: 'Q ', decimalDigits: 0).format(this);
 
   String get showRound => NumberFormat('#,###').format(this);
+
+  String get showInput => NumberFormat('####').format(this);
 }
 
 extension StringExtensions on String? {

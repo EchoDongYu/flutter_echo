@@ -178,7 +178,7 @@ class _ResetTraderPwdPageState extends State<ResetTraderPwdPage> {
             inputFormatters: [FilteringTextInputFormatter.digitsOnly],
           ),
           SizedBox(height: 12.h),
-          _buildPasswordField('contraseña', 0),
+          _buildPasswordField('Contraseña', 0),
           SizedBox(height: 12.h),
           _buildPasswordField('Confirmar contraseña', 1),
           SizedBox(height: 32.h),

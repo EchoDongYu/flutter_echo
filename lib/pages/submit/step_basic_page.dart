@@ -123,17 +123,11 @@ class _StepBasicPageState extends State<StepBasicPage> {
     });
     if (!_isErrors.contains(true)) {
       final list = [
-        Pair('Género', _pickedItem[0]?.value),
-        Pair('Fecha de Nacimiento', _pickedDate?.showDate),
+        Pair('CUI', _controllers[2].text),
         Pair('Nombre(s)', _controllers[0].text),
         Pair('Apellidos', _controllers[1].text),
-        Pair('CUI', _controllers[2].text),
-        Pair('Otro número de teléfono(opcional)', _controllers[3].text),
+        Pair('Fecha de Nacimiento', _pickedDate?.showDate),
         Pair('Correo electrónico', _controllers[4].text),
-        Pair(
-          'Cuenta con algunos otros prestamos vigentes?',
-          _pickedItem[1]?.value,
-        ),
       ];
       list.removeWhere((v) => v.second?.isNotEmpty != true);
       final result = await ConfirmStepDialog.show(context, list);
@@ -160,7 +154,7 @@ class _StepBasicPageState extends State<StepBasicPage> {
               children: [
                 EchoTopBar(title: 'Información básica'),
                 SizedBox(height: 16.h),
-                WidgetHelper.buildStepProgress(step: 1,maxStep: 3),
+                WidgetHelper.buildStepProgress(step: 1, maxStep: 3),
                 SizedBox(height: 16.h),
                 Container(
                   margin: EdgeInsets.symmetric(horizontal: 12.w),

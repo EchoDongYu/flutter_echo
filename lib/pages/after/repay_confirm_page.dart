@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_echo/common/app_theme.dart';
 import 'package:flutter_echo/pages/after/confirm_view/repay_confirm_amount.dart';
@@ -30,6 +32,12 @@ class _RepayConfirmPageState extends State<RepayConfirmPage> {
   void initState() {
     super.initState();
     _controller.addListener(_onAmountChanged);
+    final model = context.read<BillDetailModel>();
+    final channel = model.selectedChannel;
+    final channelRate = channel?.kd94z7OChannelRate ?? 0;
+    final totalAmount = model.totalAmount ?? 0;
+    final max = totalAmount * (1 + channelRate);
+    _controller.text = max.showInput;
   }
 
   @override
@@ -43,15 +51,36 @@ class _RepayConfirmPageState extends State<RepayConfirmPage> {
     final text = _controller.text;
     final length = text.length;
     if (_inputLength != length) setState(() => _inputLength = length);
-    final channel = context.read<BillDetailModel>().selectedChannel;
-    final max = channel?.maxAmount ?? 0;
+    final model = context.read<BillDetailModel>();
+    final channel = model.selectedChannel;
+    final channelRate = channel?.kd94z7OChannelRate ?? 0;
+    final totalAmount = model.totalAmount ?? 0;
+    final max = totalAmount * (1 + channelRate);
     final current = text.tryParseDouble ?? 0;
-    if (current > max) {
+    if (current == 0) {
+      _controller.clear();
+    } else if (current > max) {
       toast('El monto ingreso es mas lo que tiene que pagar');
       _controller.text = text.substring(0, length - 1);
     } else {
-      final rate = channel?.kd94z7OChannelRate ?? 0;
-      setState(() => _comisionFee = current * rate);
+      setState(() => _comisionFee = min(current, totalAmount) * channelRate);
+    }
+  }
+
+  void _onChannelChanged() {
+    final text = _controller.text;
+    final length = text.length;
+    if (_inputLength != length) setState(() => _inputLength = length);
+    final model = context.read<BillDetailModel>();
+    final channel = model.selectedChannel;
+    final channelRate = channel?.kd94z7OChannelRate ?? 0;
+    final totalAmount = model.totalAmount ?? 0;
+    final max = totalAmount * (1 + channelRate);
+    final current = text.tryParseDouble ?? 0;
+    if (current > max) {
+      _controller.text = max.showInput;
+    } else {
+      setState(() => _comisionFee = min(current, totalAmount) * channelRate);
     }
   }
 
@@ -89,6 +118,7 @@ class _RepayConfirmPageState extends State<RepayConfirmPage> {
                   onSelectChannel: (channel) {
                     FocusScope.of(context).requestFocus(FocusNode());
                     provider.selectChannel(channel);
+                    _onChannelChanged();
                   },
                 ),
               ],
