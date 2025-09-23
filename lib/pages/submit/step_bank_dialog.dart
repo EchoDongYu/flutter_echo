@@ -50,9 +50,8 @@ class _StepBankDialogState extends State<StepBankDialog> {
   BankVOResp$Item? _pickedBank;
   List<DictItem>? _stepItems;
   DictItem? _pickedType;
-  String? _numberError;
-
-  BankModel get bankModel => Provider.of<BankModel>(context, listen: false);
+  String? _numberFormatError;
+  String? _numberDifferent;
 
   @override
   void initState() {
@@ -60,7 +59,7 @@ class _StepBankDialogState extends State<StepBankDialog> {
     _controllers[0].addListener(() => _onInputChanged(2));
     _controllers[1].addListener(() => _onInputChanged(3));
     WidgetsBinding.instance.addPostFrameCallback((_) async {
-      final result = await bankModel.queryBankList();
+      final result = await context.read<BankModel>().queryBankList();
       setState(() {
         _bankItems = result?.first;
         _stepItems = result?.second;
@@ -84,32 +83,34 @@ class _StepBankDialogState extends State<StepBankDialog> {
   void _submitData(BuildContext context) async {
     final text0 = _controllers[0].text;
     final text1 = _controllers[1].text;
-    String? numberError;
+    String? numFormatError;
+    String? numDifferent;
     if (text0.isNotEmpty && text1.isNotEmpty) {
       if (text0 != text1) {
-        numberError = _errorTip[0];
+        numDifferent = _errorTip[0];
       } else {
         final bankSong = _pickedBank?.songODigits as Map?;
         final bankType = _pickedType?.key.toString();
         if (bankSong != null && bankType != null) {
           final lengthList = (bankSong[bankType] as String).split(',');
           if (!lengthList.contains(text0.length.toString())) {
-            numberError = _errorTip[1];
+            numFormatError = _errorTip[1];
           }
         }
       }
     }
-    final isError2 = text0.isEmpty || numberError != null;
-    final isError3 = text1.isEmpty || numberError != null;
+    final isError2 = text0.isEmpty || numFormatError != null;
+    final isError3 = text1.isEmpty || numDifferent != null;
     setState(() {
       _isErrors[0] = _pickedBank == null;
       _isErrors[1] = _pickedType == null;
       _isErrors[2] = isError2;
       _isErrors[3] = isError3;
-      _numberError = numberError;
+      _numberFormatError = numFormatError;
+      _numberDifferent = numDifferent;
     });
     if (!_isErrors.contains(true)) {
-      final result = await bankModel.submitBank(
+      final result = await context.read<BankModel>().submitBank(
         bank: _pickedBank,
         type: _pickedType?.key,
         inputs: _controllers.map((it) => it.text).toList(),
@@ -197,7 +198,7 @@ class _StepBankDialogState extends State<StepBankDialog> {
           child: Consumer<BankModel>(
             builder: (context, provider, _) {
               return Text(
-                'El titular de la tarjeta debe estar debajo de la CUI (${provider.cuiNumber}) que completó cuando presentó la solicitud; ',
+                'El titular de la tarjeta debe estar debajo de la CUI (${provider.cuiNumber}) que completó cuando presentó la solicitud; de lo contrario, es posible que no pueda recibir el pago',
                 style: TextStyle(
                   fontSize: 13.sp,
                   fontWeight: FontWeight.w400,
@@ -259,10 +260,10 @@ class _StepBankDialogState extends State<StepBankDialog> {
             hintText: 'Número de cuenta bancaria',
             maxLength: 18,
             keyboardType: TextInputType.number,
-            textInputAction: TextInputAction.next,
+            textInputAction: TextInputAction.done,
             inputFormatters: [FilteringTextInputFormatter.digitsOnly],
             isError: _isErrors[2],
-            errorText: _numberError ?? _errorHint[2],
+            errorText: _numberFormatError ?? _errorHint[2],
           ),
           StepInputField(
             controller: _controllers[1],
@@ -272,7 +273,7 @@ class _StepBankDialogState extends State<StepBankDialog> {
             textInputAction: TextInputAction.done,
             inputFormatters: [FilteringTextInputFormatter.digitsOnly],
             isError: _isErrors[3],
-            errorText: _numberError ?? _errorHint[2],
+            errorText: _numberDifferent ?? _errorHint[2],
           ),
         ],
       ),

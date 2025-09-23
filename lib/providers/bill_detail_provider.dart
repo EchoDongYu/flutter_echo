@@ -147,8 +147,13 @@ class BillDetailModel extends WhatsappModel {
     final apiResult = await launchRequest(() async {
       return await Api.applyRepay(_createRepayApplyReq(amount));
     });
-    if (apiResult != null) {
-      navigate((context) => context.go(AppRouter.repayProcess));
+    final url = apiResult?.parquetORedirectUrl;
+    if (url != null) {
+      final uriH5Repay = Uri(
+        path: AppRouter.appWeb,
+        queryParameters: {NavKey.title: '', NavKey.url: url},
+      );
+      navigate((context) => context.pushReplacement(uriH5Repay.toString()));
     }
   }
 

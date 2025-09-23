@@ -208,7 +208,13 @@ class _UserBankDialogState extends State<UserBankDialog> {
             ?.firstWhereOrNull((v) => v.key == item.exhedraOAccountType)
             ?.value;
         return InkWell(
-          onTap: () => setState(() => _pickedItem = item),
+          onTap: () {
+            if (_pickedItem == item) {
+              setState(() => _pickedItem = null);
+            } else {
+              setState(() => _pickedItem = item);
+            }
+          },
           borderRadius: const BorderRadius.all(Radius.circular(20)),
           child: Container(
             decoration: BoxDecoration(),

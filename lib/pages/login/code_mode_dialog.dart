@@ -47,7 +47,7 @@ class CodeModeDialog extends StatelessWidget {
             ),
             SizedBox(height: 32.h),
             EchoPrimaryButton(
-              text: 'Elige cómo enviar tu código',
+              text: 'Recibelo por SMS',
               onPressed: () => onMethod(0),
             ),
             SizedBox(height: 12.h),

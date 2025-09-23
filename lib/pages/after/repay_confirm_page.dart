@@ -5,7 +5,6 @@ import 'package:flutter_echo/pages/after/confirm_view/repay_confirm_channel.dart
 import 'package:flutter_echo/pages/after/confirm_view/repay_confirm_input.dart';
 import 'package:flutter_echo/pages/app_router.dart';
 import 'package:flutter_echo/providers/bill_detail_provider.dart';
-import 'package:flutter_echo/ui/dialogs/prompt_dialog.dart';
 import 'package:flutter_echo/ui/widget_helper.dart';
 import 'package:flutter_echo/ui/widgets/common_appbar.dart';
 import 'package:flutter_echo/ui/widgets/common_box.dart';
@@ -100,7 +99,7 @@ class _RepayConfirmPageState extends State<RepayConfirmPage> {
             padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 14.h),
             borderRadius: const BorderRadius.all(Radius.circular(20)),
             child: Text(
-              "Estimado usuario, CashiGO mantendra sus datos seguros y no los compartira con tercero",
+              'Estimado usuario, CashiGO mantendra sus datos seguros y no los compartira con tercero',
               style: TextStyle(
                 fontSize: 14.sp,
                 color: NowColors.c0xFFFF9817,
@@ -127,16 +126,17 @@ class _RepayConfirmPageState extends State<RepayConfirmPage> {
               toast('El monto ingreso hay que ser mayor de $min');
               return;
             }
-            final result = await PromptDialog.show(
-              context: context,
-              title: 'Consejos',
-              content: '¿Estas seguro de modificarla cantidad?',
-              confirmText: 'Confirmar',
-              cancelText: 'Cancelar',
-            );
-            if (result == true) {
-              model.applyRepayH5(current);
-            }
+            model.applyRepayH5(current);
+            // final result = await PromptDialog.show(
+            //   context: context,
+            //   title: 'Consejos',
+            //   content: '¿Estas seguro de modificarla cantidad?',
+            //   confirmText: 'Confirmar',
+            //   cancelText: 'Cancelar',
+            // );
+            // if (result == true) {
+            //   model.applyRepayH5(current);
+            // }
           }
         },
       ),

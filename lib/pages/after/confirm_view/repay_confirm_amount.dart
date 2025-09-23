@@ -69,7 +69,7 @@ class RepayConfirmAmount extends StatelessWidget {
                     ),
                   ],
                 ),
-                if (comision > 0) ...[
+                if (comision >= 0.5) ...[
                   SizedBox(height: 6.h),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -84,7 +84,7 @@ class RepayConfirmAmount extends StatelessWidget {
                         ),
                       ),
                       Text(
-                        comision.showAmount2,
+                        comision.showAmount,
                         style: TextStyle(
                           fontSize: 14.sp,
                           fontWeight: FontWeight.w500,

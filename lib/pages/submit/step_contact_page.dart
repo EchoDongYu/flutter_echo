@@ -104,7 +104,10 @@ class _StepContactPageState extends State<StepContactPage> {
       final resultName = result['name'] as String?;
       final phone = resultPhone?.replaceAll(RegExp(r'\s+'), '') ?? '';
       final name = resultName?.replaceAll(emojiReg, '') ?? '';
-      if (phone.length > 8) {
+      final checkLen = phone.startsWith('502')
+          ? phone.length - 3
+          : phone.length;
+      if (checkLen > AppConst.phoneLen) {
         toast(
           'El formato del número de teléfono de contacto es incorrecto. Selecciona un nuevo contacto.',
         );

@@ -128,8 +128,6 @@ extension AmountFormat on num {
   String get showAmount =>
       NumberFormat.currency(symbol: 'Q ', decimalDigits: 0).format(this);
 
-  String get showAmount2 => NumberFormat.currency(symbol: 'Q ').format(this);
-
   String get showRound => NumberFormat('#,###').format(this);
 }
 

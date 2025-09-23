@@ -28,7 +28,7 @@ class UpgradeDialog extends StatelessWidget {
       builder: (_) => UpgradeDialog(
         force: force,
         onConfirm: () {
-          if (!force) context.pop(true);
+          //if (!force) context.pop(true);
           launchUrl(
             Uri.parse(
               'https://play.google.com/store/apps/details?id=${AppConst.applicationId}',

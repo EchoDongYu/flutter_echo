@@ -180,7 +180,7 @@ class _ApplyConfirmPageState extends State<ApplyConfirmPage> {
                 ),
                 SizedBox(height: 10.h),
                 Text(
-                  provider.loanInfo?.pluralOReceiveAmount?.showAmount ?? '',
+                  provider.loanInfo?.pluralOReceiveAmount?.showRound ?? '',
                   style: TextStyle(
                     fontSize: 36.sp,
                     fontWeight: FontWeight.w700,
