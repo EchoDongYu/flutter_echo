@@ -537,6 +537,7 @@ RepayApplyReq _$RepayApplyReqFromJson(Map<String, dynamic> json) =>
       lz09kpOUserName: json['lz09kp'] as String?,
       k5j6q9OChannelAccount: json['k5j6q9'] as String?,
       x01y7qOBase64String: json['x01y7q'] as String?,
+      wtpuztORepaymentTime: (json['wtpuzt'] as num?)?.toInt(),
     );
 
 Map<String, dynamic> _$RepayApplyReqToJson(RepayApplyReq instance) =>
@@ -561,6 +562,7 @@ Map<String, dynamic> _$RepayApplyReqToJson(RepayApplyReq instance) =>
       'lz09kp': instance.lz09kpOUserName,
       'k5j6q9': instance.k5j6q9OChannelAccount,
       'x01y7q': instance.x01y7qOBase64String,
+      'wtpuzt': instance.wtpuztORepaymentTime,
     };
 
 RepayRecordReq _$RepayRecordReqFromJson(Map<String, dynamic> json) =>
@@ -2269,6 +2271,7 @@ LoanPreInfoResp _$LoanPreInfoRespFromJson(Map<String, dynamic> json) =>
       orderOrigin: (json['orderOrigin'] as num?)?.toInt(),
       satCheckStatus: (json['satCheckStatus'] as num?)?.toInt(),
       cressyOTraderPwd: json['cressy'] as bool?,
+      tepicOPurposeSwitch: json['tepic'] as bool?,
     );
 
 Map<String, dynamic> _$LoanPreInfoRespToJson(
@@ -2316,6 +2319,7 @@ Map<String, dynamic> _$LoanPreInfoRespToJson(
   'orderOrigin': instance.orderOrigin,
   'satCheckStatus': instance.satCheckStatus,
   'cressy': instance.cressyOTraderPwd,
+  'tepic': instance.tepicOPurposeSwitch,
 };
 
 LoanFeeDetailResp _$LoanFeeDetailRespFromJson(Map<String, dynamic> json) =>

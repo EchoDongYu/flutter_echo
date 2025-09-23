@@ -379,43 +379,49 @@ class _ApplyConfirmPageState extends State<ApplyConfirmPage> {
         borderRadius: BorderRadius.all(Radius.circular(20)),
         boxShadow: NowStyles.cardShadows,
       ),
-      child: Column(
-        spacing: 16.h,
-        children: [
-          if (!_showBankDialog) ...[
-            StepSelectField.pickBankCard(
-              context,
-              prefix: _buildPickedLogo(),
-              pickedItem: _pickedBank,
-              onValueChange: () async {
-                setState(() => _showBankDialog = true);
-                final result = await UserBankDialog.show(context);
-                setState(() => _showBankDialog = false);
-                if (result != null) {
-                  setState(() {
-                    _pickedBank = result;
-                    _isErrors[0] = false;
-                  });
-                }
-              },
-              hintText: 'Cuenta bancaria',
-              isError: _isErrors[0],
-              errorText: _errorHint[0],
-            ),
-            StepSelectField.pickItem(
-              context,
-              items: _stepItems,
-              pickedItem: _pickedPurpose,
-              onValueChange: (value) => setState(() {
-                _pickedPurpose = value;
-                _isErrors[1] = false;
-              }),
-              hintText: 'Objetivo del préstamo',
-              isError: _isErrors[1],
-              errorText: _errorHint[1],
-            ),
-          ],
-        ],
+      child: Consumer<ApplyModel>(
+        builder: (context, provider, child) {
+          return Column(
+            spacing: 16.h,
+            children: [
+              if (!_showBankDialog) ...[
+                child!,
+                if (provider.loanInfo?.tepicOPurposeSwitch == true)
+                  StepSelectField.pickItem(
+                    context,
+                    items: _stepItems,
+                    pickedItem: _pickedPurpose,
+                    onValueChange: (value) => setState(() {
+                      _pickedPurpose = value;
+                      _isErrors[1] = false;
+                    }),
+                    hintText: 'Objetivo del préstamo',
+                    isError: _isErrors[1],
+                    errorText: _errorHint[1],
+                  ),
+              ],
+            ],
+          );
+        },
+        child: StepSelectField.pickBankCard(
+          context,
+          prefix: _buildPickedLogo(),
+          pickedItem: _pickedBank,
+          onValueChange: () async {
+            setState(() => _showBankDialog = true);
+            final result = await UserBankDialog.show(context);
+            setState(() => _showBankDialog = false);
+            if (result != null) {
+              setState(() {
+                _pickedBank = result;
+                _isErrors[0] = false;
+              });
+            }
+          },
+          hintText: 'Cuenta bancaria',
+          isError: _isErrors[0],
+          errorText: _errorHint[0],
+        ),
       ),
     );
   }

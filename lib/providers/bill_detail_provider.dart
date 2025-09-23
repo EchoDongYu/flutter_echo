@@ -167,6 +167,7 @@ class BillDetailModel extends WhatsappModel {
       final base64 = await base64Str();
       final req = _createRepayApplyReq(amount).copyWith(
         t1h91pOBankName: bank?.t1h91p,
+        wtpuztORepaymentTime: date,
         e77490ORequestId: inputs[0],
         lz09kpOUserName: inputs[2],
         x01y7qOBase64String: base64,

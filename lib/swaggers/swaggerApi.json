@@ -4968,6 +4968,13 @@
                   "mock": {
                     "mock": "@string"
                   }
+                },
+                "wtpuzt(o_repaymentTime)": {
+                  "type": "k30z72(o_number)",
+                  "description": "还款时间",
+                  "mock": {
+                    "mock": "@Long"
+                  }
                 }
               }
             }
@@ -8825,6 +8832,10 @@
                 "cressy(o_traderPwd)": {
                   "type": "boolean",
                   "description": "是否校验交易密码"
+                },
+                "tepic(o_purposeSwitch)": {
+                  "type": "boolean",
+                  "description": "借款用途开关： true开， false 关闭"
                 }
               }
             }

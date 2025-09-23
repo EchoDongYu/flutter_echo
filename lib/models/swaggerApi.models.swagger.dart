@@ -3184,6 +3184,7 @@ class RepayApplyReq {
     this.lz09kpOUserName,
     this.k5j6q9OChannelAccount,
     this.x01y7qOBase64String,
+    this.wtpuztORepaymentTime,
   });
 
   @JsonKey(name: 'r5a4x8')
@@ -3226,6 +3227,8 @@ class RepayApplyReq {
   final String? k5j6q9OChannelAccount;
   @JsonKey(name: 'x01y7q')
   final String? x01y7qOBase64String;
+  @JsonKey(name: 'wtpuzt')
+  final int? wtpuztORepaymentTime;
 
   factory RepayApplyReq.fromJson(Map<String, dynamic> json) =>
       _$RepayApplyReqFromJson(json);
@@ -3344,6 +3347,11 @@ class RepayApplyReq {
                 const DeepCollectionEquality().equals(
                   other.x01y7qOBase64String,
                   x01y7qOBase64String,
+                )) &&
+            (identical(other.wtpuztORepaymentTime, wtpuztORepaymentTime) ||
+                const DeepCollectionEquality().equals(
+                  other.wtpuztORepaymentTime,
+                  wtpuztORepaymentTime,
                 )));
   }
 
@@ -3372,6 +3380,7 @@ class RepayApplyReq {
       const DeepCollectionEquality().hash(lz09kpOUserName) ^
       const DeepCollectionEquality().hash(k5j6q9OChannelAccount) ^
       const DeepCollectionEquality().hash(x01y7qOBase64String) ^
+      const DeepCollectionEquality().hash(wtpuztORepaymentTime) ^
       runtimeType.hashCode;
 }
 
@@ -3397,6 +3406,7 @@ extension $RepayApplyReqExtension on RepayApplyReq {
     String? lz09kpOUserName,
     String? k5j6q9OChannelAccount,
     String? x01y7qOBase64String,
+    int? wtpuztORepaymentTime,
   }) {
     return RepayApplyReq(
       r5a4x8OLoanGid: r5a4x8OLoanGid ?? this.r5a4x8OLoanGid,
@@ -3425,6 +3435,7 @@ extension $RepayApplyReqExtension on RepayApplyReq {
       k5j6q9OChannelAccount:
           k5j6q9OChannelAccount ?? this.k5j6q9OChannelAccount,
       x01y7qOBase64String: x01y7qOBase64String ?? this.x01y7qOBase64String,
+      wtpuztORepaymentTime: wtpuztORepaymentTime ?? this.wtpuztORepaymentTime,
     );
   }
 
@@ -3449,6 +3460,7 @@ extension $RepayApplyReqExtension on RepayApplyReq {
     Wrapped<String?>? lz09kpOUserName,
     Wrapped<String?>? k5j6q9OChannelAccount,
     Wrapped<String?>? x01y7qOBase64String,
+    Wrapped<int?>? wtpuztORepaymentTime,
   }) {
     return RepayApplyReq(
       r5a4x8OLoanGid: (r5a4x8OLoanGid != null
@@ -3509,6 +3521,9 @@ extension $RepayApplyReqExtension on RepayApplyReq {
       x01y7qOBase64String: (x01y7qOBase64String != null
           ? x01y7qOBase64String.value
           : this.x01y7qOBase64String),
+      wtpuztORepaymentTime: (wtpuztORepaymentTime != null
+          ? wtpuztORepaymentTime.value
+          : this.wtpuztORepaymentTime),
     );
   }
 }
@@ -13981,6 +13996,7 @@ class LoanPreInfoResp {
     this.orderOrigin,
     this.satCheckStatus,
     this.cressyOTraderPwd,
+    this.tepicOPurposeSwitch,
   });
 
   @JsonKey(name: 'raia')
@@ -14068,6 +14084,8 @@ class LoanPreInfoResp {
   final int? satCheckStatus;
   @JsonKey(name: 'cressy')
   final bool? cressyOTraderPwd;
+  @JsonKey(name: 'tepic')
+  final bool? tepicOPurposeSwitch;
 
   factory LoanPreInfoResp.fromJson(Map<String, dynamic> json) =>
       _$LoanPreInfoRespFromJson(json);
@@ -14311,6 +14329,11 @@ class LoanPreInfoResp {
                 const DeepCollectionEquality().equals(
                   other.cressyOTraderPwd,
                   cressyOTraderPwd,
+                )) &&
+            (identical(other.tepicOPurposeSwitch, tepicOPurposeSwitch) ||
+                const DeepCollectionEquality().equals(
+                  other.tepicOPurposeSwitch,
+                  tepicOPurposeSwitch,
                 )));
   }
 
@@ -14361,6 +14384,7 @@ class LoanPreInfoResp {
       const DeepCollectionEquality().hash(orderOrigin) ^
       const DeepCollectionEquality().hash(satCheckStatus) ^
       const DeepCollectionEquality().hash(cressyOTraderPwd) ^
+      const DeepCollectionEquality().hash(tepicOPurposeSwitch) ^
       runtimeType.hashCode;
 }
 
@@ -14409,6 +14433,7 @@ extension $LoanPreInfoRespExtension on LoanPreInfoResp {
     int? orderOrigin,
     int? satCheckStatus,
     bool? cressyOTraderPwd,
+    bool? tepicOPurposeSwitch,
   }) {
     return LoanPreInfoResp(
       raiaOUserGid: raiaOUserGid ?? this.raiaOUserGid,
@@ -14465,6 +14490,7 @@ extension $LoanPreInfoRespExtension on LoanPreInfoResp {
       orderOrigin: orderOrigin ?? this.orderOrigin,
       satCheckStatus: satCheckStatus ?? this.satCheckStatus,
       cressyOTraderPwd: cressyOTraderPwd ?? this.cressyOTraderPwd,
+      tepicOPurposeSwitch: tepicOPurposeSwitch ?? this.tepicOPurposeSwitch,
     );
   }
 
@@ -14512,6 +14538,7 @@ extension $LoanPreInfoRespExtension on LoanPreInfoResp {
     Wrapped<int?>? orderOrigin,
     Wrapped<int?>? satCheckStatus,
     Wrapped<bool?>? cressyOTraderPwd,
+    Wrapped<bool?>? tepicOPurposeSwitch,
   }) {
     return LoanPreInfoResp(
       raiaOUserGid: (raiaOUserGid != null
@@ -14638,6 +14665,9 @@ extension $LoanPreInfoRespExtension on LoanPreInfoResp {
       cressyOTraderPwd: (cressyOTraderPwd != null
           ? cressyOTraderPwd.value
           : this.cressyOTraderPwd),
+      tepicOPurposeSwitch: (tepicOPurposeSwitch != null
+          ? tepicOPurposeSwitch.value
+          : this.tepicOPurposeSwitch),
     );
   }
 }
