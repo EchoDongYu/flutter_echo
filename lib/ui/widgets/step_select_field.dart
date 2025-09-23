@@ -114,7 +114,7 @@ class StepSelectField extends StatefulWidget {
     bool isError = false,
     Widget? prefix,
   }) => StepSelectField(
-    value: pickedItem?.t1h91pOBankName,
+    value: pickedItem?.bankValue,
     onValueChange: onValueChange,
     hintText: hintText,
     errorText: errorText,

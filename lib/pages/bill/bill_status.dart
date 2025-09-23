@@ -8,28 +8,19 @@ enum BillStatus { pagos, atrasado, pendiente, fracaso, pagado, unknown }
 
 extension BillStatusColor on BillStatus {
   Color get billColor => switch (this) {
+    BillStatus.pendiente => NowColors.c0xFFFF9817,
+    BillStatus.fracaso => NowColors.c0xFFFB4F34,
     BillStatus.pagos => NowColors.c0xFF3288F1,
     BillStatus.atrasado => NowColors.c0xFFFB4F34,
-    BillStatus.pendiente => NowColors.c0xFFFF9817,
-    BillStatus.fracaso => NowColors.c0xFFFB4F34,
-    BillStatus.pagado => NowColors.c0xFF3EB34D,
-    _ => Colors.transparent,
-  };
-
-  Color get homeColor => switch (this) {
-    BillStatus.pagos => NowColors.c0xFF1C1F23.withValues(alpha: 0.5),
-    BillStatus.atrasado => NowColors.c0xFFFB4F34,
-    BillStatus.pendiente => NowColors.c0xFFFF9817,
-    BillStatus.fracaso => NowColors.c0xFFFB4F34,
     BillStatus.pagado => NowColors.c0xFF3EB34D,
     _ => Colors.transparent,
   };
 
   String get label => switch (this) {
-    BillStatus.pagos => 'Pagos',
-    BillStatus.atrasado => 'Atrasado',
     BillStatus.pendiente => 'Pendiente',
     BillStatus.fracaso => 'Fracaso',
+    BillStatus.pagos => 'Pagos',
+    BillStatus.atrasado => 'Atrasado',
     BillStatus.pagado => 'Pagado',
     _ => '',
   };

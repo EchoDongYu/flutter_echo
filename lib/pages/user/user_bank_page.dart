@@ -69,7 +69,7 @@ class _UserBankPageState extends State<UserBankPage> {
                   ],
                 );
               },
-              child: EchoTopBar(title: 'Conta Bancaria'),
+              child: EchoTopBar(title: 'Cuenta bancaria'),
             ),
           ),
         ],

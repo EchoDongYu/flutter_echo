@@ -45,7 +45,7 @@ class _HomeDefaultPageState extends State<HomeDefaultPage> {
           _buildTopBar(context),
           Expanded(
             child: ListView(
-              padding: EdgeInsets.fromLTRB(12.w, 5.h, 12.w, 90.h),
+              padding: EdgeInsets.fromLTRB(12.w, 5.h, 12.w, 100.h),
               children: [
                 _buildCenterBody(context),
                 SizedBox(height: 30.h),

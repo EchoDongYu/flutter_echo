@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_echo/common/constants.dart';
 import 'package:flutter_echo/models/common_model.dart';
+import 'package:flutter_echo/models/swaggerApi.models.swagger.dart';
 import 'package:flutter_echo/pages/app_router.dart';
 import 'package:go_router/go_router.dart';
 import 'package:intl/intl.dart';
@@ -18,7 +19,7 @@ void debugLog(String message, {Object? error, StackTrace? stackTrace}) {
   }
 }
 
-void toast(String msg) => showToast(msg);
+void toast(String msg) => showToast(msg, radius: 20);
 
 final routeObserver = RouteObserver<ModalRoute<void>>();
 
@@ -161,4 +162,14 @@ extension ContextSizeExtensions on BuildContext {
   double get screenWidth => MediaQuery.of(this).size.width;
 
   double get screenHeight => MediaQuery.of(this).size.height;
+}
+
+extension BankCardExtensions on BankCardResp$Item {
+  String get bankValue {
+    final name = t1h91pOBankName ?? '';
+    final number = zebrineOCardNo ?? '';
+    if (number.length < 3) return name;
+    final end = number.substring(number.length - 3);
+    return '$t1h91pOBankName(*$end)';
+  }
 }

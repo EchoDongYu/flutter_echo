@@ -71,6 +71,7 @@ class _FeedbackPageState extends State<FeedbackPage> {
       content: _selectedOther == true ? _controller.text : null,
     );
     if (result == true && context.mounted) {
+      toast('¡Envío exitoso!');
       context.pop();
     }
   }

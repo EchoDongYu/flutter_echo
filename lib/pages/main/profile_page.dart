@@ -61,13 +61,13 @@ class _ProfilePageState extends State<ProfilePage> {
             ),
           ),
         ),
+        SafeArea(child: EchoTopBar(showBack: false)),
         SafeArea(
           child: Column(
             children: [
-              EchoTopBar(showBack: false),
               Expanded(
                 child: SingleChildScrollView(
-                  padding: EdgeInsets.fromLTRB(12.w, 12.h, 12.w, 90.h),
+                  padding: EdgeInsets.fromLTRB(12.w, 67.h, 12.w, 100.h),
                   child: Column(
                     children: [
                       // Logo区域

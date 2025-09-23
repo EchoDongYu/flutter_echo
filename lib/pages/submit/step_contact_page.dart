@@ -40,6 +40,9 @@ class _StepContactPageState extends State<StepContactPage> {
   final _pickedItem = List<DictItem?>.generate(2, (index) {
     return null;
   }, growable: false);
+  final _errorText = List<String?>.generate(2, (index) {
+    return null;
+  }, growable: false);
 
   @override
   void initState() {
@@ -107,7 +110,7 @@ class _StepContactPageState extends State<StepContactPage> {
       final checkLen = phone.startsWith('502')
           ? phone.length - 3
           : phone.length;
-      if (checkLen > AppConst.phoneLen) {
+      if (checkLen != AppConst.phoneLen) {
         toast(
           'El formato del número de teléfono de contacto es incorrecto. Selecciona un nuevo contacto.',
         );
@@ -119,20 +122,24 @@ class _StepContactPageState extends State<StepContactPage> {
   }
 
   void _submitData() async {
+    FocusScope.of(context).requestFocus(FocusNode());
     setState(() {
       for (int i = 0; i < 2; i++) {
         _isErrors[i][0] = _controllers[i][0].text.isEmpty;
-        _isErrors[i][1] = _controllers[i][1].text.isEmpty;
+        final phone = _controllers[i][1].text;
+        final checkLen = phone.startsWith('502')
+            ? phone.length - 3
+            : phone.length;
+        _isErrors[i][1] = checkLen != AppConst.phoneLen;
         _isErrors[i][2] = _pickedItem[i] == null;
+        _errorText[i] = phone.isNotEmpty
+            ? 'El formato del número de teléfono de contacto es incorrecto. Selecciona un nuevo contacto.'
+            : null;
       }
     });
     if (!_isErrors.any((it) => it.contains(true))) {
       final list = [_controllers[0][1].text, _controllers[1][1].text];
       final account = LocalStorage().realAccount;
-      if (list.any((v) => v.length != AppConst.phoneLen)) {
-        toast('El número de teléfono que ingresaste no es válido');
-        return;
-      }
       if (list.toSet().length < list.length) {
         toast('Los dos contactos no pueden ser el mismo número de teléfono');
         return;
@@ -167,27 +174,27 @@ class _StepContactPageState extends State<StepContactPage> {
                 SizedBox(height: 16.h),
                 WidgetHelper.buildStepProgress(step: 3, maxStep: 3),
                 SizedBox(height: 16.h),
-                Container(
-                  margin: EdgeInsets.symmetric(horizontal: 12.w),
-                  padding: const EdgeInsets.all(16),
-                  decoration: const BoxDecoration(
-                    color: NowColors.c0xFFFFF9EA,
-                    borderRadius: BorderRadius.all(Radius.circular(20)),
-                  ),
-                  child: Text(
-                    'Estimado usuario, CashiGO mantendra sus datos seguros y no los compartira con tercero',
-                    style: TextStyle(
-                      fontSize: 13.sp,
-                      fontWeight: FontWeight.w400,
-                      color: NowColors.c0xFFFF9817,
-                      height: 16 / 13,
-                    ),
-                  ),
-                ),
                 Expanded(
                   child: SingleChildScrollView(
                     child: Column(
                       children: [
+                        Container(
+                          margin: EdgeInsets.symmetric(horizontal: 12.w),
+                          padding: const EdgeInsets.all(16),
+                          decoration: const BoxDecoration(
+                            color: NowColors.c0xFFFFF9EA,
+                            borderRadius: BorderRadius.all(Radius.circular(20)),
+                          ),
+                          child: Text(
+                            'Estimado usuario, CashiGO mantendra sus datos seguros y no los compartira con tercero',
+                            style: TextStyle(
+                              fontSize: 13.sp,
+                              fontWeight: FontWeight.w400,
+                              color: NowColors.c0xFFFF9817,
+                              height: 16 / 13,
+                            ),
+                          ),
+                        ),
                         SizedBox(height: 12.h),
                         _buildFormTitle(0),
                         _buildFormArea(0),
@@ -308,6 +315,7 @@ class _StepContactPageState extends State<StepContactPage> {
             ),
             isError: _isErrors[pos][1],
             errorText:
+                _errorText[pos] ??
                 'El número del contacto no puede está vacío. Selecciona un nuevo contacto.',
           ),
           StepSelectField.pickItem(

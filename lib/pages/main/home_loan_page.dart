@@ -3,6 +3,7 @@ import 'package:flutter_echo/common/app_theme.dart';
 import 'package:flutter_echo/common/constants.dart';
 import 'package:flutter_echo/models/swaggerApi.models.swagger.dart';
 import 'package:flutter_echo/pages/bill/bill_status.dart';
+import 'package:flutter_echo/pages/main/home_info_extension.dart';
 import 'package:flutter_echo/providers/main_provider.dart';
 import 'package:flutter_echo/services/storage_service.dart';
 import 'package:flutter_echo/ui/widget_helper.dart';
@@ -37,7 +38,7 @@ class _HomeLoanPageState extends State<HomeLoanPage> {
               Expanded(
                 child: ListView(
                   primary: true,
-                  padding: EdgeInsets.fromLTRB(12.w, 12.h, 12.w, 90.h),
+                  padding: EdgeInsets.fromLTRB(12.w, 12.h, 12.w, 100.h),
                   children: [
                     _buildBill(),
                     _buildProductCard(),
@@ -67,15 +68,19 @@ class _HomeLoanPageState extends State<HomeLoanPage> {
     );
   }
 
+  final BorderSide _side = const BorderSide(
+    width: 1,
+    color: Colors.white,
+    style: BorderStyle.solid,
+  );
+
   Widget _buildBill() => Consumer<MainModel>(
     builder: (context, provider, _) {
-      final billInfo = provider.homeInfo?.papuanOLastRecordLoan;
-      if (billInfo == null) return SizedBox();
-      final planList = billInfo.outdoOPlanSimpleList ?? [];
-      final status = billStatus(billInfo.cherubimOOrderStatus);
+      final homeInfo = provider.homeInfo?.papuanOLastRecordLoan;
+      if (homeInfo == null) return SizedBox();
+      final planList = homeInfo.outdoOPlanSimpleList ?? [];
       return Container(
         margin: EdgeInsets.only(bottom: 12.h),
-        padding: EdgeInsets.symmetric(vertical: 20.h),
         decoration: const BoxDecoration(
           gradient: LinearGradient(
             begin: Alignment.centerLeft,
@@ -88,34 +93,42 @@ class _HomeLoanPageState extends State<HomeLoanPage> {
         child: InkWell(
           onTap: () async {
             LocalStorage().set(AppConst.homeRefreshKey, true);
-            final route = routeDetails(
-              billInfo.cherubimOOrderStatus,
-              billInfo.r5a4x8OLoanGid,
-            );
-            context.push(route);
+            context.push(homeInfo.route);
           },
           borderRadius: const BorderRadius.all(Radius.circular(20)),
           child: Stack(
             children: [
               Image.asset(
-                Drawable.bgLoginTop,
-                width: planList.isEmpty ? 100.w : 200.w,
+                planList.isEmpty ? Drawable.bgHomeBill1 : Drawable.bgHomeBill2,
+                width: 200.w,
                 fit: BoxFit.fitWidth,
               ),
               Column(
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
-                  Padding(
-                    padding: EdgeInsets.only(left: 16.w),
-                    child: Text(
-                      billInfo.encloseOOrderTime?.showDate ?? '',
-                      style: TextStyle(
-                        fontSize: 14.sp,
-                        fontWeight: FontWeight.w500,
-                        color: Colors.white,
-                        height: 18 / 14,
+                  SizedBox(height: 20.h),
+                  // 顶部日期 + 状态
+                  Row(
+                    children: [
+                      SizedBox(width: 16.w),
+                      Text(
+                        homeInfo.timeLabel,
+                        style: TextStyle(
+                          fontSize: 14.sp,
+                          fontWeight: FontWeight.w500,
+                          color: Colors.white,
+                        ),
                       ),
-                    ),
+                      SizedBox(width: 6.w),
+                      Visibility(
+                        visible: homeInfo.cherubimOOrderStatus == 0,
+                        child: Image.asset(
+                          Drawable.iconHourglassFillWhite,
+                          width: 16,
+                          height: 16,
+                        ),
+                      ),
+                    ],
                   ),
                   SizedBox(height: 8.h),
                   Padding(
@@ -125,7 +138,7 @@ class _HomeLoanPageState extends State<HomeLoanPage> {
                       mainAxisSize: MainAxisSize.max,
                       children: [
                         Text(
-                          billInfo.kinkyOOrderAmount?.showAmount ?? '',
+                          homeInfo.kinkyOOrderAmount?.showAmount ?? '',
                           style: TextStyle(
                             fontSize: 30.sp,
                             fontWeight: FontWeight.w700,
@@ -139,21 +152,21 @@ class _HomeLoanPageState extends State<HomeLoanPage> {
                             vertical: 5.h,
                           ),
                           decoration: BoxDecoration(
-                            color: status.homeColor,
+                            color: homeInfo.color,
                             borderRadius: BorderRadius.only(
                               topLeft: Radius.circular(20),
                               bottomLeft: Radius.circular(20),
                             ),
-                            border: Border.all(
-                              width: 1.w,
-                              color: Colors.white,
-                              style: BorderStyle.solid,
+                            border: Border(
+                              top: _side,
+                              left: _side,
+                              bottom: _side,
                             ),
                           ),
                           child: Row(
                             children: [
                               Text(
-                                status.label,
+                                homeInfo.statusLabel,
                                 style: TextStyle(
                                   fontSize: 14.sp,
                                   fontWeight: FontWeight.w500,
@@ -172,23 +185,26 @@ class _HomeLoanPageState extends State<HomeLoanPage> {
                       ],
                     ),
                   ),
-                  SizedBox(height: 22.h),
-                  ListView.separated(
-                    shrinkWrap: true,
-                    padding: EdgeInsets.symmetric(horizontal: 16.w),
-                    physics: const NeverScrollableScrollPhysics(),
-                    itemCount: planList.length,
-                    separatorBuilder: (_, _) => SizedBox(height: 10.h),
-                    itemBuilder: (_, index) {
-                      final planItem = planList[index];
-                      return WidgetHelper.buildPlanItem(
-                        '${planItem.ih2upqOCtPeriod}/${planItem.ez64t7OPeriodCount}',
-                        first: planItem.r5k31qODueTime,
-                        second: planItem.wantonlyOLoanLeftAmount ?? 0,
-                        color: planColor(planItem.i2jk5fOPeriodStatus),
-                      );
-                    },
-                  ),
+                  if (planList.isNotEmpty) ...[
+                    SizedBox(height: 22.h),
+                    ListView.separated(
+                      shrinkWrap: true,
+                      padding: EdgeInsets.symmetric(horizontal: 16.w),
+                      physics: const NeverScrollableScrollPhysics(),
+                      itemCount: planList.length,
+                      separatorBuilder: (_, _) => SizedBox(height: 10.h),
+                      itemBuilder: (_, index) {
+                        final planItem = planList[index];
+                        return WidgetHelper.buildPlanItem(
+                          '${planItem.ih2upqOCtPeriod}/${planItem.ez64t7OPeriodCount}',
+                          first: planItem.r5k31qODueTime,
+                          second: planItem.wantonlyOLoanLeftAmount ?? 0,
+                          color: planColor(planItem.i2jk5fOPeriodStatus),
+                        );
+                      },
+                    ),
+                  ],
+                  SizedBox(height: 20.h),
                 ],
               ),
             ],
@@ -349,7 +365,7 @@ class _HomeLoanPageState extends State<HomeLoanPage> {
                   ),
                   padding: EdgeInsets.symmetric(horizontal: 8.w, vertical: 2.h),
                   child: Text(
-                    '${item.peddlerOPeriodCountId} Cuota',
+                    item.periodLabel,
                     style: TextStyle(
                       fontSize: 12.sp,
                       fontWeight: FontWeight.w500,
@@ -384,7 +400,7 @@ class _HomeLoanPageState extends State<HomeLoanPage> {
               ),
             ),
             Text(
-              '${item.peddlerOPeriodCountId} Cuota',
+              item.periodLabel,
               style: TextStyle(
                 fontSize: 12.sp,
                 fontWeight: FontWeight.w400,

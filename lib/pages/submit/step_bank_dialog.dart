@@ -81,6 +81,7 @@ class _StepBankDialogState extends State<StepBankDialog> {
   }
 
   void _submitData(BuildContext context) async {
+    FocusScope.of(context).requestFocus(FocusNode());
     final text0 = _controllers[0].text;
     final text1 = _controllers[1].text;
     String? numFormatError;
@@ -180,7 +181,7 @@ class _StepBankDialogState extends State<StepBankDialog> {
                 ),
               ),
               Text(
-                'Conta Bancaria',
+                'Cuenta bancaria',
                 style: TextStyle(
                   fontSize: 18.sp,
                   fontWeight: FontWeight.w500,

@@ -187,7 +187,7 @@ class WidgetHelper {
     );
     return Padding(
       padding: EdgeInsets.symmetric(horizontal: 12.w),
-      child: Row(children: list),
+      child: Row(spacing: 8.w, children: list),
     );
   }
 
@@ -198,7 +198,6 @@ class WidgetHelper {
         color: step >= index ? NowColors.c0xFF3288F1 : NowColors.c0xFFD8D8D8,
         borderRadius: const BorderRadius.all(Radius.circular(5)),
       ),
-      margin: EdgeInsets.only(right: index != max ? 8.w : 0),
     );
     return Expanded(
       child: step == index
@@ -207,12 +206,12 @@ class WidgetHelper {
               children: [
                 indicator,
                 Container(
-                  width: 56.w,
-                  height: 26.h,
-                  //margin: EdgeInsets.symmetric(horizontal: 12.w),
+                  width: double.infinity,
+                  margin: EdgeInsets.symmetric(horizontal: 25.w),
+                  padding: EdgeInsets.symmetric(vertical: 1.h),
                   decoration: BoxDecoration(
                     color: NowColors.c0xFF3288F1,
-                    borderRadius: const BorderRadius.all(Radius.circular(13)),
+                    borderRadius: const BorderRadius.all(Radius.circular(15)),
                     border: Border.all(color: Colors.white, width: 2),
                   ),
                   child: Center(
@@ -222,6 +221,7 @@ class WidgetHelper {
                         fontSize: 16.sp,
                         fontWeight: FontWeight.w600,
                         color: Colors.white,
+                        height: 24 / 16,
                       ),
                     ),
                   ),

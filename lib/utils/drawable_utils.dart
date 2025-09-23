@@ -2,11 +2,15 @@
 class Drawable {
   Drawable._();
 
+  static const String bgHomeBill = 'assets/images/bg_home_bill.png';
+  static const String bgHomeBill1 = 'assets/images/bg_home_bill1.png';
+  static const String bgHomeBill2 = 'assets/images/bg_home_bill2.png';
   static const String bgHomeSelect = 'assets/images/bg_home_select.png';
   static const String bgLoginTop = 'assets/images/bg_login_top.png';
   static const String iconAboutCopy = 'assets/images/icon_about_copy.png';
   static const String iconAboutForward = 'assets/images/icon_about_forward.png';
   static const String iconAboutPhone = 'assets/images/icon_about_phone.png';
+  static const String iconAboutWhats = 'assets/images/icon_about_whats.png';
   static const String iconAtrasado = 'assets/images/icon_atrasado.png';
   static const String iconBankBac = 'assets/images/icon_bank_bac.png';
   static const String iconBankBi = 'assets/images/icon_bank_bi.png';
@@ -27,6 +31,7 @@ class Drawable {
   static const String iconHomeOff = 'assets/images/icon_home_off.png';
   static const String iconHomeOn = 'assets/images/icon_home_on.png';
   static const String iconHourglassFill = 'assets/images/icon_hourglass_fill.png';
+  static const String iconHourglassFillWhite = 'assets/images/icon_hourglass_fill_white.png';
   static const String iconIdBack = 'assets/images/icon_id_back.png';
   static const String iconIdCard = 'assets/images/icon_id_card.png';
   static const String iconIdCardBack = 'assets/images/icon_id_card_back.png';

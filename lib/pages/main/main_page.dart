@@ -143,7 +143,7 @@ class _MainPageState extends State<MainPage> {
               bottomItems[index].third,
               style: TextStyle(
                 fontSize: 10.sp,
-                fontWeight: FontWeight.w500,
+                fontWeight: isActive ? FontWeight.w700 : FontWeight.w500,
                 color: isActive ? NowColors.c0xFF3288F1 : NowColors.c0xFF77797B,
                 height: 14 / 10,
               ),

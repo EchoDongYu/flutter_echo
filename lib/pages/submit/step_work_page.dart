@@ -112,6 +112,7 @@ class _StepWorkPageState extends State<StepWorkPage> {
   }
 
   void _submitData() async {
+    FocusScope.of(context).requestFocus(FocusNode());
     final pick4Not0 = _pickedItem[4]?.key != _stepItems?[4]?[0].key;
     final pick72 = _pickedItem[7]?.key == _stepItems?[7]?[1].key;
     final pick71 = pick72 || _pickedItem[7]?.key == _stepItems?[7]?[2].key;
@@ -157,29 +158,29 @@ class _StepWorkPageState extends State<StepWorkPage> {
               children: [
                 EchoTopBar(title: 'Información laboral'),
                 SizedBox(height: 16.h),
-                WidgetHelper.buildStepProgress(step: 2,maxStep: 3),
+                WidgetHelper.buildStepProgress(step: 2, maxStep: 3),
                 SizedBox(height: 16.h),
-                Container(
-                  margin: EdgeInsets.symmetric(horizontal: 12.w),
-                  padding: const EdgeInsets.all(16),
-                  decoration: const BoxDecoration(
-                    color: NowColors.c0xFFFFF9EA,
-                    borderRadius: BorderRadius.all(Radius.circular(20)),
-                  ),
-                  child: Text(
-                    'La información precisa aumenta enormemente tus posibilidades de obtener un préstamo.',
-                    style: TextStyle(
-                      fontSize: 13.sp,
-                      fontWeight: FontWeight.w400,
-                      color: NowColors.c0xFFFF9817,
-                      height: 16 / 13,
-                    ),
-                  ),
-                ),
                 Expanded(
                   child: SingleChildScrollView(
                     child: Column(
                       children: [
+                        Container(
+                          margin: EdgeInsets.symmetric(horizontal: 12.w),
+                          padding: const EdgeInsets.all(16),
+                          decoration: const BoxDecoration(
+                            color: NowColors.c0xFFFFF9EA,
+                            borderRadius: BorderRadius.all(Radius.circular(20)),
+                          ),
+                          child: Text(
+                            'La información precisa aumenta enormemente tus posibilidades de obtener un préstamo.',
+                            style: TextStyle(
+                              fontSize: 13.sp,
+                              fontWeight: FontWeight.w400,
+                              color: NowColors.c0xFFFF9817,
+                              height: 16 / 13,
+                            ),
+                          ),
+                        ),
                         SizedBox(height: 12.h),
                         Container(
                           width: double.infinity,

@@ -73,6 +73,12 @@ class AppTheme {
         thickness: 1,
         space: 1,
       ),
+
+      // 日期主题
+      datePickerTheme: DatePickerThemeData(
+        todayBackgroundColor: WidgetStateProperty.all(NowColors.c0xFF3288F1),
+        todayForegroundColor: WidgetStateProperty.all(NowColors.c0xFFFFFFFF),
+      ),
     );
   }
 }

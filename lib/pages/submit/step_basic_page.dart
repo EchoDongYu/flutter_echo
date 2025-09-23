@@ -90,6 +90,7 @@ class _StepBasicPageState extends State<StepBasicPage> {
   }
 
   void _submitData(BuildContext context) async {
+    FocusScope.of(context).requestFocus(FocusNode());
     final text2 = _controllers[2].text;
     final text3 = _controllers[3].text;
     final text4 = _controllers[4].text;
@@ -156,27 +157,27 @@ class _StepBasicPageState extends State<StepBasicPage> {
                 SizedBox(height: 16.h),
                 WidgetHelper.buildStepProgress(step: 1, maxStep: 3),
                 SizedBox(height: 16.h),
-                Container(
-                  margin: EdgeInsets.symmetric(horizontal: 12.w),
-                  padding: const EdgeInsets.all(16),
-                  decoration: const BoxDecoration(
-                    color: NowColors.c0xFFFFF9EA,
-                    borderRadius: BorderRadius.all(Radius.circular(20)),
-                  ),
-                  child: Text(
-                    'Estimado usuario, CashiGO mantendra sus datos seguros y no los compartira con tercero',
-                    style: TextStyle(
-                      fontSize: 13.sp,
-                      fontWeight: FontWeight.w400,
-                      color: NowColors.c0xFFFF9817,
-                      height: 16 / 13,
-                    ),
-                  ),
-                ),
                 Expanded(
                   child: SingleChildScrollView(
                     child: Column(
                       children: [
+                        Container(
+                          margin: EdgeInsets.symmetric(horizontal: 12.w),
+                          padding: const EdgeInsets.all(16),
+                          decoration: const BoxDecoration(
+                            color: NowColors.c0xFFFFF9EA,
+                            borderRadius: BorderRadius.all(Radius.circular(20)),
+                          ),
+                          child: Text(
+                            'Estimado usuario, CashiGO mantendra sus datos seguros y no los compartira con tercero',
+                            style: TextStyle(
+                              fontSize: 13.sp,
+                              fontWeight: FontWeight.w400,
+                              color: NowColors.c0xFFFF9817,
+                              height: 16 / 13,
+                            ),
+                          ),
+                        ),
                         SizedBox(height: 12.h),
                         Container(
                           width: double.infinity,

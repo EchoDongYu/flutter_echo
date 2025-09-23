@@ -38,7 +38,7 @@ class _AboutUsPageState extends State<AboutUsPage> {
   }
 
   static final Map<String, String> _iconMap = {
-    '17': Drawable.iconAboutPhone,
+    '17': Drawable.iconAboutWhats,
     '18': Drawable.iconAboutCopy,
     '21': Drawable.iconAboutPhone,
     '23': Drawable.iconAboutForward,
