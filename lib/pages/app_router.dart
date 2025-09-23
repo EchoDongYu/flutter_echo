@@ -5,7 +5,7 @@ import 'package:flutter_echo/pages/after/repay_certificate_page.dart';
 import 'package:flutter_echo/pages/after/repay_confirm_page.dart';
 import 'package:flutter_echo/pages/after/repay_history_page.dart';
 import 'package:flutter_echo/pages/after/repay_result_page.dart';
-import 'package:flutter_echo/pages/after/repay_uploaded_page.dart';
+import 'package:flutter_echo/pages/after/cert_record_page.dart';
 import 'package:flutter_echo/pages/before/apply_confirm_page.dart';
 import 'package:flutter_echo/pages/before/apply_result_page.dart';
 import 'package:flutter_echo/pages/bill/bill_detail_page.dart';
@@ -72,18 +72,20 @@ class AppRouter {
   static const String stepProcess = '/step_process';
   static const String faceCamera = '/face_camera';
   static const String faceIdentification = '/face_identification';
+  static const String billList = '/bill_list';
+  static const String billDetail = '/bill_detail';
   static const String applyConfirm = '/apply_confirm';
   static const String applyFailed = '/apply_failed';
   static const String applyProcess = '/apply_process';
+  static const String repayHistory = '/repay_history';
   static const String repayConfirm = '/repay_confirm';
   static const String repayFailed = '/repay_failed';
   static const String repayProcess = '/repay_process';
   static const String repayBank = '/repay_bank';
   static const String repayCertificate = '/repay_certificate';
-  static const String repayUploaded = '/repay_uploaded';
-  static const String repayHistory = '/repay_history';
-  static const String billList = '/bill_list';
-  static const String billDetail = '/bill_detail';
+  static const String certCamera = '/cert_camera';
+  static const String certRecord = '/cert_record';
+  static const String photoView = '/photo_view';
   static const String safetyVerify = '/safety_verify';
   static const String resetPassword = '/reset_password';
   static const String resetLoginPwd = '/reset_login_pwd';
@@ -93,8 +95,6 @@ class AppRouter {
   static const String userBank = '/user_bank';
   static const String feedback = '/feedback';
   static const String appWeb = '/app_web';
-  static const String certCamera = '/cert_camera';
-  static const String photoView = '/photo_view';
   static const String demo = '/demo';
 
   static final GoRouter router = GoRouter(
@@ -345,10 +345,10 @@ class AppRouter {
             builder: (context, state) => const RepayCertificatePage(),
           ),
 
-          /// 还款已上传付款记录页面
+          /// 凭证记录页面
           GoRoute(
-            path: repayUploaded,
-            builder: (context, state) => const RepayUploadedPage(),
+            path: certRecord,
+            builder: (context, state) => const CertRecordPage(),
           ),
 
           /// 凭证拍照页面

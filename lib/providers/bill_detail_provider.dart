@@ -6,6 +6,7 @@ import 'package:flutter_echo/models/common_model.dart';
 import 'package:flutter_echo/models/swaggerApi.models.swagger.dart';
 import 'package:flutter_echo/pages/app_router.dart';
 import 'package:flutter_echo/services/api_service.dart';
+import 'package:flutter_echo/utils/common_utils.dart';
 import 'package:flutter_image_compress/flutter_image_compress.dart';
 import 'package:go_router/go_router.dart';
 
@@ -43,9 +44,6 @@ class BillDetailModel extends BaseProvider {
 
   ///渠道勾选
   BillDetailResp$V08uw3ORepaymentChannelList$Item? selectedChannel;
-
-  ///确认金额
-  double? _confirmValue;
 
   ///银行直连线下还款银行字典
   List<BankDictV0Item> get bankDictItems => _bankDictItems ?? [];
@@ -93,10 +91,6 @@ class BillDetailModel extends BaseProvider {
     notifyListeners();
   }
 
-  void confirmAmount(double value) {
-    _confirmValue = value;
-  }
-
   void getBankDictionary() async {
     await launchRequest(() async {
       _bankDictItems = await Api.getBankDictionary();
@@ -125,26 +119,44 @@ class BillDetailModel extends BaseProvider {
     return base64Encode(compressData);
   }
 
+  RepayApplyReq _createRepayApplyReq(double amount) {
+    final channelRate = selectedChannel?.kd94z7OChannelRate ?? 0;
+    final channelFee = amount * channelRate;
+    final leftAmount = (totalAmount ?? 0) * (1 + channelRate);
+    return RepayApplyReq(
+      r5a4x8OLoanGid: _loanGid,
+      o12sd0OAmount: amount - channelFee,
+      g3x614ORepaymentFee: channelFee,
+      hm7756OCheckLoanLeftAmount: leftAmount,
+      bdvg46ORepaymentStage: 0,
+      percherOJumpSourceType: 1,
+      mahoganyORepaymentType: selectedChannel?.y28nd4OChannelType,
+      oe5u39OChannelName: selectedChannel?.oe5u39OChannelName,
+      worstOChannelCode: selectedChannel?.worstOChannelCode,
+      // y28nd4OChannelType: selectedChannel?.y28nd4OChannelType?.toString(),
+      k5j6q9OChannelAccount: selectedChannel?.k5j6q9OChannelAccount,
+      fratOMark: selectedChannel?.fratOMark,
+    );
+  }
+
+  void applyRepayH5(double amount) async {
+    final apiResult = await launchRequest(() async {
+      return await Api.applyRepay(_createRepayApplyReq(amount));
+    });
+    if (apiResult != null) {
+      navigate((context) => context.go(AppRouter.repayProcess));
+    }
+  }
+
   void applyRepay({
     required List<String> inputs,
     required BankDictV0Item? bank,
     required int? date,
   }) async {
     final apiResult = await launchRequest(() async {
+      final amount = inputs[1].tryParseDouble ?? 0;
       final base64 = await base64Str();
-      final req = RepayApplyReq(
-        o12sd0OAmount: _confirmValue,
-        r5a4x8OLoanGid: _loanGid,
-        bdvg46ORepaymentStage: 0,
-        percherOJumpSourceType: 1,
-        mahoganyORepaymentType: 2,
-        oe5u39OChannelName: selectedChannel?.oe5u39OChannelName,
-        worstOChannelCode: selectedChannel?.worstOChannelCode,
-        y28nd4OChannelType: selectedChannel?.y28nd4OChannelType?.toString(),
-        k5j6q9OChannelAccount: selectedChannel?.k5j6q9OChannelAccount,
-        fratOMark: selectedChannel?.fratOMark,
-        hm7756OCheckLoanLeftAmount: totalAmount,
-        //vnbh46OBankCardGid: bank.t1h91p,
+      final req = _createRepayApplyReq(amount).copyWith(
         t1h91pOBankName: bank?.t1h91p,
         e77490ORequestId: inputs[0],
         lz09kpOUserName: inputs[2],

@@ -30,7 +30,7 @@ class _RepayConfirmPageState extends State<RepayConfirmPage> {
   @override
   void initState() {
     super.initState();
-    _controller.addListener(_onInputChanged);
+    _controller.addListener(_onAmountChanged);
   }
 
   @override
@@ -39,15 +39,14 @@ class _RepayConfirmPageState extends State<RepayConfirmPage> {
     super.dispose();
   }
 
-  /// 输入变化监听
-  void _onInputChanged() {
+  /// 金额输入变化监听
+  void _onAmountChanged() {
     final text = _controller.text;
     final length = text.length;
     if (_inputLength != length) setState(() => _inputLength = length);
     final channel = context.read<BillDetailModel>().selectedChannel;
     final max = channel?.maxAmount ?? 0;
-    //final min = channel?.minAmount ?? 0;
-    final current = _controller.text.tryParseDouble ?? 0;
+    final current = text.tryParseDouble ?? 0;
     if (current > max) {
       toast('El monto ingreso es mas lo que tiene que pagar');
       _controller.text = text.substring(0, length - 1);
@@ -117,23 +116,27 @@ class _RepayConfirmPageState extends State<RepayConfirmPage> {
           FocusScope.of(context).requestFocus(FocusNode());
           final model = context.read<BillDetailModel>();
           final channel = model.selectedChannel;
-          //final max = channel?.maxAmount ?? 0;
-          final min = channel?.minAmount ?? 0;
-          final current = _controller.text.tryParseDouble ?? 0;
-          if (current < min) {
-            toast('el monto ingreso hay que ser mayor de $min');
-            return;
-          }
-          final result = await PromptDialog.show(
-            context: context,
-            title: 'Consejos',
-            content: '¿Estas seguro de modificarla cantidad?',
-            confirmText: 'Confirmar',
-            cancelText: 'Cancelar',
-          );
-          if (result == true && context.mounted) {
-            model.confirmAmount(current);
+          final type = channel?.y28nd4OChannelType;
+          if (type == 2) {
             context.push(AppRouter.repayBank);
+          } else if (type != null) {
+            //final max = channel?.maxAmount ?? 0;
+            final min = channel?.minAmount ?? 0;
+            final current = _controller.text.tryParseDouble ?? 0;
+            if (current < min) {
+              toast('El monto ingreso hay que ser mayor de $min');
+              return;
+            }
+            final result = await PromptDialog.show(
+              context: context,
+              title: 'Consejos',
+              content: '¿Estas seguro de modificarla cantidad?',
+              confirmText: 'Confirmar',
+              cancelText: 'Cancelar',
+            );
+            if (result == true) {
+              model.applyRepayH5(current);
+            }
           }
         },
       ),
