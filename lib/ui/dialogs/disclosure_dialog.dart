@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_echo/common/app_theme.dart';
 import 'package:flutter_echo/common/constants.dart';
 import 'package:flutter_echo/models/common_model.dart';
-import 'package:flutter_echo/services/permission_service.dart';
 import 'package:flutter_echo/services/storage_service.dart';
 import 'package:flutter_echo/ui/widget_helper.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';

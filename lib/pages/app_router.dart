@@ -205,7 +205,7 @@ class AppRouter {
         builder: (context, state) => ChangeNotifierProvider(
           create: (_) => CameraModel()..initCamera(),
           builder: (_, _) {
-            return PageConsumer<WhatsappModel>(child: const FaceCameraPage());
+            return PageConsumer<CameraModel>(child: const FaceCameraPage());
           },
         ),
       ),
@@ -216,7 +216,7 @@ class AppRouter {
         builder: (context, state) => ChangeNotifierProvider(
           create: (_) => IdentificationModel(),
           builder: (_, _) {
-            return PageConsumer<WhatsappModel>(child: const FaceIdentificationPage());
+            return PageConsumer<IdentificationModel>(child: const FaceIdentificationPage());
           },
         ),
       ),

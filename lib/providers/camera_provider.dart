@@ -1,7 +1,8 @@
 import 'package:camera/camera.dart';
 import 'package:flutter/foundation.dart';
+import 'package:flutter_echo/common/base_provider.dart';
 
-class CameraModel extends ChangeNotifier {
+class CameraModel extends BaseProvider {
   CameraController? _controller;
   List<CameraDescription>? _cameras;
   bool _isReady = false;
