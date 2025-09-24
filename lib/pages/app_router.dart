@@ -1,6 +1,7 @@
 import 'package:flutter_echo/common/page_consumer.dart';
 import 'package:flutter_echo/pages/after/cert_camera_page.dart';
 import 'package:flutter_echo/pages/after/cert_record_page.dart';
+import 'package:flutter_echo/pages/after/history_view/cert_photo_page.dart';
 import 'package:flutter_echo/pages/after/repay_bank_page.dart';
 import 'package:flutter_echo/pages/after/repay_certificate_page.dart';
 import 'package:flutter_echo/pages/after/repay_confirm_page.dart';
@@ -18,7 +19,6 @@ import 'package:flutter_echo/pages/login/login_password_page.dart';
 import 'package:flutter_echo/pages/login/login_phone_page.dart';
 import 'package:flutter_echo/pages/login/login_pwd_setup_page.dart';
 import 'package:flutter_echo/pages/main/main_page.dart';
-import 'package:flutter_echo/pages/other/demo_page.dart';
 import 'package:flutter_echo/pages/other/not_found_page.dart';
 import 'package:flutter_echo/pages/other/photo_view_page.dart';
 import 'package:flutter_echo/pages/other/splash_page.dart';
@@ -83,6 +83,7 @@ class AppRouter {
   static const String repayCert = '/repay_cert';
   static const String certCamera = '/cert_camera';
   static const String certRecord = '/cert_record';
+  static const String certPhoto = '/cert_photo';
   static const String photoView = '/photo_view';
   static const String safetyVerify = '/safety_verify';
   static const String resetPassword = '/reset_password';
@@ -93,7 +94,6 @@ class AppRouter {
   static const String userBank = '/user_bank';
   static const String feedback = '/feedback';
   static const String appWeb = '/app_web';
-  static const String demo = '/demo';
 
   static final GoRouter router = GoRouter(
     initialLocation: splash,
@@ -338,6 +338,12 @@ class AppRouter {
             path: certRecord,
             builder: (context, state) => const CertRecordPage(),
           ),
+
+          /// 图片预览
+          GoRoute(
+            path: certPhoto,
+            builder: (context, state) => const CertPhotoPage(),
+          ),
         ],
       ),
 
@@ -441,9 +447,6 @@ class AppRouter {
           return CommonWebPage(title: title, url: url!);
         },
       ),
-
-      /// 测试入口
-      GoRoute(path: demo, builder: (context, state) => const DemoPage()),
 
       /// 图片预览
       GoRoute(

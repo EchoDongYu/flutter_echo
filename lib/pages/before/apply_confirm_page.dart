@@ -4,7 +4,6 @@ import 'package:flutter_echo/common/app_theme.dart';
 import 'package:flutter_echo/models/common_model.dart';
 import 'package:flutter_echo/models/swaggerApi.models.swagger.dart';
 import 'package:flutter_echo/pages/before/trader_password_dialog.dart';
-import 'package:flutter_echo/pages/bill/bill_status.dart';
 import 'package:flutter_echo/pages/user/user_bank_dialog.dart';
 import 'package:flutter_echo/providers/apply_provider.dart';
 import 'package:flutter_echo/ui/widget_helper.dart';
@@ -49,12 +48,16 @@ class _ApplyConfirmPageState extends State<ApplyConfirmPage> {
   }
 
   void _confirmLoan(BuildContext context) async {
+    final applyModel = context.read<ApplyModel>();
     setState(() {
       _isErrors[0] = _pickedBank == null;
-      _isErrors[1] = _pickedPurpose == null;
+      if (applyModel.loanInfo?.tepicOPurposeSwitch == true) {
+        _isErrors[1] = _pickedPurpose == null;
+      } else {
+        _isErrors[1] = false;
+      }
     });
     if (!_isErrors.contains(true)) {
-      final applyModel = context.read<ApplyModel>();
       final loanInfo = applyModel.loanInfo;
       String? password;
       if (loanInfo?.cressyOTraderPwd == true) {
@@ -350,7 +353,7 @@ class _ApplyConfirmPageState extends State<ApplyConfirmPage> {
                     '${planItem.ih2upqOCtPeriod}/${planItem.ez64t7OPeriodCount}',
                     first: planItem.r5k31qODueTime,
                     second: planItem.timesOBillAmount ?? 0,
-                    color: planColor(null),
+                    color: NowColors.c0xFFFF9817,
                   );
                 },
               ),

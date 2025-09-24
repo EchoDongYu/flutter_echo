@@ -107,16 +107,16 @@ class _StepContactPageState extends State<StepContactPage> {
       final resultName = result['name'] as String?;
       final phone = resultPhone?.replaceAll(RegExp(r'\s+'), '') ?? '';
       final name = resultName?.replaceAll(emojiReg, '') ?? '';
-      final checkLen = phone.startsWith('502')
-          ? phone.length - 3
-          : phone.length;
-      if (checkLen != AppConst.phoneLen) {
+      final mPhone = phone.startsWith('502') && phone.length > 8
+          ? phone.substring(3)
+          : phone;
+      if (mPhone.length != AppConst.phoneLen) {
         toast(
           'El formato del número de teléfono de contacto es incorrecto. Selecciona un nuevo contacto.',
         );
       } else {
         _controllers[pos][0].text = name;
-        _controllers[pos][1].text = phone;
+        _controllers[pos][1].text = mPhone;
       }
     }
   }
@@ -127,10 +127,7 @@ class _StepContactPageState extends State<StepContactPage> {
       for (int i = 0; i < 2; i++) {
         _isErrors[i][0] = _controllers[i][0].text.isEmpty;
         final phone = _controllers[i][1].text;
-        final checkLen = phone.startsWith('502')
-            ? phone.length - 3
-            : phone.length;
-        _isErrors[i][1] = checkLen != AppConst.phoneLen;
+        _isErrors[i][1] = phone.length != AppConst.phoneLen;
         _isErrors[i][2] = _pickedItem[i] == null;
         _errorText[i] = phone.isNotEmpty
             ? 'El formato del número de teléfono de contacto es incorrecto. Selecciona un nuevo contacto.'

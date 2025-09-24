@@ -33,7 +33,7 @@ class BillListPage extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
               BillListTopCard(
-                title: 'Cantidad recibida (Q)',
+                title: 'Monto a pagar',
                 value: billModel.totalAmount?.showAmount ?? '',
               ),
               if (billList != null)
@@ -83,13 +83,7 @@ class BillListView extends StatelessWidget {
                 );
               },
             ),
-            onDetails: () {
-              final route = routeDetails(
-                billInfo.cherubimOOrderStatus,
-                billInfo.r5a4x8OLoanGid,
-              );
-              context.push(route);
-            },
+            onDetails: () => context.push(billInfo.route),
             onPagar: () {
               //跳转还款页面
               final uriRoute = Uri(

@@ -109,7 +109,13 @@ extension ContextNavigation on BuildContext {
 extension DateTimeFormat on DateTime {
   String get showDate => DateFormat('dd/MM/yyyy').format(this);
 
-  int get secondSinceEpoch => (millisecondsSinceEpoch / 1000.0).toInt();
+  int get secondSinceEpoch {
+    final tzDateTime = tz.TZDateTime.fromMillisecondsSinceEpoch(
+      tz.getLocation('America/Guatemala'),
+      millisecondsSinceEpoch,
+    );
+    return (tzDateTime.millisecondsSinceEpoch / 1000.0).toInt();
+  }
 }
 
 extension TimestampFormat on int {

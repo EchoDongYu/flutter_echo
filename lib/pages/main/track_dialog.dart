@@ -340,16 +340,13 @@ Recopilamos información de tu dispositivo para detectar mejor actividades fraud
           ],
         ),
         SizedBox(height: 8.h),
-        Padding(
-          padding: EdgeInsets.symmetric(horizontal: 10.w),
-          child: Text(
-            item.second,
-            style: TextStyle(
-              fontSize: 13.sp,
-              fontWeight: FontWeight.w400,
-              color: NowColors.c0xFF494C4F,
-              height: 20 / 13,
-            ),
+        Text(
+          item.second,
+          style: TextStyle(
+            fontSize: 13.sp,
+            fontWeight: FontWeight.w400,
+            color: NowColors.c0xFF494C4F,
+            height: 20 / 13,
           ),
         ),
       ],

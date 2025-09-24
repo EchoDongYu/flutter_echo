@@ -43,9 +43,9 @@ extension HomeInfoExtension on HomeInfoResp$PapuanOLastRecordLoan {
       case 2:
       case 3:
       case 4:
-        //跳转账单详情
+        final count = ez64t7OPeriodCount ?? 0;
         return Uri(
-          path: AppRouter.billDetail,
+          path: count == 1 ? AppRouter.repayConfirm : AppRouter.billDetail,
           queryParameters: {NavKey.id: r5a4x8OLoanGid},
         ).toString();
       default:

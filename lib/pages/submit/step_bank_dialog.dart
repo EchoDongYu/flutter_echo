@@ -140,7 +140,10 @@ class _StepBankDialogState extends State<StepBankDialog> {
             bottom: MediaQuery.of(context).viewInsets.bottom,
           ),
           child: Column(
-            children: [_buildContent(), _buildBottomButton(context)],
+            children: [
+              _buildContent(),
+              SafeArea(child: _buildBottomButton(context)),
+            ],
           ),
         ),
       ),

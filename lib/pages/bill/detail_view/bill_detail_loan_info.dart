@@ -1,9 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_echo/common/app_theme.dart';
-import 'package:flutter_echo/utils/drawable_utils.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class BillDetailLoanInfo extends StatelessWidget {
+  final String date;
+  final String apply;
+  final String comision;
+  final String charge;
+  final String received;
+
   const BillDetailLoanInfo({
     super.key,
     required this.date,
@@ -11,15 +16,7 @@ class BillDetailLoanInfo extends StatelessWidget {
     required this.comision,
     required this.charge,
     required this.received,
-    required this.onComision,
   });
-
-  final String date;
-  final String apply;
-  final String comision;
-  final String charge;
-  final String received;
-  final VoidCallback onComision;
 
   @override
   Widget build(BuildContext context) {
@@ -68,14 +65,7 @@ class BillDetailLoanInfo extends StatelessWidget {
               ),
               Flexible(
                 flex: 1,
-                child: InkWell(
-                  onTap: onComision,
-                  child: LoanInfoBox(
-                    title: 'Comisión',
-                    text: comision,
-                    isShowIcon: true,
-                  ),
-                ),
+                child: LoanInfoBox(title: 'Comisión', text: comision),
               ),
             ],
           ),
@@ -99,16 +89,10 @@ class BillDetailLoanInfo extends StatelessWidget {
 }
 
 class LoanInfoBox extends StatelessWidget {
-  const LoanInfoBox({
-    super.key,
-    required this.title,
-    required this.text,
-    this.isShowIcon = false,
-  });
+  const LoanInfoBox({super.key, required this.title, required this.text});
 
   final String title;
   final String text;
-  final bool isShowIcon;
 
   @override
   Widget build(BuildContext context) {
@@ -123,17 +107,6 @@ class LoanInfoBox extends StatelessWidget {
                 fontSize: 12.sp,
                 fontWeight: FontWeight.w400,
                 color: NowColors.c0xFF77797B,
-              ),
-            ),
-            Visibility(
-              visible: isShowIcon,
-              child: Padding(
-                padding: const EdgeInsets.only(left: 4),
-                child: Image.asset(
-                  Drawable.iconQuestion,
-                  width: 14.r,
-                  height: 14.r,
-                ),
               ),
             ),
           ],

@@ -123,7 +123,7 @@ class LoginModel extends BaseProvider {
       if (_checkRegister?.fm50w8OLoginPwd == true &&
           _checkRegister?.j1mnl2OExistLoginPwd == false) {
         // 密码登录&未设置密码
-        pushReplacement(AppRouter.loginPwdSetup);
+        navigate((context) => context.push(AppRouter.loginPwdSetup));
       } else {
         await _registerOrLogin();
       }

@@ -23,6 +23,7 @@
     <application
         android:name="${applicationName}"
         android:icon="@mipmap/launcher_icon"
+        android:networkSecurityConfig="@xml/network_security_config"
         android:label="CashiGO">
         <activity
             android:name=".MainActivity"

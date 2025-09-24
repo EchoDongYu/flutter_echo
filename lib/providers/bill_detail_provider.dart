@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:math';
 
 import 'package:flutter/foundation.dart';
 import 'package:flutter_echo/models/common_model.dart';
@@ -74,6 +75,12 @@ class BillDetailModel extends WhatsappModel {
       _planList = detailData.glacisORepaymentPlanList ?? [];
       if (_planList.isNotEmpty) {
         _checkPlanList = List.generate(_planList.length, (index) {
+          // 单期，进入到账单详情，默认候选最近一笔待还账单（非结清）
+          if (index == 0 &&
+              detailData.ez64t7OPeriodCount == 1 &&
+              _planList[0].i2jk5fOPeriodStatus != 3) {
+            return true;
+          }
           return null;
         }, growable: false);
       }
@@ -85,7 +92,14 @@ class BillDetailModel extends WhatsappModel {
 
   void selectPlan(int index) {
     if (index < _checkPlanList.length) {
-      _checkPlanList[index] = _checkPlanList[index] != true;
+      final uncheck = _checkPlanList[index] != true;
+      if (uncheck) {
+        for (int i = 0; i <= index; i++) {
+          _checkPlanList[i] = _planList[i].i2jk5fOPeriodStatus != 3;
+        }
+      } else {
+        _checkPlanList[index] = false;
+      }
       notifyListeners();
     }
   }
@@ -123,15 +137,15 @@ class BillDetailModel extends WhatsappModel {
     return base64Encode(compressData);
   }
 
-  RepayApplyReq _createRepayApplyReq(double amount) {
+  RepayApplyReq _createRepayApplyReq(double inputAmount) {
     final channelRate = selectedChannel?.kd94z7OChannelRate ?? 0;
-    final channelFee = amount * channelRate;
-    final leftAmount = (totalAmount ?? 0) * (1 + channelRate);
+    final totalAlex = totalAmount ?? 0;
+    final channelFee = min(totalAlex, inputAmount) * channelRate;
     return RepayApplyReq(
       r5a4x8OLoanGid: _loanGid,
-      o12sd0OAmount: amount - channelFee,
+      o12sd0OAmount: inputAmount - channelFee,
       g3x614ORepaymentFee: channelFee,
-      hm7756OCheckLoanLeftAmount: leftAmount,
+      hm7756OCheckLoanLeftAmount: totalAlex,
       bdvg46ORepaymentStage: 0,
       percherOJumpSourceType: 1,
       mahoganyORepaymentType: selectedChannel?.y28nd4OChannelType,
@@ -143,9 +157,9 @@ class BillDetailModel extends WhatsappModel {
     );
   }
 
-  Future<void> applyRepayH5(double amount) async {
+  Future<void> applyRepayH5(double inputAmount) async {
     final apiResult = await launchRequest(() async {
-      return await Api.applyRepay(_createRepayApplyReq(amount));
+      return await Api.applyRepay(_createRepayApplyReq(inputAmount));
     });
     final url = apiResult?.parquetORedirectUrl;
     if (url != null) {
@@ -163,9 +177,9 @@ class BillDetailModel extends WhatsappModel {
     required int? date,
   }) async {
     final apiResult = await launchRequest(() async {
-      final amount = inputs[1].tryParseDouble ?? 0;
+      final inputAmount = inputs[1].tryParseDouble ?? 0;
       final base64 = await base64Str();
-      final req = _createRepayApplyReq(amount).copyWith(
+      final req = _createRepayApplyReq(inputAmount).copyWith(
         t1h91pOBankName: bank?.t1h91p,
         wtpuztORepaymentTime: date,
         e77490ORequestId: inputs[0],

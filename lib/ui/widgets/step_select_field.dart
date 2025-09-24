@@ -152,6 +152,7 @@ class StepSelectField extends StatefulWidget {
     required DateTime? pickedDate,
     required Function(DateTime) onValueChange,
     required String hintText,
+    int initSubYear = 0,
     String errorText = 'Por favor seleccione',
     bool isError = false,
   }) => StepSelectField(
@@ -161,6 +162,7 @@ class StepSelectField extends StatefulWidget {
         context,
         title: hintText,
         pickedDate: pickedDate,
+        initSubYear: initSubYear,
       );
       if (result != null) onValueChange(result);
     },

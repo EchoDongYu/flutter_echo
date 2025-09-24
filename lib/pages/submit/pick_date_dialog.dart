@@ -23,7 +23,8 @@ class PickDateDialog extends StatefulWidget {
   static Future<DateTime?> show(
     BuildContext context, {
     required String title,
-    DateTime? pickedDate,
+    required DateTime? pickedDate,
+    required int initSubYear,
   }) {
     final now = DateTime.now();
     return showModalBottomSheet<DateTime>(
@@ -36,7 +37,8 @@ class PickDateDialog extends StatefulWidget {
         onConfirm: (value) => context.pop(value),
         onClosing: () => context.pop(),
         title: title,
-        pickedDate: pickedDate ?? DateTime(now.year - 20, now.month, now.day),
+        pickedDate:
+            pickedDate ?? DateTime(now.year - initSubYear, now.month, now.day),
       ),
     );
   }
@@ -68,7 +70,10 @@ class _PickDateDialogState extends State<PickDateDialog> {
       ),
       builder: (BuildContext context) => Column(
         mainAxisSize: MainAxisSize.min,
-        children: [_buildContent(), _buildBottomButton()],
+        children: [
+          _buildContent(),
+          SafeArea(child: _buildBottomButton()),
+        ],
       ),
     );
   }

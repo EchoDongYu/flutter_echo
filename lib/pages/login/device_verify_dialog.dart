@@ -112,7 +112,12 @@ class _DeviceVerifyDialogState extends State<DeviceVerifyDialog>
           child: Consumer<VerifyModel>(
             builder: (_, provider, _) {
               if (provider.showCaptcha) return SizedBox();
-              return Column(children: [_buildContent(), _buildBottomButton()]);
+              return Column(
+                children: [
+                  _buildContent(),
+                  SafeArea(child: _buildBottomButton()),
+                ],
+              );
             },
           ),
         ),

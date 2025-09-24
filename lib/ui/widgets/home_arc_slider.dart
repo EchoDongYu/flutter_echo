@@ -143,11 +143,11 @@ class _ArcSliderState extends State<ArcSlider> {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        _IncDecButton(
+                        IncDecButton(
                           icon: Icons.remove_rounded,
                           onTap: () => _setByStep(-1),
                         ),
-                        _IncDecButton(
+                        IncDecButton(
                           icon: Icons.add_rounded,
                           onTap: () => _setByStep(1),
                         ),
@@ -248,11 +248,11 @@ class _ArcPainter extends CustomPainter {
       oldDelegate.angle != angle;
 }
 
-class _IncDecButton extends StatelessWidget {
+class IncDecButton extends StatelessWidget {
   final IconData icon;
   final VoidCallback onTap;
 
-  const _IncDecButton({required this.icon, required this.onTap});
+  const IncDecButton({super.key, required this.icon, required this.onTap});
 
   @override
   Widget build(BuildContext context) {

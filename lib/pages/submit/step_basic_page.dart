@@ -260,6 +260,7 @@ class _StepBasicPageState extends State<StepBasicPage> {
           StepSelectField.pickDate(
             context,
             pickedDate: _pickedDate,
+            initSubYear: 20,
             onValueChange: (value) => setState(() {
               _pickedDate = value;
               _isErrors[1] = false;

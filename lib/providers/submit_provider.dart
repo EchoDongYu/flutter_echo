@@ -125,11 +125,13 @@ class SubmitModel extends BaseProvider {
     final apiResult = await launchRequest(
       () => Api.submitCreditData(_submitData),
     );
-    final uriRoute = Uri(
-      path: AppRouter.stepProcess,
-      queryParameters: {NavKey.count: apiResult?.toString()},
-    );
-    navigate((context) => context.pushReplacement(uriRoute.toString()));
+    if (apiResult != null) {
+      final uriRoute = Uri(
+        path: AppRouter.stepProcess,
+        queryParameters: {NavKey.count: apiResult.toString()},
+      );
+      navigate((context) => context.pushReplacement(uriRoute.toString()));
+    }
   }
 
   @override

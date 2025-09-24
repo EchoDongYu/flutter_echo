@@ -24,6 +24,12 @@ class _PageConsumerState<T extends BaseProvider> extends State<PageConsumer> {
   bool _showLoading = false;
 
   @override
+  void dispose() {
+    LoadingDialog.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return PopScope(
       canPop: !_showLoading,

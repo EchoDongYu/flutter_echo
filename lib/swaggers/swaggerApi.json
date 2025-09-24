@@ -13381,6 +13381,13 @@
                           "mock": "@Long"
                         }
                       },
+                      "type": {
+                        "type": "k30z72(o_number)",
+                        "description": "0 线下  ；1 线上； 2 对公转账  (含义同 operationType)",
+                        "mock": {
+                          "mock": "@Long"
+                        }
+                      },
                       "imprint(o_planGid)": {
                         "type": "k30z72(o_number)",
                         "description": "还款计划gid",

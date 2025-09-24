@@ -75,7 +75,7 @@ class RetainLoginDialog extends StatelessWidget {
                 },
               ),
             ),
-            _buildBottomButtons(),
+            SafeArea(child: _buildBottomButtons()),
           ],
         ),
       ),

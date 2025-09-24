@@ -16,18 +16,14 @@ class PhotoViewPage extends StatelessWidget {
       body: Stack(
         children: [
           PhotoView(
-            backgroundDecoration: BoxDecoration(
-              color: NowColors.c0x00000000,
-            ),
-            imageProvider: AssetImage(url ?? ""),
+            backgroundDecoration: BoxDecoration(color: NowColors.c0x00000000),
+            imageProvider: NetworkImage(url ?? ''),
           ),
           Positioned(
             top: 56.h,
             right: 24.w,
             child: GestureDetector(
-              onTap: (){
-                context.pop(true);
-              },
+              onTap: () => context.pop(),
               child: Image.asset(Drawable.iconClose, width: 36.w, height: 36.h),
             ),
           ),

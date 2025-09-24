@@ -2,11 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_echo/common/app_theme.dart';
 import 'package:flutter_echo/pages/app_router.dart';
 import 'package:flutter_echo/pages/bill/bill_status.dart';
-import 'package:flutter_echo/pages/bill/detail_view/bill_detail_loan_detail.dart';
 import 'package:flutter_echo/pages/bill/detail_view/bill_detail_loan_info.dart';
 import 'package:flutter_echo/pages/bill/detail_view/bill_detail_loan_status.dart';
 import 'package:flutter_echo/providers/bill_detail_provider.dart';
-import 'package:flutter_echo/ui/dialogs/box_dialog.dart';
 import 'package:flutter_echo/ui/widgets/common_appbar.dart';
 import 'package:flutter_echo/utils/common_utils.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -34,7 +32,7 @@ class BillDetailPage extends StatelessWidget {
               //账单详情-还款状态框
               BillDetailLoanStatus(
                 amount: billInfo?.wantonlyOLoanLeftAmount ?? 0.0,
-                time: billDateTime(billInfo?.cherubimOOrderStatus, planList),
+                time: billInfo?.dateTime(planList),
                 status: billStatus(billInfo?.cherubimOOrderStatus),
                 planListBox: ListView.separated(
                   shrinkWrap: true,
@@ -57,6 +55,7 @@ class BillDetailPage extends StatelessWidget {
                     );
                   },
                 ),
+                enable: billDetailModel.checkPlanList.any((v) => v == true),
                 onPagar: () => context.push(AppRouter.repayConfirm),
                 onHistory: () => context.push(AppRouter.repayHistory),
               ),
@@ -68,15 +67,15 @@ class BillDetailPage extends StatelessWidget {
                 comision: billInfo?.spriteOBusinessFee?.showAmount ?? '',
                 charge: billInfo?.centiareOServiceFee?.showAmount ?? '',
                 received: billInfo?.pluralOReceiveAmount?.showAmount ?? '',
-                onComision: () => _showBillDetailLoanDialog(
-                  context,
-                  child: BillDetailLoanDetail(
-                    serviceCharge: 'Q 0',
-                    creditInquiryFee: 'Q 0',
-                    transferFee: 'Q 0',
-                    iva: 'Q 0',
-                  ),
-                ),
+                // onComision: () => _showBillDetailLoanDialog(
+                //   context,
+                //   child: BillDetailLoanDetail(
+                //     serviceCharge: 'Q 0',
+                //     creditInquiryFee: 'Q 0',
+                //     transferFee: 'Q 0',
+                //     iva: 'Q 0',
+                //   ),
+                // ),
               ),
             ],
           ),
@@ -86,16 +85,16 @@ class BillDetailPage extends StatelessWidget {
   }
 
   ///费用详情-弹框
-  Future<void> _showBillDetailLoanDialog(
-    BuildContext context, {
-    required Widget child,
-  }) async {
-    await BoxDialog.show(
-      context: context,
-      title: 'Comisión',
-      btnText: 'Confirmar',
-      centerLayout: child,
-      onConfirm: () => context.pop(true),
-    );
-  }
+  // Future<void> _showBillDetailLoanDialog(
+  //   BuildContext context, {
+  //   required Widget child,
+  // }) async {
+  //   await BoxDialog.show(
+  //     context: context,
+  //     title: 'Comisión',
+  //     btnText: 'Confirmar',
+  //     centerLayout: child,
+  //     onConfirm: () => context.pop(true),
+  //   );
+  // }
 }

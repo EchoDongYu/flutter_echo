@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_echo/common/app_theme.dart';
+import 'package:flutter_echo/pages/app_router.dart';
 import 'package:flutter_echo/providers/bill_detail_provider.dart';
 import 'package:flutter_echo/utils/drawable_utils.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
 
 class RepayCertificateInfo extends StatelessWidget {
@@ -58,7 +60,7 @@ class RepayCertificateInfo extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   InkWell(
-                    onTap: () {},
+                    onTap: () => context.push(AppRouter.certPhoto),
                     child: Container(
                       padding: EdgeInsets.symmetric(
                         horizontal: 12.w,

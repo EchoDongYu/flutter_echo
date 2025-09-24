@@ -10,6 +10,7 @@ import 'package:flutter_echo/ui/widget_helper.dart';
 import 'package:flutter_echo/ui/widgets/common_button.dart';
 import 'package:flutter_echo/ui/widgets/home_arc_slider.dart';
 import 'package:flutter_echo/ui/widgets/home_step.dart';
+import 'package:flutter_echo/ui/widgets/step_slider.dart';
 import 'package:flutter_echo/ui/widgets/top_bar.dart';
 import 'package:flutter_echo/utils/common_utils.dart';
 import 'package:flutter_echo/utils/drawable_utils.dart';
@@ -204,6 +205,7 @@ class _HomeLoanPageState extends State<HomeLoanPage> {
                       },
                     ),
                   ],
+                  SizedBox(height: 10.h),
                   SizedBox(height: 20.h),
                 ],
               ),
@@ -276,48 +278,101 @@ class _HomeLoanPageState extends State<HomeLoanPage> {
                 height: 20 / 14,
               ),
             ),
-            SizedBox(height: 20.h),
-            ArcSlider(
-              min: provider.minValue,
-              max: provider.maxValue,
-              step: provider.step,
-              value: provider.pickedValue,
-              size: 305,
-              onChanged: provider.updateValue,
-            ),
-            SizedBox(height: 7.h),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            SizedBox(height: 32.h),
+            Column(
               children: [
-                SizedBox(
-                  width: 45.w,
-                  child: Text(
-                    provider.minValue.showRound,
-                    style: TextStyle(
-                      fontSize: 10,
-                      fontWeight: FontWeight.w400,
-                      color: NowColors.c0xFF77797B,
-                      height: 14 / 10,
-                    ),
-                    textAlign: TextAlign.center,
+                const Text(
+                  'Monto del préstamo (Q)',
+                  style: TextStyle(
+                    fontSize: 14,
+                    fontWeight: FontWeight.w500,
+                    color: NowColors.c0xFF1C1F23,
+                    height: 22 / 14,
                   ),
                 ),
-                SizedBox(
-                  width: 45.w,
-                  child: Text(
-                    provider.maxValue.showRound,
-                    style: TextStyle(
-                      fontSize: 10,
-                      fontWeight: FontWeight.w400,
-                      color: NowColors.c0xFF77797B,
-                      height: 14 / 10,
+                const SizedBox(height: 28),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    IncDecButton(
+                      icon: Icons.remove_rounded,
+                      onTap: () => provider.updateValue(
+                        provider.pickedValue - provider.step,
+                      ),
                     ),
-                    textAlign: TextAlign.center,
-                  ),
+                    Text(
+                      provider.pickedValue.toInt().toString(),
+                      style: const TextStyle(
+                        fontSize: 45,
+                        fontWeight: FontWeight.w700,
+                        color: NowColors.c0xFF1C1F23,
+                        height: 45 / 45,
+                      ),
+                    ),
+                    IncDecButton(
+                      icon: Icons.add_rounded,
+                      onTap: () => provider.updateValue(
+                        provider.pickedValue + provider.step,
+                      ),
+                    ),
+                  ],
+                ),
+                SizedBox(height: 16.h),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    SizedBox(
+                      width: 45.w,
+                      child: Text(
+                        provider.minValue.showRound,
+                        style: TextStyle(
+                          fontSize: 10,
+                          fontWeight: FontWeight.w400,
+                          color: NowColors.c0xFF77797B,
+                          height: 14 / 10,
+                        ),
+                        textAlign: TextAlign.center,
+                      ),
+                    ),
+                    SizedBox(
+                      width: 45.w,
+                      child: Text(
+                        provider.maxValue.showRound,
+                        style: TextStyle(
+                          fontSize: 10,
+                          fontWeight: FontWeight.w400,
+                          color: NowColors.c0xFF77797B,
+                          height: 14 / 10,
+                        ),
+                        textAlign: TextAlign.center,
+                      ),
+                    ),
+                  ],
                 ),
               ],
             ),
-            SizedBox(height: 24.h),
+            StepSlider(
+              value: provider.pickedValue,
+              min: provider.minValue,
+              max: provider.maxValue,
+              step: provider.step,
+              onChanged: provider.updateValue,
+              thumbBuilder: (context, value, isDragging) {
+                return Container(
+                  width: 36,
+                  height: 36,
+                  decoration: BoxDecoration(
+                    color: NowColors.c0xFF3288F1,
+                    shape: BoxShape.circle,
+                    border: Border.all(color: Colors.white, width: 5),
+                    boxShadow: [
+                      BoxShadow(blurRadius: 4, color: Colors.black26),
+                    ],
+                  ),
+                );
+              },
+            ),
+            SizedBox(height: 32.h),
             EchoPrimaryButton(
               onPressed: () async {
                 final mainModel = context.read<MainModel>();

@@ -13,6 +13,7 @@ class BillDetailLoanStatus extends StatelessWidget {
   final VoidCallback onPagar;
   final VoidCallback onHistory;
   final Widget planListBox;
+  final bool enable;
 
   const BillDetailLoanStatus({
     super.key,
@@ -22,6 +23,7 @@ class BillDetailLoanStatus extends StatelessWidget {
     required this.onPagar,
     required this.onHistory,
     required this.planListBox,
+    required this.enable,
   });
 
   bool get showPagar =>
@@ -55,7 +57,7 @@ class BillDetailLoanStatus extends StatelessWidget {
               Text(
                 status.label,
                 style: TextStyle(
-                  fontSize: 16.sp,
+                  fontSize: 24.sp,
                   color: status.billColor,
                   fontWeight: FontWeight.w500,
                 ),
@@ -124,8 +126,9 @@ class BillDetailLoanStatus extends StatelessWidget {
           Visibility(
             visible: showPagar,
             child: EchoSecondaryButton(
-              filledColor: status.billColor,
               text: 'Pagar inmediatamente',
+              filledColor: status.billColor,
+              enable: enable,
               onPressed: onPagar,
             ),
           ),

@@ -57,4 +57,10 @@ class LoadingDialog {
       _overlayEntry = null;
     }
   }
+
+  static void dispose() {
+    _loadingCount = 0;
+    _overlayEntry?.remove();
+    _overlayEntry = null;
+  }
 }

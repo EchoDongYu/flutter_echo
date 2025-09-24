@@ -55,7 +55,10 @@ class _PickDayDialogState extends State<PickDayDialog> {
       ),
       builder: (BuildContext context) => Column(
         mainAxisSize: MainAxisSize.min,
-        children: [_buildContent(), _buildBottomButton()],
+        children: [
+          _buildContent(),
+          SafeArea(child: _buildBottomButton()),
+        ],
       ),
     );
   }

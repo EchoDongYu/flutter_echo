@@ -36,59 +36,50 @@ BillStatus billStatus(int? status) => switch (status) {
   _ => BillStatus.unknown,
 };
 
-String? billDateTime(
-  int? status,
-  List<BillDetailResp$GlacisORepaymentPlanList$Item> list,
-) {
-  switch (status) {
-    case 3:
-      return list
-          .firstWhereOrNull(
-            (v) => v.d95091ORepaymentStatus == 0 && v.slackOIsOverdue == true,
-          )
-          ?.clansmanODueDay
-          ?.toString();
-    case 4:
-      return list.lastOrNull?.hakodateOLastRepaymentTime?.showDate;
-    default:
-      return list
-          .firstWhereOrNull((v) => v.d95091ORepaymentStatus == 0)
-          ?.r5k31qODueTime
-          ?.showDate;
+extension BillDetailExtension on BillDetailResp {
+  String? dateTime(List<BillDetailResp$GlacisORepaymentPlanList$Item> list) {
+    switch (cherubimOOrderStatus) {
+      case 3:
+        return list
+            .firstWhereOrNull(
+              (v) => v.d95091ORepaymentStatus == 0 && v.slackOIsOverdue == true,
+            )
+            ?.clansmanODueDay
+            ?.toString();
+      case 4:
+        return list.lastOrNull?.hakodateOLastRepaymentTime?.showDate;
+      default:
+        return list
+            .firstWhereOrNull((v) => v.d95091ORepaymentStatus == 0)
+            ?.r5k31qODueTime
+            ?.showDate;
+    }
   }
 }
 
-String routeDetails(int? status, String? id) {
-  switch (status) {
-    case 0:
-      return AppRouter.applyProcess;
-    case 1:
-      return AppRouter.applyFailed;
-    case 2:
-    case 3:
-    case 4:
-      //跳转账单详情
-      return Uri(
-        path: AppRouter.billDetail,
-        queryParameters: {NavKey.id: id.toString()},
-      ).toString();
-    default:
-      return AppRouter.applyProcess;
+extension BillInfoExtension on LoanBillResp$Ouxtd3OLoanList$Item {
+  String get route {
+    switch (cherubimOOrderStatus) {
+      case 0:
+        return AppRouter.applyProcess;
+      case 1:
+        return AppRouter.applyFailed;
+      case 2:
+      case 3:
+      case 4:
+        return Uri(
+          path: AppRouter.billDetail,
+          queryParameters: {NavKey.id: r5a4x8OLoanGid},
+        ).toString();
+      default:
+        return AppRouter.applyProcess;
+    }
   }
 }
 
 ///分期计划状态：,0未结清且到期N天之前,1未结清且到期,2未结清且逾期,3结清
-Color planColor(int? status) {
-  switch (status) {
-    case 0:
-      return NowColors.c0xFF3288F1;
-    case 1:
-      return NowColors.c0xFFFF9817;
-    case 2:
-      return NowColors.c0xFFFB4F34;
-    case 3:
-      return NowColors.c0xFF3EB34D;
-    default:
-      return NowColors.c0xFFFF9817;
-  }
-}
+Color planColor(int? status) => switch (status) {
+  2 => NowColors.c0xFFFB4F34,
+  3 => NowColors.c0xFF3EB34D,
+  _ => NowColors.c0xFF3288F1,
+};

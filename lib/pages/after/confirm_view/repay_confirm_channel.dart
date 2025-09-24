@@ -59,7 +59,7 @@ class RepayConfirmChannel extends StatelessWidget {
               itemBuilder: (context, index) {
                 final channelInfo = channels1[index];
                 return PickItem(
-                  label: channelInfo.oe5u39OChannelName ?? '',
+                  label: channelInfo.ejv164OChannelTypeName ?? '',
                   selected: selectedChannel == channelInfo,
                   onTap: () => onSelectChannel(channelInfo),
                 );
@@ -95,7 +95,7 @@ class RepayConfirmChannel extends StatelessWidget {
               itemBuilder: (context, index) {
                 final channelInfo = channels2[index];
                 return PickItem(
-                  label: channelInfo.oe5u39OChannelName ?? '',
+                  label: channelInfo.ejv164OChannelTypeName ?? '',
                   selected: selectedChannel == channelInfo,
                   onTap: () => onSelectChannel(channelInfo),
                 );

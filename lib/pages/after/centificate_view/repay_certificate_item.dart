@@ -1,8 +1,12 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_echo/common/app_theme.dart';
 import 'package:flutter_echo/models/swaggerApi.models.swagger.dart';
+import 'package:flutter_echo/pages/app_router.dart';
 import 'package:flutter_echo/ui/widgets/common_box.dart';
+import 'package:flutter_echo/utils/common_utils.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:go_router/go_router.dart';
 
 class RepayCertificateItem extends StatelessWidget {
   final RepayRecordResp$Item item;
@@ -44,7 +48,7 @@ class RepayCertificateItem extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
                     Text(
-                      "Hora de solicitud",
+                      'Hora de solicitud',
                       style: TextStyle(
                         fontSize: 12.sp,
                         fontWeight: FontWeight.w400,
@@ -53,7 +57,7 @@ class RepayCertificateItem extends StatelessWidget {
                     ),
                     SizedBox(width: 8.w),
                     Text(
-                      "19/07/2024 00:00:00",
+                      item.staticsOCreateTime?.showDate ?? '',
                       style: TextStyle(
                         fontSize: 14.sp,
                         fontWeight: FontWeight.w500,
@@ -68,7 +72,7 @@ class RepayCertificateItem extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
                     Text(
-                      "No. 28764457",
+                      'No. ${item.e77490ORequestId}',
                       style: TextStyle(
                         fontSize: 20.sp,
                         fontWeight: FontWeight.w500,
@@ -105,7 +109,7 @@ class RepayCertificateItem extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
                     Text(
-                      "Depósito al banco",
+                      'Depósito al banco',
                       style: TextStyle(
                         fontSize: 14.sp,
                         fontWeight: FontWeight.w400,
@@ -113,7 +117,7 @@ class RepayCertificateItem extends StatelessWidget {
                       ),
                     ),
                     Text(
-                      "Banco GyT continenta",
+                      item.staticsOCreateTime?.showDate ?? '',
                       style: TextStyle(
                         fontSize: 14.sp,
                         fontWeight: FontWeight.w500,
@@ -128,17 +132,98 @@ class RepayCertificateItem extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
                     Text(
-                      "Comprobante",
+                      'Importe del pago',
                       style: TextStyle(
                         fontSize: 14.sp,
                         fontWeight: FontWeight.w400,
                         color: NowColors.c0xFF77797B,
                       ),
                     ),
-                    CommonBox(
-                      width: 44.w,
-                      height: 44.h,
-                      color: NowColors.c0xFFD8D8D8,
+                    Text(
+                      item.t1h91pOBankName ?? '',
+                      style: TextStyle(
+                        fontSize: 14.sp,
+                        fontWeight: FontWeight.w500,
+                        color: NowColors.c0xFF1C1F23,
+                      ),
+                    ),
+                  ],
+                ),
+                SizedBox(height: 12.h),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    Text(
+                      'Fecha del depósito',
+                      style: TextStyle(
+                        fontSize: 14.sp,
+                        fontWeight: FontWeight.w400,
+                        color: NowColors.c0xFF77797B,
+                      ),
+                    ),
+                    Text(
+                      item.staticsOCreateTime?.showDate ?? '',
+                      style: TextStyle(
+                        fontSize: 14.sp,
+                        fontWeight: FontWeight.w500,
+                        color: NowColors.c0xFF1C1F23,
+                      ),
+                    ),
+                  ],
+                ),
+                SizedBox(height: 12.h),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    Text(
+                      'Nombre del pagador',
+                      style: TextStyle(
+                        fontSize: 14.sp,
+                        fontWeight: FontWeight.w400,
+                        color: NowColors.c0xFF77797B,
+                      ),
+                    ),
+                    Text(
+                      item.lz09kpOUserName ?? '',
+                      style: TextStyle(
+                        fontSize: 14.sp,
+                        fontWeight: FontWeight.w500,
+                        color: NowColors.c0xFF1C1F23,
+                      ),
+                    ),
+                  ],
+                ),
+                SizedBox(height: 12.h),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    Text(
+                      'Comprobante',
+                      style: TextStyle(
+                        fontSize: 14.sp,
+                        fontWeight: FontWeight.w400,
+                        color: NowColors.c0xFF77797B,
+                      ),
+                    ),
+                    InkWell(
+                      onTap: () {
+                        final uri = Uri(
+                          path: AppRouter.photoView,
+                          queryParameters: {NavKey.url: item.electiveOPicUrl},
+                        );
+                        context.pushReplacement(uri.toString());
+                      },
+                      child: ClipRRect(
+                        borderRadius: BorderRadius.circular(6.r),
+                        child: CachedNetworkImage(
+                          imageUrl: item.electiveOPicUrl ?? '',
+                          height: 44.h,
+                          fit: BoxFit.fitHeight,
+                        ),
+                      ),
                     ),
                   ],
                 ),
