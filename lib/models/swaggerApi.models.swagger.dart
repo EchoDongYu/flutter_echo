@@ -19373,6 +19373,7 @@ class HomeInfoResp$PapuanOLastRecordLoan {
     this.outdoOPlanSimpleList,
     this.slackOIsOverdue,
     this.kc1347OEnableRenew,
+    this.showReview,
   });
 
   @JsonKey(name: 'r5a4x8')
@@ -19422,6 +19423,8 @@ class HomeInfoResp$PapuanOLastRecordLoan {
   final bool? slackOIsOverdue;
   @JsonKey(name: 'kc1347')
   final bool? kc1347OEnableRenew;
+  @JsonKey(name: 'showReview')
+  final bool? showReview;
 
   factory HomeInfoResp$PapuanOLastRecordLoan.fromJson(
     Map<String, dynamic> json,
@@ -19554,6 +19557,11 @@ class HomeInfoResp$PapuanOLastRecordLoan {
                 const DeepCollectionEquality().equals(
                   other.kc1347OEnableRenew,
                   kc1347OEnableRenew,
+                )) &&
+            (identical(other.showReview, showReview) ||
+                const DeepCollectionEquality().equals(
+                  other.showReview,
+                  showReview,
                 )));
   }
 
@@ -19585,6 +19593,7 @@ class HomeInfoResp$PapuanOLastRecordLoan {
       const DeepCollectionEquality().hash(outdoOPlanSimpleList) ^
       const DeepCollectionEquality().hash(slackOIsOverdue) ^
       const DeepCollectionEquality().hash(kc1347OEnableRenew) ^
+      const DeepCollectionEquality().hash(showReview) ^
       runtimeType.hashCode;
 }
 
@@ -19615,6 +19624,7 @@ extension $HomeInfoResp$PapuanOLastRecordLoanExtension
     outdoOPlanSimpleList,
     bool? slackOIsOverdue,
     bool? kc1347OEnableRenew,
+    bool? showReview,
   }) {
     return HomeInfoResp$PapuanOLastRecordLoan(
       r5a4x8OLoanGid: r5a4x8OLoanGid ?? this.r5a4x8OLoanGid,
@@ -19642,6 +19652,7 @@ extension $HomeInfoResp$PapuanOLastRecordLoanExtension
       outdoOPlanSimpleList: outdoOPlanSimpleList ?? this.outdoOPlanSimpleList,
       slackOIsOverdue: slackOIsOverdue ?? this.slackOIsOverdue,
       kc1347OEnableRenew: kc1347OEnableRenew ?? this.kc1347OEnableRenew,
+      showReview: showReview ?? this.showReview,
     );
   }
 
@@ -19672,6 +19683,7 @@ extension $HomeInfoResp$PapuanOLastRecordLoanExtension
     outdoOPlanSimpleList,
     Wrapped<bool?>? slackOIsOverdue,
     Wrapped<bool?>? kc1347OEnableRenew,
+    Wrapped<bool?>? showReview,
   }) {
     return HomeInfoResp$PapuanOLastRecordLoan(
       r5a4x8OLoanGid: (r5a4x8OLoanGid != null
@@ -19743,6 +19755,7 @@ extension $HomeInfoResp$PapuanOLastRecordLoanExtension
       kc1347OEnableRenew: (kc1347OEnableRenew != null
           ? kc1347OEnableRenew.value
           : this.kc1347OEnableRenew),
+      showReview: (showReview != null ? showReview.value : this.showReview),
     );
   }
 }
@@ -26200,6 +26213,7 @@ class BillRepayResp$My4dd2ORepaymentList$Item {
     this.nannetteOReturnCode,
     this.vx4165OFailReason,
     this.pyreneesOPayStatus,
+    this.type,
     this.imprintOPlanGid,
   });
 
@@ -26219,6 +26233,8 @@ class BillRepayResp$My4dd2ORepaymentList$Item {
   final String? vx4165OFailReason;
   @JsonKey(name: 'pyrenees')
   final int? pyreneesOPayStatus;
+  @JsonKey(name: 'type')
+  final int? type;
   @JsonKey(name: 'imprint')
   final String? imprintOPlanGid;
 
@@ -26280,6 +26296,8 @@ class BillRepayResp$My4dd2ORepaymentList$Item {
                   other.pyreneesOPayStatus,
                   pyreneesOPayStatus,
                 )) &&
+            (identical(other.type, type) ||
+                const DeepCollectionEquality().equals(other.type, type)) &&
             (identical(other.imprintOPlanGid, imprintOPlanGid) ||
                 const DeepCollectionEquality().equals(
                   other.imprintOPlanGid,
@@ -26300,6 +26318,7 @@ class BillRepayResp$My4dd2ORepaymentList$Item {
       const DeepCollectionEquality().hash(nannetteOReturnCode) ^
       const DeepCollectionEquality().hash(vx4165OFailReason) ^
       const DeepCollectionEquality().hash(pyreneesOPayStatus) ^
+      const DeepCollectionEquality().hash(type) ^
       const DeepCollectionEquality().hash(imprintOPlanGid) ^
       runtimeType.hashCode;
 }
@@ -26315,6 +26334,7 @@ extension $BillRepayResp$My4dd2ORepaymentList$ItemExtension
     String? nannetteOReturnCode,
     String? vx4165OFailReason,
     int? pyreneesOPayStatus,
+    int? type,
     String? imprintOPlanGid,
   }) {
     return BillRepayResp$My4dd2ORepaymentList$Item(
@@ -26328,6 +26348,7 @@ extension $BillRepayResp$My4dd2ORepaymentList$ItemExtension
       nannetteOReturnCode: nannetteOReturnCode ?? this.nannetteOReturnCode,
       vx4165OFailReason: vx4165OFailReason ?? this.vx4165OFailReason,
       pyreneesOPayStatus: pyreneesOPayStatus ?? this.pyreneesOPayStatus,
+      type: type ?? this.type,
       imprintOPlanGid: imprintOPlanGid ?? this.imprintOPlanGid,
     );
   }
@@ -26341,6 +26362,7 @@ extension $BillRepayResp$My4dd2ORepaymentList$ItemExtension
     Wrapped<String?>? nannetteOReturnCode,
     Wrapped<String?>? vx4165OFailReason,
     Wrapped<int?>? pyreneesOPayStatus,
+    Wrapped<int?>? type,
     Wrapped<String?>? imprintOPlanGid,
   }) {
     return BillRepayResp$My4dd2ORepaymentList$Item(
@@ -26368,6 +26390,7 @@ extension $BillRepayResp$My4dd2ORepaymentList$ItemExtension
       pyreneesOPayStatus: (pyreneesOPayStatus != null
           ? pyreneesOPayStatus.value
           : this.pyreneesOPayStatus),
+      type: (type != null ? type.value : this.type),
       imprintOPlanGid: (imprintOPlanGid != null
           ? imprintOPlanGid.value
           : this.imprintOPlanGid),

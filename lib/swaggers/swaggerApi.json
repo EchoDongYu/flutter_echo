@@ -6096,6 +6096,12 @@
                       "mock": {
                         "mock": "@boolean"
                       }
+                    },
+                    "showReview": {
+                      "type": "boolean",
+                      "mock": {
+                        "mock": "@boolean"
+                      }
                     }
                   },
                   "required": []

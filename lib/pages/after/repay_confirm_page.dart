@@ -27,6 +27,7 @@ class _RepayConfirmPageState extends State<RepayConfirmPage> {
   final TextEditingController _controller = TextEditingController();
   int _inputLength = 0;
   double _comisionFee = 0;
+  bool _hasInput = false;
 
   @override
   void initState() {
@@ -63,24 +64,26 @@ class _RepayConfirmPageState extends State<RepayConfirmPage> {
       toast('El monto ingreso es mas lo que tiene que pagar');
       _controller.text = text.substring(0, length - 1);
     } else {
-      setState(() => _comisionFee = min(current, totalAmount) * channelRate);
+      if (current < max) _hasInput = true;
     }
+    setState(() => _comisionFee = min(current, totalAmount) * channelRate);
   }
 
   void _onChannelChanged() {
-    final text = _controller.text;
-    final length = text.length;
-    if (_inputLength != length) setState(() => _inputLength = length);
     final model = context.read<BillDetailModel>();
     final channel = model.selectedChannel;
     final channelRate = channel?.kd94z7OChannelRate ?? 0;
     final totalAmount = model.totalAmount ?? 0;
     final max = totalAmount * (1 + channelRate);
-    final current = text.tryParseDouble ?? 0;
-    if (current > max) {
-      _controller.text = max.showInput;
+    final current = _controller.text.tryParseDouble ?? 0;
+    if (_hasInput) {
+      if (current > max) {
+        _controller.text = max.showInput;
+      } else {
+        setState(() => _comisionFee = min(current, totalAmount) * channelRate);
+      }
     } else {
-      setState(() => _comisionFee = min(current, totalAmount) * channelRate);
+      _controller.text = max.showInput;
     }
   }
 

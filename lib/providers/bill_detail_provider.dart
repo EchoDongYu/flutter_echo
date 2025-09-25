@@ -98,7 +98,9 @@ class BillDetailModel extends WhatsappModel {
           _checkPlanList[i] = _planList[i].i2jk5fOPeriodStatus != 3;
         }
       } else {
-        _checkPlanList[index] = false;
+        for (int i = index; i < _checkPlanList.length; i++) {
+          _checkPlanList[i] = false;
+        }
       }
       notifyListeners();
     }

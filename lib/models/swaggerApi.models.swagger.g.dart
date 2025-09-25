@@ -3246,6 +3246,7 @@ HomeInfoResp$PapuanOLastRecordLoan _$HomeInfoResp$PapuanOLastRecordLoanFromJson(
       .toList(),
   slackOIsOverdue: json['slack'] as bool?,
   kc1347OEnableRenew: json['kc1347'] as bool?,
+  showReview: json['showReview'] as bool?,
 );
 
 Map<String, dynamic> _$HomeInfoResp$PapuanOLastRecordLoanToJson(
@@ -3274,6 +3275,7 @@ Map<String, dynamic> _$HomeInfoResp$PapuanOLastRecordLoanToJson(
   'outdo': instance.outdoOPlanSimpleList?.map((e) => e.toJson()).toList(),
   'slack': instance.slackOIsOverdue,
   'kc1347': instance.kc1347OEnableRenew,
+  'showReview': instance.showReview,
 };
 
 HomeInfoResp$Xu551uOSpareLastRecordLoan
@@ -4275,6 +4277,7 @@ _$BillRepayResp$My4dd2ORepaymentList$ItemFromJson(Map<String, dynamic> json) =>
       nannetteOReturnCode: json['nannette'] as String?,
       vx4165OFailReason: json['vx4165'] as String?,
       pyreneesOPayStatus: (json['pyrenees'] as num?)?.toInt(),
+      type: (json['type'] as num?)?.toInt(),
       imprintOPlanGid: json['imprint'] as String?,
     );
 
@@ -4289,6 +4292,7 @@ Map<String, dynamic> _$BillRepayResp$My4dd2ORepaymentList$ItemToJson(
   'nannette': instance.nannetteOReturnCode,
   'vx4165': instance.vx4165OFailReason,
   'pyrenees': instance.pyreneesOPayStatus,
+  'type': instance.type,
   'imprint': instance.imprintOPlanGid,
 };
 

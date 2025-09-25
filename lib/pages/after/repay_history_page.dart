@@ -56,7 +56,7 @@ class HistoryListView extends StatelessWidget {
           return RepayHistoryItem(
             amount: itemData.gatemanORepaymentAmount ?? 0.0,
             venDate: itemData.wtpuztORepaymentTime?.showDate ?? '',
-            status: itemData.d95091ORepaymentStatus,
+            status: itemData.pyreneesOPayStatus,
           );
         },
       ),

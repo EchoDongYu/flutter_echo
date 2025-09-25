@@ -34,7 +34,7 @@ class StepStatusModel extends BaseProvider {
               NavKey.amount: amount.toString(),
             },
           );
-          navigate((context) => context.push(uriRoute.toString()));
+          pushReplacement(uriRoute.toString());
           return;
         case 3:
           pushReplacement(AppRouter.stepFailed);
