@@ -65,7 +65,7 @@ class BillListView extends StatelessWidget {
           final planList = billInfo.outdoOPlanSimpleList ?? [];
           return BillListItem(
             amount: billInfo.kinkyOOrderAmount ?? 0.0,
-            dueDays: billInfo.coandaODueDays ?? 0,
+            dueDays: billInfo.wa5f08OOrderDueDays ?? 0,
             venDate: billInfo.encloseOOrderTime?.showDate ?? '',
             status: billStatus(billInfo.cherubimOOrderStatus),
             planListBox: ListView.separated(

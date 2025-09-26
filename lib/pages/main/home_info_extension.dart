@@ -30,7 +30,7 @@ extension HomeInfoExtension on HomeInfoResp$PapuanOLastRecordLoan {
       -1 => 'Vence Hoy',
       _ => encloseOOrderTime?.showDate ?? '',
     },
-    3 => '$coandaODueDays Dias Atrasados',
+    3 => '$wa5f08OOrderDueDays Dias Atrasados',
     _ => encloseOOrderTime?.showDate ?? '',
   };
 
