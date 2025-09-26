@@ -79,20 +79,26 @@ class RepayCertificateItem extends StatelessWidget {
                         color: NowColors.c0xFFFFFFFF,
                       ),
                     ),
-                    CommonBox(
-                      width: 65.w,
-                      height: 26.h,
-                      padding: EdgeInsets.zero,
-                      color: color,
-                      borderWidth: 1,
-                      borderColor: NowColors.c0xFFFFFFFF,
-                      alignment: Alignment.center,
+                    Container(
+                      padding: EdgeInsets.symmetric(
+                        horizontal: 12.w,
+                        vertical: 2.h,
+                      ),
+                      decoration: BoxDecoration(
+                        color: color,
+                        borderRadius: BorderRadius.all(Radius.circular(20)),
+                        border: Border.all(
+                          width: 1,
+                          color: NowColors.c0xFFFFFFFF,
+                        ),
+                      ),
                       child: Text(
                         label,
                         style: TextStyle(
                           fontSize: 14.sp,
                           fontWeight: FontWeight.w500,
                           color: NowColors.c0xFFFFFFFF,
+                          height: 22 / 14,
                         ),
                       ),
                     ),
@@ -117,7 +123,7 @@ class RepayCertificateItem extends StatelessWidget {
                       ),
                     ),
                     Text(
-                      item.staticsOCreateTime?.showDate ?? '',
+                      item.t1h91pOBankName ?? '',
                       style: TextStyle(
                         fontSize: 14.sp,
                         fontWeight: FontWeight.w500,
@@ -140,7 +146,7 @@ class RepayCertificateItem extends StatelessWidget {
                       ),
                     ),
                     Text(
-                      item.t1h91pOBankName ?? '',
+                      item.o12sd0OAmount?.showAmount ?? '',
                       style: TextStyle(
                         fontSize: 14.sp,
                         fontWeight: FontWeight.w500,
@@ -214,7 +220,7 @@ class RepayCertificateItem extends StatelessWidget {
                           path: AppRouter.photoView,
                           queryParameters: {NavKey.url: item.electiveOPicUrl},
                         );
-                        context.pushReplacement(uri.toString());
+                        context.push(uri.toString());
                       },
                       child: ClipRRect(
                         borderRadius: BorderRadius.circular(6.r),

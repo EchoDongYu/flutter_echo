@@ -45,6 +45,7 @@ import 'package:flutter_echo/providers/feedback_provider.dart';
 import 'package:flutter_echo/providers/login_provider.dart';
 import 'package:flutter_echo/providers/main_provider.dart';
 import 'package:flutter_echo/providers/repay_history_provider.dart';
+import 'package:flutter_echo/providers/repay_record_provider.dart';
 import 'package:flutter_echo/providers/step_status_provider.dart';
 import 'package:flutter_echo/providers/submit_provider.dart';
 import 'package:flutter_echo/providers/user_bank_provider.dart';
@@ -333,18 +334,28 @@ class AppRouter {
             builder: (context, state) => const RepayCertificatePage(),
           ),
 
-          /// 凭证记录页面
-          GoRoute(
-            path: certRecord,
-            builder: (context, state) => const CertRecordPage(),
-          ),
-
           /// 图片预览
           GoRoute(
             path: certPhoto,
             builder: (context, state) => const CertPhotoPage(),
           ),
         ],
+      ),
+
+      /// 凭证记录页面
+      GoRoute(
+        path: certRecord,
+        builder: (context, state) {
+          final id = state.uri.queryParameters[NavKey.id];
+          return ChangeNotifierProvider(
+            create: (_) => RepayRecordModel()..queryRepaymentRecord(id),
+            builder: (context, state) {
+              return PageConsumer<RepayRecordModel>(
+                child: CertRecordPage(loanGid: id),
+              );
+            },
+          );
+        },
       ),
 
       /// 凭证拍照页面

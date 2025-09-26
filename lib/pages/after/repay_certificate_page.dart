@@ -70,10 +70,12 @@ class _RepayCertificatePageState extends State<RepayCertificatePage> {
   void _onAmountChanged() {
     final text = _controllers[1].text;
     final length = text.length;
-    final channel = context.read<BillDetailModel>().selectedChannel;
-    final max = channel?.maxAmount ?? 0;
-    final current = text.tryParseDouble ?? 0;
-    if (current > max) {
+    final model = context.read<BillDetailModel>();
+    final channelRate = model.selectedChannel?.kd94z7OChannelRate ?? 0;
+    final totalValue = model.totalAmount ?? 0;
+    final maxValue = totalValue + (totalValue * channelRate).truncate();
+    final currentValue = text.tryParseDouble ?? 0;
+    if (currentValue > maxValue) {
       toast('El monto ingreso es mas lo que tiene que pagar');
       _controllers[1].text = text.substring(0, length - 1);
     }
@@ -90,12 +92,10 @@ class _RepayCertificatePageState extends State<RepayCertificatePage> {
     });
     if (!_isErrors.contains(true)) {
       final model = context.read<BillDetailModel>();
-      final channel = model.selectedChannel;
-      //final max = channel?.maxAmount ?? 0;
-      final min = channel?.minAmount ?? 0;
-      final current = _controllers[1].text.tryParseDouble ?? 0;
-      if (current < min) {
-        toast('El monto ingreso hay que ser mayor de $min');
+      final minValue = model.selectedChannel?.minAmount ?? 0;
+      final currentValue = _controllers[1].text.tryParseDouble ?? 0;
+      if (currentValue < minValue) {
+        toast('El monto ingreso hay que ser mayor de $minValue');
         return;
       }
       model.applyRepay(
@@ -394,12 +394,18 @@ class _RepayCertificatePageState extends State<RepayCertificatePage> {
         children: [
           GestureDetector(
             onTap: () {
-              context.push(AppRouter.certRecord);
-              context.read<BillDetailModel>().queryRepaymentRecord(
-                inputs: _controllers.map((it) => it.text).toList(),
-                date: _pickedDate?.secondSinceEpoch,
-                bank: _pickedBank,
+              final uri = Uri(
+                path: AppRouter.certRecord,
+                queryParameters: {
+                  NavKey.id: context.read<BillDetailModel>().loanGid,
+                },
               );
+              context.push(uri.toString());
+              // context.read<BillDetailModel>().queryRepaymentRecord(
+              //   inputs: _controllers.map((it) => it.text).toList(),
+              //   date: _pickedDate?.secondSinceEpoch,
+              //   bank: _pickedBank,
+              // );
             },
             child: Text(
               'Historial de pagos subidos',

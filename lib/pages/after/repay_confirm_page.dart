@@ -34,11 +34,10 @@ class _RepayConfirmPageState extends State<RepayConfirmPage> {
     super.initState();
     _controller.addListener(_onAmountChanged);
     final model = context.read<BillDetailModel>();
-    final channel = model.selectedChannel;
-    final channelRate = channel?.kd94z7OChannelRate ?? 0;
-    final totalAmount = model.totalAmount ?? 0;
-    final max = totalAmount * (1 + channelRate);
-    _controller.text = max.showInput;
+    final channelRate = model.selectedChannel?.kd94z7OChannelRate ?? 0;
+    final totalValue = model.totalAmount ?? 0;
+    final maxValue = totalValue + (totalValue * channelRate).truncate();
+    _controller.text = maxValue.showInput;
   }
 
   @override
@@ -53,37 +52,37 @@ class _RepayConfirmPageState extends State<RepayConfirmPage> {
     final length = text.length;
     if (_inputLength != length) setState(() => _inputLength = length);
     final model = context.read<BillDetailModel>();
-    final channel = model.selectedChannel;
-    final channelRate = channel?.kd94z7OChannelRate ?? 0;
-    final totalAmount = model.totalAmount ?? 0;
-    final max = totalAmount * (1 + channelRate);
-    final current = text.tryParseDouble ?? 0;
-    if (current == 0) {
+    final channelRate = model.selectedChannel?.kd94z7OChannelRate ?? 0;
+    final totalValue = model.totalAmount ?? 0;
+    final maxValue = totalValue + (totalValue * channelRate).truncate();
+    final currentValue = text.tryParseDouble ?? 0;
+    if (currentValue == 0) {
       _controller.clear();
-    } else if (current > max) {
+    } else if (currentValue > maxValue) {
       toast('El monto ingreso es mas lo que tiene que pagar');
       _controller.text = text.substring(0, length - 1);
     } else {
-      if (current < max) _hasInput = true;
+      if (currentValue < maxValue) _hasInput = true;
     }
-    setState(() => _comisionFee = min(current, totalAmount) * channelRate);
+    final channelFee = min(currentValue, totalValue) * channelRate;
+    setState(() => _comisionFee = channelFee.truncateToDouble());
   }
 
   void _onChannelChanged() {
     final model = context.read<BillDetailModel>();
-    final channel = model.selectedChannel;
-    final channelRate = channel?.kd94z7OChannelRate ?? 0;
-    final totalAmount = model.totalAmount ?? 0;
-    final max = totalAmount * (1 + channelRate);
-    final current = _controller.text.tryParseDouble ?? 0;
+    final channelRate = model.selectedChannel?.kd94z7OChannelRate ?? 0;
+    final totalValue = model.totalAmount ?? 0;
+    final maxValue = totalValue + (totalValue * channelRate).truncate();
+    final currentValue = _controller.text.tryParseDouble ?? 0;
     if (_hasInput) {
-      if (current > max) {
-        _controller.text = max.showInput;
+      if (currentValue > maxValue) {
+        _controller.text = maxValue.showInput;
       } else {
-        setState(() => _comisionFee = min(current, totalAmount) * channelRate);
+        final channelFee = min(currentValue, totalValue) * channelRate;
+        setState(() => _comisionFee = channelFee.truncateToDouble());
       }
     } else {
-      _controller.text = max.showInput;
+      _controller.text = maxValue.showInput;
     }
   }
 
@@ -157,14 +156,13 @@ class _RepayConfirmPageState extends State<RepayConfirmPage> {
           if (type == 2) {
             context.push(AppRouter.repayBank);
           } else if (type != null) {
-            //final max = channel?.maxAmount ?? 0;
-            final min = channel?.minAmount ?? 0;
-            final current = _controller.text.tryParseDouble ?? 0;
-            if (current < min) {
-              toast('El monto ingreso hay que ser mayor de $min');
+            final minValue = channel?.minAmount ?? 0;
+            final currentValue = _controller.text.tryParseDouble ?? 0;
+            if (currentValue < minValue) {
+              toast('El monto ingreso hay que ser mayor de $minValue');
               return;
             }
-            model.applyRepayH5(current);
+            model.applyRepayH5(currentValue);
             // final result = await PromptDialog.show(
             //   context: context,
             //   title: 'Consejos',

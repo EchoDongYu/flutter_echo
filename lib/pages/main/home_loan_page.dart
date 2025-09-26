@@ -211,7 +211,15 @@ class _HomeLoanPageState extends State<HomeLoanPage> {
                     Padding(
                       padding: EdgeInsets.symmetric(horizontal: 16.w),
                       child: OutlinedButton(
-                        onPressed: () => context.push(AppRouter.certRecord),
+                        onPressed: () {
+                          final uri = Uri(
+                            path: AppRouter.certRecord,
+                            queryParameters: {
+                              NavKey.id: homeInfo.r5a4x8OLoanGid,
+                            },
+                          );
+                          context.push(uri.toString());
+                        },
                         style: OutlinedButton.styleFrom(
                           minimumSize: Size.fromHeight(45.h),
                           backgroundColor: Colors.transparent,

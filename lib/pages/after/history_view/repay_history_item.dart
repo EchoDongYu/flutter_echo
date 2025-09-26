@@ -12,6 +12,7 @@ class RepayHistoryItem extends StatelessWidget {
   ///本次还款处理后状态：0：还款中，1：还款成功,2：还款失败
   final int? status;
   final int? type;
+  final String? id;
 
   const RepayHistoryItem({
     super.key,
@@ -19,6 +20,7 @@ class RepayHistoryItem extends StatelessWidget {
     required this.venDate,
     required this.status,
     required this.type,
+    required this.id,
   });
 
   Color get _statusColor {
@@ -103,7 +105,13 @@ class RepayHistoryItem extends StatelessWidget {
               ),
               if (type == 2)
                 OutlinedButton(
-                  onPressed: () => context.push(AppRouter.certRecord),
+                  onPressed: () {
+                    final uri = Uri(
+                      path: AppRouter.certRecord,
+                      queryParameters: {NavKey.id: id},
+                    );
+                    context.push(uri.toString());
+                  },
                   style: OutlinedButton.styleFrom(
                     minimumSize: Size.fromHeight(26.h),
                     backgroundColor: Colors.transparent,

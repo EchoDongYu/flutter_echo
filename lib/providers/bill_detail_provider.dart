@@ -59,6 +59,7 @@ class BillDetailModel extends WhatsappModel {
   Uint8List? get certPhoto => _certPhoto;
   Uint8List? _certPhoto;
 
+  String? get loanGid => _loanGid;
   String? _loanGid;
 
   ///凭证记录
@@ -140,13 +141,14 @@ class BillDetailModel extends WhatsappModel {
 
   RepayApplyReq _createRepayApplyReq(double inputAmount) {
     final channelRate = selectedChannel?.kd94z7OChannelRate ?? 0;
-    final totalAlex = totalAmount ?? 0;
-    final channelFee = min(totalAlex, inputAmount) * channelRate;
+    final totalValue = totalAmount ?? 0;
+    final channelFee = min(totalValue, inputAmount) * channelRate;
+    final channelFeeTru = channelFee.truncateToDouble();
     return RepayApplyReq(
       r5a4x8OLoanGid: _loanGid,
-      o12sd0OAmount: inputAmount - channelFee,
-      g3x614ORepaymentFee: channelFee,
-      hm7756OCheckLoanLeftAmount: totalAlex,
+      o12sd0OAmount: inputAmount - channelFeeTru,
+      g3x614ORepaymentFee: channelFeeTru,
+      hm7756OCheckLoanLeftAmount: totalValue,
       bdvg46ORepaymentStage: 0,
       percherOJumpSourceType: 1,
       mahoganyORepaymentType: selectedChannel?.y28nd4OChannelType,
