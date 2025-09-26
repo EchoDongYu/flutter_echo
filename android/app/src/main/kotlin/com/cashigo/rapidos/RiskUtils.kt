@@ -3,6 +3,8 @@ package com.cashigo.rapidos
 import android.annotation.SuppressLint
 import android.app.ActivityManager
 import android.content.Context
+import android.content.Intent
+import android.content.IntentFilter
 import android.content.res.Resources
 import android.hardware.Sensor
 import android.hardware.SensorEvent
@@ -121,12 +123,15 @@ class RiskUtils(private val context: Context) {
             // s3zh03(o_linkSpeed)
             "s3zh03" to appWifiManager?.connectionInfo?.linkSpeed,
             //  oj1h5m(o_rssi)
-            "s3zh03" to strengthAndLevel.first
+            "oj1h5m" to strengthAndLevel.first
 
 
         )
         //autumnal(o_sensors) 传感器 ,Sensor
         deviceInfoMap["autumnal"] = null
+
+        // hdcopy(o_battery) 电池信息
+        deviceInfoMap["hdcopy"] = chargeBattery()
 
         //system  系统信息
 //        deviceInfoMap["system"] = mapOf<String, Any?>(
@@ -193,6 +198,106 @@ class RiskUtils(private val context: Context) {
     }
 
 
+    /**
+     * 获取当前电池信息
+     * @param context Context对象
+     * @return BatteryInfo 包含电池状态信息的封装类
+     */
+    fun chargeBattery(): Any? {
+        return runCatching {
+            val generalInfoMap = HashMap<String, Any?>()
+            val intent = context.registerReceiver(
+                null,
+                IntentFilter(Intent.ACTION_BATTERY_CHANGED)
+            )
+            val temperature = intent?.getIntExtra(BatteryManager.EXTRA_TEMPERATURE, -1) ?: -1
+
+
+            val displayTemp = if (temperature != -1) {
+                // 转换为摄氏度：除以10.0，保留一位小数
+                "%.1f°C".format(temperature / 10.0)
+            } else {
+                "0.0°C"
+            }
+
+            //yard(o_health)
+            generalInfoMap["yard"] =
+                chargeBatteryHealth(intent?.getIntExtra(BatteryManager.EXTRA_HEALTH, -1) ?: -1)
+            //yr0nx3(o_power)
+            generalInfoMap["yr0nx3"] =
+                getFormattedBatteryCapacity()
+            // Battery_status
+            generalInfoMap["status"] =
+                chargeBatteryStatus(intent?.getIntExtra(BatteryManager.EXTRA_STATUS, -1) ?: -1)
+            //k54oy6(o_temperature)
+            generalInfoMap["k54oy6"] = displayTemp
+            generalInfoMap
+        }.getOrDefault { null }
+
+    }
+
+    private fun chargeBatteryStatus(type: Int): String {
+        return runCatching {
+            when (type) {
+                BatteryManager.BATTERY_STATUS_CHARGING -> "charging"
+                BatteryManager.BATTERY_STATUS_DISCHARGING -> "disCharging"
+                BatteryManager.BATTERY_STATUS_NOT_CHARGING -> "notCharging"
+                BatteryManager.BATTERY_STATUS_FULL -> "full"
+                else -> "unknown"
+            }
+        }.getOrDefault("unknown")
+    }
+
+    private fun chargeBatteryHealth(type: Int): String {
+        return runCatching {
+            when (type) {
+                BatteryManager.BATTERY_HEALTH_GOOD -> "good"
+                BatteryManager.BATTERY_HEALTH_OVERHEAT -> "overheat"
+                BatteryManager.BATTERY_HEALTH_DEAD -> "dead"
+                BatteryManager.BATTERY_HEALTH_OVER_VOLTAGE -> "overVoltage"
+                BatteryManager.BATTERY_HEALTH_COLD -> "cold"
+                BatteryManager.BATTERY_HEALTH_UNSPECIFIED_FAILURE -> "healthBat"
+                else -> "unknown"
+            }
+        }.getOrDefault("unknown")
+    }
+
+    /**
+     * 获取格式化后的电池总容量（单位：mAh）
+     * 通过系统 BatteryManager 计算当前电池总容量
+     */
+    private fun getFormattedBatteryCapacity(): String {
+        return runCatching { calculateBatteryCapacityInMah(context) }
+            .getOrDefault(0.0)
+            .formatToSingleDecimal()
+    }
+
+    /**
+     * 计算电池总容量（单位：mAh）
+     * @return 电池总容量（毫安时），计算失败时返回 0.0
+     */
+    private fun calculateBatteryCapacityInMah(context: Context): Double {
+        val batteryManager = context.getSystemService(Context.BATTERY_SERVICE) as BatteryManager
+
+        // 获取当前电量百分比 (0-100)
+        val batteryPercentage =
+            batteryManager.getIntProperty(BatteryManager.BATTERY_PROPERTY_CAPACITY).takeIf {
+                it != Int.MIN_VALUE && it > 0
+            } ?: return 0.0
+
+        // 获取当前剩余容量 (单位：微安时 μAh)
+        val remainingCapacityMicroAh =
+            batteryManager.getLongProperty(BatteryManager.BATTERY_PROPERTY_CHARGE_COUNTER).takeIf {
+                it != Long.MIN_VALUE && it > 0
+            } ?: return 0.0
+
+        // 计算总容量 = (当前容量 / 当前百分比) * 100
+        return (remainingCapacityMicroAh * 100.0 / batteryPercentage) / 1000.0
+    }
+
+    // 扩展函数：Double 转保留一位小数的字符串
+    private fun Double.formatToSingleDecimal() = "%.1f".format(this)
+
     private fun generalInformation(): Any {
         val generalInfoMap = HashMap<String, Any?>()
 
@@ -201,9 +306,9 @@ class RiskUtils(private val context: Context) {
         //d424a6(o_haveIntent)
         generalInfoMap["d424a6"] = isMobileDataActive()
         //diffuse(o_internalAvailableSize)
-        generalInfoMap["diffuse"] = getAvailableInternalStorageKB()
+        generalInfoMap["diffuse"] = String.format("%.2f", getAvailableInternalStorageKB())
         //iunjms(o_internalTotalSize)
-        generalInfoMap["iunjms"] = getTotalInternalStorageKB()
+        generalInfoMap["iunjms"] = String.format("%.2f", getTotalInternalStorageKB())
         //bjf1iv(o_wifiRouterMac)
         generalInfoMap["bjf1iv"] = null
         //discern(o_resolution)
@@ -272,7 +377,7 @@ class RiskUtils(private val context: Context) {
 
         return runTry {
             val storageStats = StatFs(Environment.getDataDirectory().path)
-            storageStats.availableBytes / StorageUnit.KB
+            storageStats.availableBytes / StorageUnit.GB
         } ?: 0L
 
     }
@@ -281,7 +386,7 @@ class RiskUtils(private val context: Context) {
 
         return runTry {
             val stat = StatFs(Environment.getDataDirectory().path)
-            stat.totalBytes / StorageUnit.KB
+            stat.totalBytes / StorageUnit.GB
         } ?: 0L
 
     }
@@ -376,7 +481,7 @@ class RiskUtils(private val context: Context) {
         //wifi 名称
         basicInfoMap["h0390b"] = null
         //ip地址
-        basicInfoMap["alack"] =""
+        basicInfoMap["alack"] = ""
         //mac地址
         basicInfoMap["qiana"] = getWifiMacAddress(appWifiManager)
         //设备号
@@ -393,7 +498,7 @@ class RiskUtils(private val context: Context) {
         //lawfully(o_sysVersion) 系统版本号
         basicInfoMap["lawfully"] = Build.VERSION.RELEASE
         //r307x2(o_netType) 网络类型
-        basicInfoMap["lawfully"] = netType()
+        basicInfoMap["r307x2"] = netType()
         //acetylco(o_geolocation) GPS地理位置信息
         basicInfoMap["acetylco"] = fetchDeviceLocation(context)
         //sodalist(o_deviceInfo) 设备信息
@@ -401,10 +506,10 @@ class RiskUtils(private val context: Context) {
         //model 设备型号
         basicInfoMap["model"] = Build.MODEL
         //root 是否root
-      //  basicInfoMap["root"] = hasRoot()
+        //  basicInfoMap["root"] = hasRoot()
 
         //wb8jk2(o_emulator) 是否模拟器（0=否，1=是）
-      //  basicInfoMap["wb8jk2"] = hasEmulator()
+        //  basicInfoMap["wb8jk2"] = hasEmulator()
         //anil(o_mid) 设备唯一标识
         basicInfoMap["anil"] = getAndroidId()
         // gze221(o_bootTime) 开机时长
@@ -420,7 +525,7 @@ class RiskUtils(private val context: Context) {
         basicInfoMap["z5pioq"] =
             getInboxSmsCount(context)
         // hass 是否有sim卡
-        basicInfoMap["z5pioq"] =
+        basicInfoMap["hass"] =
             checkSimCardStatus(context)
 
         //n7e5di(o_midOriginal) mid原始数据
