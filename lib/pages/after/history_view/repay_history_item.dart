@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_echo/common/app_theme.dart';
+import 'package:flutter_echo/pages/app_router.dart';
 import 'package:flutter_echo/utils/common_utils.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:go_router/go_router.dart';
 
 class RepayHistoryItem extends StatelessWidget {
   final double amount;
@@ -9,12 +11,14 @@ class RepayHistoryItem extends StatelessWidget {
 
   ///本次还款处理后状态：0：还款中，1：还款成功,2：还款失败
   final int? status;
+  final int? type;
 
   const RepayHistoryItem({
     super.key,
     required this.amount,
     required this.venDate,
     required this.status,
+    required this.type,
   });
 
   Color get _statusColor {
@@ -86,13 +90,52 @@ class RepayHistoryItem extends StatelessWidget {
             ],
           ),
           SizedBox(height: 10.h),
-          Text(
-            amount.showAmount,
-            style: TextStyle(
-              fontSize: 32.sp,
-              fontWeight: FontWeight.w700,
-              color: NowColors.c0xFF1C1F23,
-            ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Text(
+                amount.showAmount,
+                style: TextStyle(
+                  fontSize: 32.sp,
+                  fontWeight: FontWeight.w700,
+                  color: NowColors.c0xFF1C1F23,
+                ),
+              ),
+              if (type == 2)
+                OutlinedButton(
+                  onPressed: () => context.push(AppRouter.certRecord),
+                  style: OutlinedButton.styleFrom(
+                    minimumSize: Size.fromHeight(26.h),
+                    backgroundColor: Colors.transparent,
+                    padding: EdgeInsets.symmetric(
+                      horizontal: 5.w,
+                      vertical: 1.h,
+                    ),
+                    side: BorderSide(color: NowColors.c0xFF3288F1, width: 1),
+                    shape: const RoundedRectangleBorder(
+                      borderRadius: BorderRadius.all(Radius.circular(12)),
+                    ),
+                  ),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Text(
+                        'Pago por bancos',
+                        style: TextStyle(
+                          color: NowColors.c0xFF3288F1,
+                          fontWeight: FontWeight.w500,
+                          fontSize: 14.sp,
+                        ),
+                      ),
+                      const Icon(
+                        Icons.arrow_right_rounded,
+                        color: NowColors.c0xFF3288F1,
+                        size: 30,
+                      ),
+                    ],
+                  ),
+                ),
+            ],
           ),
         ],
       ),

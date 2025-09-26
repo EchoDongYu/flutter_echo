@@ -96,6 +96,11 @@ class _RepayConfirmPageState extends State<RepayConfirmPage> {
         padding: EdgeInsets.fromLTRB(12.w, 12.h, 12.w, 12.h),
         child: Consumer<BillDetailModel>(
           builder: (_, provider, child) {
+            WidgetsBinding.instance.addPostFrameCallback((_) {
+              final value = provider.selectedValue;
+              provider.selectedValue = null;
+              if (value != null) _controller.text = value.showInput;
+            });
             return Column(
               children: [
                 //顶部提示

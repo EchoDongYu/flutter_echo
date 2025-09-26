@@ -41,16 +41,16 @@ extension BillDetailExtension on BillDetailResp {
     switch (cherubimOOrderStatus) {
       case 3:
         return list
-            .firstWhereOrNull(
-              (v) => v.d95091ORepaymentStatus == 0 && v.slackOIsOverdue == true,
-            )
+            .firstWhereOrNull((v) => v.i2jk5fOPeriodStatus == 2)
             ?.clansmanODueDay
             ?.toString();
       case 4:
         return list.lastOrNull?.hakodateOLastRepaymentTime?.showDate;
       default:
         return list
-            .firstWhereOrNull((v) => v.d95091ORepaymentStatus == 0|| v.d95091ORepaymentStatus == 1)
+            .firstWhereOrNull(
+              (v) => v.i2jk5fOPeriodStatus == 0 || v.i2jk5fOPeriodStatus == 1,
+            )
             ?.r5k31qODueTime
             ?.showDate;
     }

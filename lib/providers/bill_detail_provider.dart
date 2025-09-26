@@ -45,6 +45,7 @@ class BillDetailModel extends WhatsappModel {
 
   ///渠道勾选
   BillDetailResp$V08uw3ORepaymentChannelList$Item? selectedChannel;
+  double? selectedValue;
 
   ///银行直连线下还款银行字典
   List<BankDictV0Item> get bankDictItems => _bankDictItems ?? [];
@@ -75,17 +76,13 @@ class BillDetailModel extends WhatsappModel {
       _planList = detailData.glacisORepaymentPlanList ?? [];
       if (_planList.isNotEmpty) {
         _checkPlanList = List.generate(_planList.length, (index) {
-          // 单期，进入到账单详情，默认候选最近一笔待还账单（非结清）
-          if (index == 0 &&
-              detailData.ez64t7OPeriodCount == 1 &&
-              _planList[0].i2jk5fOPeriodStatus != 3) {
-            return true;
-          }
-          return null;
+          return _planList[index].i2jk5fOPeriodStatus != 3;
         }, growable: false);
       }
       _channelList = detailData.v08uw3ORepaymentChannelList ?? [];
       selectedChannel = _channelList.firstOrNull;
+      final channelRate = selectedChannel?.kd94z7OChannelRate ?? 0;
+      selectedValue = (totalAmount ?? 0) * (1 + channelRate);
     }
     notifyListeners();
   }
@@ -95,11 +92,13 @@ class BillDetailModel extends WhatsappModel {
       final uncheck = _checkPlanList[index] != true;
       if (uncheck) {
         for (int i = 0; i <= index; i++) {
+          // 结清不能勾选
           _checkPlanList[i] = _planList[i].i2jk5fOPeriodStatus != 3;
         }
       } else {
         for (int i = index; i < _checkPlanList.length; i++) {
-          _checkPlanList[i] = false;
+          // 逾期不能取消勾选
+          _checkPlanList[i] = _planList[i].i2jk5fOPeriodStatus == 2;
         }
       }
       notifyListeners();

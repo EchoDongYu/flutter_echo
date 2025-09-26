@@ -24,9 +24,9 @@ class _PageConsumerState<T extends BaseProvider> extends State<PageConsumer> {
   bool _showLoading = false;
 
   @override
-  void dispose() {
-    LoadingDialog.dispose();
-    super.dispose();
+  void initState() {
+    LoadingDialog.initState();
+    super.initState();
   }
 
   @override

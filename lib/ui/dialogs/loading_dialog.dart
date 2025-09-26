@@ -58,7 +58,7 @@ class LoadingDialog {
     }
   }
 
-  static void dispose() {
+  static void initState() {
     _loadingCount = 0;
     _overlayEntry?.remove();
     _overlayEntry = null;

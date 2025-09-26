@@ -50,13 +50,11 @@ class _LoginCodePageState extends State<LoginCodePage> {
     // 如果输入完整，自动验证
     if (value.length == AppConst.codeLen) {
       _focusNode.unfocus();
-      final checkOk = await loginModel.checkVerifyCode(value);
-      if (checkOk != true) {
-        Future.delayed(const Duration(milliseconds: 500), () {
-          _controller.clear();
-          setState(() => _inputCode = '');
-        });
-      }
+      await loginModel.checkVerifyCode(value);
+      Future.delayed(const Duration(milliseconds: 500), () {
+        _controller.clear();
+        setState(() => _inputCode = '');
+      });
     }
   }
 

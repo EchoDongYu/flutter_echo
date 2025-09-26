@@ -47,7 +47,7 @@ class BillListItem extends StatelessWidget {
             children: [
               status != BillStatus.atrasado
                   ? Text(
-                      'Vencimiento: $venDate',
+                      venDate,
                       style: TextStyle(
                         fontSize: 14.sp,
                         fontWeight: FontWeight.w500,
@@ -109,7 +109,7 @@ class BillListItem extends StatelessWidget {
           SizedBox(height: 12.h),
           // 明细区域
           planListBox,
-          SizedBox(height: 12.h),
+          SizedBox(height: 20.h),
           // 底部按钮
           Row(
             spacing: 10.w,

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_echo/common/app_theme.dart';
 import 'package:flutter_echo/common/constants.dart';
 import 'package:flutter_echo/models/swaggerApi.models.swagger.dart';
+import 'package:flutter_echo/pages/app_router.dart';
 import 'package:flutter_echo/pages/bill/bill_status.dart';
 import 'package:flutter_echo/pages/main/home_info_extension.dart';
 import 'package:flutter_echo/providers/main_provider.dart';
@@ -205,7 +206,45 @@ class _HomeLoanPageState extends State<HomeLoanPage> {
                       },
                     ),
                   ],
-                  SizedBox(height: 10.h),
+                  if (homeInfo.showReview == true) ...[
+                    SizedBox(height: 10.h),
+                    Padding(
+                      padding: EdgeInsets.symmetric(horizontal: 16.w),
+                      child: OutlinedButton(
+                        onPressed: () => context.push(AppRouter.certRecord),
+                        style: OutlinedButton.styleFrom(
+                          minimumSize: Size.fromHeight(45.h),
+                          backgroundColor: Colors.transparent,
+                          padding: EdgeInsets.symmetric(
+                            horizontal: 16.w,
+                            vertical: 12.h,
+                          ),
+                          side: BorderSide(color: Colors.white, width: 1),
+                          shape: const RoundedRectangleBorder(
+                            borderRadius: BorderRadius.all(Radius.circular(12)),
+                          ),
+                        ),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Text(
+                              'Pago por bancos',
+                              style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 14.sp,
+                                fontWeight: FontWeight.w500,
+                              ),
+                            ),
+                            const Icon(
+                              Icons.arrow_right_rounded,
+                              color: Colors.white,
+                              size: 30,
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                  ],
                   SizedBox(height: 20.h),
                 ],
               ),
