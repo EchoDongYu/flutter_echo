@@ -50,7 +50,7 @@ extension BillDetailExtension on BillDetailResp {
         return list.lastOrNull?.hakodateOLastRepaymentTime?.showDate;
       default:
         return list
-            .firstWhereOrNull((v) => v.d95091ORepaymentStatus == 0)
+            .firstWhereOrNull((v) => v.d95091ORepaymentStatus == 0|| v.d95091ORepaymentStatus == 1)
             ?.r5k31qODueTime
             ?.showDate;
     }
