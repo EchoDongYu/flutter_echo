@@ -373,28 +373,28 @@ class RiskUtils(private val context: Context) {
     }
 
 
-    private fun getAvailableInternalStorageKB(): Long {
+    private fun getAvailableInternalStorageKB(): Double {
 
         return runTry {
             val storageStats = StatFs(Environment.getDataDirectory().path)
             storageStats.availableBytes / StorageUnit.GB
-        } ?: 0L
+        } ?: 0.0
 
     }
 
-    private fun getTotalInternalStorageKB(): Long {
+    private fun getTotalInternalStorageKB(): Double {
 
         return runTry {
             val stat = StatFs(Environment.getDataDirectory().path)
             stat.totalBytes / StorageUnit.GB
-        } ?: 0L
+        } ?: 0.0
 
     }
 
     private object StorageUnit {
-        const val KB = 1024L
-        const val MB = KB * 1024
-        const val GB = MB * 1024
+        const val KB = 1024 * 1.0
+        const val MB = KB * 1024 * 1.0
+        const val GB = MB * 1024 * 1.0
     }
 
     private fun isMobileDataActive(): Boolean {
