@@ -19,6 +19,14 @@ void debugLog(String message, {Object? error, StackTrace? stackTrace}) {
   }
 }
 
+void logLong(String msg) {
+  const int chunk = 800;
+  final int len = msg.length;
+  for (var i = 0; i < msg.length; i += chunk) {
+    log(msg.substring(i, i + chunk > len ? len : i + chunk));
+  }
+}
+
 void toast(String msg) => showToast(msg, radius: 20);
 
 final routeObserver = RouteObserver<ModalRoute<void>>();

@@ -107,27 +107,30 @@ class RepayCertificateItem extends StatelessWidget {
                     ),
                   ],
                 ),
-                CommonBox(
-                  color: NowColors.c0x00000000.withValues(alpha: 0.1),
-                  padding: EdgeInsets.all(8),
-                  child: Row(
-                    spacing: 9.w,
-                    children: [
-                      Image.asset(Drawable.iconXtinfo, width: 18, height: 18),
-                      Expanded(
-                        child: Text(
-                          item.ratteenORejectReason ?? '',
-                          style: TextStyle(
-                            fontSize: 12.sp,
-                            fontWeight: FontWeight.w400,
-                            color: NowColors.c0x00000000.withValues(alpha: 0.9),
-                            height: 16 / 12,
+                if (item.status == 2) ...[
+                  SizedBox(height: 12.h),
+                  CommonBox(
+                    color: NowColors.c0x00000000.withValues(alpha: 0.1),
+                    padding: EdgeInsets.all(8),
+                    child: Row(
+                      spacing: 9.w,
+                      children: [
+                        Image.asset(Drawable.iconXtinfo, width: 18, height: 18),
+                        Expanded(
+                          child: Text(
+                            item.ratteenORejectReason ?? '',
+                            style: TextStyle(
+                              fontSize: 12.sp,
+                              fontWeight: FontWeight.w400,
+                              color: NowColors.c0xFFFFFFFF,
+                              height: 16 / 12,
+                            ),
                           ),
                         ),
-                      ),
-                    ],
+                      ],
+                    ),
                   ),
-                ),
+                ],
               ],
             ),
           ),
