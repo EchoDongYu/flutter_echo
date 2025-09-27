@@ -9,7 +9,6 @@ import 'package:flutter_echo/utils/common_utils.dart';
 import 'package:flutter_echo/utils/drawable_utils.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
-import 'package:url_launcher/url_launcher.dart';
 
 /// 关于我们页面
 class AboutUsPage extends StatefulWidget {
@@ -134,15 +133,15 @@ class _AboutUsPageState extends State<AboutUsPage> {
                 case '17':
                   FlutterPlatform.launchWhatsApp(item?.value);
                   break;
-                case '21':
-                  launchUrl(Uri.parse('tel:${item?.value}'));
-                  break;
-                case '23':
-                  launchUrl(Uri.parse('https:${item?.value}'));
-                  break;
+                // case '21':
+                //   launchUrl(Uri.parse('tel:${item?.value}'));
+                //   break;
+                // case '23':
+                //   launchUrl(Uri.parse('https:${item?.value}'));
+                //   break;
                 default:
                   Clipboard.setData(ClipboardData(text: item?.value ?? ''));
-                  toast('copiar');
+                  toast('Copiar');
                   break;
               }
             },
