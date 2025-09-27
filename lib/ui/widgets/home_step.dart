@@ -98,8 +98,8 @@ class HomeBottomStep extends StatelessWidget {
   }
 
   static const _stepItems = [
-    'Llenar Datos',
-    'Monto Credito',
-    'Solicitar Credito',
+    'Registrarse',
+    'Aceptar de credito',
+    'Recibe su dinero',
   ];
 }
