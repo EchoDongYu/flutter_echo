@@ -406,7 +406,10 @@ class _DeviceVerifyDialogState extends State<DeviceVerifyDialog>
             Future.delayed(const Duration(milliseconds: 500), () {
               _verifyCtrl.clear();
               _imageCtrl.clear();
-              setState(() => _inputCode = '');
+              setState(() {
+                _inputCode = '';
+                _imageUrl = ApiPath.captchaCode();
+              });
             });
           }
         },

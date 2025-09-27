@@ -95,7 +95,7 @@ class ConfirmStepDialog extends StatelessWidget {
                 ),
                 SizedBox(width: 12.w),
                 Text(
-                  'Favor de confirmar tu información',
+                  'Por favor verifica su informacion.',
                   style: TextStyle(
                     fontSize: 16.sp,
                     fontWeight: FontWeight.w500,

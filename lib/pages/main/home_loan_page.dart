@@ -283,7 +283,7 @@ class _HomeLoanPageState extends State<HomeLoanPage> {
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
                 Text(
-                  'Escolha o seu produto de empréstimo',
+                  'Elije el producto de prestamos',
                   style: TextStyle(
                     fontSize: 14,
                     fontWeight: FontWeight.w500,
@@ -325,7 +325,7 @@ class _HomeLoanPageState extends State<HomeLoanPage> {
                 ),
                 SizedBox(height: 22.h),
                 Text(
-                  'Escolha o valor do empréstimo',
+                  'Elije el monto de su prestamo',
                   style: TextStyle(
                     fontSize: 14,
                     fontWeight: FontWeight.w500,
@@ -435,7 +435,7 @@ class _HomeLoanPageState extends State<HomeLoanPage> {
                     if (lok == true) mainModel.launchLoan();
                   },
                   enable: provider.pickedProduct?.faroucheOIsLock != true,
-                  text: 'Solicítelo ya',
+                  text: 'Solicita ya',
                 ),
               ],
             ),

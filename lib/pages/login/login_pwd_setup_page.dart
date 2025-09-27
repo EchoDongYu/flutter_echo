@@ -93,7 +93,7 @@ class _LoginPwdSetupPageState extends State<LoginPwdSetupPage> {
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
           Text(
-            'Establezca una contraseña de 4 dígitos',
+            'Crear una contraseña de 4 dígitos',
             style: TextStyle(
               fontSize: 24.sp,
               fontWeight: FontWeight.w500,
@@ -103,7 +103,7 @@ class _LoginPwdSetupPageState extends State<LoginPwdSetupPage> {
           ),
           SizedBox(height: 12.h),
           Text(
-            'Recordatorio: Te has registrado exitosamente. Por favor establezca una contraseña de 4 dígitos. Podrás iniciar sesión con tu contraseña más tarde.',
+            'Recordatorio: Te has registrado exitosamente. Por favor crea una contraseña de 4 dígitos. Para iniciar sesión con tu contraseña.',
             style: TextStyle(
               fontSize: 14.sp,
               fontWeight: FontWeight.w400,

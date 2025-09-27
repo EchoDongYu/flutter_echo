@@ -5,6 +5,7 @@ import 'package:flutter_echo/models/swaggerApi.models.swagger.dart';
 import 'package:flutter_echo/pages/app_router.dart';
 import 'package:flutter_echo/ui/widgets/common_box.dart';
 import 'package:flutter_echo/utils/common_utils.dart';
+import 'package:flutter_echo/utils/drawable_utils.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
 
@@ -105,6 +106,27 @@ class RepayCertificateItem extends StatelessWidget {
                       ),
                     ),
                   ],
+                ),
+                CommonBox(
+                  color: NowColors.c0x00000000.withValues(alpha: 0.1),
+                  padding: EdgeInsets.all(8),
+                  child: Row(
+                    spacing: 9.w,
+                    children: [
+                      Image.asset(Drawable.iconXtinfo, width: 18, height: 18),
+                      Expanded(
+                        child: Text(
+                          item.ratteenORejectReason ?? '',
+                          style: TextStyle(
+                            fontSize: 12.sp,
+                            fontWeight: FontWeight.w400,
+                            color: NowColors.c0x00000000.withValues(alpha: 0.9),
+                            height: 16 / 12,
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
                 ),
               ],
             ),

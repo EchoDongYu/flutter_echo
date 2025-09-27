@@ -104,43 +104,38 @@ class RepayHistoryItem extends StatelessWidget {
                 ),
               ),
               if (type == 2)
-                OutlinedButton(
-                  onPressed: () {
-                    final uri = Uri(
-                      path: AppRouter.certRecord,
-                      queryParameters: {NavKey.id: id},
-                    );
-                    context.push(uri.toString());
-                  },
-                  style: OutlinedButton.styleFrom(
-                    minimumSize: Size.fromHeight(26.h),
-                    backgroundColor: Colors.transparent,
-                    padding: EdgeInsets.symmetric(
-                      horizontal: 5.w,
-                      vertical: 1.h,
-                    ),
-                    side: BorderSide(color: NowColors.c0xFF3288F1, width: 1),
-                    shape: const RoundedRectangleBorder(
-                      borderRadius: BorderRadius.all(Radius.circular(12)),
-                    ),
+                Container(
+                  padding: EdgeInsets.fromLTRB(10.w, 1.h, 3.w, 1.h),
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.all(Radius.circular(20)),
+                    border: Border.all(color: NowColors.c0xFF3288F1, width: 1),
                   ),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Text(
-                        'Pago por bancos',
-                        style: TextStyle(
-                          color: NowColors.c0xFF3288F1,
-                          fontWeight: FontWeight.w500,
-                          fontSize: 14.sp,
+                  child: InkWell(
+                    onTap: () {
+                      final uri = Uri(
+                        path: AppRouter.certRecord,
+                        queryParameters: {NavKey.id: id},
+                      );
+                      context.push(uri.toString());
+                    },
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Text(
+                          'Pago por bancos',
+                          style: TextStyle(
+                            color: NowColors.c0xFF3288F1,
+                            fontWeight: FontWeight.w500,
+                            fontSize: 14.sp,
+                          ),
                         ),
-                      ),
-                      const Icon(
-                        Icons.arrow_right_rounded,
-                        color: NowColors.c0xFF3288F1,
-                        size: 30,
-                      ),
-                    ],
+                        const Icon(
+                          Icons.arrow_right_rounded,
+                          color: NowColors.c0xFF3288F1,
+                          size: 30,
+                        ),
+                      ],
+                    ),
                   ),
                 ),
             ],

@@ -123,7 +123,7 @@ class _LoginCodePageState extends State<LoginCodePage> {
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
           Text(
-            'Ingresar OTP',
+            'Ingresa codigo de verificacion',
             style: TextStyle(
               fontSize: 24.sp,
               fontWeight: FontWeight.w500,

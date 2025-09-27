@@ -126,6 +126,7 @@ class _CaptchaDialogState extends State<CaptchaDialog>
                   } else if (result == false) {
                     Future.delayed(const Duration(milliseconds: 500), () {
                       _codeCtrl.clear();
+                      setState(() => _imageUrl = ApiPath.captchaCode());
                     });
                   }
                 },

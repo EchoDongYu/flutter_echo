@@ -28,7 +28,7 @@ class _StepEmailFieldState extends State<StepEmailField> {
   @override
   void initState() {
     super.initState();
-    widget.controller.addListener(_onFocusChanged);
+    widget.controller.addListener(_onInputChanged);
   }
 
   @override
@@ -38,9 +38,9 @@ class _StepEmailFieldState extends State<StepEmailField> {
   }
 
   /// 焦点变化监听
-  void _onFocusChanged() {
-    final expanded =
-        widget.controller.text.isNotEmpty || _focusNode?.hasFocus == true;
+  void _onInputChanged() {
+    final text = widget.controller.text;
+    final expanded = text.isNotEmpty || _focusNode?.hasFocus == true;
     if (_isExpanded != expanded) {
       setState(() {
         _isExpanded = expanded;
@@ -172,7 +172,7 @@ class _StepEmailFieldState extends State<StepEmailField> {
             }
           });
           _focusNode = focusNode;
-          _focusNode?.addListener(_onFocusChanged);
+          _focusNode?.addListener(_onInputChanged);
         }
 
         return TextField(

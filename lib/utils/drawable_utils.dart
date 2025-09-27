@@ -80,6 +80,7 @@ class Drawable {
   static const String iconSuccess = 'assets/images/icon_success.png';
   static const String iconTake = 'assets/images/icon_take.png';
   static const String iconXtcustomer = 'assets/images/icon_xtcustomer.png';
+  static const String iconXtinfo = 'assets/images/icon_xtinfo.png';
   static const String iconXtleft = 'assets/images/icon_xtleft.png';
   static const String imageCertExample = 'assets/images/image_cert_example.png';
   static const String imageDpi = 'assets/images/image_dpi.png';
