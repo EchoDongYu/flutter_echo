@@ -44,9 +44,9 @@ class _FaceCameraPageState extends State<FaceCameraPage> {
 
   Future<void> _takePhoto() async {
     if (!_controller!.value.isInitialized) return;
-    final file = await _controller!.takePicture();
-    if (!mounted) return;
-    debugPrint("file_path:${file.path}");
+    // final file = await _controller!.takePicture();
+    // if (!mounted) return;
+    // debugPrint("file_path:${file.path}");
   }
 
   @override

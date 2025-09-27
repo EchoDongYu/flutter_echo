@@ -112,7 +112,7 @@ class _FaceIdentificationBoxState extends State<FaceIdentificationBox>
         }
       }
     } catch (e) {
-      debugPrint("Face detection error: $e");
+      // debugPrint("Face detection error: $e");
     }
   }
 
