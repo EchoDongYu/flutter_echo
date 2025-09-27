@@ -6,20 +6,21 @@ import 'package:flutter_echo/services/storage_service.dart';
 import 'package:go_router/go_router.dart';
 
 class VerifyModel extends BaseProvider {
+  String get phoneNumber => _phoneNumber ?? '';
   String? _phoneNumber;
-  String? _imageCode;
-  Timer? _timer;
-  bool? _needCaptcha;
-  int _countdown = 0;
-  bool showCaptcha = false;
-
-  final int _codeType = 5;
-
-  int get countdown => _countdown;
 
   bool? get needCaptcha => _needCaptcha;
+  bool? _needCaptcha;
 
-  String get phoneNumber => _phoneNumber ?? '';
+  int get countdown => _countdown;
+  int _countdown = 0;
+
+  bool get dialogOverlay => _dialogOverlay;
+  bool _dialogOverlay = false;
+
+  final int _codeType = 5;
+  String? _imageCode;
+  Timer? _timer;
 
   Future<bool?> sendVerifyCode() async {
     _phoneNumber = LocalStorage().realAccount;
@@ -73,9 +74,7 @@ class VerifyModel extends BaseProvider {
         imageCode: imgCode,
       );
     });
-    if (apiResult == true) {
-      navigate((context) => context.pop());
-    }
+    if (apiResult == true) navigate((context) => context.pop());
     return apiResult;
   }
 
@@ -84,10 +83,10 @@ class VerifyModel extends BaseProvider {
     Future<String?> Function({required String? mobile, required int? type})
     showCaptchaDialog,
   ) async {
-    showCaptcha = true;
+    _dialogOverlay = true;
     notifyListeners();
     _imageCode = await showCaptchaDialog(mobile: _phoneNumber, type: _codeType);
-    showCaptcha = false;
+    _dialogOverlay = false;
     notifyListeners();
   }
 

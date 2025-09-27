@@ -59,6 +59,7 @@ class _RepayConfirmPageState extends State<RepayConfirmPage> {
     if (currentValue == 0) {
       _controller.clear();
     } else if (currentValue > maxValue) {
+      // debugLog('currentValue $currentValue maxValue $maxValue');
       toast('El monto ingreso es mas lo que tiene que pagar');
       _controller.text = text.substring(0, length - 1);
     } else {

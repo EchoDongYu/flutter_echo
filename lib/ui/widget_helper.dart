@@ -206,12 +206,11 @@ class WidgetHelper {
               children: [
                 indicator,
                 Container(
-                  width: double.infinity,
-                  margin: EdgeInsets.symmetric(horizontal: 25.w),
+                  width: 60.w,
                   padding: EdgeInsets.symmetric(vertical: 1.h),
                   decoration: BoxDecoration(
                     color: NowColors.c0xFF3288F1,
-                    borderRadius: const BorderRadius.all(Radius.circular(15)),
+                    borderRadius: const BorderRadius.all(Radius.circular(30)),
                     border: Border.all(color: Colors.white, width: 2),
                   ),
                   child: Center(

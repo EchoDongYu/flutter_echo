@@ -19,7 +19,7 @@ class RepayCertificateInfo extends StatelessWidget {
         Consumer<BillDetailModel>(
           builder: (_, provider, _) {
             final photo = provider.certPhoto;
-            if (photo == null) {
+            if (photo == null || step == 1) {
               return Image.asset(
                 Drawable.imageCertExample,
                 width: double.infinity,
@@ -27,7 +27,7 @@ class RepayCertificateInfo extends StatelessWidget {
               );
             }
             return GestureDetector(
-              onTap: () {},
+              onTap: () => context.push(AppRouter.certPhoto),
               child: ClipRRect(
                 borderRadius: BorderRadius.circular(12.r),
                 child: ConstrainedBox(
@@ -42,6 +42,28 @@ class RepayCertificateInfo extends StatelessWidget {
             );
           },
         ),
+        if (step == 1)
+          Container(
+            padding: EdgeInsets.symmetric(horizontal: 10.w, vertical: 2.h),
+            decoration: BoxDecoration(
+              color: NowColors.c0xFF3288F1,
+              borderRadius: BorderRadius.only(
+                topLeft: Radius.circular(12),
+                bottomRight: Radius.circular(12),
+              ),
+              border: Border.all(color: NowColors.c0xFFFFFFFF, width: 1),
+            ),
+            child: Text(
+              'Ejemplo de imagen',
+              textAlign: TextAlign.center,
+              style: TextStyle(
+                fontSize: 14.sp,
+                color: NowColors.c0xFFFFFFFF,
+                fontWeight: FontWeight.w500,
+                height: 16 / 12,
+              ),
+            ),
+          ),
         if (step == 3)
           Positioned(
             bottom: 0,

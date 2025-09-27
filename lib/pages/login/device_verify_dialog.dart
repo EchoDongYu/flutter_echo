@@ -9,6 +9,7 @@ import 'package:flutter_echo/providers/verification_provider.dart';
 import 'package:flutter_echo/services/storage_service.dart';
 import 'package:flutter_echo/ui/widgets/common_button.dart';
 import 'package:flutter_echo/ui/widgets/step_input_field.dart';
+import 'package:flutter_echo/utils/common_utils.dart';
 import 'package:flutter_echo/utils/drawable_utils.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
@@ -52,9 +53,6 @@ class _DeviceVerifyDialogState extends State<DeviceVerifyDialog>
   String _inputCode = ''; // 验证码
   bool _isCodeValid = false;
 
-  VerifyModel get verifyModel =>
-      Provider.of<VerifyModel>(context, listen: false);
-
   @override
   void initState() {
     super.initState();
@@ -64,7 +62,7 @@ class _DeviceVerifyDialogState extends State<DeviceVerifyDialog>
     _verifyCtrl.addListener(_onCodeChanged);
     _imageCtrl.addListener(_onCodeChanged);
     WidgetsBinding.instance.addPostFrameCallback((_) async {
-      final sendOk = await verifyModel.sendVerifyCode();
+      final sendOk = await context.read<VerifyModel>().sendVerifyCode();
       if (sendOk == true) _focusNode.requestFocus();
     });
   }
@@ -111,10 +109,9 @@ class _DeviceVerifyDialogState extends State<DeviceVerifyDialog>
           ),
           child: Consumer<VerifyModel>(
             builder: (_, provider, _) {
-              if (provider.showCaptcha) return SizedBox();
               return Column(
                 children: [
-                  _buildContent(),
+                  if (!provider.dialogOverlay) _buildContent(),
                   SafeArea(child: _buildBottomButton()),
                 ],
               );
@@ -394,13 +391,21 @@ class _DeviceVerifyDialogState extends State<DeviceVerifyDialog>
         text: 'Confirmar',
         onPressed: () async {
           FocusScope.of(context).requestFocus(FocusNode());
-          final checkOk = await verifyModel.checkVerifyCode(
+          final model = context.read<VerifyModel>();
+          final imageCode = _imageCtrl.text;
+          if (model.needCaptcha == true &&
+              imageCode.length != AppConst.captchaLen) {
+            toast('Por favor introduzca el código de verificación gráfica');
+            return;
+          }
+          final checkOk = await model.checkVerifyCode(
             verifyCode: _verifyCtrl.text,
-            imageCode: _imageCtrl.text,
+            imageCode: imageCode,
           );
           if (checkOk != true) {
             Future.delayed(const Duration(milliseconds: 500), () {
               _verifyCtrl.clear();
+              _imageCtrl.clear();
               setState(() => _inputCode = '');
             });
           }

@@ -268,169 +268,189 @@ class _HomeLoanPageState extends State<HomeLoanPage> {
       final homeInfo = provider.homeInfo;
       final list = homeInfo?.assurOFaceList;
       if (list == null || list.isEmpty == true) return SizedBox();
-      return Container(
-        alignment: Alignment.centerLeft,
-        margin: EdgeInsets.only(bottom: 20.h),
-        padding: EdgeInsets.fromLTRB(16.w, 20.h, 16.w, 28.h),
-        decoration: const BoxDecoration(
-          color: Colors.white,
-          borderRadius: BorderRadius.all(Radius.circular(20)),
-          boxShadow: NowStyles.cardShadows,
-        ),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: [
-            Text(
-              'Escolha o seu produto de empréstimo',
-              style: TextStyle(
-                fontSize: 14,
-                fontWeight: FontWeight.w500,
-                color: NowColors.c0xFF1C1F23,
-                height: 20 / 14,
-              ),
+      return Stack(
+        children: [
+          Container(
+            alignment: Alignment.centerLeft,
+            margin: EdgeInsets.only(bottom: 20.h),
+            padding: EdgeInsets.fromLTRB(16.w, 20.h, 16.w, 28.h),
+            decoration: const BoxDecoration(
+              color: Colors.white,
+              borderRadius: BorderRadius.all(Radius.circular(20)),
+              boxShadow: NowStyles.cardShadows,
             ),
-            SizedBox(height: 16.h),
-            Stack(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
-                Container(
-                  width: double.infinity,
-                  height: 72.h,
-                  decoration: BoxDecoration(
-                    color: const Color(0xFFF4F3F2),
-                    borderRadius: BorderRadius.all(Radius.circular(12)),
-                  ),
-                ),
-                SizedBox(
-                  width: double.infinity,
-                  height: 82.h,
-                  child: ListView.builder(
-                    primary: false,
-                    shrinkWrap: true,
-                    scrollDirection: Axis.horizontal,
-                    itemCount: list.length,
-                    itemBuilder: (context, index) {
-                      return _buildTabItem(list[index], provider.pickedProduct);
-                    },
-                  ),
-                ),
-              ],
-            ),
-            SizedBox(height: 22.h),
-            Text(
-              'Escolha o valor do empréstimo',
-              style: TextStyle(
-                fontSize: 14,
-                fontWeight: FontWeight.w500,
-                color: NowColors.c0xFF1C1F23,
-                height: 20 / 14,
-              ),
-            ),
-            SizedBox(height: 32.h),
-            Column(
-              children: [
-                const Text(
-                  'Monto del préstamo (Q)',
+                Text(
+                  'Escolha o seu produto de empréstimo',
                   style: TextStyle(
                     fontSize: 14,
                     fontWeight: FontWeight.w500,
                     color: NowColors.c0xFF1C1F23,
-                    height: 22 / 14,
+                    height: 20 / 14,
                   ),
                 ),
-                const SizedBox(height: 28),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                SizedBox(height: 16.h),
+                Stack(
                   children: [
-                    IncDecButton(
-                      icon: Icons.remove_rounded,
-                      onTap: () => provider.updateValue(
-                        provider.pickedValue - provider.step,
+                    Container(
+                      width: double.infinity,
+                      height: 72.h,
+                      decoration: BoxDecoration(
+                        color: const Color(0xFFF4F3F2),
+                        borderRadius: BorderRadius.all(Radius.circular(12)),
                       ),
                     ),
-                    Text(
-                      provider.pickedValue.toInt().toString(),
-                      style: const TextStyle(
-                        fontSize: 45,
-                        fontWeight: FontWeight.w700,
+                    if (list.length == 1)
+                      _buildSingleTab(list.first)
+                    else
+                      SizedBox(
+                        width: double.infinity,
+                        height: 82.h,
+                        child: ListView.builder(
+                          primary: false,
+                          shrinkWrap: true,
+                          scrollDirection: Axis.horizontal,
+                          itemCount: list.length,
+                          itemBuilder: (context, index) {
+                            return _buildTabItem(
+                              list[index],
+                              provider.pickedProduct,
+                            );
+                          },
+                        ),
+                      ),
+                  ],
+                ),
+                SizedBox(height: 22.h),
+                Text(
+                  'Escolha o valor do empréstimo',
+                  style: TextStyle(
+                    fontSize: 14,
+                    fontWeight: FontWeight.w500,
+                    color: NowColors.c0xFF1C1F23,
+                    height: 20 / 14,
+                  ),
+                ),
+                SizedBox(height: 32.h),
+                Column(
+                  children: [
+                    const Text(
+                      'Monto del préstamo (Q)',
+                      style: TextStyle(
+                        fontSize: 14,
+                        fontWeight: FontWeight.w500,
                         color: NowColors.c0xFF1C1F23,
-                        height: 45 / 45,
+                        height: 22 / 14,
                       ),
                     ),
-                    IncDecButton(
-                      icon: Icons.add_rounded,
-                      onTap: () => provider.updateValue(
-                        provider.pickedValue + provider.step,
-                      ),
+                    const SizedBox(height: 28),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        IncDecButton(
+                          icon: Icons.remove_rounded,
+                          onTap: () => provider.updateValue(
+                            provider.pickedValue - provider.step,
+                          ),
+                        ),
+                        Text(
+                          provider.pickedValue.toInt().toString(),
+                          style: const TextStyle(
+                            fontSize: 45,
+                            fontWeight: FontWeight.w700,
+                            color: NowColors.c0xFF1C1F23,
+                            height: 45 / 45,
+                          ),
+                        ),
+                        IncDecButton(
+                          icon: Icons.add_rounded,
+                          onTap: () => provider.updateValue(
+                            provider.pickedValue + provider.step,
+                          ),
+                        ),
+                      ],
+                    ),
+                    SizedBox(height: 16.h),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        SizedBox(
+                          width: 45.w,
+                          child: Text(
+                            provider.minValue.showRound,
+                            style: TextStyle(
+                              fontSize: 12,
+                              fontWeight: FontWeight.w400,
+                              color: NowColors.c0xFF77797B,
+                              height: 14 / 12,
+                            ),
+                            textAlign: TextAlign.center,
+                          ),
+                        ),
+                        SizedBox(
+                          width: 45.w,
+                          child: Text(
+                            provider.maxValue.showRound,
+                            style: TextStyle(
+                              fontSize: 12,
+                              fontWeight: FontWeight.w400,
+                              color: NowColors.c0xFF77797B,
+                              height: 14 / 12,
+                            ),
+                            textAlign: TextAlign.center,
+                          ),
+                        ),
+                      ],
                     ),
                   ],
                 ),
-                SizedBox(height: 16.h),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    SizedBox(
-                      width: 45.w,
-                      child: Text(
-                        provider.minValue.showRound,
-                        style: TextStyle(
-                          fontSize: 10,
-                          fontWeight: FontWeight.w400,
-                          color: NowColors.c0xFF77797B,
-                          height: 14 / 10,
-                        ),
-                        textAlign: TextAlign.center,
+                StepSlider(
+                  value: provider.pickedValue,
+                  min: provider.minValue,
+                  max: provider.maxValue,
+                  step: provider.step,
+                  onChanged: provider.updateValue,
+                  thumbBuilder: (context, value, isDragging) {
+                    return Container(
+                      width: 36,
+                      height: 36,
+                      decoration: BoxDecoration(
+                        color: NowColors.c0xFF3288F1,
+                        shape: BoxShape.circle,
+                        border: Border.all(color: Colors.white, width: 5),
+                        boxShadow: [
+                          BoxShadow(blurRadius: 4, color: Colors.black26),
+                        ],
                       ),
-                    ),
-                    SizedBox(
-                      width: 45.w,
-                      child: Text(
-                        provider.maxValue.showRound,
-                        style: TextStyle(
-                          fontSize: 10,
-                          fontWeight: FontWeight.w400,
-                          color: NowColors.c0xFF77797B,
-                          height: 14 / 10,
-                        ),
-                        textAlign: TextAlign.center,
-                      ),
-                    ),
-                  ],
+                    );
+                  },
+                ),
+                SizedBox(height: 32.h),
+                EchoPrimaryButton(
+                  onPressed: () async {
+                    final mainModel = context.read<MainModel>();
+                    final lok = await mainModel.launchOk(context);
+                    if (lok == true) mainModel.launchLoan();
+                  },
+                  enable: provider.pickedProduct?.faroucheOIsLock != true,
+                  text: 'Solicítelo ya',
                 ),
               ],
             ),
-            StepSlider(
-              value: provider.pickedValue,
-              min: provider.minValue,
-              max: provider.maxValue,
-              step: provider.step,
-              onChanged: provider.updateValue,
-              thumbBuilder: (context, value, isDragging) {
-                return Container(
-                  width: 36,
-                  height: 36,
-                  decoration: BoxDecoration(
-                    color: NowColors.c0xFF3288F1,
-                    shape: BoxShape.circle,
-                    border: Border.all(color: Colors.white, width: 5),
-                    boxShadow: [
-                      BoxShadow(blurRadius: 4, color: Colors.black26),
-                    ],
-                  ),
-                );
-              },
+          ),
+          if (provider.isAllLock)
+            Positioned.fill(
+              bottom: 20.h,
+              child: DecoratedBox(
+                decoration: BoxDecoration(
+                  color: Colors.white.withValues(alpha: 0.5),
+                  borderRadius: BorderRadius.all(Radius.circular(20)),
+                ),
+              ),
             ),
-            SizedBox(height: 32.h),
-            EchoPrimaryButton(
-              onPressed: () async {
-                final mainModel = context.read<MainModel>();
-                final lok = await mainModel.launchOk(context);
-                if (lok == true) mainModel.launchLoan();
-              },
-              enable: !provider.isLock,
-              text: 'Solicítelo ya',
-            ),
-          ],
-        ),
+        ],
       );
     },
   );
@@ -512,6 +532,50 @@ class _HomeLoanPageState extends State<HomeLoanPage> {
             ),
           ],
         ),
+      ),
+    );
+  }
+
+  Widget _buildSingleTab(HomeInfoResp$AssurOFaceList$Item item) {
+    return Container(
+      width: double.infinity,
+      padding: EdgeInsets.symmetric(vertical: 12.h),
+      decoration: BoxDecoration(
+        color: NowColors.c0xFF3288F1,
+        borderRadius: BorderRadius.all(Radius.circular(12)),
+        border: Border.all(color: NowColors.c0xFFFFFFFF, width: 2),
+        boxShadow: NowStyles.cardShadows,
+      ),
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        spacing: 4.h,
+        children: [
+          Text(
+            '${item.b49d07OProductPeriodId} Dias',
+            style: TextStyle(
+              fontSize: 18.sp,
+              fontWeight: FontWeight.w500,
+              color: Colors.white,
+              height: 24 / 18,
+            ),
+          ),
+          Container(
+            decoration: BoxDecoration(
+              color: Colors.white,
+              borderRadius: BorderRadius.all(Radius.circular(20)),
+            ),
+            padding: EdgeInsets.symmetric(horizontal: 8.w, vertical: 2.h),
+            child: Text(
+              item.periodLabel,
+              style: TextStyle(
+                fontSize: 12.sp,
+                fontWeight: FontWeight.w500,
+                color: NowColors.c0xFF3288F1,
+                height: 16 / 12,
+              ),
+            ),
+          ),
+        ],
       ),
     );
   }

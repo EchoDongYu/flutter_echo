@@ -51,15 +51,13 @@ class UserBankDialog extends StatefulWidget {
 
 class _UserBankDialogState extends State<UserBankDialog> {
   BankCardResp$Item? _pickedItem;
-
-  UserBankModel get bankModel =>
-      Provider.of<UserBankModel>(context, listen: false);
+  bool _dialogOverlay = false;
 
   @override
   void initState() {
     super.initState();
     WidgetsBinding.instance.addPostFrameCallback((_) {
-      bankModel.queryBankCardList();
+      context.read<UserBankModel>().queryBankCardList();
     });
   }
 
@@ -150,16 +148,21 @@ class _UserBankDialogState extends State<UserBankDialog> {
                   },
                 ),
                 SizedBox(height: 20.h),
-                Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 4.w),
-                  child: EchoOutlinedButton(
-                    text: 'Agregar cuenta bancaria',
-                    onPressed: () async {
-                      final addOk = await StepBankDialog.show(context);
-                      if (addOk == true) bankModel.queryBankCardList();
-                    },
+                if (!_dialogOverlay)
+                  Padding(
+                    padding: EdgeInsets.symmetric(horizontal: 4.w),
+                    child: EchoOutlinedButton(
+                      text: 'Agregar cuenta bancaria',
+                      onPressed: () async {
+                        setState(() => _dialogOverlay = true);
+                        final result = await StepBankDialog.show(context);
+                        setState(() => _dialogOverlay = false);
+                        if (result == true && context.mounted) {
+                          context.read<UserBankModel>().queryBankCardList();
+                        }
+                      },
+                    ),
                   ),
-                ),
               ],
             ),
           ),

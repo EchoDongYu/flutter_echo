@@ -205,14 +205,7 @@ class _RepayCertificatePageState extends State<RepayCertificatePage> {
             ),
           ),
           SizedBox(height: 20.h),
-          if (_certificateStep == 1)
-            Image.asset(
-              Drawable.imageCertExample,
-              width: double.infinity,
-              fit: BoxFit.fitWidth,
-            )
-          else
-            RepayCertificateInfo(step: _certificateStep),
+          RepayCertificateInfo(step: _certificateStep),
           if (_certificateStep != 3) SizedBox(height: 28.h),
           if (_certificateStep == 1) ...[
             ElevatedButton(

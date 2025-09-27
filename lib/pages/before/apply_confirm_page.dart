@@ -32,7 +32,7 @@ class _ApplyConfirmPageState extends State<ApplyConfirmPage> {
   List<DictItem>? _stepItems;
   DictItem? _pickedPurpose;
   bool _expanded = false;
-  bool _showBankDialog = false;
+  bool _dialogOverlay = false;
 
   @override
   void initState() {
@@ -387,7 +387,7 @@ class _ApplyConfirmPageState extends State<ApplyConfirmPage> {
           return Column(
             spacing: 16.h,
             children: [
-              if (!_showBankDialog) ...[
+              if (!_dialogOverlay) ...[
                 child!,
                 if (provider.loanInfo?.tepicOPurposeSwitch == true)
                   StepSelectField.pickItem(
@@ -411,9 +411,9 @@ class _ApplyConfirmPageState extends State<ApplyConfirmPage> {
           prefix: _buildPickedLogo(),
           pickedItem: _pickedBank,
           onValueChange: () async {
-            setState(() => _showBankDialog = true);
+            setState(() => _dialogOverlay = true);
             final result = await UserBankDialog.show(context);
-            setState(() => _showBankDialog = false);
+            setState(() => _dialogOverlay = false);
             if (result != null) {
               setState(() {
                 _pickedBank = result;

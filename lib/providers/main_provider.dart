@@ -42,10 +42,8 @@ class MainModel extends BaseProvider {
   double get pickedValue => _pickedValue;
   double _pickedValue = 0;
 
-  ///产品是否锁定
-  bool get isLock =>
-      (_homeInfo?.nookieOCanBorrowAmount ?? 0) <= 0 ||
-      _pickedProduct?.faroucheOIsLock == true;
+  ///全部产品是否锁定
+  bool get isAllLock => (_homeInfo?.nookieOCanBorrowAmount ?? 0) <= 0;
 
   void updateValue(double newValue) {
     double clamped = newValue.clamp(minValue, maxValue);

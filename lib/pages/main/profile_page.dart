@@ -61,7 +61,6 @@ class _ProfilePageState extends State<ProfilePage> {
             ),
           ),
         ),
-        SafeArea(child: EchoTopBar(showBack: false)),
         SafeArea(
           child: Column(
             children: [
@@ -120,6 +119,7 @@ class _ProfilePageState extends State<ProfilePage> {
             ],
           ),
         ),
+        SafeArea(child: EchoTopBar(showBack: false)),
       ],
     );
   }
@@ -191,7 +191,7 @@ class _ProfilePageState extends State<ProfilePage> {
               Expanded(
                 child: _buildCard2Item(
                   icon: Drawable.iconMineRight,
-                  text: 'Conta Bancária',
+                  text: 'Cuenta bancaria',
                   onTap: () => context.push(AppRouter.userBank),
                 ),
               ),

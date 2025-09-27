@@ -83,7 +83,8 @@ class BillDetailModel extends WhatsappModel {
       _channelList = detailData.v08uw3ORepaymentChannelList ?? [];
       selectedChannel = _channelList.firstOrNull;
       final channelRate = selectedChannel?.kd94z7OChannelRate ?? 0;
-      selectedValue = (totalAmount ?? 0) * (1 + channelRate);
+      final totalValue = totalAmount ?? 0;
+      selectedValue = totalValue + (totalValue * channelRate).truncate();
     }
     notifyListeners();
   }
@@ -102,6 +103,9 @@ class BillDetailModel extends WhatsappModel {
           _checkPlanList[i] = _planList[i].i2jk5fOPeriodStatus == 2;
         }
       }
+      final channelRate = selectedChannel?.kd94z7OChannelRate ?? 0;
+      final totalValue = totalAmount ?? 0;
+      selectedValue = totalValue + (totalValue * channelRate).truncate();
       notifyListeners();
     }
   }
@@ -194,25 +198,5 @@ class BillDetailModel extends WhatsappModel {
     if (apiResult != null) {
       navigate((context) => context.go(AppRouter.repayProcess));
     }
-  }
-
-  Future<void> queryRepaymentRecord({
-    required List<String> inputs,
-    required BankDictV0Item? bank,
-    required int? date,
-  }) async {
-    launchRequest(() async {
-      final amount = inputs[1].tryParseDouble ?? 0;
-      final channelRate = selectedChannel?.kd94z7OChannelRate ?? 0;
-      final channelFee = amount * channelRate;
-      final req = RepayRecordReq(
-        r5a4x8OLoanGid: _loanGid,
-        mahoganyORepaymentType: selectedChannel?.y28nd4OChannelType,
-        t1h91pOBankName: bank?.t1h91p,
-        e77490ORequestId: inputs[0],
-        o12sd0OAmount: amount - channelFee,
-      );
-      _recordList = await Api.queryRepaymentRecord(req);
-    });
   }
 }
