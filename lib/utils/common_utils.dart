@@ -109,6 +109,8 @@ extension ContextNavigation on BuildContext {
 extension DateTimeFormat on DateTime {
   String get showDate => DateFormat('dd/MM/yyyy').format(this);
 
+  String get showDateTime => DateFormat('dd/MM/yyyy HH:mm:ss').format(this);
+
   int get secondSinceEpoch {
     final tzDateTime = tz.TZDateTime.fromMillisecondsSinceEpoch(
       tz.getLocation('America/Guatemala'),
@@ -129,6 +131,11 @@ extension TimestampFormat on int {
     tz.getLocation('America/Guatemala'),
     this * 1000,
   ).showDate;
+
+  String get showDateTime => tz.TZDateTime.fromMillisecondsSinceEpoch(
+    tz.getLocation('America/Guatemala'),
+    this * 1000,
+  ).showDateTime;
 }
 
 extension AmountFormat on num {

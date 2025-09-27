@@ -322,6 +322,7 @@ class _RepayCertificatePageState extends State<RepayCertificatePage> {
           StepInputField(
             controller: _controllers[0],
             hintText: 'Número de autorización',
+            maxLength: 30,
             suffix: InkWell(
               onTap: () {
                 BoxDialog.show(
@@ -347,7 +348,6 @@ class _RepayCertificatePageState extends State<RepayCertificatePage> {
           StepInputField(
             controller: _controllers[1],
             hintText: 'Importe del pago',
-            maxLength: 30,
             keyboardType: TextInputType.number,
             inputFormatters: [FilteringTextInputFormatter.digitsOnly],
             isError: _isErrors[2],

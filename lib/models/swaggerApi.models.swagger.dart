@@ -11271,6 +11271,7 @@ class RepayRecordResp$Item {
     this.lz09kpOUserName,
     this.staticsOCreateTime,
     this.status,
+    this.payTime,
     this.electiveOPicUrl,
     this.ratteenORejectReason,
   });
@@ -11287,6 +11288,8 @@ class RepayRecordResp$Item {
   final int? staticsOCreateTime;
   @JsonKey(name: 'status')
   final int? status;
+  @JsonKey(name: 'dyq9e6')
+  final int? payTime;
   @JsonKey(name: 'elective')
   final String? electiveOPicUrl;
   @JsonKey(name: 'ratteen')

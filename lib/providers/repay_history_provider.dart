@@ -9,9 +9,9 @@ class RepayHistoryModel extends BaseProvider {
   List<BillRepayResp$My4dd2ORepaymentList$Item>? _historyList;
 
   ///获取还款历史列表
-  Future<void> fetchRepayListData() async {
+  Future<void> fetchRepayListData(String? loanGid) async {
     final billData = await launchRequest(() async {
-      return await Api.getRepayList();
+      return await Api.getRepayList(loanGid);
     });
     if (billData != null) _historyList = billData.my4dd2ORepaymentList;
     notifyListeners();

@@ -279,14 +279,17 @@ class AppRouter {
       /// 还款历史页面
       GoRoute(
         path: repayHistory,
-        builder: (context, state) => ChangeNotifierProvider(
-          create: (_) => RepayHistoryModel()..fetchRepayListData(),
-          builder: (context, state) {
-            return PageConsumer<RepayHistoryModel>(
-              child: const RepayHistoryPage(),
-            );
-          },
-        ),
+        builder: (context, state) {
+          final id = state.uri.queryParameters[NavKey.id];
+          return ChangeNotifierProvider(
+            create: (_) => RepayHistoryModel()..fetchRepayListData(id),
+            builder: (context, state) {
+              return PageConsumer<RepayHistoryModel>(
+                child: RepayHistoryPage(loanGid: id),
+              );
+            },
+          );
+        },
       ),
 
       /// 账单列表页面

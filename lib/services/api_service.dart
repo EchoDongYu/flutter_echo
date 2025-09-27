@@ -428,10 +428,10 @@ class Api {
   }
 
   /// 还款历史列表
-  static Future<BillRepayResp> getRepayList() {
+  static Future<BillRepayResp> getRepayList(String? id) {
     return _apiService.post(
       ApiPath.queryRepaymentList,
-      body: BillRepayReq(size: 200, current: 1).toJson(),
+      body: BillRepayReq(size: 200, current: 1, r5a4x8OLoanGid: id).toJson(),
       convert: (json) => BillRepayResp.fromJson(json),
     );
   }

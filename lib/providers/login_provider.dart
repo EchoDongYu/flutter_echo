@@ -163,9 +163,7 @@ class LoginModel extends BaseProvider {
         dType: _dType,
       );
     }
-    await LocalStorage().userLogin(loginResult);
-    final mainInfo = await Api.getMainBaseInfo();
-    await LocalStorage().set(AppConst.mainInfoKey, mainInfo);
+    await LocalStorage().userLogin(loginResult, _checkRegister);
     navigate((context) => context.go(AppRouter.main));
   }
 

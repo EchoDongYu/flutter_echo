@@ -15,9 +15,9 @@ class RepayCertificateItem extends StatelessWidget {
 
   ///还款状态（0、处理中1、成功2、失败3、取消）
   String get label => switch (item.status) {
-    0 => 'en curso',
-    1 => 'éxitos',
-    2 => 'fallo',
+    0 => 'En curso',
+    1 => 'Exitos',
+    2 => 'Fallo',
     _ => '',
   };
 
@@ -57,7 +57,7 @@ class RepayCertificateItem extends StatelessWidget {
                     ),
                     SizedBox(width: 8.w),
                     Text(
-                      item.staticsOCreateTime?.showDate ?? '',
+                      item.staticsOCreateTime?.showDateTime ?? '',
                       style: TextStyle(
                         fontSize: 14.sp,
                         fontWeight: FontWeight.w500,
@@ -71,12 +71,14 @@ class RepayCertificateItem extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
-                    Text(
-                      'No. ${item.e77490ORequestId}',
-                      style: TextStyle(
-                        fontSize: 20.sp,
-                        fontWeight: FontWeight.w500,
-                        color: NowColors.c0xFFFFFFFF,
+                    Expanded(
+                      child: Text(
+                        'No. ${item.e77490ORequestId}',
+                        style: TextStyle(
+                          fontSize: 20.sp,
+                          fontWeight: FontWeight.w500,
+                          color: NowColors.c0xFFFFFFFF,
+                        ),
                       ),
                     ),
                     Container(
@@ -169,7 +171,7 @@ class RepayCertificateItem extends StatelessWidget {
                       ),
                     ),
                     Text(
-                      item.staticsOCreateTime?.showDate ?? '',
+                      item.payTime?.showDate ?? '',
                       style: TextStyle(
                         fontSize: 14.sp,
                         fontWeight: FontWeight.w500,

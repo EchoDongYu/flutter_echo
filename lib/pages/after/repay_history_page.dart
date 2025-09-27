@@ -10,7 +10,9 @@ import 'package:provider/provider.dart';
 
 ///还款历史页面
 class RepayHistoryPage extends StatelessWidget {
-  const RepayHistoryPage({super.key});
+  final String? loanGid;
+
+  const RepayHistoryPage({super.key, this.loanGid});
 
   @override
   Widget build(BuildContext context) {
@@ -19,7 +21,7 @@ class RepayHistoryPage extends StatelessWidget {
       appBar: CommonAppBar(title: 'Historial de pagos'),
       body: RefreshIndicator(
         onRefresh: () async {
-          context.read<RepayHistoryModel>().fetchRepayListData();
+          context.read<RepayHistoryModel>().fetchRepayListData(loanGid);
         },
         child: Consumer<RepayHistoryModel>(
           builder: (_, provider, _) {

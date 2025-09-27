@@ -66,6 +66,7 @@ class VerifyModel extends BaseProvider {
     required String? verifyCode,
     String? imageCode,
   }) async {
+    bool captchError = false;
     final apiResult = await launchRequest(
       () => Api.checkVerificationCode(
         mobile: _phoneNumber,
@@ -77,8 +78,10 @@ class VerifyModel extends BaseProvider {
       onBlockError: (resp) {
         resp.toastErrorMsg();
         _needCaptcha = true;
+        captchError = true;
       },
     );
+    if (captchError) return false;
     if (apiResult == true) navigate((context) => context.pop());
     return apiResult;
   }

@@ -57,7 +57,13 @@ class BillDetailPage extends StatelessWidget {
                 ),
                 enable: billDetailModel.checkPlanList.any((v) => v == true),
                 onPagar: () => context.push(AppRouter.repayConfirm),
-                onHistory: () => context.push(AppRouter.repayHistory),
+                onHistory: () {
+                  final uri = Uri(
+                    path: AppRouter.repayHistory,
+                    queryParameters: {NavKey.id: billDetailModel.loanGid},
+                  );
+                  context.push(uri.toString());
+                },
               ),
               SizedBox(height: 12.h),
               //账单详情-还款信息框

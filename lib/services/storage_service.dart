@@ -102,13 +102,18 @@ class LocalStorage {
     return MainInfoResp.fromJson(json);
   }
 
-  Future<void> userLogin(LoginResp data) async {
+  Future<void> userLogin(LoginResp data, CheckRegisterResp? info) async {
     final dToken = data.y260zpOToken;
     if (dToken != null) await _prefs.setString(AppConst.tokenKey, dToken);
     final dUserGid = data.raiaOUserGid?.toString();
     if (dUserGid != null) await _prefs.setString(AppConst.userGidKey, dUserGid);
     final account = data.sordidOMobile;
     if (account != null) await _prefs.setString(AppConst.accountKey, account);
+    final mainInfo = MainInfoResp(
+      cressyOTraderPwd: info?.cressyOTraderPwd,
+      fm50w8OLoginPwd: info?.fm50w8OLoginPwd,
+    );
+    if (info != null) await set(AppConst.mainInfoKey, mainInfo);
   }
 
   Future<void> logout() async {

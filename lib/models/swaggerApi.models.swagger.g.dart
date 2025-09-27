@@ -1780,6 +1780,7 @@ RepayRecordResp$Item _$RepayRecordResp$ItemFromJson(
   lz09kpOUserName: json['lz09kp'] as String?,
   staticsOCreateTime: (json['statics'] as num?)?.toInt(),
   status: (json['status'] as num?)?.toInt(),
+  payTime: (json['dyq9e6'] as num?)?.toInt(),
   electiveOPicUrl: json['elective'] as String?,
   ratteenORejectReason: json['ratteen'] as String?,
 );
@@ -1793,6 +1794,7 @@ Map<String, dynamic> _$RepayRecordResp$ItemToJson(
   'lz09kp': instance.lz09kpOUserName,
   'statics': instance.staticsOCreateTime,
   'status': instance.status,
+  'dyq9e6': instance.payTime,
   'elective': instance.electiveOPicUrl,
   'ratteen': instance.ratteenORejectReason,
 };
