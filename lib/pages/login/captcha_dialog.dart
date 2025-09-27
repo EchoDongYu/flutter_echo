@@ -14,11 +14,15 @@ import 'package:provider/provider.dart';
 
 /// 图形验证码弹窗
 class CaptchaDialog extends StatefulWidget {
+  final String? mobile;
+  final int? type;
   final VoidCallback onClosing;
   final Function(String) onConfirm;
 
   const CaptchaDialog({
     super.key,
+    required this.mobile,
+    required this.type,
     required this.onConfirm,
     required this.onClosing,
   });
@@ -39,14 +43,9 @@ class CaptchaDialog extends StatefulWidget {
         create: (_) => CaptchaModel(),
         builder: (ctx, _) => PageConsumer<CaptchaModel>(
           child: CaptchaDialog(
-            onConfirm: (code) async {
-              final result = await ctx.read<CaptchaModel>().checkCaptchaCode(
-                mobile: mobile,
-                type: type,
-                imageCode: code,
-              );
-              if (result == true && context.mounted) context.pop(code);
-            },
+            mobile: mobile,
+            type: type,
+            onConfirm: (code) => context.pop(code),
             onClosing: () => context.pop(),
           ),
         ),
@@ -112,9 +111,23 @@ class _CaptchaDialogState extends State<CaptchaDialog>
               WidgetHelper.buildBottomButton(
                 text: 'Código de verificación',
                 enable: _isCodeValid,
-                onPressed: () {
+                onPressed: () async {
                   FocusScope.of(context).requestFocus(FocusNode());
-                  widget.onConfirm(_codeCtrl.text);
+                  final code = _codeCtrl.text;
+                  final result = await context
+                      .read<CaptchaModel>()
+                      .checkCaptchaCode(
+                        mobile: widget.mobile,
+                        type: widget.type,
+                        imageCode: code,
+                      );
+                  if (result == true) {
+                    widget.onConfirm(_codeCtrl.text);
+                  } else if (result == false) {
+                    Future.delayed(const Duration(milliseconds: 500), () {
+                      _codeCtrl.clear();
+                    });
+                  }
                 },
               ),
             ],

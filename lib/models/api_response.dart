@@ -29,13 +29,8 @@ class ApiResponse {
     if (message != null) toast(message);
   }
 
-  static const globalBlockCode = [
-    'EE7149',
-    'YL0395',
-    'MO9942',
-    'IS8131',
-    'DO0413',
-  ];
+  static const globalCodes = ['EE7149', 'YL0395', 'MO9942', 'IS8131', 'DO0413'];
+  static const captchaCodes = ['MO9942', 'IS8131'];
   static const codeT1017 = 'QO3995';
 }
 
@@ -50,9 +45,7 @@ extension ApiResponseExtension on ApiResponse {
 
   bool get needLogin => code == 'EE7149' || code == 'YL0395';
 
-  bool get needCaptcha => code == 'MO9942' || code == 'IS8131';
+  bool get needCaptcha => ApiResponse.captchaCodes.contains(code);
 
   bool get needVerify => code == 'DO0413';
-
-  bool get removal => code == 'QO3995';
 }

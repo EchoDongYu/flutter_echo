@@ -4,6 +4,7 @@ import 'package:flutter_echo/common/app_theme.dart';
 import 'package:flutter_echo/common/constants.dart';
 import 'package:flutter_echo/pages/app_router.dart';
 import 'package:flutter_echo/pages/login/retain_login_dialog.dart';
+import 'package:flutter_echo/pages/user/removed_dialog.dart';
 import 'package:flutter_echo/providers/login_provider.dart';
 import 'package:flutter_echo/ui/widget_helper.dart';
 import 'package:flutter_echo/ui/widgets/common_button.dart';
@@ -131,9 +132,13 @@ class _LoginPhonePageState extends State<LoginPhonePage> {
           EchoPrimaryButton(
             text: 'Siguiente',
             enable: _isPhoneValid,
-            onPressed: () {
+            onPressed: () async {
               FocusScope.of(context).requestFocus(FocusNode());
-              loginModel.checkRegister(_controller.text.replaceAll(' ', ''));
+              final phone = _controller.text.replaceAll(' ', '');
+              final result = await loginModel.checkRegister(phone);
+              if (result && context.mounted) {
+                await RemovedDialog.show(context);
+              }
             },
           ),
         ],

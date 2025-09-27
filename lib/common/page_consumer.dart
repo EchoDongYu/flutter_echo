@@ -5,7 +5,6 @@ import 'package:flutter_echo/models/api_response.dart';
 import 'package:flutter_echo/pages/app_router.dart';
 import 'package:flutter_echo/pages/login/captcha_dialog.dart';
 import 'package:flutter_echo/pages/login/device_verify_dialog.dart';
-import 'package:flutter_echo/pages/user/removed_dialog.dart';
 import 'package:flutter_echo/services/storage_service.dart';
 import 'package:flutter_echo/ui/dialogs/loading_dialog.dart';
 import 'package:go_router/go_router.dart';
@@ -58,7 +57,7 @@ class _PageConsumerState<T extends BaseProvider> extends State<PageConsumer> {
             if (apiError != null) {
               provider.consumeApiError();
               if (apiError.needLogin) {
-                // apiError.toastErrorMsg();
+                apiError.toastErrorMsg();
                 await LocalStorage().logout();
                 if (context.mounted) {
                   context.go(AppRouter.loginPhone);
@@ -78,8 +77,6 @@ class _PageConsumerState<T extends BaseProvider> extends State<PageConsumer> {
               } else if (apiError.needVerify) {
                 LocalStorage().set(AppConst.homeRefreshKey, true);
                 await DeviceVerifyDialog.show(context);
-              } else if (apiError.removal) {
-                await RemovedDialog.show(context);
               }
             }
           });

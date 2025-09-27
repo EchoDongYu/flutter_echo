@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter_echo/common/base_provider.dart';
+import 'package:flutter_echo/models/api_response.dart';
 import 'package:flutter_echo/services/api_service.dart';
 import 'package:flutter_echo/services/storage_service.dart';
 import 'package:go_router/go_router.dart';
@@ -65,15 +66,19 @@ class VerifyModel extends BaseProvider {
     required String? verifyCode,
     String? imageCode,
   }) async {
-    final apiResult = await launchRequest(() async {
-      final imgCode = needCaptcha == true ? imageCode : _imageCode;
-      return await Api.checkVerificationCode(
+    final apiResult = await launchRequest(
+      () => Api.checkVerificationCode(
         mobile: _phoneNumber,
         type: _codeType,
         verifyCode: verifyCode,
-        imageCode: imgCode,
-      );
-    });
+        imageCode: needCaptcha == true ? imageCode : _imageCode,
+      ),
+      blockCodes: ApiResponse.captchaCodes,
+      onBlockError: (resp) {
+        resp.toastErrorMsg();
+        _needCaptcha = true;
+      },
+    );
     if (apiResult == true) navigate((context) => context.pop());
     return apiResult;
   }

@@ -30,21 +30,24 @@ class LoginModel extends BaseProvider {
 
   int get countdown => _countdown;
 
-  void checkRegister(String mobile) async {
+  Future<bool> checkRegister(String mobile) async {
     // _loginStep = 0;
     if (_countdown > 0 && _phoneNumber == mobile) {
       navigate((context) => context.push(AppRouter.loginCode));
-      return;
+      return false;
     } else {
       _timer?.cancel();
       _timer = null;
       _countdown = 0;
     }
     _phoneNumber = mobile;
+    bool removal = false;
     final apiResult = await launchRequest(
       () => Api.isRegister(mobile: mobile),
-      blockCodes: [...ApiResponse.globalBlockCode, ApiResponse.codeT1017],
+      blockCodes: [ApiResponse.codeT1017],
+      onBlockError: (resp) => removal = true,
     );
+    if (removal) return true;
     if (apiResult != null) {
       _checkRegister = apiResult;
       if (_checkRegister?.qm5h5tOIsRegistered == true &&
@@ -57,6 +60,7 @@ class LoginModel extends BaseProvider {
         navigate((context) => context.push(AppRouter.loginCode));
       }
     }
+    return false;
   }
 
   Future<bool?> sendVerifyCode() async {

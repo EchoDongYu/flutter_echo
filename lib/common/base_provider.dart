@@ -17,7 +17,8 @@ abstract class BaseProvider extends ChangeNotifier {
     Future<R?> Function() action, {
     bool showLoading = true,
     bool toastError = true,
-    List<String> blockCodes = ApiResponse.globalBlockCode,
+    List<String> blockCodes = const [],
+    Function(ApiResponse resp)? onBlockError,
   }) async {
     R? result;
     dynamic error;
@@ -35,6 +36,8 @@ abstract class BaseProvider extends ChangeNotifier {
       if (error != null) {
         if (error is ApiResponse) {
           if (blockCodes.contains(error.code)) {
+            onBlockError?.call(error);
+          } else if (ApiResponse.globalCodes.contains(error.code)) {
             _apiError = error;
             notifyListeners();
           } else if (toastError) {
