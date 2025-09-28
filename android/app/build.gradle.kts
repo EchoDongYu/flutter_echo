@@ -1,3 +1,7 @@
+
+import java.text.SimpleDateFormat
+import java.util.Date
+
 plugins {
     id("com.android.application")
     id("kotlin-android")
@@ -35,7 +39,7 @@ android {
 
     signingConfigs {
 
-        create("debug") {
+        create("customDebug") {
             storeFile = file("debug.jks")
             storePassword = "123456"
             keyPassword = "123456"
@@ -51,10 +55,23 @@ android {
     }
 
     buildTypes {
+        debug {
+            isMinifyEnabled = false
+            // Signing with the debug keys for now, so `flutter run --release` works.
+            signingConfig = signingConfigs.getByName("customDebug")
+        }
         release {
             isMinifyEnabled = true
             // Signing with the debug keys for now, so `flutter run --release` works.
             signingConfig = signingConfigs.getByName("release")
+        }
+    }
+
+    applicationVariants.all {
+        outputs.all {
+            val version = defaultConfig.versionName
+            (this as com.android.build.gradle.internal.api.BaseVariantOutputImpl).outputFileName =
+                "CashiGO_${buildType}_${version}_${SimpleDateFormat("yyyyMMddHHmm").format(Date())}.apk"
         }
     }
 }
