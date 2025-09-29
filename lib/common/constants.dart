@@ -13,14 +13,14 @@ class AppConst {
   static const String isoCountryCode = 'gt';
   static const String languageCode = 'es';
   static const String localeCode = 'es-GT';
-  static const int phoneLen = 8;
+  static const int phoneLen = 11;
   static const int codeLen = 4;
   static const int passwordLen = 4;
   static const int captchaLen = 4;
   static const int dataOffset = 310;
 
   /// 是否生产环境
-  static const bool production = true;
+  static const bool production = false;
 
   /// 1.大数据上报域名（SMS及埋点事件上报）：https://insights.davaloan.com/insights
   /// 2.业务侧上报域名/生产域名（除SMS以外数据上报）：https://insights.davaloan.com/insights

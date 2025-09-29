@@ -455,4 +455,15 @@ class Api {
           .toList(),
     );
   }
+
+
+  /// 图片上传（包含上传/滤波分检查/人脸检测
+  static Future<RepayApplyResp> imageUploads(ImageUploadsReq req) {
+    return _apiService.post(
+      ApiPath.imageUploads,
+      body: req.toJson(),
+      convert: (json) => RepayApplyResp.fromJson(json),
+    );
+  }
+
 }

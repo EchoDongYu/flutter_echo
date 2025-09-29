@@ -99,7 +99,7 @@ class AppRouter {
   static final GoRouter router = GoRouter(
     initialLocation: splash,
     routes: [
-      /// 闪屏页面
+      /// 闪屏页面 FaceIdInfoPage
       GoRoute(path: splash, builder: (context, state) => const SplashPage()),
 
       /// 主页面

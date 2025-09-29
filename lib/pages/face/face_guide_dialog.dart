@@ -86,6 +86,7 @@ class FaceGuideDialog extends StatelessWidget {
               children: [
                 Expanded(
                   child: EchoOutlinedButton(
+                    tvTextAlign: TextAlign.center,
                     text: "Seleccionar imagen",
                     onPressed: () {
                       context.pop(true);

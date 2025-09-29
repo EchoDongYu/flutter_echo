@@ -3529,6 +3529,52 @@ extension $RepayApplyReqExtension on RepayApplyReq {
 }
 
 @JsonSerializable(explicitToJson: true)
+class ImageUploadsReq {
+  const ImageUploadsReq({
+    this.raiaOUserGid,
+    this.d7x52pBizChannel,
+    this.s377v5BizLine,
+    this.ha3xp9PicType,
+    this.x01y7qBase64String,
+    this.provenancePicResource,
+    this.borrowFeeSumWithoutCard = 0,
+    this.waSmsFaceCheck = 0,
+  });
+
+  @JsonKey(name: 'raia')
+  final String? raiaOUserGid;
+
+  @JsonKey(name: 'd7x52p')
+  final String? d7x52pBizChannel;
+
+  @JsonKey(name: 's377v5')
+  final String? s377v5BizLine;
+
+  @JsonKey(name: 'ha3xp9')
+  final String? ha3xp9PicType;
+
+  @JsonKey(name: 'x01y7q')
+  final List<String>? x01y7qBase64String;
+
+  @JsonKey(name: 'provenance')
+  final String? provenancePicResource;
+
+  @JsonKey(name: 'borrowFeeSum')
+  final int? borrowFeeSumWithoutCard;
+
+  @JsonKey(name: 'waSms')
+  final int? waSmsFaceCheck;
+
+  factory ImageUploadsReq.fromJson(Map<String, dynamic> json) =>
+      _$ImageUploadsReqFromJson(json);
+
+  Map<String, dynamic> toJson() => _$ImageUploadsReqToJson(this);
+
+  static const fromJsonFactory = _$ImageUploadsReqFromJson;
+  static const toJsonFactory = _$ImageUploadsReqToJson;
+}
+
+@JsonSerializable(explicitToJson: true)
 class RepayRecordReq {
   const RepayRecordReq({
     this.r5a4x8OLoanGid,

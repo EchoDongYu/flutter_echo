@@ -28,17 +28,17 @@ class FaceIdInfoPage extends StatelessWidget {
             FaceIdInfoDpi(
               dpiTitle: 'Foto del frente del DPI',
               dpiBackTitle: 'Foto del reverso del DPI',
-              dpiTap: (){
-                _showStepFaceIdDialog(context,1);
+              dpiTap: () {
+                _showStepFaceIdDialog(context, 1);
               },
-              dpiBackTap: (){
-                _showStepFaceIdDialog(context,2);
+              dpiBackTap: () {
+                _showStepFaceIdDialog(context, 2);
               },
             ),
             SizedBox(height: 12.h),
             FaceIdInfoFacial(
               dpiFaceTitle: 'Foto facial',
-              dpiFaceTap: (){
+              dpiFaceTap: () {
                 context.push(AppRouter.faceIdentification);
               },
             ),
@@ -52,15 +52,13 @@ class FaceIdInfoPage extends StatelessWidget {
     );
   }
 
-  Future<void> _showStepFaceIdDialog(BuildContext context,int type) async {
+  Future<void> _showStepFaceIdDialog(BuildContext context, int type) async {
     // 1-身份证正面，2-身份证反面
-    final result = await FaceGuideDialog.show(context,type);
+    final result = await FaceGuideDialog.show(context, type);
     if (context.mounted) {
-      if (result == true) {
+      if (result != null) {
 
-      } else {
-
-      }
+      } else {}
     }
   }
 }
