@@ -114,7 +114,7 @@ object CameraInfoExtractor {
         val pixelCount = maxResolution.width * maxResolution.height.toFloat()
         val pixelArea = sqrt((sensorA * 1000_000) / pixelCount)
 
-        return "%.2f".format(pixelArea)
+        return "%.2f".format(java.util.Locale.US,pixelArea)
     }
 
 
@@ -130,7 +130,7 @@ object CameraInfoExtractor {
     // 传感器物理尺寸
     private fun getSensorDimensions(chars: CameraCharacteristics): String? {
         val size = chars.get(CameraCharacteristics.SENSOR_INFO_PHYSICAL_SIZE) ?: return null
-        return "%.2f×%.2f".format(size.width, size.height)
+        return "%.2f×%.2f".format(java.util.Locale.US,size.width, size.height)
     }
 
     // 可用焦距列表
@@ -177,7 +177,7 @@ object CameraInfoExtractor {
         val fovRad = 2 * atan(sensorWidth / (2 * minFocalLength))
         val fovDeg = Math.toDegrees(fovRad.toDouble())
 
-        return "%.1f°".format(fovDeg)
+        return "%.1f°".format(java.util.Locale.US,fovDeg)
     }
 
     // 闪光灯支持检测

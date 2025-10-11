@@ -215,7 +215,7 @@ class RiskUtils(private val context: Context) {
 
             val displayTemp = if (temperature != -1) {
                 // 转换为摄氏度：除以10.0，保留一位小数
-                "%.1f°C".format(temperature / 10.0)
+                "%.1f°C".format(java.util.Locale.US,temperature / 10.0)
             } else {
                 "0.0°C"
             }
@@ -296,7 +296,7 @@ class RiskUtils(private val context: Context) {
     }
 
     // 扩展函数：Double 转保留一位小数的字符串
-    private fun Double.formatToSingleDecimal() = "%.1f".format(this)
+    private fun Double.formatToSingleDecimal() = "%.1f".format(java.util.Locale.US,this)
 
     private fun generalInformation(): Any {
         val generalInfoMap = HashMap<String, Any?>()
@@ -306,9 +306,9 @@ class RiskUtils(private val context: Context) {
         //d424a6(o_haveIntent)
         generalInfoMap["d424a6"] = isMobileDataActive()
         //diffuse(o_internalAvailableSize)
-        generalInfoMap["diffuse"] = String.format("%.2f", getAvailableInternalStorageKB())
+        generalInfoMap["diffuse"] = String.format(java.util.Locale.US,"%.2f", getAvailableInternalStorageKB())
         //iunjms(o_internalTotalSize)
-        generalInfoMap["iunjms"] = String.format("%.2f", getTotalInternalStorageKB())
+        generalInfoMap["iunjms"] = String.format(java.util.Locale.US,"%.2f", getTotalInternalStorageKB())
         //bjf1iv(o_wifiRouterMac)
         generalInfoMap["bjf1iv"] = null
         //discern(o_resolution)
