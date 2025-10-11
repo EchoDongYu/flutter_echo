@@ -46,6 +46,7 @@ class SubmitModel extends BaseProvider {
     if (checkResult != true) return;
     cacheBasicInfo(inputs: inputs, items: items, birthday: birthday);
     await LocalStorage().set(AppConst.kycStepKey, 1);
+    await LocalStorage().set(AppConst.kycDataKey, _submitData);
     navigate((context) => context.pushReplacement(AppRouter.stepWork));
   }
 
@@ -73,6 +74,7 @@ class SubmitModel extends BaseProvider {
   }) async {
     cacheWorkInfo(areas: areas, items: items, days: days);
     await LocalStorage().set(AppConst.kycStepKey, 2);
+    await LocalStorage().set(AppConst.kycDataKey, _submitData);
     navigate((context) => context.pushReplacement(AppRouter.stepContact));
   }
 
