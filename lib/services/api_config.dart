@@ -28,10 +28,15 @@ class ApiController {
         LogInterceptor(
           requestBody: true,
           responseBody: true,
-          logPrint: (object) => logLong(object.toString()),
+          logPrint: (object) => _printLog(object.toString()),
         ),
       );
     }
+  }
+
+  //请求日志 再logcat 窗口输出
+  void _printLog(String message) {
+    print(message);
   }
 
   Future<T> post<T>(
