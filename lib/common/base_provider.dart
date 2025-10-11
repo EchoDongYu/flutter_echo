@@ -14,12 +14,15 @@ abstract class BaseProvider extends ChangeNotifier {
 
   /// 执行网络请求，并自动管理 loading/error
   Future<R?> launchRequest<R>(
-    Future<R?> Function() action, {
-    bool showLoading = true,
-    bool toastError = true,
-    List<String> blockCodes = const [],
-    Function(ApiResponse resp)? onBlockError,
-  }) async {
+    Future<R?> Function() action,
+    {
+      bool showLoading = true,
+      bool toastError = true,
+      bool iWantHandler = false,
+      List<String> blockCodes = const [],
+      Function(ApiResponse resp)? onBlockError,
+    }
+  ) async {
     R? result;
     dynamic error;
     try {
@@ -40,7 +43,11 @@ abstract class BaseProvider extends ChangeNotifier {
           } else if (ApiResponse.globalCodes.contains(error.code)) {
             _apiError = error;
             notifyListeners();
-          } else if (toastError) {
+          } else if (iWantHandler) {
+            onBlockError?.call(error);
+          }
+
+          else if (toastError) {
             error.toastErrorMsg();
           }
         } else if (error is! DioException) {

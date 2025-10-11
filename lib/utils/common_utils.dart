@@ -49,6 +49,11 @@ final emojiReg = RegExp(
   unicode: true,
 );
 
+//身份证验证
+bool idNumValid(String idNum) {
+  return idNum.length == AppConst.idNumLen;
+}
+
 class FlutterPlatform {
   static const _method = MethodChannel('${AppConst.applicationId}/channel');
 

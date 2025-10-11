@@ -5,6 +5,7 @@ import 'package:flutter_echo/models/swaggerApi.models.swagger.dart';
 import 'package:flutter_echo/pages/app_router.dart';
 import 'package:flutter_echo/services/api_service.dart';
 import 'package:flutter_echo/services/storage_service.dart';
+import 'package:flutter_echo/utils/common_utils.dart';
 import 'package:go_router/go_router.dart';
 
 class SubmitModel extends BaseProvider {
@@ -41,13 +42,14 @@ class SubmitModel extends BaseProvider {
     required int? birthday,
   }) async {
     final checkResult = await launchRequest(
-      () => Api.checkSubmitValid(email: inputs[4], id: inputs[2]),
+          () => Api.checkSubmitValid(email: inputs[4], id: inputs[2]),
     );
     if (checkResult != true) return;
     cacheBasicInfo(inputs: inputs, items: items, birthday: birthday);
     await LocalStorage().set(AppConst.kycStepKey, 1);
     navigate((context) => context.pushReplacement(AppRouter.stepWork));
   }
+
 
   void cacheBasicInfo({
     required List<String> inputs,
@@ -123,7 +125,7 @@ class SubmitModel extends BaseProvider {
 
   void _submitCreditData() async {
     final apiResult = await launchRequest(
-      () => Api.submitCreditData(_submitData),
+          () => Api.submitCreditData(_submitData),
     );
     if (apiResult != null) {
       final uriRoute = Uri(
@@ -134,8 +136,11 @@ class SubmitModel extends BaseProvider {
     }
   }
 
+
+
   @override
   void dispose() {
+    debugLog("dispose kycDataKey=${_submitData.toString()}");
     LocalStorage().set(AppConst.kycDataKey, _submitData);
     super.dispose();
   }

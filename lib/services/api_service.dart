@@ -456,14 +456,30 @@ class Api {
     );
   }
 
-
   /// 图片上传（包含上传/滤波分检查/人脸检测
-  static Future<RepayApplyResp> imageUploads(ImageUploadsReq req) {
+  static Future<PicUploadReqResp$Data?> imageUploads(PicUploadReqReq req) {
     return _apiService.post(
       ApiPath.imageUploads,
       body: req.toJson(),
-      convert: (json) => RepayApplyResp.fromJson(json),
+      convert: (json) => PicUploadReqResp$Data.fromJson(json),
     );
   }
 
+  ///证件ocr
+  static Future<OcrReqResp$Data?> orcObergr(OcrReqReq req) {
+    return _apiService.post(
+      ApiPath.orcObergr,
+      body: req.toJson(),
+      convert: (json) => OcrReqResp$Data.fromJson(json),
+    );
+  }
+
+  ///提交授信影像数据
+  static Future<PhotoSubmitResp?> photoSubmit(PhotoSubmitReq req) {
+    return _apiService.post(
+      ApiPath.photoSubmit,
+      body: req.toJson(),
+      convert: (json) => PhotoSubmitResp.fromJson(json),
+    );
+  }
 }

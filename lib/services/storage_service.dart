@@ -124,5 +124,6 @@ class LocalStorage {
     await _prefs.remove(AppConst.accountKey);
     await _prefs.remove(AppConst.kycStepKey);
     await _prefs.remove(AppConst.kycDataKey);
+    await _prefs.remove(AppConst.kycOcrDataKey);
   }
 }

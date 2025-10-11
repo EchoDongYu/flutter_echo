@@ -18,6 +18,8 @@ class AppConst {
   static const int passwordLen = 4;
   static const int captchaLen = 4;
   static const int dataOffset = 310;
+  static const int idNumLen = 13;//身份证长度
+  static const int idNameLen = 30;//姓名长度
 
   /// 是否生产环境
   static const bool production = false;
@@ -69,6 +71,7 @@ class AppConst {
   static const String disclosureKey = 'disclosure';
   static const String kycStepKey = 'kycStep';
   static const String kycDataKey = 'kycData';
+  static const String kycOcrDataKey = 'kycOcrData';
   static const String mainInfoKey = 'mainInfo';
   static const String homeRefreshKey = 'homeRefresh';
 }
@@ -275,6 +278,12 @@ class ApiPath {
   /// 还款历史列表
   static const String queryRepaymentList = '/philtrum/kbzd';
 
-  /// 图片上传（包含上传/滤波分检查/人脸检测
-  static const String imageUploads = '/loan/awspic/uploads';
+  /// 图片上传（包含上传/滤波分检查/人脸检测 /awspic/uploads
+  static const String imageUploads = '/awspic/uploads';
+
+  //证件orc
+  static const String orcObergr = '/b272/obergr';
+
+  //提交授信影像
+  static const String photoSubmit = '/b72/obgr';
 }

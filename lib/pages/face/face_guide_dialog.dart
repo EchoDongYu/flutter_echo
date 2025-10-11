@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_echo/common/app_theme.dart';
 import 'package:flutter_echo/pages/app_router.dart';
 import 'package:flutter_echo/pages/face/face_view/face_photo_box.dart';
+import 'package:flutter_echo/providers/id_card_provider.dart';
 import 'package:flutter_echo/ui/widgets/common_box.dart';
 import 'package:flutter_echo/ui/widgets/common_button.dart';
 import 'package:flutter_echo/utils/drawable_utils.dart';
@@ -15,8 +16,8 @@ class FaceGuideDialog extends StatelessWidget {
   final int type;
 
   /// 显示拍照引导弹窗
-  static Future<bool?> show(BuildContext context, int type) {
-    return showModalBottomSheet<bool>(
+  static Future<PicType?> show(BuildContext context, int type) {
+    return showModalBottomSheet<PicType?>(
       context: context,
       enableDrag: false,
       isDismissible: false,
@@ -45,7 +46,7 @@ class FaceGuideDialog extends StatelessWidget {
               children: [
                 GestureDetector(
                   onTap: () {
-                    context.pop(true);
+                    context.pop(null);
                   },
                   child: Image.asset(
                     Drawable.iconClear,
@@ -89,7 +90,7 @@ class FaceGuideDialog extends StatelessWidget {
                     tvTextAlign: TextAlign.center,
                     text: "Seleccionar imagen",
                     onPressed: () {
-                      context.pop(true);
+                      context.pop(PicType.album);
                     },
                   ),
                 ),
@@ -98,7 +99,7 @@ class FaceGuideDialog extends StatelessWidget {
                   child: EchoPrimaryButton(
                     text: "Tomar fotografia",
                     onPressed: () {
-                      context.push(AppRouter.faceCamera);
+                      context.pop(PicType.camera);
                     },
                   ),
                 ),

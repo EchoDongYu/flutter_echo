@@ -1,4 +1,5 @@
 import 'package:flutter_echo/common/page_consumer.dart';
+import 'package:flutter_echo/common/page_consumer2.dart';
 import 'package:flutter_echo/pages/after/cert_camera_page.dart';
 import 'package:flutter_echo/pages/after/cert_record_page.dart';
 import 'package:flutter_echo/pages/after/history_view/cert_photo_page.dart';
@@ -42,6 +43,7 @@ import 'package:flutter_echo/providers/apply_provider.dart';
 import 'package:flutter_echo/providers/bill_detail_provider.dart';
 import 'package:flutter_echo/providers/bill_provider.dart';
 import 'package:flutter_echo/providers/feedback_provider.dart';
+import 'package:flutter_echo/providers/id_card_provider.dart';
 import 'package:flutter_echo/providers/login_provider.dart';
 import 'package:flutter_echo/providers/main_provider.dart';
 import 'package:flutter_echo/providers/repay_history_provider.dart';
@@ -151,9 +153,14 @@ class AppRouter {
       /// 授信模块
       ShellRoute(
         builder: (context, state, child) {
-          return ChangeNotifierProvider(
-            create: (_) => SubmitModel(),
-            builder: (_, _) => PageConsumer<SubmitModel>(child: child),
+          return MultiProvider(
+            providers: [
+              ChangeNotifierProvider(create: (_) => SubmitModel()),
+              ChangeNotifierProvider(create: (_) => IdCardModel()),
+            ],
+            child: PageConsumer2<SubmitModel,IdCardModel>(
+              child: child,
+            ),
           );
         },
         routes: [
