@@ -455,4 +455,13 @@ class Api {
           .toList(),
     );
   }
+
+  /// 查询是否需要好评弹框
+  static Future<CheckFirstLoanResp?> queryFirstLoan() {
+    return _apiService.post(
+      ApiPath.isFirstLoan,
+      body: CheckFirstLoanReq().toJson(),
+      convert: (json) => CheckFirstLoanResp.fromJson(json),
+    );
+  }
 }

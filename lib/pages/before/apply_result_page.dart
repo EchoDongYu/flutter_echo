@@ -1,11 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_echo/common/app_theme.dart';
+import 'package:flutter_echo/models/swaggerApi.models.swagger.dart';
 import 'package:flutter_echo/pages/app_router.dart';
+import 'package:flutter_echo/providers/apply_process_provider.dart';
+import 'package:flutter_echo/services/praise_service.dart';
+import 'package:flutter_echo/ui/dialog_helper.dart';
 import 'package:flutter_echo/ui/widget_helper.dart';
 import 'package:flutter_echo/ui/widgets/top_bar.dart';
 import 'package:flutter_echo/utils/drawable_utils.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
+import 'package:provider/provider.dart';
 
 /// 借款失败页面
 class ApplyFailedPage extends StatelessWidget {
@@ -77,8 +82,41 @@ class ApplyFailedPage extends StatelessWidget {
 }
 
 /// 借款处理中页面
-class ApplyProcessPage extends StatelessWidget {
+class ApplyProcessPage extends StatefulWidget {
   const ApplyProcessPage({super.key});
+
+  @override
+  State<StatefulWidget> createState() => ApplyProcessPageState();
+}
+
+class ApplyProcessPageState extends State<ApplyProcessPage> {
+  final PraiseService _praiseService = PraiseService();
+
+  @override
+  void initState() {
+    super.initState();
+
+    WidgetsBinding.instance.addPostFrameCallback((_) async {
+      final model = context.read<ApplyProcessModel>();
+      CheckFirstLoanResp? resp = await model.queryFirstLoan();
+      if (resp?.tassesOPopUpNotice == true && mounted) {
+        int? result = await _showPraiseDialog();
+        if (result == 1) {
+          //启动好评
+          _praiseService.requestReview();
+        } else if (result == 2) {
+          //意见反馈
+          if (mounted) {
+            context.push(AppRouter.feedback);
+          }
+        }
+      }
+    });
+  }
+
+  Future<int?> _showPraiseDialog() async {
+    return await DialogHelper.showPraiseDialog(context: context);
+  }
 
   @override
   Widget build(BuildContext context) {

@@ -38,6 +38,7 @@ import 'package:flutter_echo/pages/user/user_bank_page.dart';
 import 'package:flutter_echo/pages/user/web_page.dart';
 import 'package:flutter_echo/providers/about_us_provider.dart';
 import 'package:flutter_echo/providers/account_provider.dart';
+import 'package:flutter_echo/providers/apply_process_provider.dart';
 import 'package:flutter_echo/providers/apply_provider.dart';
 import 'package:flutter_echo/providers/bill_detail_provider.dart';
 import 'package:flutter_echo/providers/bill_provider.dart';
@@ -261,7 +262,12 @@ class AppRouter {
       /// 借款处理中页面
       GoRoute(
         path: applyProcess,
-        builder: (context, state) => const ApplyProcessPage(),
+        builder: (context, state) => ChangeNotifierProvider(
+          create: (_) => ApplyProcessModel(),
+          builder: (_, _) {
+            return PageConsumer<ApplyProcessModel>(child: ApplyProcessPage());
+          },
+        ),
       ),
 
       /// 还款失败页面
