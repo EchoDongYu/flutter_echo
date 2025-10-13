@@ -99,7 +99,7 @@ class AppRouter {
   static const String appWeb = '/app_web';
 
   static final GoRouter router = GoRouter(
-    initialLocation: splash,
+    initialLocation: stepIdInfo,
     routes: [
       /// 闪屏页面 FaceIdInfoPage
       GoRoute(path: splash, builder: (context, state) => const SplashPage()),

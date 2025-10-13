@@ -7,10 +7,12 @@ import 'package:flutter_echo/pages/login/captcha_dialog.dart';
 import 'package:flutter_echo/pages/login/device_verify_dialog.dart';
 import 'package:flutter_echo/services/storage_service.dart';
 import 'package:flutter_echo/ui/dialogs/loading_dialog.dart';
+import 'package:flutter_echo/utils/common_utils.dart';
 import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
 
-class PageConsumer2<T1 extends BaseProvider, T2 extends BaseProvider> extends StatefulWidget {
+class PageConsumer2<T1 extends BaseProvider, T2 extends BaseProvider>
+    extends StatefulWidget {
   final Widget? child;
 
   const PageConsumer2({super.key, this.child});
@@ -19,7 +21,8 @@ class PageConsumer2<T1 extends BaseProvider, T2 extends BaseProvider> extends St
   State<PageConsumer2> createState() => _PageConsumerState<T1, T2>();
 }
 
-class _PageConsumerState<T1 extends BaseProvider, T2 extends BaseProvider> extends State<PageConsumer2> {
+class _PageConsumerState<T1 extends BaseProvider, T2 extends BaseProvider>
+    extends State<PageConsumer2> {
   bool _showLoading = false;
 
   @override
@@ -56,13 +59,16 @@ class _PageConsumerState<T1 extends BaseProvider, T2 extends BaseProvider> exten
 
   // 处理 Loading 状态
   void _handleLoading(BaseProvider provider) {
-    final loading = provider.loading;
-    if (loading != null) {
-      provider.consumeLoading();
-      if (loading) {
+   // bool? loading = provider.loading;
+    int? loadingCount = provider.loadingCount;
+
+    if (loadingCount != null) {
+        provider.consumeLoading();
+      if (loadingCount > 0) {
         setState(() => _showLoading = true);
         LoadingDialog.show(context);
       } else {
+        debugLog('PageConsumer2  hide==$loadingCount,${provider.hashCode}');
         LoadingDialog.hide();
         setState(() => _showLoading = false);
       }
@@ -94,11 +100,7 @@ class _PageConsumerState<T1 extends BaseProvider, T2 extends BaseProvider> exten
           required String? mobile,
           required int? type,
         }) async {
-          return await CaptchaDialog.show(
-            context,
-            mobile: mobile,
-            type: type,
-          );
+          return await CaptchaDialog.show(context, mobile: mobile, type: type);
         });
       } else if (apiError.needVerify) {
         LocalStorage().set(AppConst.homeRefreshKey, true);

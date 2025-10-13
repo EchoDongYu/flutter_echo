@@ -178,6 +178,7 @@ class IdCardModel extends BaseProvider {
           apiResult.submissionTimeOPictureUrlList ?? [];
       if (urlList.isNotEmpty) {
         String? id = apiResult.oj603uOApplyId;
+        debugLog("id==$id");
         if (id != null && id.isNotEmpty) {
           oj603uOApplyId = id;
         }
@@ -188,7 +189,10 @@ class IdCardModel extends BaseProvider {
         );
         //正反面照都成功
         if (isFontBackUploadSuccess()) {
-          orcObergr(_mFontUrl ?? '', _mBackUrl ?? '');
+      //    Future.delayed(const  Duration(seconds: 1), () {
+            orcObergr(_mFontUrl ?? '', _mBackUrl ?? '');
+         // });
+
         }
       }
     }
@@ -201,6 +205,7 @@ class IdCardModel extends BaseProvider {
         su31n2OIdFrontUrl: fontUrl,
         plutusOIdBackUrl: backUrl,
         is9e52OIdCardType: 2,
+        oj603uOApplyId: oj603uOApplyId
       );
 
       return await Api.orcObergr(req);
@@ -295,8 +300,8 @@ class IdCardModel extends BaseProvider {
 
   // 正反面照是否都上传成功
   bool isFontBackUploadSuccess() {
-   // return _mFontUrl != null && _mBackUrl != null;
-    return true;
+   return _mFontUrl != null && _mBackUrl != null;
+   // return true;
   }
 }
 

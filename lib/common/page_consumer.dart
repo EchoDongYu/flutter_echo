@@ -35,10 +35,11 @@ class _PageConsumerState<T extends BaseProvider> extends State<PageConsumer> {
       child: Consumer<T>(
         builder: (_, provider, child) {
           WidgetsBinding.instance.addPostFrameCallback((_) {
-            final loading = provider.loading;
-            if (loading != null) {
-              provider.consumeLoading();
-              if (loading) {
+            final int? loadingCount = provider.loadingCount;
+            //final loading = provider.loading;
+            if (loadingCount != null) {
+              //   provider.consumeLoading();
+              if (loadingCount > 0) {
                 setState(() => _showLoading = true);
                 LoadingDialog.show(context);
               } else {
