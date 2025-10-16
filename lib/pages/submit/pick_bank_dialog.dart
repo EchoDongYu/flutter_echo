@@ -177,6 +177,7 @@ class _PickBankDialogState extends State<PickBankDialog> {
               imageUrl: item.m871v6OBankLogo ?? '',
               height: 36.h,
               fit: BoxFit.fitHeight,
+              errorWidget: (context, url, error) => Image.asset(Drawable.iconDefBank),
             ),
             SizedBox(width: 12.w),
             Expanded(

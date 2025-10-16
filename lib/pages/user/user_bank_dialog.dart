@@ -33,15 +33,17 @@ class UserBankDialog extends StatefulWidget {
       enableDrag: false,
       isDismissible: false,
       isScrollControlled: true,
-      builder: (_) => ChangeNotifierProvider(
-        create: (_) => UserBankModel(),
-        builder: (_, _) => PageConsumer<UserBankModel>(
-          child: UserBankDialog(
-            onConfirm: (item) => context.pop(item),
-            onClosing: () => context.pop(),
+      builder: (_) =>
+          ChangeNotifierProvider(
+            create: (_) => UserBankModel(),
+            builder: (_, _) =>
+                PageConsumer<UserBankModel>(
+                  child: UserBankDialog(
+                    onConfirm: (item) => context.pop(item),
+                    onClosing: () => context.pop(),
+                  ),
+                ),
           ),
-        ),
-      ),
     );
   }
 
@@ -72,107 +74,108 @@ class _UserBankDialogState extends State<UserBankDialog> {
           topRight: Radius.circular(20),
         ),
       ),
-      builder: (BuildContext context) => Column(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          Padding(
-            padding: EdgeInsets.all(16.r),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                InkWell(
-                  onTap: widget.onClosing,
-                  borderRadius: const BorderRadius.all(Radius.circular(12)),
-                  child: Container(
-                    width: 24.r,
-                    height: 24.r,
-                    alignment: Alignment.center,
-                    decoration: BoxDecoration(
-                      shape: BoxShape.circle,
-                      border: BoxBorder.all(
-                        color: NowColors.c0xFF1C1F23,
-                        width: 1.6.w,
+      builder: (BuildContext context) =>
+          Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Padding(
+                padding: EdgeInsets.all(16.r),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    InkWell(
+                      onTap: widget.onClosing,
+                      borderRadius: const BorderRadius.all(Radius.circular(12)),
+                      child: Container(
+                        width: 24.r,
+                        height: 24.r,
+                        alignment: Alignment.center,
+                        decoration: BoxDecoration(
+                          shape: BoxShape.circle,
+                          border: BoxBorder.all(
+                            color: NowColors.c0xFF1C1F23,
+                            width: 1.6.w,
+                          ),
+                        ),
+                        child: const Icon(
+                          Icons.close_rounded,
+                          color: NowColors.c0xFF1C1F23,
+                          size: 16,
+                        ),
                       ),
                     ),
-                    child: const Icon(
-                      Icons.close_rounded,
-                      color: NowColors.c0xFF1C1F23,
-                      size: 16,
+                    Text(
+                      'Cuenta bancaria',
+                      style: TextStyle(
+                        fontSize: 18.sp,
+                        fontWeight: FontWeight.w500,
+                        color: NowColors.c0xFF1C1F23,
+                        height: 24 / 18,
+                      ),
+                      textAlign: TextAlign.center,
                     ),
-                  ),
+                    SizedBox(width: 24.r, height: 24.r),
+                  ],
                 ),
-                Text(
-                  'Cuenta bancaria',
-                  style: TextStyle(
-                    fontSize: 18.sp,
-                    fontWeight: FontWeight.w500,
-                    color: NowColors.c0xFF1C1F23,
-                    height: 24 / 18,
-                  ),
-                  textAlign: TextAlign.center,
-                ),
-                SizedBox(width: 24.r, height: 24.r),
-              ],
-            ),
-          ),
-          ConstrainedBox(
-            constraints: BoxConstraints(maxHeight: 528.h),
-            child: ListView(
-              primary: true,
-              shrinkWrap: true,
-              padding: EdgeInsets.fromLTRB(12.w, 8.h, 12.w, 36.h),
-              children: [
-                Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 12.w),
-                  child: Text(
-                    'Seleccione una cuenta bancaria disponible',
-                    style: TextStyle(
-                      fontSize: 13.sp,
-                      fontWeight: FontWeight.w400,
-                      color: NowColors.c0xFF494C4F,
-                      height: 20 / 13,
+              ),
+              ConstrainedBox(
+                constraints: BoxConstraints(maxHeight: 528.h),
+                child: ListView(
+                  primary: true,
+                  shrinkWrap: true,
+                  padding: EdgeInsets.fromLTRB(12.w, 8.h, 12.w, 36.h),
+                  children: [
+                    Padding(
+                      padding: EdgeInsets.symmetric(horizontal: 12.w),
+                      child: Text(
+                        'Seleccione una cuenta bancaria disponible',
+                        style: TextStyle(
+                          fontSize: 13.sp,
+                          fontWeight: FontWeight.w400,
+                          color: NowColors.c0xFF494C4F,
+                          height: 20 / 13,
+                        ),
+                      ),
                     ),
-                  ),
-                ),
-                SizedBox(height: 12.h),
-                Consumer<UserBankModel>(
-                  builder: (context, provider, _) {
-                    final list = provider.bankCardList;
-                    final stepItems = provider.stepItems;
-                    return list == null
-                        ? SizedBox()
-                        : list.isNotEmpty == true
-                        ? _buildCardContent(list, stepItems)
-                        : _buildNoCardContent();
-                  },
-                ),
-                SizedBox(height: 20.h),
-                if (!_dialogOverlay)
-                  Padding(
-                    padding: EdgeInsets.symmetric(horizontal: 4.w),
-                    child: EchoOutlinedButton(
-                      text: 'Agregar cuenta bancaria',
-                      onPressed: () async {
-                        setState(() => _dialogOverlay = true);
-                        final result = await StepBankDialog.show(context);
-                        setState(() => _dialogOverlay = false);
-                        if (result == true && context.mounted) {
-                          context.read<UserBankModel>().queryBankCardList();
-                        }
+                    SizedBox(height: 12.h),
+                    Consumer<UserBankModel>(
+                      builder: (context, provider, _) {
+                        final list = provider.bankCardList;
+                        final stepItems = provider.stepItems;
+                        return list == null
+                            ? SizedBox()
+                            : list.isNotEmpty == true
+                            ? _buildCardContent(list, stepItems)
+                            : _buildNoCardContent();
                       },
                     ),
-                  ),
-              ],
-            ),
+                    SizedBox(height: 20.h),
+                    if (!_dialogOverlay)
+                      Padding(
+                        padding: EdgeInsets.symmetric(horizontal: 4.w),
+                        child: EchoOutlinedButton(
+                          text: 'Agregar cuenta bancaria',
+                          onPressed: () async {
+                            setState(() => _dialogOverlay = true);
+                            final result = await StepBankDialog.show(context);
+                            setState(() => _dialogOverlay = false);
+                            if (result == true && context.mounted) {
+                              context.read<UserBankModel>().queryBankCardList();
+                            }
+                          },
+                        ),
+                      ),
+                  ],
+                ),
+              ),
+              WidgetHelper.buildBottomButton(
+                text: 'Confirmar elección',
+                enable: _pickedItem != null,
+                onPressed: () => widget.onConfirm(_pickedItem),
+              ),
+            ],
           ),
-          WidgetHelper.buildBottomButton(
-            text: 'Confirmar elección',
-            enable: _pickedItem != null,
-            onPressed: () => widget.onConfirm(_pickedItem),
-          ),
-        ],
-      ),
     );
   }
 
@@ -196,10 +199,8 @@ class _UserBankDialogState extends State<UserBankDialog> {
     );
   }
 
-  Widget _buildCardContent(
-    List<BankCardResp$Item> bankCardList,
-    List<DictItem>? stepItems,
-  ) {
+  Widget _buildCardContent(List<BankCardResp$Item> bankCardList,
+      List<DictItem>? stepItems,) {
     return ListView.separated(
       primary: false,
       shrinkWrap: true,
@@ -250,9 +251,10 @@ class _UserBankDialogState extends State<UserBankDialog> {
             spacing: 10.w,
             children: [
               CachedNetworkImage(
-                imageUrl: item.m871v6OBankLogo ?? '',
-                height: 44.h,
-                fit: BoxFit.fitHeight,
+                  imageUrl: item.m871v6OBankLogo ?? '',
+                  height: 44.h,
+                  fit: BoxFit.fitHeight,
+                  errorWidget: (context, url, error) => Image.asset(Drawable.iconDefBank),
               ),
               Expanded(
                 child: Text(

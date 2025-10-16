@@ -150,6 +150,7 @@ class _UserBankPageState extends State<UserBankPage> {
                     imageUrl: item.m871v6OBankLogo ?? '',
                     height: 44.h,
                     fit: BoxFit.fitHeight,
+                    errorWidget: (context, url, error) => Image.asset(Drawable.iconDefBank),
                   ),
                   Text(
                     item.t1h91pOBankName ?? '',

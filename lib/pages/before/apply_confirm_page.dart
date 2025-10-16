@@ -11,6 +11,7 @@ import 'package:flutter_echo/ui/widgets/countdown_widget.dart';
 import 'package:flutter_echo/ui/widgets/step_select_field.dart';
 import 'package:flutter_echo/ui/widgets/top_bar.dart';
 import 'package:flutter_echo/utils/common_utils.dart';
+import 'package:flutter_echo/utils/drawable_utils.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
 
@@ -434,7 +435,7 @@ class _ApplyConfirmPageState extends State<ApplyConfirmPage> {
     final logo = _pickedBank?.m871v6OBankLogo;
     if (logo == null) return null;
     return Container(
-      padding: EdgeInsets.symmetric(horizontal: 2.w),
+      padding: EdgeInsets.symmetric(horizontal: 0.w),
       decoration: BoxDecoration(
         border: BoxBorder.all(color: NowColors.c0xFFD8D8D8, width: 0.6.w),
         borderRadius: BorderRadius.circular(6.r),
@@ -445,6 +446,7 @@ class _ApplyConfirmPageState extends State<ApplyConfirmPage> {
           imageUrl: logo,
           height: 22.h,
           fit: BoxFit.fitHeight,
+          errorWidget: (context, url, error) => Image.asset(Drawable.iconDefBank),
         ),
       ),
     );
