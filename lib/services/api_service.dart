@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:ffi';
 
 import 'package:flutter_echo/common/constants.dart';
 import 'package:flutter_echo/models/common_model.dart';
@@ -340,7 +341,7 @@ class Api {
     final storage = LocalStorage();
     trackInfo['raia'] = storage.userGid;
     trackInfo['z775ud'] = packageInfo.version;
-    trackInfo['spank'] = storage.deviceId;
+    trackInfo['spank'] = storage.appsflyerId;
     final codeUnits = json.encode(trackInfo).codeUnits;
     final offsetData = codeUnits
         .map((v) => String.fromCharCode(v ^ AppConst.dataOffset))
@@ -463,5 +464,14 @@ class Api {
       body: CheckFirstLoanReq().toJson(),
       convert: (json) => CheckFirstLoanResp.fromJson(json),
     );
+  }
+
+  ///客户端上报分析 通用
+  ///新增客户端上报分析接口
+  /// APP 逻辑：
+  /// 首页接口 & 获取借款信息接口 firstCreditSuccessReport 为 true 则调用新增接口 type 传 0，返回成功，则客户端记录 AF 首次授信成功事件
+  // 借款接口  isFirstLoan 为 true 则调用新增接口 type 传 1，返回成功，则客户端记录 AF 首次借款事件
+  static Future<bool?> commonReport(String type) {
+    return _apiService.postSt(ApiPath.commonReport, body: {'type': type});
   }
 }

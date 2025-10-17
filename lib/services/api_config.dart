@@ -100,6 +100,7 @@ class _ApiInterceptor extends Interceptor {
     final token = storage.token;
     final userGid = storage.userGid;
     final deviceId = storage.deviceId;
+    final appsflyerId = storage.appsflyerId;
     final Map<String, dynamic> headers = {
       'Accept-Language': AppConst.languageCode, // es西语
       'ys6955': userGid, // 用户Gid
@@ -107,7 +108,7 @@ class _ApiInterceptor extends Interceptor {
       'tp5366': AppConst.applicationName, // 包名
       'wr3384': AppConst.bizLine, // 业务线
       'zc8974': AppConst.isoCountryCode,
-      'zg3739': deviceId, // appfly Id
+      'zg3739': appsflyerId, // appfly Id
       'jv9290': packageInfo.version, // app版本
       'ie3728': deviceId, // google广告id
       'hk4661': deviceId, // 安卓id
@@ -150,7 +151,7 @@ class _ApiInterceptor extends Interceptor {
       }
       // o_appsflyerId afId
       if (data.containsKey('spank')) {
-        data['spank'] = deviceId;
+        data['spank'] = appsflyerId;
       }
       // o_token
       if (data.containsKey('y260zp')) {

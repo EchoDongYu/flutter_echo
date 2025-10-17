@@ -71,6 +71,7 @@ class AppConst {
   static const String kycDataKey = 'kycData';
   static const String mainInfoKey = 'mainInfo';
   static const String homeRefreshKey = 'homeRefresh';
+  static const String afIdKey = 'appsflyer_id';
 }
 
 class ApiPath {
@@ -277,4 +278,6 @@ class ApiPath {
 
   /// 图片上传（包含上传/滤波分检查/人脸检测
   static const String imageUploads = '/loan/awspic/uploads';
+
+  static const String commonReport = '/tools/android/common/report';
 }

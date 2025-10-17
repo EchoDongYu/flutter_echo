@@ -12307,12 +12307,16 @@ extension $HomeInfoRespExtension on HomeInfoResp {
 
 @JsonSerializable(explicitToJson: true)
 class LoanConfirmResp {
-  const LoanConfirmResp({this.suffOLoanStatus, this.hyphenOReason});
+  const LoanConfirmResp({this.suffOLoanStatus, this.hyphenOReason,this.u04098IsFirstLoan});
 
   @JsonKey(name: 'suff')
   final int? suffOLoanStatus;
   @JsonKey(name: 'hyphen')
   final String? hyphenOReason;
+
+  @JsonKey(name: 'u04098')
+  final bool? u04098IsFirstLoan;
+
 
   factory LoanConfirmResp.fromJson(Map<String, dynamic> json) =>
       _$LoanConfirmRespFromJson(json);
@@ -12326,6 +12330,11 @@ class LoanConfirmResp {
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other is LoanConfirmResp &&
+                (identical(other.u04098IsFirstLoan, u04098IsFirstLoan) ||
+                const DeepCollectionEquality().equals(
+                  other.u04098IsFirstLoan,
+                  u04098IsFirstLoan,
+                )) &&
             (identical(other.suffOLoanStatus, suffOLoanStatus) ||
                 const DeepCollectionEquality().equals(
                   other.suffOLoanStatus,
@@ -12343,6 +12352,7 @@ class LoanConfirmResp {
 
   @override
   int get hashCode =>
+      const DeepCollectionEquality().hash(u04098IsFirstLoan) ^
       const DeepCollectionEquality().hash(suffOLoanStatus) ^
       const DeepCollectionEquality().hash(hyphenOReason) ^
       runtimeType.hashCode;
@@ -14000,6 +14010,7 @@ class LoanPreInfoResp {
     this.satCheckStatus,
     this.cressyOTraderPwd,
     this.tepicOPurposeSwitch,
+    this.firstCreditReportOFirstCreditSuccessReport,
   });
 
   @JsonKey(name: 'raia')
@@ -14090,6 +14101,9 @@ class LoanPreInfoResp {
   @JsonKey(name: 'tepic')
   final bool? tepicOPurposeSwitch;
 
+  @JsonKey(name: 'firstCreditReport')
+  final bool? firstCreditReportOFirstCreditSuccessReport;
+
   factory LoanPreInfoResp.fromJson(Map<String, dynamic> json) =>
       _$LoanPreInfoRespFromJson(json);
 
@@ -14102,6 +14116,11 @@ class LoanPreInfoResp {
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other is LoanPreInfoResp &&
+            (identical(other.firstCreditReportOFirstCreditSuccessReport, firstCreditReportOFirstCreditSuccessReport) ||
+                const DeepCollectionEquality().equals(
+                  other.firstCreditReportOFirstCreditSuccessReport,
+                  firstCreditReportOFirstCreditSuccessReport,
+                )) &&
             (identical(other.raiaOUserGid, raiaOUserGid) ||
                 const DeepCollectionEquality().equals(
                   other.raiaOUserGid,
@@ -14345,6 +14364,7 @@ class LoanPreInfoResp {
 
   @override
   int get hashCode =>
+      const DeepCollectionEquality().hash(firstCreditReportOFirstCreditSuccessReport) ^
       const DeepCollectionEquality().hash(raiaOUserGid) ^
       const DeepCollectionEquality().hash(r5k31qODueTime) ^
       const DeepCollectionEquality().hash(retiaryOLoanAmount) ^

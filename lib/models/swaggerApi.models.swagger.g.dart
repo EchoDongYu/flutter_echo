@@ -1979,12 +1979,14 @@ LoanConfirmResp _$LoanConfirmRespFromJson(Map<String, dynamic> json) =>
     LoanConfirmResp(
       suffOLoanStatus: (json['suff'] as num?)?.toInt(),
       hyphenOReason: json['hyphen'] as String?,
+      u04098IsFirstLoan: json['u04098'] as bool?,
     );
 
 Map<String, dynamic> _$LoanConfirmRespToJson(LoanConfirmResp instance) =>
     <String, dynamic>{
       'suff': instance.suffOLoanStatus,
       'hyphen': instance.hyphenOReason,
+      'u04098': instance.u04098IsFirstLoan,
     };
 
 PicUploadReqResp _$PicUploadReqRespFromJson(Map<String, dynamic> json) =>
@@ -2274,8 +2276,8 @@ LoanPreInfoResp _$LoanPreInfoRespFromJson(Map<String, dynamic> json) =>
       satCheckStatus: (json['satCheckStatus'] as num?)?.toInt(),
       cressyOTraderPwd: json['cressy'] as bool?,
       tepicOPurposeSwitch: json['tepic'] as bool?,
+      firstCreditReportOFirstCreditSuccessReport: json['firstCreditReport'] as bool?,
     );
-
 Map<String, dynamic> _$LoanPreInfoRespToJson(
   LoanPreInfoResp instance,
 ) => <String, dynamic>{
@@ -2322,6 +2324,7 @@ Map<String, dynamic> _$LoanPreInfoRespToJson(
   'satCheckStatus': instance.satCheckStatus,
   'cressy': instance.cressyOTraderPwd,
   'tepic': instance.tepicOPurposeSwitch,
+  'firstCreditReport': instance.firstCreditReportOFirstCreditSuccessReport,
 };
 
 LoanFeeDetailResp _$LoanFeeDetailRespFromJson(Map<String, dynamic> json) =>

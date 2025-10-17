@@ -48,7 +48,7 @@ import kotlin.math.roundToLong
 /**
  * 风控数据工具类
  */
-class RiskUtils(private val context: Context) {
+class RiskUtils(private val context: Context,private val eigeneDviceId:String) {
 
     private val appWifiManager: WifiManager? = getWifiManager(context)
     private val appActivityManager: ActivityManager? = getActivityManager(context)
@@ -741,15 +741,9 @@ class RiskUtils(private val context: Context) {
         Collections.list(this)
 
 
-    @SuppressLint("HardwareIds")
     private fun getAndroidId(): String? {
 
-        return runTry {
-            Settings.Secure.getString(
-                context.contentResolver,
-                Settings.Secure.ANDROID_ID
-            )
-        }
+        return eigeneDviceId
     }
 
 

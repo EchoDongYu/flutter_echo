@@ -5,6 +5,7 @@ import 'package:flutter_echo/models/swaggerApi.models.swagger.dart';
 import 'package:flutter_echo/pages/app_router.dart';
 import 'package:flutter_echo/pages/main/track_dialog.dart';
 import 'package:flutter_echo/services/api_service.dart';
+import 'package:flutter_echo/services/appsflyer_service.dart';
 import 'package:flutter_echo/services/permission_service.dart';
 import 'package:flutter_echo/services/storage_service.dart';
 import 'package:flutter_echo/ui/dialogs/permission_dialog.dart';
@@ -65,6 +66,25 @@ class MainModel extends BaseProvider {
       _creditStatus = _homeInfo?.bopomofoOCreditStatus;
       _pickedProduct = _homeInfo?.assurOFaceList?.firstOrNull;
       _pickedValue = _pickedProduct?.xuwh2oOLoanRangeMax ?? 0;
+      if (_homeInfo?.firstCreditReportOFirstCreditSuccessReport == true) {
+        Future<bool?> commonReportResult = Api.commonReport('0');
+        // 使用 then() 处理结果
+        commonReportResult
+            .then((bool? result) {
+            debugLog('commonReportResult:$result');
+              if (result == true) {
+                // 处理返回值
+                AppsflyerService().logEvent(
+                  AppsFlyerEvents.afFirstCreditSuccess,
+                );
+              }
+            })
+            .catchError((error) {
+              // 错误处理
+              debugLog('commonReportResult:$error');
+            });
+      }
+
     } else {
       _creditStatus = null;
     }

@@ -14,15 +14,37 @@
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <!-- 短信权限 -->
     <uses-permission android:name="android.permission.READ_SMS" />
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" tools:node="remove" />
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" tools:node="remove" />
-    <uses-permission android:name="android.permission.RECORD_AUDIO" tools:node="remove"/>
+    <uses-permission
+        android:name="android.permission.WRITE_EXTERNAL_STORAGE"
+        tools:node="remove" />
+    <uses-permission
+        android:name="android.permission.READ_EXTERNAL_STORAGE"
+        tools:node="remove" />
+    <uses-permission
+        android:name="android.permission.RECORD_AUDIO"
+        tools:node="remove" />
 
     <application
         android:name="${applicationName}"
         android:icon="@mipmap/launcher_icon"
-        android:networkSecurityConfig="@xml/network_security_config"
-        android:label="CashiGO">
+        android:label="CashiGO"
+        android:networkSecurityConfig="@xml/network_security_config">
+        <!-- 必须添加此 meta-data，设置 Appsflyer 开发者密钥 -->
+        <meta-data
+            android:name="com.appsflyer.AF_DEV_KEY"
+            android:value="your_dev_key1" />  <!-- 替换为你的开发者密钥 -->
+        <!-- 必须添加此 meta-data，设置 Appsflyer App ID -->
+        <meta-data
+            android:name="com.appsflyer.APP_ID"
+            android:value="your_app_id1" />  <!-- 替换为你的 App ID -->
+
+        <!-- 注册 MultipleInstallBroadcastReceiver
+        监听来自系统的安装广播，并帮助 Appsflyer SDK 记录首次安装、更新和卸载等事件。
+        -->
+        <receiver
+            android:name="com.appsflyer.MultipleInstallBroadcastReceiver"
+            android:exported="true" />
+
         <activity
             android:name=".MainActivity"
             android:configChanges="orientation|keyboardHidden|keyboard|screenSize|smallestScreenSize|locale|layoutDirection|fontScale|screenLayout|density|uiMode"

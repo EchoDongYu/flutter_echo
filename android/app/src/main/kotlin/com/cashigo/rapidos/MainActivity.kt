@@ -32,7 +32,7 @@ class MainActivity : FlutterActivity() {
                 DEVICE_ID -> result.success(eigenDeviceId)
 
                 TRACK_INFO -> lifecycleScope.launch {
-                    result.success(RiskUtils(this@MainActivity).getRiskInfo())
+                    result.success(RiskUtils(this@MainActivity,eigenDeviceId).getRiskInfo())
                 }
 
                 else -> result.notImplemented()

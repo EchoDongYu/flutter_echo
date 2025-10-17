@@ -67,6 +67,15 @@ class LocalStorage {
 
   String? get realAccount => _prefs.getString(AppConst.accountKey);
 
+  String? get appsflyerId {// af id
+    String? cachedAppsflyerId = _prefs.getString(AppConst.afIdKey);
+    if (cachedAppsflyerId == null || cachedAppsflyerId.isEmpty) {
+      return deviceId;
+    } else {
+      return cachedAppsflyerId;
+    }
+  }
+
   String? get maskAccount {
     final value = realAccount;
     if (value == null || value.length <= 4) return value;
