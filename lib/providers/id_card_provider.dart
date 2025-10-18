@@ -179,7 +179,7 @@ class IdCardModel extends BaseProvider {
                 _mBackUrl ?? '',
               );
 
-              print("orcObergr apiResult");
+             // print("orcObergr apiResult");
           //  return apiResult;
               // });
             }
@@ -210,7 +210,7 @@ class IdCardModel extends BaseProvider {
       is9e52OIdCardType: 2,
       oj603uOApplyId: oj603uOApplyId,
     );
-    print("orcObergr start");
+   // print("orcObergr start");
     final apiResult = await Api.orcObergr(req);
     if (apiResult != null) {
       OcrReqResp$Data reqResp = apiResult;
@@ -226,7 +226,7 @@ class IdCardModel extends BaseProvider {
       // );
       notifyListeners();
     }
-    print("orcObergr return");
+    //print("orcObergr return");
     //return ;
   }
 
