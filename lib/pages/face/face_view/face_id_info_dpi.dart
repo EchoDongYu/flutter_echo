@@ -41,11 +41,12 @@ class FaceIDInfoDpi2State extends State<FaceIDInfoDpi2> {
   bool _showNameErrors = false;
   bool _showBirthdayErrors = false;
   bool _showGenderErrors = false;
-  String idErrors="";
+  String idErrors = "";
 
   // 暴露给父组件的验证方法
   bool validateForm() {
-    final idValid = _idController.text.isNotEmpty  && idNumValid(_idController.text);
+    final idValid =
+        _idController.text.isNotEmpty && idNumValid(_idController.text);
     final nameValid = _nameController.text.isNotEmpty;
 
     setState(() {
@@ -57,11 +58,15 @@ class FaceIDInfoDpi2State extends State<FaceIDInfoDpi2> {
       idErrors = _idController.text.isEmpty
           ? "No has ingresado tu número de DPI"
           : (!idNumValid(_idController.text)
-          ? "El formato del número de DPI es incorrecto"
-          : "");
+                ? "El formato del número de DPI es incorrecto"
+                : "");
     });
-    return idValid && nameValid && _pickedDate != null && _genderSelectItem != null;
+    return idValid &&
+        nameValid &&
+        _pickedDate != null &&
+        _genderSelectItem != null;
   }
+
   // 暴露给父组件的数据获取方法
   Map<String, dynamic> getFormData() => {
     'idNumber': _idController.text,
@@ -240,67 +245,64 @@ class FaceIDInfoDpi2State extends State<FaceIDInfoDpi2> {
                     ],
                   ),
                 ),
-                Visibility(
-                  visible: context
-                      .read<IdCardModel>()
-                      .isFontBackUploadSuccess(),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      SizedBox(height: 16.h),
-                      Text(
-                        "Verifica cuidadosamente la siguiente información identificada en tu DPI",
-                        style: TextStyle(
-                          fontSize: 12.sp,
-                          color: NowColors.c0xFFFF9817,
-                          fontWeight: FontWeight.w400,
-                        ),
-                      ),
-                      SizedBox(height: 16.h),
-                      Consumer<IdCardModel>(
-                        builder: (_, provider, _) {
-                          if (provider.idNumOcr != null) {
-                            _idController.text = provider.idNumOcr ?? "";
-                            provider.idNumOcr = null;
-                          }
+                Consumer<IdCardModel>(
+                  builder: (_, provider, _) {
+                    if (provider.idNumOcr != null) {
+                      _idController.text = provider.idNumOcr ?? "";
+                      provider.idNumOcr = null;
+                    }
+                    if (provider.nameOcr != null) {
+                      _nameController.text = provider.nameOcr!;
+                      provider.nameOcr = null;
+                    }
+                    if (provider.birthdayOcr != null) {
+                      _pickedDate = provider.birthdayOcr?.fromSecondsSinceEpoch;
+                      provider.birthdayOcr = null;
+                    }
+                    if (provider.genderOcr != null) {
+                      _genderSelectItem = _genderItems?.findKey(
+                        provider.genderOcr,
+                      );
+                      provider.genderOcr = null;
+                    }
 
-                          return StepInputField(
+                    return Visibility(
+                      visible: context
+                          .read<IdCardModel>()
+                          .isFontBackUploadSuccess(),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          SizedBox(height: 16.h),
+                          Text(
+                            "Verifica cuidadosamente la siguiente información identificada en tu DPI",
+                            style: TextStyle(
+                              fontSize: 12.sp,
+                              color: NowColors.c0xFFFF9817,
+                              fontWeight: FontWeight.w400,
+                            ),
+                          ),
+                          SizedBox(height: 16.h),
+                          StepInputField(
                             controller: _idController,
                             hintText: 'Número de DPI',
                             maxLength: AppConst.idNumLen,
                             keyboardType: TextInputType.number,
                             isError: _showIdErrors,
                             errorText: idErrors,
-                          );
-                        },
-                      ),
+                          ),
 
-                      SizedBox(height: 16.h),
-                      Consumer<IdCardModel>(
-                        builder: (_, provider, _) {
-                          if (provider.nameOcr != null) {
-                            _nameController.text = provider.nameOcr!;
-                            provider.nameOcr = null;
-                          }
-                          return StepInputField(
+                          SizedBox(height: 16.h),
+                          StepInputField(
                             controller: _nameController,
                             hintText: 'Nombre completo',
                             maxLength: AppConst.idNameLen,
                             keyboardType: TextInputType.text,
                             isError: _showNameErrors,
                             errorText: 'No has ingresado tu nombre',
-                          );
-                        },
-                      ),
-                      SizedBox(height: 16.h),
-                      Consumer<IdCardModel>(
-                        builder: (_, provider, _) {
-                          if (provider.birthdayOcr != null) {
-                            _pickedDate =
-                                provider.birthdayOcr?.fromSecondsSinceEpoch;
-                            provider.birthdayOcr = null;
-                          }
-                          return StepSelectField.pickDate(
+                          ),
+                          SizedBox(height: 16.h),
+                          StepSelectField.pickDate(
                             context,
                             initSubYear: 20,
                             pickedDate: _pickedDate,
@@ -312,22 +314,12 @@ class FaceIDInfoDpi2State extends State<FaceIDInfoDpi2> {
                             }),
                             hintText: 'Fecha de nacimiento',
                             isError: _showBirthdayErrors,
-                            errorText: "No has seleccionado tu fecha de nacimiento",
-                          );
-                        },
-                      ),
-                      SizedBox(height: 16.h),
+                            errorText:
+                            "No has seleccionado tu fecha de nacimiento",
+                          ),
+                          SizedBox(height: 16.h),
 
-                      Consumer<IdCardModel>(
-                        builder: (_, provider, _) {
-                          if (provider.genderOcr != null) {
-                            _genderSelectItem = _genderItems?.findKey(
-                              provider.genderOcr,
-                            );
-                            provider.genderOcr = null;
-                          }
-
-                          return StepCheckField.pickItem(
+                          StepCheckField.pickItem(
                             context,
                             items: _genderItems,
                             pickedItem: _genderSelectItem,
@@ -342,11 +334,11 @@ class FaceIDInfoDpi2State extends State<FaceIDInfoDpi2> {
                             hintText: 'Sexo',
                             isError: _showGenderErrors,
                             errorText: "No has seleccionado tu sexo",
-                          );
-                        },
+                          ),
+                        ],
                       ),
-                    ],
-                  ),
+                    );
+                  },
                 ),
               ],
             ),

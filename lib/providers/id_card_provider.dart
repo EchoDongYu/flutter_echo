@@ -15,6 +15,7 @@ import 'package:go_router/go_router.dart';
 enum PicType {
   front(1), // 正面
   back(2), // 反面
+  face(3), // face
   album(1), // 相册
   camera(2); // 拍照
 
@@ -39,14 +40,17 @@ class IdCardModel extends BaseProvider {
   String? get mFontUrl => _mFontUrl;
   String? _mFontUrl;
   UploadImageStatus _mFontUploadStatus = UploadImageStatus.notStarted;
+
   UploadImageStatus get mFontUploadStatus => _mFontUploadStatus;
 
   //反面图片url
   String? get mBackUrl => _mBackUrl;
   String? _mBackUrl;
+
   UploadImageStatus get mBackUploadStatus => _mBackUploadStatus;
   UploadImageStatus _mBackUploadStatus = UploadImageStatus.notStarted;
 
+  bool? mFontBackUploadSuccess;
 
   String? nameOcr;
   String? idNumOcr;
@@ -56,13 +60,10 @@ class IdCardModel extends BaseProvider {
   /// applyid
   String? oj603uOApplyId;
 
-
-
   //提交授信影像的bean
   PhotoSubmitReq photoSubmitReq = PhotoSubmitReq();
 
   static Map<String, List<DictItem>?>? _stepItems;
-
 
   //设置缓存
   void cacheIdCardInfo({
@@ -127,10 +128,9 @@ class IdCardModel extends BaseProvider {
       minWidth: 1080,
       quality: 85,
     );
-   // final compressData = await compressToTargetSize(data);
+    // final compressData = await compressToTargetSize(data);
     return base64Encode(compressData);
   }
-
 
   //上传图片
   Future<void> uploadImage(
@@ -141,11 +141,11 @@ class IdCardModel extends BaseProvider {
     mPicType = picType;
     mPicResource = picResource;
 
-    final apiResult = await launchRequest(
+    return await launchRequest(
       () async {
         final base64 = await base64Str2(photo);
         if (base64 == null) {
-          return null;
+          return;
         }
         List<String>? items = [];
         items.add(base64);
@@ -156,8 +156,35 @@ class IdCardModel extends BaseProvider {
           waSmsOFaceCheck: 0,
           borrowFeeSumOWithoutCard: 0,
         );
-        PicUploadReqResp$Data? resp=  await Api.imageUploads(req);
-        return resp;
+        PicUploadReqResp$Data? apiResult = await Api.imageUploads(req);
+
+        if (apiResult != null) {
+          List<String> urlList = apiResult.submissionTimeOPictureUrlList ?? [];
+          if (urlList.isNotEmpty) {
+            String? id = apiResult.oj603uOApplyId;
+            debugLog("id==$id");
+            if (id != null && id.isNotEmpty) {
+              oj603uOApplyId = id;
+            }
+            updateUploadStatusAndUrl(
+              picType: picType,
+              status: UploadImageStatus.success,
+              url: urlList[0],
+            );
+            //正反面照都成功
+            if (isFontBackUploadSuccess() && picType != PicType.face) {
+              //    Future.delayed(const  Duration(seconds: 1), () {
+              final apiResult = await orcObergr(
+                _mFontUrl ?? '',
+                _mBackUrl ?? '',
+              );
+
+              print("orcObergr apiResult");
+          //  return apiResult;
+              // });
+            }
+          }
+        }
       },
       iWantHandler: true,
       onBlockError: (resp) {
@@ -173,44 +200,19 @@ class IdCardModel extends BaseProvider {
         );
       },
     );
-    if (apiResult != null ) {
-      List<String> urlList =
-          apiResult.submissionTimeOPictureUrlList ?? [];
-      if (urlList.isNotEmpty) {
-        String? id = apiResult.oj603uOApplyId;
-        debugLog("id==$id");
-        if (id != null && id.isNotEmpty) {
-          oj603uOApplyId = id;
-        }
-        updateUploadStatusAndUrl(
-          picType: picType,
-          status: UploadImageStatus.success,
-          url: urlList[0],
-        );
-        //正反面照都成功
-        if (isFontBackUploadSuccess()) {
-      //    Future.delayed(const  Duration(seconds: 1), () {
-            orcObergr(_mFontUrl ?? '', _mBackUrl ?? '');
-         // });
-
-        }
-      }
-    }
   }
 
   //证件orc
   Future<void> orcObergr(String fontUrl, String backUrl) async {
-    final apiResult = await launchRequest(() async {
-      final req = OcrReqReq(
-        su31n2OIdFrontUrl: fontUrl,
-        plutusOIdBackUrl: backUrl,
-        is9e52OIdCardType: 2,
-        oj603uOApplyId: oj603uOApplyId
-      );
-
-      return await Api.orcObergr(req);
-    });
-    if (apiResult != null ) {
+    final req = OcrReqReq(
+      su31n2OIdFrontUrl: fontUrl,
+      plutusOIdBackUrl: backUrl,
+      is9e52OIdCardType: 2,
+      oj603uOApplyId: oj603uOApplyId,
+    );
+    print("orcObergr start");
+    final apiResult = await Api.orcObergr(req);
+    if (apiResult != null) {
       OcrReqResp$Data reqResp = apiResult;
       nameOcr = reqResp.name;
       idNumOcr = reqResp.attributionSubOIdCardNum;
@@ -224,6 +226,8 @@ class IdCardModel extends BaseProvider {
       // );
       notifyListeners();
     }
+    print("orcObergr return");
+    //return ;
   }
 
   Future<void> submitPhoto({
@@ -300,13 +304,11 @@ class IdCardModel extends BaseProvider {
 
   // 正反面照是否都上传成功
   bool isFontBackUploadSuccess() {
-   return _mFontUrl != null && _mBackUrl != null;
-   // return true;
+    // print("isFontBackUploadSuccess:${ _mFontUrl != null && _mBackUrl != null}");
+    return _mFontUrl != null && _mBackUrl != null;
+    // return true;
   }
 }
-
-
-
 
 // 后台执行的图像压缩函数
 // static Future<Uint8List> compressImage(Uint8List data) async {
