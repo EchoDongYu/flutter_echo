@@ -50,10 +50,10 @@ android {
         }
     }
 }
-dependencies {
-    // Add this line to include Appsflyer SDK
-    implementation ("com.appsflyer:af-android-sdk:6.17.1")
-}
+//dependencies {
+//    // Add this line to include Appsflyer SDK
+//    implementation ("com.appsflyer:af-android-sdk:6.17.1")
+//}
 flutter {
     source = "../.."
 }

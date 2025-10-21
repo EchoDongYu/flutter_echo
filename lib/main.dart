@@ -3,7 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_echo/common/app_theme.dart';
 import 'package:flutter_echo/common/constants.dart';
 import 'package:flutter_echo/pages/app_router.dart';
-import 'package:flutter_echo/services/appsflyer_service.dart';
+// import 'package:flutter_echo/services/appsflyer_service.dart';
 import 'package:flutter_echo/services/storage_service.dart';
 import 'package:flutter_echo/utils/common_utils.dart';
 import 'package:flutter_echo/utils/custom_localizations.dart';
@@ -29,11 +29,11 @@ void main() async {
   // 初始化缓存服务
   await LocalStorage().init();
   tz.initializeTimeZones();
-
-  await AppsflyerService().init(
-    'your_dev_key1',  // 替换为你的开发者密钥
-    'your_app_id1',   // 替换为你的 App ID
-  );
+  //
+  // await AppsflyerService().init(
+  //   'your_dev_key1',  // 替换为你的开发者密钥
+  //   'your_app_id1',   // 替换为你的 App ID
+  // );
 
   runApp(const MyApp());
 }

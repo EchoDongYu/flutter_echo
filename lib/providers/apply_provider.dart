@@ -24,34 +24,34 @@ class ApplyModel extends BaseProvider {
       _stepItems = apiResult[_dictType];
       return _stepItems;
     });
-    commonReport();
+  //  commonReport();
     return a;
   }
 
-  Future<void> commonReport() async{
-    debugLog('commonReportResult:start');
-    if (_loanInfo?.firstCreditReportOFirstCreditSuccessReport == true) {
-        //todo 上报首次授信成功事件
-        Future<bool?> commonReportResult = Api.commonReport('0');
-        // 使用 then() 处理结果
-        commonReportResult
-            .then((bool? result) {
-              debugLog('commonReportResult:$result');
-              if (result == true) {
-                // 处理返回值
-                AppsflyerService().logEvent(
-                  AppsFlyerEvents.afFirstCreditSuccess,
-                );
-              }
-            })
-            .catchError((error) {
-              // 错误处理
-              debugLog('commonReportResult:$error');
-            });
-
-    }
-    debugLog('commonReportResult:next');
-  }
+  // Future<void> commonReport() async{
+  //   debugLog('commonReportResult:start');
+  //   if (_loanInfo?.firstCreditReportOFirstCreditSuccessReport == true) {
+  //       //todo 上报首次授信成功事件
+  //       Future<bool?> commonReportResult = Api.commonReport('0');
+  //       // 使用 then() 处理结果
+  //       commonReportResult
+  //           .then((bool? result) {
+  //             debugLog('commonReportResult:$result');
+  //             if (result == true) {
+  //               // 处理返回值
+  //               AppsflyerService().logEvent(
+  //                 AppsFlyerEvents.afFirstCreditSuccess,
+  //               );
+  //             }
+  //           })
+  //           .catchError((error) {
+  //             // 错误处理
+  //             debugLog('commonReportResult:$error');
+  //           });
+  //
+  //   }
+  //   debugLog('commonReportResult:next');
+  // }
 
   void confirmLoan({
     required BankCardResp$Item? bank,
@@ -70,25 +70,25 @@ class ApplyModel extends BaseProvider {
       c4s47hOTransPassword: password,
     );
     final apiResult = await launchRequest(() => Api.confirmLoan(data));
-    if (apiResult?.u04098IsFirstLoan == true) {
-      if (apiResult?.suffOLoanStatus == 0 || apiResult?.suffOLoanStatus == 1) {
-        //todo 上报是否首次借款成功事件
-        Future<bool?> commonReportResult = Api.commonReport('1');
-        // 使用 then() 处理结果
-        commonReportResult
-            .then((bool? result) {
-              debugLog('commonReportResult:$result');
-              if (result == true) {
-                // 处理返回值
-                AppsflyerService().logEvent(AppsFlyerEvents.afFirstLoan);
-              }
-            })
-            .catchError((error) {
-              // 错误处理
-              debugLog('commonReportResult:$error');
-            });
-      }
-    }
+    // if (apiResult?.u04098IsFirstLoan == true) {
+    //   if (apiResult?.suffOLoanStatus == 0 || apiResult?.suffOLoanStatus == 1) {
+    //     //todo 上报是否首次借款成功事件
+    //     Future<bool?> commonReportResult = Api.commonReport('1');
+    //     // 使用 then() 处理结果
+    //     commonReportResult
+    //         .then((bool? result) {
+    //           debugLog('commonReportResult:$result');
+    //           if (result == true) {
+    //             // 处理返回值
+    //             AppsflyerService().logEvent(AppsFlyerEvents.afFirstLoan);
+    //           }
+    //         })
+    //         .catchError((error) {
+    //           // 错误处理
+    //           debugLog('commonReportResult:$error');
+    //         });
+    //   }
+    // }
     switch (apiResult?.suffOLoanStatus) {
       case 0:
         pushReplacement(AppRouter.applyProcess);
