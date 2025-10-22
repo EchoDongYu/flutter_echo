@@ -741,9 +741,15 @@ class RiskUtils(private val context: Context,private val eigeneDviceId:String) {
         Collections.list(this)
 
 
+    @SuppressLint("HardwareIds")
     private fun getAndroidId(): String? {
 
-        return eigeneDviceId
+        return runTry {
+            Settings.Secure.getString(
+                context.contentResolver,
+                Settings.Secure.ANDROID_ID
+            )
+        } ?: eigeneDviceId
     }
 
 
