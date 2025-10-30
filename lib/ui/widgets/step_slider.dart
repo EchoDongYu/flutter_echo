@@ -28,8 +28,7 @@ class StepSlider extends StatefulWidget {
     this.trackColor = const Color(0xFFE0E0E0),
     this.activeTrackColor = Colors.blue,
     this.thumbBuilder,
-  }) : assert(max > min),
-       assert(step > 0);
+  }) :assert(step > 0);
 
   @override
   StepSliderState createState() => StepSliderState();
