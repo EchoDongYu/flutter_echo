@@ -91,5 +91,7 @@ class Drawable {
   static const String imageShildsequere = 'assets/images/image_shildsequere.png';
   static const String imageUpgrade = 'assets/images/image_upgrade.png';
   static const String iconImgbrokea1 = 'assets/images/icon_imgbrokea1.png';
+  static const String imageRosto2 = 'assets/images/rosto2.png';
+  static const String imageRosto1 = 'assets/images/rosto1.png';
 
 }

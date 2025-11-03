@@ -475,11 +475,13 @@ class Api {
   }
 
   ///提交授信影像数据
-  static Future<PhotoSubmitResp?> photoSubmit(PhotoSubmitReq req) {
-    return _apiService.post(
-      ApiPath.photoSubmit,
-      body: req.toJson(),
-      convert: (json) => PhotoSubmitResp.fromJson(json),
-    );
+  static Future<int> photoSubmit(PhotoSubmitReq req) {
+
+    return _apiService.post(ApiPath.photoSubmit, body: req.toJson());
+    // return _apiService.post(
+    //   ApiPath.photoSubmit,
+    //   body: req.toJson(),
+    //   convert: (json) => PhotoSubmitResp.fromJson(json),
+    // );
   }
 }

@@ -2,6 +2,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_echo/pages/app_router.dart';
 import 'package:flutter_echo/pages/face/face_guide_dialog.dart';
+import 'package:flutter_echo/pages/face/face_id_guide_dialog.dart';
 import 'package:flutter_echo/pages/face/face_view/face_id_info_dpi.dart';
 import 'package:flutter_echo/pages/face/face_view/face_id_info_facial.dart';
 import 'package:flutter_echo/pages/face/face_view/face_id_info_tips.dart';
@@ -35,14 +36,19 @@ class _FaceIdInfoPageState extends State<FaceIdInfoPage> {
         ) ??
         {};
     final idNumber = formData['idNumber'];
-    final name = formData['name'];
+    final lastName = formData['lastName'];
+    final firstName = formData['firstName'];
+    // final name = formData['name'];
     final gender = formData['gender'];
     final birthday = formData['birthday'];
+    final email = formData['email'];
     context.read<IdCardModel>().cacheIdCardInfo(
-      name: name,
+      firstName: firstName,
+      lastName: lastName,
       gender: gender,
       birthday: birthday,
       idNumber: idNumber,
+      f31u3kOEmail: email,
     );
     super.deactivate();
   }
@@ -55,7 +61,7 @@ class _FaceIdInfoPageState extends State<FaceIdInfoPage> {
         padding: EdgeInsets.fromLTRB(12.w, 12.h, 12.w, 12.h),
         child: Column(
           children: [
-            WidgetHelper.buildStepProgress(step: 4, maxStep: 4),
+            WidgetHelper.buildStepProgress(step: 3, maxStep: 3),
             SizedBox(height: 16.h),
             FaceIdInfoTips(),
             SizedBox(height: 12.h),
@@ -72,9 +78,34 @@ class _FaceIdInfoPageState extends State<FaceIdInfoPage> {
             ),
             SizedBox(height: 12.h),
             FaceIdInfoFacial(
-              dpiFaceTitle: 'Foto facial',
-              dpiFaceTap: () {
-                context.push(AppRouter.faceIdentification);
+              dpiFaceTitle: "",
+              dpiFaceTap: () async {
+                if (!context.read<IdCardModel>().mFontUrl.isNotEmptyOrNull) {
+                  toast("No has subido la foto del frente del DPI");
+                  return;
+                }
+
+                if (!context.read<IdCardModel>().mBackUrl.isNotEmptyOrNull) {
+                  toast("No has subido la foto del reverso del DPI");
+                  return;
+                }
+
+                final result = await FaceGuideDialog.show(context);
+                if (result == true) {
+                  if (context.mounted) {
+                    final capturedImages = await context.push<List<String>>(
+                      AppRouter.faceIdentification,
+                    );
+                    if (capturedImages != null) {
+                      if (context.mounted) {
+                        context.read<IdCardModel>().uploadFaceImage(
+                          capturedImages,
+                        );
+                      }
+                    }
+                    debugLog("reslut capturedImages=${capturedImages}");
+                  }
+                }
               },
             ),
           ],
@@ -94,7 +125,7 @@ class _FaceIdInfoPageState extends State<FaceIdInfoPage> {
     PicType picType,
   ) async {
     // 1-身份证正面，2-身份证反面
-    final result = await FaceGuideDialog.show(context, picType.value);
+    final result = await FaceIdGuideDialog.show(context, picType.value);
     if (context.mounted) {
       if (result != null) {
         final model = context.read<IdCardModel>();
@@ -134,23 +165,43 @@ class _FaceIdInfoPageState extends State<FaceIdInfoPage> {
     if (!isValid) {
       return;
     }
+    IdCardModel idCardModel = context.read<IdCardModel>();
+    if (!idCardModel.mFontUrl.isNotEmptyOrNull) {
+      toast("No has subido la foto del frente del DPI");
+      return;
+    }
+
+    if (!idCardModel.mBackUrl.isNotEmptyOrNull) {
+      toast("No has subido la foto del reverso del DPI");
+      return;
+    }
+    if (!idCardModel.isFaceUploadSuccess()) {
+      toast("No has subido tu autenticación facial");
+      return;
+    }
 
     // 获取组件数据
     final formData =
         _formKey.currentState?.getFormData().map(
-              (key, value) => MapEntry(key, value),
+          (key, value) => MapEntry(key, value),
         ) ??
-            {};
+        {};
     final idNumber = formData['idNumber'] as String;
-    final name = formData['name'] as String;
+    final lastName = formData['lastName'];
+    final firstName = formData['firstName'];
     final gender = formData['gender'] as int;
     final birthday = formData['birthday'] as int;
-    IdCardModel idCardModel = context.read<IdCardModel>();
+    final email = formData['email'] as String;
+
     idCardModel.submitPhoto(
-      name: name,
+      f31u3kOEmail: email,
+      firstName: firstName,
+      lastName: lastName,
       idNumber: idNumber,
       birthday: birthday,
       gender: gender,
+
+
     );
   }
 }

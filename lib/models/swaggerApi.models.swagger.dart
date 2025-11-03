@@ -5793,6 +5793,9 @@ class PhotoSubmitReq {
     this.gargetOBirthday,
     this.borrowFeeSumOWithoutCard,
     this.waSmsOFaceCheck,
+    this.lq1s05OFirstName,
+    this.darktownOLastName,
+    this.f31u3kOEmail,
   });
 
   @JsonKey(name: 'oj603u')
@@ -5827,6 +5830,12 @@ class PhotoSubmitReq {
   final int? borrowFeeSumOWithoutCard;
   @JsonKey(name: 'waSms')
   final int? waSmsOFaceCheck;
+  @JsonKey(name: 'lq1s05')
+  final String? lq1s05OFirstName;
+  @JsonKey(name: 'darktown')
+  final String? darktownOLastName;
+  @JsonKey(name: 'f31u3k')
+  final String? f31u3kOEmail;
 
   factory PhotoSubmitReq.fromJson(Map<String, dynamic> json) =>
       _$PhotoSubmitReqFromJson(json);
@@ -5925,6 +5934,21 @@ class PhotoSubmitReq {
                 const DeepCollectionEquality().equals(
                   other.waSmsOFaceCheck,
                   waSmsOFaceCheck,
+                )) &&
+            (identical(other.lq1s05OFirstName, lq1s05OFirstName) ||
+                const DeepCollectionEquality().equals(
+                  other.lq1s05OFirstName,
+                  lq1s05OFirstName,
+                )) &&
+            (identical(other.darktownOLastName, darktownOLastName) ||
+                const DeepCollectionEquality().equals(
+                  other.darktownOLastName,
+                  darktownOLastName,
+                )) &&
+            (identical(other.f31u3kOEmail, f31u3kOEmail) ||
+                const DeepCollectionEquality().equals(
+                  other.f31u3kOEmail,
+                  f31u3kOEmail,
                 )));
   }
 
@@ -5949,6 +5973,9 @@ class PhotoSubmitReq {
       const DeepCollectionEquality().hash(gargetOBirthday) ^
       const DeepCollectionEquality().hash(borrowFeeSumOWithoutCard) ^
       const DeepCollectionEquality().hash(waSmsOFaceCheck) ^
+      const DeepCollectionEquality().hash(lq1s05OFirstName) ^
+      const DeepCollectionEquality().hash(darktownOLastName) ^
+      const DeepCollectionEquality().hash(f31u3kOEmail) ^
       runtimeType.hashCode;
 }
 
@@ -5970,6 +5997,9 @@ extension $PhotoSubmitReqExtension on PhotoSubmitReq {
     int? gargetOBirthday,
     int? borrowFeeSumOWithoutCard,
     int? waSmsOFaceCheck,
+    String? lq1s05OFirstName,
+    String? darktownOLastName,
+    String? f31u3kOEmail,
   }) {
     return PhotoSubmitReq(
       oj603uOApplyId: oj603uOApplyId ?? this.oj603uOApplyId,
@@ -5992,6 +6022,9 @@ extension $PhotoSubmitReqExtension on PhotoSubmitReq {
       borrowFeeSumOWithoutCard:
           borrowFeeSumOWithoutCard ?? this.borrowFeeSumOWithoutCard,
       waSmsOFaceCheck: waSmsOFaceCheck ?? this.waSmsOFaceCheck,
+      lq1s05OFirstName: lq1s05OFirstName ?? this.lq1s05OFirstName,
+      darktownOLastName: darktownOLastName ?? this.darktownOLastName,
+      f31u3kOEmail: f31u3kOEmail ?? this.f31u3kOEmail,
     );
   }
 
@@ -6012,6 +6045,9 @@ extension $PhotoSubmitReqExtension on PhotoSubmitReq {
     Wrapped<int?>? gargetOBirthday,
     Wrapped<int?>? borrowFeeSumOWithoutCard,
     Wrapped<int?>? waSmsOFaceCheck,
+    Wrapped<String?>? lq1s05OFirstName,
+    Wrapped<String?>? darktownOLastName,
+    Wrapped<String?>? f31u3kOEmail,
   }) {
     return PhotoSubmitReq(
       oj603uOApplyId: (oj603uOApplyId != null
@@ -6060,6 +6096,15 @@ extension $PhotoSubmitReqExtension on PhotoSubmitReq {
       waSmsOFaceCheck: (waSmsOFaceCheck != null
           ? waSmsOFaceCheck.value
           : this.waSmsOFaceCheck),
+      lq1s05OFirstName: (lq1s05OFirstName != null
+          ? lq1s05OFirstName.value
+          : this.lq1s05OFirstName),
+      darktownOLastName: (darktownOLastName != null
+          ? darktownOLastName.value
+          : this.darktownOLastName),
+      f31u3kOEmail: (f31u3kOEmail != null
+          ? f31u3kOEmail.value
+          : this.f31u3kOEmail),
     );
   }
 }
@@ -21052,6 +21097,8 @@ class OcrReqResp$Data {
     this.extensionPeriodOIssueDate,
     this.holisticOValidDate,
     this.demotionOIsOcrRequestRender,
+    this.lq1s05OFirstName,
+    this.darktownOLastName,
   });
 
   @JsonKey(name: 'attributionSub')
@@ -21078,6 +21125,10 @@ class OcrReqResp$Data {
   final int? holisticOValidDate;
   @JsonKey(name: 'demotion')
   final int? demotionOIsOcrRequestRender;
+  @JsonKey(name: 'lq1s05')
+  final String? lq1s05OFirstName;
+  @JsonKey(name: 'darktown')
+  final String? darktownOLastName;
 
   factory OcrReqResp$Data.fromJson(Map<String, dynamic> json) =>
       _$OcrReqResp$DataFromJson(json);
@@ -21165,6 +21216,16 @@ class OcrReqResp$Data {
                 const DeepCollectionEquality().equals(
                   other.demotionOIsOcrRequestRender,
                   demotionOIsOcrRequestRender,
+                )) &&
+            (identical(other.lq1s05OFirstName, lq1s05OFirstName) ||
+                const DeepCollectionEquality().equals(
+                  other.lq1s05OFirstName,
+                  lq1s05OFirstName,
+                )) &&
+            (identical(other.darktownOLastName, darktownOLastName) ||
+                const DeepCollectionEquality().equals(
+                  other.darktownOLastName,
+                  darktownOLastName,
                 )));
   }
 
@@ -21185,6 +21246,8 @@ class OcrReqResp$Data {
       const DeepCollectionEquality().hash(extensionPeriodOIssueDate) ^
       const DeepCollectionEquality().hash(holisticOValidDate) ^
       const DeepCollectionEquality().hash(demotionOIsOcrRequestRender) ^
+      const DeepCollectionEquality().hash(lq1s05OFirstName) ^
+      const DeepCollectionEquality().hash(darktownOLastName) ^
       runtimeType.hashCode;
 }
 
@@ -21202,6 +21265,8 @@ extension $OcrReqResp$DataExtension on OcrReqResp$Data {
     int? extensionPeriodOIssueDate,
     int? holisticOValidDate,
     int? demotionOIsOcrRequestRender,
+    String? lq1s05OFirstName,
+    String? darktownOLastName,
   }) {
     return OcrReqResp$Data(
       attributionSubOIdCardNum:
@@ -21223,6 +21288,8 @@ extension $OcrReqResp$DataExtension on OcrReqResp$Data {
       holisticOValidDate: holisticOValidDate ?? this.holisticOValidDate,
       demotionOIsOcrRequestRender:
           demotionOIsOcrRequestRender ?? this.demotionOIsOcrRequestRender,
+      lq1s05OFirstName: lq1s05OFirstName ?? this.lq1s05OFirstName,
+      darktownOLastName: darktownOLastName ?? this.darktownOLastName,
     );
   }
 
@@ -21239,6 +21306,8 @@ extension $OcrReqResp$DataExtension on OcrReqResp$Data {
     Wrapped<int?>? extensionPeriodOIssueDate,
     Wrapped<int?>? holisticOValidDate,
     Wrapped<int?>? demotionOIsOcrRequestRender,
+    Wrapped<String?>? lq1s05OFirstName,
+    Wrapped<String?>? darktownOLastName,
   }) {
     return OcrReqResp$Data(
       attributionSubOIdCardNum: (attributionSubOIdCardNum != null
@@ -21273,6 +21342,12 @@ extension $OcrReqResp$DataExtension on OcrReqResp$Data {
       demotionOIsOcrRequestRender: (demotionOIsOcrRequestRender != null
           ? demotionOIsOcrRequestRender.value
           : this.demotionOIsOcrRequestRender),
+      lq1s05OFirstName: (lq1s05OFirstName != null
+          ? lq1s05OFirstName.value
+          : this.lq1s05OFirstName),
+      darktownOLastName: (darktownOLastName != null
+          ? darktownOLastName.value
+          : this.darktownOLastName),
     );
   }
 }

@@ -1,9 +1,12 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_echo/common/app_theme.dart';
+import 'package:flutter_echo/common/constants.dart';
 import 'package:flutter_echo/models/common_model.dart';
 import 'package:flutter_echo/providers/submit_provider.dart';
+import 'package:flutter_echo/services/storage_service.dart';
 import 'package:flutter_echo/ui/widget_helper.dart';
 import 'package:flutter_echo/ui/widgets/step_input_field.dart';
 import 'package:flutter_echo/ui/widgets/step_select_field.dart';
@@ -21,11 +24,12 @@ class StepWorkPage extends StatefulWidget {
 }
 
 class _StepWorkPageState extends State<StepWorkPage> {
-  final _isErrors = List.generate(14, (index) {
+  final _isErrors = List.generate(16, (index) {
     return false;
   }, growable: false);
   final _controller = TextEditingController();
-  final _pickedItem = List<DictItem?>.generate(8, (index) {
+  final _controller2 = TextEditingController(); //备用手机号
+  final _pickedItem = List<DictItem?>.generate(9, (index) {
     return null;
   }, growable: false);
   final _pickedArea = List<String?>.generate(3, (index) {
@@ -37,7 +41,7 @@ class _StepWorkPageState extends State<StepWorkPage> {
   List<List<DictItem>?>? _stepItems;
   Map<String, dynamic>? _stepAreas;
   String? _dayError; // 发薪日
-
+  String? _phoneError; // 备用手机号
   List<String>? get areasFirst => _stepAreas?.keys.toList();
 
   List<String>? get areasSecond {
@@ -56,6 +60,7 @@ class _StepWorkPageState extends State<StepWorkPage> {
   void initState() {
     super.initState();
     _controller.addListener(_onInputChanged);
+    _controller2.addListener(_onInputChanged2);
     WidgetsBinding.instance.addPostFrameCallback((_) async {
       final submitModel = context.read<SubmitModel>();
       final dict = await submitModel.getDictionary();
@@ -80,6 +85,8 @@ class _StepWorkPageState extends State<StepWorkPage> {
         _pickedItem[5] = _stepItems?[5]?.findKey(data?.alloOWorkingYears);
         _pickedItem[6] = _stepItems?[6]?.findKey(data?.limpidlyOIncomeLevel);
         _pickedItem[7] = _stepItems?[7]?.findKey(data?.b1417wOPayPeriod);
+        _pickedItem[8] = _stepItems?[8]?.findKey(data?.himfjuOOtherLoans);
+
         _pickedArea[0] = data?.spadicesOAddressState;
         _pickedArea[1] = data?.gasconyOAddressCity;
         _pickedArea[2] = data?.enfetterOAddressDistrict;
@@ -87,12 +94,15 @@ class _StepWorkPageState extends State<StepWorkPage> {
         _pickedDay[1] = data?.plenishOSecondPayday;
       });
       _controller.text = data?.craalOAddressDetail ?? '';
+
+      _controller2.text = data?.x1iu04OOtherMobile ?? '';
     });
   }
 
   @override
   void deactivate() {
     context.read<SubmitModel>().cacheWorkInfo(
+      x1iu04OOtherMobile: _controller2.text,
       areas: List.from(_pickedArea)..add(_controller.text),
       items: _pickedItem.map((it) => it?.key).toList(),
       days: _pickedDay,
@@ -103,6 +113,7 @@ class _StepWorkPageState extends State<StepWorkPage> {
   @override
   void dispose() {
     _controller.dispose();
+    _controller2.dispose();
     super.dispose();
   }
 
@@ -111,16 +122,31 @@ class _StepWorkPageState extends State<StepWorkPage> {
     if (_isErrors[6] != false) setState(() => _isErrors[6] = false);
   }
 
+  /// 输入变化监听
+  void _onInputChanged2() {
+    if (_isErrors[14] != false) setState(() => _isErrors[14] = false);
+  }
+
   void _submitData() async {
     FocusScope.of(context).requestFocus(FocusNode());
     final pick4Not0 = _pickedItem[4]?.key != _stepItems?[4]?[0].key;
     final pick72 = _pickedItem[7]?.key == _stepItems?[7]?[1].key;
     final pick71 = pick72 || _pickedItem[7]?.key == _stepItems?[7]?[2].key;
     final sameDay = _pickedDay[0] == _pickedDay[1];
+    final text3 = _controller2.text; //备用手机号
     setState(() {
       _dayError = pick72 && _pickedDay[0] != null && sameDay
           ? 'Dos fechas de pago no pueden ser iguales'
           : null;
+
+      _phoneError = text3.isEmpty
+          ? null
+          : text3.length != 8
+          ? "El formato del número de teléfono móvil alternativo es incorrecto"
+          : text3 == LocalStorage().realAccount
+          ? "El número de teléfono móvil alternativo no puede ser el mismo que el número de teléfono móvil registrado."
+          : null;
+
       _isErrors[0] = _pickedItem[0] == null;
       _isErrors[1] = _pickedItem[1] == null;
       _isErrors[2] = _pickedItem[2] == null;
@@ -135,9 +161,12 @@ class _StepWorkPageState extends State<StepWorkPage> {
       _isErrors[11] = pick4Not0 && _pickedItem[7] == null;
       _isErrors[12] = pick4Not0 && pick71 && (_pickedDay[0] == null || sameDay);
       _isErrors[13] = pick4Not0 && pick72 && (_pickedDay[1] == null || sameDay);
+      _isErrors[14] = _phoneError != null;
+      _isErrors[15] = _pickedItem[8] == null;
     });
     if (!_isErrors.contains(true)) {
       context.read<SubmitModel>().submitWorkInfo(
+        x1iu04OOtherMobile: _controller2.text,
         areas: List.from(_pickedArea)..add(_controller.text),
         items: _pickedItem.map((it) => it?.key).toList(),
         days: _pickedDay,
@@ -158,7 +187,7 @@ class _StepWorkPageState extends State<StepWorkPage> {
               children: [
                 EchoTopBar(title: 'Información laboral'),
                 SizedBox(height: 16.h),
-                WidgetHelper.buildStepProgress(step: 2, maxStep: 3),
+                WidgetHelper.buildStepProgress(step: 1, maxStep: 3),
                 SizedBox(height: 16.h),
                 Expanded(
                   child: SingleChildScrollView(
@@ -218,6 +247,8 @@ class _StepWorkPageState extends State<StepWorkPage> {
                         _buildFormArea2(),
                         SizedBox(height: 12.h),
                         _buildFormArea3(),
+                        SizedBox(height: 12.h),
+                        _buildFormArea4(),
                         SizedBox(height: 20.h),
                       ],
                     ),
@@ -384,6 +415,7 @@ class _StepWorkPageState extends State<StepWorkPage> {
       child: Column(
         spacing: 16.h,
         children: [
+
           StepSelectField.pickItem(
             context,
             items: _stepItems?[3],
@@ -416,6 +448,47 @@ class _StepWorkPageState extends State<StepWorkPage> {
             errorText: _errorHint[8],
           ),
           if (_pickedItem[4]?.key != _stepItems?[4]?[0].key) ..._buildOthers(),
+        ],
+      ),
+    );
+  }
+
+  /// 构建表单区域4
+  Widget _buildFormArea4() {
+    return Container(
+      width: double.infinity,
+      margin: EdgeInsets.symmetric(horizontal: 12.w),
+      padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 20.h),
+      decoration: const BoxDecoration(
+        color: Colors.white,
+        borderRadius: BorderRadius.all(Radius.circular(20)),
+        boxShadow: NowStyles.cardShadows,
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        spacing: 16.h,
+        children: [
+          StepInputField(
+            controller: _controller2,
+            hintText: 'Otro número de teléfono(opcional)',
+            maxLength: AppConst.phoneLen,
+            keyboardType: TextInputType.number,
+            inputFormatters: [FilteringTextInputFormatter.digitsOnly],
+            isError: _isErrors[14],
+            errorText: _phoneError ?? _errorHint2[0],
+          ),
+          StepSelectField.pickItem(
+            context,
+            items: _stepItems?[8],
+            pickedItem: _pickedItem[8],
+            onValueChange: (value) => setState(() {
+              _pickedItem[8] = value;
+              _isErrors[15] = false;
+            }),
+            hintText: 'Cuenta con algunos otros prestamos vigentes?',
+            isError: _isErrors[15],
+            errorText: _errorHint2[1],
+          ),
         ],
       ),
     );
@@ -531,4 +604,6 @@ class _StepWorkPageState extends State<StepWorkPage> {
     'Por favor seleccione la Período de nómina',
     'Por favor seleccione la fecha de pago de salario',
   ];
+
+  static const _errorHint2 = ['Por favor introduzca', 'Por favor seleccione'];
 }

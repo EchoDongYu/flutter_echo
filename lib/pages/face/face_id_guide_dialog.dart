@@ -9,18 +9,20 @@ import 'package:flutter_echo/utils/drawable_utils.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
 
-///人脸引导
-class FaceGuideDialog extends StatelessWidget {
-  const FaceGuideDialog({super.key});
+///拍照引导
+class FaceIdGuideDialog extends StatelessWidget {
+  const FaceIdGuideDialog({super.key, required this.type});
+
+  final int type;
 
   /// 显示拍照引导弹窗
-  static Future<bool?> show(BuildContext context) {
-    return showModalBottomSheet<bool?>(
+  static Future<PicType?> show(BuildContext context, int type) {
+    return showModalBottomSheet<PicType?>(
       context: context,
       enableDrag: false,
-      isDismissible: true,
+      isDismissible: false,
       isScrollControlled: true,
-      builder: (_) => FaceGuideDialog(),
+      builder: (_) => FaceIdGuideDialog(type: type),
     );
   }
 
@@ -40,20 +42,21 @@ class FaceGuideDialog extends StatelessWidget {
           Padding(
             padding: EdgeInsets.symmetric(horizontal: 12.w),
             child: Row(
-              mainAxisAlignment: MainAxisAlignment.center,
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                // GestureDetector(
-                //   onTap: () {
-                //     context.pop(null);
-                //   },
-                //   child: Image.asset(
-                //     Drawable.iconClear,
-                //     width: 20.w,
-                //     height: 20.h,
-                //   ),
-                // ),
+                GestureDetector(
+                  onTap: () {
+                    context.pop(null);
+                  },
+                  child: Image.asset(
+                    Drawable.iconClear,
+                    width: 20.w,
+                    height: 20.h,
+                  ),
+                ),
                 Text(
-                  "Foto facial",
+                  type == PicType.front.value ? "Foto del frente del DPI" : "Foto del reverso del DPI",
+
                   style: TextStyle(
                     fontSize: 18.sp,
                     fontWeight: FontWeight.w500,
@@ -65,20 +68,15 @@ class FaceGuideDialog extends StatelessWidget {
             ),
           ),
           SizedBox(height: 12.h),
-          CommonBox(
-            padding: EdgeInsets.symmetric(vertical: 24.h, horizontal: 16.w),
-            child: Column(
-              children: [
-                Image.asset(Drawable.imageRosto1, width: 120.w, height: 120.h),
-                SizedBox(height: 36.h),
-                Image.asset(Drawable.imageRosto2, width: double.infinity, height: 114.h),
-              ],
-            ),
-          ),
-          // FacePhotoBox(
-          //   facePhotoUrl: Drawable.imageRosto1,
-          //   faceTipsUrl: Drawable.imageRosto2,
-          // ),
+          type == 1
+              ? FacePhotoBox(
+                  facePhotoUrl: Drawable.iconIdCard,
+                  faceTipsUrl: Drawable.iconIdFront,
+                )
+              : FacePhotoBox(
+                  facePhotoUrl: Drawable.iconIdCardBack,
+                  faceTipsUrl: Drawable.iconIdBack,
+                ),
           SizedBox(height: 36.h),
           CommonBox(
             height: 68.h,
@@ -91,10 +89,20 @@ class FaceGuideDialog extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Expanded(
-                  child: EchoPrimaryButton(
-                    text: "Toma la foto ahora",
+                  child: EchoOutlinedButton(
+                    tvTextAlign: TextAlign.center,
+                    text: "Seleccionar imagen",
                     onPressed: () {
-                      context.pop(true);
+                      context.pop(PicType.album);
+                    },
+                  ),
+                ),
+                SizedBox(width: 12.w),
+                Expanded(
+                  child: EchoPrimaryButton(
+                    text: "Tomar fotografia",
+                    onPressed: () {
+                      context.pop(PicType.camera);
                     },
                   ),
                 ),

@@ -48,9 +48,14 @@ dependencies:
   package_info_plus: ^8.3.1
   timezone: ^0.10.1
   google_mlkit_face_detection: ^0.13.1
+  google_mlkit_commons: ^0.11.0
 #  appsflyer_sdk: ^6.17.1
   photo_view: ^0.15.0
   dotted_border: ^3.1.0
+
+  #数据库
+  hive: ^2.0.4
+  hive_flutter: ^1.1.0
 #  flutter_launcher_icons: ^0.14.4
 #
 #flutter_launcher_icons:

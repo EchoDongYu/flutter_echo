@@ -47,6 +47,8 @@ class _StepInputFieldState extends State<StepInputField> {
   @override
   void initState() {
     super.initState();
+    _isExpanded=widget.controller.text.isNotEmpty;
+
     widget.controller.addListener(
       widget.showCounter ? _onInputChanged : _onFocusChanged,
     );

@@ -1,7 +1,11 @@
+import 'dart:io';
+
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:camera/camera.dart';
+import 'package:flutter_echo/ui/dialogs/prompt_dialog.dart';
 import 'package:flutter_echo/utils/drawable_utils.dart';
+import 'package:flutter_echo/utils/face_check_utils.dart';
 import 'package:google_mlkit_face_detection/google_mlkit_face_detection.dart';
 
 class FaceIdentificationBox extends StatefulWidget {
@@ -27,6 +31,14 @@ class _FaceIdentificationBoxState extends State<FaceIdentificationBox>
   late AnimationController _animationController;
 
   String _currentHint = "";
+
+  late final FaceAnalyzer _faceAnalyzer;
+  final _resultNotifier = ValueNotifier<FaceCaptureResult>(
+    ActionInProgress('初始化中'),
+  );
+
+  Uint8List? image;
+  String? file;
 
   @override
   void initState() {
@@ -58,61 +70,73 @@ class _FaceIdentificationBoxState extends State<FaceIdentificationBox>
 
     _cameraController = CameraController(
       frontCamera,
-      ResolutionPreset.medium,
+      ResolutionPreset.high,
       enableAudio: false,
+      imageFormatGroup: Platform.isAndroid
+          ? ImageFormatGroup
+                .nv21 // Android 平台上，使用 NV21 格式
+          : ImageFormatGroup.bgra8888, // iOS 平台上，使用 BGRA8888 格式
     );
 
     await _cameraController!.initialize();
-    _cameraController!.startImageStream(_processCameraImage);
+
+    _faceAnalyzer = FaceAnalyzer(
+      cameraController: _cameraController!,
+      resultNotifier: _resultNotifier,
+    );
+
+    _cameraController!.startImageStream(_faceAnalyzer.analyze);
+    _resultNotifier.addListener(_handleDetectionUpdate);
+
     if (mounted) setState(() {});
   }
 
-  Future<void> _processCameraImage(CameraImage image) async {
-    try {
-      final WriteBuffer allBytes = WriteBuffer();
-      for (final Plane plane in image.planes) {
-        allBytes.putUint8List(plane.bytes);
+  void _handleDetectionUpdate() {
+    final result = _faceAnalyzer.resultNotifier.value;
+
+    if (result is ActionInProgress || result is FaceError) {
+      _updateHint(result.message!); // 使用原有方法更新提示
+    }
+    // if (result is FaceCompleted2) {
+    //   setState(() {
+    //     if (image == null||file==null) {
+    //       debugPrint("uint8list=${result.uint8list?.length},file=${result.file}");
+    //       image = result.uint8list;
+    //     //  file=result.file;
+    //     }
+    //
+    //
+    //   });
+    // }
+
+    if (result is FaceCompleted) {
+      if (mounted) {
+        setState(() {
+          print("capturedImages==${result.capturedImages}");
+          _updateHint(result.message!);
+        }); // 更新状态，如果需要
+
+        // 在下一帧显示对话框
+        WidgetsBinding.instance.addPostFrameCallback((_) async {
+          // 再次检查mounted，因为可能在这一帧期间页面被关闭了
+          if (!mounted) return;
+
+          final dialogResult = await PromptDialog.show(
+            context: context,
+            icon: Drawable.iconStatusRight2,
+            title: 'Verificación completada',
+            content: '',
+            confirmText: 'Regresar',
+            barrierDismissible: false,
+            canPop: false,
+          );
+          // 对话框关闭后，重置标志位，以便下次完成时可以再次弹出（如果页面没有关闭）
+          // 如果用户点击了确认，并且页面仍然存在，则关闭当前页面
+          if (dialogResult == true && mounted) {
+            Navigator.of(context).pop(result.capturedImages.values.toList());
+          }
+        });
       }
-      final bytes = allBytes.done().buffer.asUint8List();
-
-      final camera = _cameraController!.description;
-      final imageRotation =
-          InputImageRotationValue.fromRawValue(camera.sensorOrientation) ??
-          InputImageRotation.rotation0deg;
-
-      final inputImage = InputImage.fromBytes(
-        bytes: bytes,
-        metadata: InputImageMetadata(
-          size: Size(image.width.toDouble(), image.height.toDouble()),
-          rotation: imageRotation,
-          format:
-              InputImageFormatValue.fromRawValue(image.format.raw) ??
-              InputImageFormat.nv21,
-          bytesPerRow: image.planes.first.bytesPerRow,
-        ),
-      );
-
-      final faces = await _faceDetector.processImage(inputImage);
-
-      if (faces.isNotEmpty) {
-        final face = faces.first;
-        final headEulerY = face.headEulerAngleY ?? 0;
-        final headEulerX = face.headEulerAngleX ?? 0;
-
-        if (headEulerY > 15) {
-          _updateHint("Por favor, continue de frente para a câmera");
-        } else if (headEulerY < -15) {
-          _updateHint("Por favor, continue de frente para a câmera");
-        } else if (headEulerX > 15) {
-          _updateHint("Por favor, continue de frente para a câmera");
-        } else if (headEulerX < -15) {
-          _updateHint("Por favor, continue de frente para a câmera");
-        } else {
-          _updateHint(widget.hintText);
-        }
-      }
-    } catch (e) {
-      // debugPrint("Face detection error: $e");
     }
   }
 
@@ -143,30 +167,45 @@ class _FaceIdentificationBoxState extends State<FaceIdentificationBox>
         Stack(
           alignment: Alignment.center,
           children: [
-            ClipOval(
-              child: SizedBox(
-                width: widget.borderSize,
-                height: widget.borderSize,
-                child: CameraPreview(_cameraController!),
-              ),
-            ),
-            SizedBox(
-              width: widget.borderSize + widget.strokeWidth * 6,
-              height: widget.borderSize + widget.strokeWidth * 6,
-              child: AnimatedBuilder(
-                animation: _animationController,
-                builder: (context, child) {
-                  return RotatingBorder(
-                    controller: _animationController,
-                    size: widget.borderSize + widget.strokeWidth * 2,
-                    strokeWidth: widget.strokeWidth,
-                  );
-                },
+            AspectRatio(
+              aspectRatio: 1,
+              child: Stack(
+                alignment: Alignment.center,
+                children: [
+                  ClipOval(
+                    child: Transform.scale(
+                      scale: 1,
+                      child: FittedBox(
+                        fit: BoxFit.cover,
+                        child: SizedBox(
+                          width: widget.borderSize,
+                          height: widget.borderSize,
+                          child: CameraPreview(_cameraController!),
+                        ),
+                      ),
+                    ),
+                  ),
+                  SizedBox(
+                    width: widget.borderSize + widget.strokeWidth * 6,
+                    height: widget.borderSize + widget.strokeWidth * 6,
+                    child: AnimatedBuilder(
+                      animation: _animationController,
+                      builder: (context, child) {
+                        return RotatingBorder(
+                          controller: _animationController,
+                          size: widget.borderSize + widget.strokeWidth * 2,
+                          strokeWidth: widget.strokeWidth,
+                        );
+                      },
+                    ),
+                  ),
+                ],
               ),
             ),
           ],
         ),
         const SizedBox(height: 24),
+
         Text(
           _currentHint,
           style: const TextStyle(fontSize: 16, fontWeight: FontWeight.w500),
