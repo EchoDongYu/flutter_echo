@@ -7,6 +7,7 @@ import 'package:flutter_echo/pages/login/captcha_dialog.dart';
 import 'package:flutter_echo/pages/login/device_verify_dialog.dart';
 import 'package:flutter_echo/services/storage_service.dart';
 import 'package:flutter_echo/ui/dialogs/loading_dialog.dart';
+import 'package:flutter_echo/utils/common_utils.dart';
 import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
 
@@ -35,10 +36,11 @@ class _PageConsumerState<T extends BaseProvider> extends State<PageConsumer> {
       child: Consumer<T>(
         builder: (_, provider, child) {
           WidgetsBinding.instance.addPostFrameCallback((_) {
-            final loading = provider.loading;
-            if (loading != null) {
-              provider.consumeLoading();
-              if (loading) {
+            final int? loadingCount = provider.loadingCount;
+            //final loading = provider.loading;
+            if (loadingCount != null) {
+                provider.consumeLoading();
+              if (loadingCount > 0) {
                 setState(() => _showLoading = true);
                 LoadingDialog.show(context);
               } else {

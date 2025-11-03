@@ -5,11 +5,12 @@ import 'package:flutter_echo/models/swaggerApi.models.swagger.dart';
 import 'package:flutter_echo/pages/app_router.dart';
 import 'package:flutter_echo/services/api_service.dart';
 import 'package:flutter_echo/services/storage_service.dart';
+import 'package:flutter_echo/utils/common_utils.dart';
 import 'package:go_router/go_router.dart';
 
 class SubmitModel extends BaseProvider {
   static const dictBasic = [0, 6];
-  static const dictWork = [3, 12, 5, 1, 4, 7, 2, 8];
+  static const dictWork = [3, 12, 5, 1, 4, 7, 2, 8, 6];
   static const dictArea = 9;
   static const dictContact = 10;
   static const _dictTypes = [...dictBasic, ...dictWork, dictArea, dictContact];
@@ -68,17 +69,24 @@ class SubmitModel extends BaseProvider {
   }
 
   void submitWorkInfo({
+    required String? x1iu04OOtherMobile,
     required List<String?> areas,
     required List<int?> items,
     required List<int?> days,
   }) async {
-    cacheWorkInfo(areas: areas, items: items, days: days);
+    cacheWorkInfo(
+      x1iu04OOtherMobile: x1iu04OOtherMobile,
+      areas: areas,
+      items: items,
+      days: days,
+    );
     await LocalStorage().set(AppConst.kycStepKey, 2);
     await LocalStorage().set(AppConst.kycDataKey, _submitData);
     navigate((context) => context.pushReplacement(AppRouter.stepContact));
   }
 
   void cacheWorkInfo({
+    required String? x1iu04OOtherMobile,
     required List<String?> areas,
     required List<int?> items,
     required List<int?> days,
@@ -98,6 +106,8 @@ class SubmitModel extends BaseProvider {
       b1417wOPayPeriod: items[7],
       r67p23OPayday: days[0],
       plenishOSecondPayday: days[1],
+      himfjuOOtherLoans: items[8],
+      x1iu04OOtherMobile: x1iu04OOtherMobile,
     );
   }
 
@@ -128,16 +138,17 @@ class SubmitModel extends BaseProvider {
       () => Api.submitCreditData(_submitData),
     );
     if (apiResult != null) {
-      final uriRoute = Uri(
-        path: AppRouter.stepProcess,
-        queryParameters: {NavKey.count: apiResult.toString()},
-      );
-      navigate((context) => context.pushReplacement(uriRoute.toString()));
+      // final uriRoute = Uri(
+      //   path: AppRouter.stepProcess,
+      //   queryParameters: {NavKey.count: apiResult.toString()},
+      // );
+      navigate((context) => context.pushReplacement(AppRouter.stepIdInfo));
     }
   }
 
   @override
   void dispose() {
+    debugLog("dispose kycDataKey=${_submitData.toString()}");
     LocalStorage().set(AppConst.kycDataKey, _submitData);
     super.dispose();
   }

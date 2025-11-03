@@ -127,6 +127,8 @@ class EchoOutlinedButton extends _EchoButton {
   final Color filledColor;
   final double outlineWidth;
 
+  final TextAlign? tvTextAlign;
+
   const EchoOutlinedButton({
     super.key,
     required super.text,
@@ -138,6 +140,7 @@ class EchoOutlinedButton extends _EchoButton {
     this.borderColor = NowColors.c0xFFB0B1B2,
     this.filledColor = Colors.transparent,
     this.outlineWidth = 1,
+    this.tvTextAlign,
   });
 
   @override
@@ -160,6 +163,7 @@ class EchoOutlinedButton extends _EchoButton {
           fontSize: fontSize ?? 16.sp,
           fontWeight: fontWeight,
         ),
+        textAlign:tvTextAlign,
       ),
     );
   }

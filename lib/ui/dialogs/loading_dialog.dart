@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_echo/ui/widgets/loading_ring.dart';
+import 'package:flutter_echo/utils/common_utils.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class LoadingDialog {
@@ -8,6 +9,7 @@ class LoadingDialog {
 
   static void show(BuildContext context) {
     _loadingCount++;
+
     if (_overlayEntry != null) return;
     final overlayEntry = OverlayEntry(
       builder: (_) => Stack(
@@ -52,6 +54,8 @@ class LoadingDialog {
   static void hide() {
     if (_loadingCount <= 0) return;
     _loadingCount--;
+
+    debugLog('PageConsumer2 hide _loadingCount==$_loadingCount');
     if (_loadingCount == 0) {
       _overlayEntry?.remove();
       _overlayEntry = null;

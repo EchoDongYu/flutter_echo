@@ -169,7 +169,7 @@ class _StepContactPageState extends State<StepContactPage> {
               children: [
                 EchoTopBar(title: 'Contacto de emergencia'),
                 SizedBox(height: 16.h),
-                WidgetHelper.buildStepProgress(step: 3, maxStep: 3),
+                WidgetHelper.buildStepProgress(step: 2, maxStep: 3),
                 SizedBox(height: 16.h),
                 Expanded(
                   child: SingleChildScrollView(

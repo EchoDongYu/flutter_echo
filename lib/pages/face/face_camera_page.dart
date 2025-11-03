@@ -1,4 +1,5 @@
 import 'package:camera/camera.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_echo/common/app_theme.dart';
 import 'package:flutter_echo/ui/widgets/common_box.dart';
@@ -18,6 +19,7 @@ class _FaceCameraPageState extends State<FaceCameraPage> {
   CameraController? _controller;
   List<CameraDescription>? _cameras;
   bool _isReady = false;
+  Uint8List? _fileData;
 
   @override
   void initState() {
@@ -44,7 +46,11 @@ class _FaceCameraPageState extends State<FaceCameraPage> {
 
   Future<void> _takePhoto() async {
     if (!_controller!.value.isInitialized) return;
-    // final file = await _controller!.takePicture();
+    final file = await _controller!.takePicture();
+    final fileData = await file.readAsBytes();
+    setState(() {
+      _fileData = fileData;
+    });
     // if (!mounted) return;
     // debugPrint("file_path:${file.path}");
   }
@@ -59,8 +65,11 @@ class _FaceCameraPageState extends State<FaceCameraPage> {
       body: Stack(
         fit: StackFit.expand,
         children: [
-          CameraPreview(_controller!),
-
+          if (_isReady)
+            if (_fileData != null)
+              Image.memory(_fileData!)
+            else
+              CameraPreview(_controller!),
           Positioned(
             top: 56.h,
             left: 24.w,
@@ -134,36 +143,40 @@ class _FaceCameraPageState extends State<FaceCameraPage> {
               color: NowColors.c0xFF000000,
               borderRadius: BorderRadius.zero,
               height: 125.h,
-              child: GestureDetector(
-                onTap: _takePhoto,
-                // child: Image.asset(
-                //   Drawable.iconPhotoTake,
-                //   width: 82.w,
-                //   height: 82.h,
-                // ),
-                child: Row(
-                  children: [
-                    Expanded(child: SizedBox()),
-                    Expanded(
+              child: _fileData == null
+                  ? GestureDetector(
+                      onTap: _takePhoto,
                       child: Image.asset(
-                        Drawable.iconPhotoFinish,
+                        Drawable.iconPhotoTake,
                         width: 82.w,
                         height: 82.h,
                       ),
-                    ),
-                    Expanded(
-                      child: Padding(
-                        padding: EdgeInsets.only(right: 50.w),
-                        child: Image.asset(
-                          Drawable.iconRefresh,
-                          width: 24.w,
-                          height: 24.h,
+                    )
+                  : Row(
+                      children: [
+                        Expanded(child: SizedBox()),
+                        Expanded(
+                          child: GestureDetector(
+                            onTap: () => context.pop(_fileData),
+                            child: Image.asset(
+                              Drawable.iconPhotoFinish,
+                              width: 82.w,
+                              height: 82.h,
+                            ),
+                          ),
                         ),
-                      ),
+                        Expanded(
+                          child: GestureDetector(
+                            onTap: () => setState(() => _fileData = null),
+                            child: Image.asset(
+                              Drawable.iconRefresh,
+                              width: 24.w,
+                              height: 24.h,
+                            ),
+                          ),
+                        ),
+                      ],
                     ),
-                  ],
-                ),
-              ),
             ),
           ),
         ],

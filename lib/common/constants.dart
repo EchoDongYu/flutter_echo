@@ -18,6 +18,8 @@ class AppConst {
   static const int passwordLen = 4;
   static const int captchaLen = 4;
   static const int dataOffset = 310;
+  static const int idNumLen = 13;//身份证长度
+  static const int idNameLen = 30;//姓名长度
 
   /// 是否生产环境
   static const bool production = true;
@@ -69,6 +71,7 @@ class AppConst {
   static const String disclosureKey = 'disclosure';
   static const String kycStepKey = 'kycStep';
   static const String kycDataKey = 'kycData';
+  static const String kycOcrDataKey = 'kycOcrData';
   static const String mainInfoKey = 'mainInfo';
   static const String homeRefreshKey = 'homeRefresh';
   static const String afIdKey = 'appsflyer_id';
@@ -280,4 +283,11 @@ class ApiPath {
   static const String imageUploads = '/loan/awspic/uploads';
 
   static const String commonReport = '/tools/android/common/report';
+
+
+  //证件orc
+  static const String orcObergr = '/b272/obergr';
+
+  //提交授信影像
+  static const String photoSubmit = '/b72/obgr';
 }

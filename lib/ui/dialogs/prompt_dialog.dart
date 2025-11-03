@@ -13,6 +13,8 @@ class PromptDialog extends StatelessWidget {
   final String? cancelText;
   final VoidCallback onConfirm;
   final VoidCallback? onCancel;
+  final bool barrierDismissible; // 新增：控制点击外部关闭
+  final bool canPop;// 新增：控制返回键关闭
 
   const PromptDialog({
     super.key,
@@ -23,6 +25,8 @@ class PromptDialog extends StatelessWidget {
     required this.onConfirm,
     this.cancelText,
     this.onCancel,
+    this.barrierDismissible  = true, // 默认允许点击外部关闭
+    this.canPop  = true,             // 默认允许返回键关闭
   });
 
   /// 显示通用提示弹窗
@@ -33,17 +37,25 @@ class PromptDialog extends StatelessWidget {
     required String confirmText,
     String? cancelText,
     String? icon,
+    bool barrierDismissible = true, // 外部控制参数
+    bool canPop = true,             // 外部控制参数
   }) {
     return showDialog<bool>(
       context: context,
-      builder: (_) => PromptDialog(
-        icon: icon,
-        title: title,
-        content: content,
-        confirmText: confirmText,
-        cancelText: cancelText,
-        onConfirm: () => context.pop(true),
-        onCancel: () => context.pop(false),
+      barrierDismissible: barrierDismissible, // 动态控制外部点击
+      builder: (_) => PopScope(
+        canPop: canPop,  // 动态控制返回键
+        child: PromptDialog(
+          icon: icon,
+          title: title,
+          content: content,
+          confirmText: confirmText,
+          cancelText: cancelText,
+          barrierDismissible: barrierDismissible, // 传递参数
+          canPop: canPop,                         // 传递参数
+          onConfirm: () => context.pop(true),
+          onCancel: () => context.pop(false),
+        ),
       ),
     );
   }
@@ -78,16 +90,18 @@ class PromptDialog extends StatelessWidget {
                 fontWeight: FontWeight.w500,
               ),
             ),
-            SizedBox(height: showCancel ? 12.h : 16.h),
-            Text(
-              content,
-              textAlign: TextAlign.center,
-              style: TextStyle(
-                color: NowColors.c0xFF494C4F,
-                fontSize: 14.sp,
-                fontWeight: FontWeight.w400,
+            if (content.isNotEmpty) ...[
+              SizedBox(height: showCancel ? 12.h : 16.h),
+              Text(
+                content,
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                  color: NowColors.c0xFF494C4F,
+                  fontSize: 14.sp,
+                  fontWeight: FontWeight.w400,
+                ),
               ),
-            ),
+            ],
             SizedBox(height: 24.h),
             if (showCancel)
               Row(

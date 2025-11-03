@@ -49,6 +49,11 @@ final emojiReg = RegExp(
   unicode: true,
 );
 
+//身份证验证
+bool idNumValid(String idNum) {
+  return idNum.length == AppConst.idNumLen;
+}
+
 class FlutterPlatform {
   static const _method = MethodChannel('${AppConst.applicationId}/channel');
 
@@ -192,5 +197,31 @@ extension BankCardExtensions on BankCardResp$Item {
     if (number.length < 3) return name;
     final end = number.substring(number.length - 3);
     return '$t1h91pOBankName(*$end)';
+  }
+}
+
+// 扩展方法定义（放在公共工具类）
+extension ListSafety<T> on List<T> {
+  T? getOrNull(int index) =>
+      (index >= 0 && index < length) ? this[index] : null;
+}
+
+
+/// 字符串非空验证扩展
+extension NotEmptyValidation on String? {
+  /// 检查字符串是否为有效非空内容
+  ///
+  /// 验证条件：
+  /// 1. 非 null
+  /// 2. 非空字符串 ("" 无效)
+  /// 3. 非纯空白字符 ("   " 无效)
+  ///
+  /// 返回值：
+  /// true - 字符串含有有效内容
+  /// false - 字符串为空或无效
+  bool get isNotEmptyOrNull {
+    if (this == null) return false;       // 空值检查
+    if (this!.isEmpty) return false;      // 空字符串检查
+    return this!.trim().isNotEmpty;       // 空白字符检查
   }
 }

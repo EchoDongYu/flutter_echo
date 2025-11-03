@@ -8,7 +8,10 @@ import 'package:go_router/go_router.dart';
 
 abstract class BaseProvider extends ChangeNotifier {
   final apiService = ApiController(AppConst.baseUrl);
+
   bool? _loading;
+
+  int? _loadingCount;
   ApiResponse? _apiError;
   Function(BuildContext)? _navAction;
 
@@ -17,13 +20,17 @@ abstract class BaseProvider extends ChangeNotifier {
     Future<R?> Function() action, {
     bool showLoading = true,
     bool toastError = true,
+    bool iWantHandler = false,
     List<String> blockCodes = const [],
     Function(ApiResponse resp)? onBlockError,
   }) async {
     R? result;
     dynamic error;
     try {
-      if (showLoading) _loading = true;
+      if (showLoading) {
+        debugLog("launchRequest $_loadingCount");
+        _loadingCount = (_loadingCount ?? 0) + 1; // 若为null则从0开始
+      }
       _apiError = null;
       notifyListeners();
       result = await action();
@@ -31,8 +38,12 @@ abstract class BaseProvider extends ChangeNotifier {
       debugLog('ApiError', error: e, stackTrace: s);
       error = e;
     } finally {
-      if (showLoading) _loading = false;
+      if (showLoading) {
+        _loadingCount = (_loadingCount ?? 0) - 1; // 若为null则从0开始
+      }
       notifyListeners();
+    //  debugLog('showLoading==$_loadingCount,${hashCode}');
+
       if (error != null) {
         if (error is ApiResponse) {
           if (blockCodes.contains(error.code)) {
@@ -40,6 +51,8 @@ abstract class BaseProvider extends ChangeNotifier {
           } else if (ApiResponse.globalCodes.contains(error.code)) {
             _apiError = error;
             notifyListeners();
+          } else if (iWantHandler) {
+            onBlockError?.call(error);
           } else if (toastError) {
             error.toastErrorMsg();
           }
@@ -52,13 +65,15 @@ abstract class BaseProvider extends ChangeNotifier {
     return result;
   }
 
-  bool? get loading => _loading;
+   bool? get loading => _loading;
+
+   int?  get loadingCount => _loadingCount;
 
   ApiResponse? get apiError => _apiError;
 
   Function(BuildContext)? get navAction => _navAction;
 
-  void consumeLoading() => _loading = null;
+ void consumeLoading() => _loadingCount =  null;
 
   void consumeApiError() => _apiError = null;
 

@@ -113,6 +113,9 @@ class MainModel extends BaseProvider {
             _launchKycStep();
             break;
           case 1:
+            navigate((context) => context.push(AppRouter.stepIdInfo));
+            break;
+          case 6:
             final uriRoute = Uri(
               path: AppRouter.stepProcess,
               queryParameters: {
@@ -146,7 +149,7 @@ class MainModel extends BaseProvider {
   void _launchKycStep() {
     switch (LocalStorage().kycStep) {
       case null:
-        navigate((context) => context.push(AppRouter.stepBasic));
+        navigate((context) => context.push(AppRouter.stepWork));
         break;
       case 1:
         navigate((context) => context.push(AppRouter.stepWork));
@@ -158,7 +161,7 @@ class MainModel extends BaseProvider {
         navigate((context) => context.push(AppRouter.stepIdInfo));
         break;
       default:
-        navigate((context) => context.push(AppRouter.stepBasic));
+        navigate((context) => context.push(AppRouter.stepWork));
         break;
     }
   }

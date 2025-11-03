@@ -565,6 +565,32 @@ Map<String, dynamic> _$RepayApplyReqToJson(RepayApplyReq instance) =>
       'wtpuzt': instance.wtpuztORepaymentTime,
     };
 
+ImageUploadsReq _$ImageUploadsReqFromJson(Map<String, dynamic> json) =>
+    ImageUploadsReq(
+      raiaOUserGid: json['raia'] as String?,
+      d7x52pBizChannel: json['d7x52p'] as String?,
+      s377v5BizLine: json['s377v5'] as String?,
+      ha3xp9PicType: json['ha3xp9'] as String?,
+      x01y7qBase64String: (json['x01y7q'] as List<dynamic>?)
+          ?.map((e) => e as String)
+          .toList(),
+      provenancePicResource: json['provenance'] as String?,
+      borrowFeeSumWithoutCard: (json['borrowFeeSum'] as num?)?.toInt() ?? 0,
+      waSmsFaceCheck: (json['waSms'] as num?)?.toInt() ?? 0,
+    );
+
+Map<String, dynamic> _$ImageUploadsReqToJson(ImageUploadsReq instance) =>
+    <String, dynamic>{
+      'raia': instance.raiaOUserGid,
+      'd7x52p': instance.d7x52pBizChannel,
+      's377v5': instance.s377v5BizLine,
+      'ha3xp9': instance.ha3xp9PicType,
+      'x01y7q': instance.x01y7qBase64String,
+      'provenance': instance.provenancePicResource,
+      'borrowFeeSum': instance.borrowFeeSumWithoutCard,
+      'waSms': instance.waSmsFaceCheck,
+    };
+
 RepayRecordReq _$RepayRecordReqFromJson(Map<String, dynamic> json) =>
     RepayRecordReq(
       r5a4x8OLoanGid: json['r5a4x8'] as String?,
@@ -924,6 +950,9 @@ PhotoSubmitReq _$PhotoSubmitReqFromJson(Map<String, dynamic> json) =>
       gargetOBirthday: (json['garget'] as num?)?.toInt(),
       borrowFeeSumOWithoutCard: (json['borrowFeeSum'] as num?)?.toInt(),
       waSmsOFaceCheck: (json['waSms'] as num?)?.toInt(),
+      lq1s05OFirstName: json['lq1s05'] as String?,
+      darktownOLastName: json['darktown'] as String?,
+      f31u3kOEmail: json['f31u3k'] as String?,
     );
 
 Map<String, dynamic> _$PhotoSubmitReqToJson(PhotoSubmitReq instance) =>
@@ -944,6 +973,9 @@ Map<String, dynamic> _$PhotoSubmitReqToJson(PhotoSubmitReq instance) =>
       'garget': instance.gargetOBirthday,
       'borrowFeeSum': instance.borrowFeeSumOWithoutCard,
       'waSms': instance.waSmsOFaceCheck,
+      'lq1s05': instance.lq1s05OFirstName,
+      'darktown': instance.darktownOLastName,
+      'f31u3k': instance.f31u3kOEmail,
     };
 
 SubmitDataReq _$SubmitDataReqFromJson(Map<String, dynamic> json) =>
@@ -3503,6 +3535,8 @@ OcrReqResp$Data _$OcrReqResp$DataFromJson(Map<String, dynamic> json) =>
       extensionPeriodOIssueDate: (json['extensionPeriod'] as num?)?.toInt(),
       holisticOValidDate: (json['holistic'] as num?)?.toInt(),
       demotionOIsOcrRequestRender: (json['demotion'] as num?)?.toInt(),
+      lq1s05OFirstName: json['lq1s05'] as String?,
+      darktownOLastName: json['darktown'] as String?,
     );
 
 Map<String, dynamic> _$OcrReqResp$DataToJson(OcrReqResp$Data instance) =>
@@ -3519,6 +3553,8 @@ Map<String, dynamic> _$OcrReqResp$DataToJson(OcrReqResp$Data instance) =>
       'extensionPeriod': instance.extensionPeriodOIssueDate,
       'holistic': instance.holisticOValidDate,
       'demotion': instance.demotionOIsOcrRequestRender,
+      'lq1s05': instance.lq1s05OFirstName,
+      'darktown': instance.darktownOLastName,
     };
 
 LoanPreInfoResp$Y5695eOProductFactory
