@@ -2,6 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_echo/common/app_theme.dart';
 import 'package:flutter_echo/common/constants.dart';
+import 'package:flutter_echo/event/event_constants.dart';
+import 'package:flutter_echo/event/event_data.dart';
+import 'package:flutter_echo/event/event_service.dart';
 import 'package:flutter_echo/pages/app_router.dart';
 import 'package:flutter_echo/pages/login/retain_login_dialog.dart';
 import 'package:flutter_echo/pages/user/removed_dialog.dart';
@@ -33,6 +36,8 @@ class _LoginPhonePageState extends State<LoginPhonePage> {
   @override
   void initState() {
     super.initState();
+    EventService.generateEventPageId(EventIncomeIdPrefix.prefixLogin);
+    debugPrint("state initState");
     _controller.addListener(_onPhoneChanged);
   }
 
@@ -148,6 +153,13 @@ class _LoginPhonePageState extends State<LoginPhonePage> {
 
   Widget _buildPhoneField() {
     return PhoneInputField(
+      onTap: () {
+        EventService.storeInputEvent(
+          Event()
+            ..eventName = "phoneInput"
+            ..moduleCode = EventModuleCode.modelCodeLogin,
+        );
+      },
       controller: _controller,
       hintText: 'Número de teléfono',
       keyboardType: TextInputType.number,

@@ -6,6 +6,7 @@ import 'dart:ui';
 import 'package:camera/camera.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_echo/event/event_data.dart';
 import 'package:flutter_echo/utils/face_utils.dart';
 
 import 'package:google_mlkit_face_detection/google_mlkit_face_detection.dart';
@@ -15,17 +16,17 @@ extension LivenessActionExtension on LivenessAction {
   String get instruction {
     switch (this) {
       case LivenessAction.AWAITING_FRONTAL:
-        return 'Alinea tu rostro con la cámara';//请正对屏幕 Alinea tu rostro con la cámara
+        return 'Alinea tu rostro con la cámara'; //请正对屏幕 Alinea tu rostro con la cámara
       case LivenessAction.SMILE:
-        return 'Por favor, toma la foto del frente primero';// 请微笑 Por favor, toma la foto del frente primero
+        return 'Por favor, toma la foto del frente primero'; // 请微笑 Por favor, toma la foto del frente primero
       case LivenessAction.BLINK:
-        return 'Por favor, parpadea';//请眨眼 Por favor, parpadea
+        return 'Por favor, parpadea'; //请眨眼 Por favor, parpadea
       case LivenessAction.MOUTH_OPEN:
-        return 'Abre la boca';//请张嘴 Abre la boca
+        return 'Abre la boca'; //请张嘴 Abre la boca
       case LivenessAction.HEAD_SHAKE:
-        return 'Mueve la cabeza de lado a lado';//请摇头 Mueve la cabeza de lado a lado
+        return 'Mueve la cabeza de lado a lado'; //请摇头 Mueve la cabeza de lado a lado
       case LivenessAction.HEAD_NOD:
-        return 'Asiente con la cabeza hacia arriba y abajo';// 请点头 Asiente con la cabeza hacia arriba y abajo
+        return 'Asiente con la cabeza hacia arriba y abajo'; // 请点头 Asiente con la cabeza hacia arriba y abajo
     }
   }
 }
@@ -76,7 +77,8 @@ class FaceAnalyzer {
   final ValueNotifier<FaceCaptureResult> resultNotifier;
   final ActionUtils actionUtils = ActionUtils();
 
-
+  //记录人脸行为事件
+  Map<String, ActionData> actionMap = {};
 
   // 人脸检测器配置
   final FaceDetector _detector = FaceDetector(
@@ -94,7 +96,8 @@ class FaceAnalyzer {
   List<LivenessAction> _actionQueue = [];
   int _currentActionIndex = 0;
   bool _isCompleted = false;
-  final LinkedHashMap <LivenessAction, String> _capturedImages = LinkedHashMap<LivenessAction, String>();
+  final LinkedHashMap<LivenessAction, String> _capturedImages =
+      LinkedHashMap<LivenessAction, String>();
   DateTime _lastAnalysisTime = DateTime.now();
 
   FaceAnalyzer({
@@ -181,6 +184,7 @@ class FaceAnalyzer {
 
   bool _needUpdateImageInfo = true;
 
+  int startMilliseconds=0;
   Future<void> _processFaceForAction(Face face, CameraImage image) async {
     if (_currentActionIndex >= _actionQueue.length || _isCaptureInProgress) {
       return;
@@ -213,6 +217,11 @@ class FaceAnalyzer {
     }
 
     // 执行动作检测
+    if(startMilliseconds==0) {
+      startMilliseconds = DateTime
+          .now()
+          .millisecondsSinceEpoch;
+    }
     bool actionSuccessful;
     switch (currentAction) {
       case LivenessAction.AWAITING_FRONTAL:
@@ -230,11 +239,24 @@ class FaceAnalyzer {
     }
 
     if (actionSuccessful) {
-      debugPrint(
+      int second = (startMilliseconds / 1000.0).toInt();
+      ActionData actionData = ActionData();
+      actionData.createTime = second;
+      actionData.isFinish=true;
+      actionData.useTime=(DateTime.now().millisecondsSinceEpoch/1000.0).toInt()-second;
+      actionMap[currentAction.value.toString()] =actionData;
+          debugPrint(
         'Current action actionSuccessful: ${currentAction.instruction},_currentActionIndex={$_currentActionIndex',
       );
+      startMilliseconds=0;
       return await _captureAndProceed(currentAction, image);
     } else {
+      int second = (startMilliseconds / 1000.0).toInt();
+      ActionData actionData = ActionData();
+      actionData.createTime = second;
+      actionData.isFinish=false;
+      actionData.useTime=(DateTime.now().millisecondsSinceEpoch/1000.0).toInt()-second;
+      actionMap[currentAction.value.toString()] =actionData;
       resultNotifier.value = ActionInProgress(currentAction.instruction);
     }
   }
@@ -245,7 +267,9 @@ class FaceAnalyzer {
   ) async {
     XFile? uiImage = await _takePhoto();
     debugPrint('Current action _actionQueue: $_actionQueue');
-    debugPrint('Current action index: $_currentActionIndex，${action.instruction}');
+    debugPrint(
+      'Current action index: $_currentActionIndex，${action.instruction}',
+    );
     _capturedImages[action] = uiImage?.path ?? "";
     // 在递增之前确保不会越界
     _currentActionIndex++;

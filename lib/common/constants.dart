@@ -22,7 +22,7 @@ class AppConst {
   static const int idNameLen = 30;//姓名长度
 
   /// 是否生产环境
-  static const bool production = true;
+  static const bool production = false;
 
   /// 1.大数据上报域名（SMS及埋点事件上报）：https://insights.davaloan.com/insights
   /// 2.业务侧上报域名/生产域名（除SMS以外数据上报）：https://insights.davaloan.com/insights
@@ -280,7 +280,7 @@ class ApiPath {
   static const String queryRepaymentList = '/philtrum/kbzd';
 
   /// 图片上传（包含上传/滤波分检查/人脸检测
-  static const String imageUploads = '/loan/awspic/uploads';
+  static const String imageUploads = '/awspic/uploads';
 
   static const String commonReport = '/tools/android/common/report';
 
@@ -289,5 +289,11 @@ class ApiPath {
   static const String orcObergr = '/b272/obergr';
 
   //提交授信影像
-  static const String photoSubmit = '/b72/obgr';
+  static const String orcSubmit = '/b72/obgr';
+
+  //获取BizOrderId -- 授信ID
+  static const String queryBizOrderId = '/u042/vsf';
+
+  //上报行为数据
+  static const String submitEvent = '/rww/i72';
 }

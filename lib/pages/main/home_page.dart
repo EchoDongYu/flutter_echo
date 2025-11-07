@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_echo/common/constants.dart';
+import 'package:flutter_echo/models/swaggerApi.models.swagger.dart';
 import 'package:flutter_echo/pages/main/home_default_page.dart';
 import 'package:flutter_echo/pages/main/home_loan_page.dart';
 import 'package:flutter_echo/providers/main_provider.dart';
 import 'package:flutter_echo/services/storage_service.dart';
+import 'package:flutter_echo/ui/dialogs/prompt_dialog.dart';
 import 'package:flutter_echo/utils/common_utils.dart';
 import 'package:provider/provider.dart';
 
@@ -21,6 +23,7 @@ class _HomePageState extends State<HomePage> with RouteAware {
     super.initState();
     WidgetsBinding.instance.addPostFrameCallback((_) {
       context.read<MainModel>().getHomeInfo();
+      _showNoticeDialog();
     });
   }
 
@@ -36,6 +39,23 @@ class _HomePageState extends State<HomePage> with RouteAware {
     super.dispose();
   }
 
+  //展示公告弹框
+  Future<void> _showNoticeDialog() async {
+    NoticeMainResp? noticeMainResp = await context
+        .read<MainModel>()
+        .getNoticeMain();
+    if (noticeMainResp != null) {
+      if (context.mounted) {
+        final result = await PromptDialog.show(
+          context: context,
+          title: noticeMainResp.title ?? "",
+          content: noticeMainResp.content ?? "",
+          confirmText: 'OK',
+        );
+      }
+    }
+  }
+
   @override
   void didPopNext() {
     if (LocalStorage().get(AppConst.homeRefreshKey) == true) {
@@ -49,7 +69,10 @@ class _HomePageState extends State<HomePage> with RouteAware {
     return Consumer<MainModel>(
       builder: (contex, provider, _) {
         return RefreshIndicator(
-          onRefresh: () => context.read<MainModel>().getHomeInfo(),
+          onRefresh: () async {
+            context.read<MainModel>().getHomeInfo();
+            _showNoticeDialog();
+          },
           child: provider.status == 2 ? HomeLoanPage() : HomeDefaultPage(),
         );
       },

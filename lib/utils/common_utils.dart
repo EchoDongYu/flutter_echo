@@ -27,6 +27,27 @@ void logLong(String msg) {
   }
 }
 
+
+//请求日志 再logcat 窗口输出
+void printDebugLog(String message) {
+  if (!AppConst.production) {
+    final int maxLength = 1000; // 设置每行的最大字符数
+    if (message.length > maxLength) {
+      // 将长消息分割为多行
+      for (int i = 0; i < message.length; i += maxLength) {
+        print(
+          message.substring(
+            i,
+            i + maxLength > message.length ? message.length : i + maxLength,
+          ),
+        );
+      }
+    } else {
+      print(message); // 如果消息长度小于maxLength，直接打印
+    }
+  }
+}
+
 void toast(String msg) => showToast(msg, radius: 20);
 
 final routeObserver = RouteObserver<ModalRoute<void>>();

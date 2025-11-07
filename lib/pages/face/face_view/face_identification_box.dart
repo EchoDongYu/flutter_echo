@@ -3,7 +3,10 @@ import 'dart:io';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:camera/camera.dart';
+import 'package:flutter_echo/event/event_data.dart';
+import 'package:flutter_echo/event/event_service.dart';
 import 'package:flutter_echo/ui/dialogs/prompt_dialog.dart';
+import 'package:flutter_echo/utils/common_utils.dart';
 import 'package:flutter_echo/utils/drawable_utils.dart';
 import 'package:flutter_echo/utils/face_check_utils.dart';
 import 'package:google_mlkit_face_detection/google_mlkit_face_detection.dart';
@@ -34,7 +37,7 @@ class _FaceIdentificationBoxState extends State<FaceIdentificationBox>
 
   late final FaceAnalyzer _faceAnalyzer;
   final _resultNotifier = ValueNotifier<FaceCaptureResult>(
-    ActionInProgress('初始化中'),
+    ActionInProgress(''),
   );
 
   Uint8List? image;
@@ -43,6 +46,9 @@ class _FaceIdentificationBoxState extends State<FaceIdentificationBox>
   @override
   void initState() {
     super.initState();
+
+    EventService.generateFaceEventPageId();
+
 
     _animationController = AnimationController(
       vsync: this,
@@ -148,12 +154,32 @@ class _FaceIdentificationBoxState extends State<FaceIdentificationBox>
     }
   }
 
+
+
+  @override
+  void deactivate() {
+    super.deactivate();
+    printDebugLog("EventService dispose");
+    //EventService.faceEventParam.actionMap = _faceAnalyzer.actionMap;
+  }
   @override
   void dispose() {
+    printDebugLog("EventService dispose");
+    saveEvent();
     _cameraController?.dispose();
     _faceDetector.close();
     _animationController.dispose();
     super.dispose();
+  }
+
+  void saveEvent() async{
+  //  EventService.faceEventParam.actionMap = _faceAnalyzer.actionMap;
+    Event event= Event();
+    EventParam eventParam=EventParam();
+    eventParam.actionMap=_faceAnalyzer.actionMap;
+    event.eventParam=eventParam;
+    await EventService.storeFaceEvent(event,null);
+
   }
 
   @override

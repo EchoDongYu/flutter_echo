@@ -36,6 +36,26 @@ enum LivenessAction {
   HEAD_SHAKE,
 }
 
+// 扩展 LivenessAction，添加一个 getValue 方法来获取数字
+extension LivenessActionExtension on LivenessAction {
+  int get value {
+    switch (this) {
+      case LivenessAction.AWAITING_FRONTAL:
+        return 1;
+      case LivenessAction.SMILE:
+        return 2;
+      case LivenessAction.BLINK:
+        return 3;
+      case LivenessAction.MOUTH_OPEN:
+        return 4;
+      case LivenessAction.HEAD_NOD:
+        return 5;
+      case LivenessAction.HEAD_SHAKE:
+        return 6;
+    }
+  }
+}
+
 class ActionUtils {
   // --- 状态变量 ---
   double? _lastHeadAngleY; // 摇头

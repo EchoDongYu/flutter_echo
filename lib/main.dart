@@ -2,13 +2,18 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_echo/common/app_theme.dart';
 import 'package:flutter_echo/common/constants.dart';
+import 'package:flutter_echo/event/event_data.dart';
+import 'package:flutter_echo/event/event_service.dart';
 import 'package:flutter_echo/pages/app_router.dart';
+
 // import 'package:flutter_echo/services/appsflyer_service.dart';
 import 'package:flutter_echo/services/storage_service.dart';
 import 'package:flutter_echo/utils/common_utils.dart';
 import 'package:flutter_echo/utils/custom_localizations.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:hive/hive.dart';
 import 'package:oktoast/oktoast.dart';
+import 'package:path_provider/path_provider.dart';
 import 'package:timezone/data/latest.dart' as tz;
 
 void main() async {
@@ -34,6 +39,16 @@ void main() async {
   //   'your_dev_key1',  // 替换为你的开发者密钥
   //   'your_app_id1',   // 替换为你的 App ID
   // );
+
+  // 获取安全的内部存储路径
+  final dir = await getApplicationDocumentsDirectory();
+  Hive
+    ..init(dir.path)
+    ..registerAdapter(EventAdapter())
+    ..registerAdapter(EventParamAdapter())
+    ..registerAdapter(ActionDataAdapter());
+  await EventService.init();
+  EventService.generateAppStartId();
 
   runApp(const MyApp());
 }

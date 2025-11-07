@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_echo/common/app_theme.dart';
 import 'package:flutter_echo/common/constants.dart';
+import 'package:flutter_echo/event/event_data.dart';
+import 'package:flutter_echo/event/event_service.dart';
 import 'package:flutter_echo/pages/login/code_mode_dialog.dart';
 import 'package:flutter_echo/providers/login_provider.dart';
 import 'package:flutter_echo/ui/widget_helper.dart';
@@ -29,6 +31,10 @@ class _LoginCodePageState extends State<LoginCodePage> {
   @override
   void initState() {
     super.initState();
+
+    EventService.generateLoginEventPageId();
+
+    _focusNode.addListener(_handleFocusChange);
     _controller.addListener(_onCodeChanged);
     WidgetsBinding.instance.addPostFrameCallback((_) async {
       final sendOk = await loginModel.sendVerifyCode();
@@ -36,9 +42,19 @@ class _LoginCodePageState extends State<LoginCodePage> {
     });
   }
 
+
+  // 记录焦点事件
+  void _handleFocusChange() {
+    if (_focusNode.hasFocus) {
+      EventService.storeInputEvent(Event()..moduleCode);
+    } else {}
+  }
+
+
   @override
   void dispose() {
     _controller.dispose();
+    _focusNode.removeListener(_handleFocusChange);
     _focusNode.dispose();
     super.dispose();
   }
@@ -248,9 +264,9 @@ class _LoginCodePageState extends State<LoginCodePage> {
         border: hasValue
             ? null
             : Border.all(
-                width: 1,
-                color: isActive ? NowColors.c0xFF3288F1 : NowColors.c0xFF1C1F23,
-              ),
+          width: 1,
+          color: isActive ? NowColors.c0xFF3288F1 : NowColors.c0xFF1C1F23,
+        ),
       ),
       child: Text(
         value,

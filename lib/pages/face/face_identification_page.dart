@@ -3,7 +3,7 @@ import 'package:flutter_echo/pages/face/face_view/face_identification_box.dart';
 import 'package:flutter_echo/ui/widgets/common_appbar.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-/// 授信认证页面
+/// 授信认证人脸页面
 class FaceIdentificationPage extends StatelessWidget {
   const FaceIdentificationPage({super.key});
 
@@ -22,6 +22,7 @@ class FaceIdentificationPage extends StatelessWidget {
       ),
     );
   }
+
 }
 
 // Future<void> _showFaceIdeStatusDialog(BuildContext context) async{

@@ -212,7 +212,7 @@ class AppRouter {
         builder: (context, state) => const FaceCameraPage(),
       ),
 
-      /// 授信认证页面
+      /// 授信人脸认证页面
       GoRoute(
         path: faceIdentification,
         builder: (context, state) => const FaceIdentificationPage(),

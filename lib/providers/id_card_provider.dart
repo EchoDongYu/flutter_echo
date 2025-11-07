@@ -3,6 +3,8 @@ import 'dart:convert';
 import 'package:flutter/foundation.dart';
 import 'package:flutter_echo/common/base_provider.dart';
 import 'package:flutter_echo/common/constants.dart';
+import 'package:flutter_echo/event/event_data.dart';
+import 'package:flutter_echo/event/event_service.dart';
 import 'package:flutter_echo/models/api_response.dart';
 import 'package:flutter_echo/models/common_model.dart';
 import 'package:flutter_echo/models/swaggerApi.models.swagger.dart';
@@ -308,7 +310,10 @@ class IdCardModel extends BaseProvider {
             if (id != null && id.isNotEmpty) {
               oj603uOApplyId = id;
             }
-
+            EventService.queryAndUpdateFaceData(
+              newStatus: FaceStatus.NotSubmitted.value,
+              applyId: oj603uOApplyId,
+            );
             faceUrl1 = urlList.getOrNull(0);
             faceUrl2 = urlList.getOrNull(1);
             faceUrl3 = urlList.getOrNull(2);
@@ -322,6 +327,9 @@ class IdCardModel extends BaseProvider {
       },
       iWantHandler: true,
       onBlockError: (resp) {
+        // EventService.queryAndUpdateFaceData(
+        //   newStatus: FaceStatus.NotSubmitted.value,
+        // );
         // debugPrint("erroorororror");
         // photoSubmitReq = photoSubmitReq.copyWith(
         //   attributionSubOIdCardNum: "erroorororror",
@@ -350,7 +358,7 @@ class IdCardModel extends BaseProvider {
     });
     if (apiResult != null) {
       OcrReqResp$Data reqResp = apiResult;
-     // nameOcr = reqResp.name;
+      // nameOcr = reqResp.name;
       firstNameOcr = reqResp.lq1s05OFirstName;
       lastNameOcr = reqResp.darktownOLastName;
       idNumOcr = reqResp.attributionSubOIdCardNum;
@@ -402,6 +410,9 @@ class IdCardModel extends BaseProvider {
       },
       iWantHandler: true,
       onBlockError: (resp) {
+        EventService.queryAndUpdateFaceData(
+          newStatus: FaceStatus.Failure.value,
+        );
         //todo 暂时先toast
         toast(resp.toString());
         handlerErrorCode(resp);
@@ -416,6 +427,11 @@ class IdCardModel extends BaseProvider {
         queryParameters: {NavKey.count: apiResult.toString()},
       );
       navigate((context) => context.pushReplacement(uriRoute.toString()));
+
+      ///修改 最新一条face的提交状态
+      EventService.queryAndUpdateFaceData(newStatus: FaceStatus.Success.value);
+      //上传所有行为埋点数据
+      EventService.batchUploadEvents(uploadMode: 2);
     }
   }
 

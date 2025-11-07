@@ -55,7 +55,9 @@ class FaceIdGuideDialog extends StatelessWidget {
                   ),
                 ),
                 Text(
-                  type == PicType.front.value ? "Foto del frente del DPI" : "Foto del reverso del DPI",
+                  type == PicType.front.value
+                      ? "Foto del frente del DPI"
+                      : "Foto del reverso del DPI",
 
                   style: TextStyle(
                     fontSize: 18.sp,
@@ -78,35 +80,37 @@ class FaceIdGuideDialog extends StatelessWidget {
                   faceTipsUrl: Drawable.iconIdBack,
                 ),
           SizedBox(height: 36.h),
-          CommonBox(
-            height: 68.h,
-            padding: EdgeInsets.symmetric(vertical: 10.h, horizontal: 12.w),
-            borderRadius: const BorderRadius.only(
-              topLeft: Radius.circular(20),
-              topRight: Radius.circular(20),
-            ),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Expanded(
-                  child: EchoOutlinedButton(
-                    tvTextAlign: TextAlign.center,
-                    text: "Seleccionar imagen",
-                    onPressed: () {
-                      context.pop(PicType.album);
-                    },
+          SafeArea(
+            child: CommonBox(
+              height: 68.h,
+              padding: EdgeInsets.symmetric(vertical: 10.h, horizontal: 12.w),
+              borderRadius: const BorderRadius.only(
+                topLeft: Radius.circular(20),
+                topRight: Radius.circular(20),
+              ),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Expanded(
+                    child: EchoOutlinedButton(
+                      tvTextAlign: TextAlign.center,
+                      text: "Seleccionar imagen",
+                      onPressed: () {
+                        context.pop(PicType.album);
+                      },
+                    ),
                   ),
-                ),
-                SizedBox(width: 12.w),
-                Expanded(
-                  child: EchoPrimaryButton(
-                    text: "Tomar fotografia",
-                    onPressed: () {
-                      context.pop(PicType.camera);
-                    },
+                  SizedBox(width: 12.w),
+                  Expanded(
+                    child: EchoPrimaryButton(
+                      text: "Tomar fotografia",
+                      onPressed: () {
+                        context.pop(PicType.camera);
+                      },
+                    ),
                   ),
-                ),
-              ],
+                ],
+              ),
             ),
           ),
         ],

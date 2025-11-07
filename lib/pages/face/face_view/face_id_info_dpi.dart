@@ -89,6 +89,8 @@ class FaceIDInfoDpi2State extends State<FaceIDInfoDpi2> {
           : !emailValid
           ? 'Formatode correo electrónico incorrecto'
           : null;
+
+      _showEmailError = _emailError != null;
     });
     return idValid &&
         firstnameValid &&
@@ -137,6 +139,7 @@ class FaceIDInfoDpi2State extends State<FaceIDInfoDpi2> {
 
           _firstNameController.text = cachedData.lq1s05OFirstName ?? "";
           _lastNameController.text = cachedData.darktownOLastName ?? "";
+          _emailController.text = cachedData.f31u3kOEmail ?? "";
         });
       }
     });

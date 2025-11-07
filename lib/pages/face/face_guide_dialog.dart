@@ -80,7 +80,7 @@ class FaceGuideDialog extends StatelessWidget {
           //   faceTipsUrl: Drawable.imageRosto2,
           // ),
           SizedBox(height: 36.h),
-          CommonBox(
+          SafeArea(child:      CommonBox(
             height: 68.h,
             padding: EdgeInsets.symmetric(vertical: 10.h, horizontal: 12.w),
             borderRadius: const BorderRadius.only(
@@ -100,7 +100,8 @@ class FaceGuideDialog extends StatelessWidget {
                 ),
               ],
             ),
-          ),
+          ),),
+
         ],
       ),
     );

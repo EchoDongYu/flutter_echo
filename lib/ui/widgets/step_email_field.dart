@@ -28,6 +28,7 @@ class _StepEmailFieldState extends State<StepEmailField> {
   @override
   void initState() {
     super.initState();
+    _isExpanded=widget.controller.text.isNotEmpty;
     widget.controller.addListener(_onInputChanged);
   }
 

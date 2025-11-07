@@ -28,22 +28,9 @@ class ApiController {
         LogInterceptor(
           requestBody: true,
           responseBody: true,
-          logPrint: (object) => _printLog(object.toString()),
+          logPrint: (object) => printDebugLog(object.toString()),
         ),
       );
-    }
-  }
-
-  //请求日志 再logcat 窗口输出
-  void _printLog(String message) {
-    final int maxLength = 1000; // 设置每行的最大字符数
-    if (message.length > maxLength) {
-      // 将长消息分割为多行
-      for (int i = 0; i < message.length; i += maxLength) {
-        print(message.substring(i, i + maxLength > message.length ? message.length : i + maxLength));
-      }
-    } else {
-      print(message);  // 如果消息长度小于maxLength，直接打印
     }
   }
 
@@ -83,6 +70,24 @@ class ApiController {
       throw apiResponse;
     }
   }
+
+  Future<bool> reportExtra(
+    String path, {
+    Object? body,
+    Map<String, dynamic>? extra,
+  }) async {
+    final response = await _dio.post(
+      path,
+      data: body,
+      options: Options(extra: extra),
+    );
+    final apiResponse = ApiResponse.fromJson(response.data);
+    if (apiResponse.successful) {
+      return true;
+    } else {
+      throw apiResponse;
+    }
+  }
 }
 
 class _ApiInterceptor extends Interceptor {
@@ -97,8 +102,14 @@ class _ApiInterceptor extends Interceptor {
   ) async {
     final packageInfo = await PackageInfo.fromPlatform();
     final storage = LocalStorage();
-    final token = storage.token;
-    final userGid = storage.userGid;
+
+    //临时的token和userId
+    final overrideToken = options.extra['overrideToken'];
+    final overrideUserGid = options.extra['overrideUserGid'];
+
+    final token = overrideToken ?? storage.token;
+    final userGid = overrideUserGid ?? storage.userGid;
+
     final deviceId = storage.deviceId;
     final appsflyerId = storage.appsflyerId;
     final Map<String, dynamic> headers = {

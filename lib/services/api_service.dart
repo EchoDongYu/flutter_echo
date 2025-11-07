@@ -2,6 +2,7 @@ import 'dart:convert';
 import 'dart:ffi';
 
 import 'package:flutter_echo/common/constants.dart';
+import 'package:flutter_echo/event/event_data.dart';
 import 'package:flutter_echo/models/common_model.dart';
 import 'package:flutter_echo/models/swaggerApi.models.swagger.dart';
 import 'package:flutter_echo/services/api_config.dart';
@@ -410,6 +411,15 @@ class Api {
     );
   }
 
+  /// 获取公告配置
+  static Future<NoticeMainResp?> getNoticeMain() {
+    return _apiService.post(
+      ApiPath.getNoticeMain,
+      body: MainInfoReq().toJson(),
+      convert: (json) => NoticeMainResp.fromJson(json),
+    );
+  }
+
   /// 借款历史列表
   static Future<LoanBillResp> getBillList() {
     return _apiService.post(
@@ -477,8 +487,7 @@ class Api {
 
   ///提交授信影像数据
   static Future<int> photoSubmit(PhotoSubmitReq req) {
-
-    return _apiService.post(ApiPath.photoSubmit, body: req.toJson());
+    return _apiService.post(ApiPath.orcSubmit, body: req.toJson());
     // return _apiService.post(
     //   ApiPath.photoSubmit,
     //   body: req.toJson(),
@@ -502,5 +511,22 @@ class Api {
   // 借款接口  isFirstLoan 为 true 则调用新增接口 type 传 1，返回成功，则客户端记录 AF 首次借款事件
   static Future<bool?> commonReport(String type) {
     return _apiService.postSt(ApiPath.commonReport, body: {'type': type});
+  }
+
+  ///获取BizOrderId -- 授信ID
+  static Future<String?> queryBizOrderId(String type) {
+    return _apiService.post(ApiPath.queryBizOrderId, body: {'raia': ""});
+  }
+
+  ///提交事件
+  static Future<bool> submitEvent(
+    Map<String, dynamic> req, {
+    Map<String, dynamic>? extra,
+  }) {
+    return _apiService.reportExtra(
+      ApiPath.submitEvent,
+      body: req,
+      extra: extra,
+    );
   }
 }

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_echo/common/app_theme.dart';
 import 'package:flutter_echo/common/constants.dart';
+import 'package:flutter_echo/event/event_service.dart';
 import 'package:flutter_echo/pages/app_router.dart';
 import 'package:flutter_echo/services/storage_service.dart';
 import 'package:flutter_echo/ui/dialogs/disclosure_dialog.dart';
@@ -22,6 +23,7 @@ class _SplashPageState extends State<SplashPage> {
   @override
   void initState() {
     super.initState();
+    EventService.batchUploadEvents();
     WidgetsBinding.instance.addPostFrameCallback((_) {
       _checkDisclosure(context);
     });

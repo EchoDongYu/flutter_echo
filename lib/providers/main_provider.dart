@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_echo/common/base_provider.dart';
 import 'package:flutter_echo/common/constants.dart';
+import 'package:flutter_echo/event/event_service.dart';
 import 'package:flutter_echo/models/swaggerApi.models.swagger.dart';
 import 'package:flutter_echo/pages/app_router.dart';
 import 'package:flutter_echo/pages/main/track_dialog.dart';
@@ -63,9 +64,13 @@ class MainModel extends BaseProvider {
   Future<void> getHomeInfo() async {
     if (LocalStorage().isLogin) {
       _homeInfo = await launchRequest(() => Api.getHomeInfo());
+
       _creditStatus = _homeInfo?.bopomofoOCreditStatus;
       _pickedProduct = _homeInfo?.assurOFaceList?.firstOrNull;
       _pickedValue = _pickedProduct?.xuwh2oOLoanRangeMax ?? 0;
+
+      EventService.setBizOrderId(_homeInfo?.fc106rBizOrderId ?? "");
+
       // if (_homeInfo?.firstCreditReportOFirstCreditSuccessReport == true) {
       //   Future<bool?> commonReportResult = Api.commonReport('0');
       //   // 使用 then() 处理结果
@@ -84,7 +89,6 @@ class MainModel extends BaseProvider {
       //         debugLog('commonReportResult:$error');
       //       });
       // }
-
     } else {
       _creditStatus = null;
     }
@@ -96,6 +100,17 @@ class MainModel extends BaseProvider {
       _mainInfo = await Api.getMainBaseInfo();
       await LocalStorage().set(AppConst.mainInfoKey, _mainInfo);
       return _mainInfo;
+    }
+    return null;
+  }
+
+  Future<NoticeMainResp?> getNoticeMain() async {
+    if (LocalStorage().isLogin) {
+      try {
+        return await Api.getNoticeMain();
+      }catch(e){
+        ///printDebugLog(e);
+      }
     }
     return null;
   }
@@ -112,10 +127,12 @@ class MainModel extends BaseProvider {
           case 0:
             _launchKycStep();
             break;
+
+          case 8: //8:身份认证失败
           case 1:
             navigate((context) => context.push(AppRouter.stepIdInfo));
             break;
-          case 6:
+          case 6: //身份认证中
             final uriRoute = Uri(
               path: AppRouter.stepProcess,
               queryParameters: {

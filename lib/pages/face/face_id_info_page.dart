@@ -1,5 +1,7 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_echo/event/event_data.dart';
+import 'package:flutter_echo/event/event_service.dart';
 import 'package:flutter_echo/pages/app_router.dart';
 import 'package:flutter_echo/pages/face/face_guide_dialog.dart';
 import 'package:flutter_echo/pages/face/face_id_guide_dialog.dart';
@@ -114,6 +116,7 @@ class _FaceIdInfoPageState extends State<FaceIdInfoPage> {
       bottomNavigationBar: WidgetHelper.buildBottomButton(
         text: "Enviar",
         onPressed: () async {
+          EventService.batchUploadEvents(uploadMode: 2);
           _handleSubmit(context);
         },
       ),
@@ -200,8 +203,6 @@ class _FaceIdInfoPageState extends State<FaceIdInfoPage> {
       idNumber: idNumber,
       birthday: birthday,
       gender: gender,
-
-
     );
   }
 }

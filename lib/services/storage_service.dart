@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:flutter_echo/common/constants.dart';
+import 'package:flutter_echo/event/event_service.dart';
 import 'package:flutter_echo/models/swaggerApi.models.swagger.dart';
 import 'package:flutter_echo/providers/submit_provider.dart';
 import 'package:flutter_echo/utils/common_utils.dart';
@@ -67,7 +68,8 @@ class LocalStorage {
 
   String? get realAccount => _prefs.getString(AppConst.accountKey);
 
-  String? get appsflyerId {// af id
+  String? get appsflyerId {
+    // af id
     String? cachedAppsflyerId = _prefs.getString(AppConst.afIdKey);
     if (cachedAppsflyerId == null || cachedAppsflyerId.isEmpty) {
       return deviceId;
@@ -126,6 +128,12 @@ class LocalStorage {
   }
 
   Future<void> logout() async {
+    final storage = LocalStorage();
+    EventService.batchUploadEvents(
+      overrideToken: storage.token,
+      overrideUserGid: storage.userGid,
+    );
+
     SubmitModel.clearCachedData();
     await _prefs.remove(AppConst.tokenKey);
     await _prefs.remove(AppConst.userGidKey);

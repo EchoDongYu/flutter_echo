@@ -17,6 +17,8 @@ class PhoneInputField extends StatefulWidget {
   final TextInputAction? textInputAction;
   final List<TextInputFormatter>? inputFormatters;
 
+  final GestureTapCallback? onTap;
+
   const PhoneInputField({
     super.key,
     required this.controller,
@@ -30,6 +32,7 @@ class PhoneInputField extends StatefulWidget {
     this.keyboardType,
     this.textInputAction = TextInputAction.done,
     this.inputFormatters,
+    this.onTap
   });
 
   @override
@@ -138,6 +141,7 @@ class _PhoneInputFieldState extends State<PhoneInputField> {
                             ),
                           ),
                         TextField(
+                          onTap:widget.onTap ,
                           autofocus: false,
                           focusNode: _focusNode,
                           controller: widget.controller,
