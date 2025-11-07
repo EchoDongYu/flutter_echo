@@ -1969,6 +1969,7 @@ HomeInfoResp _$HomeInfoRespFromJson(Map<String, dynamic> json) => HomeInfoResp(
       json['firstCreditReport'] as bool?,
   deepmostOHasOnLoan: json['deepmost'] as bool?,
   nookieOCanBorrowAmount: (json['nookie'] as num?)?.toDouble(),
+  fc106rBizOrderId: json['fc106r'] as String?,
 );
 
 Map<String, dynamic> _$HomeInfoRespToJson(HomeInfoResp instance) =>
@@ -2005,6 +2006,7 @@ Map<String, dynamic> _$HomeInfoRespToJson(HomeInfoResp instance) =>
       'firstCreditReport': instance.firstCreditReportOFirstCreditSuccessReport,
       'deepmost': instance.deepmostOHasOnLoan,
       'nookie': instance.nookieOCanBorrowAmount,
+      'fc106r': instance.fc106rBizOrderId,
     };
 
 LoanConfirmResp _$LoanConfirmRespFromJson(Map<String, dynamic> json) =>
@@ -2308,8 +2310,10 @@ LoanPreInfoResp _$LoanPreInfoRespFromJson(Map<String, dynamic> json) =>
       satCheckStatus: (json['satCheckStatus'] as num?)?.toInt(),
       cressyOTraderPwd: json['cressy'] as bool?,
       tepicOPurposeSwitch: json['tepic'] as bool?,
-      firstCreditReportOFirstCreditSuccessReport: json['firstCreditReport'] as bool?,
+      firstCreditReportOFirstCreditSuccessReport:
+          json['firstCreditReport'] as bool?,
     );
+
 Map<String, dynamic> _$LoanPreInfoRespToJson(
   LoanPreInfoResp instance,
 ) => <String, dynamic>{

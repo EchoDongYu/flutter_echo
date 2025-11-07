@@ -11913,6 +11913,7 @@ class HomeInfoResp {
     this.firstCreditReportOFirstCreditSuccessReport,
     this.deepmostOHasOnLoan,
     this.nookieOCanBorrowAmount,
+    this.fc106rBizOrderId,
   });
 
   @JsonKey(name: 'bopomofo')
@@ -11973,6 +11974,8 @@ class HomeInfoResp {
   final bool? deepmostOHasOnLoan;
   @JsonKey(name: 'nookie')
   final double? nookieOCanBorrowAmount;
+  @JsonKey(name: 'fc106r')
+  final String? fc106rBizOrderId;
 
   factory HomeInfoResp.fromJson(Map<String, dynamic> json) =>
       _$HomeInfoRespFromJson(json);
@@ -12152,6 +12155,11 @@ class HomeInfoResp {
                 const DeepCollectionEquality().equals(
                   other.nookieOCanBorrowAmount,
                   nookieOCanBorrowAmount,
+                )) &&
+            (identical(other.fc106rBizOrderId, fc106rBizOrderId) ||
+                const DeepCollectionEquality().equals(
+                  other.fc106rBizOrderId,
+                  fc106rBizOrderId,
                 )));
   }
 
@@ -12190,6 +12198,7 @@ class HomeInfoResp {
       ) ^
       const DeepCollectionEquality().hash(deepmostOHasOnLoan) ^
       const DeepCollectionEquality().hash(nookieOCanBorrowAmount) ^
+      const DeepCollectionEquality().hash(fc106rBizOrderId) ^
       runtimeType.hashCode;
 }
 
@@ -12225,6 +12234,7 @@ extension $HomeInfoRespExtension on HomeInfoResp {
     bool? firstCreditReportOFirstCreditSuccessReport,
     bool? deepmostOHasOnLoan,
     double? nookieOCanBorrowAmount,
+    String? fc106rBizOrderId,
   }) {
     return HomeInfoResp(
       bopomofoOCreditStatus:
@@ -12270,6 +12280,7 @@ extension $HomeInfoRespExtension on HomeInfoResp {
       deepmostOHasOnLoan: deepmostOHasOnLoan ?? this.deepmostOHasOnLoan,
       nookieOCanBorrowAmount:
           nookieOCanBorrowAmount ?? this.nookieOCanBorrowAmount,
+      fc106rBizOrderId: fc106rBizOrderId ?? this.fc106rBizOrderId,
     );
   }
 
@@ -12305,6 +12316,7 @@ extension $HomeInfoRespExtension on HomeInfoResp {
     Wrapped<bool?>? firstCreditReportOFirstCreditSuccessReport,
     Wrapped<bool?>? deepmostOHasOnLoan,
     Wrapped<double?>? nookieOCanBorrowAmount,
+    Wrapped<String?>? fc106rBizOrderId,
   }) {
     return HomeInfoResp(
       bopomofoOCreditStatus: (bopomofoOCreditStatus != null
@@ -12392,13 +12404,20 @@ extension $HomeInfoRespExtension on HomeInfoResp {
       nookieOCanBorrowAmount: (nookieOCanBorrowAmount != null
           ? nookieOCanBorrowAmount.value
           : this.nookieOCanBorrowAmount),
+      fc106rBizOrderId: (fc106rBizOrderId != null
+          ? fc106rBizOrderId.value
+          : this.fc106rBizOrderId),
     );
   }
 }
 
 @JsonSerializable(explicitToJson: true)
 class LoanConfirmResp {
-  const LoanConfirmResp({this.suffOLoanStatus, this.hyphenOReason,this.u04098IsFirstLoan});
+  const LoanConfirmResp({
+    this.suffOLoanStatus,
+    this.hyphenOReason,
+    this.u04098IsFirstLoan,
+  });
 
   @JsonKey(name: 'suff')
   final int? suffOLoanStatus;
@@ -12407,7 +12426,6 @@ class LoanConfirmResp {
 
   @JsonKey(name: 'u04098')
   final bool? u04098IsFirstLoan;
-
 
   factory LoanConfirmResp.fromJson(Map<String, dynamic> json) =>
       _$LoanConfirmRespFromJson(json);
@@ -12421,7 +12439,7 @@ class LoanConfirmResp {
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other is LoanConfirmResp &&
-                (identical(other.u04098IsFirstLoan, u04098IsFirstLoan) ||
+            (identical(other.u04098IsFirstLoan, u04098IsFirstLoan) ||
                 const DeepCollectionEquality().equals(
                   other.u04098IsFirstLoan,
                   u04098IsFirstLoan,
@@ -14207,7 +14225,10 @@ class LoanPreInfoResp {
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other is LoanPreInfoResp &&
-            (identical(other.firstCreditReportOFirstCreditSuccessReport, firstCreditReportOFirstCreditSuccessReport) ||
+            (identical(
+                  other.firstCreditReportOFirstCreditSuccessReport,
+                  firstCreditReportOFirstCreditSuccessReport,
+                ) ||
                 const DeepCollectionEquality().equals(
                   other.firstCreditReportOFirstCreditSuccessReport,
                   firstCreditReportOFirstCreditSuccessReport,
@@ -14455,7 +14476,9 @@ class LoanPreInfoResp {
 
   @override
   int get hashCode =>
-      const DeepCollectionEquality().hash(firstCreditReportOFirstCreditSuccessReport) ^
+      const DeepCollectionEquality().hash(
+        firstCreditReportOFirstCreditSuccessReport,
+      ) ^
       const DeepCollectionEquality().hash(raiaOUserGid) ^
       const DeepCollectionEquality().hash(r5k31qODueTime) ^
       const DeepCollectionEquality().hash(retiaryOLoanAmount) ^
