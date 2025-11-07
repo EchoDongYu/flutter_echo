@@ -11533,6 +11533,30 @@ class CheckReviewAccountResp {
 }
 
 @JsonSerializable(explicitToJson: true)
+class NoticeMainResp {
+  const NoticeMainResp({this.cp597o, this.title, this.content});
+
+  @JsonKey(name: 'cp597o')
+  final String? cp597o;
+  @JsonKey(name: 'title')
+  final String? title;
+  @JsonKey(name: 'content')
+  final String? content;
+
+  factory NoticeMainResp.fromJson(Map<String, dynamic> json) =>
+      _$NoticeMainRespFromJson(json);
+
+  Map<String, dynamic> toJson() => _$NoticeMainRespToJson(this);
+
+  static const fromJsonFactory = _$NoticeMainRespFromJson;
+  static const toJsonFactory = _$NoticeMainRespToJson;
+  @override
+  String toString() => jsonEncode(this);
+  @override
+  int get hashCode => runtimeType.hashCode;
+}
+
+@JsonSerializable(explicitToJson: true)
 class MainInfoResp {
   const MainInfoResp({
     this.cressyOTraderPwd,
@@ -11654,24 +11678,7 @@ extension $MainInfoRespExtension on MainInfoResp {
   }
 }
 
-@JsonSerializable(explicitToJson: true)
-class NoticeMainResp {
-  const NoticeMainResp();
 
-  factory NoticeMainResp.fromJson(Map<String, dynamic> json) =>
-      _$NoticeMainRespFromJson(json);
-
-  Map<String, dynamic> toJson() => _$NoticeMainRespToJson(this);
-
-  static const fromJsonFactory = _$NoticeMainRespFromJson;
-  static const toJsonFactory = _$NoticeMainRespToJson;
-
-  @override
-  String toString() => jsonEncode(this);
-
-  @override
-  int get hashCode => runtimeType.hashCode;
-}
 
 @JsonSerializable(explicitToJson: true)
 class VersionCheckResp {

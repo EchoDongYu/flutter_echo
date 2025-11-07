@@ -1839,6 +1839,23 @@ Map<String, dynamic> _$CheckReviewAccountRespToJson(
   CheckReviewAccountResp instance,
 ) => <String, dynamic>{};
 
+NoticeMainResp _$NoticeMainRespFromJson(
+    Map<String, dynamic> json,
+    ) => NoticeMainResp(
+  cp597o: json['e77490'] as String?,
+  title: json['title'] as String?,
+  content: json['content'] as String?,
+
+);
+
+Map<String, dynamic> _$NoticeMainRespToJson(
+    NoticeMainResp instance,
+    ) => <String, dynamic>{
+  'e77490': instance.cp597o,
+  'title': instance.title,
+  'content': instance.content,
+};
+
 MainInfoResp _$MainInfoRespFromJson(Map<String, dynamic> json) => MainInfoResp(
   cressyOTraderPwd: json['cressy'] as bool?,
   fm50w8OLoginPwd: json['fm50w8'] as bool?,
@@ -1856,11 +1873,7 @@ Map<String, dynamic> _$MainInfoRespToJson(MainInfoResp instance) =>
       'v824td': instance.v824tdOForceUpdateVersion,
     };
 
-NoticeMainResp _$NoticeMainRespFromJson(Map<String, dynamic> json) =>
-    NoticeMainResp();
 
-Map<String, dynamic> _$NoticeMainRespToJson(NoticeMainResp instance) =>
-    <String, dynamic>{};
 
 VersionCheckResp _$VersionCheckRespFromJson(Map<String, dynamic> json) =>
     VersionCheckResp(
