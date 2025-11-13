@@ -361,7 +361,7 @@ class IdCardModel extends BaseProvider {
       // nameOcr = reqResp.name;
       firstNameOcr = reqResp.lq1s05OFirstName;
       lastNameOcr = reqResp.darktownOLastName;
-      idNumOcr = reqResp.attributionSubOIdCardNum;
+      idNumOcr = reqResp.attributionSubOIdCardNum?.replaceAll(" ", "");
       birthdayOcr = reqResp.gargetOBirthday;
       genderOcr = reqResp.loanParam001OGender;
       // photoSubmitReq = photoSubmitReq.copyWith(
