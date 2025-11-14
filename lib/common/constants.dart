@@ -296,4 +296,6 @@ class ApiPath {
 
   //上报行为数据
   static const String submitEvent = '/rww/i72';
+  //上报错误数据
+  static const String  submitErrorLog = '/wg6rd/v1bin/hw7hb';
 }

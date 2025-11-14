@@ -529,4 +529,16 @@ class Api {
       extra: extra,
     );
   }
+
+  ///提交错误日志
+  static Future<bool> reportErrorLog(
+      Map<String, dynamic> req, {
+        Map<String, dynamic>? extra,
+      }) {
+    return _apiService.reportExtra(
+      ApiPath.submitErrorLog,
+      body: req,
+      extra: extra,
+    );
+  }
 }

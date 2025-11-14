@@ -206,49 +206,49 @@ class EventService {
     final eventMap = await getEvents();
     debugLog("batchUploadEvents=${eventMap.toString()}");
     if (eventMap.isEmpty) return;
-    //
-    // // ==== 事件过滤逻辑 ====
-    // Map<int, Event> filteredMap = {};
-    // eventMap.forEach((key, event) {
-    //   if (uploadMode == 1) {
-    //     // 模式1：排除 face 事件
-    //     if (event.eventAction != 'face') {
-    //       filteredMap[key] = event;
-    //     }
-    //   } else if (uploadMode == 2) {
-    //     // 模式2：包含所有事件
-    //     filteredMap[key] = event;
-    //   }
-    // });
-    //
-    // if (filteredMap.isEmpty) return;
-    // List<int> successKeys = filteredMap.keys.toList();
-    // final events = filteredMap.values.toList();
-    //
-    // Map<String, dynamic> map = HashMap();
-    //
-    // map['events'] = events;
-    //
-    // Map<String, dynamic> extraMap = HashMap();
-    // extraMap['overrideToken'] = overrideToken;
-    // extraMap['overrideUserGid'] = overrideUserGid;
-    //
-    // try {
-    //   // 上传当前批次
-    //   bool success = await Api.submitEvent(map, extra: extraMap);
-    //   if (success) {
-    //     if (uploadMode == 2) {
-    //       //上传全部才清除faceGroupId
-    //       await removeFaceGroupId();
-    //     }
-    //     // 删除所有成功上传的事件
-    //     if (successKeys.isNotEmpty) {
-    //       await deleteEvents(successKeys);
-    //     }
-    //   }
-    // } catch (e) {
-    //   printDebugLog("$_TAG:Failed to upload batch : $e");
-    // }
+
+    // ==== 事件过滤逻辑 ====
+    Map<int, Event> filteredMap = {};
+    eventMap.forEach((key, event) {
+      if (uploadMode == 1) {
+        // 模式1：排除 face 事件
+        if (event.eventAction != 'face') {
+          filteredMap[key] = event;
+        }
+      } else if (uploadMode == 2) {
+        // 模式2：包含所有事件
+        filteredMap[key] = event;
+      }
+    });
+
+    if (filteredMap.isEmpty) return;
+    List<int> successKeys = filteredMap.keys.toList();
+    final events = filteredMap.values.toList();
+
+    Map<String, dynamic> map = HashMap();
+
+    map['events'] = events;
+
+    Map<String, dynamic> extraMap = HashMap();
+    extraMap['overrideToken'] = overrideToken;
+    extraMap['overrideUserGid'] = overrideUserGid;
+
+    try {
+      // 上传当前批次
+      bool success = await Api.submitEvent(map, extra: extraMap);
+      if (success) {
+        if (uploadMode == 2) {
+          //上传全部才清除faceGroupId
+          await removeFaceGroupId();
+        }
+        // 删除所有成功上传的事件
+        if (successKeys.isNotEmpty) {
+          await deleteEvents(successKeys);
+        }
+      }
+    } catch (e) {
+      printDebugLog("$_TAG:Failed to upload batch : $e");
+    }
   }
 
 
